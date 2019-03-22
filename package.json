@@ -1,0 +1,26 @@
+{
+  "name": "magbot-stat",
+  "version": "1.0.0",
+  "description": "Get stats on your latest Magister grades, and calculate things like what ya need to fix 1st world probloms",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "magister.js": "^2.0.0-alpha.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mamorgen/magbot-stat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mamorgen/magbot-stat/issues"
+  },
+  "homepage": "https://github.com/mamorgen/magbot-stat#readme"
+}
