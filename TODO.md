@@ -10,4 +10,4 @@ Hoi en welkom hier komen alle ideeen die wij graag nog willen toevoegen aan magb
 
 ## Toevoegen aan deze lijst?
 
-Wil je wat toevoegen aan deze lijst? Dat kan maak dan een isue toe en wij voegen dat toe aan deze lijst.
+Wil je wat toevoegen aan deze lijst? Dat kan maak dan een issue toe en wij voegen dat toe aan deze lijst.
