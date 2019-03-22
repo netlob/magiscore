@@ -595,6 +595,15 @@ pre code {
   margin-left: auto;
 }
 
+.container-login {
+  width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 720px;
+}
+
 .row {
   display: -webkit-box;
   display: -ms-flexbox;
