@@ -889,7 +889,7 @@ function getLoginInfo(){
         school: schools[$('#login-school').val()]
     }
 }
-
+var res;
 function login(creds) {
     if('username' in creds && 'password' in creds && 'school' in creds) {
         var settings = {
@@ -907,7 +907,7 @@ function login(creds) {
         console.dir(settings)
         
         $.ajax(settings).done(function (response) {
-            setCookie('cijfers', response, 365)
+            localStorage.setItem("cijfers", res);
             console.log(response);
         });
     }
