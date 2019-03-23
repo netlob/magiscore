@@ -891,7 +891,8 @@ function getLoginInfo(){
 }
 var res;
 function login(creds) {
-    if('username' in creds && 'password' in creds && 'school' in creds) {
+    if(creds.username.length > 1 && creds.password.length > 1 && creds.school.length > 1) {
+        document.getElementById("overlay").style.display = "block";
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -905,10 +906,11 @@ function login(creds) {
         }
         
         $.ajax(settings).done(function (response) {
+            document.getElementById("overlay").style.display = "block";
             if(response.substring(0, 4) != 'error') {
                 localStorage.setItem("cijfers", response);
                 location.href='https://mamorgen.github.io/magbot-stat/'
             }
         });
-    }
+    } else { console.dir('False login') }
 }
