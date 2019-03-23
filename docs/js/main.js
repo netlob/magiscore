@@ -3860,4 +3860,29 @@ function logCijfers(){
 
 
     // console.log(indexedCijfers)
+    updateNav()
+}
+
+function showClass(vak){
+    if(vak == 'general'){
+        
+    }
+}
+
+function updateNav(){
+    var vakken = Object.keys(sorted)
+    var HTML = `<li class="nav-item">
+                        <a class="nav-link" onclick="showClass('general')">
+                            <span>gemiddeld</span>
+                        </a>
+                    </li>`
+        document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
+    vakken.forEach(vak =>{
+        var HTML = `<li class="nav-item">
+                        <a class="nav-link" onclick="showClass(${vak})">
+                            <span>${vak}</span>
+                        </a>
+                    </li>`
+        document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
+    })
 }
