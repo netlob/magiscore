@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "dependencies": {
-    "magister.js": "^2.0.0-alpha.11"
+    "magister.js": "^2.0.0-alpha.11",
+    "puppeteer": "^1.13.0"
   },
   "devDependencies": {},
   "scripts": {

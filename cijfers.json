@@ -1,0 +1,3874 @@
+{
+    "Items": [
+        {
+            "CijferId": 10343764,
+            "CijferStr": "7,8",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-15T14:47:26.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281659,
+                "KolomNaam": "AK110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10388489,
+            "CijferStr": "6,6",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-12-05T08:46:10.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281660,
+                "KolomNaam": "AK111",
+                "KolomNummer": "111",
+                "KolomVolgNummer": "111",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10396876,
+            "CijferStr": "7,4",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-12-19T09:43:07.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281661,
+                "KolomNaam": "AK112",
+                "KolomNummer": "112",
+                "KolomVolgNummer": "112",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10405970,
+            "CijferStr": "7,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-16T09:01:16.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281662,
+                "KolomNaam": "AK113",
+                "KolomNummer": "113",
+                "KolomVolgNummer": "113",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10410939,
+            "CijferStr": "7,6",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-24T14:26:16.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281663,
+                "KolomNaam": "AK114",
+                "KolomNummer": "114",
+                "KolomVolgNummer": "114",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10286325,
+            "CijferStr": "8,3",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-02-27T18:37:27.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282646,
+                "KolomNaam": "WA100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10286327,
+            "CijferStr": "67",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-02-27T18:37:27.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282647,
+                "KolomNaam": "WA101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10315421,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286532,
+                "KolomNaam": "WA099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10316491,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286785,
+                "KolomNaam": "WA098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10286324,
+            "CijferStr": "8,2",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-10-16T13:16:19.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282626,
+                "KolomNaam": "WA110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10350439,
+            "CijferStr": "8,5",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-17T16:08:01.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282627,
+                "KolomNaam": "WA111",
+                "KolomNummer": "111",
+                "KolomVolgNummer": "111",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10412250,
+            "CijferStr": "7,8",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-25T14:53:00.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282628,
+                "KolomNaam": "WA112",
+                "KolomNummer": "112",
+                "KolomVolgNummer": "112",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10440927,
+            "CijferStr": "8,6",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-02-27T18:37:27.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282629,
+                "KolomNaam": "WA113",
+                "KolomNummer": "113",
+                "KolomVolgNummer": "113",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10283145,
+            "CijferStr": "15",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-18T12:29:44.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 517853,
+                "Afkorting": "TCC",
+                "Omschrijving": "compensatiepunten",
+                "Volgnr": 2001
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282624,
+                "KolomNaam": "TCC200",
+                "KolomNummer": "200",
+                "KolomVolgNummer": "200",
+                "KolomKop": "COMPEN",
+                "KolomOmschrijving": null,
+                "KolomSoort": 14,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": null,
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10283146,
+            "CijferStr": "0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-18T12:29:44.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 517854,
+                "Afkorting": "TCT",
+                "Omschrijving": "tekortpunten",
+                "Volgnr": 2000
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282625,
+                "KolomNaam": "TCT200",
+                "KolomNummer": "200",
+                "KolomVolgNummer": "200",
+                "KolomKop": "TEKORT",
+                "KolomOmschrijving": null,
+                "KolomSoort": 14,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": null,
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10430483,
+            "CijferStr": "V",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-02-04T19:36:10.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 524277,
+                "Afkorting": "RE",
+                "Omschrijving": "rekenen",
+                "Volgnr": 1008
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286944,
+                "KolomNaam": "RE500",
+                "KolomNummer": "500",
+                "KolomVolgNummer": "500",
+                "KolomKop": null,
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "REE",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10314860,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499146,
+                "Afkorting": "O&O",
+                "Omschrijving": "onderzoek & ontwerpen",
+                "Volgnr": 939
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286530,
+                "KolomNaam": "O&O099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EWA",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10315820,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499146,
+                "Afkorting": "O&O",
+                "Omschrijving": "onderzoek & ontwerpen",
+                "Volgnr": 939
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286803,
+                "KolomNaam": "O&O098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EWA",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10351702,
+            "CijferStr": "6,4",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-18T12:29:44.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499140,
+                "Afkorting": "NE",
+                "Omschrijving": "Nederlands",
+                "Volgnr": 12
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282350,
+                "KolomNaam": "NE100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "HEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10351703,
+            "CijferStr": "50",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-18T12:29:44.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499140,
+                "Afkorting": "NE",
+                "Omschrijving": "Nederlands",
+                "Volgnr": 12
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282351,
+                "KolomNaam": "NE101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "HEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10317598,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:12.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499140,
+                "Afkorting": "NE",
+                "Omschrijving": "Nederlands",
+                "Volgnr": 12
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286528,
+                "KolomNaam": "NE099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "HEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10315590,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499140,
+                "Afkorting": "NE",
+                "Omschrijving": "Nederlands",
+                "Volgnr": 12
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286793,
+                "KolomNaam": "NE098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "HEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10316165,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286784,
+                "KolomNaam": "MA098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10351700,
+            "CijferStr": "7,3",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-18T11:26:56.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499140,
+                "Afkorting": "NE",
+                "Omschrijving": "Nederlands",
+                "Volgnr": 12
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282330,
+                "KolomNaam": "NE110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "HEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10351867,
+            "CijferStr": "7,3",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-18T11:35:19.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499140,
+                "Afkorting": "NE",
+                "Omschrijving": "Nederlands",
+                "Volgnr": 12
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282331,
+                "KolomNaam": "NE111",
+                "KolomNummer": "111",
+                "KolomVolgNummer": "111",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "HEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10449181,
+            "CijferStr": "3,6",
+            "IsVoldoende": false,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-18T12:29:43.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499140,
+                "Afkorting": "NE",
+                "Omschrijving": "Nederlands",
+                "Volgnr": 12
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282332,
+                "KolomNaam": "NE112",
+                "KolomNummer": "112",
+                "KolomVolgNummer": "112",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "HEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10427283,
+            "CijferStr": "6,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-30T15:19:10.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499140,
+                "Afkorting": "NE",
+                "Omschrijving": "Nederlands",
+                "Volgnr": 12
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282333,
+                "KolomNaam": "NE113",
+                "KolomNummer": "113",
+                "KolomVolgNummer": "113",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "HEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10427314,
+            "CijferStr": "7,5",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-30T15:19:13.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499140,
+                "Afkorting": "NE",
+                "Omschrijving": "Nederlands",
+                "Volgnr": 12
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282334,
+                "KolomNaam": "NE114",
+                "KolomNummer": "114",
+                "KolomVolgNummer": "114",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "HEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10399121,
+            "CijferStr": "7,8",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-31T00:20:33.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282203,
+                "KolomNaam": "MA100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10399123,
+            "CijferStr": "60",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-31T00:20:33.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282204,
+                "KolomNaam": "MA101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10316735,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286526,
+                "KolomNaam": "MA099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10315950,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499136,
+                "Afkorting": "LO",
+                "Omschrijving": "lichamelijke opvoeding",
+                "Volgnr": 4
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286524,
+                "KolomNaam": "LO099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "FBA",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10317452,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:12.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499136,
+                "Afkorting": "LO",
+                "Omschrijving": "lichamelijke opvoeding",
+                "Volgnr": 4
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286798,
+                "KolomNaam": "LO098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "FBA",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10399082,
+            "CijferStr": "7,3",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-12-21T08:40:48.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282183,
+                "KolomNaam": "MA110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10399101,
+            "CijferStr": "9,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-12-21T08:40:48.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282184,
+                "KolomNaam": "MA111",
+                "KolomNummer": "111",
+                "KolomVolgNummer": "111",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10428795,
+            "CijferStr": "7,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-31T00:20:33.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282185,
+                "KolomNaam": "MA112",
+                "KolomNummer": "112",
+                "KolomVolgNummer": "112",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10310068,
+            "CijferStr": "50",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-27T22:52:53.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499135,
+                "Afkorting": "LB",
+                "Omschrijving": "levensbeschouwing",
+                "Volgnr": 2
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282124,
+                "KolomNaam": "LB101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "DEK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10310078,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T12:27:18.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499135,
+                "Afkorting": "LB",
+                "Omschrijving": "levensbeschouwing",
+                "Volgnr": 2
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286523,
+                "KolomNaam": "LB099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "DEK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10310077,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T12:27:17.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499135,
+                "Afkorting": "LB",
+                "Omschrijving": "levensbeschouwing",
+                "Volgnr": 2
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286787,
+                "KolomNaam": "LB098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "DEK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10310066,
+            "CijferStr": "8,7",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-27T22:52:53.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499135,
+                "Afkorting": "LB",
+                "Omschrijving": "levensbeschouwing",
+                "Volgnr": 2
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282123,
+                "KolomNaam": "LB100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "DEK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10310065,
+            "CijferStr": "8,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T12:24:43.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499135,
+                "Afkorting": "LB",
+                "Omschrijving": "levensbeschouwing",
+                "Volgnr": 2
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282103,
+                "KolomNaam": "LB110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "DEK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10414562,
+            "CijferStr": "9,3",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-27T22:52:52.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499135,
+                "Afkorting": "LB",
+                "Omschrijving": "levensbeschouwing",
+                "Volgnr": 2
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282104,
+                "KolomNaam": "LB111",
+                "KolomNummer": "111",
+                "KolomVolgNummer": "111",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "DEK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10346241,
+            "CijferStr": "7,2",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-29T15:59:48.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282074,
+                "KolomNaam": "GS100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10346242,
+            "CijferStr": "40",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-29T15:59:48.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282075,
+                "KolomNaam": "GS101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10315347,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286522,
+                "KolomNaam": "GS099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10316893,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286806,
+                "KolomNaam": "GS098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10317299,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:12.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499142,
+                "Afkorting": "EN",
+                "Omschrijving": "Engels",
+                "Volgnr": 14
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286797,
+                "KolomNaam": "EN098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "LAH",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10346239,
+            "CijferStr": "7,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-16T08:00:59.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282054,
+                "KolomNaam": "GS110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10420856,
+            "CijferStr": "7,3",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-29T15:59:48.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282055,
+                "KolomNaam": "GS111",
+                "KolomNummer": "111",
+                "KolomVolgNummer": "111",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10332870,
+            "CijferStr": "7,7",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-08T14:33:54.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499142,
+                "Afkorting": "EN",
+                "Omschrijving": "Engels",
+                "Volgnr": 14
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281976,
+                "KolomNaam": "EN100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "LAH",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10332871,
+            "CijferStr": "50",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-08T14:33:54.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499142,
+                "Afkorting": "EN",
+                "Omschrijving": "Engels",
+                "Volgnr": 14
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281977,
+                "KolomNaam": "EN101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "LAH",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10314703,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499142,
+                "Afkorting": "EN",
+                "Omschrijving": "Engels",
+                "Volgnr": 14
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286520,
+                "KolomNaam": "EN099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "LAH",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10444702,
+            "CijferStr": "7,5",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-08T14:33:54.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499142,
+                "Afkorting": "EN",
+                "Omschrijving": "Engels",
+                "Volgnr": 14
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281960,
+                "KolomNaam": "EN114",
+                "KolomNummer": "114",
+                "KolomVolgNummer": "114",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "LAH",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10317906,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:12.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499145,
+                "Afkorting": "EC",
+                "Omschrijving": "economie",
+                "Volgnr": 61
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286519,
+                "KolomNaam": "EC099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RBB",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10314820,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499145,
+                "Afkorting": "EC",
+                "Omschrijving": "economie",
+                "Volgnr": 61
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286790,
+                "KolomNaam": "EC098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RBB",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10332868,
+            "CijferStr": "8,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-12T09:43:54.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499142,
+                "Afkorting": "EN",
+                "Omschrijving": "Engels",
+                "Volgnr": 14
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281956,
+                "KolomNaam": "EN110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "LAH",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10365436,
+            "CijferStr": "8,7",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-21T13:09:18.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499142,
+                "Afkorting": "EN",
+                "Omschrijving": "Engels",
+                "Volgnr": 14
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281957,
+                "KolomNaam": "EN111",
+                "KolomNummer": "111",
+                "KolomVolgNummer": "111",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "LAH",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10415312,
+            "CijferStr": "5,4",
+            "IsVoldoende": false,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-02-26T12:23:14.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499142,
+                "Afkorting": "EN",
+                "Omschrijving": "Engels",
+                "Volgnr": 14
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281958,
+                "KolomNaam": "EN112",
+                "KolomNummer": "112",
+                "KolomVolgNummer": "112",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "LAH",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10283143,
+            "CijferStr": "7,1",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-25T14:58:04.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499145,
+                "Afkorting": "EC",
+                "Omschrijving": "economie",
+                "Volgnr": 61
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281927,
+                "KolomNaam": "EC100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RBB",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10283144,
+            "CijferStr": "55",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-25T14:58:04.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499145,
+                "Afkorting": "EC",
+                "Omschrijving": "economie",
+                "Volgnr": 61
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281928,
+                "KolomNaam": "EC101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RBB",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10317192,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:12.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499137,
+                "Afkorting": "CKV1",
+                "Omschrijving": "culturele/kunstzinnige vorm. 1",
+                "Volgnr": 8
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286517,
+                "KolomNaam": "CKV1099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "VLD",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10315052,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499137,
+                "Afkorting": "CKV1",
+                "Omschrijving": "culturele/kunstzinnige vorm. 1",
+                "Volgnr": 8
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286801,
+                "KolomNaam": "CKV1098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "VLD",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10283141,
+            "CijferStr": "5,3",
+            "IsVoldoende": false,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-10-15T13:46:37.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499145,
+                "Afkorting": "EC",
+                "Omschrijving": "economie",
+                "Volgnr": 61
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281907,
+                "KolomNaam": "EC110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RBB",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10340372,
+            "CijferStr": "6,7",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-14T15:12:28.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499145,
+                "Afkorting": "EC",
+                "Omschrijving": "economie",
+                "Volgnr": 61
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281908,
+                "KolomNaam": "EC111",
+                "KolomNummer": "111",
+                "KolomVolgNummer": "111",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RBB",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10412257,
+            "CijferStr": "8,4",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-25T14:58:04.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499145,
+                "Afkorting": "EC",
+                "Omschrijving": "economie",
+                "Volgnr": 61
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281909,
+                "KolomNaam": "EC112",
+                "KolomNummer": "112",
+                "KolomVolgNummer": "112",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RBB",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10446922,
+            "CijferStr": "7,6",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-13T10:28:20.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499137,
+                "Afkorting": "CKV1",
+                "Omschrijving": "culturele/kunstzinnige vorm. 1",
+                "Volgnr": 8
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281851,
+                "KolomNaam": "CKV1100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "VLD",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10446940,
+            "CijferStr": "100",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-03-13T10:28:20.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499137,
+                "Afkorting": "CKV1",
+                "Omschrijving": "culturele/kunstzinnige vorm. 1",
+                "Volgnr": 8
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281852,
+                "KolomNaam": "CKV1101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "VLD",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10363700,
+            "CijferStr": "8,7",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-30T13:21:39.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499147,
+                "Afkorting": "BE",
+                "Omschrijving": "Bedrijfseconomie",
+                "Volgnr": 2124
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286868,
+                "KolomNaam": "BE100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "BOU",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10363702,
+            "CijferStr": "50",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-30T13:21:39.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499147,
+                "Afkorting": "BE",
+                "Omschrijving": "Bedrijfseconomie",
+                "Volgnr": 2124
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286869,
+                "KolomNaam": "BE101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "BOU",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10428925,
+            "CijferStr": "7,6",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-31T12:53:44.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499137,
+                "Afkorting": "CKV1",
+                "Omschrijving": "culturele/kunstzinnige vorm. 1",
+                "Volgnr": 8
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281831,
+                "KolomNaam": "CKV1110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "VLD",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10314895,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499147,
+                "Afkorting": "BE",
+                "Omschrijving": "Bedrijfseconomie",
+                "Volgnr": 2124
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286810,
+                "KolomNaam": "BE098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "BOU",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10363699,
+            "CijferStr": "10,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-20T22:21:26.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499147,
+                "Afkorting": "BE",
+                "Omschrijving": "Bedrijfseconomie",
+                "Volgnr": 2124
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286857,
+                "KolomNaam": "BE110",
+                "KolomNummer": "110",
+                "KolomVolgNummer": "110",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "BOU",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10427007,
+            "CijferStr": "7,3",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-30T13:21:38.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499147,
+                "Afkorting": "BE",
+                "Omschrijving": "Bedrijfseconomie",
+                "Volgnr": 2124
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286858,
+                "KolomNaam": "BE111",
+                "KolomNummer": "111",
+                "KolomVolgNummer": "111",
+                "KolomKop": "REP",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "BOU",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10343767,
+            "CijferStr": "50",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-24T14:26:16.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281680,
+                "KolomNaam": "AK101",
+                "KolomNummer": "101",
+                "KolomVolgNummer": "101",
+                "KolomKop": "% voltooid",
+                "KolomOmschrijving": null,
+                "KolomSoort": 4,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10316336,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286514,
+                "KolomNaam": "AK099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10316279,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:11.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286814,
+                "KolomNaam": "AK098",
+                "KolomNummer": "98",
+                "KolomVolgNummer": "98",
+                "KolomKop": "Vordering",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10317841,
+            "CijferStr": "NB",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-05T15:23:12.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499147,
+                "Afkorting": "BE",
+                "Omschrijving": "Bedrijfseconomie",
+                "Volgnr": 2124
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 286538,
+                "KolomNaam": "BE099",
+                "KolomNummer": "99",
+                "KolomVolgNummer": "99",
+                "KolomKop": "Inzet",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "BOU",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10343766,
+            "CijferStr": "7,6",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-24T14:26:16.0000000Z",
+            "CijferPeriode": {
+                "Id": 1524,
+                "Naam": "1819",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281679,
+                "KolomNaam": "AK100",
+                "KolomNummer": "100",
+                "KolomVolgNummer": "100",
+                "KolomKop": "Gem. cijfer",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10410997,
+            "CijferStr": "7,6",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-24T14:28:58.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281683,
+                "KolomNaam": "AK600",
+                "KolomNummer": "600",
+                "KolomVolgNummer": "600",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10410999,
+            "CijferStr": "15",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-24T14:28:58.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281684,
+                "KolomNaam": "AK601",
+                "KolomNummer": "601",
+                "KolomVolgNummer": "601",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 6,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10410996,
+            "CijferStr": "7,6",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-24T14:28:58.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281685,
+                "KolomNaam": "AK602",
+                "KolomNummer": "602",
+                "KolomVolgNummer": "602",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10410998,
+            "CijferStr": "15",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-24T14:28:58.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499144,
+                "Afkorting": "AK",
+                "Omschrijving": "aardrijkskunde",
+                "Volgnr": 66
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 281686,
+                "KolomNaam": "AK603",
+                "KolomNummer": "603",
+                "KolomVolgNummer": "603",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 12,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "RPP",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10428175,
+            "CijferStr": "7,8",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-30T20:23:15.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282650,
+                "KolomNaam": "WA600",
+                "KolomNummer": "600",
+                "KolomVolgNummer": "600",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10428177,
+            "CijferStr": "10",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-30T20:23:15.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282651,
+                "KolomNaam": "WA601",
+                "KolomNummer": "601",
+                "KolomVolgNummer": "601",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 6,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10428174,
+            "CijferStr": "7,8",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-30T20:23:15.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282652,
+                "KolomNaam": "WA602",
+                "KolomNummer": "602",
+                "KolomVolgNummer": "602",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10428176,
+            "CijferStr": "10",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-30T20:23:15.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499141,
+                "Afkorting": "WA",
+                "Omschrijving": "wiskunde A",
+                "Volgnr": 160
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282653,
+                "KolomNaam": "WA603",
+                "KolomNummer": "603",
+                "KolomVolgNummer": "603",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 12,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "EEN",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10398685,
+            "CijferStr": "9,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-12-20T23:48:37.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282211,
+                "KolomNaam": "MA604",
+                "KolomNummer": "604",
+                "KolomVolgNummer": "604",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10398686,
+            "CijferStr": "20",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-12-20T23:48:37.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282212,
+                "KolomNaam": "MA605",
+                "KolomNummer": "605",
+                "KolomVolgNummer": "605",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 12,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10428747,
+            "CijferStr": "7,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-31T00:18:43.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282213,
+                "KolomNaam": "MA606",
+                "KolomNummer": "606",
+                "KolomVolgNummer": "606",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10428748,
+            "CijferStr": "20",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-31T00:18:43.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282214,
+                "KolomNaam": "MA607",
+                "KolomNummer": "607",
+                "KolomVolgNummer": "607",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 12,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10380418,
+            "CijferStr": "7,8",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-31T00:18:43.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282207,
+                "KolomNaam": "MA600",
+                "KolomNummer": "600",
+                "KolomVolgNummer": "600",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10380420,
+            "CijferStr": "60",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-31T00:18:43.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282208,
+                "KolomNaam": "MA601",
+                "KolomNummer": "601",
+                "KolomVolgNummer": "601",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 6,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10380392,
+            "CijferStr": "7,3",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-23T14:44:00.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282209,
+                "KolomNaam": "MA602",
+                "KolomNummer": "602",
+                "KolomVolgNummer": "602",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10380419,
+            "CijferStr": "20",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-23T14:44:05.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499138,
+                "Afkorting": "MA",
+                "Omschrijving": "maatschappijleer",
+                "Volgnr": 28
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282210,
+                "KolomNaam": "MA603",
+                "KolomNummer": "603",
+                "KolomVolgNummer": "603",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 12,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "QUI",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10346275,
+            "CijferStr": "7,0",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-16T08:01:25.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282080,
+                "KolomNaam": "GS602",
+                "KolomNummer": "602",
+                "KolomVolgNummer": "602",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10346315,
+            "CijferStr": "10",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2018-11-22T09:57:20.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282081,
+                "KolomNaam": "GS603",
+                "KolomNummer": "603",
+                "KolomVolgNummer": "603",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 12,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10420858,
+            "CijferStr": "7,3",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-29T15:59:54.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282082,
+                "KolomNaam": "GS604",
+                "KolomNummer": "604",
+                "KolomVolgNummer": "604",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 1,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10420859,
+            "CijferStr": "10",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-29T15:59:54.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282083,
+                "KolomNaam": "GS605",
+                "KolomNummer": "605",
+                "KolomVolgNummer": "605",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 12,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10346295,
+            "CijferStr": "7,2",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-29T15:59:54.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282078,
+                "KolomNaam": "GS600",
+                "KolomNummer": "600",
+                "KolomVolgNummer": "600",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 2,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 10346335,
+            "CijferStr": "20",
+            "IsVoldoende": true,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": "2019-01-29T15:59:54.0000000Z",
+            "CijferPeriode": {
+                "Id": 1525,
+                "Naam": "EX",
+                "VolgNummer": 1
+            },
+            "Vak": {
+                "Id": 499143,
+                "Afkorting": "GS",
+                "Omschrijving": "geschiedenis",
+                "Volgnr": 68
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": true,
+            "CijferKolom": {
+                "Id": 282079,
+                "KolomNaam": "GS601",
+                "KolomNummer": "601",
+                "KolomVolgNummer": "601",
+                "KolomKop": "EX",
+                "KolomOmschrijving": null,
+                "KolomSoort": 6,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": "KOK",
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 0,
+            "CijferStr": null,
+            "IsVoldoende": false,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": null,
+            "CijferPeriode": null,
+            "Vak": {
+                "Id": 522204,
+                "Afkorting": "ROL",
+                "Omschrijving": "Rekenondersteuningsles",
+                "Volgnr": 0
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": false,
+            "CijferKolom": {
+                "Id": 0,
+                "KolomNaam": null,
+                "KolomNummer": null,
+                "KolomVolgNummer": "0",
+                "KolomKop": null,
+                "KolomOmschrijving": null,
+                "KolomSoort": 0,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": null,
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        },
+        {
+            "CijferId": 0,
+            "CijferStr": null,
+            "IsVoldoende": false,
+            "IngevoerdDoor": null,
+            "DatumIngevoerd": null,
+            "CijferPeriode": null,
+            "Vak": {
+                "Id": 517852,
+                "Afkorting": "rt3F",
+                "Omschrijving": "Rekentoets 3F",
+                "Volgnr": 0
+            },
+            "Inhalen": false,
+            "Vrijstelling": false,
+            "TeltMee": false,
+            "CijferKolom": {
+                "Id": 0,
+                "KolomNaam": null,
+                "KolomNummer": null,
+                "KolomVolgNummer": "0",
+                "KolomKop": null,
+                "KolomOmschrijving": null,
+                "KolomSoort": 0,
+                "IsHerkansingKolom": false,
+                "IsDocentKolom": false,
+                "HeeftOnderliggendeKolommen": false,
+                "IsPTAKolom": false
+            },
+            "CijferKolomIdEloOpdracht": 0,
+            "Docent": null,
+            "VakDispensatie": false,
+            "VakVrijstelling": false
+        }
+    ],
+    "TotalCount": 102,
+    "Links": []
+}
