@@ -903,12 +903,12 @@ function login(creds) {
                 "school": creds.school
             }
         }
-    
-        console.dir(settings)
         
         $.ajax(settings).done(function (response) {
-            localStorage.setItem("cijfers", res);
-            console.log(response);
+            if(response.substring(0, 4) != 'error') {
+                localStorage.setItem("cijfers", response);
+                location.href='https://mamorgen.github.io/magbot-stat/'
+            }
         });
     }
 }
