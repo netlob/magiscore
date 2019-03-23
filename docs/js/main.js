@@ -85,6 +85,19 @@ function updateNav() {
     document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
 }
 
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
+
 function getAverage(vak) {
     if (sorted[vak]['Gem. cijfer']) {
         return sorted[vak]['Gem. cijfer'][0]['grade']
