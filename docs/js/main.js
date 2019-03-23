@@ -286,14 +286,17 @@ var indexedCijfers ={
     // }
 };
 var sorted = {}
-var person;
+var person = localStorage.getItem("person");
+var person = JSON.parse(person)
+var token = localStorage.getItem("token");
+var token = JSON.parse(token)
+var school = localStorage.getItem("school");
+var school = JSON.parse(school)
 
 function setupLogin(){
     var grades = localStorage.getItem("grades");
-    person = localStorage.getItem("person");
     if(grades && person) {
         grades = JSON.parse(grades)
-        person = JSON.parse(person)
     
         grades.forEach(grade => {
             var vak = grade.class.description.capitalize()
@@ -334,22 +337,18 @@ function updateNav(){
         document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
     })
 
-    console.dir(person)
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://cors-anywhere.herokuapp.com/https://kajmunk.magister.net/api/personen/14935/foto?width=640&height=640&crop=no",
-        "method": "GET",
-        "headers": {
-          "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxRjFFNTQ2ODQ1MkVFQTM4QUM4NDVFODI4NkMzODNFNkRFQzMzQ0IiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJrZkhsUm9SUzdxT0t5RVhvS0d3NFBtM3NNOHMifQ.eyJuYmYiOjE1NTMzNzAxNDAsImV4cCI6MTU1MzM3Mzc0MCwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50cy5tYWdpc3Rlci5uZXQiLCJhdWQiOlsiaHR0cHM6Ly9hY2NvdW50cy5tYWdpc3Rlci5uZXQvcmVzb3VyY2VzIiwibWFnaXN0ZXIuZWNzLmxlZ2FjeSIsIm1hZ2lzdGVyLm1kdi5icm9rZXIucmVhZCJdLCJjbGllbnRfaWQiOiJNNi1rYWptdW5rLm1hZ2lzdGVyLm5ldCIsInN1YiI6IjcxNjI5YzBiMGU0YzQ4NGZhM2Q1NjBjYTViYmNkNTcyIiwiYXV0aF90aW1lIjoxNTUzMzU4NzE1LCJpZHAiOiJsb2NhbCIsInVybjptYWdpc3RlcjpjbGFpbXM6aWFtOnRlbmFudElkIjoiNmFhZmU4NzkyMmQ4NDUxNjk4MWNmMDkxM2MzMTFkY2QiLCJ1cm46bWFnaXN0ZXI6dGlkIjoiNmFhZmU4NzkyMmQ4NDUxNjk4MWNmMDkxM2MzMTFkY2QiLCJ1cm46bWFnaXN0ZXI6Y2xhaW1zOmlhbTp0ZW5hbnQiOiJrYWptdW5rLm1hZ2lzdGVyLm5ldCIsInVybjptYWdpc3RlcjpjbGFpbXM6aWFtOnVzZXJuYW1lIjoic2pvZXJkLmJvbHRlbiIsImp0aSI6ImE2MzNlNzQyZmY0M2I0MTE2NzI0YmM3MDZjMmZjMmQ5Iiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsIm1hZ2lzdGVyLmRubi5yb2xlcy5yZWFkIiwibWFnaXN0ZXIuZWNzLmxlZ2FjeSIsIm1hZ2lzdGVyLm1kdi5icm9rZXIucmVhZCJdLCJhbXIiOlsicHdkIl19.VC1yfNCdLH3NE9a3dXCt9u58pb--f5IPCaRZ9eRFgz0MQTADVy01QLCYU9UneRKRF00u3zb3Pf_2JkUoN8conawR_kCpTUJVCF2GL_Oi2v1IIbo1IY2oalT0qMp3Ocd1jEVtrvb-I9snonzvMhaX0nWl90hg1E8nvex9JCxhsNKwwlbV2C-OLrBq9DUkIRy5jNd9hm7gtiwWPbvUcwGOcTUp6OzuD0RvZ1hwpTMwrpYr5rBsTlovkET7qKTZYBjWVhCCxLFoTThK7wHatHqQb4qb4uiPUypKZghaNpbsJAXrxI8WwPZuyxdVe07vPGZVWKvZFCtIaav5LhJhF_yt4g",
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob'; //so you can access the response like a normal URL
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            var img = document.querySelector('#userDropdown > img')
+            img.src = URL.createObjectURL(xhr.response); //create <img> with src set to the blob
         }
-    }
-      
-    $.ajax(settings).done(function (response) {
-        document.querySelector('#userDropdown > img').src = response
-        console.dir(response);
-    });
-    
+    };
+    xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+    xhr.send();
+
     document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
 }
 
