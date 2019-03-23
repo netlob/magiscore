@@ -881,3 +881,11 @@ var schools = {
     "KSE": "kse"
 }
 var scholen = Object.keys(schools)
+
+function getLoginInfo(){
+    return {
+        username: document.getElementById('login-username').value,
+        password: document.getElementById('login-password').value,
+        school: schools[document.getElementById('login-school').value]
+    }
+}
