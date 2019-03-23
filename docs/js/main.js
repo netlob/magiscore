@@ -335,6 +335,7 @@ function updateNav(){
     })
 
     console.dir(person)
+    document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
 }
 
 function getAverage(vak){

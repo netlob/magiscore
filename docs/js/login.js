@@ -909,8 +909,8 @@ function login(creds) {
             document.getElementById("overlay").style.display = "block";
             if(response.substring(0, 4) != 'error') {
                 var data = JSON.parse(response)
-                var grades = data[grades]
-                var person = data[person]
+                var grades = data["grades"]
+                var person = data["person"]
                 localStorage.setItem("grades", JSON.stringify(grades));
                 localStorage.setItem("person", JSON.stringify(person));
                 location.href='/'

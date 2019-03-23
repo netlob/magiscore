@@ -12,6 +12,8 @@ module.exports = async function(params, res) {
     }).then(m => {
         var response = {}
         response["person"] = m.profileInfo
+        response["token"] = m.token
+        response["school"] = m.school
         m.courses()
         .then(courses => courses.find(c => c.current).grades())
         .then(grades => {
