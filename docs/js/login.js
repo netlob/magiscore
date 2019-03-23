@@ -909,7 +909,7 @@ function login(creds) {
             document.getElementById("overlay").style.display = "block";
             if(response.substring(0, 4) != 'error') {
                 localStorage.setItem("cijfers", response);
-                location.href='https://mamorgen.github.io/magbot-stat/'
+                location.href='https://magistat.bramkoene.nl/'
             }
         });
     } else { console.dir('False login') }
