@@ -43,6 +43,23 @@ function setupLogin() {
         window.location.href = '/login/'
     }
 }
+
+function showClass(vak) {
+    if (vak == 'general') {
+        document.getElementById('General').style.display = 'block';
+        document.getElementById('subjectSpecific').style.display = 'none';
+    } else {
+        var subjectDiv = document.getElementById('subjectSpecific')
+        while (subjectDiv.firstChild) {
+            subjectDiv.removeChild(subjectDiv.firstChild)
+        }
+        subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
+        document.getElementById('General').style.display = 'none';
+        document.getElementById('subjectSpecific').style.display = 'block';
+    }
+    setChartData(vak)
+}
+
 function updateNav() {
     var vakken = Object.keys(sorted)
     vakken.forEach(vak => {
@@ -114,7 +131,7 @@ function getNewAverage(vak, grade, weight) {
     sorted[vak]['REP'].forEach(_grade => {
         processed++
         currentWeight += _grade.weight
-        currentAverage += _grade.weight * parseInt(_grade.grade, 10)
+        currentAverage += _grade.weight * parseFloat(_grade.grade)
         if (processed == sorted[vak]['REP'].length) {
             currentAverage += grade * weight
             currentWeight += weight
@@ -398,7 +415,7 @@ function generateHTML(vakName) {
                         <div id="newGrade-newGrade" class="showCalculatedGrade">
 
                         </div>
-                    <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                    <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseFloat(document.getElementById('newGrade-grade').value), parseFloat(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
                 </div>
             </div>
@@ -417,7 +434,7 @@ function generateHTML(vakName) {
                         <div id="getGrade-newGrade">
 
                         </div>
-                    <a onclick="document.getElementById('getGrade-newGrade').innerText = Math.round(needToGet('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                    <a onclick="document.getElementById('getGrade-newGrade').innerText = Math.round(needToGet('${vakName}', parseFloat(document.getElementById('newGrade-grade').value), parseFloat(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
                 </div>
             </div>
