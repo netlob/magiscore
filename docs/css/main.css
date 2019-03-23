@@ -36,6 +36,10 @@
     cursor: pointer;
 }
 
+#content > nav > form > div > input {
+    height: 38px !important;
+}
+
 .btn {
     color: white !important;
 }
