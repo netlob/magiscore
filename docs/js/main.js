@@ -1,3 +1,301 @@
+var Fraction = algebra.Fraction;
+var Expression = algebra.Expression;
+var Equation = algebra.Equation;
+
+var indexedCijfers = {
+    // "element.class.description": {
+    //     "element.id": {
+    //         Weight: element.weight,
+    //         name: element.class.description
+    //     }
+    // }
+};
+var sorted = {}
+var person = localStorage.getItem("person");
+var person = JSON.parse(person)
+var token = localStorage.getItem("token");
+var token = JSON.parse(token)
+var school = localStorage.getItem("school");
+var school = JSON.parse(school)
+
+function setupLogin() {
+    var grades = localStorage.getItem("grades");
+    if (grades && person) {
+        grades = JSON.parse(grades)
+
+        grades.forEach(grade => {
+            var vak = grade.class.description.capitalize()
+            if (sorted[vak] == null) {
+                sorted[vak] = []
+            }
+            if (sorted[vak][grade.type.header] == null) {
+                sorted[vak][grade.type.header] = []
+            }
+            sorted[vak][grade.type.header].push(grade)
+        })
+
+        updateNav()
+    } else {
+        window.location.href = '/login/'
+    }
+}
+
+function showClass(vak) {
+    if (vak == 'general') {
+        document.getElementById('General').style.display = 'block';
+        document.getElementById('subjectSpecific').style.display = 'none';
+        setChartData("", true)
+
+    } else {
+        var subjectDiv = document.getElementById('subjectSpecific')
+        while (subjectDiv.firstChild) {
+            subjectDiv.removeChild(subjectDiv.firstChild)
+        }
+        subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
+        document.getElementById('General').style.display = 'none';
+        document.getElementById('subjectSpecific').style.display = 'block';
+        setChartData(vak)
+    }
+}
+
+function updateNav() {
+    var vakken = Object.keys(sorted)
+    vakken.forEach(vak => {
+        var HTML = `<li class="nav-item">
+                        <a class="nav-link" onclick="showClass('${vak}')">
+                            <span>${vak.capitalize()}</span>
+                        </a>
+                    </li>`
+        document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
+    })
+
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob'; //so you can access the response like a normal URL
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            var img = document.querySelector('#userDropdown > img')
+            img.src = URL.createObjectURL(xhr.response); //create <img> with src set to the blob
+        }
+    };
+    xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+    xhr.send();
+
+    document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
+}
+
+function getAverage(vak) {
+    if (sorted[vak]['Gem. cijfer']) {
+        return sorted[vak]['Gem. cijfer'][0]['grade']
+    } else {
+        return "Niet beschikbaar"
+    }
+}
+
+function getCompleted(vak) {
+    if (sorted[vak]['% voltooid']) {
+        return sorted[vak]['% voltooid'][0]['grade']
+    } else {
+        return "Niet beschikbaar"
+    }
+}
+
+function getProgress(vak) {
+    if (sorted[vak]['Vordering']) {
+        return sorted[vak]['Vordering'][0]['grade']
+    } else {
+        return "Niet beschikbaar"
+    }
+}
+
+function getEffort(vak) {
+    if (sorted[vak]['Inzet']) {
+        return sorted[vak]['Inzet'][0]['grade']
+    } else {
+        return "Niet beschikbaar"
+    }
+}
+
+function getNewAverage(vak, grade, weight) {
+    if (getAverage(vak) == 'Niet beschikbaar') {
+        return 'Niet mogelijk voor dit vak';
+    }
+    var newCijfer
+    var processed = 0;
+    var currentAverage = 0;
+    var currentWeight = 0;
+    sorted[vak]['REP'].forEach(_grade => {
+        processed++
+        currentWeight += _grade.weight
+        currentAverage += _grade.weight * parseInt(_grade.grade, 10)
+        if (processed == sorted[vak]['REP'].length) {
+            currentAverage += grade * weight
+            currentWeight += weight
+            newCijfer = currentAverage / currentWeight
+        }
+    })
+    console.log(newCijfer)
+    return newCijfer
+}
+
+String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+Date.prototype.toShortFormat = function() {
+    var month_names =["Jan","Feb","Mar",
+                      "Apr","May","Jun",
+                      "Jul","Aug","Sep",
+                      "Oct","Nov","Dec"];
+    var day = this.getDate();
+    var month_index = this.getMonth();
+    var year = this.getFullYear();
+    return "" + day + " " + month_names[month_index] + " " + year;
+}
+
+setupLogin()
+
+function setChartData(vak, everything) {
+    var cijfers = []
+    var datums = []
+
+    if(everything) {
+        for(var classcourse in sorted) {
+            for(var gradearray in sorted[classcourse]) {
+                if(gradearray == "REP") {
+                    for(var grade in sorted[classcourse][gradearray]) {
+                        var gradegrade = sorted[classcourse][gradearray][grade].grade.replace(',', '.')
+                        cijfers.push(gradegrade)
+                        var date = new Date(sorted[classcourse][gradearray][grade].dateFilledIn)
+                        datums.push(date.toShortFormat())
+                    }
+                }
+            }
+        }
+    } else {
+        for(var gradearray in sorted[vak]) {
+            if(gradearray == "REP") {
+                for(var grade in sorted[vak][gradearray]) {
+                    var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
+                    cijfers.push(gradegrade)
+                    var date = new Date(sorted[vak][gradearray][grade].dateFilledIn)
+                    datums.push(date.toShortFormat())
+                }
+            }
+        }
+    }
+
+    var ctx = document.getElementById('myAreaChart').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
+            datasets: [{
+                label: "Cijfer",
+                lineTension: 0.3,
+                backgroundColor: "rgba(21, 106, 54, 0.05)",
+                borderColor: "rgba(32, 163, 83, 1)",
+                pointRadius: 3,
+                pointBackgroundColor: "rgba(21, 106, 54, 1)",
+                pointBorderColor: "rgba(21, 106, 54, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                data: cijfers,
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 25,
+                    top: 25,
+                    bottom: 0
+                }
+            },
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'date'
+                    },
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 7
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        maxTicksLimit: 10,
+                        padding: 10,
+                        beginAtZero: true,
+                        steps: 10,
+                        max: 10
+                    },
+                    gridLines: {
+                        color: "rgb(234, 236, 244)",
+                        zeroLineColor: "rgb(234, 236, 244)",
+                        drawBorder: false,
+                        borderDash: [2],
+                        zeroLineBorderDash: [2]
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                titleMarginBottom: 10,
+                titleFontColor: '#6e707e',
+                titleFontSize: 14,
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                intersect: false,
+                mode: 'index',
+                caretPadding: 10
+            }
+        }
+    });
+
+}
+
+function needToGet(vak, grade, weight) {
+
+    var gemiddeldenu = getAverage(vak)
+    gemiddeldenu = gemiddeldenu.replace(',', '.')
+
+    var totwegingnu = 0
+    for(var gradearray in sorted[vak]) {
+        if(gradearray == "REP") {
+            for(var grade in sorted[vak][gradearray]) {
+                totwegingnu = totwegingnu + sorted[vak][gradearray][grade].weight
+            }
+        }
+    }
+
+    var totweging = weight + totwegingnu
+    
+    var expr1 = algebra.parse(`${weight} * x`)
+    var expr2 = algebra.parse(`${gemiddeldenu} * ${totwegingnu} - (${grade}/${totweging})`)
+    var eq = new Equation(expr1, expr2)
+    // console.log(eq.toString())
+
+    var xanswer = eq.solveFor("x")
+    // console.dir("Je moet halen: " + xanswer.toString())
+
+    return eval(xanswer.toString())
+}
+
 function generateHTML(vakName) {
     return `<!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -316,271 +614,4 @@ function generateHTML(vakName) {
 
       </div>
     </div>`
-}
-
-var indexedCijfers = {
-    // "element.class.description": {
-    //     "element.id": {
-    //         Weight: element.weight,
-    //         name: element.class.description
-    //     }
-    // }
-};
-var sorted = {}
-var person = localStorage.getItem("person");
-var person = JSON.parse(person)
-var token = localStorage.getItem("token");
-var token = JSON.parse(token)
-var school = localStorage.getItem("school");
-var school = JSON.parse(school)
-
-function setupLogin() {
-    var grades = localStorage.getItem("grades");
-    if (grades && person) {
-        grades = JSON.parse(grades)
-
-        grades.forEach(grade => {
-            var vak = grade.class.description.capitalize()
-            if (sorted[vak] == null) {
-                sorted[vak] = []
-            }
-            if (sorted[vak][grade.type.header] == null) {
-                sorted[vak][grade.type.header] = []
-            }
-            sorted[vak][grade.type.header].push(grade)
-        })
-
-        updateNav()
-    } else {
-        window.location.href = '/login/'
-    }
-}
-
-function showClass(vak) {
-    if (vak == 'general') {
-        document.getElementById('General').style.display = 'block';
-        document.getElementById('subjectSpecific').style.display = 'none';
-        setChartData("", true)
-
-    } else {
-        var subjectDiv = document.getElementById('subjectSpecific')
-        while (subjectDiv.firstChild) {
-            subjectDiv.removeChild(subjectDiv.firstChild)
-        }
-        subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
-        document.getElementById('General').style.display = 'none';
-        document.getElementById('subjectSpecific').style.display = 'block';
-        setChartData(vak)
-    }
-}
-
-function updateNav() {
-    var vakken = Object.keys(sorted)
-    vakken.forEach(vak => {
-        var HTML = `<li class="nav-item">
-                        <a class="nav-link" onclick="showClass('${vak}')">
-                            <span>${vak.capitalize()}</span>
-                        </a>
-                    </li>`
-        document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
-    })
-
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob'; //so you can access the response like a normal URL
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            var img = document.querySelector('#userDropdown > img')
-            img.src = URL.createObjectURL(xhr.response); //create <img> with src set to the blob
-        }
-    };
-    xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
-    xhr.send();
-
-    document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
-}
-
-function getAverage(vak) {
-    if (sorted[vak]['Gem. cijfer']) {
-        return sorted[vak]['Gem. cijfer'][0]['grade']
-    } else {
-        return "Niet beschikbaar"
-    }
-}
-
-function getCompleted(vak) {
-    if (sorted[vak]['% voltooid']) {
-        return sorted[vak]['% voltooid'][0]['grade']
-    } else {
-        return "Niet beschikbaar"
-    }
-}
-
-function getProgress(vak) {
-    if (sorted[vak]['Vordering']) {
-        return sorted[vak]['Vordering'][0]['grade']
-    } else {
-        return "Niet beschikbaar"
-    }
-}
-
-function getEffort(vak) {
-    if (sorted[vak]['Inzet']) {
-        return sorted[vak]['Inzet'][0]['grade']
-    } else {
-        return "Niet beschikbaar"
-    }
-}
-
-function getNewAverage(vak, grade, weight) {
-    if (getAverage(vak) == 'Niet beschikbaar') {
-        return 'Niet mogelijk voor dit vak';
-    }
-    var newCijfer
-    var processed = 0;
-    var currentAverage = 0;
-    var currentWeight = 0;
-    sorted[vak]['REP'].forEach(_grade => {
-        processed++
-        currentWeight += _grade.weight
-        currentAverage += _grade.weight * parseInt(_grade.grade, 10)
-        if (processed == sorted[vak]['REP'].length) {
-            currentAverage += grade * weight
-            currentWeight += weight
-            newCijfer = currentAverage / currentWeight
-        }
-    })
-    console.log(newCijfer)
-    return newCijfer
-}
-
-String.prototype.capitalize = function () {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
-
-Date.prototype.toShortFormat = function() {
-    var month_names =["Jan","Feb","Mar",
-                      "Apr","May","Jun",
-                      "Jul","Aug","Sep",
-                      "Oct","Nov","Dec"];
-    var day = this.getDate();
-    var month_index = this.getMonth();
-    var year = this.getFullYear();
-    return "" + day + " " + month_names[month_index] + " " + year;
-}
-
-setupLogin()
-
-function setChartData(vak, everything) {
-    var cijfers = []
-    var datums = []
-
-    if(everything) {
-        for(var classcourse in sorted) {
-            for(var gradearray in sorted[classcourse]) {
-                if(gradearray == "REP") {
-                    for(var grade in sorted[classcourse][gradearray]) {
-                        var gradegrade = sorted[classcourse][gradearray][grade].grade.replace(',', '.')
-                        cijfers.push(gradegrade)
-                        var date = new Date(sorted[classcourse][gradearray][grade].dateFilledIn)
-                        datums.push(date.toShortFormat())
-                    }
-                }
-            }
-        }
-    } else {
-        for(var gradearray in sorted[vak]) {
-            if(gradearray == "REP") {
-                for(var grade in sorted[vak][gradearray]) {
-                    var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
-                    cijfers.push(gradegrade)
-                    var date = new Date(sorted[vak][gradearray][grade].dateFilledIn)
-                    datums.push(date.toShortFormat())
-                }
-            }
-        }
-    }
-
-    var ctx = document.getElementById('myAreaChart').getContext('2d');
-    var myLineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
-            datasets: [{
-                label: "Cijfer",
-                lineTension: 0.3,
-                backgroundColor: "rgba(21, 106, 54, 0.05)",
-                borderColor: "rgba(32, 163, 83, 1)",
-                pointRadius: 3,
-                pointBackgroundColor: "rgba(21, 106, 54, 1)",
-                pointBorderColor: "rgba(21, 106, 54, 1)",
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                pointHitRadius: 10,
-                pointBorderWidth: 2,
-                data: cijfers,
-            }],
-        },
-        options: {
-            maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 25,
-                    top: 25,
-                    bottom: 0
-                }
-            },
-            scales: {
-                xAxes: [{
-                    time: {
-                        unit: 'date'
-                    },
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    ticks: {
-                        maxTicksLimit: 7
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        maxTicksLimit: 10,
-                        padding: 10,
-                        beginAtZero: true,
-                        steps: 10,
-                        max: 10
-                    },
-                    gridLines: {
-                        color: "rgb(234, 236, 244)",
-                        zeroLineColor: "rgb(234, 236, 244)",
-                        drawBorder: false,
-                        borderDash: [2],
-                        zeroLineBorderDash: [2]
-                    }
-                }],
-            },
-            legend: {
-                display: false
-            },
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
-                titleFontSize: 14,
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                intersect: false,
-                mode: 'index',
-                caretPadding: 10
-            }
-        }
-    });
-
 }
