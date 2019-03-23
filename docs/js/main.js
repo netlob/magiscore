@@ -77,9 +77,9 @@ function updateNav() {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
             var img = document.querySelector('#userDropdown > img')
             img.src = URL.createObjectURL(xhr.response);
-            var dataImage = localStorage.getItem('imgData');
-            bannerImg = document.querySelector('#userDropdown > img')
-            bannerImg.src = "data:image/png;base64," + dataImage;
+            bannerImage = document.getElementById('imgelem');
+            imgData = getBase64Image(bannerImage);
+            localStorage.setItem("imgData", imgData);
         }
     };
     xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
