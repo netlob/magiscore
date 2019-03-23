@@ -3821,23 +3821,23 @@ var cijfers =
     }
 ];
 
-    var indexedCijfers ={
-        // "element.class.description": {
-        //     "element.id": {
-        //         Weight: element.weight,
-        //         name: element.class.description
-        //     }
-        // }
-    };
+var indexedCijfers ={
+    // "element.class.description": {
+    //     "element.id": {
+    //         Weight: element.weight,
+    //         name: element.class.description
+    //     }
+    // }
+};
     
 function logCijfers(){
     for (let i = 0; i < cijfers.length; i++) {
         const element = cijfers[i];
-        console.log(element.id);
-        indexedCijfers[element.class.description] = "test"
-        indexedCijfers[element.class.description][element.id] = {
-            weight: element.weight,
-            name: element.class.description
+        indexedCijfers[element.class.description] = {
+            [element.id]: {
+                weight: element.weight,
+                name: element.class.description
+            }
         };
     }
     console.log(indexedCijfers)
