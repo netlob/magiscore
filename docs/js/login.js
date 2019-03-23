@@ -891,22 +891,24 @@ function getLoginInfo(){
 }
 
 function login(creds) {
-    
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://magistat.bramkoene.nl/cijfers",
-        "method": "POST",
-        "headers": {
-            "username": creds.username,
-            "password": creds.password,
-            "school": creds.school
+    if('username' in creds && 'password' in creds && 'school' in creds) {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://magistat.bramkoene.nl/cijfers",
+            "method": "POST",
+            "headers": {
+                "username": creds.username,
+                "password": creds.password,
+                "school": creds.school
+            }
         }
-    }
-
-    console.dir(settings)
     
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-    });
+        console.dir(settings)
+        
+        $.ajax(settings).done(function (response) {
+            setCookie('cijfers', response, 365)
+            console.log(response);
+        });
+    }
 }
