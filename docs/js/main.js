@@ -385,7 +385,7 @@ function generateHTML(vakName) {
         <div class="col-lg-6 mb-4">
             <div class="card text-gray-800 shadow">
                 <div class="card-body">
-                    Nieuw Cijfer Bereken
+                    Wat ga ik Staan?
                     <form class="newGrade">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="newGrade-grade" aria-describedby="emailHelp" placeholder="Nieuw cijfer">
@@ -404,7 +404,7 @@ function generateHTML(vakName) {
         <div class="col-lg-6 mb-4">
             <div class="card text-gray-800 shadow">
                 <div class="card-body">
-                    Wat moet ik halen
+                    Wat moet ik halen?
                     <form class="getGrade">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="getGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
