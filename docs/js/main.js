@@ -300,7 +300,7 @@ function logCijfers(){
     
         updateNav()
     } else {
-        window.location.href = 'https://mamorgen.github.io/magbot-stat/login.html'
+        window.location.href = 'https://magistat.bramkoene.nl/login/'
     }
 }
 
