@@ -292,8 +292,6 @@ function setupLogin(){
     var grades = localStorage.getItem("grades");
     person = localStorage.getItem("person");
     if(grades && person) {
-        console.dir(grades)
-        console.dir(person)
         grades = JSON.parse(grades)
         person = JSON.parse(person)
     
