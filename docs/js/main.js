@@ -1,4 +1,4 @@
-function generateHTML(vakName){
+function generateHTML(vakName) {
     return `<!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">${vakName.capitalize()}</h1>
@@ -83,6 +83,47 @@ function generateHTML(vakName){
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card text-gray-800 shadow">
+                <div class="card-body">
+                    Nieuw Cijfer Bereken
+                    <form class="newGrade">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" id="newGrade-grade" aria-describedby="emailHelp" placeholder="Nieuw cijfer">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
+                        </div>
+                        <div id="newGrade-newGrade" class="showCalculatedGrade">
+
+                        </div>
+                    <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card text-gray-800 shadow">
+                <div class="card-body">
+                    Wat moet ik halen
+                    <form class="newGrade">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" id="newGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
+                        </div>
+                        <div id="newGrade-newGrade">
+
+                        </div>
+                    <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Content Row -->
@@ -277,7 +318,7 @@ function generateHTML(vakName){
     </div>`
 }
 
-var indexedCijfers ={
+var indexedCijfers = {
     // "element.class.description": {
     //     "element.id": {
     //         Weight: element.weight,
@@ -293,33 +334,37 @@ var token = JSON.parse(token)
 var school = localStorage.getItem("school");
 var school = JSON.parse(school)
 
-function setupLogin(){
+function setupLogin() {
     var grades = localStorage.getItem("grades");
-    if(grades && person) {
+    if (grades && person) {
         grades = JSON.parse(grades)
-    
+
         grades.forEach(grade => {
             var vak = grade.class.description.capitalize()
-            if(sorted[vak]==null){sorted[vak]=[]}
-            if(sorted[vak][grade.type.header]==null){sorted[vak][grade.type.header]=[]}
+            if (sorted[vak] == null) {
+                sorted[vak] = []
+            }
+            if (sorted[vak][grade.type.header] == null) {
+                sorted[vak][grade.type.header] = []
+            }
             sorted[vak][grade.type.header].push(grade)
         })
-    
+
         updateNav()
     } else {
         window.location.href = '/login/'
     }
 }
 
-function showClass(vak){
-    if(vak == 'general'){
+function showClass(vak) {
+    if (vak == 'general') {
         document.getElementById('General').style.display = 'block';
         document.getElementById('subjectSpecific').style.display = 'none';
         setChartData("", true)
 
     } else {
         var subjectDiv = document.getElementById('subjectSpecific')
-        while (subjectDiv.firstChild){
+        while (subjectDiv.firstChild) {
             subjectDiv.removeChild(subjectDiv.firstChild)
         }
         subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
@@ -329,9 +374,9 @@ function showClass(vak){
     }
 }
 
-function updateNav(){
+function updateNav() {
     var vakken = Object.keys(sorted)
-    vakken.forEach(vak =>{
+    vakken.forEach(vak => {
         var HTML = `<li class="nav-item">
                         <a class="nav-link" onclick="showClass('${vak}')">
                             <span>${vak.capitalize()}</span>
@@ -355,60 +400,61 @@ function updateNav(){
     document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
 }
 
-function getAverage(vak){
-    if(sorted[vak]['Gem. cijfer']){
+function getAverage(vak) {
+    if (sorted[vak]['Gem. cijfer']) {
         return sorted[vak]['Gem. cijfer'][0]['grade']
     } else {
         return "Niet beschikbaar"
     }
 }
 
-function getCompleted(vak){
-    if(sorted[vak]['% voltooid']){
+function getCompleted(vak) {
+    if (sorted[vak]['% voltooid']) {
         return sorted[vak]['% voltooid'][0]['grade']
     } else {
         return "Niet beschikbaar"
     }
 }
 
-function getProgress(vak){
-    if(sorted[vak]['Vordering']){
+function getProgress(vak) {
+    if (sorted[vak]['Vordering']) {
         return sorted[vak]['Vordering'][0]['grade']
     } else {
         return "Niet beschikbaar"
     }
 }
 
-function getEffort(vak){
-    if(sorted[vak]['Inzet']){
+function getEffort(vak) {
+    if (sorted[vak]['Inzet']) {
         return sorted[vak]['Inzet'][0]['grade']
     } else {
         return "Niet beschikbaar"
     }
 }
 
-function getNewAverage(vak, grade, weight){
-    if (getAverage(vak) == 'Niet beschikbaar'){
+function getNewAverage(vak, grade, weight) {
+    if (getAverage(vak) == 'Niet beschikbaar') {
         return 'Niet mogelijk voor dit vak';
     }
     var newCijfer
     var processed = 0;
     var currentAverage = 0;
     var currentWeight = 0;
-    sorted[vak]['REP'].forEach(_grade =>{
+    sorted[vak]['REP'].forEach(_grade => {
         processed++
         currentWeight += _grade.weight
         currentAverage += _grade.weight * parseInt(_grade.grade, 10)
-        if(processed == sorted[vak]['REP'].length){
+        if (processed == sorted[vak]['REP'].length) {
             currentAverage += grade * weight
             currentWeight += weight
             newCijfer = currentAverage / currentWeight
         }
     })
+    console.log(newCijfer)
     return newCijfer
 }
 
-String.prototype.capitalize = function() {
+String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
@@ -459,83 +505,82 @@ function setChartData(vak, everything) {
     var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: datums,
-          //   labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
-          datasets: [{
-            label: "Cijfer",
-            lineTension: 0.3,
-            backgroundColor: "rgba(21, 106, 54, 0.05)",
-            borderColor: "rgba(32, 163, 83, 1)",
-            pointRadius: 3,
-            pointBackgroundColor: "rgba(21, 106, 54, 1)",
-            pointBorderColor: "rgba(21, 106, 54, 1)",
-            pointHoverRadius: 3,
-            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-            pointHitRadius: 10,
-            pointBorderWidth: 2,
-            data: cijfers,
-          }],
+            labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
+            datasets: [{
+                label: "Cijfer",
+                lineTension: 0.3,
+                backgroundColor: "rgba(21, 106, 54, 0.05)",
+                borderColor: "rgba(32, 163, 83, 1)",
+                pointRadius: 3,
+                pointBackgroundColor: "rgba(21, 106, 54, 1)",
+                pointBorderColor: "rgba(21, 106, 54, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                data: cijfers,
+            }],
         },
         options: {
-          maintainAspectRatio: false,
-          layout: {
-            padding: {
-              left: 10,
-              right: 25,
-              top: 25,
-              bottom: 0
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 25,
+                    top: 25,
+                    bottom: 0
+                }
+            },
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'date'
+                    },
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 7
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        maxTicksLimit: 10,
+                        padding: 10,
+                        beginAtZero: true,
+                        steps: 10,
+                        max: 10
+                    },
+                    gridLines: {
+                        color: "rgb(234, 236, 244)",
+                        zeroLineColor: "rgb(234, 236, 244)",
+                        drawBorder: false,
+                        borderDash: [2],
+                        zeroLineBorderDash: [2]
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                titleMarginBottom: 10,
+                titleFontColor: '#6e707e',
+                titleFontSize: 14,
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                intersect: false,
+                mode: 'index',
+                caretPadding: 10
             }
-          },
-          scales: {
-            xAxes: [{
-              time: {
-                unit: 'date'
-              },
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              ticks: {
-                maxTicksLimit: 7
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                maxTicksLimit: 10,
-                padding: 10,
-                beginAtZero: true,
-                steps: 10,
-                max: 10
-              },
-              gridLines: {
-                color: "rgb(234, 236, 244)",
-                zeroLineColor: "rgb(234, 236, 244)",
-                drawBorder: false,
-                borderDash: [2],
-                zeroLineBorderDash: [2]
-              }
-            }],
-          },
-          legend: {
-            display: false
-          },
-          tooltips: {
-            backgroundColor: "rgb(255,255,255)",
-            bodyFontColor: "#858796",
-            titleMarginBottom: 10,
-            titleFontColor: '#6e707e',
-            titleFontSize: 14,
-            borderColor: '#dddfeb',
-            borderWidth: 1,
-            xPadding: 15,
-            yPadding: 15,
-            displayColors: false,
-            intersect: false,
-            mode: 'index',
-            caretPadding: 10
-          }
         }
-      });
-      
+    });
+
 }
