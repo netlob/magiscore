@@ -309,7 +309,6 @@ function showClass(vak){
         document.getElementById('General').style.display = 'block';
         document.getElementById('subjectSpecific').style.display = 'none';
     } else {
-        
         var subjectDiv = document.getElementById('subjectSpecific')
         while (subjectDiv.firstChild){
             subjectDiv.removeChild(subjectDiv.firstChild)

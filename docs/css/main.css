@@ -32,6 +32,10 @@
     cursor: pointer; /* Add a pointer on hover */
 }
 
+.nav-link {
+    cursor: pointer;
+}
+
 .btn {
     color: white !important;
 }
