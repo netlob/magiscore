@@ -12,7 +12,6 @@ module.exports = async function(params, res) {
     }).then(m => {
         var response = {
             "person": m.personInfo,
-            "grades": null
         }
         m.courses()
         .then(courses => courses.find(c => c.current).grades())

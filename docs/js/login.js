@@ -911,9 +911,10 @@ function login(creds) {
                 var data = JSON.parse(response)
                 var grades = data[grades]
                 var person = data[person]
+                console.dir(data)
                 localStorage.setItem("grades", grades);
                 localStorage.setItem("person", person);
-                location.href='/'
+                // location.href='/'
             }
         });
     } else { console.dir('False login') }

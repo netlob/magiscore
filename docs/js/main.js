@@ -290,8 +290,10 @@ var person;
 
 function setupLogin(){
     var grades = localStorage.getItem("grades");
-    var person = localStorage.getItem("person");
+    person = localStorage.getItem("person");
     if(grades && person) {
+        console.dir(grades)
+        console.dir(person)
         grades = JSON.parse(grades)
         person = JSON.parse(person)
     
@@ -334,7 +336,7 @@ function updateNav(){
         document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
     })
 
-
+    console.dir(person)
 }
 
 function getAverage(vak){
