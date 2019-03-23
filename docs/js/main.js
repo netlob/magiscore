@@ -410,6 +410,17 @@ String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+Date.prototype.toShortFormat = function() {
+    var month_names =["Jan","Feb","Mar",
+                      "Apr","May","Jun",
+                      "Jul","Aug","Sep",
+                      "Oct","Nov","Dec"];
+    var day = this.getDate();
+    var month_index = this.getMonth();
+    var year = this.getFullYear();
+    return "" + day + " " + month_names[month_index] + " " + year;
+}
+
 setupLogin()
 
 function setChartData(vak) {
@@ -422,6 +433,8 @@ function setChartData(vak) {
             for(var grade in sorted[vak][gradearray]) {
                 var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
                 cijfers.push(gradegrade)
+                var date = new Date(sorted[vak][gradearray][grade].dateFilledIn)
+                datums.push(date.toShortFormat())
             }
         }
     }
@@ -430,7 +443,8 @@ function setChartData(vak) {
     var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
+          labels: datums,
+          //   labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
           datasets: [{
             label: "Cijfer",
             lineTension: 0.3,
