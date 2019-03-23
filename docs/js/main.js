@@ -303,7 +303,7 @@ function logCijfers(){
     
         updateNav()
     } else {
-        window.location.href = 'https://magistat.bramkoene.nl/login/'
+        window.location.href = '/login/'
     }
 }
 

@@ -909,7 +909,7 @@ function login(creds) {
             document.getElementById("overlay").style.display = "block";
             if(response.substring(0, 4) != 'error') {
                 localStorage.setItem("cijfers", response);
-                location.href='https://magistat.bramkoene.nl/'
+                location.href='/index.html'
             }
         });
     } else { console.dir('False login') }
