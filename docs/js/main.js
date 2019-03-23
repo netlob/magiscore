@@ -289,7 +289,7 @@ function setChartData(vak, everything) {
 function needToGet(vak, grade, weight) {
 
     var gemiddeldenu = getAverage(vak)
-    gemiddeldenu = gemiddeldenu.replace(',', '.')
+    gemiddeldenu = parseFloat(gemiddeldenu)
 
     var totwegingnu = 0
     for(var gradearray in sorted[vak]) {
