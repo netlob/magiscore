@@ -34,6 +34,10 @@ function setupLogin() {
             sorted[vak][grade.type.header].push(grade)
         })
 
+        var dataImage = localStorage.getItem('profilepic');
+        var img = document.querySelector('#userDropdown > img')
+        img.src = "data:image/png;base64," + dataImage;
+
         updateNav()
     } else {
         window.location.href = '/login/'
@@ -55,7 +59,9 @@ function updateNav() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
             var img = document.querySelector('#userDropdown > img')
-            img.src = URL.createObjectURL(xhr.response); //create <img> with src set to the blob
+            img.src = URL.createObjectURL(xhr.response);
+            imgData = getBase64Image(img);
+            localStorage.setItem("profilepic", imgData);
         }
     };
     xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
@@ -135,6 +141,19 @@ Date.prototype.toShortFormat = function() {
 }
 
 setupLogin()
+
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
 
 function setChartData(vak, everything) {
     var cijfers = []
@@ -258,8 +277,8 @@ function needToGet(vak, grade, weight) {
     var totwegingnu = 0
     for(var gradearray in sorted[vak]) {
         if(gradearray == "REP") {
-            for(var grade in sorted[vak][gradearray]) {
-                totwegingnu = totwegingnu + sorted[vak][gradearray][grade].weight
+            for(var gradep in sorted[vak][gradearray]) {
+                totwegingnu = totwegingnu + sorted[vak][gradearray][gradep].weight
             }
         }
     }
