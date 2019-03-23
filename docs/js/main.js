@@ -433,7 +433,6 @@ function setChartData(vak, everything) {
         for(var classcourse in sorted) {
             for(var gradearray in sorted[classcourse]) {
                 if(gradearray == "REP") {
-                    console.log(sorted[classcourse][gradearray])
                     for(var grade in sorted[classcourse][gradearray]) {
                         var gradegrade = sorted[classcourse][gradearray][grade].grade.replace(',', '.')
                         cijfers.push(gradegrade)
@@ -446,7 +445,6 @@ function setChartData(vak, everything) {
     } else {
         for(var gradearray in sorted[vak]) {
             if(gradearray == "REP") {
-                console.log(sorted[vak][gradearray])
                 for(var grade in sorted[vak][gradearray]) {
                     var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
                     cijfers.push(gradegrade)
