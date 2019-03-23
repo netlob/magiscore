@@ -9,8 +9,6 @@ module.exports = async function(code, params) {
         password: params.password,
         authCode: code
     }).then(m => {
-        // res.writeHead(200)
-        // res.end(JSON.stringify(poep))
         return m
     })
 }

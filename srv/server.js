@@ -22,13 +22,11 @@ http.createServer((req, res) => {
     // Handle normal request
     if ('token' in req.headers || 'username' in req.headers) {
         MagisterAuth()
-            .then(mAuth => {
-                login(mAuth, req.headers)
-                .then(poep => {
-                    console.dir(poep)
-                    res.writeHead(200)
-                    res.end(JSON.stringify(poep))
-                })
+            .then(mAuth => { login(mAuth, req.headers) })
+            .then(m => {
+                console.dir(m)
+                res.writeHead(200)
+                res.end(JSON.stringify(m))
             })
             // .then(updated => res.end(updated ? 'success: user updated' : 'success: user created'))
             .catch(err => { res.writeHead(500); res.end('error: ' + err.toString()); });
