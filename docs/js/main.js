@@ -40,23 +40,32 @@ function setupLogin() {
     }
 }
 
-function showClass(vak) {
-    if (vak == 'general') {
-        document.getElementById('General').style.display = 'block';
-        document.getElementById('subjectSpecific').style.display = 'none';
-        setChartData("", true)
+                        </div>
+                    <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card text-gray-800 shadow">
+                <div class="card-body">
+                    Wat moet ik halen
+                    <form class="getGrade">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" id="getGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
+                        </div>
+                        <div id="getGrade-newGrade">
 
-    } else {
-        var subjectDiv = document.getElementById('subjectSpecific')
-        while (subjectDiv.firstChild) {
-            subjectDiv.removeChild(subjectDiv.firstChild)
-        }
-        subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
-        document.getElementById('General').style.display = 'none';
-        document.getElementById('subjectSpecific').style.display = 'block';
-        setChartData(vak)
-    }
-}
+                        </div>
+                    <a onclick="document.getElementById('getGrade-newGrade').innerText = Math.round(needToGet('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 function updateNav() {
     var vakken = Object.keys(sorted)
