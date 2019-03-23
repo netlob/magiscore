@@ -94,7 +94,7 @@ function generateHTML(vakName){
         <div class="card shadow mb-4">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${vakName}</h6>
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -324,6 +324,7 @@ function showClass(vak){
         document.getElementById('General').style.display = 'none';
         document.getElementById('subjectSpecific').style.display = 'block';
     }
+    setChartData(vak)
 }
 
 function updateNav(){
@@ -389,3 +390,101 @@ String.prototype.capitalize = function() {
 }
 
 setupLogin()
+
+function setChartData(vak) {
+    var cijfers = []
+    var datums = []
+
+    for(var gradearray in sorted[vak]) {
+        if(gradearray == "REP") {
+            console.log(sorted[vak][gradearray])
+            for(var grade in sorted[vak][gradearray]) {
+                var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
+                cijfers.push(gradegrade)
+            }
+        }
+    }
+
+    var ctx = document.getElementById('myAreaChart').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
+          datasets: [{
+            label: "Cijfer",
+            lineTension: 0.3,
+            backgroundColor: "rgba(21, 106, 54, 0.05)",
+            borderColor: "rgba(32, 163, 83, 1)",
+            pointRadius: 3,
+            pointBackgroundColor: "rgba(21, 106, 54, 1)",
+            pointBorderColor: "rgba(21, 106, 54, 1)",
+            pointHoverRadius: 3,
+            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+            pointHitRadius: 10,
+            pointBorderWidth: 2,
+            data: cijfers,
+          }],
+        },
+        options: {
+          maintainAspectRatio: false,
+          layout: {
+            padding: {
+              left: 10,
+              right: 25,
+              top: 25,
+              bottom: 0
+            }
+          },
+          scales: {
+            xAxes: [{
+              time: {
+                unit: 'date'
+              },
+              gridLines: {
+                display: false,
+                drawBorder: false
+              },
+              ticks: {
+                maxTicksLimit: 7
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                maxTicksLimit: 10,
+                padding: 10,
+                beginAtZero: true,
+                steps: 10,
+                max: 10
+              },
+              gridLines: {
+                color: "rgb(234, 236, 244)",
+                zeroLineColor: "rgb(234, 236, 244)",
+                drawBorder: false,
+                borderDash: [2],
+                zeroLineBorderDash: [2]
+              }
+            }],
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            titleMarginBottom: 10,
+            titleFontColor: '#6e707e',
+            titleFontSize: 14,
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            intersect: false,
+            mode: 'index',
+            caretPadding: 10
+          }
+        }
+      });
+      
+}
