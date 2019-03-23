@@ -315,6 +315,8 @@ function showClass(vak){
     if(vak == 'general'){
         document.getElementById('General').style.display = 'block';
         document.getElementById('subjectSpecific').style.display = 'none';
+        setChartData("", true)
+
     } else {
         var subjectDiv = document.getElementById('subjectSpecific')
         while (subjectDiv.firstChild){
@@ -323,8 +325,8 @@ function showClass(vak){
         subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
         document.getElementById('General').style.display = 'none';
         document.getElementById('subjectSpecific').style.display = 'block';
+        setChartData(vak)
     }
-    setChartData(vak)
 }
 
 function updateNav(){
@@ -423,18 +425,34 @@ Date.prototype.toShortFormat = function() {
 
 setupLogin()
 
-function setChartData(vak) {
+function setChartData(vak, everything) {
     var cijfers = []
     var datums = []
 
-    for(var gradearray in sorted[vak]) {
-        if(gradearray == "REP") {
-            console.log(sorted[vak][gradearray])
-            for(var grade in sorted[vak][gradearray]) {
-                var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
-                cijfers.push(gradegrade)
-                var date = new Date(sorted[vak][gradearray][grade].dateFilledIn)
-                datums.push(date.toShortFormat())
+    if(everything) {
+        for(var classcourse in sorted) {
+            for(var gradearray in sorted[classcourse]) {
+                if(gradearray == "REP") {
+                    console.log(sorted[classcourse][gradearray])
+                    for(var grade in sorted[classcourse][gradearray]) {
+                        var gradegrade = sorted[classcourse][gradearray][grade].grade.replace(',', '.')
+                        cijfers.push(gradegrade)
+                        var date = new Date(sorted[classcourse][gradearray][grade].dateFilledIn)
+                        datums.push(date.toShortFormat())
+                    }
+                }
+            }
+        }
+    } else {
+        for(var gradearray in sorted[vak]) {
+            if(gradearray == "REP") {
+                console.log(sorted[vak][gradearray])
+                for(var grade in sorted[vak][gradearray]) {
+                    var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
+                    cijfers.push(gradegrade)
+                    var date = new Date(sorted[vak][gradearray][grade].dateFilledIn)
+                    datums.push(date.toShortFormat())
+                }
             }
         }
     }
