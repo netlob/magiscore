@@ -10,11 +10,16 @@ module.exports = async function(params, res) {
         password: params.password,
         authCode: params.code
     }).then(m => {
+        var response = {
+            "person": m.personInfo,
+            "grades": null
+        }
         m.courses()
         .then(courses => courses.find(c => c.current).grades())
         .then(grades => {
+            response[grades] = grades
             res.writeHead(200)
-            res.end(JSON.stringify(grades))
+            res.end(JSON.stringify(response))
         }).catch((err) => { // something went wrong
             console.error('something went wrong:', err);
         });

@@ -286,15 +286,16 @@ var indexedCijfers ={
     // }
 };
 var sorted = {}
+var person;
 
-function logCijfers(){
-    var cijfers = localStorage.getItem("cijfers");
-    if(cijfers) {
-        cijfers = JSON.parse(cijfers)
-        console.dir(cijfers)
+function setupLogin(){
+    var grades = localStorage.getItem("grades");
+    var person = localStorage.getItem("person");
+    if(grades && person) {
+        grades = JSON.parse(grades)
+        person = JSON.parse(person)
     
-        cijfers.forEach(grade => {
-        // for(var grade in cijfers) {
+        grades.forEach(grade => {
             var vak = grade.class.description.capitalize()
             if(sorted[vak]==null){sorted[vak]=[]}
             if(sorted[vak][grade.type.header]==null){sorted[vak][grade.type.header]=[]}
@@ -332,6 +333,8 @@ function updateNav(){
                     </li>`
         document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
     })
+
+
 }
 
 function getAverage(vak){
@@ -370,4 +373,4 @@ String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-logCijfers()
+setupLogin()

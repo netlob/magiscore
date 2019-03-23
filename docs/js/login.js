@@ -908,7 +908,11 @@ function login(creds) {
         $.ajax(settings).done(function (response) {
             document.getElementById("overlay").style.display = "block";
             if(response.substring(0, 4) != 'error') {
-                localStorage.setItem("cijfers", response);
+                var data = JSON.parse(response)
+                var grades = data[grades]
+                var person = data[person]
+                localStorage.setItem("grades", grades);
+                localStorage.setItem("person", person);
                 location.href='https://magistat.bramkoene.nl/'
             }
         });

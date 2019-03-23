@@ -17,7 +17,7 @@ const { default: magister, getSchools } = require('magister.js');
 http.createServer((req, res) => {
     // Set CORS headers
     res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Origin', "https://mamorgen.github.io");
+    res.setHeader('Access-Control-Allow-Origin', "*");
     res.setHeader('Access-Control-Request-Method', 'OPTIONS, POST');
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST');
     res.setHeader('Access-Control-Allow-Headers', 'school, username, password, token');
