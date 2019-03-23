@@ -884,8 +884,26 @@ var scholen = Object.keys(schools)
 
 function getLoginInfo(){
     return {
-        username: document.getElementById('login-username').value,
-        password: document.getElementById('login-password').value,
-        school: schools[document.getElementById('login-school').value]
+        username: $('#login-username').value,
+        password: $('#login-password').value,
+        school: schools[$('#login-school').value]
     }
+}
+
+function login({creds}) {
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://116.203.128.192:7070/cijfers",
+        "method": "POST",
+        "headers": {
+            "username": username,
+            "password": password,
+            "school": school
+        }
+    }
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
 }
