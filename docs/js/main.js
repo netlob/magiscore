@@ -286,7 +286,7 @@ var sorted = {}
 
 function logCijfers(){
     var cijfers = localStorage.getItem("cijfers");
-    if(!cijfers) {
+    if(cijfers) {
         cijfers = JSON.parse(cijfers)
         console.dir(cijfers)
     
