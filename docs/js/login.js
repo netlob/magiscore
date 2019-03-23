@@ -884,8 +884,31 @@ var scholen = Object.keys(schools)
 
 function getLoginInfo(){
     return {
-        username: document.getElementById('login-username').value,
-        password: document.getElementById('login-password').value,
-        school: schools[document.getElementById('login-school').value]
+        username: $('#login-username').val(),
+        password: $('#login-password').val(),
+        school: schools[$('#login-school').val()]
+    }
+}
+var res;
+function login(creds) {
+    if('username' in creds && 'password' in creds && 'school' in creds) {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://magistat.bramkoene.nl/cijfers",
+            "method": "POST",
+            "headers": {
+                "username": creds.username,
+                "password": creds.password,
+                "school": creds.school
+            }
+        }
+    
+        console.dir(settings)
+        
+        $.ajax(settings).done(function (response) {
+            localStorage.setItem("cijfers", res);
+            console.log(response);
+        });
     }
 }
