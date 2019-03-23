@@ -286,7 +286,7 @@ var sorted = {}
 
 function logCijfers(){
     var cijfers = localStorage.getItem("cijfers");
-    if(cijfers.length > 30) {
+    if(cijfers) {
         cijfers = JSON.parse(cijfers)
         console.dir(cijfers)
     
@@ -299,6 +299,8 @@ function logCijfers(){
         })
     
         updateNav()
+    } else {
+        window.location.href = 'https://mamorgen.github.io/magbot-stat/login.html'
     }
 }
 
