@@ -9,6 +9,7 @@ module.exports = async function(code, params) {
         password: params.password,
         authCode: code
     }).then(m => {
+        // console.dir(m)
         return m
     })
 }
