@@ -911,8 +911,12 @@ function login(creds) {
                 var data = JSON.parse(response)
                 var grades = data["grades"]
                 var person = data["person"]
+                var token = data["token"]
+                var school = data["school"]
                 localStorage.setItem("grades", JSON.stringify(grades));
                 localStorage.setItem("person", JSON.stringify(person));
+                localStorage.setItem("token", JSON.stringify(token));
+                localStorage.setItem("school", JSON.stringify(school));
                 location.href='/'
             }
         });
