@@ -913,7 +913,7 @@ function login(creds) {
                 var person = data[person]
                 localStorage.setItem("grades", grades);
                 localStorage.setItem("person", person);
-                location.href='https://magistat.bramkoene.nl/'
+                location.href='/'
             }
         });
     } else { console.dir('False login') }
