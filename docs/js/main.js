@@ -415,7 +415,7 @@ function generateHTML(vakName) {
                         <div id="getGrade-newGrade">
 
                         </div>
-                    <a onclick="document.getElementById('getGrade-newGrade').innerText = Math.round(needToGet('${vakName}', parseFloat(document.getElementById('newGrade-grade').value), parseFloat(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                    <a onclick="document.getElementById('getGrade-newGrade').innerText = Math.round(needToGet('${vakName}', document.getElementById('newGrade-grade').value, document.getElementById('newGrade-weight').value) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
                 </div>
             </div>
