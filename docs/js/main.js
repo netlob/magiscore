@@ -388,15 +388,21 @@ function getNewAverage(vak, grade, weight){
     if (getAverage(vak) == 'Niet beschikbaar'){
         return 'Niet mogelijk voor dit vak';
     }
-    var currentAverage = [];
+    var newCijfer
+    var processed = 0;
+    var currentAverage = 0;
     var currentWeight = 0;
     sorted[vak]['REP'].forEach(_grade =>{
+        processed++
         currentWeight += _grade.weight
-        currentAverage.push(_grade.grade)
+        currentAverage += _grade.weight * parseInt(_grade.grade, 10)
+        if(processed == sorted[vak]['REP'].length){
+            currentAverage += grade * weight
+            currentWeight += weight
+            newCijfer = currentAverage / currentWeight
+        }
     })
-    currentAverage.push(grade)
-    currentWeight += weight
-    return currentAverage / currentWeight
+    return newCijfer
 }
 
 String.prototype.capitalize = function() {
