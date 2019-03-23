@@ -34,10 +34,6 @@ function setupLogin() {
             sorted[vak][grade.type.header].push(grade)
         })
 
-        var dataImage = localStorage.getItem('profilepic');
-        var img = document.querySelector('#userDropdown > img')
-        img.src = "data:image/png;base64," + dataImage;
-
         updateNav()
     } else {
         window.location.href = '/login/'
@@ -160,23 +156,6 @@ Date.prototype.toShortFormat = function() {
 
 setupLogin()
 
-function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}
-
-function setImage() {
-    localStorage.set()
-}
-
 function setChartData(vak, everything) {
     var cijfers = []
     var datums = []
@@ -294,13 +273,13 @@ function setChartData(vak, everything) {
 function needToGet(vak, grade, weight) {
 
     var gemiddeldenu = getAverage(vak)
-    gemiddeldenu = parseFloat(gemiddeldenu)
+    gemiddeldenu = gemiddeldenu.replace(',', '.')
 
     var totwegingnu = 0
     for(var gradearray in sorted[vak]) {
         if(gradearray == "REP") {
-            for(var gradep in sorted[vak][gradearray]) {
-                totwegingnu = totwegingnu + sorted[vak][gradearray][gradep].weight
+            for(var grade in sorted[vak][gradearray]) {
+                totwegingnu = totwegingnu + sorted[vak][gradearray][grade].weight
             }
         }
     }
@@ -409,7 +388,7 @@ function generateHTML(vakName) {
         <div class="col-lg-6 mb-4">
             <div class="card text-gray-800 shadow">
                 <div class="card-body">
-                    Nieuw Cijfer Bereken
+                    Wat ga ik Staan?
                     <form class="newGrade">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="newGrade-grade" aria-describedby="emailHelp" placeholder="Nieuw cijfer">
@@ -428,7 +407,7 @@ function generateHTML(vakName) {
         <div class="col-lg-6 mb-4">
             <div class="card text-gray-800 shadow">
                 <div class="card-body">
-                    Wat moet ik halen
+                    Wat moet ik halen?
                     <form class="getGrade">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="getGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
