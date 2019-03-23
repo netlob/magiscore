@@ -26,7 +26,7 @@ http.createServer((req, res) => {
         MagisterAuth()
         .then(mAuth => {
             req.headers.code = mAuth
-            cijfers(req.headers, res)
+            cijfers(req.headers, res).catch(err => { res.writeHead(500); res.end('error: ' + err.toString()); });
         }).catch(err => { res.writeHead(500); res.end('error: ' + err.toString()); });
     } else {
         res.end('MAGBOT STAT API');
