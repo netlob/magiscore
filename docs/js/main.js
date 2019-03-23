@@ -39,6 +39,23 @@ function setupLogin() {
         window.location.href = '/login/'
     }
 }
+
+function showClass(vak) {
+    if (vak == 'general') {
+        document.getElementById('General').style.display = 'block';
+        document.getElementById('subjectSpecific').style.display = 'none';
+    } else {
+        var subjectDiv = document.getElementById('subjectSpecific')
+        while (subjectDiv.firstChild) {
+            subjectDiv.removeChild(subjectDiv.firstChild)
+        }
+        subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
+        document.getElementById('General').style.display = 'none';
+        document.getElementById('subjectSpecific').style.display = 'block';
+    }
+    setChartData(vak)
+}
+
 function updateNav() {
     var vakken = Object.keys(sorted)
     vakken.forEach(vak => {
