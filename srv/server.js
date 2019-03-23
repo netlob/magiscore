@@ -11,6 +11,7 @@
 const http = require('http');
 const MagisterAuth = require('./lib/magister/authcode.function');
 const login = require('./lib/magister/login.function');
+const cijfers = require('./lib/magister/cijfers.function');
 const { default: magister, getSchools } = require('magister.js');
 
 http.createServer((req, res) => {
@@ -21,38 +22,12 @@ http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST');
     res.setHeader('Access-Control-Allow-Headers', 'school, username, password, token');
     // Handle normal request
-    if ('token' in req.headers || 'username' in req.headers) {
+    if('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url == '/cijfers') {
         MagisterAuth()
-            .then(mAuth => {
-                magister({
-                    school: {
-                        url: `https://${req.headers.school}.magister.net`
-                    },
-                    username: req.headers.username,
-                    password: req.headers.password,
-                    authCode: mAuth
-                }).then(m => {
-                    m.courses()
-                    .then(courses => courses.find(c => c.current).grades())
-                    .then(grades => {
-                        console.dir(grades)
-                        res.writeHead(200)
-                        res.end(JSON.stringify(grades))
-                    }).catch((err) => { // something went wrong
-                        console.error('something went wrong:', err);
-                    });
-                    // return m
-                })
-                // login(mAuth, req.headers)
-                // .then(m => {
-                //     console.dir(m)
-                //     res.writeHead(200)
-                //     res.end(JSON.stringify(m))
-                // })
-            })
-            // .then(updated => res.end(updated ? 'success: user updated' : 'success: user created'))
-            .catch(err => { res.writeHead(500); res.end('error: ' + err.toString()); });
-    // If not requesting properly show 'nice' welcome :)
+        .then(mAuth => {
+            req.headers.code = mAuth
+            cijfers(req.headers, res)
+        }).catch(err => { res.writeHead(500); res.end('error: ' + err.toString()); });
     } else {
         res.end('MAGBOT STAT API');
     }
