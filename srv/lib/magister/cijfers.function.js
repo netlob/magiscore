@@ -10,9 +10,8 @@ module.exports = async function(params, res) {
         password: params.password,
         authCode: params.code
     }).then(m => {
-        var response = {
-            "person": m.personInfo,
-        }
+        var response = {}
+        response["person"] = m.profileInfo
         m.courses()
         .then(courses => courses.find(c => c.current).grades())
         .then(grades => {
