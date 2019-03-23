@@ -884,24 +884,27 @@ var scholen = Object.keys(schools)
 
 function getLoginInfo(){
     return {
-        username: $('#login-username').value,
-        password: $('#login-password').value,
-        school: schools[$('#login-school').value]
+        username: $('#login-username').val(),
+        password: $('#login-password').val(),
+        school: schools[$('#login-school').val()]
     }
 }
 
-function login({creds}) {
+function login(creds) {
+    
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://116.203.128.192:7070/cijfers",
+        "url": "https://magistat.bramkoene.nl/cijfers",
         "method": "POST",
         "headers": {
-            "username": username,
-            "password": password,
-            "school": school
+            "username": creds.username,
+            "password": creds.password,
+            "school": creds.school
         }
     }
+
+    console.dir(settings)
     
     $.ajax(settings).done(function (response) {
         console.log(response);
