@@ -475,12 +475,28 @@ function setChartData(vak, everything) {
     var cijfers = []
     var datums = []
 
-    for (var gradearray in sorted[vak]) {
-        if (gradearray == "REP") {
-            console.log(sorted[vak][gradearray])
-            for (var grade in sorted[vak][gradearray]) {
-                var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
-                cijfers.push(gradegrade)
+    if(everything) {
+        for(var classcourse in sorted) {
+            for(var gradearray in sorted[classcourse]) {
+                if(gradearray == "REP") {
+                    for(var grade in sorted[classcourse][gradearray]) {
+                        var gradegrade = sorted[classcourse][gradearray][grade].grade.replace(',', '.')
+                        cijfers.push(gradegrade)
+                        var date = new Date(sorted[classcourse][gradearray][grade].dateFilledIn)
+                        datums.push(date.toShortFormat())
+                    }
+                }
+            }
+        }
+    } else {
+        for(var gradearray in sorted[vak]) {
+            if(gradearray == "REP") {
+                for(var grade in sorted[vak][gradearray]) {
+                    var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
+                    cijfers.push(gradegrade)
+                    var date = new Date(sorted[vak][gradearray][grade].dateFilledIn)
+                    datums.push(date.toShortFormat())
+                }
             }
         }
     }
