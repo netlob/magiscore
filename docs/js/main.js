@@ -39,34 +39,6 @@ function setupLogin() {
         window.location.href = '/login/'
     }
 }
-
-                        </div>
-                    <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card text-gray-800 shadow">
-                <div class="card-body">
-                    Wat moet ik halen
-                    <form class="getGrade">
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="getGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
-                        </div>
-                        <div id="getGrade-newGrade">
-
-                        </div>
-                    <a onclick="document.getElementById('getGrade-newGrade').innerText = Math.round(needToGet('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 function updateNav() {
     var vakken = Object.keys(sorted)
     vakken.forEach(vak => {
@@ -416,17 +388,17 @@ function generateHTML(vakName) {
             <div class="card text-gray-800 shadow">
                 <div class="card-body">
                     Wat moet ik halen
-                    <form class="newGrade">
+                    <form class="getGrade">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="newGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
+                            <input type="text" class="form-control form-control-user" id="getGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
+                            <input type="text" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
                         </div>
-                        <div id="newGrade-newGrade">
+                        <div id="getGrade-newGrade">
 
                         </div>
-                    <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                    <a onclick="document.getElementById('getGrade-newGrade').innerText = Math.round(needToGet('${vakName}', parseInt(document.getElementById('newGrade-grade').value), parseInt(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
                 </div>
             </div>
