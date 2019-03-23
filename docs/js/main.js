@@ -3829,16 +3829,35 @@ var indexedCijfers ={
     //     }
     // }
 };
-    
+var sorted = {}
 function logCijfers(){
-    for (let i = 0; i < cijfers.length; i++) {
-        const element = cijfers[i];
-        indexedCijfers[element.class.description] = {
-            [element.id]: {
-                weight: element.weight,
-                name: element.class.description
-            }
-        };
-    }
-    console.log(indexedCijfers)
+    // for (let i = 0; i < cijfers.length; i++) {
+    //     const element = cijfers[i];
+    //     indexedCijfers[element.class.description] = {
+    //         [element.id]: {
+    //             weight: element.weight,
+    //             name: element.class.description
+    //         }
+    //     };
+    // }
+
+    
+    cijfers.forEach(grade => {
+        if(sorted[grade.class.description]==null){sorted[grade.class.description]=[]}
+        if(sorted[grade.class.description][grade.type.header]==null){sorted[grade.class.description][grade.type.header]=[]}
+        sorted[grade.class.description][grade.type.header].push(grade)
+        // console.dir(grade.type.header)
+    })
+    // for(var vak in sorted) {
+    //     for(var j = 0; j < sorted[vak].length-1; j++) {
+    //         // if(sorted[vak][j].type.header == 'Gem. cijfer') {
+    //             // embed.addField([sorted[vak][j].class.description.charAt(0).toUpperCase() + sorted[vak][j].class.description.slice(1)], sorted[vak][j].grade);
+    //             // console.dir([sorted[vak][j].class.description.charAt(0).toUpperCase() + sorted[vak][j].class.description.slice(1)] +''+ sorted[vak][j].grade)
+    //             sorted[]
+    //         // }
+    //     }
+    // }
+
+
+    // console.log(indexedCijfers)
 }
