@@ -8,9 +8,10 @@ function logCijfers(){
     
         cijfers.forEach(grade => {
         // for(var grade in cijfers) {
-            if(sorted[grade.class.description]==null){sorted[grade.class.description]=[]}
-            if(sorted[grade.class.description][grade.type.header]==null){sorted[grade.class.description][grade.type.header]=[]}
-            sorted[grade.class.description][grade.type.header].push(grade)
+            var vak = grade.class.description.capitalize()
+            if(sorted[vak]==null){sorted[vak]=[]}
+            if(sorted[vak][grade.type.header]==null){sorted[vak][grade.type.header]=[]}
+            sorted[vak][grade.type.header].push(grade)
         })
     
         updateNav()
