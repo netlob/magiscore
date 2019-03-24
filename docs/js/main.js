@@ -83,13 +83,6 @@ function updateNav() {
       xhr.responseType = 'blob'; //so you can access the response like a normal URL
       xhr.onreadystatechange = function () {
           if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-              // console.dir(xhr.responseText)
-              // var img = document.querySelector('#userDropdown > img')
-              // img.src = URL.createObjectURL(xhr.response);
-              // bannerImage = document.getElementById('imgelem');
-              // imgData = getBase64Image(bannerImage);
-              // localStorage.setItem("imgData", imgData);
-              // Create a blob from the response
               blob = new Blob([xhr.response], {type: "image/png"});
 
               // onload needed since Google Chrome doesn't support addEventListener for FileReader
