@@ -27,5 +27,8 @@ module.exports = async function(params, res) {
         }).catch((err) => { // something went wrong
             console.error('something went wrong:', err);
         });
-    })
+    }).catch(err => {
+        res.writeHead(200);
+        res.end('error: ' + err.toString());
+    });
 }

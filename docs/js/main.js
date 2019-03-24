@@ -35,6 +35,7 @@ function setupLogin() {
         })
 
         updateNav()
+        showClass('general')
     } else {
         window.location.href = '/login/'
     }
@@ -205,8 +206,6 @@ Date.prototype.toShortFormat = function() {
 
 setupLogin()
 
-
-
 function setChartData(vak, everything) {
     var data = []
     var datums = []
@@ -370,6 +369,7 @@ function needToGet(vak, grade, weight) {
 }
 
 function setCompleted() {
+  $('#general-progress').empty()
   for(var vak in sorted) {
     if(getCompleted(vak) > 0) {
       var html = generateHTMLprogress(vak)
@@ -383,7 +383,7 @@ function generateHTMLprogress(vakName) {
   return `<div>
             <h4 class="small font-weight-bold">${vakName}<span class="float-right">${getCompleted(vakName)}%</span></h4>
             <div class="progress mb-4">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: ${getCompleted(vakName)}%" aria-valuenow="${getCompleted(vakName)}" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar" style="width: ${getCompleted(vakName)}%; background-color: #1a6938 !important" aria-valuenow="${getCompleted(vakName)}" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>`
 }
@@ -417,10 +417,10 @@ function generateHTML(vakName) {
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">% Voltooid</div>
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-green">% Voltooid</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${getCompleted(vakName)}</div>
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-green">${getCompleted(vakName)}</div>
                   </div>
                   <div class="col">
                     <div class="progress progress-sm mr-2">
