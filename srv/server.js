@@ -28,11 +28,11 @@ http.createServer((req, res) => {
             req.headers.code = mAuth
             cijfers(req.headers, res)
             .catch(err => {
-                res.writeHead(500);
+                res.writeHead(200);
                 res.end('error: ' + err.toString());
             });
         }).catch(err => {
-            res.writeHead(500);
+            res.writeHead(200);
             res.end('error: ' + err.toString());
         });
     } else {

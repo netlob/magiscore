@@ -906,6 +906,7 @@ function login(creds) {
         }
         
         $.ajax(settings).done(function (response) {
+            console.dir(response)
             document.getElementById("overlay").style.display = "block";
             if(response.substring(0, 4) != 'error') {
                 var data = JSON.parse(response)
@@ -918,7 +919,25 @@ function login(creds) {
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("school", JSON.stringify(school));
                 location.href='/'
+            // } else {
             }
+                console.dir(response)
+                console.dir(response.substring(0, 4))
+                if(response == 'error: AuthError: Invalid password'){
+                    toast('Error: verkeerd Magister wachtwoord')
+                }
+                if(response == 'error: AuthError: Invalid username'){
+                    toast('Error: verkeerde Magister gebruikersnaam')
+                }
+            // }
         });
     } else { console.dir('False login') }
+}
+
+function toast(msg) {
+    document.getElementById("overlay").style.display = "none";
+    var x = document.getElementById("snackbar");
+    x.innerText = msg
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
