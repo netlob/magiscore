@@ -72,7 +72,10 @@ function updateNav() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
             var img = document.querySelector('#userDropdown > img')
-            img.src = URL.createObjectURL(xhr.response); //create <img> with src set to the blob
+            img.src = URL.createObjectURL(xhr.response);
+            bannerImage = document.getElementById('imgelem');
+            imgData = getBase64Image(bannerImage);
+            localStorage.setItem("imgData", imgData);
         }
     };
     xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
@@ -80,6 +83,19 @@ function updateNav() {
     xhr.send();
 
     document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
+}
+
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
 function getAverage(vak) {
