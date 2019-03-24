@@ -113,7 +113,7 @@ function updateNav() {
       xhr.send();
 
     }
-    document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
+    document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName} (${course.group.description})`
 }
 
 function getBase64Image(img) {
