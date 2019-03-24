@@ -162,30 +162,34 @@ function getEffort(vak) {
 }
 
 function getNewAverage(vak, grade, weight) {
-    if (getAverage(vak) == 'Niet beschikbaar') {
-        return 'Niet mogelijk voor dit vak';
-    }
-    var newCijfer
-    var Grades = []
-    var processed = 0;
-    for (let i = 0; i < weight; i++) {
-      Grades.push(grade)
-    }
-    sorted[vak]['REP'].forEach(_grade => {
-        processed++
-        for (let i = 0; i < _grade.weight; i++) {
-          Grades.push(parseFloat(_grade.grade.replace(',', '.')))
+  grade = parseFloat(grade.replace(',', '.'))
+  weight = parseFloat(weight.replace(',', '.'))
+
+  if (getAverage(vak) == 'Niet beschikbaar') {
+      return 'Niet mogelijk voor dit vak';
+  }
+  var newCijfer;
+  var Grades = []
+  var processed = 0;
+  for (let i = 0; i < weight; i++) {
+    Grades.push(grade)
+  }
+  sorted[vak]['REP'].forEach(_grade => {
+      processed++
+      for (let i = 0; i < _grade.weight; i++) {
+        Grades.push(parseFloat(_grade.grade.replace(',', '.')))
+      }
+      if (processed == sorted[vak]['REP'].length) {
+        var Average = 0;
+        for (let i = 0; i < Grades.length; i++) {
+          const Grade = Grades[i];
+            Average += Grade
         }
-        if (processed == sorted[vak]['REP'].length) {
-          var Average = 0;
-          for (let i = 0; i < Grades.length; i++) {
-            const Grade = Grades[i];
-              Average += Grade
-          }
-          newCijfer= Average / Grades.length
-        }
-    })
-    return newCijfer
+        newCijfer= Average / Grades.length
+      }
+  })
+  $('#newGrade-newGrade').text(Math.round(newCijfer * 100) / 100)
+  return Math.round(newCijfer * 100) / 100
 }
 
 function getNewGrade(vak, grade, weight) {
@@ -623,10 +627,8 @@ function generateHTML(vakName) {
                       <div class="form-group">
                           <input type="text" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
                       </div>
-                      <div id="newGrade-newGrade" class="showCalculatedGrade">
-
-                      </div>
-                    <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseFloat(document.getElementById('newGrade-grade').value), parseFloat(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                      <p id="newGrade-newGrade" class="showCalculatedGrade"></p>
+                    <a onclick="getNewAverage('${vakName}', $('#newGrade-grade').val(), $('#newGrade-weight').val())" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
                 </div>
             </div>
