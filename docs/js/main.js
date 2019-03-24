@@ -11,8 +11,6 @@ var indexedCijfers = {
     // }
 };
 var sorted = {}
-var grades = localStorage.getItem("grades");
-grades = JSON.parse(grades)
 var person = localStorage.getItem("person");
 var person = JSON.parse(person)
 var token = localStorage.getItem("token");
@@ -25,7 +23,10 @@ var course = localStorage.getItem("course");
 var course = JSON.parse(course)
 
 function setupLogin() {
-    if (grades && person) {
+    var grades = localStorage.getItem("grades");
+    if (grades && person && course && creds && school) {
+        grades = JSON.parse(grades)
+
         grades.forEach(grade => {
             var vak = grade.class.description.capitalize()
             if (sorted[vak] == null) {
@@ -48,7 +49,7 @@ function showClass(vak) {
     if (vak == 'general') {
       document.getElementById('General').style.display = 'block';
       document.getElementById('subjectSpecific').style.display = 'none';
-      $('#general-area-title').text(course.type.description)
+      $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
       setChartData(null, true)
       setCompleted()
     } else {
