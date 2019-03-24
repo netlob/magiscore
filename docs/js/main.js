@@ -358,10 +358,23 @@ function setChartData(vak, everything) {
                 intersect: false,
                 mode: 'index',
                 caretPadding: 10
+            },
+            annotation: {
+              annotations: [{
+                type: 'line',
+                mode: 'horizontal',
+                scaleID: 'y-axis-0',
+                value: 5.5,
+                borderColor: 'rgb(255, 0, 0)',
+                borderWidth: 2,
+                label: {
+                  enabled: false,
+                  content: 'Onvoldoende'
+                }
+              }]
             }
         }
     });
-
 }
 
 function needToGet(vak, grade, weight) {
