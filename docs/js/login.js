@@ -918,10 +918,13 @@ function login(creds) {
                 var person = data["person"]
                 var token = data["token"]
                 var school = data["school"]
+                var course = data["course"]
                 localStorage.setItem("grades", JSON.stringify(grades));
                 localStorage.setItem("person", JSON.stringify(person));
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("school", JSON.stringify(school));
+                localStorage.setItem("creds", JSON.stringify(creds));
+                localStorage.setItem("course", JSON.stringify(course));
                 location.href='/'
             } else {
                 console.error(response)
@@ -950,4 +953,22 @@ function toast(msg) {
     x.innerText = msg
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+var grades = localStorage.getItem("grades");
+var person = localStorage.getItem("person");
+var token = localStorage.getItem("token");
+var school = localStorage.getItem("school");
+var creds = localStorage.getItem("creds");
+var course = localStorage.getItem("course");
+
+if(grades && person && school && creds && course) {
+    // var grades = JSON.parse(grades)
+    // var person = JSON.parse(person)
+    // var token = JSON.parse(token)
+    // var school = JSON.parse(school)
+    // var creds = JSON.parse(creds)
+    // var course = JSON.parse(course)
+    location.href = "/"
+    // console.dir('jazeker wel')
 }

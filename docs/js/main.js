@@ -17,10 +17,14 @@ var token = localStorage.getItem("token");
 var token = JSON.parse(token)
 var school = localStorage.getItem("school");
 var school = JSON.parse(school)
+var creds = localStorage.getItem("creds");
+var creds = JSON.parse(creds)
+var course = localStorage.getItem("course");
+var course = JSON.parse(course)
 
 function setupLogin() {
     var grades = localStorage.getItem("grades");
-    if (grades && person) {
+    if (grades && person && course && creds && school) {
         grades = JSON.parse(grades)
 
         grades.forEach(grade => {
@@ -43,19 +47,20 @@ function setupLogin() {
 
 function showClass(vak) {
     if (vak == 'general') {
-        document.getElementById('General').style.display = 'block';
-        document.getElementById('subjectSpecific').style.display = 'none';
-        setChartData(null, true)
-        setCompleted()
+      document.getElementById('General').style.display = 'block';
+      document.getElementById('subjectSpecific').style.display = 'none';
+      $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
+      setChartData(null, true)
+      setCompleted()
     } else {
-        var subjectDiv = document.getElementById('subjectSpecific')
-        while (subjectDiv.firstChild) {
-            subjectDiv.removeChild(subjectDiv.firstChild)
-        }
-        subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
-        document.getElementById('General').style.display = 'none';
-        document.getElementById('subjectSpecific').style.display = 'block';
-        setChartData(vak)
+      var subjectDiv = document.getElementById('subjectSpecific')
+      while (subjectDiv.firstChild) {
+          subjectDiv.removeChild(subjectDiv.firstChild)
+      }
+      subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
+      document.getElementById('General').style.display = 'none';
+      document.getElementById('subjectSpecific').style.display = 'block';
+      setChartData(vak)
     }
 }
 
@@ -108,7 +113,7 @@ function updateNav() {
       xhr.send();
 
     }
-    document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
+    document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName} (${course.group.description})`
 }
 
 function getBase64Image(img) {
@@ -175,30 +180,34 @@ function getEffort(vak) {
 }
 
 function getNewAverage(vak, grade, weight) {
-    if (getAverage(vak) == 'Niet beschikbaar') {
-        return 'Niet mogelijk voor dit vak';
-    }
-    var newCijfer
-    var Grades = []
-    var processed = 0;
-    for (let i = 0; i < weight; i++) {
-      Grades.push(grade)
-    }
-    sorted[vak]['REP'].forEach(_grade => {
-        processed++
-        for (let i = 0; i < _grade.weight; i++) {
-          Grades.push(Number(_grade.grade.replace(',', '.')))
+  grade = parseFloat(grade.replace(',', '.'))
+  weight = parseFloat(weight.replace(',', '.'))
+
+  if (getAverage(vak) == 'Niet beschikbaar') {
+      return 'Niet mogelijk voor dit vak';
+  }
+  var newCijfer;
+  var Grades = []
+  var processed = 0;
+  for (let i = 0; i < weight; i++) {
+    Grades.push(grade)
+  }
+  sorted[vak]['REP'].forEach(_grade => {
+      processed++
+      for (let i = 0; i < _grade.weight; i++) {
+        Grades.push(parseFloat(_grade.grade.replace(',', '.')))
+      }
+      if (processed == sorted[vak]['REP'].length) {
+        var Average = 0;
+        for (let i = 0; i < Grades.length; i++) {
+          const Grade = Grades[i];
+            Average += Grade
         }
-        if (processed == sorted[vak]['REP'].length) {
-          var Average = 0;
-          for (let i = 0; i < Grades.length; i++) {
-            const Grade = Grades[i];
-              Average += Grade
-          }
-          newCijfer= Average / Grades.length
-        }
-    })
-    return newCijfer
+        newCijfer= Average / Grades.length
+      }
+  })
+  $('#newGrade-newGrade').text(Math.round(newCijfer * 100) / 100)
+  return Math.round(newCijfer * 100) / 100
 }
 
 function getNewGrade(vak, grade, weight) {
@@ -214,7 +223,7 @@ function getNewGrade(vak, grade, weight) {
   sorted[vak]['REP'].forEach(_grade => {
       processed++
       for (let i = 0; i < _grade.weight; i++) {
-        Grades.push(Number(_grade.grade.replace(',', '.')))
+        Grades.push(parseFloat(_grade.grade.replace(',', '.')))
       }
       if (processed == sorted[vak]['REP'].length) {
         var Average = 0;
@@ -251,6 +260,8 @@ function setChartData(vak, everything) {
     var data = []
     var datums = []
     var cijfers = []
+    var vol = 0
+    var onvol = 0
 
     if(everything) {
         for(var classcourse in sorted) {
@@ -262,6 +273,8 @@ function setChartData(vak, everything) {
                           t: new Date(sorted[classcourse][gradearray][grade].dateFilledIn),
                           y: gradegrade
                         })
+                        gradegrade = parseFloat(gradegrade.replace(",","."))
+                        if(gradegrade >= 5.5) { vol++ } else { onvol++ }
                     }
                 }
             }
@@ -275,6 +288,8 @@ function setChartData(vak, everything) {
                       t: new Date(sorted[vak][gradearray][grade].dateFilledIn),
                       y: gradegrade
                     })
+                    gradegrade = parseFloat(gradegrade.replace(",","."))
+                    if(gradegrade >= 5.5) { vol++ } else { onvol++ }
                 }
             }
         }
@@ -393,10 +408,80 @@ function setChartData(vak, everything) {
             }
         }
     });
+
+    var ctx = document.getElementById("myPieChart");
+    var myPieChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ["Voldoendes", "Onvoldoendes"],
+        datasets: [{
+          data: [vol, onvol],
+          backgroundColor: ['#156a36', '#e74a3b'],
+          hoverBackgroundColor: ['#156a36', '#e74a3b'],
+          hoverBorderColor: "rgba(234, 236, 244, 1)",
+        }],
+      },
+      options: {
+        maintainAspectRatio: false,
+        tooltips: {
+          backgroundColor: "rgb(255,255,255)",
+          bodyFontColor: "#858796",
+          borderColor: '#dddfeb',
+          borderWidth: 1,
+          xPadding: 15,
+          yPadding: 15,
+          displayColors: false,
+          caretPadding: 10,
+        },
+        legend: {
+          display: false
+        },
+        cutoutPercentage: 80,
+      },
+    });
+
+}
+
+function syncGrades() {
+    document.getElementById("overlay").style.display = "block";
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://magistat.bramkoene.nl/api/cijfers",
+        "method": "POST",
+        "headers": {
+            "username": creds.username,
+            "password": creds.password,
+            "school": creds.school
+        }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      document.getElementById("overlay").style.display = "block";
+      if(response.substring(0, 5) != 'error') {
+          var data = JSON.parse(response)
+          var grades = data["grades"]
+          var person = data["person"]
+          var token = data["token"]
+          var school = data["school"]
+          var course = data["course"]
+          localStorage.setItem("grades", JSON.stringify(grades));
+          localStorage.setItem("person", JSON.stringify(person));
+          localStorage.setItem("token", JSON.stringify(token));
+          localStorage.setItem("school", JSON.stringify(school));
+          localStorage.setItem("course", JSON.stringify(course));
+          document.getElementById("overlay").style.display = "none";
+          setupLogin()
+      }
+  });
+}
+
+function logOut() {
+  localStorage.clear()
+  location.href = '/login'
 }
 
 function needToGet(vak, grade, weight) {
-
     var gemiddeldenu = getAverage(vak)
     gemiddeldenu = gemiddeldenu.replace(',', '.')
 
@@ -559,10 +644,8 @@ function generateHTML(vakName) {
                       <div class="form-group">
                           <input type="text" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
                       </div>
-                      <div id="newGrade-newGrade" class="showCalculatedGrade">
-
-                      </div>
-                    <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseFloat(document.getElementById('newGrade-grade').value), parseFloat(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                      <p id="newGrade-newGrade" class="showCalculatedGrade"></p>
+                    <a onclick="getNewAverage('${vakName}', $('#newGrade-grade').val(), $('#newGrade-weight').val())" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
                 </div>
             </div>
@@ -626,7 +709,7 @@ function generateHTML(vakName) {
         <div class="card shadow mb-4">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Voldoendes / onvoldoendes</h6>
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -647,13 +730,10 @@ function generateHTML(vakName) {
             </div>
             <div class="mt-4 text-center small">
               <span class="mr-2">
-                <i class="fas fa-circle text-primary"></i> Direct
+                <i class="fas fa-circle" style="color: #156a36"></i> Voldoendes
               </span>
               <span class="mr-2">
-                <i class="fas fa-circle text-success"></i> Social
-              </span>
-              <span class="mr-2">
-                <i class="fas fa-circle text-info"></i> Referral
+                <i class="fas fa-circle" style="color: #e74a3b"></i> Onvoldoendes
               </span>
             </div>
           </div>
