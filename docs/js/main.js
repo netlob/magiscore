@@ -129,30 +129,37 @@ function getBase64Image(img) {
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
-function getAverage(vak) {
-    if (sorted[vak]['Gem. cijfer']) {
-      var Average
+function getAverage(vak, rounded) {
+    if (sorted[vak]['REP']) {
+      var newCijfer = 0;
       var Grades = []
       var processed = 0;
-      // for (let i = 0; i < weight; i++) {
-      //   Grades.push(grade)
-      // }
       sorted[vak]['REP'].forEach(_grade => {
           processed++
-          Grades.push(_grade.grade)
+          for (let i = 0; i < _grade.weight; i++) {
+            Grades.push(parseFloat(_grade.grade.replace(',', '.')))
+          }
           if (processed == sorted[vak]['REP'].length) {
             var Average = 0;
             for (let i = 0; i < Grades.length; i++) {
               const Grade = Grades[i];
                 Average += Grade
             }
-            console.log
             newCijfer= Average / Grades.length
           }
       })
+      if (rounded){
+        return Math.round(newCijfer * 100) / 100
+      } else {
+        return newCijfer
+      }
     } else {
         return "Niet beschikbaar"
     }
+}
+
+function round(num){
+  return Math.round(num * 100) / 100
 }
 
 function getCompleted(vak) {
@@ -558,7 +565,7 @@ function generateHTML(vakName) {
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Gemiddeld cijfer</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">${getAverage(vakName)}</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">${getAverage(vakName, true)}</div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
