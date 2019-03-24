@@ -35,6 +35,7 @@ function setupLogin() {
         })
 
         updateNav()
+        showClass('general')
     } else {
         window.location.href = '/login/'
     }
@@ -179,8 +180,6 @@ Date.prototype.toShortFormat = function() {
 }
 
 setupLogin()
-
-
 
 function setChartData(vak, everything) {
     var data = []
@@ -358,7 +357,7 @@ function generateHTMLprogress(vakName) {
   return `<div>
             <h4 class="small font-weight-bold">${vakName}<span class="float-right">${getCompleted(vakName)}%</span></h4>
             <div class="progress mb-4">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: ${getCompleted(vakName)}%" aria-valuenow="${getCompleted(vakName)}" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar" style="width: ${getCompleted(vakName)}%; background-color: #1a6938 !important" aria-valuenow="${getCompleted(vakName)}" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>`
 }
