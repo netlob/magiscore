@@ -132,36 +132,41 @@ function getBase64Image(img) {
 }
 
 function getAverage(vak, rounded) {
-    if (sorted[vak]['REP']) {
+  if(sorted[vak]) {
+    if(sorted[vak]['REP']) {
       var newCijfer = 0;
       var Grades = []
       var processed = 0;
       sorted[vak]['REP'].forEach(_grade => {
-          processed++
-          for (let i = 0; i < _grade.weight; i++) {
-            Grades.push(parseFloat(_grade.grade.replace(',', '.')))
+        processed++
+        for(let i = 0; i < _grade.weight; i++) {
+          Grades.push(parseFloat(_grade.grade.replace(',', '.')))
+        }
+        if(processed == sorted[vak]['REP'].length) {
+          var Average = 0;
+          for (let i = 0; i < Grades.length; i++) {
+            const Grade = Grades[i];
+              Average += Grade
           }
-          if (processed == sorted[vak]['REP'].length) {
-            var Average = 0;
-            for (let i = 0; i < Grades.length; i++) {
-              const Grade = Grades[i];
-                Average += Grade
-            }
-            newCijfer= Average / Grades.length
-          }
+          newCijfer= Average / Grades.length
+        }
       })
-      if (rounded){
-        return Math.round(newCijfer * 100) / 100
+      if(rounded){
+        return round(newCijfer)
       } else {
         return newCijfer
       }
     } else {
-        return "Niet beschikbaar"
+      return "Niet beschikbaar"
     }
+  }
 }
 
 function round(num){
-  return Math.round(num * 100) / 100
+  if(typeof num != "number") {
+    num.replace(',','.')
+  }
+  return parseFloat(Math.round(num * 100) / 100).toFixed(2);
 }
 
 function getCompleted(vak) {
@@ -215,8 +220,8 @@ function getNewAverage(vak, grade, weight) {
         newCijfer= Average / Grades.length
       }
   })
-  $('#newGrade-newGrade').text(Math.round(newCijfer * 100) / 100)
-  return Math.round(newCijfer * 100) / 100
+  $('#newGrade-newGrade').text(round(newCijfer))
+  return round(newCijfer)
 }
 
 function getNewGrade(vak, grade, weight) {
@@ -451,8 +456,8 @@ function setChartData(vak, everything) {
 
     if(vol + onvol > 0) {
       var tot = vol + onvol
-      vol = Math.round(vol / tot * 10000) / 100
-      onvol = Math.round(onvol / tot * 10000) / 100
+      vol = round(vol / tot * 100)
+      onvol = round(onvol / tot * 100)
       $('#percentageGrades').text(`${vol}% voldoende - ${onvol}% onvoldoende`)
     } else {
       $('#percentageGrades').text(`Geen cijfers voor dit vak...`)
@@ -499,29 +504,31 @@ function logOut() {
 }
 
 function needToGet(vak, grade, weight) {
-    var gemiddeldenu = getAverage(vak)
-    gemiddeldenu = gemiddeldenu.replace(',', '.')
-
-    var totwegingnu = 0
-    for(var gradearray in sorted[vak]) {
-        if(gradearray == "REP") {
-            for(var grade in sorted[vak][gradearray]) {
-                totwegingnu = totwegingnu + sorted[vak][gradearray][grade].weight
-            }
-        }
+    if(!grade){ var grade = round(document.querySelector('#getGrade-grade').value) }
+    if(!weight){ var weight = round(document.querySelector('#getGrade-weight').value) }
+    grade = Number(grade)
+    weight = Number(weight)
+    // console.dir('Grade: '+grade + typeof grade)
+    // console.dir('Weight: '+weight + typeof weight)
+    var grades = sorted[vak]["REP"]
+    var alles = 0;
+    for (var i = 0; i < grades.length; i++) {
+      var cijfer = grades[i].grade.replace(',','.')
+      cijfer = Number(cijfer)
+      alles += (cijfer*grades[i].weight);
     }
-
-    var totweging = weight + totwegingnu
-    
-    var expr1 = algebra.parse(`${weight} * x`)
-    var expr2 = algebra.parse(`${gemiddeldenu} * ${totwegingnu} - (${grade}/${totweging})`)
-    var eq = new Equation(expr1, expr2)
-    // console.log(eq.toString())
-
-    var xanswer = eq.solveFor("x")
-    // console.dir("Je moet halen: " + xanswer.toString())
-
-    return eval(xanswer.toString())
+    var totaalweging = 0;
+    for (var i = 0; i < grades.length; i++) {
+        totaalweging += grades[i].weight;
+    }
+    res = (((totaalweging+weight)*grade)-alles)/weight;
+    console.dir(res +typeof res)
+    res = round(res)
+    if(res > 10) {
+      res = `Onhaalbaar, namelijk een ${res}`
+    }
+    $('#getGrade-newGrade').text(res)
+    return res
 }
 
 function setCompleted() {
@@ -547,9 +554,9 @@ function setCompleted() {
   var totcompleted = totcompleted / totcomclass
   $('#general-completed-bar').attr('aria-valuenow', totcompleted)
   $('#general-completed-bar').attr('style', `width: ${totcompleted}%`)
-  $('#general-completed').text(`${Math.round(totcompleted * 100) / 100}%`)
+  $('#general-completed').text(`${round(totcompleted)}%`)
   var totgem = totgem / totgemclass
-  $('#general-average').text(`${Math.round(totgem * 100) / 100}`)
+  $('#general-average').text(`${round(totcompleted)}`)
 }
 
 function generateHTMLprogress(vakName) {
@@ -679,10 +686,8 @@ function generateHTML(vakName) {
                       <div class="form-group">
                           <input type="text" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
                       </div>
-                      <div id="getGrade-newGrade">
-
-                      </div>
-                    <a onclick="document.getElementById('getGrade-newGrade').innerText = Math.round(getNewGrade('${vakName}', parseFloat(document.getElementById('newGrade-grade').value), parseFloat(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                      <p id="getGrade-newGrade"></p>
+                      <a onclick="needToGet('${vakName}')" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
                 </div>
             </div>
