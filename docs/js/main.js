@@ -376,14 +376,31 @@ function needToGet(vak, grade, weight) {
 }
 
 function setCompleted() {
+  var totcompleted = 0,
+      totcomclass = 0,
+      totgem = 0,
+      totgemclass = 0
   $('#general-progress').empty()
   for(var vak in sorted) {
     if(getCompleted(vak) > 0) {
       var html = generateHTMLprogress(vak)
       $('#general-progress').append(html)
     }
+    if(getCompleted(vak) > -1 && getCompleted(vak) < 101) {
+      totcompleted = totcompleted + parseFloat(getCompleted(vak))
+      totcomclass++
+    }
+    if(parseFloat(getAverage(vak)) > -1 && parseFloat(getAverage(vak)) < 11) {
+      totgem = totgem + parseFloat(getAverage(vak))
+      totgemclass++
+    }
   }
-  
+  var totcompleted = totcompleted / totcomclass
+  $('#general-completed-bar').attr('aria-valuenow', totcompleted)
+  $('#general-completed-bar').attr('style', `width: ${totcompleted}%`)
+  $('#general-completed').text(`${totcompleted}%`)
+  var totgem = totgem / totgemclass
+  $('#general-average').text(`${totgem}`)
 }
 
 function generateHTMLprogress(vakName) {
