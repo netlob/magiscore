@@ -17,6 +17,8 @@ var token = localStorage.getItem("token");
 var token = JSON.parse(token)
 var school = localStorage.getItem("school");
 var school = JSON.parse(school)
+var creds = localStorage.getItem("creds");
+var creds = JSON.parse(creds)
 
 function setupLogin() {
     var grades = localStorage.getItem("grades");
@@ -375,6 +377,48 @@ function setChartData(vak, everything) {
             }
         }
     });
+}
+
+function syncGrades() {
+    document.getElementById("overlay").style.display = "block";
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://magistat.bramkoene.nl/api/cijfers",
+        "method": "POST",
+        "headers": {
+            "username": creds.username,
+            "password": creds.password,
+            "school": creds.school
+        }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      document.getElementById("overlay").style.display = "block";
+      if(response.substring(0, 5) != 'error') {
+          var data = JSON.parse(response)
+          var grades = data["grades"]
+          var person = data["person"]
+          var token = data["token"]
+          var school = data["school"]
+          localStorage.setItem("grades", JSON.stringify(grades));
+          localStorage.setItem("person", JSON.stringify(person));
+          localStorage.setItem("token", JSON.stringify(token));
+          localStorage.setItem("school", JSON.stringify(school));
+          document.getElementById("overlay").style.display = "none";
+          setupLogin()
+      }
+  });
+}
+
+function logOut() {
+  // localStorage.setItem('creds', null)
+  // localStorage.setItem('school', null)
+  // localStorage.setItem('grades', null)
+  // localStorage.setItem('person', null)
+  // localStorage.setItem('token', null)
+  localStorage.clear()
+  location.href = '/login'
 }
 
 function needToGet(vak, grade, weight) {

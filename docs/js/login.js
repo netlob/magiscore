@@ -922,6 +922,7 @@ function login(creds) {
                 localStorage.setItem("person", JSON.stringify(person));
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("school", JSON.stringify(school));
+                localStorage.setItem("creds", JSON.stringify(creds));
                 location.href='/'
             } else {
                 console.error(response)
@@ -951,3 +952,5 @@ function toast(msg) {
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+
+if(localStorage.getItem('creds') && localStorage.getItem('school') && localStorage.getItem('grades') && localStorage.getItem('person')) { location.href='/' }
