@@ -164,6 +164,38 @@ function getNewAverage(vak, grade, weight) {
     return newCijfer
 }
 
+function getNewGrade(vak, grade, weight) {
+  if (getAverage(vak) == 'Niet beschikbaar') {
+      return 'Niet mogelijk voor dit vak';
+  }
+  var newCijfer
+  var Grades = []
+  var processed = 0;
+  var currentAverage = 0;
+  var currentWeight = 0;
+  for (let i = 0; i < weight; i++) {
+    Grades.push(grade)
+  }
+  sorted[vak]['REP'].forEach(_grade => {
+    
+      // processed++
+      // currentWeight += _grade.weight
+      // currentAverage += _grade.weight * parseFloat(_grade.grade)
+      // for (let i = 0; i < _grade.weight; i++) {
+      //   Grades.push(Number(_grade.grade.replace(',', '.')))
+      // }
+      // if (processed == sorted[vak]['REP'].length) {
+      //   var Average = 0;
+      //   for (let i = 0; i < Grades.length; i++) {
+      //     const Grade = Grades[i];
+      //       Average += Grade
+      //   }
+      //   newCijfer= Average / Grades.length
+      // }
+  })
+  return newCijfer
+}
+
 String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
