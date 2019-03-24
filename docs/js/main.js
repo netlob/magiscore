@@ -464,7 +464,6 @@ function logOut() {
 }
 
 function needToGet(vak, grade, weight) {
-
     var gemiddeldenu = getAverage(vak)
     gemiddeldenu = gemiddeldenu.replace(',', '.')
 
