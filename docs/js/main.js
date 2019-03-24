@@ -424,10 +424,10 @@ function generateHTML(vakName) {
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">% Voltooid</div>
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-green">% Voltooid</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${getCompleted(vakName)}</div>
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-green">${getCompleted(vakName)}</div>
                   </div>
                   <div class="col">
                     <div class="progress progress-sm mr-2">
