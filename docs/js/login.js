@@ -925,7 +925,7 @@ function login(creds) {
                 localStorage.setItem("school", JSON.stringify(school));
                 localStorage.setItem("creds", JSON.stringify(creds));
                 localStorage.setItem("course", JSON.stringify(course));
-                // location.href='/'
+                location.href='/'
             } else {
                 console.error(response)
                 if(response == 'error: AuthError: Invalid password'){
