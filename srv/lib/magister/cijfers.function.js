@@ -18,14 +18,14 @@ module.exports = async function(params, res) {
         .then(courses => {
             response["course"] = courses.find(c => c.current)
             courses.find(c => c.current).grades()
+            .then(grades => {
+                response["grades"] = grades
+                res.writeHead(200)
+                res.end(JSON.stringify(response))
+            }).catch((err) => { // something went wrong
+                console.error('something went wrong:', err);
+            });
         })
-        .then(grades => {
-            response["grades"] = grades
-            // res.writeHead(200)
-            res.end(JSON.stringify(response))
-        }).catch((err) => { // something went wrong
-            console.error('something went wrong:', err);
-        });
     }).catch(err => {
         res.writeHead(200);
         res.end('error: ' + err.toString());

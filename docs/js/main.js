@@ -11,6 +11,8 @@ var indexedCijfers = {
     // }
 };
 var sorted = {}
+var grades = localStorage.getItem("grades");
+grades = JSON.parse(grades)
 var person = localStorage.getItem("person");
 var person = JSON.parse(person)
 var token = localStorage.getItem("token");
@@ -23,10 +25,7 @@ var course = localStorage.getItem("course");
 var course = JSON.parse(course)
 
 function setupLogin() {
-    var grades = localStorage.getItem("grades");
     if (grades && person) {
-        grades = JSON.parse(grades)
-
         grades.forEach(grade => {
             var vak = grade.class.description.capitalize()
             if (sorted[vak] == null) {
