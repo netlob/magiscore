@@ -163,8 +163,8 @@ function getAverage(vak, rounded) {
 }
 
 function round(num){
-  if(typeof num != "number") {
-    num.replace(',','.')
+  if(typeof num == "string") {
+    num = num.replace(',','.')
   }
   return parseFloat(Math.round(num * 100) / 100).toFixed(2);
 }
