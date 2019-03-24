@@ -119,20 +119,29 @@ function getNewAverage(vak, grade, weight) {
         return 'Niet mogelijk voor dit vak';
     }
     var newCijfer
+    var Grades = []
     var processed = 0;
     var currentAverage = 0;
     var currentWeight = 0;
+    for (let i = 0; i < weight; i++) {
+      Grades.push(grade)
+    }
     sorted[vak]['REP'].forEach(_grade => {
         processed++
         currentWeight += _grade.weight
         currentAverage += _grade.weight * parseFloat(_grade.grade)
+        for (let i = 0; i < _grade.weight; i++) {
+          Grades.push(Number(_grade.grade.replace(',', '.')))
+        }
         if (processed == sorted[vak]['REP'].length) {
-            currentAverage += grade * weight
-            currentWeight += weight
-            newCijfer = currentAverage / currentWeight
+          var Average = 0;
+          for (let i = 0; i < Grades.length; i++) {
+            const Grade = Grades[i];
+              Average += Grade
+          }
+          newCijfer= Average / Grades.length
         }
     })
-    console.log(newCijfer)
     return newCijfer
 }
 
