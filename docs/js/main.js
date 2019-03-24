@@ -174,7 +174,7 @@ function getNewAverage(vak, grade, weight) {
     sorted[vak]['REP'].forEach(_grade => {
         processed++
         for (let i = 0; i < _grade.weight; i++) {
-          Grades.push(Number(_grade.grade.replace(',', '.')))
+          Grades.push(parseFloat(_grade.grade.replace(',', '.')))
         }
         if (processed == sorted[vak]['REP'].length) {
           var Average = 0;
@@ -201,7 +201,7 @@ function getNewGrade(vak, grade, weight) {
   sorted[vak]['REP'].forEach(_grade => {
       processed++
       for (let i = 0; i < _grade.weight; i++) {
-        Grades.push(Number(_grade.grade.replace(',', '.')))
+        Grades.push(parseFloat(_grade.grade.replace(',', '.')))
       }
       if (processed == sorted[vak]['REP'].length) {
         var Average = 0;
@@ -251,7 +251,7 @@ function setChartData(vak, everything) {
                           t: new Date(sorted[classcourse][gradearray][grade].dateFilledIn),
                           y: gradegrade
                         })
-                        gradegrade = Number(gradegrade.replace(",","."))
+                        gradegrade = parseFloat(gradegrade.replace(",","."))
                         if(gradegrade >= 5.5) { vol++ } else { onvol++ }
                     }
                 }
@@ -266,7 +266,7 @@ function setChartData(vak, everything) {
                       t: new Date(sorted[vak][gradearray][grade].dateFilledIn),
                       y: gradegrade
                     })
-                    gradegrade = Number(gradegrade.replace(",","."))
+                    gradegrade = parseFloat(gradegrade.replace(",","."))
                     if(gradegrade >= 5.5) { vol++ } else { onvol++ }
                 }
             }
