@@ -44,6 +44,8 @@ function showClass(vak) {
     if (vak == 'general') {
         document.getElementById('General').style.display = 'block';
         document.getElementById('subjectSpecific').style.display = 'none';
+        setChartData(null, true)
+        setCompleted()
     } else {
         var subjectDiv = document.getElementById('subjectSpecific')
         while (subjectDiv.firstChild) {
@@ -52,8 +54,8 @@ function showClass(vak) {
         subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
         document.getElementById('General').style.display = 'none';
         document.getElementById('subjectSpecific').style.display = 'block';
+        setChartData(vak)
     }
-    setChartData(vak)
 }
 
 function updateNav() {
@@ -118,7 +120,7 @@ function getProgress(vak) {
     if (sorted[vak]['Vordering']) {
         return sorted[vak]['Vordering'][0]['grade']
     } else {
-        return "Niet beschikbaar"
+        return 0
     }
 }
 
@@ -169,9 +171,12 @@ Date.prototype.toShortFormat = function() {
 
 setupLogin()
 
+
+
 function setChartData(vak, everything) {
-    var cijfers = []
+    var data = []
     var datums = []
+    var cijfers = []
 
     if(everything) {
         for(var classcourse in sorted) {
@@ -179,9 +184,10 @@ function setChartData(vak, everything) {
                 if(gradearray == "REP") {
                     for(var grade in sorted[classcourse][gradearray]) {
                         var gradegrade = sorted[classcourse][gradearray][grade].grade.replace(',', '.')
-                        cijfers.push(gradegrade)
-                        var date = new Date(sorted[classcourse][gradearray][grade].dateFilledIn)
-                        datums.push(date.toShortFormat())
+                        data.push({
+                          t: new Date(sorted[classcourse][gradearray][grade].dateFilledIn),
+                          y: gradegrade
+                        })
                     }
                 }
             }
@@ -191,19 +197,33 @@ function setChartData(vak, everything) {
             if(gradearray == "REP") {
                 for(var grade in sorted[vak][gradearray]) {
                     var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
-                    cijfers.push(gradegrade)
-                    var date = new Date(sorted[vak][gradearray][grade].dateFilledIn)
-                    datums.push(date.toShortFormat())
+                    data.push({
+                      t: new Date(sorted[vak][gradearray][grade].dateFilledIn),
+                      y: gradegrade
+                    })
                 }
             }
         }
     }
 
+    data.sort(function(a,b){
+      return new Date(b.t) - new Date(a.t);
+    });
+
+    data.forEach(value => {
+      datums.push(value.t.toShortFormat())
+      cijfers.push(value.y)
+    })
+
+    datums.reverse()
+    cijfers.reverse()
+
     var ctx = document.getElementById('myAreaChart').getContext('2d');
     var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
+            labels: datums,
+            // labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
             datasets: [{
                 label: "Cijfer",
                 lineTension: 0.3,
@@ -213,8 +233,8 @@ function setChartData(vak, everything) {
                 pointBackgroundColor: "rgba(21, 106, 54, 1)",
                 pointBorderColor: "rgba(21, 106, 54, 1)",
                 pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHoverBackgroundColor: "rgba(32, 163, 83, 1)",
+                pointHoverBorderColor: "rgba(32, 163, 83, 1)",
                 pointHitRadius: 10,
                 pointBorderWidth: 2,
                 data: cijfers,
@@ -233,7 +253,7 @@ function setChartData(vak, everything) {
             scales: {
                 xAxes: [{
                     time: {
-                        unit: 'date'
+                        unit: 'time'
                     },
                     gridLines: {
                         display: false,
@@ -241,7 +261,12 @@ function setChartData(vak, everything) {
                     },
                     ticks: {
                         maxTicksLimit: 7
-                    }
+                    },
+                    time: {
+                      displayFormats: {
+                          quarter: 'D MMM YYYY'
+                      }
+                  }
                 }],
                 yAxes: [{
                     ticks: {
@@ -308,6 +333,25 @@ function needToGet(vak, grade, weight) {
     // console.dir("Je moet halen: " + xanswer.toString())
 
     return eval(xanswer.toString())
+}
+
+function setCompleted() {
+  for(var vak in sorted) {
+    if(getCompleted(vak) > 0) {
+      var html = generateHTMLprogress(vak)
+      $('#general-progress').append(html)
+    }
+  }
+  
+}
+
+function generateHTMLprogress(vakName) {
+  return `<div>
+            <h4 class="small font-weight-bold">${vakName}<span class="float-right">${getCompleted(vakName)}%</span></h4>
+            <div class="progress mb-4">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: ${getCompleted(vakName)}%" aria-valuenow="${getCompleted(vakName)}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>`
 }
 
 function generateHTML(vakName) {
@@ -401,17 +445,18 @@ function generateHTML(vakName) {
         <div class="col-lg-6 mb-4">
             <div class="card text-gray-800 shadow">
                 <div class="card-body">
-                    Wat ga ik Staan?
+                    Wat ga ik staan?
                     <form class="newGrade">
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="newGrade-grade" aria-describedby="emailHelp" placeholder="Nieuw cijfer">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
-                        </div>
-                        <div id="newGrade-newGrade" class="showCalculatedGrade">
+                      <p></p>
+                      <div class="form-group">
+                          <input type="text" class="form-control form-control-user" id="newGrade-grade" aria-describedby="emailHelp" placeholder="Nieuw cijfer">
+                      </div>
+                      <div class="form-group">
+                          <input type="text" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
+                      </div>
+                      <div id="newGrade-newGrade" class="showCalculatedGrade">
 
-                        </div>
+                      </div>
                     <a onclick="document.getElementById('newGrade-newGrade').innerText = Math.round(getNewAverage('${vakName}', parseFloat(document.getElementById('newGrade-grade').value), parseFloat(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
                 </div>
@@ -422,15 +467,16 @@ function generateHTML(vakName) {
                 <div class="card-body">
                     Wat moet ik halen?
                     <form class="getGrade">
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="getGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
-                        </div>
-                        <div id="getGrade-newGrade">
+                      <p></p>
+                      <div class="form-group">
+                          <input type="text" class="form-control form-control-user" id="getGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
+                      </div>
+                      <div class="form-group">
+                          <input type="text" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
+                      </div>
+                      <div id="getGrade-newGrade">
 
-                        </div>
+                      </div>
                     <a onclick="document.getElementById('getGrade-newGrade').innerText = Math.round(needToGet('${vakName}', parseFloat(document.getElementById('newGrade-grade').value), parseFloat(document.getElementById('newGrade-weight').value)) * 100) / 100" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
                 </div>
