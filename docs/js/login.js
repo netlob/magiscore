@@ -891,6 +891,11 @@ function getLoginInfo(){
 }
 var res;
 function login(creds) {
+    if(!creds.school){ 
+        toast('Error: geen geldige school')
+        $('#login-school').val('')
+        return;
+     }
     if(creds.username.length > 1 && creds.password.length > 1 && creds.school.length > 1) {
         document.getElementById("overlay").style.display = "block";
         var settings = {
@@ -906,9 +911,8 @@ function login(creds) {
         }
         
         $.ajax(settings).done(function (response) {
-            console.dir(response)
             document.getElementById("overlay").style.display = "block";
-            if(response.substring(0, 4) != 'error') {
+            if(response.substring(0, 5) != 'error') {
                 var data = JSON.parse(response)
                 var grades = data["grades"]
                 var person = data["person"]
@@ -919,17 +923,23 @@ function login(creds) {
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("school", JSON.stringify(school));
                 location.href='/'
-            // } else {
-            }
-                console.dir(response)
-                console.dir(response.substring(0, 4))
+            } else {
+                console.error(response)
                 if(response == 'error: AuthError: Invalid password'){
                     toast('Error: verkeerd Magister wachtwoord')
+                    $('#login-password').val('')
+                    return
                 }
                 if(response == 'error: AuthError: Invalid username'){
                     toast('Error: verkeerde Magister gebruikersnaam')
+                    $('#login-username').val('')
+                    return
                 }
-            // }
+                toast(response)
+                $('#login-school').val('')
+                $('#login-username').val('')
+                $('#login-password').val('')
+            }
         });
     } else { console.dir('False login') }
 }
