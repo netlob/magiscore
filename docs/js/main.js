@@ -70,21 +70,51 @@ function updateNav() {
         document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
     })
 
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob'; //so you can access the response like a normal URL
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            var img = document.querySelector('#userDropdown > img')
-            img.src = URL.createObjectURL(xhr.response);
-            bannerImage = document.getElementById('imgelem');
-            imgData = getBase64Image(bannerImage);
-            localStorage.setItem("imgData", imgData);
-        }
-    };
-    xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
-    xhr.send();
+    var profilepicStorage = localStorage.getItem("profilepic"),
+    profilepic = document.getElementById("imgelem");
+    if (profilepicStorage) {
+      console.dir('Using saved pic')
+      // Reuse existing Data URL from localStorage
+      profilepic.setAttribute("src", profilepicStorage);
+    } else {
+      var xhr = new XMLHttpRequest(),
+        blob,
+        fileReader = new FileReader();
+      xhr.responseType = 'blob'; //so you can access the response like a normal URL
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+              // console.dir(xhr.responseText)
+              // var img = document.querySelector('#userDropdown > img')
+              // img.src = URL.createObjectURL(xhr.response);
+              // bannerImage = document.getElementById('imgelem');
+              // imgData = getBase64Image(bannerImage);
+              // localStorage.setItem("imgData", imgData);
+              // Create a blob from the response
+              blob = new Blob([xhr.response], {type: "image/png"});
 
+              // onload needed since Google Chrome doesn't support addEventListener for FileReader
+              fileReader.onload = function (evt) {
+                  // Read out file contents as a Data URL
+                  var result = evt.target.result;
+                  // Set image src to Data URL
+                  profilepic.setAttribute("src", result);
+                  // Store Data URL in localStorage
+                  try {
+                      localStorage.setItem("profilepic", result);
+                  }
+                  catch (e) {
+                      console.log("Storage failed: " + e);
+                  }
+              };
+              // Load blob as Data URL
+              fileReader.readAsDataURL(blob);
+          }
+      };
+      xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
+      xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+      xhr.send();
+
+    }
     document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName}`
 }
 
