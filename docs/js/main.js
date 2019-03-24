@@ -126,7 +126,25 @@ function getBase64Image(img) {
 
 function getAverage(vak) {
     if (sorted[vak]['Gem. cijfer']) {
-        return sorted[vak]['Gem. cijfer'][0]['grade']
+      var Average
+      var Grades = []
+      var processed = 0;
+      // for (let i = 0; i < weight; i++) {
+      //   Grades.push(grade)
+      // }
+      sorted[vak]['REP'].forEach(_grade => {
+          processed++
+          Grades.push(_grade.grade)
+          if (processed == sorted[vak]['REP'].length) {
+            var Average = 0;
+            for (let i = 0; i < Grades.length; i++) {
+              const Grade = Grades[i];
+                Average += Grade
+            }
+            console.log
+            newCijfer= Average / Grades.length
+          }
+      })
     } else {
         return "Niet beschikbaar"
     }
@@ -427,9 +445,9 @@ function setCompleted() {
   var totcompleted = totcompleted / totcomclass
   $('#general-completed-bar').attr('aria-valuenow', totcompleted)
   $('#general-completed-bar').attr('style', `width: ${totcompleted}%`)
-  $('#general-completed').text(`${totcompleted}%`)
+  $('#general-completed').text(`${Math.round(totcompleted * 100) / 100}%`)
   var totgem = totgem / totgemclass
-  $('#general-average').text(`${totgem}`)
+  $('#general-average').text(`${Math.round(totgem * 100) / 100}`)
 }
 
 function generateHTMLprogress(vakName) {
