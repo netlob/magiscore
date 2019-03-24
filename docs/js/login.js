@@ -918,12 +918,14 @@ function login(creds) {
                 var person = data["person"]
                 var token = data["token"]
                 var school = data["school"]
+                var course = data["course"]
                 localStorage.setItem("grades", JSON.stringify(grades));
                 localStorage.setItem("person", JSON.stringify(person));
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("school", JSON.stringify(school));
                 localStorage.setItem("creds", JSON.stringify(creds));
-                location.href='/'
+                localStorage.setItem("course", JSON.stringify(course));
+                // location.href='/'
             } else {
                 console.error(response)
                 if(response == 'error: AuthError: Invalid password'){
@@ -953,4 +955,4 @@ function toast(msg) {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-if(localStorage.getItem('creds') && localStorage.getItem('school') && localStorage.getItem('grades') && localStorage.getItem('person')) { location.href='/' }
+if(localStorage.getItem('creds') && localStorage.getItem('school') && localStorage.getItem('grades') && localStorage.getItem('person') && localStorage.getItem('course')) { location.href='/' }

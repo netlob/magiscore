@@ -19,6 +19,8 @@ var school = localStorage.getItem("school");
 var school = JSON.parse(school)
 var creds = localStorage.getItem("creds");
 var creds = JSON.parse(creds)
+var course = localStorage.getItem("course");
+var course = JSON.parse(course)
 
 function setupLogin() {
     var grades = localStorage.getItem("grades");
@@ -45,19 +47,20 @@ function setupLogin() {
 
 function showClass(vak) {
     if (vak == 'general') {
-        document.getElementById('General').style.display = 'block';
-        document.getElementById('subjectSpecific').style.display = 'none';
-        setChartData(null, true)
-        setCompleted()
+      document.getElementById('General').style.display = 'block';
+      document.getElementById('subjectSpecific').style.display = 'none';
+      $('#general-area-title').text(course.type.description)
+      setChartData(null, true)
+      setCompleted()
     } else {
-        var subjectDiv = document.getElementById('subjectSpecific')
-        while (subjectDiv.firstChild) {
-            subjectDiv.removeChild(subjectDiv.firstChild)
-        }
-        subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
-        document.getElementById('General').style.display = 'none';
-        document.getElementById('subjectSpecific').style.display = 'block';
-        setChartData(vak)
+      var subjectDiv = document.getElementById('subjectSpecific')
+      while (subjectDiv.firstChild) {
+          subjectDiv.removeChild(subjectDiv.firstChild)
+      }
+      subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
+      document.getElementById('General').style.display = 'none';
+      document.getElementById('subjectSpecific').style.display = 'block';
+      setChartData(vak)
     }
 }
 
@@ -235,6 +238,8 @@ function setChartData(vak, everything) {
     var data = []
     var datums = []
     var cijfers = []
+    var vol = 0
+    var onvol = 0
 
     if(everything) {
         for(var classcourse in sorted) {
@@ -246,6 +251,8 @@ function setChartData(vak, everything) {
                           t: new Date(sorted[classcourse][gradearray][grade].dateFilledIn),
                           y: gradegrade
                         })
+                        gradegrade = Number(gradegrade.replace(",","."))
+                        if(gradegrade >= 5.5) { vol++ } else { onvol++ }
                     }
                 }
             }
@@ -259,6 +266,8 @@ function setChartData(vak, everything) {
                       t: new Date(sorted[vak][gradearray][grade].dateFilledIn),
                       y: gradegrade
                     })
+                    gradegrade = Number(gradegrade.replace(",","."))
+                    if(gradegrade >= 5.5) { vol++ } else { onvol++ }
                 }
             }
         }
@@ -377,6 +386,38 @@ function setChartData(vak, everything) {
             }
         }
     });
+
+    var ctx = document.getElementById("myPieChart");
+    var myPieChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ["Voldoendes", "Onvoldoendes"],
+        datasets: [{
+          data: [vol, onvol],
+          backgroundColor: ['#156a36', '#e74a3b'],
+          hoverBackgroundColor: ['#156a36', '#e74a3b'],
+          hoverBorderColor: "rgba(234, 236, 244, 1)",
+        }],
+      },
+      options: {
+        maintainAspectRatio: false,
+        tooltips: {
+          backgroundColor: "rgb(255,255,255)",
+          bodyFontColor: "#858796",
+          borderColor: '#dddfeb',
+          borderWidth: 1,
+          xPadding: 15,
+          yPadding: 15,
+          displayColors: false,
+          caretPadding: 10,
+        },
+        legend: {
+          display: false
+        },
+        cutoutPercentage: 80,
+      },
+    });
+
 }
 
 function syncGrades() {
@@ -401,10 +442,12 @@ function syncGrades() {
           var person = data["person"]
           var token = data["token"]
           var school = data["school"]
+          var course = data["course"]
           localStorage.setItem("grades", JSON.stringify(grades));
           localStorage.setItem("person", JSON.stringify(person));
           localStorage.setItem("token", JSON.stringify(token));
           localStorage.setItem("school", JSON.stringify(school));
+          localStorage.setItem("course", JSON.stringify(course));
           document.getElementById("overlay").style.display = "none";
           setupLogin()
       }
@@ -412,11 +455,6 @@ function syncGrades() {
 }
 
 function logOut() {
-  // localStorage.setItem('creds', null)
-  // localStorage.setItem('school', null)
-  // localStorage.setItem('grades', null)
-  // localStorage.setItem('person', null)
-  // localStorage.setItem('token', null)
   localStorage.clear()
   location.href = '/login'
 }
@@ -652,7 +690,7 @@ function generateHTML(vakName) {
         <div class="card shadow mb-4">
           <!-- Card Header - Dropdown -->
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Voldoendes / onvoldoendes</h6>
             <div class="dropdown no-arrow">
               <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -673,13 +711,10 @@ function generateHTML(vakName) {
             </div>
             <div class="mt-4 text-center small">
               <span class="mr-2">
-                <i class="fas fa-circle text-primary"></i> Direct
+                <i class="fas fa-circle" style="color: #156a36"></i> Voldoendes
               </span>
               <span class="mr-2">
-                <i class="fas fa-circle text-success"></i> Social
-              </span>
-              <span class="mr-2">
-                <i class="fas fa-circle text-info"></i> Referral
+                <i class="fas fa-circle" style="color: #e74a3b"></i> Onvoldoendes
               </span>
             </div>
           </div>
