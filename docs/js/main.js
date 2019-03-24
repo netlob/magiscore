@@ -376,6 +376,7 @@ function needToGet(vak, grade, weight) {
 }
 
 function setCompleted() {
+  $('#general-progress').empty()
   for(var vak in sorted) {
     if(getCompleted(vak) > 0) {
       var html = generateHTMLprogress(vak)

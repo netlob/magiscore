@@ -25,7 +25,7 @@
   --gray: #858796;
   --gray-dark: #5a5c69;
   /* --primary: #4e73df; */
-  --primary: #1a6938;
+  --primary: #156a36;
   --secondary: #858796;
   --success: #1cc88a;
   --info: #36b9cc;
@@ -2621,8 +2621,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #1a6938;
-  border-color: #1a6938;
+  background-color: #156a36;
+  border-color: #156a36;
 }
 
 .btn-primary:hover {
@@ -2645,8 +2645,8 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #1a6938;
-  border-color: #1a6938;
+  background-color: #156a36;
+  border-color: #156a36;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -2908,14 +2908,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-  color: #1a6938;
-  border-color: #1a6938;
+  color: #156a36;
+  border-color: #156a36;
 }
 
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #1a6938;
-  border-color: #1a6938;
+  background-color: #156a36;
+  border-color: #156a36;
 }
 
 .btn-outline-primary:focus, .btn-outline-primary.focus {
@@ -5309,12 +5309,12 @@ a.badge:hover, a.badge:focus {
 
 .badge-primary {
   color: #fff;
-  background-color: #1a6938;
+  background-color: #156a36;
 }
 
 a.badge-primary:hover, a.badge-primary:focus {
   color: #fff;
-  background-color: #1a6938;
+  background-color: #156a36;
 }
 
 a.badge-primary:focus, a.badge-primary.focus {
@@ -6921,7 +6921,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #1a6938 !important;
+  background-color: #156a36 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -10691,7 +10691,7 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: #1a6938; /* #4e73df; */
+  background-color: #156a36; /* #4e73df; */
   /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #4e73df), to(#224abe));
   background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%); */
   background-size: cover;
