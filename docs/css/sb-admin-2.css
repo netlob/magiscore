@@ -10942,11 +10942,11 @@ a:focus {
 }
 
 .topbar #sidebarToggleTop:hover {
-  background-color: #eaecf4;
+  background-color: rgb(21, 84, 45) !important;
 }
 
 .topbar #sidebarToggleTop:active {
-  background-color: #dddfeb;
+  background-color: rgb(21, 84, 45) !important;
 }
 
 .topbar .navbar-search {
