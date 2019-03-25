@@ -18,6 +18,20 @@
         padding-left: 7px !important;
         padding-right: 7px !important;
     }
+    #subjectsNav > .nav-item > .nav-link{
+        font-size: 50px !important
+    }
+    .sidebar .nav-item .nav-link {
+        text-align: left !important;
+        word-break: break-word !important;
+    }
+}
+
+#subjectsNav > .nav-item:hover {
+    background-color: rgb(21, 84, 45) !important;
+    /* box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .7); */
+
+    /* filter: brightness(70%); */
 }
 
 input { -webkit-user-select:text;}
