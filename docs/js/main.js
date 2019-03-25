@@ -368,7 +368,10 @@ function setChartData(vak, everything) {
                         drawBorder: false
                     },
                     ticks: {
-                        maxTicksLimit: 7
+                        maxTicksLimit: 7,
+                        autoSkip: false,
+                        maxRotation: 90,
+                        minRotation: 90
                     },
                     time: {
                       displayFormats: {
