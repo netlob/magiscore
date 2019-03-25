@@ -54,7 +54,6 @@ function showClass(vak) {
       $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
       setChartData(null, true)
       setCompleted()
-      setAverage()
     } else {
       var subjectDiv = document.getElementById('subjectSpecific')
       while (subjectDiv.firstChild) {
