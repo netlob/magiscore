@@ -63,6 +63,7 @@ function showClass(vak) {
       document.getElementById('General').style.display = 'none';
       document.getElementById('subjectSpecific').style.display = 'block';
       setChartData(vak)
+      setTableData(vak)
     }
 }
 
@@ -464,6 +465,26 @@ function setChartData(vak, everything) {
     }
 }
 
+function setTableData(vak) {
+  var table = $('#cijfersTable')
+  var grades = sorted[vak]["REP"]
+  grades.reverse()
+  grades.forEach(grade => {
+    table.append(`<tr>
+                    <td>${grade.grade}</td>
+                    <td>${grade.weight}x</td>
+                    <td>${grade.description}</td>
+                    <td>${grade.counts?'Ja':'Nee'}</td>
+                    <td>${grade.passed?'Ja':'Nee'}</td>
+                    <td>${grade.atLaterDate?'Ja':'Nee'}</td>
+                    <td>${grade.exemption?'Ja':'Nee'}</td>
+                    <td>${grade.teacher.teacherCode}</td>
+                    <td>${new Date(grade.dateFilledIn).toShortFormat()}</td>
+                  </tr>`)
+  })
+  $('#dataTable').DataTable();
+}
+
 function syncGrades() {
     document.getElementById("overlay").style.display = "block";
     var settings = {
@@ -663,10 +684,10 @@ function generateHTML(vakName) {
                     <form class="newGrade">
                       <p></p>
                       <div class="form-group">
-                          <input type="text" class="form-control form-control-user" id="newGrade-grade" aria-describedby="emailHelp" placeholder="Nieuw cijfer">
+                          <input type="number" class="form-control form-control-user" id="newGrade-grade" placeholder="Nieuw cijfer">
                       </div>
                       <div class="form-group">
-                          <input type="text" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
+                          <input type="number" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
                       </div>
                       <p id="newGrade-newGrade" class="showCalculatedGrade"></p>
                     <a onclick="getNewAverage('${vakName}', $('#newGrade-grade').val(), $('#newGrade-weight').val())" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
@@ -681,10 +702,10 @@ function generateHTML(vakName) {
                     <form class="getGrade">
                       <p></p>
                       <div class="form-group">
-                          <input type="text" class="form-control form-control-user" id="getGrade-grade" aria-describedby="emailHelp" placeholder="Ik wil staan">
+                          <input type="number" class="form-control form-control-user" id="getGrade-grade" placeholder="Ik wil staan">
                       </div>
                       <div class="form-group">
-                          <input type="text" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
+                          <input type="number" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
                       </div>
                       <p id="getGrade-newGrade"></p>
                       <a onclick="needToGet('${vakName}')" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
@@ -759,6 +780,47 @@ function generateHTML(vakName) {
                 <i class="fas fa-circle" style="color: #e74a3b"></i> Onvoldoendes
               </span>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DataTales Example -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${vakName}</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+              <thead class="text-primary">
+                <tr>
+                  <th>Cijfer</th>
+                  <th>Weging</th>
+                  <th>Omschrijving</th>
+                  <th>Telt mee</th>
+                  <th>Is voldoende</th>
+                  <th>Inhalen</th>
+                  <th>Vrijstelling</th>
+                  <th>Docent</th>
+                  <th>Ingevoerd op</th>
+                </tr>
+              </thead>
+              <!-- <tfoot>
+                <tr>
+                  <th>Cijfer</th>
+                  <th>Weging</th>
+                  <th>Omschrijving</th>
+                  <th>Telt mee</th>
+                  <th>Is voldoende</th>
+                  <th>Inhalen</th>
+                  <th>Vrijstelling</th>
+                  <th>Docent</th>
+                  <th>Ingevoerd op</th>
+                </tr>
+              </tfoot> -->
+              <tbody id="cijfersTable">
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
