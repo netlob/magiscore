@@ -54,6 +54,7 @@ function showClass(vak) {
       $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
       setChartData(null, true)
       setCompleted()
+      setAverage()
     } else {
       var subjectDiv = document.getElementById('subjectSpecific')
       while (subjectDiv.firstChild) {
@@ -556,7 +557,7 @@ function setCompleted() {
   $('#general-completed-bar').attr('style', `width: ${totcompleted}%`)
   $('#general-completed').text(`${round(totcompleted)}%`)
   var totgem = totgem / totgemclass
-  $('#general-average').text(`${round(totcompleted)}`)
+  $('#general-average').text(`${round(totgem)}`)
 }
 
 function generateHTMLprogress(vakName) {
