@@ -346,6 +346,7 @@ function setChartData(vak, everything) {
         },
         options: {
             maintainAspectRatio: false,
+            responsive: true,
             layout: {
                 padding: {
                     // left: 10,
@@ -368,10 +369,10 @@ function setChartData(vak, everything) {
                         drawBorder: false
                     },
                     ticks: {
-                        maxTicksLimit: 7,
-                        autoSkip: false,
+                        maxTicksLimit: 10,
+                        autoSkip: true,
                         maxRotation: 90,
-                        minRotation: 90
+                        minRotation: 0
                     },
                     time: {
                       displayFormats: {
@@ -747,7 +748,7 @@ function generateHTML(vakName) {
           </div>
           <!-- Card Body -->
           <div class="card-body">
-            <div class="chart-area">
+            <div class="chart-area chart-container">
               <canvas id="myAreaChart"></canvas>
             </div>
           </div>
@@ -776,7 +777,7 @@ function generateHTML(vakName) {
           <!-- Card Body -->
           <div class="card-body">
             <h6 id="percentageGrades"></h6>
-            <div class="chart-pie pt-4 pb-2">
+            <div class="chart-pie chart-container pt-4 pb-2">
               <canvas id="myPieChart"></canvas>
             </div>
             <div class="mt-4 text-center small">

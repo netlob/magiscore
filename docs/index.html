@@ -693,7 +693,9 @@
   <script src="js/chartannotation.js"></script>
   <script src="js/main.js"></script>
   <script>
+    if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
     $(window).resize(function() { if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
+    $(window).resize(function() { if($(window).width() > 767 && document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
   </script>
 </body>
 
