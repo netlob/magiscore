@@ -2,6 +2,24 @@
     display: none;
 }
 
+@media (max-width: 767px) {
+    /* .card {
+        width: 100vw !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        position: relative !important;
+        left: 0px !important;
+    }
+    .chartjs-render-monitor {
+        width: 100% !important;
+        height: 500px !important;
+    } */
+    .container, .container-fluid {
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+    }
+}
+
 input { -webkit-user-select:text;}
 
 .table thead th {
