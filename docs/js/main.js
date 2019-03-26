@@ -25,8 +25,8 @@ var course = JSON.parse(course)
 function setupLogin() {
     var grades = localStorage.getItem("grades");
     if (grades && person && course && creds && school) {
-      grades = JSON.stringify(grades)
-      console.dir(grades)
+      // grades = JSON.stringify(grades)
+      // console.dir(grades)
       grades = JSON.parse(grades)
 
       grades.forEach(grade => {
@@ -122,7 +122,7 @@ function updateNav() {
   var btns = header.getElementsByClassName("nav-item");
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
-      console.dir(this)
+      // console.dir(this)
       var current = document.getElementsByClassName("active");
       current[0].className = current[0].className.replace(" active", "");
       this.className += " active";
@@ -188,11 +188,12 @@ function round(num){
 }
 
 function getCompleted(vak) {
-    if (sorted[vak]['% voltooid']) {
-        return sorted[vak]['% voltooid'][0]['grade']
-    } else {
-        return "Niet beschikbaar"
-    }
+  if(sorted[vak]['Completed'] && sorted[vak]['Completed'][0]) {
+    var res = round(sorted[vak]['Completed'][0]['grade'])
+    return res
+  } else {
+    return "Niet beschikbaar"
+  }
 }
 
 function getProgress(vak) {
@@ -263,11 +264,11 @@ function getNewGrade(vak, grade, weight) {
           const Grade = Grades[i];
             Average += Grade
         }
-        console.log
+        // console.log
         newCijfer= Average / Grades.length
       }
   })
-  console.log(Grades)
+  // console.log(Grades)
   return newCijfer
 }
 
@@ -590,6 +591,7 @@ function setCompleted() {
       totgemclass = 0
   $('#general-progress').empty()
   for(var vak in sorted) {
+    console.dir(getCompleted(vak))
     if(getCompleted(vak) > 0) {
       var html = generateHTMLprogress(vak)
       $('#general-progress').append(html)
