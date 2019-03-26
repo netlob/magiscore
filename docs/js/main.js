@@ -273,6 +273,7 @@ Date.prototype.toShortFormat = function() {
 
 setupLogin()
 
+var myLineChart;
 function setChartData(vak, everything) {
     var data = []
     var datums = []
@@ -325,7 +326,7 @@ function setChartData(vak, everything) {
     cijfers.reverse()
 
     var ctx = document.getElementById('myAreaChart').getContext('2d');
-    var myLineChart = new Chart(ctx, {
+    myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: datums,
@@ -524,6 +525,7 @@ function syncGrades() {
           localStorage.setItem("school", JSON.stringify(school));
           localStorage.setItem("course", JSON.stringify(course));
           document.getElementById("overlay").style.display = "none";
+          myLineChart.destroy();
           setupLogin()
       }
   });
