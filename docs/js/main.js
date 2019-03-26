@@ -275,6 +275,8 @@ setupLogin()
 
 var myLineChart;
 function setChartData(vak, everything) {
+    myLineChart = ''
+    // myLineChart.destroy();
     var data = []
     var datums = []
     var cijfers = []
@@ -513,20 +515,22 @@ function syncGrades() {
     $.ajax(settings).done(function (response) {
       document.getElementById("overlay").style.display = "block";
       if(response.substring(0, 5) != 'error') {
-          var data = JSON.parse(response)
-          var grades = data["grades"]
-          var person = data["person"]
-          var token = data["token"]
-          var school = data["school"]
-          var course = data["course"]
-          localStorage.setItem("grades", JSON.stringify(grades));
-          localStorage.setItem("person", JSON.stringify(person));
-          localStorage.setItem("token", JSON.stringify(token));
-          localStorage.setItem("school", JSON.stringify(school));
-          localStorage.setItem("course", JSON.stringify(course));
-          document.getElementById("overlay").style.display = "none";
-          myLineChart.destroy();
-          setupLogin()
+        localStorage.clear()
+        sorted = {}
+        var data = JSON.parse(response)
+        var grades = data["grades"]
+        var person = data["person"]
+        var token = data["token"]
+        var school = data["school"]
+        var course = data["course"]
+        localStorage.setItem("grades", JSON.stringify(grades));
+        localStorage.setItem("person", JSON.stringify(person));
+        localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("school", JSON.stringify(school));
+        localStorage.setItem("course", JSON.stringify(course));
+        document.getElementById("overlay").style.display = "none";
+        myLineChart.destroy();
+        setupLogin()
       }
   });
 }
