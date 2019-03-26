@@ -25,22 +25,26 @@ var course = JSON.parse(course)
 function setupLogin() {
     var grades = localStorage.getItem("grades");
     if (grades && person && course && creds && school) {
-        grades = JSON.parse(grades)
+      grades = JSON.stringify(grades)
+      console.dir(grades)
+      grades = JSON.parse(grades)
 
-        grades.forEach(grade => {
-            var vak = grade.class.description.capitalize()
-            if (sorted[vak] == null) { sorted[vak] = [] }
-            if (sorted[vak][grade.type.header] == null) { sorted[vak][grade.type.header] = [] }
-            if (sorted[vak]['Grades'] == null) { sorted[vak]['Grades'] = [] }
-            sorted[vak][grade.type.header].push(grade)
-            // console.dir(grade.type.description)
-            if(grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) { sorted[vak]['Grades'].push(grade) }
-        })
+      grades.forEach(grade => {
+          var vak = grade.class.description.capitalize()
+          if (sorted[vak] == null) { sorted[vak] = [] }
+          if (sorted[vak][grade.type.header] == null) { sorted[vak][grade.type.header] = [] }
+          if (sorted[vak]['Grades'] == null) { sorted[vak]['Grades'] = [] }
+          if (sorted[vak]['Completed'] == null) { sorted[vak]['Completed'] = [] }
+          sorted[vak][grade.type.header].push(grade)
+          // console.dir(grade.type.description)
+          if(grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) { sorted[vak]['Grades'].push(grade) }
+          if(grade.type._type == 12 && round(grade.grade) > -1 && round(grade.grade) < 101) { sorted[vak]['Completed'].push(grade) }
+      })
 
-        updateNav()
-        showClass('general')
+      updateNav()
+      showClass('general')
     } else {
-        window.location.href = '/login/'
+      window.location.href = '/login/'
     }
 }
 
