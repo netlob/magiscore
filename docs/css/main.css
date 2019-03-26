@@ -18,13 +18,23 @@
         padding-left: 7px !important;
         padding-right: 7px !important;
     }
-    #subjectsNav > .nav-item > .nav-link{
-        font-size: 50px !important
-    }
     .sidebar .nav-item .nav-link {
         text-align: left !important;
         word-break: break-word !important;
     }
+    .sidebar {
+        width: 100vw !important;
+    }
+    .nav-link {
+        width: auto !important;
+    }
+    /* .nav-item {
+        font-size: 30vw !important;
+    } */
+}
+
+#subjectsNav > .nav-item > .nav-link {
+    font-size: 1rem !important;
 }
 
 #subjectsNav > .nav-item:hover {
@@ -33,6 +43,15 @@
 
     /* filter: brightness(70%); */
 }
+
+/* #subjectsNav > .nav-item:active {
+    background-color: rgb(21, 84, 45) !important;
+} */
+
+.active {
+    background-color: rgb(21, 84, 45) !important;
+}
+
 
 input { -webkit-user-select:text;}
 

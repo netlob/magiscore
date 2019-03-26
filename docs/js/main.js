@@ -45,75 +45,86 @@ function setupLogin() {
 }
 
 function showClass(vak) {
-    if (vak == 'general') {
-      document.getElementById('General').style.display = 'block';
-      document.getElementById('subjectSpecific').style.display = 'none';
-      $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
-      setChartData(null, true)
-      setCompleted()
-    } else {
-      var subjectDiv = document.getElementById('subjectSpecific')
-      while (subjectDiv.firstChild) {
-          subjectDiv.removeChild(subjectDiv.firstChild)
-      }
-      subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
-      document.getElementById('General').style.display = 'none';
-      document.getElementById('subjectSpecific').style.display = 'block';
-      setChartData(vak)
-      setTableData(vak)
+  if (vak == 'general') {
+    document.getElementById('General').style.display = 'block';
+    document.getElementById('subjectSpecific').style.display = 'none';
+    $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
+    setChartData(null, true)
+    setCompleted()
+  } else {
+    var subjectDiv = document.getElementById('subjectSpecific')
+    while (subjectDiv.firstChild) {
+        subjectDiv.removeChild(subjectDiv.firstChild)
     }
+    subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
+    document.getElementById('General').style.display = 'none';
+    document.getElementById('subjectSpecific').style.display = 'block';
+    setChartData(vak)
+    setTableData(vak)
+  }
 }
 
 function updateNav() {
-    var vakken = Object.keys(sorted)
-    vakken.forEach(vak => {
-        var HTML = `<li class="nav-item">
-                        <a class="nav-link" onclick="showClass('${vak}')">
-                            <span>${vak.capitalize()}</span>
-                        </a>
-                    </li>`
-        document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
-    })
+  var vakken = Object.keys(sorted)
+  vakken.forEach(vak => {
+    var HTML = `<li class="nav-item">
+                    <a class="nav-link" onclick="showClass('${vak}')">
+                        <span>${vak.capitalize()}</span>
+                    </a>
+                </li>`
+    document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
+  })
 
-    var profilepicStorage = localStorage.getItem("profilepic"),
-    profilepic = document.getElementById("imgelem");
-    if (profilepicStorage) {
-      console.dir('Using saved pic')
-      // Reuse existing Data URL from localStorage
-      profilepic.setAttribute("src", profilepicStorage);
-    } else {
-      var xhr = new XMLHttpRequest(),
-        blob,
-        fileReader = new FileReader();
-      xhr.responseType = 'blob'; //so you can access the response like a normal URL
-      xhr.onreadystatechange = function () {
-          if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-              blob = new Blob([xhr.response], {type: "image/png"});
+  var profilepicStorage = localStorage.getItem("profilepic"),
+  profilepic = document.getElementById("imgelem");
+  if (profilepicStorage) {
+    console.dir('Using saved pic')
+    // Reuse existing Data URL from localStorage
+    profilepic.setAttribute("src", profilepicStorage);
+  } else {
+    var xhr = new XMLHttpRequest(),
+      blob,
+      fileReader = new FileReader();
+    xhr.responseType = 'blob'; //so you can access the response like a normal URL
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+        blob = new Blob([xhr.response], {type: "image/png"});
 
-              // onload needed since Google Chrome doesn't support addEventListener for FileReader
-              fileReader.onload = function (evt) {
-                  // Read out file contents as a Data URL
-                  var result = evt.target.result;
-                  // Set image src to Data URL
-                  profilepic.setAttribute("src", result);
-                  // Store Data URL in localStorage
-                  try {
-                      localStorage.setItem("profilepic", result);
-                  }
-                  catch (e) {
-                      console.log("Storage failed: " + e);
-                  }
-              };
-              // Load blob as Data URL
-              fileReader.readAsDataURL(blob);
-          }
-      };
-      xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
-      xhr.setRequestHeader('Authorization', `Bearer ${token}`);
-      xhr.send();
+        // onload needed since Google Chrome doesn't support addEventListener for FileReader
+        fileReader.onload = function (evt) {
+            // Read out file contents as a Data URL
+            var result = evt.target.result;
+            // Set image src to Data URL
+            profilepic.setAttribute("src", result);
+            // Store Data URL in localStorage
+            try {
+                localStorage.setItem("profilepic", result);
+            }
+            catch (e) {
+                console.log("Storage failed: " + e);
+            }
+        };
+        // Load blob as Data URL
+        fileReader.readAsDataURL(blob);
+      }
+    };
+    xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
+    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+    xhr.send();
 
-    }
-    document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName} (${course.group.description})`
+  }
+  document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName} (${course.group.description})`
+  var header = document.getElementById("accordionSidebar");
+  var btns = header.getElementsByClassName("nav-item");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+      console.dir(this)
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  }
+
 }
 
 function getBase64Image(img) {
