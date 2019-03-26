@@ -29,15 +29,12 @@ function setupLogin() {
 
         grades.forEach(grade => {
             var vak = grade.class.description.capitalize()
-            if (sorted[vak] == null) {
-                sorted[vak] = []
-            }
-            if (sorted[vak][grade.type.header] == null) {
-                sorted[vak][grade.type.header] = []
-            }
-            if(grade.counts) {
-              sorted[vak][grade.type.header].push(grade)
-            }
+            if (sorted[vak] == null) { sorted[vak] = [] }
+            if (sorted[vak][grade.type.header] == null) { sorted[vak][grade.type.header] = [] }
+            if (sorted[vak]['Grades'] == null) { sorted[vak]['Grades'] = [] }
+            sorted[vak][grade.type.header].push(grade)
+            // console.dir(grade.type.description)
+            if(grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) { sorted[vak]['Grades'].push(grade) }
         })
 
         updateNav()
@@ -134,24 +131,29 @@ function getBase64Image(img) {
 
 function getAverage(vak, rounded) {
   if(sorted[vak]) {
-    if(sorted[vak]['REP']) {
+    if(sorted[vak]['Grades'].length > 0) {
       var newCijfer = 0;
       var Grades = []
       var processed = 0;
-      sorted[vak]['REP'].forEach(_grade => {
-        processed++
-        for(let i = 0; i < _grade.weight; i++) {
-          Grades.push(parseFloat(_grade.grade.replace(',', '.')))
-        }
-        if(processed == sorted[vak]['REP'].length) {
-          var Average = 0;
-          for (let i = 0; i < Grades.length; i++) {
-            const Grade = Grades[i];
-              Average += Grade
+      sorted[vak]['Grades'].forEach(_grade => {
+        if(Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1) {
+          // console.dir(_grade)
+          processed++
+          for(let i = 0; i < _grade.weight; i++) {
+            Grades.push(Number(round(_grade.grade)))
           }
-          newCijfer= Average / Grades.length
+          if(processed == sorted[vak]['Grades'].length) {
+            var Average = 0;
+            for (let i = 0; i < Grades.length; i++) {
+              const Grade = Grades[i];
+              Average += Grade
+            }
+            newCijfer = Average / Grades.length
+          }
         }
       })
+      // console.dir('Grades voor: '+vak)
+      // console.dir(Grades)
       if(rounded){
         return round(newCijfer)
       } else {
@@ -207,12 +209,12 @@ function getNewAverage(vak, grade, weight) {
   for (let i = 0; i < weight; i++) {
     Grades.push(grade)
   }
-  sorted[vak]['REP'].forEach(_grade => {
+  sorted[vak]['Grades'].forEach(_grade => {
       processed++
       for (let i = 0; i < _grade.weight; i++) {
         Grades.push(parseFloat(_grade.grade.replace(',', '.')))
       }
-      if (processed == sorted[vak]['REP'].length) {
+      if (processed == sorted[vak]['Grades'].length) {
         var Average = 0;
         for (let i = 0; i < Grades.length; i++) {
           const Grade = Grades[i];
@@ -235,12 +237,12 @@ function getNewGrade(vak, grade, weight) {
   // for (let i = 0; i < weight; i++) {
   //   Grades.push(grade)
   // }
-  sorted[vak]['REP'].forEach(_grade => {
+  sorted[vak]['Grades'].forEach(_grade => {
       processed++
       for (let i = 0; i < _grade.weight; i++) {
         Grades.push(parseFloat(_grade.grade.replace(',', '.')))
       }
-      if (processed == sorted[vak]['REP'].length) {
+      if (processed == sorted[vak]['Grades'].length) {
         var Average = 0;
         for (let i = 0; i < Grades.length; i++) {
           const Grade = Grades[i];
@@ -281,7 +283,7 @@ function setChartData(vak, everything) {
     if(everything) {
         for(var classcourse in sorted) {
             for(var gradearray in sorted[classcourse]) {
-                if(gradearray == "REP") {
+                if(gradearray == "Grades") {
                     for(var grade in sorted[classcourse][gradearray]) {
                         var gradegrade = sorted[classcourse][gradearray][grade].grade.replace(',', '.')
                         data.push({
@@ -296,7 +298,7 @@ function setChartData(vak, everything) {
         }
     } else {
         for(var gradearray in sorted[vak]) {
-            if(gradearray == "REP") {
+            if(gradearray == "Grades") {
                 for(var grade in sorted[vak][gradearray]) {
                     var gradegrade = sorted[vak][gradearray][grade].grade.replace(',', '.')
                     data.push({
@@ -475,7 +477,7 @@ function setChartData(vak, everything) {
 
 function setTableData(vak) {
   var table = $('#cijfersTable')
-  var grades = sorted[vak]["REP"]
+  var grades = sorted[vak]["Grades"]
   grades.reverse()
   grades.forEach(grade => {
     table.append(`<tr>
@@ -490,7 +492,7 @@ function setTableData(vak) {
                     <td>${new Date(grade.dateFilledIn).toShortFormat()}</td>
                   </tr>`)
   })
-  $('#dataTable').DataTable();
+  // $('#dataTable').DataTable();
 }
 
 function syncGrades() {
@@ -539,7 +541,7 @@ function needToGet(vak, grade, weight) {
     weight = Number(weight)
     // console.dir('Grade: '+grade + typeof grade)
     // console.dir('Weight: '+weight + typeof weight)
-    var grades = sorted[vak]["REP"]
+    var grades = sorted[vak]["Grades"]
     var alles = 0;
     for (var i = 0; i < grades.length; i++) {
       var cijfer = grades[i].grade.replace(',','.')
