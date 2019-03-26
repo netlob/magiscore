@@ -117,7 +117,7 @@ function updateNav() {
     xhr.send();
 
   }
-  document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName} (${course.group.description})`
+  document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName} ${course.group.description?'('+course.group.description+')':''}`
   var header = document.getElementById("accordionSidebar");
   var btns = header.getElementsByClassName("nav-item");
   for (var i = 0; i < btns.length; i++) {
