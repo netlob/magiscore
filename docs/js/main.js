@@ -38,7 +38,7 @@ function setupLogin() {
           sorted[vak][grade.type.header].push(grade)
           // console.dir(grade.type.description)
           if(grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) { sorted[vak]['Grades'].push(grade) }
-          if(grade.type._type == 12 && round(grade.grade) > -1 && round(grade.grade) < 101) { sorted[vak]['Completed'].push(grade) }
+          if(grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) { sorted[vak]['Completed'].push(grade) }
       })
 
       updateNav()
@@ -189,7 +189,7 @@ function round(num){
 
 function getCompleted(vak) {
   if(sorted[vak]['Completed'] && sorted[vak]['Completed'][0]) {
-    var res = round(sorted[vak]['Completed'][0]['grade'])
+    var res = round(sorted[vak]['Completed'][sorted[vak]['Completed'].length-1]['grade'])
     return res
   } else {
     return "Niet beschikbaar"
