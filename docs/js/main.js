@@ -151,6 +151,7 @@ function getAverage(vak, rounded) {
       var Grades = []
       var processed = 0;
       sorted[vak]['Grades'].forEach(_grade => {
+        console.log(_grade.type.isPTA)
         if(Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1) {
           // console.dir(_grade)
           processed++
@@ -373,6 +374,7 @@ function setChartData(vak, everything) {
                 pointHitRadius: 10,
                 pointBorderWidth: 2,
                 data: cijfers,
+                pointRadius: 0,
             }],
         },
         options: {
@@ -459,7 +461,7 @@ function setChartData(vak, everything) {
                   content: 'Onvoldoende'
                 }
               }]
-            }
+            },
         }
     });
 
@@ -515,6 +517,7 @@ function setTableData(vak) {
                     <td>${grade.description}</td>
                     <td>${grade.counts?'Ja':'Nee'}</td>
                     <td>${grade.passed?'Ja':'Nee'}</td>
+                    <td>${grade.type.isPTA?'Ja':'Nee'}</td>
                     <td>${grade.atLaterDate?'Ja':'Nee'}</td>
                     <td>${grade.exemption?'Ja':'Nee'}</td>
                     <td>${grade.teacher.teacherCode}</td>
@@ -736,7 +739,7 @@ function generateHTML(vakName) {
                       <a onclick="getNewAverage('${vakName}', $('#newGrade-grade').val(), $('#newGrade-weight').val())" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                       </form>
                       <div class="showCalculatedGrade">
-                        <h1 id="newGrade-newGrade">±</h1>
+                        <h1 id="newGrade-newGrade"><i class="fas fa-chart-line fa-sm text-primary"></i></h1>
                       </div>
                     </div>
                 </div>
@@ -758,7 +761,7 @@ function generateHTML(vakName) {
                         <a onclick="needToGet('${vakName}')" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                       </form>
                     <div class="showCalculatedGrade">
-                      <h1 id="getGrade-newGrade">±</h1>
+                      <h1 id="getGrade-newGrade"><i class="fas fa-chart-line fa-sm text-primary"></i></h1>
                     </div>
                   </div>
                 </div>
@@ -850,6 +853,7 @@ function generateHTML(vakName) {
                   <th>Omschrijving</th>
                   <th>Telt mee</th>
                   <th>Is voldoende</th>
+                  <th>Is PTA</th>
                   <th>Inhalen</th>
                   <th>Vrijstelling</th>
                   <th>Docent</th>
@@ -863,6 +867,7 @@ function generateHTML(vakName) {
                   <th>Omschrijving</th>
                   <th>Telt mee</th>
                   <th>Is voldoende</th>
+                  <th>Is PTA</th>
                   <th>Inhalen</th>
                   <th>Vrijstelling</th>
                   <th>Docent</th>
