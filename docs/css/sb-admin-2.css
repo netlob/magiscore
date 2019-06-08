@@ -1707,12 +1707,12 @@ pre code {
 }
 
 .table-bordered {
-  border: 1px solid #e3e6f0;
+  /* border: 1px solid #e3e6f0; */
 }
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #e3e6f0;
+  /* border: 1px solid #e3e6f0; */
 }
 
 .table-bordered thead th,
@@ -3318,7 +3318,7 @@ input[type="button"].btn-block {
   list-style: none;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #e3e6f0;
+  /* border: 1px solid #e3e6f0; */
   poep: 0.35rem;
 }
 
@@ -4894,7 +4894,7 @@ input[type="button"].btn-block {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid #e3e6f0;
+  /* border: 1px solid #e3e6f0; */
   poep: 0.35rem;
 }
 
@@ -4945,7 +4945,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: #f8f9fc;
-  border-bottom: 1px solid #e3e6f0;
+  /* border-bottom: 1px solid #e3e6f0; */
 }
 
 .card-header:first-child {
@@ -6262,7 +6262,7 @@ a.close.disabled {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 1rem 1rem;
-  border-bottom: 1px solid #e3e6f0;
+  /* border-bottom: 1px solid #e3e6f0; */
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
 }
@@ -7025,7 +7025,7 @@ button.bg-dark:focus {
 }
 
 .border {
-  border: 1px solid #e3e6f0 !important;
+  /* border: 1px solid #e3e6f0 !important; */
 }
 
 .border-top {
@@ -7037,7 +7037,7 @@ button.bg-dark:focus {
 }
 
 .border-bottom {
-  border-bottom: 1px solid #e3e6f0 !important;
+  /* border-bottom: 1px solid #e3e6f0 !important; */
 }
 
 .border-left {
@@ -11030,7 +11030,7 @@ a:focus {
   padding-bottom: 0.5rem;
   border-left: 1px solid #e3e6f0;
   border-right: 1px solid #e3e6f0;
-  border-bottom: 1px solid #e3e6f0;
+  /* border-bottom: 1px solid #e3e6f0; */
   line-height: 1.3rem;
 }
 
