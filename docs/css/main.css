@@ -41,14 +41,14 @@ body {
     display: block;
 }
 
-.newGrade {
+.newGrade, .getGrade {
     display: inline-block !important;
-    width: 65% !important;
+    width: 70% !important;
 }
 
 .showCalculatedGrade {
     display: inline-block !important;
-    width: 34% !important;
+    width: 29% !important;
     text-align: center !important;
     margin-top: 55px !important;
     vertical-align: top !important;
