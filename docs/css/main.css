@@ -189,6 +189,7 @@ input.form-control::placeholder {
 
 .btn {
     color: white !important;
+    cursor: pointer;
 }
 
 #overlay > .spinner-border {
