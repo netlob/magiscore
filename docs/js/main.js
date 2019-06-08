@@ -575,7 +575,7 @@ function needToGet(vak, grade, weight) {
         totaalweging += grades[i].weight;
     }
     res = (((totaalweging+weight)*grade)-alles)/weight;
-    console.dir(res +typeof res)
+    // console.dir(res +typeof res)
     res = round(res)
     if(res > 10) {
       res = `Onhaalbaar, namelijk een ${res}`
@@ -591,7 +591,7 @@ function setCompleted() {
       totgemclass = 0
   $('#general-progress').empty()
   for(var vak in sorted) {
-    console.dir(getCompleted(vak))
+    // console.dir(getCompleted(vak))
     if(getCompleted(vak) > 0) {
       var html = generateHTMLprogress(vak)
       $('#general-progress').append(html)
