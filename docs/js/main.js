@@ -460,8 +460,8 @@ function setChartData(vak, everything) {
         labels: ["Voldoendes", "Onvoldoendes"],
         datasets: [{
           data: [vol, onvol],
-          backgroundColor: ['#156a36', '#e74a3b'],
-          hoverBackgroundColor: ['#156a36', '#e74a3b'],
+          backgroundColor: ['#0096db', '#e74a3b'],
+          hoverBackgroundColor: ['#0096db', '#e74a3b'],
           hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
       },
