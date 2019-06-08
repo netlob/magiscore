@@ -37,6 +37,10 @@ body {
     } */
 }
 
+.newGrade-wrapper {
+    display: block;
+}
+
 .newGrade {
     display: inline-block !important;
     width: 65% !important;
