@@ -717,14 +717,16 @@ function generateHTML(vakName) {
                     <form class="newGrade">
                       <p></p>
                       <div class="form-group">
-                          <input type="number" class="form-control form-control-user" id="newGrade-grade" placeholder="Nieuw cijfer">
+                          <input type="number" class="form-control form-control-user" id="newGrade-grade" min="1" max="10" placeholder="Nieuw cijfer">
                       </div>
                       <div class="form-group">
                           <input type="number" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
                       </div>
-                      <p id="newGrade-newGrade" class="showCalculatedGrade"></p>
                     <a onclick="getNewAverage('${vakName}', $('#newGrade-grade').val(), $('#newGrade-weight').val())" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                     </form>
+                    <div class="showCalculatedGrade">
+                      <h1 id="newGrade-newGrade"></h1>
+                    </div>
                 </div>
             </div>
         </div>
@@ -735,7 +737,7 @@ function generateHTML(vakName) {
                     <form class="getGrade">
                       <p></p>
                       <div class="form-group">
-                          <input type="number" class="form-control form-control-user" id="getGrade-grade" placeholder="Ik wil staan">
+                          <input type="number" class="form-control form-control-user" id="getGrade-grade" min="1" max="10" placeholder="Ik wil staan">
                       </div>
                       <div class="form-group">
                           <input type="number" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
