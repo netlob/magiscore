@@ -310,7 +310,7 @@ function setChartData(vak, everything) {
                           y: gradegrade
                         })
                         gradegrade = parseFloat(gradegrade.replace(",","."))
-                        if(gradegrade >= 5.5) { vol++ } else { onvol++ }
+                        if(sorted[classcourse][gradearray][grade].passed) { vol++ } else { onvol++ }
                     }
                 }
             }
