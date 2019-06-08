@@ -42,7 +42,8 @@ body {
 }
 
 #subjectsNav > .nav-item:hover {
-    background-color: rgb(21, 84, 45) !important;
+    /* background-color: rgb(21, 84, 45) !important; */
+    background-color: rgb(0, 120, 175) !important;
     /* box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .7); */
 
     /* filter: brightness(70%); */
