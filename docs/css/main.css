@@ -112,9 +112,17 @@ input { -webkit-user-select:text;}
     border-top: none !important;
 }
 
+/* .ui-menu-item {
+    border-bottom-style: solid;
+    border-width: 0.1px;
+    border-radius: 0px !important;
+    border-color: rgb(224, 226, 236);
+}
+
 .ui-menu-item-wrapper {
     border-bottom-style: solid;
     border-width: 0.1px;
+    border-radius: 0px !important;
     border-color: rgb(224, 226, 236);
 }
 
@@ -126,20 +134,49 @@ input { -webkit-user-select:text;}
     width: 50%;
     margin-left: 10px; 
     border-radius: 10px
+} */
+
+.ui-autocomplete {
+    background-color: white !important;
+    border-radius: 0px !important;
+    -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    width: 400px !important;
+    cursor: pointer;
+    list-style-type: none !important;
+    padding: 0px !important;
+}
+
+.ui-menu-item {
+    padding: 15px 0px 15px 20px !important;
+}
+
+.ui-menu-item:hover {
+    background-color: #f2f2f2!important;
+}
+
+input.form-control {
+    color: #3a3b45 !important;
+    font-size: 15px !important;
+}
+
+input.form-control::placeholder {
+    color: #cccccc!important;
+    opacity: 1;
 }
 
 #overlay {
-    position: fixed; /* Sit on top of the page content */
-    display: none; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
     top: 0; 
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
 }
 
 .nav-link {
