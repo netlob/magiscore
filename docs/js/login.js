@@ -972,3 +972,10 @@ if(grades && person && school && creds && course) {
     location.href = "/"
     // console.dir('jazeker wel')
 }
+
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        // event.preventDefault(); REVIEW: keep?
+        login(getLoginInfo())
+    }
+});
