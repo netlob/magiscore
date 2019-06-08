@@ -382,40 +382,40 @@ function setChartData(vak, everything) {
             },
             scales: {
                 xAxes: [{
-                    time: {
-                        unit: 'time'
-                    },
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    ticks: {
-                        maxTicksLimit: 10,
-                        autoSkip: true,
-                        maxRotation: 90,
-                        minRotation: 0
-                    },
-                    time: {
-                      displayFormats: {
-                          quarter: 'MM/YYYY'
-                      }
-                  }
+                  time: {
+                    unit: 'month',
+                    displayFormats: {
+                      quarter: 'll'
+                    }
+                  },
+                  gridLines: {
+                    display: true,
+                    drawBorder: true
+                  },
+                  ticks: {
+                    maxTicksLimit: 4,
+                    autoSkip: true,
+                    maxRotation: 0,
+                    minRotation: 0
+                  },
+                  // type: 'time',
+                  distribution: 'linear'
                 }],
                 yAxes: [{
-                    ticks: {
-                        maxTicksLimit: 10,
-                        padding: 10,
-                        beginAtZero: true,
-                        steps: 10,
-                        max: 10
-                    },
-                    gridLines: {
-                        color: "rgb(234, 236, 244)",
-                        zeroLineColor: "rgb(234, 236, 244)",
-                        drawBorder: false,
-                        borderDash: [2],
-                        zeroLineBorderDash: [2]
-                    }
+                  ticks: {
+                    maxTicksLimit: 10,
+                    padding: 10,
+                    beginAtZero: true,
+                    steps: 10,
+                    max: 10
+                  },
+                  gridLines: {
+                    color: "rgb(234, 236, 244)",
+                    zeroLineColor: "rgb(234, 236, 244)",
+                    drawBorder: false,
+                    borderDash: [2],
+                    zeroLineBorderDash: [2]
+                  }
                 }],
             },
             legend: {
