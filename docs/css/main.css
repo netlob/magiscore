@@ -37,6 +37,10 @@ body {
     } */
 }
 
+input {
+    border: none;
+}
+
 .newGrade-wrapper {
     display: block;
 }
