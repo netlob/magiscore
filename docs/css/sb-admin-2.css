@@ -25,7 +25,8 @@
   --gray: #858796;
   --gray-dark: #5a5c69;
   /* --primary: #4e73df; */
-  --primary: #156a36;
+  /* --primary: #156a36; */
+  --primary: #0096db;
   --secondary: #858796;
   --success: #1cc88a;
   --info: #36b9cc;
@@ -2621,14 +2622,18 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #156a36;
-  border-color: #156a36;
+  /* background-color: #156a36; */
+  /* border-color: #156a36; */
+  background-color: #0096db;
+  border-color: #0096db;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0e4c26;
-  border-color: #0e4c26;
+  /* background-color: #0e4c26; */
+  background-color: rgb(0, 120, 175) !important;
+  /* border-color: #0e4c26; */
+  border-color: rgb(0, 120, 175);
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -2645,8 +2650,10 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #156a36;
-  border-color: #156a36;
+  /* background-color: #156a36; */
+  /* border-color: #156a36; */
+  background-color: #0096db;
+  border-color: #0096db;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -2908,14 +2915,18 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-  color: #156a36;
-  border-color: #156a36;
+  /* color: #156a36; */
+  /* border-color: #156a36; */
+  color: #0096db;
+  border-color: #0096db;
 }
 
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #156a36;
-  border-color: #156a36;
+  /* background-color: #156a36; */
+  /* border-color: #156a36; */
+  background-color: #0096db;
+  border-color: #0096db;
 }
 
 .btn-outline-primary:focus, .btn-outline-primary.focus {
@@ -5310,12 +5321,14 @@ a.badge:hover, a.badge:focus {
 
 .badge-primary {
   color: #fff;
-  background-color: #156a36;
+  /* background-color: #156a36; */
+  background-color: #0096db;
 }
 
 a.badge-primary:hover, a.badge-primary:focus {
   color: #fff;
-  background-color: #156a36;
+  /* background-color: #156a36; */
+  background-color: #0096db;
 }
 
 a.badge-primary:focus, a.badge-primary.focus {
@@ -6922,13 +6935,15 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #156a36 !important;
+  /* background-color: #156a36 !important; */
+  background-color: #0096db !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #156a36 !important;
+  /* background-color: #156a36 !important; */
+  background-color: #0096db !important;
 }
 
 .bg-secondary {
@@ -10379,7 +10394,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: rgb(21, 106, 54) !important;
+  color: #5a5c69 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -10692,7 +10707,8 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: #156a36; /* #4e73df; */
+  /* background-color: #156a36; #4e73df; */
+  background-color: #0096db; /* #4e73df; */
   /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #4e73df), to(#224abe));
   background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%); */
   background-size: cover;
@@ -10942,11 +10958,13 @@ a:focus {
 }
 
 .topbar #sidebarToggleTop:hover {
-  background-color: rgb(21, 84, 45) !important;
+  /* background-color: rgb(21, 84, 45) !important; */
+  background-color: rgb(0, 120, 175) !important;
 }
 
 .topbar #sidebarToggleTop:active {
-  background-color: rgb(21, 84, 45) !important;
+  /* background-color: rgb(21, 84, 45) !important; */
+  background-color: rgb(0, 100, 150) !important;
 }
 
 .topbar .navbar-search {
