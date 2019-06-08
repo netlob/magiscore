@@ -38,7 +38,7 @@ body {
 }
 
 input {
-    border: none;
+    border: none !important;
 }
 
 .newGrade-wrapper {
