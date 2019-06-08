@@ -367,7 +367,7 @@ function setChartData(vak, everything) {
         },
         options: {
             maintainAspectRatio: false,
-            responsive: true,
+            responsive: false,
             layout: {
                 padding: {
                     // left: 10,
