@@ -726,7 +726,7 @@ function generateHTML(vakName) {
                       <a onclick="getNewAverage('${vakName}', $('#newGrade-grade').val(), $('#newGrade-weight').val())" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                       </form>
                       <div class="showCalculatedGrade">
-                        <h1 id="newGrade-newGrade"></h1>
+                        <h1 id="newGrade-newGrade">±</h1>
                       </div>
                     </div>
                 </div>
