@@ -5651,7 +5651,8 @@ a.badge-dark:focus, a.badge-dark.focus {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #4e73df;
+  /* background-color: #4e73df; */
+  background-color: #0096db;
   -webkit-transition: width 0.6s ease;
   transition: width 0.6s ease;
 }
