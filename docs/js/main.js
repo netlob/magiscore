@@ -442,7 +442,7 @@ function setChartData(vak, everything) {
                 mode: 'horizontal',
                 scaleID: 'y-axis-0',
                 value: 5.5,
-                borderColor: 'rgb(255, 0, 0)',
+                borderColor: 'rgb(232, 100, 88)',
                 borderWidth: 2,
                 label: {
                   enabled: false,
