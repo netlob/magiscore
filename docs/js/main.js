@@ -736,17 +736,21 @@ function generateHTML(vakName) {
             <div class="card text-gray-800 shadow">
                 <div class="card-body">
                     Wat moet ik halen?
-                    <form class="getGrade">
-                      <p></p>
-                      <div class="form-group">
-                          <input type="number" class="form-control form-control-user" id="getGrade-grade" min="1" max="10" placeholder="Ik wil staan">
-                      </div>
-                      <div class="form-group">
-                          <input type="number" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
-                      </div>
-                      <p id="getGrade-newGrade"></p>
-                      <a onclick="needToGet('${vakName}')" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
-                    </form>
+                    <div class="newGrade-wrapper">
+                      <form class="getGrade">
+                        <p></p>
+                        <div class="form-group">
+                            <input type="number" class="form-control form-control-user" id="getGrade-grade" min="1" max="10" placeholder="Ik wil staan">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
+                        </div>
+                        <a onclick="needToGet('${vakName}')" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                      </form>
+                    <div class="showCalculatedGrade">
+                      <h1 id="getGrade-newGrade">±</h1>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
