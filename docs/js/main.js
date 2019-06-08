@@ -605,6 +605,7 @@ function setCompleted() {
       totgem = 0,
       totgemclass = 0
   $('#general-progress').empty()
+  $('#averagesTable').empty()
   for(var vak in sorted) {
     // console.dir(getCompleted(vak))
     if(getCompleted(vak) > 0) {
