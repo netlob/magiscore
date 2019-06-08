@@ -607,7 +607,7 @@ function setCompleted() {
   }
   var totcompleted = totcompleted / totcomclass
   $('#general-completed-bar').attr('aria-valuenow', totcompleted)
-  $('#general-completed-bar').attr('style', `width: ${totcompleted}%`)
+  $('#general-completed-bar').attr('style', `width: ${totcompleted}%;background-color:#0096db!important`)
   $('#general-completed').text(`${round(totcompleted)}%`)
   var totgem = totgem / totgemclass
   $('#general-average').text(`${round(totgem)}`)
