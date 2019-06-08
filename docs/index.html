@@ -195,6 +195,8 @@
               </div>
             </form> -->
 
+            <h1 class="ml-md-2 h3 mb-0 text-gray-800" id="currentRender">Gemiddeld</h1>
+
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
 
@@ -370,10 +372,15 @@
         <!-- Begin Page Content -->
         <div class="container-fluid" id="General">
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+
+          <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Gemiddeld</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm disabled"><i class="fas fa-download fa-sm text-white-50"></i> Download cijferlijst</a>
-          </div>
+          </div> -->
+
+
+
           <!-- Content Row -->
           <div class="row">
             <!-- Earnings (Monthly) Card Example -->
@@ -524,10 +531,8 @@
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Content Column -->
+            <!-- Progress Column -->
             <div class="col-lg-6 mb-4">
-
-              <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">% voltooid per vak</h6>
@@ -535,11 +540,31 @@
                 <div class="card-body" id="general-progress">
                 </div>
               </div>
-
+            </div>
+            <!-- Progress Column -->
+            <div class="col-lg-6 mb-3">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Gemiddeldes</h6>
+                </div>
+                <div class="card-body" id="general-averages">
+                  <div class="table-responsive">
+                    <table class="table" width="100%" cellspacing="0">
+                      <thead class="text-primary">
+                        <tr>
+                          <th>Vak</th>
+                          <th>Gemiddelde</th>
+                        </tr>
+                      </thead>
+                      <tbody id="averagesTable">
+                      </tbody>
+                    </table>
+                </div>
+              </div>
             </div>
 
             <!-- Color System -->
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-lg-6 mb-4">
                 <div class="card bg-primary text-white shadow">
                   <div class="card-body">
@@ -588,7 +613,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- <div class="col-lg-6 mb-4">
 
@@ -630,7 +655,7 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; <a href="https://github.com/mamorgen/magbot-stat" style="color: #858796">Magistat²</a> - <a href="https://netlob.app" style="color: #858796">Netlob</a> 2018-2019</span>
+            <span>Copyright &copy; <a href="https://github.com/mamorgen/magbot-stat" style="color: #858796">Magistat²</a> - <a href="https://netlob.app" style="color: #858796">Netlob</a> <a href="https://wikipedia.org/wiki/2018" style="color: #858796">2018</a>-<a href="https://wikipedia.org/wiki/2019" style="color: #858796">2019</a></span>
           </div>
         </div>
       </footer>

@@ -52,6 +52,7 @@ function showClass(vak) {
   if (vak == 'general') {
     document.getElementById('General').style.display = 'block';
     document.getElementById('subjectSpecific').style.display = 'none';
+    $('#currentRender').text('Gemiddeld')
     $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
     setChartData(null, true)
     setCompleted()
@@ -63,6 +64,7 @@ function showClass(vak) {
     subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
     document.getElementById('General').style.display = 'none';
     document.getElementById('subjectSpecific').style.display = 'block';
+    $('#currentRender').text(vak)
     setChartData(vak)
     setTableData(vak)
   }
@@ -82,7 +84,7 @@ function updateNav() {
   var profilepicStorage = localStorage.getItem("profilepic"),
   profilepic = document.getElementById("imgelem");
   if (profilepicStorage) {
-    console.dir('Using saved pic')
+    console.info('[INFO] Using saved pic')
     // Reuse existing Data URL from localStorage
     profilepic.setAttribute("src", profilepicStorage);
   } else {
@@ -105,7 +107,7 @@ function updateNav() {
                 localStorage.setItem("profilepic", result);
             }
             catch (e) {
-                console.log("Storage failed: " + e);
+                console.error("[ERROR] Storage failed: " + e);
             }
         };
         // Load blob as Data URL
@@ -151,7 +153,7 @@ function getAverage(vak, rounded) {
       var Grades = []
       var processed = 0;
       sorted[vak]['Grades'].forEach(_grade => {
-        console.log(_grade.type.isPTA)
+        // console.log(_grade.type.isPTA)
         if(Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1) {
           // console.dir(_grade)
           processed++
@@ -237,7 +239,7 @@ function getNewAverage(vak, grade, weight) {
           const Grade = Grades[i];
             Average += Grade
         }
-        newCijfer= Average / Grades.length
+        newCijfer = Average / Grades.length
       }
   })
   $('#newGrade-newGrade').text(round(newCijfer))
@@ -614,6 +616,11 @@ function setCompleted() {
       totcomclass++
     }
     if(parseFloat(getAverage(vak)) > -1 && parseFloat(getAverage(vak)) < 11) {
+      $('#averagesTable').append(
+       `<tr>
+          <td>${vak}</td>
+          <td>${getAverage(vak)}</td>
+        </tr>`)
       totgem = totgem + parseFloat(getAverage(vak))
       totgemclass++
     }
@@ -637,9 +644,9 @@ function generateHTMLprogress(vakName) {
 
 function generateHTML(vakName) {
     return `<!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">${vakName.capitalize()}</h1>
-    </div>
+    </div> -->
     <!-- Content Row -->
     <div class="row">
       <!-- Earnings (Monthly) Card Example -->
