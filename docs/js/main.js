@@ -607,7 +607,7 @@ function setCompleted() {
   }
   var totcompleted = totcompleted / totcomclass
   $('#general-completed-bar').attr('aria-valuenow', totcompleted)
-  $('#general-completed-bar').attr('style', `width: ${totcompleted}%;background-color:#0096db!important`)
+  $('#general-completed-bar').attr('style', `width: ${totcompleted}%`)
   $('#general-completed').text(`${round(totcompleted)}%`)
   var totgem = totgem / totgemclass
   $('#general-average').text(`${round(totgem)}`)
@@ -617,7 +617,7 @@ function generateHTMLprogress(vakName) {
   return `<div>
             <h4 class="small font-weight-bold">${vakName}<span class="float-right">${getCompleted(vakName)}%</span></h4>
             <div class="progress mb-4">
-              <div class="progress-bar" role="progressbar" style="width: ${getCompleted(vakName)}%; background-color: #1a6938 !important" aria-valuenow="${getCompleted(vakName)}" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar" style="width: ${getCompleted(vakName)}%;" aria-valuenow="${getCompleted(vakName)}" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>`
 }
