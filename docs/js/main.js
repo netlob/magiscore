@@ -460,8 +460,8 @@ function setChartData(vak, everything) {
         labels: ["Voldoendes", "Onvoldoendes"],
         datasets: [{
           data: [vol, onvol],
-          backgroundColor: ['#0096db', '#e74a3b'],
-          hoverBackgroundColor: ['#0096db', '#e74a3b'],
+          backgroundColor: ['#0096db', '#e86458'],
+          hoverBackgroundColor: ['#0096db', '#e86458'],
           hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
       },
@@ -815,10 +815,10 @@ function generateHTML(vakName) {
             </div>
             <div class="mt-4 text-center small">
               <span class="mr-2">
-                <i class="fas fa-circle" style="color: #156a36"></i> Voldoendes
+                <i class="fas fa-circle" style="color: #0096db"></i> Voldoendes
               </span>
               <span class="mr-2">
-                <i class="fas fa-circle" style="color: #e74a3b"></i> Onvoldoendes
+                <i class="fas fa-circle" style="color: #e86458"></i> Onvoldoendes
               </span>
             </div>
           </div>
