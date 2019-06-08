@@ -63,6 +63,19 @@ body {
     border-color: transparent !important;
 }
 
+.rounded-circle, .rounded-circle:hover, .topbar > button.bg-primary:hover, .topbar #sidebarToggleTop:hover {
+    background-color: transparent !important;
+    color: #0096db !important;
+}
+
+.rounded-circle:active {
+    background-color: rgba(0, 120, 175, 0.1) !important;
+}
+
+.rounded-circle > .fa {
+    color: #0096db !important;
+    font-size: 23px !important;
+}
 
 input { -webkit-user-select:text;}
 

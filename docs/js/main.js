@@ -44,7 +44,7 @@ function setupLogin() {
       updateNav()
       showClass('general')
     } else {
-      window.location.href = '/login/'
+      // window.location.href = '/login/'
     }
 }
 
