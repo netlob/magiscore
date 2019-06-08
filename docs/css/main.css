@@ -6,6 +6,10 @@ body {
     display: none;
 }
 
+footer {
+    background-color: #f8f9fc !important;
+}
+
 @media (max-width: 767px) {
     /* .card {
         width: 100vw !important;
