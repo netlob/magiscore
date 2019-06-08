@@ -179,6 +179,18 @@ input.form-control::placeholder {
     cursor: wait;
 }
 
+.disabled {
+    cursor: not-allowed !important;
+}
+
+.fa-download {
+    color: #5a5c69;
+}
+
+.fa-download:hover {
+    color: #0096db !important;
+} 
+
 .nav-link {
     cursor: pointer;
 }

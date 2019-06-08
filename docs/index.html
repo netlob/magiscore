@@ -341,6 +341,10 @@
                     <i class="fas fa-sync fa-sm fa-fw mr-2 text-gray-400"></i>
                     Sync cijfers
                   </a>
+                  <a class="dropdown-item" href="#sync" data-toggle="modal" data-target="#passedModal">
+                    <i class="fas fa-check fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Voldoendegrens
+                  </a>
                   <!-- <a class="dropdown-item" href="#">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
@@ -368,7 +372,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Gemiddeld</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download cijferlijst</a>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm disabled"><i class="fas fa-download fa-sm text-white-50"></i> Download cijferlijst</a>
           </div>
           <!-- Content Row -->
           <div class="row">
@@ -463,16 +467,9 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary" id="general-area-title">Alle cijfers</h6>
                   <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    <a class="dropdown-toggle" href="#" role="button" onclick="downloadGraph()">
+                      <i class="fas fa-download fa-sm"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
                   </div>
                 </div>
                 <!-- Card Body -->
@@ -492,7 +489,7 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Voldoendes / onvoldoendes</h6>
-                  <div class="dropdown no-arrow">
+                  <!-- <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
@@ -503,7 +500,7 @@
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -633,7 +630,7 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Magistat² 2019</span>
+            <span>Copyright &copy; <a href="https://github.com/mamorgen/magbot-stat" style="color: #858796">Magistat²</a> - <a href="https://netlob.app" style="color: #858796">Netlob</a> 2018-2019</span>
           </div>
         </div>
       </footer>
@@ -657,7 +654,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -674,6 +671,31 @@
       </div>
     </div>
   </div>
+
+  <!-- Passed Modal-->
+  <div class="modal fade" id="passedModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Voldoendegrens</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form oninput="passedOutput.value=passedRange.value" onload="passedOutput.value=passed">
+              <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
+              <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange">
+              <output name="passedOutput" for="passedRange"></output>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleer</button>
+            <a class="btn btn-primary" href="#logout" onclick="savePassed()">Opslaan</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -696,6 +718,7 @@
   <script src="js/algebra.js"></script>
   <script src="js/imagecache.js"></script>
   <script src="js/chartannotation.js"></script>
+  <script src="js/jspdf.min.js"></script>
   <script src="js/main.js"></script>
   <script>
     var width = $(window).width();

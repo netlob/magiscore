@@ -289,6 +289,16 @@ Date.prototype.toShortFormat = function() {
 
 setupLogin()
 
+function downloadGraph() {
+	var newCanvas = document.querySelector('#myAreaChart');
+	var newCanvasImg = newCanvas.toDataURL("image/png", 1.0);
+	var doc = new jsPDF('landscape');
+	doc.setFontSize(20);
+	doc.text(15, 15, `${$('#userDropdown > span').text()} - ${$('#general-area-title').text()}`);
+	doc.addImage(newCanvasImg, 'PNG', 20, 20, 280, 150 );
+	doc.save(`${$('#general-area-title').text()}.pdf`);
+}
+
 var myLineChart;
 function setChartData(vak, everything) {
     myLineChart = ''
@@ -578,9 +588,9 @@ function needToGet(vak, grade, weight) {
     // console.dir(res +typeof res)
     res = round(res)
     if(res > 10) {
-      res = `Onhaalbaar, namelijk een ${res}`
+      res = `<span style="color: red">${res}</span>`
     }
-    $('#getGrade-newGrade').text(res)
+    $('#getGrade-newGrade').html(res)
     return res
 }
 
