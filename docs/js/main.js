@@ -397,7 +397,7 @@ function setChartData(vak, everything) {
                     },
                     time: {
                       displayFormats: {
-                          quarter: 'D MMM YYYY'
+                          quarter: 'MM/YYYY'
                       }
                   }
                 }],
