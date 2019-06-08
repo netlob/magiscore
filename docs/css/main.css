@@ -48,8 +48,9 @@ body {
 
 .showCalculatedGrade {
     display: inline-block !important;
-    width: 35% !important;
+    width: 34% !important;
     text-align: center !important;
+    padding-top: 55px !important;
 }
 
 #subjectsNav > .nav-item > .nav-link {
