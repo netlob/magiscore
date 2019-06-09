@@ -21,6 +21,11 @@ var creds = localStorage.getItem("creds");
 var creds = JSON.parse(creds)
 var course = localStorage.getItem("course");
 var course = JSON.parse(course)
+var config = localStorage.getItem("config");
+var config = JSON.parse(config)
+var config = []
+
+config.isDesktop = $(window).width()>600?true:false
 
 function setupLogin() {
     var grades = localStorage.getItem("grades");
@@ -371,10 +376,11 @@ function setChartData(vak, everything) {
                 pointBackgroundColor: "rgba(0, 150, 219, 1)",
                 pointBorderColor: "rgba(0, 150, 219, 1)",
                 pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(38, 186, 255, 1)",
-                pointHoverBorderColor: "rgba(38, 186, 255, 1)",
+                pointHoverBackgroundColor: "rgba(0, 150, 219, 1)", // rgba(38, 186, 255, 1)
+                pointHoverBorderColor: "rgba(0, 150, 219, 1)", // rgba(38, 186, 255, 1)
                 pointHitRadius: 10,
                 pointBorderWidth: 2,
+                borderWidth: config.isDesktop?3:2,
                 data: cijfers,
                 pointRadius: 0,
             }],
@@ -413,15 +419,18 @@ function setChartData(vak, everything) {
                     minRotation: 0
                   },
                   // type: 'time',
-                  distribution: 'linear'
+                  distribution: 'linear',
+                  display: config.isDesktop
                 }],
                 yAxes: [{
                   ticks: {
                     maxTicksLimit: 10,
                     padding: 10,
-                    beginAtZero: true,
+                    beginAtZero: false,
                     steps: 10,
-                    max: 10
+                    max: 10,
+                    min: 1,
+                    display: config.isDesktop
                   },
                   gridLines: {
                     color: "rgb(234, 236, 244)",
@@ -801,7 +810,7 @@ function generateHTML(vakName) {
             </div>
           </div>
           <!-- Card Body -->
-          <div class="card-body">
+          <div class="card-body chart-card">
             <div class="chart-area chart-container">
               <canvas id="myAreaChart"></canvas>
             </div>
