@@ -161,7 +161,7 @@ function setChartData(lesson, everything) {
     });
 
     data.forEach(value => {
-      datums.push(`${value.t.(getMonth()+1).toString()}/${value.t.getFullYear().toString().substr(-2)}`)
+      datums.push(value.t.toShortFormat())
       cijfers.push(value.y)
     })
 
