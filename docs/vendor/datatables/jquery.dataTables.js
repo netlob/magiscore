@@ -2428,7 +2428,7 @@
 	
 	
 	/**
-	 * Add one or more TR elements to the table. Generally we'd expect to
+	 * Add one or more TR elements to the table. general-wrapperly we'd expect to
 	 * use this for reading data from a DOM sourced table, but it could be
 	 * used for an TR element. Note that if a TR is given, it is used (i.e.
 	 * it is not cloned).
@@ -12651,7 +12651,7 @@
 		 * it into an DOM object and measuring that is horribly(!) slow). Thus as
 		 * a "work around" we provide this option. It will append its value to the
 		 * text that is found to be the longest string for the column - i.e. padding.
-		 * Generally you shouldn't need this!
+		 * general-wrapperly you shouldn't need this!
 		 *  @type string
 		 *  @default <i>Empty string<i>
 		 *
@@ -14184,7 +14184,7 @@
 		     *  2. `{settings}` DataTables settings object. This can be used to
 		     *     perform context specific type detection - for example detection
 		     *     based on language settings such as using a comma for a decimal
-		     *     place. Generally speaking the options from the settings will not
+		     *     place. general-wrapperly speaking the options from the settings will not
 		     *     be required
 			 *
 			 * Each function is expected to return:

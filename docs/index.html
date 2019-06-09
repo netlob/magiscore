@@ -73,7 +73,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" onclick="showClass('general')">
+        <a class="nav-link" onclick="viewController.render('general')">
           <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
           <span>Gemiddeld</span></a>
       </li>
@@ -369,12 +369,12 @@
         </nav>
         <!-- End of Topbar -->
 
-        <div class="container-fluid" id="subjectSpecific">
+        <div class="container-fluid" id="lesson-wrapper">
           
         </div> 
 
         <!-- Begin Page Content -->
-        <div class="container-fluid" id="General">
+        <div class="container-fluid" id="general-wrapper">
           <!-- Page Heading -->
 
 
@@ -478,7 +478,7 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary" id="general-area-title">Alle cijfers</h6>
                   <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" aria-label="Download grafiek" onclick="downloadGraph()">
+                    <a class="dropdown-toggle" href="#" role="button" aria-label="Download grafiek" onclick="viewController.downloadGraph()">
                       <i class="fas fa-download fa-sm"></i>
                     </a>
                   </div>
@@ -487,7 +487,7 @@
                 <div class="card-body">
                   <div class="chart-area">
                   <!-- <div class="table-responsive"> -->
-                    <canvas id="myAreaChart"></canvas>
+                    <canvas id="lineChart"></canvas>
                   <!-- </div> -->
                   </div>
                 </div>
@@ -517,7 +517,7 @@
                 <div class="card-body">
                   <h6 id="percentageGrades"></h6>
                   <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
+                    <canvas id="pieChart"></canvas>
                   </div>
                   <div class="mt-4 text-center small">
                   <span class="mr-2">
@@ -734,7 +734,7 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.js"></script>
+  <script src="js/deps/sb-admin-2.js"></script>
 
   <!-- Page level plugins -->
   <script src="vendor/chart.js/Chart.min.js"></script>
@@ -744,11 +744,14 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/demo/chart-bar-demo.js"></script> -->
 
-  <script src="js/algebra.js"></script>
-  <script src="js/imagecache.js"></script>
-  <script src="js/chartannotation.js"></script>
-  <script src="js/jspdf.min.js"></script>
-  <script src="js/swipe.min.js"></script>
+  <script src="js/deps/algebra.js"></script>
+  <script src="js/deps/imagecache.js"></script>
+  <script src="js/deps/chartannotation.js"></script>
+  <script src="js/deps/jspdf.min.js"></script>
+  <script src="js/deps/swipe.min.js"></script>
+  <script src="js/Lesson.js"></script>
+  <script src="js/ViewController.js"></script>
+  <script src="js/LessonController.js"></script>
   <script src="js/main.js"></script>
   <script>
     var width = $(window).width();
