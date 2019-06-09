@@ -42,6 +42,7 @@ function setupLogin() {
 
     viewController.updateNav()
     viewController.render('general')
+    $('#betaModal').modal({show:true})
   } else {
     window.location.href = '/login/'
   }

@@ -703,28 +703,51 @@
 
   <!-- Passed Modal-->
   <div class="modal fade" id="passedModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Voldoendegrens</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form oninput="passedOutput.value=passedRange.value" onload="passedOutput.value=passed">
-              <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
-              <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange">
-              <output name="passedOutput" for="passedRange"></output>
-            </form>
-          </div>
-          <div class="modal-footer">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Voldoendegrens</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form oninput="passedOutput.value=passedRange.value" onload="passedOutput.value=passed">
+            <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
+            <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange">
+            <output name="passedOutput" for="passedRange"></output>
+          </form>
+        </div>
+        <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Anuleer">Annuleer</button>
             <a class="btn btn-primary" href="#logout" onclick="savePassed()" role="button" aria-label="Opslaan">Opslaan</a>
-          </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Beta Warning Modal-->
+  <div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Beta-versie</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Magistat² is momenteel nog in ontwikkeling. Dit betekend dat er errors en fouten kunnen optreden. Gebruik is dan ook op eigen risico en alle rechten zijn voorbehouden.</p>
+          
+          <span class="text-gray">Huidige versie: 0.2</span>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" aria-label="Anuleer" onclick="location.href='https://google.com'">Annuleer</button>
+            <a class="btn btn-primary" href="#" role="button" data-dismiss="modal" aria-label="Akkoord">Akkoord</a>
+          </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
