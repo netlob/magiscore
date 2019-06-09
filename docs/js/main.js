@@ -63,15 +63,13 @@ function showClass(vak) {
     setChartData(null, true)
     setCompleted()
   } else {
-    var subjectDiv = document.getElementById('subjectSpecific')
-    while (subjectDiv.firstChild) {
-        subjectDiv.removeChild(subjectDiv.firstChild)
-    }
-    subjectDiv.insertAdjacentHTML('beforeend', generateHTML(vak))
+    $('#subjectSpecific').empty()
+    ('#subjectSpecific').html(generateHTML(vak))
     document.getElementById('General').style.display = 'none';
     document.getElementById('subjectSpecific').style.display = 'block';
     $('#currentRender').text(vak)
     $('#currentRenderMobile').text(vak)
+    $('#sidebarToggleTop').click()
     setChartData(vak)
     setTableData(vak)
   }
