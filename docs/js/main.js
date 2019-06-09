@@ -55,21 +55,24 @@ function setupLogin() {
 
 function showClass(vak) {
   if (vak == 'general') {
-    document.getElementById('General').style.display = 'block';
-    document.getElementById('subjectSpecific').style.display = 'none';
+    $('#General').show();
+    $('#subjectSpecific').hide()
     $('#currentRender').text('Gemiddeld')
     $('#currentRenderMobile').text('Gemiddeld')
+    if(!config.isDesktop) { $('#sidebarToggleTop').click() }
     $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
     setChartData(null, true)
     setCompleted()
   } else {
     $('#subjectSpecific').empty()
-    ('#subjectSpecific').html(generateHTML(vak))
-    document.getElementById('General').style.display = 'none';
-    document.getElementById('subjectSpecific').style.display = 'block';
+    $('#subjectSpecific').html(generateHTML(vak))
+    $('#General').hide();
+    $('#subjectSpecific').show()
     $('#currentRender').text(vak)
     $('#currentRenderMobile').text(vak)
-    $('#sidebarToggleTop').click()
+    if(!config.isDesktop) {
+      $('#sidebarToggleTop').click()
+    }
     setChartData(vak)
     setTableData(vak)
   }

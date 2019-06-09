@@ -28,7 +28,7 @@ footer {
     }
     .sidebar .nav-item .nav-link {
         text-align: left !important;
-        word-break: break-word !important;
+        word-break: break-all !important;
     }
     .sidebar {
         width: 100vw !important;
@@ -68,6 +68,7 @@ input {
 
 #subjectsNav > .nav-item > .nav-link {
     font-size: 1rem !important;
+    word-break: break-all !important;
 }
 
 .text-mobile {
