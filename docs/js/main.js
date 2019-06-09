@@ -1018,3 +1018,19 @@ function generateHTML(vakName) {
     //   </div>
     // </div>`
 }
+
+$("body").keypress(function(e) {
+  console.log(e)
+  if(e.which == 114) {
+    e.preventDefault();
+    var elem = $("body");
+    $({deg: 0}).animate({deg: 360}, {
+      duration: 4000,
+      step: function(now){
+        elem.css({
+          transform: "rotate(" + now + "deg)"
+        });
+      }
+    });
+  }
+});
