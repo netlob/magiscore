@@ -1020,7 +1020,6 @@ function generateHTML(vakName) {
 }
 
 $("body").keypress(function(e) {
-  console.log(e)
   if(e.which == 114) {
     e.preventDefault();
     var elem = $("body");
