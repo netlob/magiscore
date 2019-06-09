@@ -103,13 +103,38 @@ function syncGrades() {
         localStorage.setItem("school", JSON.stringify(school));
         localStorage.setItem("course", JSON.stringify(course));
         document.getElementById("overlay").style.display = "none";
-        lineChart.destroy();
+        viewController.lineChart.destroy();
         setupLogin()
       }
   });
 }
 
-String.prototype.capitalize = function () {
+$("body").keypress(function(e) {
+  if(e.which == 114) {
+    e.preventDefault();
+    var elem = $("body");
+    $({deg: 0}).animate({deg: 360}, {
+      duration: 4000,
+      step: function(now){
+        elem.css({
+          transform: "rotate(" + now + "deg)"
+        });
+      }
+    });
+  }
+});
+
+$("#content-wrapper").touchwipe({
+  wipeLeft: function() { if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
+  wipeRight: function() { if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
+  // wipeUp: function() { alert("up"); },
+  // wipeDown: function() { alert("down"); },
+  min_move_x: 40,
+  // min_move_y: 40,
+  preventDefaultEvents: true
+});
+
+String.prototype.capitalize = function(poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
@@ -121,31 +146,4 @@ Date.prototype.toShortFormat = function() {
   return "" + day + " " + month_names[month_index] + " " + year;
 }
 
-(function() {
-  $("body").keypress(function(e) {
-    if(e.which == 114) {
-      e.preventDefault();
-      var elem = $("body");
-      $({deg: 0}).animate({deg: 360}, {
-        duration: 4000,
-        step: function(now){
-          elem.css({
-            transform: "rotate(" + now + "deg)"
-          });
-        }
-      });
-    }
-  });
-  
-  $("#content-wrapper").touchwipe({
-    wipeLeft: function() { if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
-    wipeRight: function() { if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
-    // wipeUp: function() { alert("up"); },
-    // wipeDown: function() { alert("down"); },
-    min_move_x: 40,
-    // min_move_y: 40,
-    preventDefaultEvents: true
-  });
-  
-  setupLogin()
-})
+setupLogin()

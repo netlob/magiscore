@@ -161,8 +161,9 @@ function setChartData(lesson, everything) {
     });
 
     data.forEach(value => {
-      datums.push(value.t.toShortFormat())
-      cijfers.push(value.y)
+    //   datums.push(`${value.t.getMonth()+1}/${value.t.getFullYear().toString().substr(-2)}`)
+        datums.push(value.t.toShortFormat())
+        cijfers.push(value.y)
     })
 
     datums.reverse()
@@ -339,7 +340,7 @@ function setTableData(lesson) {
                     <td>${grade.atLaterDate?'Ja':'Nee'}</td>
                     <td>${grade.exemption?'Ja':'Nee'}</td>
                     <td>${grade.teacher.teacherCode}</td>
-                    <td>${new Date(grade.dateFilledIn).toShortFormat()}</td>
+                    <td>${new Date(grade.dateFilledIn.toShortFormat())}</td>
                   </tr>`)
   })
   // $('#dataTable').DataTable();
