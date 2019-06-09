@@ -164,7 +164,7 @@
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <button class="rounded-circle border-0" id="sidebarToggle" aria-label="Toggle zijkant"></button>
       </div>
 
     </ul>
@@ -183,7 +183,7 @@
           <div class="container-fluid"> -->
 
             <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none bg-primary rounded-circle mr-3">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none bg-primary rounded-circle mr-3" aria-label="Toggle zijkant">
               <i class="fa fa-bars"></i>
             </button>
 
@@ -688,14 +688,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Klaar om uit te loggen?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">Klik "Uitloggen" als je zeker weet dat je wilt uitloggen.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleer</button>
-          <a class="btn btn-primary" href="#logout" onclick="logOut()">Uitloggen</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Annuleer">Annuleer</button>
+          <a class="btn btn-primary" href="#logout" onclick="logOut()" role="button" aria-label="Uitloggen">Uitloggen</a>
         </div>
       </div>
     </div>
@@ -707,7 +707,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Voldoendegrens</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
               <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -719,8 +719,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuleer</button>
-            <a class="btn btn-primary" href="#logout" onclick="savePassed()">Opslaan</a>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Anuleer">Annuleer</button>
+            <a class="btn btn-primary" href="#logout" onclick="savePassed()" role="button" aria-label="Opslaan">Opslaan</a>
           </div>
         </div>
       </div>
