@@ -53,6 +53,16 @@ function setupLogin() {
     }
 }
 
+$("#wrapper").touchwipe({
+  wipeLeft: function() { if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
+  wipeRight: function() { if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
+  // wipeUp: function() { alert("up"); },
+  // wipeDown: function() { alert("down"); },
+  min_move_x: 40,
+  // min_move_y: 40,
+  preventDefaultEvents: true
+});
+
 function showClass(vak) {
   if (vak == 'general') {
     $('#General').show();

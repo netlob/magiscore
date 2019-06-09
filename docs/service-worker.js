@@ -16,6 +16,7 @@ var cacheFiles = [
     './js/imagecache.js',
     './js/chartannotation.js',
     './js/jspdf.min.js',
+    './js/swipe.min.js',
     './js/main.js',
     './img/icons/icon-128x128.png',
     './manifest.webmanifest'
