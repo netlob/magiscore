@@ -19,10 +19,12 @@
   <link href="css/sb-admin-2.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
 
+  <meta name="theme-color" content="#0096db">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Magistat²">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="icon" sizes="192x192" href="/img/icons/icon-128x128.png">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="/img/icons/icon-128x128.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/img/icons/152x152.png">
@@ -752,6 +754,18 @@
     if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
     $(window).resize(function() { if($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
     $(window).resize(function() { if($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
+  
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('js/sw.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
   </script>
 </body>
 
