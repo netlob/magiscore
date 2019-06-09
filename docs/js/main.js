@@ -58,6 +58,7 @@ function showClass(vak) {
     document.getElementById('General').style.display = 'block';
     document.getElementById('subjectSpecific').style.display = 'none';
     $('#currentRender').text('Gemiddeld')
+    $('#currentRenderMobile').text('Gemiddeld')
     $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
     setChartData(null, true)
     setCompleted()
@@ -70,6 +71,7 @@ function showClass(vak) {
     document.getElementById('General').style.display = 'none';
     document.getElementById('subjectSpecific').style.display = 'block';
     $('#currentRender').text(vak)
+    $('#currentRenderMobile').text(vak)
     setChartData(vak)
     setTableData(vak)
   }
@@ -125,6 +127,7 @@ function updateNav() {
 
   }
   document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName} ${course.group.description?'('+course.group.description+')':''}`
+  document.querySelector('#mobilePersonInfo').innerHTML = `${person.firstName} ${person.lastName} ${course.group.description?'('+course.group.description+')':''}`
   var header = document.getElementById("accordionSidebar");
   var btns = header.getElementsByClassName("nav-item");
   for (var i = 0; i < btns.length; i++) {

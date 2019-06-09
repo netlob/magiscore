@@ -199,7 +199,8 @@
               </div>
             </form> -->
 
-            <h1 class="ml-md-2 h3 mb-0 text-gray-800" id="currentRender">Gemiddeld</h1>
+            <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-none d-md-block" id="currentRender">Gemiddeld</h1>
+            <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-block d-md-none text-center text-mobile" id="currentRenderMobile">Gemiddeld</h1>
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
@@ -334,15 +335,12 @@
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow no-primary-hover">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-label="Uitklappen" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-lg-inline text-gray-600 small">Voornaam Achternaam</span>
+                  <span class="mr-2 d-lg-inline text-gray-600 small d-none d-md-block">Voornaam Achternaam</span>
                   <img class="img-profile rounded-circle" id="imgelem" src="" alt="">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                  <!-- <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                  </a> -->
+                  <div id="mobilePersonInfo" class="dropdown-header d-block d-md-none">Voornaam Achternaam</div>
                   <a class="dropdown-item" href="#sync" onclick="syncGrades()">
                     <i class="fas fa-sync fa-sm fa-fw mr-2 text-gray-400"></i>
                     Sync cijfers

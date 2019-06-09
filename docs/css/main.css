@@ -39,6 +39,10 @@ footer {
     /* .nav-item {
         font-size: 30vw !important;
     } */
+    .sidebar .nav-item .nav-link span {
+        font-size: 0.65rem;
+        display: block;
+    }
 }
 
 input {
@@ -66,6 +70,10 @@ input {
     font-size: 1rem !important;
 }
 
+.text-mobile {
+    font-size: 1rem !important;
+}
+
 .navbar-nav > .nav-item:hover, #subjectsNav > .nav-item:hover {
     /* background-color: rgb(21, 84, 45) !important; */
     background-color: rgb(0, 120, 175);
@@ -76,6 +84,10 @@ input {
 
 .no-primary-hover:hover {
     background-color: rgb(248, 248, 248) !important;
+}
+
+.no-primary-hover {
+    margin-right: 5px !important;
 }
 
 /* #subjectsNav > .nav-item:active {
@@ -95,6 +107,10 @@ input {
 .rounded-circle, .rounded-circle:hover, .topbar > button.bg-primary:hover, .topbar #sidebarToggleTop:hover {
     background-color: transparent !important;
     color: #0096db !important;
+}
+
+.topbar {
+    padding-right: 0px !important;
 }
 
 .rounded-circle:active {
