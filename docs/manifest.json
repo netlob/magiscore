@@ -1,0 +1,11 @@
+{
+  "name": "Magister Statistiek",
+  "short_name": "Magistat²",
+  "theme_color": "#0096db",
+  "background_color": "#f8f9fc",
+  "display": "fullscreen",
+  "Scope": "/",
+  "start_url": "/",
+  "icons": null,
+  "splash_pages": null
+}
