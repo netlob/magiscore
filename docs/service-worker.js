@@ -54,7 +54,8 @@ self.addEventListener('activate', function(e) {
 
 
 self.addEventListener('fetch', function(e) {
-	console.log('[ServiceWorker] Fetch', e.request.url);
+    console.log('[ServiceWorker] Fetch', e.request.url);
+    if(e.request.url == 'https://magistat.bramkoene.nl/api/cijfers') return
 	e.respondWith(
 		caches.match(e.request)
         .then(function(response) {
