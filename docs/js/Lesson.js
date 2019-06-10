@@ -12,8 +12,8 @@ class Lesson {
     }
 
     getCompleted() {
-        if(sorted[this.name]['Completed'] && sorted[this.name]['Completed'][0]) {
-          var res = round(sorted[this.name]['Completed'][sorted[this.name]['Completed'].length-1]['grade'])
+        if(this.data['Completed'] && this.data['Completed'][0]) {
+          var res = round(this.data['Completed'][this.data['Completed'].length-1]['grade'])
           return res
         } else {
           return "Niet beschikbaar"
@@ -21,28 +21,28 @@ class Lesson {
     }
       
     getProgress() {
-        if (sorted[this.name]['Vordering']) {
-            return sorted[this.name]['Vordering'][0]['grade']
+        if (this.data['Vordering']) {
+            return this.data['Vordering'][0]['grade']
         } else {
             return 0
         }
     }
       
     getEffort() {
-        if (sorted[this.name]['Inzet']) {
-              return sorted[this.name]['Inzet'][0]['grade']
+        if (this.data['Inzet']) {
+              return this.data['Inzet'][0]['grade']
         } else {
               return "Niet beschikbaar"
         }
     }
 
     getAverage(rounded) {
-        if(sorted[this.name]) {
-          if(sorted[this.name]['Grades'].length > 0) {
+        if(this.data) {
+          if(this.data['Grades'].length > 0) {
             var newGrade = 0;
             var Grades = []
             var processed = 0;
-            sorted[this.name]['Grades'].forEach(_grade => {
+            this.data['Grades'].forEach(_grade => {
               // console.log(_grade.type.isPTA)
               if(Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1) {
                 // console.dir(_grade)
@@ -50,7 +50,7 @@ class Lesson {
                 for(let i = 0; i < _grade.weight; i++) {
                   Grades.push(Number(round(_grade.grade)))
                 }
-                if(processed == sorted[this.name]['Grades'].length) {
+                if(processed == this.data['Grades'].length) {
                   var Average = 0;
                   for (let i = 0; i < Grades.length; i++) {
                     const Grade = Grades[i];
@@ -78,7 +78,7 @@ class Lesson {
         weight = Number(weight)
         // console.dir('Grade: '+grade + typeof grade)
         // console.dir('Weight: '+weight + typeof weight)
-        var grades = sorted[this.name]["Grades"]
+        var grades = this.data["Grades"]
         var alles = 0;
         for (var i = 0; i < grades.length; i++) {
           var cijfer = grades[i].grade.replace(',','.')

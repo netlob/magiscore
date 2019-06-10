@@ -155,7 +155,7 @@ function setChartData(lesson, everything) {
 
     data.forEach(value => {
     //   datums.push(`${value.t.getMonth()+1}/${value.t.getFullYear().toString().substr(-2)}`)
-        datums.push(value.t.toShortFormat())
+        datums.push(toShortFormat(value.t))
         cijfers.push(value.y)
     })
 
@@ -318,6 +318,15 @@ function setChartData(lesson, everything) {
     }
 }
 
+function toShortFormat(d) {
+    d = new Date(d)
+    var month_names =["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Dec"];
+    var day = d.getDate();
+    var month_index = d.getMonth();
+    var year = d.getFullYear();
+    return "" + day + " " + month_names[month_index] + " " + year;
+}
+
 function setTableData(lesson) {
   var table = $('#cijfersTable')
   var grades = sorted[lesson]["Grades"]
@@ -333,7 +342,7 @@ function setTableData(lesson) {
                     <td>${grade.atLaterDate?'Ja':'Nee'}</td>
                     <td>${grade.exemption?'Ja':'Nee'}</td>
                     <td>${grade.teacher.teacherCode}</td>
-                    <td>${new Date(grade.dateFilledIn.toShortFormat())}</td>
+                    <td>${new Date(toShortFormat(grade.dateFilledIn))}</td>
                   </tr>`)
   })
   // $('#dataTable').DataTable();
