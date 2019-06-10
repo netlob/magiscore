@@ -897,7 +897,7 @@ function login(creds) {
         return;
      }
     if(creds.username.length > 1 && creds.password.length > 1 && creds.school.length > 1) {
-        document.getElementById("overlay").style.display = "block";
+        $("#overlay").show()
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -911,7 +911,7 @@ function login(creds) {
         }
         
         $.ajax(settings).done(function (response) {
-            document.getElementById("overlay").style.display = "block";
+            $("#overlay").show()
             if(response.substring(0, 5) != 'error') {
                 var data = JSON.parse(response)
                 var grades = data["grades"]
@@ -948,11 +948,9 @@ function login(creds) {
 }
 
 function toast(msg) {
-    document.getElementById("overlay").style.display = "none";
-    var x = document.getElementById("snackbar");
-    x.innerText = msg
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    $("#overlay").hide()
+    $("#snackbar").text(msg).addClass("show")
+    setTimeout(function(){ $("#snackbar").removeClass("show") }, 3000);
 }
 
 var grades = localStorage.getItem("grades");

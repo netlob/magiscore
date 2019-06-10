@@ -10,6 +10,10 @@ footer {
     background-color: #f8f9fc !important;
 }
 
+.card, .nav-item, .nav-link {
+    transition: 200ms !important;
+}
+
 @media (max-width: 767px) {
     /* .card {
         width: 100vw !important;
@@ -239,6 +243,14 @@ input.form-control::placeholder {
 
 #content > nav > form > div > input {
     height: 38px !important;
+}
+
+#content-wrapper.gestures {
+    touch-action: pan-y;
+}
+
+#content-wrapper > table.gestures {
+    touch-action: none !important;
 }
 
 .btn {

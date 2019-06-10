@@ -74,7 +74,7 @@ function round(num){
 }
 
 function syncGrades() {
-    document.getElementById("overlay").style.display = "block";
+    $("#overlay").show();
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -88,7 +88,7 @@ function syncGrades() {
     }
     
     $.ajax(settings).done(function (response) {
-      document.getElementById("overlay").style.display = "block";
+      $("#overlay").show();
       if(response.substring(0, 5) != 'error') {
         localStorage.clear()
         sorted = {}
@@ -103,7 +103,7 @@ function syncGrades() {
         localStorage.setItem("token", JSON.stringify(token));
         localStorage.setItem("school", JSON.stringify(school));
         localStorage.setItem("course", JSON.stringify(course));
-        document.getElementById("overlay").style.display = "none";
+        $("#overlay").hide();
         viewController.lineChart.destroy();
         setupLogin()
       }
@@ -125,15 +125,16 @@ $("body").keypress(function(e) {
   }
 });
 
-$("#content-wrapper").touchwipe({
-  wipeLeft: function() { if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
-  wipeRight: function() { if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
-  // wipeUp: function() { alert("up"); },
-  // wipeDown: function() { alert("down"); },
-  min_move_x: 40,
-  // min_move_y: 40,
-  preventDefaultEvents: true
-});
+// $("#content-wrapper").touchwipe({
+//   wipeLeft: function() { if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
+//   wipeRight: function() { if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
+//   min_move_x: 40,
+//   preventDefaultEvents: true,
+//   allowPageScroll: "vertical"
+// });
+// $("#content-wrapper.div:not(:last-child)")
+$("#content-wrapper").on('swiperight',  function(){ if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
+$("#content-wrapper").on('swipeleft',  function(){ if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
 
 String.prototype.capitalize = function(poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);

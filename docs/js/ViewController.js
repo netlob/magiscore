@@ -54,11 +54,11 @@ class ViewController {
 }
 
 function updateSidebar() {
-    var vakken = Object.keys(sorted)
-    vakken.forEach(vak => {
+    lessonController.lessons.forEach(lesson => {
+        lesson = lesson.name
         var HTML = `<li class="nav-item">
-                        <a class="nav-link" onclick="viewController.render('${vak}')">
-                            <span>${vak.capitalize()}</span>
+                        <a class="nav-link" onclick="viewController.render('${lesson}')">
+                            <span>${lesson.capitalize()}</span>
                         </a>
                     </li>`
         document.getElementById('subjectsNav').insertAdjacentHTML('beforeend', HTML)
@@ -68,46 +68,39 @@ function updateSidebar() {
     profilepic = document.getElementById("imgelem");
     if (profilepicStorage) {
         console.info('[INFO] Using saved pic')
-        // Reuse existing Data URL from localStorage
         profilepic.setAttribute("src", profilepicStorage);
     } else {
-      var xhr = new XMLHttpRequest(),
-        blob,
-        fileReader = new FileReader();
-      xhr.responseType = 'blob'; //so you can access the response like a normal URL
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-          blob = new Blob([xhr.response], {type: "image/png"});
-  
-          // onload needed since Google Chrome doesn't support addEventListener for FileReader
-          fileReader.onload = function (evt) {
-              // Read out file contents as a Data URL
-              var result = evt.target.result;
-              // Set image src to Data URL
-              profilepic.setAttribute("src", result);
-              // Store Data URL in localStorage
-              try {
-                  localStorage.setItem("profilepic", result);
-              }
-              catch (e) {
-                  console.error("[ERROR] Storage failed: " + e);
-              }
-          };
-          // Load blob as Data URL
-          fileReader.readAsDataURL(blob);
+        var xhr = new XMLHttpRequest(),
+            blob,
+            fileReader = new FileReader();
+        xhr.responseType = 'blob';
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            blob = new Blob([xhr.response], {type: "image/png"});
+            fileReader.onload = function (evt) {
+                var result = evt.target.result;
+                profilepic.setAttribute("src", result);
+                try {
+                    console.log('[INFO] Storage of image succes');
+                    localStorage.setItem("profilepic", result);
+                }
+                catch (e) {
+                    console.error("[ERROR] Storage failed: " + e);
+                }
+            };
+            fileReader.readAsDataURL(blob);
         }
       };
       xhr.open('GET', `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${person.id}/foto?width=640&height=640&crop=no`, true);
       xhr.setRequestHeader('Authorization', `Bearer ${token}`);
       xhr.send();
     }
-    document.querySelector('#userDropdown > span').innerHTML = `${person.firstName} ${person.lastName} ${course.group.description?'('+course.group.description+')':''}`
-    document.querySelector('#mobilePersonInfo').innerHTML = `${person.firstName} ${person.lastName} ${course.group.description?'('+course.group.description+')':''}`
+    $('#userDropdown > span').text(`${person.firstName} ${person.lastName} ${course.group.description?'('+course.group.description+')':''}`)
+    $('#mobilePersonInfo').text(`${person.firstName} ${person.lastName} ${course.group.description?'('+course.group.description+')':''}`)
     var header = document.getElementById("accordionSidebar");
     var btns = header.getElementsByClassName("nav-item");
     for (var i = 0; i < btns.length; i++) {
       btns[i].addEventListener("click", function() {
-        // console.dir(this)
         var current = $('.active');
         current[0].className = current[0].className.replace(" active", "");
         this.className += " active";
