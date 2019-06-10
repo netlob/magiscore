@@ -342,7 +342,7 @@ function setTableData(lesson) {
                     <td>${grade.atLaterDate?'Ja':'Nee'}</td>
                     <td>${grade.exemption?'Ja':'Nee'}</td>
                     <td>${grade.teacher.teacherCode}</td>
-                    <td>${new Date(toShortFormat(grade.dateFilledIn))}</td>
+                    <td>${toShortFormat(grade.dateFilledIn)}</td>
                   </tr>`)
   })
   // $('#dataTable').DataTable();
