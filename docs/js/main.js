@@ -79,7 +79,7 @@ function syncGrades() {
         "async": true,
         "crossDomain": true,
         "url": "https://magistat.bramkoene.nl/api/cijfers",
-        "method": "POST",
+        "method": "GET",
         "headers": {
             "username": creds.username,
             "password": creds.password,

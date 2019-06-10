@@ -55,11 +55,13 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
     console.log('[ServiceWorker] Fetch', e.request.url);
-    if(e.request.url == 'https://magistat.bramkoene.nl/api/cijfers') return
+    if(e.request.url == 'https://magistat.bramkoene.nl/api/cijfers') {
+        console.log('[ServiceWorker] Stopped fetching because of call to API')
+    }
 	e.respondWith(
 		caches.match(e.request)
         .then(function(response) {
-            if ( response ) {
+            if(response) {
                 console.log("[ServiceWorker] Found in Cache", e.request.url, response);
                 return response;
             }
