@@ -109,7 +109,7 @@ function updateSidebar() {
 }
 
 function setChartData(lesson, everything) {
-    this.lineChart = ''
+    viewController.lineChart = ''
     // lineChart.destroy();
     var data = []
     var datums = []
@@ -163,7 +163,7 @@ function setChartData(lesson, everything) {
     cijfers.reverse()
 
     var ctx = document.getElementById('lineChart').getContext('2d');
-    this.lineChart = new Chart(ctx, {
+    viewController.lineChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: datums,
@@ -278,7 +278,7 @@ function setChartData(lesson, everything) {
     });
 
     var ctx = document.getElementById("pieChart");
-    this.pieChart = new Chart(ctx, {
+    viewController.pieChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: ["Voldoendes", "Onvoldoendes"],

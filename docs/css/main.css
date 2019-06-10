@@ -14,6 +14,21 @@ footer {
     transition: 200ms !important;
 }
 
+@media (max-width: 465px) {
+    .newGrade, .getGrade {
+        display: block !important;
+        width: 100% !important;
+    }
+    
+    .showCalculatedGrade {
+        display: inline-block !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin-top: 33px !important;
+        vertical-align: top !important;
+    }
+}
+
 @media (max-width: 767px) {
     /* .card {
         width: 100vw !important;
@@ -58,16 +73,16 @@ input {
 }
 
 .newGrade, .getGrade {
-    display: inline-block !important;
-    width: 70% !important;
+    display: inline-block;
+    width: 70%;
 }
 
 .showCalculatedGrade {
-    display: inline-block !important;
-    width: 29% !important;
-    text-align: center !important;
-    margin-top: 55px !important;
-    vertical-align: top !important;
+    display: inline-block;
+    width: 29%;
+    text-align: center;
+    margin-top: 55px;
+    vertical-align: top;
 }
 
 #subjectsNav > .nav-item > .nav-link {

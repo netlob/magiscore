@@ -90,7 +90,11 @@ function syncGrades() {
     $.ajax(settings).done(function (response) {
       $("#overlay").show();
       if(response.substring(0, 5) != 'error') {
-        localStorage.clear()
+        localStorage.removeItem("grades");
+        localStorage.removeItem("person");
+        localStorage.removeItem("token");
+        localStorage.removeItem("school");
+        localStorage.removeItem("course");
         sorted = {}
         var data = JSON.parse(response)
         var grades = data["grades"]
