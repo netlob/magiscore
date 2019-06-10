@@ -18,8 +18,8 @@ http.createServer((req, res) => {
     // Set CORS headers
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Origin', "*");
-    res.setHeader('Access-Control-Request-Method', 'OPTIONS, POST');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST');
+    res.setHeader('Access-Control-Request-Method', 'OPTIONS, GET');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
     res.setHeader('Access-Control-Allow-Headers', 'school, username, password, token');
     // Handle normal request
     if('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url == '/api/cijfers') {
