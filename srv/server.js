@@ -9,7 +9,8 @@
 
 // Imports
 const http = require('http');
-const MagisterAuth = require('./lib/magister/authcode.function');
+// const MagisterAuth = require('./lib/magister/authcode.function');
+const getAuthCode = require('@magisterjs/dynamic-authcode');
 const login = require('./lib/magister/login.function');
 const cijfers = require('./lib/magister/cijfers.function');
 const { default: magister, getSchools } = require('magister.js');
@@ -24,7 +25,7 @@ http.createServer((req, res) => {
     // Handle normal request
     if('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url == '/api/cijfers') {
         console.log(req.headers)
-        MagisterAuth()
+        getAuthCode()
         .then(mAuth => {
             req.headers.code = mAuth
             cijfers(req.headers, res)

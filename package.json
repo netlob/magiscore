@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "dependencies": {
+    "@magisterjs/dynamic-authcode": "^1.1.0",
     "magister.js": "^2.0.0-alpha.11",
     "puppeteer": "^1.13.0"
   },
