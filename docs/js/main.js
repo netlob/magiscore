@@ -13,7 +13,7 @@ viewController.setConfig()
 
 function setupLogin() {
   var grades = localStorage.getItem("grades");
-  if (grades && person && course && creds && school) {
+  if (grades && person && course && creds && school && viewController.config) {
     grades = JSON.parse(grades)
 
     grades.forEach(grade => {
