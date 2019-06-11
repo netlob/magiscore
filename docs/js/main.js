@@ -3,21 +3,13 @@ var lessonController = new LessonController()
     
 var currentLesson,
     sorted = {},
-    person = localStorage.getItem("person"),
-    person = JSON.parse(person)
-    token = localStorage.getItem("token"),
-    token = JSON.parse(token)
-    school = localStorage.getItem("school"),
-    school = JSON.parse(school)
-    creds = localStorage.getItem("creds"),
-    creds = JSON.parse(creds)
-    course = localStorage.getItem("course"),
-    course = JSON.parse(course)
-    config = localStorage.getItem("config"),
-    config = JSON.parse(config)
-    config = []
-
-config.isDesktop = $(window).width()>600?true:false
+    person = JSON.parse(localStorage.getItem("person")),
+    token = JSON.parse(localStorage.getItem("token")),
+    school = JSON.parse(localStorage.getItem("school"),)
+    creds = JSON.parse(localStorage.getItem("creds")),
+    course = JSON.parse(localStorage.getItem("course"))
+  
+viewController.setConfig()
 
 function setupLogin() {
   var grades = localStorage.getItem("grades");
@@ -153,5 +145,16 @@ $("#content-wrapper").on('swipeleft',  function(){ if(!$('body').hasClass('sideb
 String.prototype.capitalize = function(poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
+
+Array.prototype.remove = function() {
+  var what, a = arguments, L = a.length, ax;
+  while (L && this.length) {
+      what = a[--L];
+      while ((ax = this.indexOf(what)) !== -1) {
+          this.splice(ax, 1);
+      }
+  }
+  return this;
+};
 
 setupLogin()

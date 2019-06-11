@@ -4,13 +4,42 @@ class Lesson {
         this.name = name;
         this.data = data;
         this.controller = viewcontroller;
-        this.test = 'poep'
+        this.extraFirst = undefined;
+        this.extraSecond = undefined;
+        this.extraThird = undefined;
     }
 
     render() {
-        console.dir('Poep')
+      
     }
 
+    getFirst() {
+      console.dir(this.data)
+      var keys = Object.keys(this.data)
+      keys = keys.remove("Grades")
+      if(keys.length > 0 && this.data[keys[0]]) {
+        var res = this.data[keys[0]][this.data[keys[0]].length-1]
+        console.dir(res)
+        return {
+          "title": res['type']['description'],
+          "value": [isNaN(res['grade'])]?res['grade']:round(res['grade'])
+        }
+      }
+    }
+
+    getSecond() {
+      return {
+        "title": 'poep',
+        "value": 0
+      }
+    }
+
+    getThird() {
+      return {
+        "title": 'poep',
+        "value": 0
+      }
+    }
     getCompleted() {
         if(this.data['Completed'] && this.data['Completed'][0]) {
           var res = round(this.data['Completed'][this.data['Completed'].length-1]['grade'])
@@ -20,21 +49,21 @@ class Lesson {
         }
     }
       
-    getProgress() {
-        if (this.data['Vordering']) {
-            return this.data['Vordering'][0]['grade']
-        } else {
-            return 0
-        }
-    }
+    // getProgress() {
+    //   if (this.data['Vordering']) {
+    //     return this.data['Vordering'][0]['grade']
+    //   } else {
+    //     return 0
+    //   }
+    // }
       
-    getEffort() {
-        if (this.data['Inzet']) {
-              return this.data['Inzet'][0]['grade']
-        } else {
-              return "Niet beschikbaar"
-        }
-    }
+    // getEffort() {
+    //   if (this.data['Inzet']) {
+    //     return this.data['Inzet'][0]['grade']
+    //   } else {
+    //     return "Niet beschikbaar"
+    //   }
+    // }
 
     getAverage(rounded) {
         if(this.data) {
@@ -132,4 +161,3 @@ class Lesson {
         return round(newGrade)
     }
 }
-

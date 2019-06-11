@@ -3,6 +3,7 @@ class ViewController {
         this.element = element[0];
         this.lineChart = lineChart;
         this.pieChart = pieChart;
+        this.config = {};
     }
 
     render(lesson) {
@@ -14,28 +15,32 @@ class ViewController {
     }
 
     renderGeneral() {
+        // this.setConfig()
         $('#general-wrapper').show();
         $('#lesson-wrapper').hide()
         $('#currentRender').text('Gemiddeld')
         $('#currentRenderMobile').text('Gemiddeld')
-        if(!config.isDesktop) { $('#sidebarToggleTop').click() }
+        if(!this.config.isDesktop) { $('#sidebarToggleTop').click() }
         $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
-        setChartData(null, true)
+        setChartData(this.config, null, true)
         setCompleted()
+        document.title = `Gemiddeld - Magistat²`
     }
 
     renderLesson(lesson) {
+        // this.setConfig()
         var html = generateHTML(lesson)
         $('#lesson-wrapper').empty().html(html)
         $('#general-wrapper').hide();
         $('#lesson-wrapper').show()
         $('#currentRender').text(lesson)
         $('#currentRenderMobile').text(lesson)
-        if(!config.isDesktop) {
+        if(!this.config.isDesktop) {
           $('#sidebarToggleTop').click()
         }
         setChartData(lesson)
         setTableData(lesson)
+        document.title = `${lesson.capitalize()} - Magistat²`
     }
 
     updateNav() {
@@ -50,6 +55,26 @@ class ViewController {
         doc.text(15, 15, `${$('#userDropdown > span').text()} - ${$('#general-area-title').text()}`);
         doc.addImage(newCanvasImg, 'PNG', 20, 20, 280, 150 );
         doc.save(`${$('#general-area-title').text()}.pdf`);
+    }
+
+    updateConfig(config) {
+        var base = {
+            "passed": 5.5,
+            "tention": 0.3
+        }
+        for(var key in config) {
+            base[key] = config[key]
+        }
+        delete base["isDesktop"]
+        localStorage.removeItem("config")
+        localStorage.setItem("config", JSON.stringify(base))
+        this.config = base
+    }
+
+    setConfig() {
+        var config = JSON.parse(localStorage.getItem("config"))
+        config["isDesktop"] = $(window).width()>600?true:false
+        this.config = config
     }
 }
 
@@ -108,8 +133,8 @@ function updateSidebar() {
     }
 }
 
-function setChartData(lesson, everything) {
-    viewController.lineChart = ''
+function setChartData(config ,lesson, everything) {
+    this.lineChart = ''
     // lineChart.destroy();
     var data = []
     var datums = []
@@ -118,33 +143,27 @@ function setChartData(lesson, everything) {
     var onvol = 0
 
     if(everything) {
-        for(var classcourse in sorted) {
-            for(var gradearray in sorted[classcourse]) {
-                if(gradearray == "Grades") {
-                    for(var grade in sorted[classcourse][gradearray]) {
-                        var gradegrade = sorted[classcourse][gradearray][grade].grade.replace(',', '.')
-                        data.push({
-                          t: new Date(sorted[classcourse][gradearray][grade].dateFilledIn),
-                          y: gradegrade
-                        })
-                        gradegrade = parseFloat(gradegrade.replace(",","."))
-                        if(sorted[classcourse][gradearray][grade].passed) { vol++ } else { onvol++ }
-                    }
-                }
+        for(var lesson in sorted) {
+            for(var grade in lessonController.getLesson(lesson).grades) {
+                var gradegrade = grade.grade.replace(',', '.')
+                data.push({
+                    t: new Date(grade.dateFilledIn),
+                    y: gradegrade
+                })
+                gradegrade = parseFloat(gradegrade.replace(",","."))
+                if(grade.passed) { vol++ } else { onvol++ }
             }
         }
     } else {
-        for(var gradearray in sorted[lesson]) {
-            if(gradearray == "Grades") {
-                for(var grade in sorted[lesson][gradearray]) {
-                    var gradegrade = sorted[lesson][gradearray][grade].grade.replace(',', '.')
-                    data.push({
-                      t: new Date(sorted[lesson][gradearray][grade].dateFilledIn),
-                      y: gradegrade
-                    })
-                    gradegrade = parseFloat(gradegrade.replace(",","."))
-                    if(gradegrade >= 5.5) { vol++ } else { onvol++ }
-                }
+        for(var lesson in sorted) {
+            for(var grade in lessonController.getLesson(lesson).grades) {
+                var gradegrade = grade.grade.replace(',', '.')
+                data.push({
+                    t: new Date(grade.dateFilledIn),
+                    y: gradegrade
+                })
+                gradegrade = parseFloat(gradegrade.replace(",","."))
+                if(gradegrade >= 5.5) { vol++ } else { onvol++ }
             }
         }
     }
@@ -163,6 +182,7 @@ function setChartData(lesson, everything) {
     cijfers.reverse()
 
     var ctx = document.getElementById('lineChart').getContext('2d');
+    console.dir(config)
     viewController.lineChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -170,7 +190,7 @@ function setChartData(lesson, everything) {
             // labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
             datasets: [{
                 label: "Cijfer",
-                lineTension: 0.3,
+                lineTension: 0.3,//config.tention,
                 backgroundColor: "rgba(0, 150, 219, 0.05)",
                 borderColor: "rgba(38, 186, 255, 1)",
                 pointRadius: 3,
@@ -181,7 +201,7 @@ function setChartData(lesson, everything) {
                 pointHoverBorderColor: "rgba(0, 150, 219, 1)", // rgba(38, 186, 255, 1)
                 pointHitRadius: 10,
                 pointBorderWidth: 2,
-                borderWidth: config.isDesktop?3:2,
+                borderWidth: 3,//config.isDesktop?3:2,
                 data: cijfers,
                 pointRadius: 0,
             }],
@@ -221,7 +241,7 @@ function setChartData(lesson, everything) {
                   },
                   // type: 'time',
                   distribution: 'linear',
-                  display: config.isDesktop
+                  display: true//config.isDesktop
                 }],
                 yAxes: [{
                   ticks: {
@@ -231,7 +251,7 @@ function setChartData(lesson, everything) {
                     steps: 10,
                     max: 10,
                     min: 1,
-                    display: config.isDesktop
+                    display: true//config.isDesktop
                   },
                   gridLines: {
                     color: "rgb(234, 236, 244)",
@@ -385,20 +405,21 @@ function setCompleted() {
 }
 
 function generateProgressHTML(lesson) {
-    var completed = lessonController.getLesson(lesson).lesson.getCompleted()
-    return `<div>
-                <h4 class="small font-weight-bold">${lesson}<span class="float-right">${completed}%</span></h4>
-                <div class="progress mb-4">
-                <div class="progress-bar" role="progressbar" style="width: ${completed}%;" aria-valuenow="${completed}" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-            </div>`
+    // var completed = lessonController.getLesson(lesson).lesson.getCompleted()
+    // return `<div>
+    //             <h4 class="small font-weight-bold">${lesson}<span class="float-right">${completed}%</span></h4>
+    //             <div class="progress mb-4">
+    //             <div class="progress-bar" role="progressbar" style="width: ${completed}%;" aria-valuenow="${completed}" aria-valuemin="0" aria-valuemax="100"></div>
+    //             </div>
+    //         </div>`
+    return
 }
 
 function generateHTML(lesson) {
-    var completed = lessonController.getLesson(lesson).lesson.getCompleted()
+    var extraFirst = lessonController.getLesson(lesson).lesson.getFirst()
     var average = lessonController.getLesson(lesson).lesson.getAverage(true)
-    var progress = lessonController.getLesson(lesson).lesson.getProgress()
-    var effort = lessonController.getLesson(lesson).lesson.getEffort()
+    var extraSecond = lessonController.getLesson(lesson).lesson.getSecond()
+    var extraThird = lessonController.getLesson(lesson).lesson.getThird()
     return `<!-- Page Heading -->
             <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">${lesson.capitalize()}</h1>
@@ -427,16 +448,16 @@ function generateHTML(lesson) {
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-green">% Voltooid</div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-green">${extraFirst.title}</div>
                         <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${completed}%</div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${extraFirst.value}</div>
                         </div>
-                        <div class="col">
+                        <!--<div class="col">
                             <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: ${completed}%" aria-valuenow="${completed}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-info" role="progressbar" style="width: ${extraFirst.value}%" aria-valuenow="${extraFirst.value}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                        </div>
+                        </div>-->
                         </div>
                     </div>
                     <div class="col-auto">
@@ -452,10 +473,10 @@ function generateHTML(lesson) {
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Vordering</div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">${extraSecond.title}</div>
                         <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${progress}</div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${extraSecond.value}</div>
                         </div>
                         </div>
                     </div>
@@ -473,8 +494,8 @@ function generateHTML(lesson) {
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Inzet</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">${effort}</div>
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">${extraThird.title}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">${extraThird.value}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-grin-beam-sweat fa-2x text-gray-300"></i>
@@ -547,8 +568,8 @@ function generateHTML(lesson) {
                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
+                        <div class="dropdown-header">Grafiek instellingen:</div>
+                        <div class="dropdown-item" href="#">Lijnintensiteit<input type="range" class="custom-range" min="0" max="10" step="0.1" id="lineTention"></div>
                         <a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
