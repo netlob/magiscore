@@ -139,8 +139,23 @@ $("body").keypress(function(e) {
 //   allowPageScroll: "vertical"
 // });
 // $("#content-wrapper.div:not(:last-child)")
-$("#content-wrapper").on('swiperight',  function(){ if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
-$("#content-wrapper").on('swipeleft',  function(){ if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
+// $("#content-wrapper").on('swiperight',  function(){ if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
+// $("#content-wrapper").on('swipeleft',  function(){ if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
+var s = Swiped.init({
+  query: '#content-wrapper',
+  left: 180,
+  left: 180,
+  onOpen: function() {
+    console.dir('Open')
+      $('#content-wrapper').css('transform', 'none')
+      if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
+  },
+  onClose: function() {
+    console.dir('Close')
+    // $('#content-wrapper').css('transform', 'none')
+    // if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
+  }
+});;
 
 String.prototype.capitalize = function(poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);
