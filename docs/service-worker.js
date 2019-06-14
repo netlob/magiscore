@@ -1,4 +1,4 @@
-var cacheName = 'base'; 
+var cacheName = 'v1'; 
 
 var cacheFiles = [
 	'./',
@@ -62,7 +62,7 @@ self.addEventListener('fetch', function(e) {
 		caches.match(e.request)
         .then(function(response) {
             if(response) {
-                console.log("[ServiceWorker] Found in Cache", e.request.url, response);
+                // console.log("[ServiceWorker] Found in Cache", e.request.url, response);
                 return response;
             }
 
@@ -70,13 +70,13 @@ self.addEventListener('fetch', function(e) {
             return fetch(requestClone)
             .then(function(response) {
                 if(!response) {
-                    console.log("[ServiceWorker] No response from fetch ")
+                    // console.log("[ServiceWorker] No response from fetch ")
                     return response;
                 }
                 var responseClone = response.clone();
                 caches.open(cacheName).then(function(cache) {
                     cache.put(e.request, responseClone);
-                    console.log('[ServiceWorker] New Data Cached', e.request.url);
+                    // console.log('[ServiceWorker] New Data Cached', e.request.url);
                     return response;
                 });
             })
