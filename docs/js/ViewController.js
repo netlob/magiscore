@@ -17,12 +17,12 @@ class ViewController {
     renderGeneral() {
         // this.setConfig()
         $('#general-wrapper').show();
-        $('#lesson-wrapper').hide()
+        $('#lesson-wrapper').hide();
         $('#currentRender').text('Gemiddeld')
         $('#currentRenderMobile').text('Gemiddeld')
         if(!this.config.isDesktop) { $('#sidebarToggleTop').click() }
         $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
-        setChartData(this.config, null, true)
+        setChartData(this.config, 'general', true)
         setCompleted()
         document.title = `Gemiddeld - Magistat²`
     }
@@ -38,7 +38,7 @@ class ViewController {
         if(!this.config.isDesktop) {
           $('#sidebarToggleTop').click()
         }
-        setChartData(lesson)
+        setChartData(this.config, lesson)
         setTableData(lesson)
         document.title = `${lesson.capitalize()} - Magistat²`
     }
@@ -148,7 +148,7 @@ function updateSidebar() {
     }
 }
 
-function setChartData(config ,lesson, everything) {
+function setChartData(config, lesson, everything) {
     this.lineChart = ''
     // lineChart.destroy();
     var data = []
@@ -156,31 +156,31 @@ function setChartData(config ,lesson, everything) {
     var cijfers = []
     var vol = 0
     var onvol = 0
-
-    if(everything) {
-        for(var lesson in sorted) {
-            for(var grade in lessonController.getLesson(lesson).grades) {
-                var gradegrade = grade.grade.replace(',', '.')
-                data.push({
-                    t: new Date(grade.dateFilledIn),
-                    y: gradegrade
+    console.log(lesson)
+    if(lesson == 'general') {
+        for(var lessonp in sorted) {
+            if(lessonController.getLesson(lessonp).lesson.grades.length > 0) {
+                lessonController.getLesson(lessonp).lesson.grades.forEach(grade => {
+                    var gradegrade = grade.grade.replace(',', '.')
+                    data.push({
+                        t: new Date(grade.dateFilledIn),
+                        y: gradegrade
+                    })
+                    gradegrade = parseFloat(gradegrade.replace(",","."))
+                    if(grade.passed) { vol++ } else { onvol++ }
                 })
-                gradegrade = parseFloat(gradegrade.replace(",","."))
-                if(grade.passed) { vol++ } else { onvol++ }
             }
         }
     } else {
-        for(var lesson in sorted) {
-            for(var grade in lessonController.getLesson(lesson).grades) {
-                var gradegrade = grade.grade.replace(',', '.')
-                data.push({
-                    t: new Date(grade.dateFilledIn),
-                    y: gradegrade
-                })
-                gradegrade = parseFloat(gradegrade.replace(",","."))
-                if(gradegrade >= 5.5) { vol++ } else { onvol++ }
-            }
-        }
+        lessonController.getLesson(lesson).lesson.grades.forEach(grade => {
+            var gradegrade = grade.grade.replace(',', '.')
+            data.push({
+                t: new Date(grade.dateFilledIn),
+                y: gradegrade
+            })
+            gradegrade = parseFloat(gradegrade.replace(",","."))
+            if(gradegrade >= 5.5) { vol++ } else { onvol++ }
+        })
     }
 
     data.sort(function(a,b){
@@ -195,7 +195,7 @@ function setChartData(config ,lesson, everything) {
 
     datums.reverse()
     cijfers.reverse()
-
+    console.dir(data)
     var ctx = document.getElementById('lineChart').getContext('2d');
     console.dir(config)
     viewController.lineChart = new Chart(ctx, {
@@ -349,7 +349,7 @@ function setChartData(config ,lesson, everything) {
       onvol = round(onvol / tot * 100)
       $('#percentageGrades').text(`${vol}% voldoende - ${onvol}% onvoldoende`)
     } else {
-      $('#percentageGrades').text(`Geen cijfers voor dit lesson...`)
+      $('#percentageGrades').text(`Geen cijfers voor dit vak...`)
     }
 }
 

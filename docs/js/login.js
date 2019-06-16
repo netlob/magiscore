@@ -919,12 +919,18 @@ function login(creds) {
                 var token = data["token"]
                 var school = data["school"]
                 var course = data["course"]
+                var config = {
+                    "isDesktop": $(window).width()>600?true:false,
+                    "tention": 0.3,
+                    "passed": 5.5
+                }
                 localStorage.setItem("grades", JSON.stringify(grades));
                 localStorage.setItem("person", JSON.stringify(person));
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("school", JSON.stringify(school));
                 localStorage.setItem("creds", JSON.stringify(creds));
                 localStorage.setItem("course", JSON.stringify(course));
+                localStorage.setItem("config", JSON.stringify(config));
                 location.href='/'
             } else {
                 console.error(response)
