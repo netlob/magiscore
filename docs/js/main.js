@@ -111,7 +111,7 @@ function syncGrades() {
         })
         $("#overlay").hide();
         viewController.lineChart.destroy();
-        setupLogin()
+        main()
       }
   });
 }
