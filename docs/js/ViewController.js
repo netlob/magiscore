@@ -73,8 +73,23 @@ class ViewController {
 
     setConfig() {
         var config = JSON.parse(localStorage.getItem("config"))
-        config["isDesktop"] = $(window).width()>600?true:false
-        this.config = config
+        if(config != null) {
+            config["isDesktop"] = $(window).width()>600?true:false
+            this.config = config
+        } else {
+            this.config = false
+        }
+    }
+
+    toast(msg, duration) {
+        $('body').append(`<div id="snackbar">${msg}</div>`);
+        $('#snackbar').css("display", "block")
+        $('#snackbar').animate({"bottom": "30px" }, "slow");
+        if(duration) {
+            setTimeout(function(){
+                $('#snackbar').animate({"bottom": "-200px" }, "slow", function(){ $('#snackbar').remove() })
+            }, duration);
+        }
     }
 }
 

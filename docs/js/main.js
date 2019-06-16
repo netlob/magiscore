@@ -11,7 +11,7 @@ var currentLesson,
   
 viewController.setConfig()
 
-function setupLogin() {
+function main() {
   var grades = localStorage.getItem("grades");
   if (grades && person && course && creds && school && viewController.config) {
     grades = JSON.parse(grades)
@@ -34,7 +34,7 @@ function setupLogin() {
 
     viewController.updateNav()
     viewController.render('general')
-    $('#betaModal').modal({show:true})
+    // $('#betaModal').modal({show:true})
   } else {
     window.location.href = '/login/'
   }
@@ -172,4 +172,4 @@ Array.prototype.remove = function() {
   return this;
 };
 
-setupLogin()
+main()

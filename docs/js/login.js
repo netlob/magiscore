@@ -959,8 +959,9 @@ var token = localStorage.getItem("token");
 var school = localStorage.getItem("school");
 var creds = localStorage.getItem("creds");
 var course = localStorage.getItem("course");
+var course = localStorage.getItem("config");
 
-if(grades && person && school && creds && course) {
+if(grades && person && school && creds && course && config) {
     // var grades = JSON.parse(grades)
     // var person = JSON.parse(person)
     // var token = JSON.parse(token)

@@ -721,7 +721,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Anuleer">Annuleer</button>
-            <a class="btn btn-primary" href="#logout" onclick="savePassed()" role="button" aria-label="Opslaan">Opslaan</a>
+            <a class="btn btn-primary" href="#logout" onclick="savePassed()" role="button" data-dismiss="modal" aria-label="Opslaan">Opslaan</a>
         </div>
       </div>
     </div>
@@ -783,15 +783,55 @@
     $(window).resize(function() { if($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
     $(window).resize(function() { if($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
   
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
-          console.log('[ServiceWorker] registration successful with scope: ', registration.scope);
-        }, function(err) {
-          console.log('[ServiceWorker] registration failed: ', err);
-        });
-      });
-    }
+    // if ('serviceWorker' in navigator) {
+    //   window.addEventListener('load', function() {
+    //     navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
+    //       console.log('[ServiceWorker] registration successful with scope: ', registration.scope);
+    //     }, function(err) {
+    //       console.log('[ServiceWorker] registration failed: ', err);
+    //     });
+    //   });
+    // }
+
+    window.isUpdateAvailable = new Promise(function(resolve, reject) {
+      // lazy way of disabling service workers while developing
+      if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
+        navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => {
+          console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
+          reg.onupdatefound = () => {
+            const installingWorker = reg.installing;
+            installingWorker.onstatechange = () => {
+              switch (installingWorker.state) {
+                case 'installed':
+                  if (navigator.serviceWorker.controller) {
+                    // new update available
+                    console.dir("==================================================================================")
+                    console.dir(true)
+                    console.dir("==================================================================================")
+                    resolve(true);
+                  } else {
+                    // no update available
+                    console.dir("==================================================================================")
+                    console.dir(false)
+                    console.dir("==================================================================================")
+                    resolve(false);
+                  }
+                  break;
+              }
+            };
+          };
+        })
+        .catch(err => console.error('[ServiceWorker] registration failed: ', err));
+      }
+    });
+
+    window['isUpdateAvailable']
+    .then(isAvailable => {
+      if (isAvailable) {
+        viewController.toast("Update beschikbaar!")
+      }
+    });
   </script>
 </body>
 

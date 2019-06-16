@@ -1,4 +1,4 @@
-var cacheName = 'v1'; 
+var cacheName = 'v4';
 
 var cacheFiles = [
 	'./',
@@ -57,12 +57,14 @@ self.addEventListener('fetch', function(e) {
     console.log('[ServiceWorker] Fetch', e.request.url);
     if(e.request.url == 'https://magistat.bramkoene.nl/api/cijfers') {
         console.log('[ServiceWorker] Stopped fetching because of call to API')
+        return false;
     }
 	e.respondWith(
 		caches.match(e.request)
         .then(function(response) {
             if(response) {
-                // console.log("[ServiceWorker] Found in Cache", e.request.url, response);
+                // refresh("poep")
+                console.log("[ServiceWorker] Found in Cache", e.request.url, response);
                 return response;
             }
 
@@ -70,13 +72,13 @@ self.addEventListener('fetch', function(e) {
             return fetch(requestClone)
             .then(function(response) {
                 if(!response) {
-                    // console.log("[ServiceWorker] No response from fetch ")
+                    console.log("[ServiceWorker] No response from fetch ")
                     return response;
                 }
                 var responseClone = response.clone();
                 caches.open(cacheName).then(function(cache) {
                     cache.put(e.request, responseClone);
-                    // console.log('[ServiceWorker] New Data Cached', e.request.url);
+                    console.log('[ServiceWorker] New Data Cached', e.request.url);
                     return response;
                 });
             })
@@ -86,3 +88,16 @@ self.addEventListener('fetch', function(e) {
         })
 	);
 });
+
+function refresh(response) {
+    return self.clients.matchAll().then(function (clients) {
+      clients.forEach(function (client) { 
+        var message = {
+          type: 'refresh',
+          url: response.url,
+          eTag: response.headers.get('ETag')
+        };
+        client.postMessage(JSON.stringify(message));
+      });
+    });
+}
