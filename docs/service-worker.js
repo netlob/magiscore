@@ -89,6 +89,15 @@ self.addEventListener('fetch', function(e) {
 	);
 });
 
+self.addEventListener('message', function(event){
+    console.log("[ServiceWorker] Message from client:",event)
+    if(event.data == "updateAvailablePleaseUpdate") {
+        caches.delete(cacheName);
+        event.ports[0].postMessage("Deleted cache");
+        return;
+    }
+});
+
 function refresh(response) {
     return self.clients.matchAll().then(function (clients) {
       clients.forEach(function (client) { 

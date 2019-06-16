@@ -116,6 +116,20 @@ function syncGrades() {
   });
 }
 
+function updateCache() {
+  return new Promise(function(resolve, reject) {
+      var msg_chan = new MessageChannel();
+      msg_chan.port1.onmessage = function(event) {
+          if(event.data.error) {
+              reject(event.data.error);
+          } else {
+              resolve(event.data);
+          }
+      };
+      navigator.serviceWorker.controller.postMessage("updateAvailablePleaseUpdate", [msg_chan.port2]);
+  });
+}
+
 $("body").keypress(function(e) {
   if(e.which == 114) {
     e.preventDefault();
