@@ -89,6 +89,15 @@ self.addEventListener('fetch', function(e) {
 	);
 });
 
+self.addEventListener("push", e => {
+    const data = e.data.json();
+    console.log("Push Recieved...");
+    self.registration.showNotification(data.title, {
+      body: "Tets by Magistat lol",
+      icon: "http://magistat.bramkoene.nl/img/icons/icon-128x128.png"
+    });
+});
+
 self.addEventListener('message', function(event){
     console.log("[ServiceWorker] Message from client:",event)
     if(event.data == "updateAvailablePleaseUpdate") {

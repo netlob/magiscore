@@ -1,6 +1,6 @@
 /*
  *   -= Magbot3 stat =-
- *  Sj3rd & minestarnl
+ *  Sj3rd
  * Licensed under MIT
  *   -= Magbot3 stat =-
  */
@@ -11,9 +11,19 @@
 const http = require('http');
 // const MagisterAuth = require('./lib/magister/authcode.function');
 const getAuthCode = require('@magisterjs/dynamic-authcode');
+const webpush = require("web-push");
 const login = require('./lib/magister/login.function');
 const cijfers = require('./lib/magister/cijfers.function');
 const { default: magister, getSchools } = require('magister.js');
+
+const publicVapidKey = "BC79U18J9Pn9ddyl7Vme5nYZC3blOTTlZS3qWj2QyMbtgZiMpOwe2tEWJstSsUaoHXbNQRiJ5Wi8cX2D4upxZP4";
+const privateVapidKey = require('../secret.js').privateVapidKey;
+
+webpush.setVapidDetails(
+    "mailto:test@test.com",
+    publicVapidKey,
+    privateVapidKey
+);
 
 http.createServer((req, res) => {
     // Set CORS headers
@@ -37,6 +47,14 @@ http.createServer((req, res) => {
             res.writeHead(200);
             res.end('error: ' + err.toString());
         });
+    } else if('subscription' in req.headers && req.url == '/api/notifications') {
+        res.writeHead(201);
+        res.end({})
+        const payload = JSON.stringify({ title: "Push Test" });
+
+        webpush
+        .sendNotification(req.headers.subscription, payload)
+        .catch(err => console.error(err));
     } else {
         res.end('MAGBOT STAT API');
     }

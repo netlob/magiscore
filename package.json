@@ -9,7 +9,8 @@
   "dependencies": {
     "@magisterjs/dynamic-authcode": "^1.1.0",
     "magister.js": "^2.0.0-alpha.11",
-    "puppeteer": "^1.13.0"
+    "puppeteer": "^1.13.0",
+    "web-push": "^3.3.5"
   },
   "devDependencies": {},
   "scripts": {

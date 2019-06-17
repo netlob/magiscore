@@ -1,5 +1,6 @@
+// yo dit is gecomment over duidelijk als je wilt weten wat deze class doet kan je m gewoon aanroepen!
 class ViewController {
-    constructor(element, lineChart, pieChart, lessenControler) {
+    constructor(element, lineChart, pieChart, lessonControler) {
         this.element = element[0];
         this.lineChart = lineChart;
         this.pieChart = pieChart;

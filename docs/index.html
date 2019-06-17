@@ -776,6 +776,7 @@
   <script src="js/Lesson.js"></script>
   <script src="js/ViewController.js"></script>
   <script src="js/LessonController.js"></script>
+  <script src="js/push.js"></script>
   <script src="js/main.js"></script>
   <script>
     var width = $(window).width();
@@ -796,7 +797,7 @@
     window.isUpdateAvailable = new Promise(function(resolve, reject) {
       // lazy way of disabling service workers while developing
       if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
-        navigator.serviceWorker.register('./service-worker.js')
+        navigator.serviceWorker.register('./service-worker.js', { scope: "/" })
         .then(reg => {
           console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
           reg.onupdatefound = () => {
