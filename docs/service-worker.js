@@ -1,4 +1,4 @@
-var cacheName = 'v21';
+var cacheName = 'v22';
 
 var cacheFiles = [
 	'./',
@@ -91,9 +91,8 @@ self.addEventListener('fetch', function(e) {
 
 self.addEventListener("push", e => {
     const data = e.data.json();
-    console.log("Push Recieved...");
     self.registration.showNotification(data.title, {
-      body: "Tets by Magistat lol",
+      body: "Magiscore is klaar om offline te gebruiken!",
       icon: "https://magistat.bramkoene.nl/img/icons/icon-128x128.png"
     });
 });

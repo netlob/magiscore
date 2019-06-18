@@ -1,6 +1,6 @@
 # MAGBOT-STAT
 
-Hoi en welkom hier komen alle ideeen die wij graag nog willen toevoegen aan magbot-stat.
+Hoi en welkom hier komen alle ideeen die ik graag nog willen toevoegen aan magbot-stat.
 
 ## Ideetjes
 
@@ -11,4 +11,4 @@ Hoi en welkom hier komen alle ideeen die wij graag nog willen toevoegen aan magb
 
 ## Toevoegen aan deze lijst?
 
-Wil je wat toevoegen aan deze lijst? Dat kan maak dan een issue toe en wij voegen dat toe aan deze lijst.
+Wil je wat toevoegen aan deze lijst? Dat kan maak dan een issue toe en ik voeg dat toe aan deze lijst.

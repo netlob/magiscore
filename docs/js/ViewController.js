@@ -25,7 +25,7 @@ class ViewController {
         $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
         setChartData(this.config, 'general', true)
         setCompleted()
-        document.title = `Gemiddeld - Magistat²`
+        document.title = `Gemiddeld - Magiscore`
     }
 
     renderLesson(lesson) {
@@ -41,7 +41,7 @@ class ViewController {
         }
         setChartData(this.config, lesson)
         setTableData(lesson)
-        document.title = `${lesson.capitalize()} - Magistat²`
+        document.title = `${lesson.capitalize()} - Magiscore`
     }
 
     updateNav() {
