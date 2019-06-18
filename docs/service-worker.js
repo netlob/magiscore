@@ -55,7 +55,7 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
     console.log('[ServiceWorker] Fetch', e.request.url);
-    if(e.request.url == 'http://localhost:7070/api/cijfers') {
+    if(e.request.url == 'https://magistat.bramkoene.nl/api/cijfers') {
         console.log('[ServiceWorker] Stopped fetching because of call to API')
         return false;
     }
