@@ -901,7 +901,7 @@ function login(creds) {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "https://magistat.bramkoene.nl/api/cijfers",
+            "url": "http://localhost:7070/api/cijfers",
             "method": "GET",
             "headers": {
                 "username": creds.username,

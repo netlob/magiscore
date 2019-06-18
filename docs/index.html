@@ -802,10 +802,34 @@
     //   });
     // }
 
+    var registration;
+
     window.isUpdateAvailable = new Promise(function(resolve, reject) {
       if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
         navigator.serviceWorker.register('./service-worker.js', { scope: "/" })
         .then(reg => {
+          const subscribeOptions = {
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array('BC79U18J9Pn9ddyl7Vme5nYZC3blOTTlZS3qWj2QyMbtgZiMpOwe2tEWJstSsUaoHXbNQRiJ5Wi8cX2D4upxZP4')
+          };
+
+          reg.pushManager.subscribe(subscribeOptions)
+          .then(subscription => {
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "http://localhost:7070/api/notifications",
+              "method": "GET",
+              "headers": {
+                  "subscription": JSON.stringify(subscription)
+              }
+            }
+
+            $.ajax(settings).done(function (response) {
+              console.log(response)
+            })
+          })
+          
           console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
           reg.onupdatefound = () => {
             const installingWorker = reg.installing;
@@ -822,6 +846,10 @@
             };
           };
         })
+        // .then(function(pushSubscription) {
+        //   console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+        //   return pushSubscription;
+        // })
         .catch(err => console.error('[ServiceWorker] registration failed: ', err));
       }
     });

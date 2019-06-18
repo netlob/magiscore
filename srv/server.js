@@ -31,7 +31,7 @@ http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', "*");
     res.setHeader('Access-Control-Request-Method', 'OPTIONS, GET');
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-    res.setHeader('Access-Control-Allow-Headers', 'school, username, password, token');
+    res.setHeader('Access-Control-Allow-Headers', 'school, username, password, token, subscription');
     // Handle normal request
     if('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url == '/api/cijfers') {
         console.log(req.headers)
@@ -49,11 +49,11 @@ http.createServer((req, res) => {
         });
     } else if('subscription' in req.headers && req.url == '/api/notifications') {
         res.writeHead(201);
-        res.end({})
+        res.end(JSON.stringify({}))
         const payload = JSON.stringify({ title: "Push Test" });
 
         webpush
-        .sendNotification(req.headers.subscription, payload)
+        .sendNotification(JSON.parse(req.headers.subscription), payload)
         .catch(err => console.error(err));
     } else {
         res.end('MAGBOT STAT API');
