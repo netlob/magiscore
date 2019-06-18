@@ -1,4 +1,4 @@
-var cacheName = 'v25';
+var cacheName = 'v26';
 
 var cacheFiles = [
 	'./',

@@ -137,7 +137,7 @@ function updateCache() {
             resolve(event.data);
         }
     };
-    navigator.serviceWorker.postMessage("updateAvailablePleaseUpdate", [msg_chan.port2]);
+    navigator.serviceWorker.controller.postMessage("updateAvailablePleaseUpdate", [msg_chan.port2]);
     location.reload();
   });
 }
