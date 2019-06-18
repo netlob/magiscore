@@ -1,4 +1,4 @@
-var cacheName = 'v20';
+var cacheName = 'v21';
 
 var cacheFiles = [
 	'./',
@@ -94,7 +94,7 @@ self.addEventListener("push", e => {
     console.log("Push Recieved...");
     self.registration.showNotification(data.title, {
       body: "Tets by Magistat lol",
-      icon: "http://magistat.bramkoene.nl/img/icons/icon-128x128.png"
+      icon: "https://magistat.bramkoene.nl/img/icons/icon-128x128.png"
     });
 });
 
