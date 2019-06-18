@@ -14,12 +14,12 @@ class Lesson {
     }
 
     getFirst() {
-      console.dir(this.data)
+      // console.dir(this.data)
       var keys = Object.keys(this.data)
       keys = keys.remove("Grades")
       if(keys.length > 0 && this.data[keys[0]]) {
         var res = this.data[keys[0]][this.data[keys[0]].length-1]
-        console.dir(res)
+        // console.dir(res)
         return {
           "title": res['type']['description'],
           "value": [isNaN(res['grade'])]?res['grade']:round(res['grade'])

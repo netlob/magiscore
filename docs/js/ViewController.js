@@ -161,7 +161,7 @@ function setChartData(config, lesson, everything) {
     var cijfers = []
     var vol = 0
     var onvol = 0
-    console.log(lesson)
+    // console.log(lesson)
     if(lesson == 'general') {
         for(var lessonp in sorted) {
             if(lessonController.getLesson(lessonp).lesson.grades.length > 0) {
