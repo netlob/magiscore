@@ -34,6 +34,7 @@ function main() {
 
     viewController.updateNav()
     viewController.render('general')
+    if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
     // $('#betaModal').modal({show:true})
   } else {
     window.location.href = '/login/'
@@ -66,6 +67,7 @@ function round(num){
 }
 
 function syncGrades() {
+  return new Promise(function(resolve, reject) {
     $("#overlay").show();
     var settings = {
         "async": true,
@@ -80,7 +82,7 @@ function syncGrades() {
     }
     
     $.ajax(settings).done(function (response) {
-      $("#overlay").show();
+      // $("#overlay").show();
       if(response.substring(0, 5) != 'error') {
         localStorage.removeItem("grades");
         localStorage.removeItem("person");
@@ -112,7 +114,13 @@ function syncGrades() {
         $("#overlay").hide();
         viewController.lineChart.destroy();
         main()
+        resolve()
+      } else {
+        $("#overlay").hide();
+        viewController.toast(response.substring, 5000)
+        reject()
       }
+    });
   });
 }
 
@@ -142,6 +150,13 @@ $("body").keypress(function(e) {
         });
       }
     });
+  }
+});
+
+const ptr = PullToRefresh.init({
+  mainElement: '#ptr',
+  onRefresh: function (done) {
+    syncGrades().then(d => done())
   }
 });
 

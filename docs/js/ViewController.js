@@ -196,9 +196,7 @@ function setChartData(config, lesson, everything) {
 
     datums.reverse()
     cijfers.reverse()
-    console.dir(data)
     var ctx = document.getElementById('lineChart').getContext('2d');
-    console.dir(config)
     viewController.lineChart = new Chart(ctx, {
         type: 'line',
         data: {

@@ -1,3 +1,13 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: auto;
+}
+
 body {
     background-color: #0096db !important;
 }
@@ -12,6 +22,11 @@ footer {
 
 .card, .nav-item, .nav-link {
     transition: 200ms !important;
+}
+
+.ptr--ptr {
+    /* padding-top: 1rem !important; */
+    box-shadow: none !important;
 }
 
 @media (max-width: 465px) {
@@ -280,12 +295,19 @@ input.form-control::placeholder {
 }
 
 #overlay > .spinner-border {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: fixed;
+    top: 47vh;
+    left: 47vw;
     color: white;
     width: 3rem;
     height: 3rem;
+
+    /* position: fixed;
+    top: 46vh;
+    left: 45vw;
+    color: white;
+    width: 8vh;
+    height: 8vh; */
 }
 
 .showCalculatedGrade {
