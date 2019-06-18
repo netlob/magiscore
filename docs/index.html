@@ -838,9 +838,12 @@
     window['isUpdateAvailable']
     .then(isAvailable => {
       if (isAvailable) {
-        viewController.toast("Update beschikbaar!")
+        viewController.toast(`Update beschikbaar! <button role="button" style="color: #FFFF00; outline: none !important; background: none !important; border: none !important;" onclick="updateCache()">Update</button>`)
       }
     });
+    if(viewController == undefined) {
+      location.reload()
+    }
   </script>
 </body>
 

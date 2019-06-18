@@ -83,7 +83,7 @@ class ViewController {
     }
 
     toast(msg, duration) {
-        $('body').append(`<div id="snackbar">${msg}</div>`);
+        $('body').append(`<div id="snackbar" class="snackbar">${msg}</div>`);
         $('#snackbar').css("display", "block")
         $('#snackbar').animate({"bottom": "30px" }, "slow");
         if(duration) {
@@ -91,6 +91,10 @@ class ViewController {
                 $('#snackbar').animate({"bottom": "-200px" }, "slow", function(){ $('#snackbar').remove() })
             }, duration);
         }
+    }
+
+    removeToasts() {
+        $('.snackbar').remove()
     }
 }
 

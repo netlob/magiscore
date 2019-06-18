@@ -1,3 +1,4 @@
+setTimeout(function(){ if($("#userDropdown > span").text() == "Voornaam Achternaam") { location.reload() } }, 1000)
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController()
     
@@ -126,15 +127,18 @@ function syncGrades() {
 
 function updateCache() {
   return new Promise(function(resolve, reject) {
-      var msg_chan = new MessageChannel();
-      msg_chan.port1.onmessage = function(event) {
-          if(event.data.error) {
-              reject(event.data.error);
-          } else {
-              resolve(event.data);
-          }
-      };
-      navigator.serviceWorker.controller.postMessage("updateAvailablePleaseUpdate", [msg_chan.port2]);
+    viewController.removeToasts()
+    $("#overlay").show();
+    var msg_chan = new MessageChannel();
+    msg_chan.port1.onmessage = function(event) {
+        if(event.data.error) {
+            reject(event.data.error);
+        } else {
+            resolve(event.data);
+        }
+    };
+    navigator.serviceWorker.controller.postMessage("updateAvailablePleaseUpdate", [msg_chan.port2]);
+    location.reload();
   });
 }
 
