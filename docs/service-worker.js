@@ -1,4 +1,4 @@
-var cacheName = 'v27';
+var cacheName = 'v28';
 
 var cacheFiles = [
 	'./',
@@ -103,6 +103,7 @@ self.addEventListener('message', function(event){
     console.log("[ServiceWorker] Message from client:",event)
     if(event.data == "updateAvailablePleaseUpdate") {
         caches.delete(cacheName);
+        console.log('[ServiceWorker] Deleted cache')
         event.ports[0].postMessage("Deleted cache");
         return;
     }
