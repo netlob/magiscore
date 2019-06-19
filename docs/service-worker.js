@@ -1,4 +1,4 @@
-var cacheName = 'v26';
+var cacheName = 'v27';
 
 var cacheFiles = [
 	'./',
@@ -91,10 +91,11 @@ self.addEventListener('fetch', function(e) {
 
 self.addEventListener("push", e => {
     const data = e.data.json();
+    console.dir(data)
     self.registration.showNotification('Magiscore geupdate!', {
       body: "Magiscore is klaar om offline te gebruiken!",
       icon: "https://magistat.bramkoene.nl/img/icons/icon-128x128.png",
-      title
+      title: 'Magistat'
     });
 });
 
