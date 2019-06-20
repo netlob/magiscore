@@ -1,6 +1,6 @@
-# MAGBOT-STAT
+# MAGISCORE
 
-Hoi en welkom hier komen alle ideeen die ik graag nog willen toevoegen aan magbot-stat.
+Hoi en welkom hier komen alle ideeen die ik graag nog willen toevoegen aan Magiscore.
 
 ## Ideetjes
 

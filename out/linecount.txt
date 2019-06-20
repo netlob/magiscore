@@ -1929,3 +1929,107 @@ srv/lib/magister/login.function.js, code is 15, comment is 2, blank is 1.
 srv/server.js, code is 48, comment is 14, blank is 7.
 TODO.md, code is 9, comment is 0, blank is 5.
 ===============================================================================
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2019-06-20 20:05:28
+count workspace : /Users/Sjoerd/Documents/Projects/magbot-stat
+total files : 92
+total code lines : 20920
+total comment lines : 1375
+total blank lines : 2158
+
+.gitignore, code is 46, comment is 3, blank is 18.
+cijfers.json, code is 3821, comment is 0, blank is 0.
+docs/.well-known/assetlinks.json, code is 5, comment is 0, blank is 0.
+docs/404.html, code is 69, comment is 30, blank is 21.
+docs/CNAME, code is 1, comment is 0, blank is 0.
+docs/coming-soon/index.html, code is 86, comment is 20, blank is 13.
+docs/css/main.css, code is 235, comment is 130, blank is 54.
+docs/css/sb-admin-2.css, code is 10604, comment is 46, blank is 1393.
+docs/css/sb-admin-2.min.css, code is 6, comment is 8, blank is 0.
+docs/img/coming-soon/1.png, it is a binary file.
+docs/img/coming-soon/2.png, it is a binary file.
+docs/img/coming-soon/3.png, it is a binary file.
+docs/img/icons/icon-128x128.png, it is a binary file.
+docs/img/icons/icon-144x144.png, it is a binary file.
+docs/img/icons/icon-152x152.png, it is a binary file.
+docs/img/icons/icon-192x192.png, it is a binary file.
+docs/img/icons/icon-384x384.png, it is a binary file.
+docs/img/icons/icon-512x512.png, it is a binary file.
+docs/img/icons/icon-72x72.png, it is a binary file.
+docs/img/icons/icon-96x96.png, it is a binary file.
+docs/img/splash.png, it is a binary file.
+docs/img/splashscreens/ipad_splash.png, it is a binary file.
+docs/img/splashscreens/ipadpro1_splash.png, it is a binary file.
+docs/img/splashscreens/ipadpro2_splash.png, it is a binary file.
+docs/img/splashscreens/ipadpro3_splash.png, it is a binary file.
+docs/img/splashscreens/iphone5_splash.png, it is a binary file.
+docs/img/splashscreens/iphone6_splash.png, it is a binary file.
+docs/img/splashscreens/iphoneplus_splash.png, it is a binary file.
+docs/img/splashscreens/iphonex_splash.png, it is a binary file.
+docs/img/splashscreens/iphonexr_splash.png, it is a binary file.
+docs/img/splashscreens/iphonexsmax_splash.png, it is a binary file.
+docs/img/splashscreens/new_iphoneplus_splash.png, it is a binary file.
+docs/img/splashscreens/old_iphoneplus_splash.png, it is a binary file.
+docs/index.html, code is 409, comment is 377, blank is 83.
+docs/js/demo/chart-area-demo.js, code is 110, comment is 6, blank is 2.
+docs/js/demo/chart-bar-demo.js, code is 103, comment is 6, blank is 2.
+docs/js/demo/chart-pie-demo.js, code is 32, comment is 2, blank is 1.
+docs/js/demo/datatables-demo.js, code is 3, comment is 1, blank is 0.
+docs/js/deps/algebra.js, code is 1308, comment is 126, blank is 298.
+docs/js/deps/chartannotation.js, code is 1, comment is 9, blank is 0.
+docs/js/deps/cookies.js, code is 22, comment is 0, blank is 0.
+docs/js/deps/imagecache.js, code is 30, comment is 7, blank is 9.
+docs/js/deps/jspdf.min.js, code is 3, comment is 280, blank is 0.
+docs/js/deps/pull.js, code is 1, comment is 6, blank is 0.
+docs/js/deps/sb-admin-2.js, code is 24, comment is 22, blank is 6.
+docs/js/deps/sb-admin-2.min.js, code is 1, comment is 5, blank is 1.
+docs/js/deps/swipe.min.js, code is 1, comment is 0, blank is 0.
+docs/js/Lesson.js, code is 131, comment is 21, blank is 11.
+docs/js/LessonController.js, code is 17, comment is 0, blank is 4.
+docs/js/login.js, code is 985, comment is 8, blank is 7.
+docs/js/main.js, code is 174, comment is 14, blank is 20.
+docs/js/push.js, code is 31, comment is 0, blank is 6.
+docs/js/ViewController.js, code is 635, comment is 137, blank is 40.
+docs/LICENSE, code is 17, comment is 0, blank is 4.
+docs/login/index.html, code is 104, comment is 7, blank is 20.
+docs/manifest.json, code is 11, comment is 0, blank is 0.
+docs/manifest.webmanifest, code is 54, comment is 0, blank is 0.
+docs/README.md, code is 0, comment is 0, blank is 1.
+docs/register.html, code is 74, comment is 6, blank is 15.
+docs/scss/_buttons.scss, code is 51, comment is 0, blank is 1.
+docs/scss/_cards.scss, code is 32, comment is 3, blank is 1.
+docs/scss/_charts.scss, code is 24, comment is 3, blank is 2.
+docs/scss/_dropdowns.scss, code is 16, comment is 2, blank is 3.
+docs/scss/_error.scss, code is 47, comment is 3, blank is 2.
+docs/scss/_footer.scss, code is 13, comment is 0, blank is 1.
+docs/scss/_global.scss, code is 50, comment is 4, blank is 6.
+docs/scss/_login.scss, code is 38, comment is 2, blank is 10.
+docs/scss/_mixins.scss, code is 0, comment is 0, blank is 1.
+docs/scss/_navs.scss, code is 3, comment is 0, blank is 0.
+docs/scss/_utilities.scss, code is 7, comment is 0, blank is 0.
+docs/scss/_variables.scss, code is 42, comment is 19, blank is 15.
+docs/scss/navs/_global.scss, code is 38, comment is 3, blank is 1.
+docs/scss/navs/_sidebar.scss, code is 353, comment is 14, blank is 5.
+docs/scss/navs/_topbar.scss, code is 126, comment is 1, blank is 2.
+docs/scss/sb-admin-2.scss, code is 13, comment is 4, blank is 3.
+docs/scss/utilities/_animation.scss, code is 28, comment is 3, blank is 6.
+docs/scss/utilities/_background.scss, code is 52, comment is 2, blank is 15.
+docs/scss/utilities/_border.scss, code is 30, comment is 0, blank is 9.
+docs/scss/utilities/_display.scss, code is 3, comment is 1, blank is 0.
+docs/scss/utilities/_progress.scss, code is 3, comment is 0, blank is 0.
+docs/scss/utilities/_rotate.scss, code is 6, comment is 0, blank is 1.
+docs/scss/utilities/_text.scss, code is 41, comment is 1, blank is 12.
+docs/service-worker.js, code is 111, comment is 1, blank is 11.
+LICENSE, code is 17, comment is 0, blank is 4.
+package-lock.json, code is 474, comment is 0, blank is 0.
+package.json, code is 30, comment is 0, blank is 0.
+secret.js, code is 3, comment is 0, blank is 0.
+srv/lib/magister/authcode.function.js, code is 12, comment is 14, blank is 3.
+srv/lib/magister/cijfers.function.js, code is 31, comment is 2, blank is 2.
+srv/lib/magister/login.function.js, code is 15, comment is 2, blank is 1.
+srv/server.js, code is 48, comment is 14, blank is 7.
+TODO.md, code is 9, comment is 0, blank is 5.
+===============================================================================
