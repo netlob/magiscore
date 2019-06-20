@@ -10845,6 +10845,682 @@
                     "filename": "TODO.md"
                 }
             ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2019-06-20 20:00:39",
+            "filesum": 107,
+            "codesum": 31013,
+            "commentsum": 1847,
+            "blanksum": 2705,
+            "filelist": [
+                {
+                    "blank": 18,
+                    "code": 46,
+                    "comment": 3,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 3821,
+                    "comment": 0,
+                    "filename": "cijfers.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "docs/.well-known/assetlinks.json"
+                },
+                {
+                    "blank": 21,
+                    "code": 69,
+                    "comment": 30,
+                    "filename": "docs/404.html"
+                },
+                {
+                    "blank": 50,
+                    "code": 264,
+                    "comment": 46,
+                    "filename": "docs/blank.html"
+                },
+                {
+                    "blank": 42,
+                    "code": 297,
+                    "comment": 40,
+                    "filename": "docs/buttons.html"
+                },
+                {
+                    "blank": 60,
+                    "code": 350,
+                    "comment": 51,
+                    "filename": "docs/cards.html"
+                },
+                {
+                    "blank": 58,
+                    "code": 311,
+                    "comment": 54,
+                    "filename": "docs/charts.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "docs/CNAME"
+                },
+                {
+                    "blank": 13,
+                    "code": 86,
+                    "comment": 20,
+                    "filename": "docs/coming-soon/index.html"
+                },
+                {
+                    "blank": 54,
+                    "code": 235,
+                    "comment": 130,
+                    "filename": "docs/css/main.css"
+                },
+                {
+                    "blank": 1393,
+                    "code": 10604,
+                    "comment": 46,
+                    "filename": "docs/css/sb-admin-2.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 8,
+                    "filename": "docs/css/sb-admin-2.min.css"
+                },
+                {
+                    "blank": 11,
+                    "code": 26,
+                    "comment": 4,
+                    "filename": "docs/forgot-password.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 112,
+                    "comment": 19,
+                    "filename": "docs/gulpfile.js"
+                },
+                {
+                    "filename": "docs/img/coming-soon/1.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/coming-soon/2.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/coming-soon/3.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/icons/icon-128x128.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/icons/icon-144x144.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/icons/icon-152x152.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/icons/icon-192x192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/icons/icon-384x384.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/icons/icon-512x512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/icons/icon-72x72.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/icons/icon-96x96.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/ipad_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/ipadpro1_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/ipadpro2_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/ipadpro3_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/iphone5_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/iphone6_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/iphoneplus_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/iphonex_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/iphonexr_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/iphonexsmax_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/new_iphoneplus_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "docs/img/splashscreens/old_iphoneplus_splash.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 83,
+                    "code": 409,
+                    "comment": 377,
+                    "filename": "docs/index.html"
+                },
+                {
+                    "blank": 2,
+                    "code": 110,
+                    "comment": 6,
+                    "filename": "docs/js/demo/chart-area-demo.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 103,
+                    "comment": 6,
+                    "filename": "docs/js/demo/chart-bar-demo.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 32,
+                    "comment": 2,
+                    "filename": "docs/js/demo/chart-pie-demo.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "docs/js/demo/datatables-demo.js"
+                },
+                {
+                    "blank": 298,
+                    "code": 1308,
+                    "comment": 126,
+                    "filename": "docs/js/deps/algebra.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 9,
+                    "filename": "docs/js/deps/chartannotation.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "docs/js/deps/cookies.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 30,
+                    "comment": 7,
+                    "filename": "docs/js/deps/imagecache.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 280,
+                    "filename": "docs/js/deps/jspdf.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 6,
+                    "filename": "docs/js/deps/pull.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 24,
+                    "comment": 22,
+                    "filename": "docs/js/deps/sb-admin-2.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 1,
+                    "comment": 5,
+                    "filename": "docs/js/deps/sb-admin-2.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "docs/js/deps/swipe.min.js"
+                },
+                {
+                    "blank": 11,
+                    "code": 131,
+                    "comment": 21,
+                    "filename": "docs/js/Lesson.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "docs/js/LessonController.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 985,
+                    "comment": 8,
+                    "filename": "docs/js/login.js"
+                },
+                {
+                    "blank": 20,
+                    "code": 174,
+                    "comment": 14,
+                    "filename": "docs/js/main.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "docs/js/push.js"
+                },
+                {
+                    "blank": 40,
+                    "code": 635,
+                    "comment": 137,
+                    "filename": "docs/js/ViewController.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "docs/json/schools.json"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "docs/LICENSE"
+                },
+                {
+                    "blank": 20,
+                    "code": 104,
+                    "comment": 7,
+                    "filename": "docs/login/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "docs/manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "docs/manifest.webmanifest"
+                },
+                {
+                    "blank": 0,
+                    "code": 6582,
+                    "comment": 0,
+                    "filename": "docs/package-lock.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "docs/package.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "docs/README.md"
+                },
+                {
+                    "blank": 15,
+                    "code": 74,
+                    "comment": 6,
+                    "filename": "docs/register.html"
+                },
+                {
+                    "blank": 1,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "docs/scss/_buttons.scss"
+                },
+                {
+                    "blank": 1,
+                    "code": 32,
+                    "comment": 3,
+                    "filename": "docs/scss/_cards.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 24,
+                    "comment": 3,
+                    "filename": "docs/scss/_charts.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 16,
+                    "comment": 2,
+                    "filename": "docs/scss/_dropdowns.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 47,
+                    "comment": 3,
+                    "filename": "docs/scss/_error.scss"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "docs/scss/_footer.scss"
+                },
+                {
+                    "blank": 6,
+                    "code": 50,
+                    "comment": 4,
+                    "filename": "docs/scss/_global.scss"
+                },
+                {
+                    "blank": 10,
+                    "code": 38,
+                    "comment": 2,
+                    "filename": "docs/scss/_login.scss"
+                },
+                {
+                    "blank": 1,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "docs/scss/_mixins.scss"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "docs/scss/_navs.scss"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "docs/scss/_utilities.scss"
+                },
+                {
+                    "blank": 15,
+                    "code": 42,
+                    "comment": 19,
+                    "filename": "docs/scss/_variables.scss"
+                },
+                {
+                    "blank": 1,
+                    "code": 38,
+                    "comment": 3,
+                    "filename": "docs/scss/navs/_global.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 353,
+                    "comment": 14,
+                    "filename": "docs/scss/navs/_sidebar.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 126,
+                    "comment": 1,
+                    "filename": "docs/scss/navs/_topbar.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 13,
+                    "comment": 4,
+                    "filename": "docs/scss/sb-admin-2.scss"
+                },
+                {
+                    "blank": 6,
+                    "code": 28,
+                    "comment": 3,
+                    "filename": "docs/scss/utilities/_animation.scss"
+                },
+                {
+                    "blank": 15,
+                    "code": 52,
+                    "comment": 2,
+                    "filename": "docs/scss/utilities/_background.scss"
+                },
+                {
+                    "blank": 9,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "docs/scss/utilities/_border.scss"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "docs/scss/utilities/_display.scss"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "docs/scss/utilities/_progress.scss"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "docs/scss/utilities/_rotate.scss"
+                },
+                {
+                    "blank": 12,
+                    "code": 41,
+                    "comment": 1,
+                    "filename": "docs/scss/utilities/_text.scss"
+                },
+                {
+                    "blank": 11,
+                    "code": 111,
+                    "comment": 1,
+                    "filename": "docs/service-worker.js"
+                },
+                {
+                    "blank": 54,
+                    "code": 758,
+                    "comment": 50,
+                    "filename": "docs/tables.html"
+                },
+                {
+                    "blank": 10,
+                    "code": 32,
+                    "comment": 5,
+                    "filename": "docs/test.html"
+                },
+                {
+                    "blank": 58,
+                    "code": 338,
+                    "comment": 49,
+                    "filename": "docs/utilities-animation.html"
+                },
+                {
+                    "blank": 66,
+                    "code": 321,
+                    "comment": 49,
+                    "filename": "docs/utilities-border.html"
+                },
+                {
+                    "blank": 61,
+                    "code": 326,
+                    "comment": 54,
+                    "filename": "docs/utilities-color.html"
+                },
+                {
+                    "blank": 60,
+                    "code": 323,
+                    "comment": 51,
+                    "filename": "docs/utilities-other.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "LICENSE"
+                },
+                {
+                    "blank": 0,
+                    "code": 474,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "secret.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 14,
+                    "filename": "srv/lib/magister/authcode.function.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 31,
+                    "comment": 2,
+                    "filename": "srv/lib/magister/cijfers.function.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 15,
+                    "comment": 2,
+                    "filename": "srv/lib/magister/login.function.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 48,
+                    "comment": 14,
+                    "filename": "srv/server.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "TODO.md"
+                }
+            ]
         }
     ]
 }
