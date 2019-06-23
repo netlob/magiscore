@@ -12,7 +12,7 @@ var currentLesson,
   
 viewController.setConfig()
 
-function main(lesson) {
+function main(l) {
   var grades = localStorage.getItem("grades");
   if (grades && person && course && creds && school && viewController.config) {
     grades = JSON.parse(grades)
@@ -34,7 +34,7 @@ function main(lesson) {
     }
 
     viewController.updateNav()
-    viewController.render(lesson?lesson:'general')
+    viewController.render(l?l:'general')
     if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
     // $('#betaModal').modal({show:true})
   } else {
@@ -215,5 +215,11 @@ Array.prototype.remove = function() {
   }
   return this;
 };
+
+document.addEventListener("deviceready", function(){
+  alert("123");
+  $('#wrapper').bind('swipeleft', function() { if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
+  $('#wrapper').bind('swiperight', function() { if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
+}, true);
 
 main()

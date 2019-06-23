@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
     }
   },
   "dependent_plugins": {}

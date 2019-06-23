@@ -14,6 +14,13 @@
     <preference name="BackgroundColor" value="0xff0096db"/>
     <preference name="HideKeyboardFormAccessoryBar" value="true"/>
     <preference name="Fullscreen" value="false" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#0096db" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="StatusBarDefaultScrollToTop" value="false" />
+
+
+
     <!-- <preference name="Orientation" value="portrait" /> -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

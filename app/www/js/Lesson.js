@@ -29,14 +29,14 @@ class Lesson {
 
     getSecond() {
       return {
-        "title": 'poep',
+        "title": '',
         "value": 0
       }
     }
 
     getThird() {
       return {
-        "title": 'poep',
+        "title": '',
         "value": 0
       }
     }
