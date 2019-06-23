@@ -13,7 +13,7 @@
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="BackgroundColor" value="0xff0096db"/>
     <preference name="HideKeyboardFormAccessoryBar" value="true"/>
-    <!-- <preference name="Fullscreen" value="true" /> -->
+    <preference name="Fullscreen" value="false" />
     <!-- <preference name="Orientation" value="portrait" /> -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -24,13 +24,14 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <!-- <resource-file src="res/values/colors.xml" target="/app/src/main/res/values/colors.xml" /> -->
-        <!-- <icon background="@color/background" density="ldpi" foreground="res/icon/icon-ldpi.png" /> -->
-        <!-- <icon background="#0096db" density="mdpi" foreground="/res/icon/icon-mdpi.png" />
-        <icon background="#0096db" density="hdpi" foreground="/res/icon/icon-hdpi.png" />
-        <icon background="#0096db" density="xhdpi" foreground="/res/icon/icon-xhdpi.png" />
-        <icon background="#0096db" density="xxhdpi" foreground="/res/icon/icon-xxhdpi.png" />
-        <icon background="#0096db" density="xxxhdpi" foreground="/res/icon/icon-xxxhdpi.png" /> -->
+        <!-- <icon density="ldpi" src="platforms/android/app/src/main/res/icon/icon-ldpi.png" /> -->
+        <icon density="mdpi" src="platforms/android/app/src/main/res/icon/icon-mdpi.png" />
+        <icon density="hdpi" src="platforms/android/app/src/main/res/icon/icon-hdpi.png" />
+        <icon density="xhdpi" src="platforms/android/app/src/main/res/icon/icon-xhdpi.png" />
+        <icon density="xxhdpi" src="platforms/android/app/src/main/res/icon/icon-xxhdpi.png" />
+        <icon density="xxxhdpi" src="platforms/android/app/src/main/res/icon/icon-xxxhdpi.png" />
     </platform>
+    <platform name="ios"/>
     <!-- <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />

@@ -20,8 +20,14 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
+    <icon density="mdpi" src="platforms/android/app/src/main/res/icon/icon-mdpi.png" />
+    <icon density="hdpi" src="platforms/android/app/src/main/res/icon/icon-hdpi.png" />
+    <icon density="xhdpi" src="platforms/android/app/src/main/res/icon/icon-xhdpi.png" />
+    <icon density="xxhdpi" src="platforms/android/app/src/main/res/icon/icon-xxhdpi.png" />
+    <icon density="xxxhdpi" src="platforms/android/app/src/main/res/icon/icon-xxxhdpi.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackgroundColor" value="0xff0096db" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
+    <preference name="Fullscreen" value="false" />
 </widget>
