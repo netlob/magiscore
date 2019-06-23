@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="nl.sj3rd.magiscore" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Magiscore</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="info@magiscore.nl" href="https://magiscore.nl">
+        Sj3rd
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <preference name="DisallowOverscroll" value="true"/>
+    <preference name="BackgroundColor" value="0xff0096db"/>
+    <preference name="HideKeyboardFormAccessoryBar" value="true"/>
+    <!-- <preference name="Fullscreen" value="true" /> -->
+    <!-- <preference name="Orientation" value="portrait" /> -->
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <!-- <resource-file src="res/values/colors.xml" target="/app/src/main/res/values/colors.xml" />
+        <icon background="@color/background" density="ldpi" foreground="res/icon/mipmap-ldpi/icon.png" />
+        <icon background="@color/background" density="mdpi" foreground="res/icon/mipmap-mdpi/icon.png" />
+        <icon background="@color/background" density="hdpi" foreground="res/icon/mipmap-hdpi/icon.png" />
+        <icon background="@color/background" density="xhdpi" foreground="res/icon/mipmap-xhdpi/icon.png" />
+        <icon background="@color/background" density="xxhdpi" foreground="res/icon/mipmap-xxhdpi/icon.png" />
+        <icon background="@color/background" density="xxxhdpi" foreground="res/icon/mipmap-xxxhdpi/icon.png" /> -->
+    </platform>
+    <!-- <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform> -->
+</widget>
