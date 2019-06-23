@@ -780,85 +780,75 @@
   <script src="js/Lesson.js"></script>
   <script src="js/ViewController.js"></script>
   <script src="js/LessonController.js"></script>
-  <script src="js/push.js"></script>
+  <!-- <script src="js/push.js"></script> -->
   <script src="js/main.js"></script>
   <script>
     var width = $(window).width();
     if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
     $(window).resize(function() { if($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
     $(window).resize(function() { if($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
-  
-    // if ('serviceWorker' in navigator) {
-    //   window.addEventListener('load', function() {
-    //     navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
-    //       console.log('[ServiceWorker] registration successful with scope: ', registration.scope);
-    //     }, function(err) {
-    //       console.log('[ServiceWorker] registration failed: ', err);
-    //     });
-    //   });
-    // }
 
-    var registration;
+    // var registration;
 
-    window.isUpdateAvailable = new Promise(function(resolve, reject) {
-      if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
-        navigator.serviceWorker.register('./service-worker.js', { scope: "/" })
-        .then(reg => {
-          const subscribeOptions = {
-            userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array('BC79U18J9Pn9ddyl7Vme5nYZC3blOTTlZS3qWj2QyMbtgZiMpOwe2tEWJstSsUaoHXbNQRiJ5Wi8cX2D4upxZP4')
-          };
+    // window.isUpdateAvailable = new Promise(function(resolve, reject) {
+    //   if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
+    //     navigator.serviceWorker.register('./service-worker.js', { scope: "/" })
+    //     .then(reg => {
+    //       const subscribeOptions = {
+    //         userVisibleOnly: true,
+    //         applicationServerKey: urlBase64ToUint8Array('BC79U18J9Pn9ddyl7Vme5nYZC3blOTTlZS3qWj2QyMbtgZiMpOwe2tEWJstSsUaoHXbNQRiJ5Wi8cX2D4upxZP4')
+    //       };
 
-          reg.pushManager.subscribe(subscribeOptions)
-          .then(subscription => {
-            var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": "https://magistat.bramkoene.nl/api/notifications",
-              "method": "GET",
-              "headers": {
-                  "subscription": JSON.stringify(subscription)
-              }
-            }
+    //       reg.pushManager.subscribe(subscribeOptions)
+    //       .then(subscription => {
+    //         var settings = {
+    //           "async": true,
+    //           "crossDomain": true,
+    //           "url": "https://magistat.bramkoene.nl/api/notifications",
+    //           "method": "GET",
+    //           "headers": {
+    //               "subscription": JSON.stringify(subscription)
+    //           }
+    //         }
 
-            $.ajax(settings).done(function (response) {
-              console.log(response)
-            })
-          })
+    //         $.ajax(settings).done(function (response) {
+    //           console.log(response)
+    //         })
+    //       })
           
-          console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
-          reg.onupdatefound = () => {
-            const installingWorker = reg.installing;
-            installingWorker.onstatechange = () => {
-              switch (installingWorker.state) {
-                case 'installed':
-                  if (navigator.serviceWorker.controller) {
-                    resolve(true);
-                  } else {
-                    resolve(false);
-                  }
-                  break;
-              }
-            };
-          };
-        })
-        // .then(function(pushSubscription) {
-        //   console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
-        //   return pushSubscription;
-        // })
-        .catch(err => console.error('[ServiceWorker] registration failed: ', err));
-      }
-    });
+    //       console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
+    //       reg.onupdatefound = () => {
+    //         const installingWorker = reg.installing;
+    //         installingWorker.onstatechange = () => {
+    //           switch (installingWorker.state) {
+    //             case 'installed':
+    //               if (navigator.serviceWorker.controller) {
+    //                 resolve(true);
+    //               } else {
+    //                 resolve(false);
+    //               }
+    //               break;
+    //           }
+    //         };
+    //       };
+    //     })
+    //     // .then(function(pushSubscription) {
+    //     //   console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+    //     //   return pushSubscription;
+    //     // })
+    //     .catch(err => console.error('[ServiceWorker] registration failed: ', err));
+    //   }
+    // });
 
-    window['isUpdateAvailable']
-    .then(isAvailable => {
-      if (isAvailable) {
-        viewController.toast(`Update beschikbaar! <button role="button" style="color: #FFFF00; outline: none !important; background: none !important; border: none !important;" onclick="updateCache()">Update</button>`)
-      }
-    });
-    if(viewController == undefined) {
-      location.reload()
-    }
+    // window['isUpdateAvailable']
+    // .then(isAvailable => {
+    //   if (isAvailable) {
+    //     viewController.toast(`Update beschikbaar! <button role="button" style="color: #FFFF00; outline: none !important; background: none !important; border: none !important;" onclick="updateCache()">Update</button>`)
+    //   }
+    // });
+    // if(viewController == undefined) {
+    //   location.reload()
+    // }
   </script>
 </body>
 

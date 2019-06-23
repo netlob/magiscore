@@ -23,13 +23,13 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <!-- <resource-file src="res/values/colors.xml" target="/app/src/main/res/values/colors.xml" />
-        <icon background="@color/background" density="ldpi" foreground="res/icon/mipmap-ldpi/icon.png" />
-        <icon background="@color/background" density="mdpi" foreground="res/icon/mipmap-mdpi/icon.png" />
-        <icon background="@color/background" density="hdpi" foreground="res/icon/mipmap-hdpi/icon.png" />
-        <icon background="@color/background" density="xhdpi" foreground="res/icon/mipmap-xhdpi/icon.png" />
-        <icon background="@color/background" density="xxhdpi" foreground="res/icon/mipmap-xxhdpi/icon.png" />
-        <icon background="@color/background" density="xxxhdpi" foreground="res/icon/mipmap-xxxhdpi/icon.png" /> -->
+        <!-- <resource-file src="res/values/colors.xml" target="/app/src/main/res/values/colors.xml" /> -->
+        <!-- <icon background="@color/background" density="ldpi" foreground="res/icon/icon-ldpi.png" /> -->
+        <icon background="#0096db" density="mdpi" foreground="res/icon/icon-mdpi.png" />
+        <icon background="#0096db" density="hdpi" foreground="res/icon/icon-hdpi.png" />
+        <icon background="#0096db" density="xhdpi" foreground="res/icon/icon-xhdpi.png" />
+        <icon background="#0096db" density="xxhdpi" foreground="res/icon/icon-xxhdpi.png" />
+        <icon background="#0096db" density="xxxhdpi" foreground="res/icon/icon-xxxhdpi.png" />
     </platform>
     <!-- <platform name="ios">
         <allow-intent href="itms:*" />
