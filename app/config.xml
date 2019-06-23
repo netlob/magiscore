@@ -25,11 +25,11 @@
         <allow-intent href="market:*" />
         <!-- <resource-file src="res/values/colors.xml" target="/app/src/main/res/values/colors.xml" /> -->
         <!-- <icon background="@color/background" density="ldpi" foreground="res/icon/icon-ldpi.png" /> -->
-        <icon background="#0096db" density="mdpi" foreground="res/icon/icon-mdpi.png" />
-        <icon background="#0096db" density="hdpi" foreground="res/icon/icon-hdpi.png" />
-        <icon background="#0096db" density="xhdpi" foreground="res/icon/icon-xhdpi.png" />
-        <icon background="#0096db" density="xxhdpi" foreground="res/icon/icon-xxhdpi.png" />
-        <icon background="#0096db" density="xxxhdpi" foreground="res/icon/icon-xxxhdpi.png" />
+        <!-- <icon background="#0096db" density="mdpi" foreground="/res/icon/icon-mdpi.png" />
+        <icon background="#0096db" density="hdpi" foreground="/res/icon/icon-hdpi.png" />
+        <icon background="#0096db" density="xhdpi" foreground="/res/icon/icon-xhdpi.png" />
+        <icon background="#0096db" density="xxhdpi" foreground="/res/icon/icon-xxhdpi.png" />
+        <icon background="#0096db" density="xxxhdpi" foreground="/res/icon/icon-xxxhdpi.png" /> -->
     </platform>
     <!-- <platform name="ios">
         <allow-intent href="itms:*" />

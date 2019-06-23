@@ -12,7 +12,7 @@ var currentLesson,
   
 viewController.setConfig()
 
-function main() {
+function main(lesson) {
   var grades = localStorage.getItem("grades");
   if (grades && person && course && creds && school && viewController.config) {
     grades = JSON.parse(grades)
@@ -34,7 +34,7 @@ function main() {
     }
 
     viewController.updateNav()
-    viewController.render('general')
+    viewController.render(lesson?lesson:'general')
     if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
     // $('#betaModal').modal({show:true})
   } else {
@@ -113,13 +113,19 @@ function syncGrades() {
           if(grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) { sorted[vak]['Grades'].push(grade) }
           if(grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) { sorted[vak]['Completed'].push(grade) }
         })
+        lessonController.clear()
+        for(var lesson in sorted) {
+          var data = sorted[lesson]
+          var grades = data["Grades"]
+          lessonController.add(lesson, grades, data, $("#lesson-wrapper"))
+        }
         $("#overlay").hide();
         viewController.lineChart.destroy();
-        main()
+        main(currentLesson)
         resolve()
       } else {
         $("#overlay").hide();
-        viewController.toast(response.substring, 5000)
+        viewController.toast(response, 5000)
         reject()
       }
     });
@@ -146,7 +152,7 @@ function updateCache() {
 $("body").keypress(function(e) {
   if(e.which == 114) {
     e.preventDefault();
-    var elem = $("body");
+    var elem = $("document");
     $({deg: 0}).animate({deg: 360}, {
       duration: 4000,
       step: function(now){
@@ -160,8 +166,12 @@ $("body").keypress(function(e) {
 
 const ptr = PullToRefresh.init({
   mainElement: '#ptr',
+  shouldPullToRefresh: function() {
+    return $(window).scrollTop() == 0
+  },
   onRefresh: function (done) {
     syncGrades().then(d => done())
+    done()
   }
 });
 
@@ -175,21 +185,21 @@ const ptr = PullToRefresh.init({
 // $("#content-wrapper.div:not(:last-child)")
 // $("#content-wrapper").on('swiperight',  function(){ if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
 // $("#content-wrapper").on('swipeleft',  function(){ if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
-var s = Swiped.init({
-  query: '#content-wrapper',
-  left: 180,
-  left: 180,
-  onOpen: function() {
-    console.dir('Open')
-      $('#content-wrapper').css('transform', 'none')
-      if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
-  },
-  onClose: function() {
-    console.dir('Close')
-    // $('#content-wrapper').css('transform', 'none')
-    // if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
-  }
-});;
+// var s = Swiped.init({
+//   query: '#content-wrapper',
+//   left: 180,
+//   left: 180,
+//   onOpen: function() {
+//     console.dir('Open')
+//       $('#content-wrapper').css('transform', 'none')
+//       if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
+//   },
+//   onClose: function() {
+//     console.dir('Close')
+//     // $('#content-wrapper').css('transform', 'none')
+//     // if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
+//   }
+// });;
 
 String.prototype.capitalize = function(poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);

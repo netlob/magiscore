@@ -892,7 +892,15 @@ function getLoginInfo(){
 var res;
 function login(creds) {
     if(!creds.school){ 
-        toast('Error: geen geldige school')
+        if(navigator.notification) {
+            navigator.notification.alert(
+                `Geen geldige school \n Tip: type de eerste 3 letters van je school en kies je school uit het lijstje`,
+                function(){},
+                'Oeps',
+                'Begrepen'
+            );
+        } else { toast('Error: verkeerd Magister wachtwoord', 3000) }
+        $("#overlay").hide()
         $('#login-school').val('')
         return;
      }
@@ -931,32 +939,64 @@ function login(creds) {
                 localStorage.setItem("creds", JSON.stringify(creds));
                 localStorage.setItem("course", JSON.stringify(course));
                 localStorage.setItem("config", JSON.stringify(config));
-                window.location='/'
+                window.location = 'file:///android_asset/www/index.html'
             } else {
                 console.error(response)
                 if(response == 'error: AuthError: Invalid password'){
-                    toast('Error: verkeerd Magister wachtwoord')
+                    if(navigator.notification) {
+                        navigator.notification.alert(
+                            'Error: verkeerd Magister wachtwoord',
+                            function(){},
+                            'Oeps',
+                            'Begrepen'
+                        );
+                    } else { toast('Verkeerd Magister wachtwoord', 3000) }
+                    $("#overlay").hide()
                     $('#login-password').val('')
                     return
                 }
                 if(response == 'error: AuthError: Invalid username'){
-                    toast('Error: verkeerde Magister gebruikersnaam')
+                    if(navigator.notification) {
+                        navigator.notification.alert(
+                            'Error: verkeerde Magister gebruikersnaam',
+                            function(){},
+                            'Oeps',
+                            'Begrepen'
+                        );
+                    } else { toast('Verkeerde Magister gebruikersnaam', 3000) }
+                    $("#overlay").hide()
                     $('#login-username').val('')
                     return
                 }
-                toast(response)
+                alert(response)
                 $('#login-school').val('')
                 $('#login-username').val('')
                 $('#login-password').val('')
+                $("#overlay").hide()
             }
         });
-    } else { console.dir('False login') }
+    } else {
+        if(navigator.notification) {
+            navigator.notification.alert(
+                'Vul alle velden in a.u.b.',
+                function(){},
+                'Oeps',
+                'Begrepen'
+            );
+        } else { msg('Vul alle velden in a.u.b.', 3000) }
+        $("#overlay").hide()
+    }
 }
 
-function toast(msg) {
-    $("#overlay").hide()
-    $("#snackbar").text(msg).addClass("show")
-    setTimeout(function(){ $("#snackbar").removeClass("show") }, 3000);
+function toast(msg, duration) {
+    $('body').append(`<div id="snackbar" class="snackbar">${msg}</div>`);
+    $('#snackbar').css("display", "block")
+    $('#snackbar').animate({"bottom": "30px" }, "slow");
+    if(duration) {
+        setTimeout(function(){
+            $('#snackbar').animate({"bottom": "-200px" }, "slow", function(){ $('#snackbar').remove() })
+        }, duration);
+    }
 }
 
 var grades = localStorage.getItem("grades");
@@ -974,7 +1014,7 @@ if(grades && person && school && creds && course && config) {
     // var school = JSON.parse(school)
     // var creds = JSON.parse(creds)
     // var course = JSON.parse(course)
-    window.location = "/"
+    window.location = 'file:///android_asset/www/index.html'
     // console.dir('jazeker wel')
 }
 

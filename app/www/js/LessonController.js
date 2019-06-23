@@ -15,6 +15,10 @@ class LessonController {
 
     }
 
+    clear() {
+        this.lessons = []
+    }
+
     getLesson(lesson) {
         return this.lessons.find(x => x.name === lesson)
     }

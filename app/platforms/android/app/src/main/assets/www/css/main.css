@@ -1,4 +1,4 @@
-html {
+/* html {
     overflow: hidden;
     height: 100%;
 }
@@ -6,6 +6,11 @@ html {
 body {
     height: 100%;
     overflow: auto;
+} */
+
+#wrapper {
+    overflow: auto !important;
+    position: relative;
 }
 
 body {

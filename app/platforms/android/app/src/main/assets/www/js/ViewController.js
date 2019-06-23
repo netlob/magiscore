@@ -1,6 +1,5 @@
-// yo dit is gecomment over duidelijk als je wilt weten wat deze class doet kan je m gewoon aanroepen!
 class ViewController {
-    constructor(element, lineChart, pieChart, lessonControler) {
+    constructor(element, lineChart, pieChart, lessonController) {
         this.element = element[0];
         this.lineChart = lineChart;
         this.pieChart = pieChart;
@@ -21,10 +20,13 @@ class ViewController {
         $('#lesson-wrapper').hide();
         $('#currentRender').text('Gemiddeld')
         $('#currentRenderMobile').text('Gemiddeld')
-        if(!this.config.isDesktop) { $('#sidebarToggleTop').click() }
+        if(!this.config.isDesktop) {
+            $('#sidebarToggleTop').click()
+        }
         $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
         setChartData(this.config, 'general', true)
         setCompleted()
+        currentLesson = 'general'
         document.title = `Gemiddeld - Magiscore`
     }
 
@@ -41,6 +43,7 @@ class ViewController {
         }
         setChartData(this.config, lesson)
         setTableData(lesson)
+        currentLesson = lesson
         document.title = `${lesson.capitalize()} - Magiscore`
     }
 
