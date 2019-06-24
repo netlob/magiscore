@@ -9,7 +9,7 @@ async function send() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://magistat.bramkoene.nl/api/push",
+        "url": "https://magiscore.nl/api/push",
         "method": "GET",
         "headers": {
             "subscription": subscription

@@ -55,7 +55,7 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
     console.log('[ServiceWorker] Fetch', e.request.url);
-    if(e.request.url == 'https://magistat.bramkoene.nl/api/cijfers') {
+    if(e.request.url == 'https://magiscore.nl/api/cijfers') {
         console.log('[ServiceWorker] Stopped fetching because of call to API')
         return false;
     }
@@ -94,7 +94,7 @@ self.addEventListener("push", e => {
     console.dir(data)
     self.registration.showNotification('Magiscore geupdate!', {
       body: "Magiscore is klaar om offline te gebruiken!",
-      icon: "https://magistat.bramkoene.nl/img/icons/icon-128x128.png",
+      icon: "https://magiscore.nl/img/icons/icon-128x128.png",
       title: 'Magistat'
     });
 });
