@@ -38,14 +38,14 @@ function main(l) {
     if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
     // $('#betaModal').modal({show:true})
   } else {
-    window.location = '../index.html'
+    window.location = './login/index.html'
     // alert(window.location)
   }
 }
 
 function logOut() {
   localStorage.clear()
-  window.location = '/login'
+  window.location = './login/index.html'
 }
 
 function getBase64Image(img) {

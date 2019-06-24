@@ -45,7 +45,7 @@ function main(l) {
 
 function logOut() {
   localStorage.clear()
-  window.location = '/login'
+  window.location = './login/index.html'
 }
 
 function getBase64Image(img) {
@@ -86,6 +86,7 @@ function syncGrades() {
     $.ajax(settings).done(function (response) {
       // $("#overlay").show();
       if(response.substring(0, 5) != 'error') {
+        lessonController.clear()
         localStorage.removeItem("grades");
         localStorage.removeItem("person");
         localStorage.removeItem("token");
@@ -113,12 +114,6 @@ function syncGrades() {
           if(grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) { sorted[vak]['Grades'].push(grade) }
           if(grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) { sorted[vak]['Completed'].push(grade) }
         })
-        lessonController.clear()
-        for(var lesson in sorted) {
-          var data = sorted[lesson]
-          var grades = data["Grades"]
-          lessonController.add(lesson, grades, data, $("#lesson-wrapper"))
-        }
         $("#overlay").hide();
         viewController.lineChart.destroy();
         main(currentLesson)
@@ -215,6 +210,10 @@ Array.prototype.remove = function() {
   }
   return this;
 };
+
+$('.container-fluid').click(function() {
+  if(!$('body').hasClass('sidebar-toggled') && $(window).width() < 767) { $('#sidebarToggleTop').click() }
+});
 
 document.addEventListener("deviceready", function(){
   alert("123");
