@@ -64,3 +64,7 @@ typings/
 secret.js
 .DS_Store
 app/build.json
+*.jks
+*.keystore
+*.keystore
+app/magiscore.keystore

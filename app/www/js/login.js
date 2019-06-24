@@ -1037,4 +1037,4 @@ function updateCache() {
         };
         navigator.serviceWorker.controller.postMessage("updateAvailablePleaseUpdate", [msg_chan.port2]);
     });
-  }
+}

@@ -2,7 +2,7 @@
 <widget id="nl.sj3rd.magiscore" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Magiscore</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        
     </description>
     <author email="info@magiscore.nl" href="https://magiscore.nl">
         Sj3rd
@@ -18,9 +18,6 @@
     <preference name="StatusBarBackgroundColor" value="#0096db" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="StatusBarDefaultScrollToTop" value="false" />
-
-
-
     <!-- <preference name="Orientation" value="portrait" /> -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -32,11 +29,11 @@
         <allow-intent href="market:*" />
         <!-- <resource-file src="res/values/colors.xml" target="/app/src/main/res/values/colors.xml" /> -->
         <!-- <icon density="ldpi" src="platforms/android/app/src/main/res/icon/icon-ldpi.png" /> -->
-        <icon density="mdpi" src="platforms/android/app/src/main/res/icon/icon-mdpi.png" />
-        <icon density="hdpi" src="platforms/android/app/src/main/res/icon/icon-hdpi.png" />
-        <icon density="xhdpi" src="platforms/android/app/src/main/res/icon/icon-xhdpi.png" />
-        <icon density="xxhdpi" src="platforms/android/app/src/main/res/icon/icon-xxhdpi.png" />
-        <icon density="xxxhdpi" src="platforms/android/app/src/main/res/icon/icon-xxxhdpi.png" />
+        <icon density="mdpi" src="platforms/android/app/src/main/res/icon-mdpi.png" />
+        <icon density="hdpi" src="platforms/android/app/src/main/res/icon-hdpi.png" />
+        <icon density="xhdpi" src="platforms/android/app/src/main/res/icon-xhdpi.png" />
+        <icon density="xxhdpi" src="platforms/android/app/src/main/res/icon-xxhdpi.png" />
+        <icon density="xxxhdpi" src="platforms/android/app/src/main/res/icon-xxxhdpi.png" />
     </platform>
     <platform name="ios"/>
     <!-- <platform name="ios">
