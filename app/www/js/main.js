@@ -38,7 +38,7 @@ function main(l) {
     if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
     // $('#betaModal').modal({show:true})
   } else {
-    window.location = 'file:///android_asset/www/login/index.html'
+    window.location = '../index.html'
     // alert(window.location)
   }
 }

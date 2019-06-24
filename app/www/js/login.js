@@ -939,7 +939,7 @@ function login(creds) {
                 localStorage.setItem("creds", JSON.stringify(creds));
                 localStorage.setItem("course", JSON.stringify(course));
                 localStorage.setItem("config", JSON.stringify(config));
-                window.location = 'file:///android_asset/www/index.html'
+                window.location = '../index.html'
             } else {
                 console.error(response)
                 if(response == 'error: AuthError: Invalid password'){
@@ -1014,7 +1014,7 @@ if(grades && person && school && creds && course && config) {
     // var school = JSON.parse(school)
     // var creds = JSON.parse(creds)
     // var course = JSON.parse(course)
-    window.location = 'file:///android_asset/www/index.html'
+    window.location = '../index.html'
     // console.dir('jazeker wel')
 }
 
