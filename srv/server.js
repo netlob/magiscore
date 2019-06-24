@@ -34,7 +34,7 @@ http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Headers', 'school, username, password, token, subscription');
     // Handle normal request
     if('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url == '/api/cijfers') {
-        console.log(req.headers)
+        console.log('Request')
         getAuthCode()
         .then(mAuth => {
             req.headers.code = mAuth
