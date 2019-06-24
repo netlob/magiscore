@@ -56,7 +56,7 @@ http.createServer((req, res) => {
         .sendNotification(JSON.parse(req.headers.subscription), payload)
         .catch(err => console.error(err));
     } else {
-        res.end('MAGBOT STAT API');
+        res.end('MAGISCORE API');
     }
 }).listen(7070);
 
