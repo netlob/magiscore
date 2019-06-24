@@ -58,7 +58,7 @@ http.createServer((req, res) => {
     } else {
         res.end('MAGISCORE API');
     }
-}).listen(7070);
+}).listen(7080);
 
 /**
  * Simple function to await some time.
