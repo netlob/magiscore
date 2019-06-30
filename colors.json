@@ -1,0 +1,10 @@
+{
+    "dark": {
+        "background": "#202124",
+        "background_card": "#2c2d30",
+        "title": "#EEE",
+        "text": "#A9A9A9",
+        "subtitle": "#808080"
+    },
+    "light": {}
+}
