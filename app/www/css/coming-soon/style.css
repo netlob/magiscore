@@ -4,6 +4,7 @@
 	URL: http://freehtml5.co
 */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800");
+
 * {
   margin: 0px;
   padding: 0px;
@@ -53,10 +54,12 @@ html {
 .main-navbar-nav {
   color: #fff !important;
 }
+
 .main-navbar-nav li {
   color: #fff;
   opacity: .7;
 }
+
 .main-navbar-nav .navbar-nav .nav-item a:hover {
   color: #234197 !important;
   -webkit-transition: all .33s ease;
@@ -65,13 +68,16 @@ html {
   -ms-transition: all .33s ease;
   transition: all .33s ease;
 }
+
 .main-navbar-nav .active {
   color: #fff !important;
   opacity: 1 !important;
 }
+
 .main-navbar-nav a {
   color: #fff !important;
 }
+
 .main-navbar-nav .nav-link {
   opacity: 1 !important;
   margin: 0 35px;
@@ -97,13 +103,15 @@ html {
   margin-top: 110px;
   position: relative;
 }
-.fh5co-hero-inner > h1 {
+
+.fh5co-hero-inner>h1 {
   color: #fff;
   font-weight: 300;
   font-size: 55px;
   letter-spacing: 2px;
 }
-.fh5co-hero-inner > p {
+
+.fh5co-hero-inner>p {
   width: 400px;
   font-size: 14px;
   color: #fff;
@@ -111,14 +119,16 @@ html {
   margin-bottom: 30px;
   line-height: 2em;
 }
+
 .fh5co-hero-inner .download-btn-first {
   font-size: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
-  text-align: center; 
+  text-align: center;
   font-weight: 700;
   color: #234197;
 }
+
 .fh5co-hero-inner .features-btn-first {
   font-size: 15px;
   padding: 8px 13px;
@@ -127,6 +137,7 @@ html {
   color: #fff;
   margin-left: 10px;
 }
+
 .fh5co-hero-inner .fh5co-hero-smartphone {
   position: absolute;
   right: 0px;
@@ -143,27 +154,33 @@ html {
   width: 100%;
   overflow: hidden;
 }
+
 .fh5co-advantages-outer .span-perfect {
   color: #648cff;
   text-transform: uppercase;
   font-size: 27px;
   letter-spacing: 1px;
 }
+
 .fh5co-advantages-outer .span-features {
   text-transform: uppercase;
   font-size: 42px;
 }
+
 .fh5co-advantages-outer .second-title {
   text-align: center;
   display: block;
 }
+
 .fh5co-advantages-outer small {
   display: block;
   text-align: center;
 }
+
 .fh5co-advantages-outer .fh5co-advantages-grid-columns {
   margin-top: 120px;
 }
+
 .fh5co-advantages-outer .fh5co-advantages-grid-columns .col-sm-4 .grid-image {
   width: 30%;
   float: left;
@@ -172,11 +189,13 @@ html {
   top: 1px;
   color: #648cff;
 }
+
 .fh5co-advantages-outer .fh5co-advantages-grid-columns .col-sm-4 .grid-title {
   float: left;
   font-size: 20px;
   font-weight: 600;
 }
+
 .fh5co-advantages-outer .fh5co-advantages-grid-columns .col-sm-4 .grid-desc {
   float: right;
   font-size: 13px;
@@ -200,6 +219,7 @@ html {
   height: auto;
   padding: 70px;
 }
+
 .fh5co-slider-outer h1 {
   color: #648cff;
   text-transform: uppercase;
@@ -208,13 +228,17 @@ html {
   margin-bottom: 10px;
   text-align: center;
 }
-.fh5co-slider-outer > h1, .fh5co-slider-outer small {
+
+.fh5co-slider-outer>h1,
+.fh5co-slider-outer small {
   text-align: center;
   display: block;
 }
+
 .fh5co-slider-outer .fh5co-slider-outer {
   margin-top: 50px;
 }
+
 .fh5co-slider-outer .carousel-left-arrow {
   position: absolute;
   left: -100px;
@@ -222,6 +246,7 @@ html {
   font-size: 60px;
   color: #ececec;
 }
+
 .fh5co-slider-outer .carousel-right-arrow {
   position: absolute;
   right: -100px;
@@ -229,6 +254,7 @@ html {
   font-size: 60px;
   color: #ececec;
 }
+
 .fh5co-slider-outer .item img {
   height: 400px;
   width: 200px;
@@ -251,16 +277,20 @@ html {
   height: auto;
   margin-top: -180px;
 }
+
 .fh5co-features-outer .col-sm-6 {
   margin-top: 80px;
 }
+
 .fh5co-features-outer .col-sm-6 img {
   height: 550px;
 }
+
 .fh5co-features-outer .sm-6-content {
   margin-top: 250px;
   position: relative;
 }
+
 .fh5co-features-outer .sm-6-content h1 {
   color: #648cff;
   text-transform: uppercase;
@@ -268,6 +298,7 @@ html {
   font-weight: 600;
   margin-bottom: 20px;
 }
+
 .fh5co-features-outer .sm-6-content p {
   color: #111;
   font-weight: 500;
@@ -275,10 +306,12 @@ html {
   line-height: 1.8em;
   width: 450px;
 }
+
 .fh5co-features-outer .col-sm-6 .col-sm-image-container {
   position: relative;
   width: 300px;
 }
+
 .fh5co-features-outer .col-sm-6 .span-new {
   color: #fff;
   background: #fcec64;
@@ -296,6 +329,7 @@ html {
   right: 0;
   top: 140px;
 }
+
 .fh5co-features-outer .col-sm-6 .span-free {
   color: #fff;
   background: #6ca3ff;
@@ -313,6 +347,7 @@ html {
   bottom: -430px;
   font-weight: 700;
 }
+
 .fh5co-features-outer .col-sm-6 .span-data {
   color: #7e8c91;
   background: #b8faee;
@@ -331,6 +366,7 @@ html {
   right: -2px;
   font-weight: 700;
 }
+
 .fh5co-features-outer .col-sm-6 .span-percent {
   color: #fff;
   background: #6ca3ff;
@@ -348,6 +384,7 @@ html {
   bottom: -430px;
   font-weight: 700;
 }
+
 .fh5co-features-outer .col-sm-6 .circle {
   color: #c3cfe5;
   border: 1px solid #ededed;
@@ -365,6 +402,7 @@ html {
   font-weight: 600;
   box-shadow: 0 0 0 5px #f9f9f9;
 }
+
 .fh5co-features-outer .col-sm-6 .circle-first {
   width: 35px;
   display: inline-block;
@@ -378,6 +416,7 @@ html {
   margin-left: 0px;
   font-weight: 600;
 }
+
 .fh5co-features-outer .col-sm-6 .circle-middle {
   width: 35px;
   display: inline-block;
@@ -391,6 +430,7 @@ html {
   margin-left: 50px;
   font-weight: 600;
 }
+
 .fh5co-features-outer .col-sm-6 .circle-last {
   width: 35px;
   display: inline-block;
@@ -414,10 +454,12 @@ html {
   padding: 70px;
   margin-top: 100px;
 }
+
 .fh5co-reviews-outer .fh5co-reviews-inner {
   margin-top: 100px;
 }
-.fh5co-reviews-outer > h1 {
+
+.fh5co-reviews-outer>h1 {
   color: #648cff;
   text-transform: uppercase;
   font-size: 30px;
@@ -425,15 +467,18 @@ html {
   margin-bottom: 10px;
   text-align: center;
 }
-.fh5co-reviews-outer > small {
+
+.fh5co-reviews-outer>small {
   text-align: center;
   display: block;
 }
+
 .fh5co-reviews-outer .testimonial-desc {
   clear: both;
   padding-top: 30px;
   font-weight: 500;
 }
+
 .fh5co-reviews-outer .testimonial-2 {
   margin-left: 50px;
 }
@@ -448,26 +493,30 @@ html {
   margin-top: 120px;
   overflow-x: hidden;
 }
+
 .fh5co-bottom-outer .fh5co-bottom-inner {
   margin-top: 270px;
 }
+
 .fh5co-bottom-outer .fh5co-bottom-inner .col-sm-6 h1 {
   color: #fff;
   text-transform: uppercase;
   font-size: 30px;
   margin-bottom: 30px;
 }
+
 .fh5co-bottom-outer .fh5co-bottom-inner .col-sm-6 p {
   width: 350px;
   color: #fff;
   font-size: 14.5px;
   line-height: 1.85em;
 }
+
 .fh5co-bottom-outer .fh5co-bottom-inner .col-sm-6 img {
   margin-top: 25px;
 }
 
-   /* ==========================================================================================================
+/* ==========================================================================================================
 										SUB FOOTER
    ========================================================================================================== */
 .img-float-left {
@@ -485,14 +534,17 @@ html {
   background: #2e3149;
   overflow: hidden;
 }
+
 .footer-outer .footer-inner {
   width: 100%;
   height: inherit;
 }
+
 .footer-outer .social-icons-footer i {
   margin: 15px;
   font-size: 20px;
 }
+
 .footer-outer .social-icons-footer a:hover i {
   opacity: .6;
   -webkit-transition: all .2s ease;
@@ -501,17 +553,20 @@ html {
   -ms-transition: all .2s ease;
   transition: all .2s ease;
 }
+
 .footer-outer .footer-three-grid {
   width: 1140px;
   margin: 0 auto;
   height: 50px;
   text-align: center;
 }
+
 .footer-outer .column-1-3 {
   width: 20%;
   float: left;
   height: 50px;
 }
+
 .footer-outer .column-1-3 h1 {
   font-size: 38px;
   letter-spacing: 3px;
@@ -520,19 +575,23 @@ html {
   font-weight: 600;
   color: #fff;
 }
+
 .footer-outer .column-2-3 {
   width: 60%;
   float: left;
   height: 50px;
 }
+
 .footer-outer .column-3-3 {
   width: 20%;
   float: left;
   height: 50px;
 }
+
 .footer-outer .column-3-3 a {
   color: #b5b5c8;
 }
+
 .footer-outer .column-3-3 .social-icons-header a:hover {
   color: #fff;
   opacity: 1;
@@ -540,10 +599,12 @@ html {
   -o-transition: color .2s ease;
   transition: color .2s ease;
 }
+
 .footer-outer .footer-nav ul {
   list-style: none;
   text-align: center;
 }
+
 .footer-outer .footer-nav ul li {
   display: inline-block;
   line-height: 50px;
@@ -551,19 +612,23 @@ html {
   margin: 0 30px;
   font-size: 14px;
 }
+
 .footer-outer .footer-nav ul li:hover {
   color: #fff;
   -webkit-transition: color .2s ease-in-out;
   -o-transition: color .2s ease-in-out;
   transition: color .2s ease-in-out;
 }
+
 .footer-outer .footer-nav ul .active {
   color: #fff;
 }
+
 .footer-outer .footer-nav ul li a {
   color: #fff;
   text-decoration: none;
 }
+
 .footer-outer .border-bottom-footer {
   height: 1px;
   width: 60%;
@@ -572,6 +637,7 @@ html {
   display: block;
   margin-top: 50px;
 }
+
 .footer-outer .copyright {
   color: #565b87;
   text-align: center;
@@ -606,6 +672,7 @@ html {
     width: 100%;
   }
 }
+
 @media screen and (max-width: 1200px) {
   body {
     overflow-x: hidden;
@@ -618,6 +685,7 @@ html {
     height: 550px;
   }
 }
+
 @media screen and (max-width: 993px) {
   body {
     overflow-x: hidden;
@@ -690,6 +758,7 @@ html {
     font-size: 20px;
   }
 }
+
 @media screen and (max-width: 993px) {
   .fh5co-features-grid-columns .col-sm-6 {
     -ms-flex: 0 0 50%;
@@ -735,7 +804,8 @@ html {
     float: none;
   }
 
-  .fh5co-features-outer .col-sm-6 .span-percent, .fh5co-features-outer .col-sm-6 .span-free {
+  .fh5co-features-outer .col-sm-6 .span-percent,
+  .fh5co-features-outer .col-sm-6 .span-free {
     left: -15px;
     bottom: 140px;
   }
@@ -762,9 +832,11 @@ html {
     display: flex;
     flex-direction: column;
   }
+
   .fh5co-features-grid-columns .in-order-4 {
     order: 1;
   }
+
   .fh5co-features-grid-columns .in-order-3 {
     order: 2;
   }
@@ -789,8 +861,9 @@ html {
     font-size: 30px;
   }
 }
+
 @media screen and (max-width: 800px) {
-  .fh5co-hero-inner > h1 {
+  .fh5co-hero-inner>h1 {
     color: #fff;
     font-weight: 300;
     font-size: 45px;
@@ -932,16 +1005,17 @@ html {
     margin-top: 100px;
   }
 }
+
 @media screen and (max-width: 520px) {
   #fh5co-hero-wrapper {
     height: 900px;
   }
 
-  .fh5co-hero-inner > h1 {
+  .fh5co-hero-inner>h1 {
     font-size: 40px;
   }
 
-  .fh5co-hero-inner > p {
+  .fh5co-hero-inner>p {
     width: 100%;
   }
 

@@ -11,9 +11,20 @@
 
   <title>Magiscore</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link href="css/sb-admin-2.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Light theme -->
+  <link href="css/light.css" type="text/css" rel="stylesheet">
+
+  <!-- Temporary fix classes -->
   <link href="css/main.css" rel="stylesheet">
+
+  <!-- Dark theme -->
+  <link href="css/dark.css" type="text/css" rel="stylesheet">
+
+
 
   <meta name="theme-color" content="#0096db">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,13 +37,27 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="/img/icons/icon-128x128.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/img/icons/152x152.png">
-  <link href="img/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/iphoneplus_splash.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/iphone5_splash.png"
+    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/iphone6_splash.png"
+    media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/iphoneplus_splash.png"
+    media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/iphonex_splash.png"
+    media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/ipad_splash.png"
+    media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/ipadpro1_splash.png"
+    media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/ipadpro2_splash.png"
+    media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
 
   <!-- <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="/img/splashscreens/iphoneplus_splash.png"> -->
   <!-- <link rel="apple-touch-startup-image" href="/img/iphoneplus_splash.png"> -->
@@ -177,17 +202,18 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
-        <!-- <div style="height: 70px; position: fixed;"></div> -->
-        <!-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 navbar-static-top shadow" style="position: fixed !important; z-index: 100; width: 100vw;">
+          <!-- <div style="height: 70px; position: fixed;"></div> -->
+          <!-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 navbar-static-top shadow" style="position: fixed !important; z-index: 100; width: 100vw;">
           <div class="container-fluid"> -->
 
-            <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none bg-primary rounded-circle mr-3" aria-label="Toggle zijkant">
-              <i class="fa fa-bars"></i>
-            </button>
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none bg-primary rounded-circle mr-3"
+            aria-label="Toggle zijkant">
+            <i class="fa fa-bars"></i>
+          </button>
 
-            <!-- Topbar Search -->
-            <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <!-- Topbar Search -->
+          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
               <div class="input-group">
                 <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
@@ -198,19 +224,20 @@
               </div>
             </form> -->
 
-            <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-none d-md-block" id="currentRender">Gemiddeld</h1>
-            <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-block d-md-none text-center text-mobile" id="currentRenderMobile">Gemiddeld</h1>
+          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-none d-md-block" id="currentRender">Gemiddeld</h1>
+          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-block d-md-none text-center text-mobile" id="currentRenderMobile">
+            Gemiddeld</h1>
 
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto">
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
 
-              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-              <!-- <li class="nav-item dropdown no-arrow d-sm-none">
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <!-- <li class="nav-item dropdown no-arrow d-sm-none">
                 <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-search fa-fw"></i>
                 </a> -->
-                <!-- Dropdown - Messages -->
-                <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+            <!-- Dropdown - Messages -->
+            <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                   <form class="form-inline mr-auto w-100 navbar-search">
                     <div class="input-group">
                       <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -224,15 +251,15 @@
                 </div>
               </li> -->
 
-              <!-- Nav Item - Alerts -->
-              <!-- <li class="nav-item dropdown no-arrow mx-1">
+            <!-- Nav Item - Alerts -->
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-bell fa-fw"></i> -->
-                  <!-- Counter - Alerts -->
-                  <!-- <span class="badge badge-danger badge-counter">3+</span>
+            <!-- Counter - Alerts -->
+            <!-- <span class="badge badge-danger badge-counter">3+</span>
                 </a> -->
-                <!-- Dropdown - Alerts -->
-                <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+            <!-- Dropdown - Alerts -->
+            <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                   <h6 class="dropdown-header">
                     Alerts Center
                   </h6>
@@ -273,15 +300,15 @@
                 </div>
               </li> -->
 
-              <!-- Nav Item - Messages -->
-              <!-- <li class="nav-item dropdown no-arrow mx-1">
+            <!-- Nav Item - Messages -->
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-envelope fa-fw"></i>
                   <!-- Counter - Messages -->
-                  <!-- <span class="badge badge-danger badge-counter">7</span>
+            <!-- <span class="badge badge-danger badge-counter">7</span>
                 </a> -->
-                <!-- Dropdown - Messages -->
-                <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+            <!-- Dropdown - Messages -->
+            <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                   <h6 class="dropdown-header">
                     Message Center
                   </h6>
@@ -329,38 +356,43 @@
                 </div>
               </li> -->
 
-              <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+            <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
 
-              <!-- Nav Item - User Information -->
-              <li class="nav-item dropdown no-arrow no-primary-hover">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-label="Uitklappen" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-lg-inline text-gray-600 small d-none d-md-block">Voornaam Achternaam</span>
-                  <img class="img-profile rounded-circle" id="imgelem" src="" alt="">
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow no-primary-hover">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-label="Uitklappen" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-lg-inline text-gray-600 small d-none d-md-block">Voornaam Achternaam</span>
+                <img class="img-profile rounded-circle" id="imgelem" src="" alt="">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <div id="mobilePersonInfo" class="dropdown-header d-block d-md-none">Voornaam Achternaam</div>
+                <a class="dropdown-item" href="#sync" onclick="syncGrades()">
+                  <i class="fas fa-sync fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Sync cijfers
                 </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                  <div id="mobilePersonInfo" class="dropdown-header d-block d-md-none">Voornaam Achternaam</div>
-                  <a class="dropdown-item" href="#sync" onclick="syncGrades()">
-                    <i class="fas fa-sync fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Sync cijfers
-                  </a>
-                  <a class="dropdown-item" href="#sync" data-toggle="modal" data-target="#passedModal">
-                    <i class="fas fa-check fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Voldoendegrens
-                  </a>
-                  <!-- <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="#sync" data-toggle="modal" data-target="#passedModal">
+                  <i class="fas fa-check fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Voldoendegrens
+                </a>
+                <!-- <a class="dropdown-item" href="#">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
                   </a> -->
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Uitloggen
-                  </a>
-                </div>
-              </li>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" onclick="viewController.toggleTheme()">
+                  <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Wissel thema
+                </a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Uitloggen
+                </a>
+              </div>
+            </li>
 
-            </ul>
+          </ul>
           <!-- </div> -->
 
         </nav>
@@ -369,8 +401,8 @@
         <div class="mt-4" id="ptr"></div>
 
         <div class="container-fluid" id="lesson-wrapper">
-          
-        </div> 
+
+        </div>
 
         <!-- Begin Page Content -->
         <div class="container-fluid" id="general-wrapper">
@@ -416,11 +448,13 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">% Voltooid</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="general-completed">Niet beschikbaar</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="general-completed">Niet
+                            beschikbaar</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" id="general-completed-bar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-info" role="progressbar" id="general-completed-bar"
+                              style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
                         </div>
                       </div>
@@ -482,7 +516,8 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary" id="general-area-title">Alle cijfers</h6>
                   <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" aria-label="Download grafiek" onclick="viewController.downloadGraph()">
+                    <a class="dropdown-toggle" href="#" role="button" aria-label="Download grafiek"
+                      onclick="viewController.downloadGraph()">
                       <i class="fas fa-download fa-sm"></i>
                     </a>
                   </div>
@@ -490,9 +525,9 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="chart-area">
-                  <!-- <div class="table-responsive"> -->
+                    <!-- <div class="table-responsive"> -->
                     <canvas id="lineChart"></canvas>
-                  <!-- </div> -->
+                    <!-- </div> -->
                   </div>
                 </div>
               </div>
@@ -524,12 +559,12 @@
                     <canvas id="pieChart"></canvas>
                   </div>
                   <div class="mt-4 text-center small">
-                  <span class="mr-2">
-                    <i class="fas fa-circle" style="color: #0096db"></i> Voldoendes
-                  </span>
-                  <span class="mr-2">
-                    <i class="fas fa-circle" style="color: #e86458"></i> Onvoldoendes
-                  </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle" style="color: #0096db"></i> Voldoendes
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle" style="color: #e86458"></i> Onvoldoendes
+                    </span>
                   </div>
                 </div>
               </div>
@@ -567,12 +602,12 @@
                       <tbody id="averagesTable">
                       </tbody>
                     </table>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Color System -->
-            <!-- <div class="row">
+              <!-- Color System -->
+              <!-- <div class="row">
               <div class="col-lg-6 mb-4">
                 <div class="card bg-primary text-white shadow">
                   <div class="card-body">
@@ -623,7 +658,7 @@
               </div>
             </div> -->
 
-            <!-- <div class="col-lg-6 mb-4">
+              <!-- <div class="col-lg-6 mb-4">
 
               Illustrations
               <div class="card shadow mb-4">
@@ -651,205 +686,226 @@
               </div>
 
             </div> -->
+            </div>
+
           </div>
+          <!-- /.container-fluid -->
 
         </div>
-        <!-- /.container-fluid -->
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; <a href="https://github.com/mamorgen/magbot-stat"
+                  aria-label="Github pagina van Magiscore" style="color: #858796">Magiscore</a> - <a
+                  href="https://netlob.app" aria-label="Github portfolio van de maker" style="color: #858796">Netlob</a>
+                <a href="https://wikipedia.org/wiki/2018" aria-label="2018" style="color: #858796">2018</a>-<a
+                  href="https://wikipedia.org/wiki/2019" aria-label="2019" style="color: #858796">2019</a></span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
 
       </div>
-      <!-- End of Main Content -->
+      <!-- End of Content Wrapper -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; <a href="https://github.com/mamorgen/magbot-stat" aria-label="Github pagina van Magiscore" style="color: #858796">Magiscore</a> - <a href="https://netlob.app" aria-label="Github portfolio van de maker" style="color: #858796">Netlob</a> <a href="https://wikipedia.org/wiki/2018" aria-label="2018" style="color: #858796">2018</a>-<a href="https://wikipedia.org/wiki/2019" aria-label="2019" style="color: #858796">2019</a></span>
+      <div id="overlay">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Klaar om uit te loggen?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Klik "Uitloggen" als je zeker weet dat je wilt uitloggen.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Annuleer">Annuleer</button>
+            <a class="btn btn-primary" href="#logout" onclick="logOut()" role="button"
+              aria-label="Uitloggen">Uitloggen</a>
           </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-    <div id="overlay">
-      <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
       </div>
     </div>
 
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Klaar om uit te loggen?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Klik "Uitloggen" als je zeker weet dat je wilt uitloggen.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Annuleer">Annuleer</button>
-          <a class="btn btn-primary" href="#logout" onclick="logOut()" role="button" aria-label="Uitloggen">Uitloggen</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Passed Modal-->
-  <div class="modal fade" id="passedModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Voldoendegrens</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form oninput="passedOutput.value=passedRange.value" onload="passedOutput.value=passed">
-            <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
-            <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange">
-            <output name="passedOutput" for="passedRange"></output>
-          </form>
-        </div>
-        <div class="modal-footer">
+    <!-- Passed Modal-->
+    <div class="modal fade" id="passedModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Voldoendegrens</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form oninput="passedOutput.value=passedRange.value" onload="passedOutput.value=passed">
+              <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en
+                dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
+              <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange">
+              <output name="passedOutput" for="passedRange"></output>
+            </form>
+          </div>
+          <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Anuleer">Annuleer</button>
-            <a class="btn btn-primary" href="#logout" onclick="savePassed()" role="button" data-dismiss="modal" aria-label="Opslaan">Opslaan</a>
+            <a class="btn btn-primary" href="#logout" onclick="savePassed()" role="button" data-dismiss="modal"
+              aria-label="Opslaan">Opslaan</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Beta Warning Modal-->
-  <div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Beta-versie</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Magiscore is momenteel nog in ontwikkeling. Dit betekend dat er errors en fouten kunnen optreden. Gebruik is dan ook op eigen risico en alle rechten zijn voorbehouden.</p>
-          
-          <span class="text-gray">Huidige versie: 0.2</span>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" aria-label="Anuleer" onclick="window.location='https://google.com'">Annuleer</button>
+    <!-- Beta Warning Modal-->
+    <div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Beta-versie</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Magiscore is momenteel nog in ontwikkeling. Dit betekend dat er errors en fouten kunnen optreden. Gebruik
+              is dan ook op eigen risico en alle rechten zijn voorbehouden.</p>
+
+            <span class="text-gray">Huidige versie: 0.2</span>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" aria-label="Anuleer"
+              onclick="window.location='https://google.com'">Annuleer</button>
             <a class="btn btn-primary" href="#" role="button" data-dismiss="modal" aria-label="Akkoord">Akkoord</a>
           </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/deps/sb-admin-2.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/deps/sb-admin-2.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <!-- <script src="js/demo/chart-area-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <!-- <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/demo/chart-bar-demo.js"></script> -->
 
-  <script src="js/deps/algebra.js"></script>
-  <script src="js/deps/imagecache.js"></script>
-  <script src="js/deps/chartannotation.js"></script>
-  <script src="js/deps/jspdf.min.js"></script>
-  <script src="js/deps/swipe.min.js"></script>
-  <script src="js/deps/pull.js"></script>
-  <script src="js/Lesson.js"></script>
-  <script src="js/ViewController.js"></script>
-  <script src="js/LessonController.js"></script>
-  <!-- <script src="js/push.js"></script> -->
-  <script src="js/main.js"></script>
-  <script>
-    var width = $(window).width();
-    if(width < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
-    $(window).resize(function() { if($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
-    $(window).resize(function() { if($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() } })
+    <script src="js/deps/algebra.js"></script>
+    <script src="js/deps/imagecache.js"></script>
+    <script src="js/deps/chartannotation.js"></script>
+    <script src="js/deps/jspdf.min.js"></script>
+    <script src="js/deps/swipe.min.js"></script>
+    <script src="js/deps/pull.js"></script>
+    <script src="js/Lesson.js"></script>
+    <script src="js/ViewController.js"></script>
+    <script src="js/LessonController.js"></script>
+    <!-- <script src="js/push.js"></script> -->
+    <script src="js/main.js"></script>
+    <script>
+      var width = $(window).width();
+      if (width < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
+        document.querySelector('#sidebarToggleTop').click()
+      }
+      $(window).resize(function () {
+        if ($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar')
+          .classList.contains('toggled')) {
+          document.querySelector('#sidebarToggleTop').click()
+        }
+      })
+      $(window).resize(function () {
+        if ($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar')
+          .classList.contains('toggled')) {
+          document.querySelector('#sidebarToggleTop').click()
+        }
+      })
 
-    // var registration;
+      // var registration;
 
-    // window.isUpdateAvailable = new Promise(function(resolve, reject) {
-    //   if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
-    //     navigator.serviceWorker.register('./service-worker.js', { scope: "/" })
-    //     .then(reg => {
-    //       const subscribeOptions = {
-    //         userVisibleOnly: true,
-    //         applicationServerKey: urlBase64ToUint8Array('BC79U18J9Pn9ddyl7Vme5nYZC3blOTTlZS3qWj2QyMbtgZiMpOwe2tEWJstSsUaoHXbNQRiJ5Wi8cX2D4upxZP4')
-    //       };
+      // window.isUpdateAvailable = new Promise(function(resolve, reject) {
+      //   if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
+      //     navigator.serviceWorker.register('./service-worker.js', { scope: "/" })
+      //     .then(reg => {
+      //       const subscribeOptions = {
+      //         userVisibleOnly: true,
+      //         applicationServerKey: urlBase64ToUint8Array('BC79U18J9Pn9ddyl7Vme5nYZC3blOTTlZS3qWj2QyMbtgZiMpOwe2tEWJstSsUaoHXbNQRiJ5Wi8cX2D4upxZP4')
+      //       };
 
-    //       reg.pushManager.subscribe(subscribeOptions)
-    //       .then(subscription => {
-    //         var settings = {
-    //           "async": true,
-    //           "crossDomain": true,
-    //           "url": "https://magiscore.nl/api/notifications",
-    //           "method": "GET",
-    //           "headers": {
-    //               "subscription": JSON.stringify(subscription)
-    //           }
-    //         }
+      //       reg.pushManager.subscribe(subscribeOptions)
+      //       .then(subscription => {
+      //         var settings = {
+      //           "async": true,
+      //           "crossDomain": true,
+      //           "url": "https://magiscore.nl/api/notifications",
+      //           "method": "GET",
+      //           "headers": {
+      //               "subscription": JSON.stringify(subscription)
+      //           }
+      //         }
 
-    //         $.ajax(settings).done(function (response) {
-    //           console.log(response)
-    //         })
-    //       })
-          
-    //       console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
-    //       reg.onupdatefound = () => {
-    //         const installingWorker = reg.installing;
-    //         installingWorker.onstatechange = () => {
-    //           switch (installingWorker.state) {
-    //             case 'installed':
-    //               if (navigator.serviceWorker.controller) {
-    //                 resolve(true);
-    //               } else {
-    //                 resolve(false);
-    //               }
-    //               break;
-    //           }
-    //         };
-    //       };
-    //     })
-    //     // .then(function(pushSubscription) {
-    //     //   console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
-    //     //   return pushSubscription;
-    //     // })
-    //     .catch(err => console.error('[ServiceWorker] registration failed: ', err));
-    //   }
-    // });
+      //         $.ajax(settings).done(function (response) {
+      //           console.log(response)
+      //         })
+      //       })
 
-    // window['isUpdateAvailable']
-    // .then(isAvailable => {
-    //   if (isAvailable) {
-    //     viewController.toast(`Update beschikbaar! <button role="button" style="color: #FFFF00; outline: none !important; background: none !important; border: none !important;" onclick="updateCache()">Update</button>`)
-    //   }
-    // });
-    // if(viewController == undefined) {
-    //   location.reload()
-    // }
-  </script>
+      //       console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
+      //       reg.onupdatefound = () => {
+      //         const installingWorker = reg.installing;
+      //         installingWorker.onstatechange = () => {
+      //           switch (installingWorker.state) {
+      //             case 'installed':
+      //               if (navigator.serviceWorker.controller) {
+      //                 resolve(true);
+      //               } else {
+      //                 resolve(false);
+      //               }
+      //               break;
+      //           }
+      //         };
+      //       };
+      //     })
+      //     // .then(function(pushSubscription) {
+      //     //   console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+      //     //   return pushSubscription;
+      //     // })
+      //     .catch(err => console.error('[ServiceWorker] registration failed: ', err));
+      //   }
+      // });
+
+      // window['isUpdateAvailable']
+      // .then(isAvailable => {
+      //   if (isAvailable) {
+      //     viewController.toast(`Update beschikbaar! <button role="button" style="color: #FFFF00; outline: none !important; background: none !important; border: none !important;" onclick="updateCache()">Update</button>`)
+      //   }
+      // });
+      // if(viewController == undefined) {
+      //   location.reload()
+      // }
+    </script>
 </body>
 
 </html>

@@ -882,7 +882,7 @@ var schools = {
 }
 var scholen = Object.keys(schools)
 
-function getLoginInfo(){
+function getLoginInfo() {
     return {
         username: $('#login-username').val(),
         password: $('#login-password').val(),
@@ -890,21 +890,24 @@ function getLoginInfo(){
     }
 }
 var res;
+
 function login(creds) {
-    if(!creds.school){ 
-        if(navigator.notification) {
+    if (!creds.school) {
+        if (navigator.notification) {
             navigator.notification.alert(
                 `Geen geldige school \n Tip: type de eerste 3 letters van je school en kies je school uit het lijstje`,
-                function(){},
+                function () {},
                 'Oeps',
                 'Begrepen'
             );
-        } else { toast('Error: verkeerd Magister wachtwoord', 3000) }
+        } else {
+            toast('Error: verkeerd Magister wachtwoord', 3000)
+        }
         $("#overlay").hide()
         $('#login-school').val('')
         return;
-     }
-    if(creds.username.length > 1 && creds.password.length > 1 && creds.school.length > 1) {
+    }
+    if (creds.username.length > 1 && creds.password.length > 1 && creds.school.length > 1) {
         $("#overlay").show()
         var settings = {
             "async": true,
@@ -917,10 +920,10 @@ function login(creds) {
                 "school": creds.school
             }
         }
-        
+
         $.ajax(settings).done(function (response) {
             $("#overlay").show()
-            if(response.substring(0, 5) != 'error') {
+            if (response.substring(0, 5) != 'error') {
                 var data = JSON.parse(response)
                 var grades = data["grades"]
                 var person = data["person"]
@@ -928,7 +931,7 @@ function login(creds) {
                 var school = data["school"]
                 var course = data["course"]
                 var config = {
-                    "isDesktop": $(window).width()>600?true:false,
+                    "isDesktop": $(window).width() > 600 ? true : false,
                     "tention": 0.3,
                     "passed": 5.5
                 }
@@ -942,28 +945,32 @@ function login(creds) {
                 window.location = '../index.html'
             } else {
                 console.error(response)
-                if(response == 'error: AuthError: Invalid password'){
-                    if(navigator.notification) {
+                if (response == 'error: AuthError: Invalid password') {
+                    if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerd Magister wachtwoord',
-                            function(){},
+                            function () {},
                             'Oeps',
                             'Begrepen'
                         );
-                    } else { toast('Verkeerd Magister wachtwoord', 3000) }
+                    } else {
+                        toast('Verkeerd Magister wachtwoord', 3000)
+                    }
                     $("#overlay").hide()
                     $('#login-password').val('')
                     return
                 }
-                if(response == 'error: AuthError: Invalid username'){
-                    if(navigator.notification) {
+                if (response == 'error: AuthError: Invalid username') {
+                    if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerde Magister gebruikersnaam',
-                            function(){},
+                            function () {},
                             'Oeps',
                             'Begrepen'
                         );
-                    } else { toast('Verkeerde Magister gebruikersnaam', 3000) }
+                    } else {
+                        toast('Verkeerde Magister gebruikersnaam', 3000)
+                    }
                     $("#overlay").hide()
                     $('#login-username').val('')
                     return
@@ -976,14 +983,16 @@ function login(creds) {
             }
         });
     } else {
-        if(navigator.notification) {
+        if (navigator.notification) {
             navigator.notification.alert(
                 'Vul alle velden in a.u.b.',
-                function(){},
+                function () {},
                 'Oeps',
                 'Begrepen'
             );
-        } else { msg('Vul alle velden in a.u.b.', 3000) }
+        } else {
+            msg('Vul alle velden in a.u.b.', 3000)
+        }
         $("#overlay").hide()
     }
 }
@@ -991,10 +1000,16 @@ function login(creds) {
 function toast(msg, duration) {
     $('body').append(`<div id="snackbar" class="snackbar">${msg}</div>`);
     $('#snackbar').css("display", "block")
-    $('#snackbar').animate({"bottom": "30px" }, "slow");
-    if(duration) {
-        setTimeout(function(){
-            $('#snackbar').animate({"bottom": "-200px" }, "slow", function(){ $('#snackbar').remove() })
+    $('#snackbar').animate({
+        "bottom": "30px"
+    }, "slow");
+    if (duration) {
+        setTimeout(function () {
+            $('#snackbar').animate({
+                "bottom": "-200px"
+            }, "slow", function () {
+                $('#snackbar').remove()
+            })
         }, duration);
     }
 }
@@ -1007,7 +1022,7 @@ var creds = localStorage.getItem("creds");
 var course = localStorage.getItem("course");
 var course = localStorage.getItem("config");
 
-if(grades && person && school && creds && course && config) {
+if (grades && person && school && creds && course && config) {
     // var grades = JSON.parse(grades)
     // var person = JSON.parse(person)
     // var token = JSON.parse(token)
@@ -1018,7 +1033,7 @@ if(grades && person && school && creds && course && config) {
     // console.dir('jazeker wel')
 }
 
-document.addEventListener("keyup", function(event) {
+document.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         // event.preventDefault(); REVIEW: keep?
         login(getLoginInfo())
@@ -1026,10 +1041,10 @@ document.addEventListener("keyup", function(event) {
 });
 
 function updateCache() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var msg_chan = new MessageChannel();
-        msg_chan.port1.onmessage = function(event) {
-            if(event.data.error) {
+        msg_chan.port1.onmessage = function (event) {
+            if (event.data.error) {
                 reject(event.data.error);
             } else {
                 resolve(event.data);

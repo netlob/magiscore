@@ -68,3 +68,4 @@ app/build.json
 *.keystore
 *.keystore
 app/magiscore.keystore
+.DS_Store

@@ -1,0 +1,1675 @@
+{
+    "person": {
+        "id": "13009",
+        "officialFirstNames": "Rostam Mohammad",
+        "initials": "R.M.",
+        "namePrefix": null,
+        "officialSurname": "Darweshi",
+        "birthSurname": null,
+        "birthNamePrefix": null,
+        "useBirthname": false,
+        "firstName": "Rostam",
+        "lastName": "Darweshi",
+        "birthDate": "2000-11-04T00:00:00.000Z",
+        "isParent": false
+    },
+    "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxRjFFNTQ2ODQ1MkVFQTM4QUM4NDVFODI4NkMzODNFNkRFQzMzQ0IiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJrZkhsUm9SUzdxT0t5RVhvS0d3NFBtM3NNOHMifQ.eyJuYmYiOjE1NTM1NDc0OTksImV4cCI6MTU1MzU1MTA5OSwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50cy5tYWdpc3Rlci5uZXQiLCJhdWQiOlsiaHR0cHM6Ly9hY2NvdW50cy5tYWdpc3Rlci5uZXQvcmVzb3VyY2VzIiwibWFnaXN0ZXIuZWNzLmxlZ2FjeSIsIm1hZ2lzdGVyLm1kdi5icm9rZXIucmVhZCJdLCJjbGllbnRfaWQiOiJNNi1yc2dsYy5tYWdpc3Rlci5uZXQiLCJzdWIiOiI0MDA1YjRkN2QwY2E0Mzg4YTI4ZGE4YmE5ODdmYTg1YyIsImF1dGhfdGltZSI6MTU1MzU0NzQ5OSwiaWRwIjoibG9jYWwiLCJ1cm46bWFnaXN0ZXI6Y2xhaW1zOmlhbTp0ZW5hbnRJZCI6ImRhOGVlMzk5Nzk2YTRiMTJhYjk2YjE3YTZiNTJiYzA1IiwidXJuOm1hZ2lzdGVyOnRpZCI6ImRhOGVlMzk5Nzk2YTRiMTJhYjk2YjE3YTZiNTJiYzA1IiwidXJuOm1hZ2lzdGVyOmNsYWltczppYW06dGVuYW50IjoicnNnbGMubWFnaXN0ZXIubmV0IiwidXJuOm1hZ2lzdGVyOmNsYWltczppYW06dXNlcm5hbWUiOiIxMDE5MDYiLCJqdGkiOiI1OWViY2I1NDk2M2I4MzUwMjBmNjFiNWRmNzliZjA2NCIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJtYWdpc3Rlci5kbm4ucm9sZXMucmVhZCIsIm1hZ2lzdGVyLmVjcy5sZWdhY3kiLCJtYWdpc3Rlci5tZHYuYnJva2VyLnJlYWQiXSwiYW1yIjpbInB3ZCJdfQ.LHo50d2lxLK0YuiDb8kw7MQTZKspvKU0mg-LTtI6t5gmJJwoxYva9-HOu57GpI9CuWuzmk92BsE8JhVjt_cmhLaMRxKS49n8hySK25Y5Y3U96FHJs9JdprknounGOsl372VU6KZQhYXR-ZKe6buVvhSbd01_yxRChFePVaamvQVYMS9QxJEQio3Lnmyu_HIVXOCWEHUV3Ktuy3qXznD3PXLr4P67FHwMwwv1dV8fxpU5maBKlmL0yK_UgG9LEVPR3exCu3Tli4VnDM1no3gcuIjMNgbaGq4xcg_exAllFi_2j8z_dgh_0xUWpvMQNfc2e7WkMv9-F_W20SE6s4zwMg",
+    "school": {
+        "url": "https://rsglc.magister.net"
+    },
+    "course": {
+        "id": "64858",
+        "start": "2018-07-31T22:00:00.000Z",
+        "end": "2019-07-30T22:00:00.000Z",
+        "schoolPeriod": "1819",
+        "type": {
+            "id": 1098,
+            "description": "HAVO 4T"
+        },
+        "group": {
+            "id": 8543,
+            "description": "H4G",
+            "locationId": 0
+        },
+        "curricula": [
+            "NG"
+        ]
+    },
+    "grades": [{
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225198",
+            "id": "8700964",
+            "grade": "7,2",
+            "passed": true,
+            "dateFilledIn": "2018-10-01T22:12:23.000Z",
+            "class": {
+                "id": "910800",
+                "abbreviation": "NA",
+                "description": "Natuurkunde",
+                "number": 8,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225198",
+                "name": "NA101",
+                "number": "101",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "SO Hfst 1 en 2.1 t/m 2.3 Beweging",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "MNN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 1,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225304",
+            "id": "8708293",
+            "grade": "9,1",
+            "passed": true,
+            "dateFilledIn": "2018-10-04T07:23:44.000Z",
+            "class": {
+                "id": "910803",
+                "abbreviation": "WA",
+                "description": "Wiskunde A",
+                "number": 6,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225304",
+                "name": "WA102",
+                "number": "102",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Toets hoofdstuk 1",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "JAJ"
+            },
+            "classExemption": false,
+            "description": "Toets hoofdstuk 1",
+            "weight": 1,
+            "testDate": "2018-09-26T22:00:00.000Z",
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224928",
+            "id": "8720069",
+            "grade": "6,2",
+            "passed": true,
+            "dateFilledIn": "2018-10-09T12:50:02.000Z",
+            "class": {
+                "id": "910795",
+                "abbreviation": "NE",
+                "description": "Nederlands",
+                "number": 1,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224928",
+                "name": "NE102",
+                "number": "102",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Taalvaardigheid (spellen/selectie woordenschat)",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "HVN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 1,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225295",
+            "id": "8724041",
+            "grade": "8,2",
+            "passed": true,
+            "dateFilledIn": "2018-10-10T13:45:17.000Z",
+            "class": {
+                "id": "910798",
+                "abbreviation": "SK",
+                "description": "Scheikunde",
+                "number": 9,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225295",
+                "name": "SK204",
+                "number": "204",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "FSO A",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "GRD"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 1,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225072",
+            "id": "8743491",
+            "grade": "6,4",
+            "passed": true,
+            "dateFilledIn": "2018-10-30T22:28:58.000Z",
+            "class": {
+                "id": "910797",
+                "abbreviation": "EN",
+                "description": "Engels",
+                "number": 2,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225072",
+                "name": "EN101",
+                "number": "101",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Katern 1 Stepping Stones",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "SRO"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 1,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225296",
+            "id": "8749359",
+            "grade": "7,5",
+            "passed": true,
+            "dateFilledIn": "2018-11-04T10:20:40.000Z",
+            "class": {
+                "id": "910798",
+                "abbreviation": "SK",
+                "description": "Scheikunde",
+                "number": 9,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225296",
+                "name": "SK205",
+                "number": "205",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "FSO B",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "GRD"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 1,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/228926",
+            "id": "8771840",
+            "grade": "6,4",
+            "passed": true,
+            "dateFilledIn": "2018-11-13T11:58:55.000Z",
+            "class": {
+                "id": "910804",
+                "abbreviation": "HV",
+                "description": "Handvaardigheid",
+                "number": 16,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "228926",
+                "name": "HV103",
+                "number": "103",
+                "header": "T",
+                "isAtLaterDate": true,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Beeldaspecten / Grieken en Romeinen, vroeg Christelijk",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "BMR"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 2,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225073",
+            "id": "8775385",
+            "grade": "6,5",
+            "passed": true,
+            "dateFilledIn": "2018-11-15T08:16:21.000Z",
+            "class": {
+                "id": "910797",
+                "abbreviation": "EN",
+                "description": "Engels",
+                "number": 2,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225073",
+                "name": "EN102",
+                "number": "102",
+                "header": "T",
+                "isAtLaterDate": true,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Reading",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "SRO"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 1,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225282",
+            "id": "8789450",
+            "grade": "6,2",
+            "passed": true,
+            "dateFilledIn": "2018-11-20T19:11:53.000Z",
+            "class": {
+                "id": "910798",
+                "abbreviation": "SK",
+                "description": "Scheikunde",
+                "number": 9,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225282",
+                "name": "SK101",
+                "number": "101",
+                "header": "T",
+                "isAtLaterDate": true,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "H1 en H2 en §4.1",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "GRD"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 4,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225200",
+            "id": "8793688",
+            "grade": "8,3",
+            "passed": true,
+            "dateFilledIn": "2018-11-22T07:54:58.000Z",
+            "class": {
+                "id": "910800",
+                "abbreviation": "NA",
+                "description": "Natuurkunde",
+                "number": 8,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225200",
+                "name": "NA103",
+                "number": "103",
+                "header": "T",
+                "isAtLaterDate": true,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Hfst 1 en 2 Basis en Beweging",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "MNN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 3,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225301",
+            "id": "8708294",
+            "grade": "8",
+            "passed": true,
+            "dateFilledIn": "2018-11-22T15:27:19.000Z",
+            "class": {
+                "id": "910803",
+                "abbreviation": "WA",
+                "description": "Wiskunde A",
+                "number": 6,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225301",
+                "name": "WA380",
+                "number": "380",
+                "header": "EIND",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Afgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "JAJ"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225305",
+            "id": "8797055",
+            "grade": "7,3",
+            "passed": true,
+            "dateFilledIn": "2018-11-22T15:27:19.000Z",
+            "class": {
+                "id": "910803",
+                "abbreviation": "WA",
+                "description": "Wiskunde A",
+                "number": 6,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225305",
+                "name": "WA103",
+                "number": "103",
+                "header": "T",
+                "isAtLaterDate": true,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Proefwerk hoofdstuk 1 en 2",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "JAJ"
+            },
+            "classExemption": false,
+            "description": "Proefwerk hoofdstuk 1 en 2",
+            "weight": 2,
+            "testDate": "2018-11-12T23:00:00.000Z",
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225312",
+            "id": "8708296",
+            "grade": "7,9",
+            "passed": true,
+            "dateFilledIn": "2018-11-22T15:27:19.000Z",
+            "class": {
+                "id": "910803",
+                "abbreviation": "WA",
+                "description": "Wiskunde A",
+                "number": 6,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225312",
+                "name": "WA370",
+                "number": "370",
+                "header": null,
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Onafgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "JAJ"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224911",
+            "id": "8720070",
+            "grade": "6",
+            "passed": true,
+            "dateFilledIn": "2018-12-07T11:37:13.000Z",
+            "class": {
+                "id": "910795",
+                "abbreviation": "NE",
+                "description": "Nederlands",
+                "number": 1,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224911",
+                "name": "NE380",
+                "number": "380",
+                "header": "EIND",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Afgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "HVN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224920",
+            "id": "8720072",
+            "grade": "6,1",
+            "passed": true,
+            "dateFilledIn": "2018-12-07T11:37:13.000Z",
+            "class": {
+                "id": "910795",
+                "abbreviation": "NE",
+                "description": "Nederlands",
+                "number": 1,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224920",
+                "name": "NE370",
+                "number": "370",
+                "header": null,
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Onafgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "HVN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224929",
+            "id": "8827283",
+            "grade": "6,0",
+            "passed": true,
+            "dateFilledIn": "2018-12-07T11:37:13.000Z",
+            "class": {
+                "id": "910795",
+                "abbreviation": "NE",
+                "description": "Nederlands",
+                "number": 1,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224929",
+                "name": "NE103",
+                "number": "103",
+                "header": "T",
+                "isAtLaterDate": true,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Schrijfvaardigheid ( betoog o.b.v. documentatie week 45-46)",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "HVN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 3,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224967",
+            "id": "8778579",
+            "grade": "4,9",
+            "passed": false,
+            "dateFilledIn": "2018-12-08T18:44:35.000Z",
+            "class": {
+                "id": "910801",
+                "abbreviation": "BI",
+                "description": "Biologie",
+                "number": 10,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224967",
+                "name": "BI101",
+                "number": "101",
+                "header": "T",
+                "isAtLaterDate": true,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Inleiding in de biologie en voortplanting hoofdstuk 1 en 2",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "VBK"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 2,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225070",
+            "id": "8743492",
+            "grade": "6",
+            "passed": true,
+            "dateFilledIn": "2018-12-18T21:47:19.000Z",
+            "class": {
+                "id": "910797",
+                "abbreviation": "EN",
+                "description": "Engels",
+                "number": 2,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225070",
+                "name": "EN380",
+                "number": "380",
+                "header": "EIND",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Afgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "SRO"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225074",
+            "id": "8840133",
+            "grade": "6,0",
+            "passed": true,
+            "dateFilledIn": "2018-12-18T21:47:19.000Z",
+            "class": {
+                "id": "910797",
+                "abbreviation": "EN",
+                "description": "Engels",
+                "number": 2,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225074",
+                "name": "EN103",
+                "number": "103",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Writing katern 1 + 2",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "SRO"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 1,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225081",
+            "id": "8743494",
+            "grade": "6,3",
+            "passed": true,
+            "dateFilledIn": "2018-12-18T21:47:19.000Z",
+            "class": {
+                "id": "910797",
+                "abbreviation": "EN",
+                "description": "Engels",
+                "number": 2,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225081",
+                "name": "EN370",
+                "number": "370",
+                "header": null,
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Onafgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "SRO"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/228924",
+            "id": "8847623",
+            "grade": "5,6",
+            "passed": true,
+            "dateFilledIn": "2019-01-08T11:08:03.000Z",
+            "class": {
+                "id": "910804",
+                "abbreviation": "HV",
+                "description": "Handvaardigheid",
+                "number": 16,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "228924",
+                "name": "HV101",
+                "number": "101",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Architectuur: Ontwerp je eigen Folly",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "BMR"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 3,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/228925",
+            "id": "8847624",
+            "grade": "6,8",
+            "passed": true,
+            "dateFilledIn": "2019-01-08T11:08:16.000Z",
+            "class": {
+                "id": "910804",
+                "abbreviation": "HV",
+                "description": "Handvaardigheid",
+                "number": 16,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "228925",
+                "name": "HV102",
+                "number": "102",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Logboek: schetsen, sfeerbladen, proces, reflectie kunst",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "BMR"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 1,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225201",
+            "id": "8853067",
+            "grade": "1,0",
+            "passed": false,
+            "dateFilledIn": "2019-01-14T21:00:48.000Z",
+            "class": {
+                "id": "910800",
+                "abbreviation": "NA",
+                "description": "Natuurkunde",
+                "number": 8,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225201",
+                "name": "NA104",
+                "number": "104",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Hfst 5 Materiaal en Warmte en hfst Weer en Klimaat",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "MNN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 4,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224968",
+            "id": "8888277",
+            "grade": "Inh",
+            "passed": true,
+            "dateFilledIn": "2019-02-04T19:22:04.000Z",
+            "class": {
+                "id": "910801",
+                "abbreviation": "BI",
+                "description": "Biologie",
+                "number": 10,
+                "teacher": {}
+            },
+            "atLaterDate": true,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224968",
+                "name": "BI102",
+                "number": "102",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Ecologie en milieu hoofdstuk 7",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "VBK"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 2,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224965",
+            "id": "8744318",
+            "grade": "5",
+            "passed": false,
+            "dateFilledIn": "2019-02-06T12:13:48.000Z",
+            "class": {
+                "id": "910801",
+                "abbreviation": "BI",
+                "description": "Biologie",
+                "number": 10,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224965",
+                "name": "BI380",
+                "number": "380",
+                "header": "EIND",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Afgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "VBK"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224976",
+            "id": "8744319",
+            "grade": "5,5",
+            "passed": true,
+            "dateFilledIn": "2019-02-06T12:13:48.000Z",
+            "class": {
+                "id": "910801",
+                "abbreviation": "BI",
+                "description": "Biologie",
+                "number": 10,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224976",
+                "name": "BI370",
+                "number": "370",
+                "header": null,
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Onafgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "VBK"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224979",
+            "id": "8744317",
+            "grade": "6,6",
+            "passed": true,
+            "dateFilledIn": "2019-02-06T12:13:48.000Z",
+            "class": {
+                "id": "910801",
+                "abbreviation": "BI",
+                "description": "Biologie",
+                "number": 10,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224979",
+                "name": "BI203",
+                "number": "203",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": true,
+                "isPTA": true,
+                "level": null,
+                "description": "Meerdere praktische opdrachten in de loop van het jaar",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "VBK"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 1,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225133",
+            "id": "8771841",
+            "grade": "6",
+            "passed": true,
+            "dateFilledIn": "2019-02-09T14:54:06.000Z",
+            "class": {
+                "id": "910804",
+                "abbreviation": "HV",
+                "description": "Handvaardigheid",
+                "number": 16,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225133",
+                "name": "HV380",
+                "number": "380",
+                "header": "EIND",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Afgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "BMR"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225144",
+            "id": "8771843",
+            "grade": "6,1",
+            "passed": true,
+            "dateFilledIn": "2019-02-09T14:54:06.000Z",
+            "class": {
+                "id": "910804",
+                "abbreviation": "HV",
+                "description": "Handvaardigheid",
+                "number": 16,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225144",
+                "name": "HV370",
+                "number": "370",
+                "header": null,
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Onafgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "BMR"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/228933",
+            "id": "8894988",
+            "grade": "Inh",
+            "passed": true,
+            "dateFilledIn": "2019-02-09T14:54:06.000Z",
+            "class": {
+                "id": "910804",
+                "abbreviation": "HV",
+                "description": "Handvaardigheid",
+                "number": 16,
+                "teacher": {}
+            },
+            "atLaterDate": true,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "228933",
+                "name": "HV201",
+                "number": "201",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "Romaans tot vroeg Gotiek",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "BMR"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 2,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224966",
+            "id": "8778580",
+            "grade": "4,9",
+            "passed": false,
+            "dateFilledIn": "2019-02-14T07:59:15.000Z",
+            "class": {
+                "id": "910801",
+                "abbreviation": "BI",
+                "description": "Biologie",
+                "number": 10,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224966",
+                "name": "BI330",
+                "number": "330",
+                "header": "VG",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Voortschrijdend gemiddelde",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "VBK"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225071",
+            "id": "8743493",
+            "grade": "6,3",
+            "passed": true,
+            "dateFilledIn": "2019-02-14T07:59:15.000Z",
+            "class": {
+                "id": "910797",
+                "abbreviation": "EN",
+                "description": "Engels",
+                "number": 2,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225071",
+                "name": "EN330",
+                "number": "330",
+                "header": "VG",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Voortschrijdend gemiddelde",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "SRO"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225134",
+            "id": "8771842",
+            "grade": "6,1",
+            "passed": true,
+            "dateFilledIn": "2019-02-14T07:59:15.000Z",
+            "class": {
+                "id": "910804",
+                "abbreviation": "HV",
+                "description": "Handvaardigheid",
+                "number": 16,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225134",
+                "name": "HV330",
+                "number": "330",
+                "header": "VG",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Voortschrijdend gemiddelde",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "BMR"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225197",
+            "id": "8700966",
+            "grade": "4,5",
+            "passed": false,
+            "dateFilledIn": "2019-02-14T07:59:15.000Z",
+            "class": {
+                "id": "910800",
+                "abbreviation": "NA",
+                "description": "Natuurkunde",
+                "number": 8,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225197",
+                "name": "NA330",
+                "number": "330",
+                "header": "VG",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Voortschrijdend gemiddelde",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "MNN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224912",
+            "id": "8720071",
+            "grade": "6,1",
+            "passed": true,
+            "dateFilledIn": "2019-02-14T07:59:15.000Z",
+            "class": {
+                "id": "910795",
+                "abbreviation": "NE",
+                "description": "Nederlands",
+                "number": 1,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "224912",
+                "name": "NE330",
+                "number": "330",
+                "header": "VG",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Voortschrijdend gemiddelde",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "HVN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225281",
+            "id": "8789451",
+            "grade": "6,2",
+            "passed": true,
+            "dateFilledIn": "2019-02-14T07:59:15.000Z",
+            "class": {
+                "id": "910798",
+                "abbreviation": "SK",
+                "description": "Scheikunde",
+                "number": 9,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225281",
+                "name": "SK330",
+                "number": "330",
+                "header": "VG",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Voortschrijdend gemiddelde",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "GRD"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225302",
+            "id": "8708295",
+            "grade": "7,9",
+            "passed": true,
+            "dateFilledIn": "2019-02-14T07:59:15.000Z",
+            "class": {
+                "id": "910803",
+                "abbreviation": "WA",
+                "description": "Wiskunde A",
+                "number": 6,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225302",
+                "name": "WA330",
+                "number": "330",
+                "header": "VG",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Voortschrijdend gemiddelde",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "JAJ"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225196",
+            "id": "8700965",
+            "grade": "5",
+            "passed": false,
+            "dateFilledIn": "2019-03-05T13:47:21.000Z",
+            "class": {
+                "id": "910800",
+                "abbreviation": "NA",
+                "description": "Natuurkunde",
+                "number": 8,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225196",
+                "name": "NA380",
+                "number": "380",
+                "header": "EIND",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Afgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "MNN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225207",
+            "id": "8700967",
+            "grade": "5,3",
+            "passed": false,
+            "dateFilledIn": "2019-03-05T13:47:21.000Z",
+            "class": {
+                "id": "910800",
+                "abbreviation": "NA",
+                "description": "Natuurkunde",
+                "number": 8,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225207",
+                "name": "NA370",
+                "number": "370",
+                "header": null,
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Onafgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "MNN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/235798",
+            "id": "8916851",
+            "grade": "8,4",
+            "passed": true,
+            "dateFilledIn": "2019-03-05T13:47:21.000Z",
+            "class": {
+                "id": "910800",
+                "abbreviation": "NA",
+                "description": "Natuurkunde",
+                "number": 8,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "235798",
+                "name": "NA201",
+                "number": "201",
+                "header": "T",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "SO Hfst 3",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "MNN"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 2,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225280",
+            "id": "8724042",
+            "grade": "7",
+            "passed": true,
+            "dateFilledIn": "2019-03-25T12:31:33.000Z",
+            "class": {
+                "id": "910798",
+                "abbreviation": "SK",
+                "description": "Scheikunde",
+                "number": 9,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225280",
+                "name": "SK380",
+                "number": "380",
+                "header": "EIND",
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Afgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "GRD"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225291",
+            "id": "8724043",
+            "grade": "6,8",
+            "passed": true,
+            "dateFilledIn": "2019-03-25T12:31:33.000Z",
+            "class": {
+                "id": "910798",
+                "abbreviation": "SK",
+                "description": "Scheikunde",
+                "number": 9,
+                "teacher": {}
+            },
+            "atLaterDate": false,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225291",
+                "name": "SK370",
+                "number": "370",
+                "header": null,
+                "isAtLaterDate": false,
+                "isTeacher": false,
+                "isPTA": false,
+                "level": null,
+                "description": "Onafgerond eindcijfer",
+                "_type": 2
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "GRD"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 0,
+            "filled": true
+        },
+        {
+            "_fillUrl": "https://rsglc.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225292",
+            "id": "8942723",
+            "grade": "Inh",
+            "passed": true,
+            "dateFilledIn": "2019-03-25T12:31:33.000Z",
+            "class": {
+                "id": "910798",
+                "abbreviation": "SK",
+                "description": "Scheikunde",
+                "number": 9,
+                "teacher": {}
+            },
+            "atLaterDate": true,
+            "exemption": false,
+            "counts": true,
+            "period": null,
+            "type": {
+                "id": "225292",
+                "name": "SK201",
+                "number": "201",
+                "header": "T",
+                "isAtLaterDate": true,
+                "isTeacher": false,
+                "isPTA": true,
+                "level": null,
+                "description": "H1 t/m H3, H4 t/m §4.3, H5",
+                "_type": 1
+            },
+            "assignmentId": "0",
+            "teacher": {
+                "teacherCode": "GRD"
+            },
+            "classExemption": false,
+            "description": "",
+            "weight": 4,
+            "filled": true
+        }
+    ]
+}

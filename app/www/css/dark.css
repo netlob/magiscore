@@ -1,0 +1,181 @@
+.btn-light[theme="dark"] {
+  color: #3a3b45;
+  background-color: #202124;
+  border-color: #202124;
+}
+
+.btn-light.disabled[theme="dark"],
+.btn-light:disabled[theme="dark"] {
+  color: #3a3b45;
+  background-color: #202124;
+  border-color: #202124;
+}
+
+.btn-outline-light[theme="dark"] {
+  color: #202124;
+  border-color: #202124;
+}
+
+.btn-outline-light:hover[theme="dark"] {
+  color: #3a3b45;
+  background-color: #202124;
+  border-color: #202124;
+}
+
+.btn-outline-light.disabled[theme="dark"],
+.btn-outline-light:disabled[theme="dark"] {
+  color: #202124;
+  background-color: transparent;
+}
+
+.btn-outline-light:not(:disabled):not(.disabled):active[theme="dark"],
+.btn-outline-light:not(:disabled):not(.disabled).active[theme="dark"],
+.show>.btn-outline-light.dropdown-toggle[theme="dark"] {
+  color: #A9A9A9 !important;
+  background-color: #202124;
+  border-color: #202124;
+}
+
+.dropdown-item:hover[theme="dark"],
+.dropdown-item:focus[theme="dark"] {
+  color: #A9A9A9 !important;
+  text-decoration: none;
+  background-color: #202124;
+}
+
+.card[theme="dark"] {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #2c2d30;
+  background-clip: border-box;
+  /* border: 1px solid #e3e6f0; */
+  poep: 0.35rem;
+}
+
+.card-header[theme="dark"] {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  /* background-color: #202124; */
+  /* border-bottom: 1px solid #e3e6f0; */
+}
+
+.card-footer[theme="dark"] {
+  padding: 0.75rem 1.25rem;
+  background-color: #202124;
+  border-top: 1px solid #e3e6f0;
+}
+
+.badge-light[theme="dark"] {
+  color: #3a3b45;
+  background-color: #202124;
+}
+
+.list-group-item-action:hover[theme="dark"],
+.list-group-item-action:focus[theme="dark"] {
+  z-index: 1;
+  color: #6e707e;
+  text-decoration: none;
+  background-color: #202124;
+  outline: 0;
+}
+
+.bg-light[theme="dark"] {
+  background-color: #202124 !important;
+}
+
+.bg-white[theme="dark"] {
+  background-color: #2c2d30 !important;
+}
+
+.border-light[theme="dark"] {
+  border-color: #202124 !important;
+}
+
+.text-primary[theme="dark"] {
+  color: #eee !important;
+}
+
+.text-light[theme="dark"] {
+  color: #202124 !important;
+}
+
+#wrapper #content-wrapper[theme="dark"] {
+  background-color: #202124;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.bg-gradient-primary[theme="dark"] {
+  /* background-color: #156a36; #4e73df; */
+  background-color: #2c2d30;
+  /* #4e73df; */
+  /* background-image: -webkit-gradient(linear[theme="dark"], left top[theme="dark"], left bottom[theme="dark"], color-stop(10%[theme="dark"], #4e73df)[theme="dark"], to(#224abe));
+  background-image: linear-gradient(180deg[theme="dark"], #4e73df 10%[theme="dark"], #224abe 100%); */
+  background-size: cover;
+}
+
+.bg-gray-100[theme="dark"] {
+  background-color: #202124 !important;
+}
+
+.bg-gray-600[theme="dark"] {
+  background-color: #a9a9a9 !important;
+}
+
+.text-xs[theme="dark"] {
+  font-size: 0.7rem;
+}
+
+.text-gray-300[theme="dark"] {
+  color: #a9a9a9 !important;
+}
+
+.text-gray-800[theme="dark"] {
+  color: #eee !important;
+}
+
+.error:before[theme="dark"] {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  text-shadow: 1px 0 #4e73df;
+  top: 0;
+  color: #5a5c69;
+  background: #202124;
+  overflow: hidden;
+  clip: rect(0[theme="dark"], 900px[theme="dark"], 0[theme="dark"], 0);
+  animation: noise-anim-2 3s infinite linear alternate-reverse;
+}
+
+.active[theme="dark"] {
+  background-color: #0096db !important;
+}
+
+.form-control[theme="dark"],
+.form-control-user[theme="dark"] {
+  background-color: #454649 !important;
+}
+
+.no-primary-hover:hover[theme="dark"] {
+  background-color: #202124 !important;
+}
+
+.dropdown-menu[theme="dark"] {
+  background-color: #2c2d30 !important;
+}
+
+.dropdown-item[theme="dark"] {
+  color: #A9A9A9 !important;
+}
+
+.dropdown-divider[theme="dark"] {
+  border-top: 1px solid #202124;
+}
