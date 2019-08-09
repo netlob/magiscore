@@ -72,18 +72,13 @@ class ViewController {
   }
 
   updateConfig(config, theme) {
-    var base = {
-      passed: 5.5,
-      tention: 0.3,
-      darkTheme: false,
-      isDesktop: false
-    };
+    var base = JSON.parse(localStorage.getItem("config"));
     for (var key in config) {
       base[key] = config[key];
     }
-    if (!theme) {
-      delete base["isDesktop"]
-    }
+    // if (!theme) {
+    //   delete base["isDesktop"]
+    // }
     localStorage.removeItem("config");
     localStorage.setItem("config", JSON.stringify(base));
     this.config = base;
@@ -124,9 +119,9 @@ class ViewController {
   initTheme() {
     var theme = this.config.darkTheme
     if (theme) {
-      $("*").attr("theme", "dark")
+      $("body").attr("theme", "dark")
     } else {
-      $("*").attr("theme", "light")
+      $("body").attr("theme", "light")
     }
   }
 
