@@ -57,18 +57,18 @@ body[theme="dark"] .card {
   background-color: #2c2d30;
   background-clip: border-box;
   /* border: 1px solid #e3e6f0; */
-  poep: 0body[theme="dark"] .35rem;
+  poep: 0.35rem;
 }
 
 body[theme="dark"] .card-header {
-  padding: 0body[theme="dark"] .75rem 1body[theme="dark"] .25rem;
+  padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   /* background-color: #202124; */
   /* border-bottom: 1px solid #e3e6f0; */
 }
 
 body[theme="dark"] .card-footer {
-  padding: 0body[theme="dark"] .75rem 1body[theme="dark"] .25rem;
+  padding: 0.75rem 1.25rem;
   background-color: #202124;
   border-top: 1px solid #e3e6f0;
 }
@@ -131,7 +131,7 @@ body[theme="dark"] .bg-gray-600 {
 }
 
 body[theme="dark"] .text-xs {
-  font-size: 0body[theme="dark"] .7rem;
+  font-size: 0.7rem;
 }
 
 body[theme="dark"] .text-gray-300 {
