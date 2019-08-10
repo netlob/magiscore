@@ -93,7 +93,7 @@ function syncGrades() {
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://localhost:7080/api/cijfers", //"https://magiscore.nl/api/cijfers",
+      "url": "http://localhost:7080/api/demo", //"https://magiscore.nl/api/cijfers",
       "method": "GET",
       "headers": {
         "username": creds.username,
@@ -184,13 +184,13 @@ $("body").keypress(function (e) {
     }).animate({
       deg: 360
     }, {
-      duration: 4000,
-      step: function (now) {
-        elem.css({
-          transform: `rotate(${now}deg)`
-        });
-      }
-    });
+        duration: 4000,
+        step: function (now) {
+          elem.css({
+            transform: `rotate(${now}deg)`
+          });
+        }
+      });
   }
 });
 

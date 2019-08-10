@@ -896,7 +896,7 @@ function login(creds) {
         if (navigator.notification) {
             navigator.notification.alert(
                 `Geen geldige school \n Tip: type de eerste 3 letters van je school en kies je school uit het lijstje`,
-                function () {},
+                function () { },
                 'Oeps',
                 'Begrepen'
             );
@@ -912,7 +912,7 @@ function login(creds) {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "https://magiscore.nl/api/cijfers",
+            "url": "http://localhost:7080/api/demo",
             "method": "GET",
             "headers": {
                 "username": creds.username,
@@ -949,7 +949,7 @@ function login(creds) {
                     if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerd Magister wachtwoord',
-                            function () {},
+                            function () { },
                             'Oeps',
                             'Begrepen'
                         );
@@ -964,7 +964,7 @@ function login(creds) {
                     if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerde Magister gebruikersnaam',
-                            function () {},
+                            function () { },
                             'Oeps',
                             'Begrepen'
                         );
@@ -986,7 +986,7 @@ function login(creds) {
         if (navigator.notification) {
             navigator.notification.alert(
                 'Vul alle velden in a.u.b.',
-                function () {},
+                function () { },
                 'Oeps',
                 'Begrepen'
             );

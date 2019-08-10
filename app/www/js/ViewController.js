@@ -76,9 +76,6 @@ class ViewController {
     for (var key in config) {
       base[key] = config[key];
     }
-    // if (!theme) {
-    //   delete base["isDesktop"]
-    // }
     localStorage.removeItem("config");
     localStorage.setItem("config", JSON.stringify(base));
     this.config = base;
@@ -86,6 +83,15 @@ class ViewController {
 
   setConfig() {
     var config = JSON.parse(localStorage.getItem("config")) || false;
+    if (!config) {
+      config = {
+        "isDesktop": false,
+        "tention": 0.3,
+        "passed": 5.5,
+        "darkTheme": false
+      }
+      localStorage.setItem("config", JSON.stringify(config));
+    }
     config["isDesktop"] = $(window).width() > 600 ? true : false;
     this.config = config;
   }
@@ -94,15 +100,15 @@ class ViewController {
     $("body").append(`<div id="snackbar" class="snackbar">${msg}</div>`);
     $("#snackbar").css("display", "block");
     $("#snackbar").animate({
-        bottom: "30px"
-      },
+      bottom: "30px"
+    },
       "slow"
     );
     if (duration) {
       setTimeout(function () {
         $("#snackbar").animate({
-            bottom: "-200px"
-          },
+          bottom: "-200px"
+        },
           "slow",
           function () {
             $("#snackbar").remove();
@@ -149,60 +155,62 @@ function updateSidebar() {
     $("#subjectsNav").append(`
         <li class="nav-item">
             <a class="nav-link" onclick="viewController.render('${
-              lesson.name
-            }')">
+      lesson.name
+      }')">
                 <span>${lesson.name.capitalize()}</span>
             </a>
         </li>
     `)
   );
 
-  var profilepicStorage = localStorage.getItem("profilepic"),
-    profilepic = document.getElementById("imgelem");
-  if (profilepicStorage) {
-    console.info("[INFO] Using saved pic");
-    profilepic.setAttribute("src", profilepicStorage);
-  } else {
-    var xhr = new XMLHttpRequest(),
-      blob,
-      fileReader = new FileReader();
-    xhr.responseType = "blob";
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-        blob = new Blob([xhr.response], {
-          type: "image/png"
-        });
-        fileReader.onload = function (evt) {
-          var result = evt.target.result;
-          profilepic.setAttribute("src", result);
-          try {
-            console.log("[INFO] Storage of image succes");
-            localStorage.setItem("profilepic", result);
-          } catch (e) {
-            console.error("[ERROR] Storage failed: " + e);
-          }
-        };
-        fileReader.readAsDataURL(blob);
-      }
-    };
-    xhr.open(
-      "GET",
-      `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${
-        person.id
-      }/foto?width=640&height=640&crop=no`,
-      true
-    );
-    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
-    xhr.send();
-  }
+  var profilepic = document.getElementById("imgelem");
+  profilepic.setAttribute("src", "./img/stock-profile-picture.png");
+  // var profilepicStorage = localStorage.getItem("profilepic")
+  //   profilepic = document.getElementById("imgelem");
+  // if (profilepicStorage) {
+  //   console.info("[INFO] Using saved pic");
+  //   profilepic.setAttribute("src", profilepicStorage);
+  // } //else {
+  // var xhr = new XMLHttpRequest(),
+  //   blob,
+  //   fileReader = new FileReader();
+  // xhr.responseType = "blob";
+  // xhr.onreadystatechange = function () {
+  //   if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+  //     blob = new Blob([xhr.response], {
+  //       type: "image/png"
+  //     });
+  //     fileReader.onload = function (evt) {
+  //       var result = evt.target.result;
+  //       profilepic.setAttribute("src", result);
+  //       try {
+  //         console.log("[INFO] Storage of image succes");
+  //         localStorage.setItem("profilepic", result);
+  //       } catch (e) {
+  //         console.error("[ERROR] Storage failed: " + e);
+  //       }
+  //     };
+  //     fileReader.readAsDataURL(blob);
+  //   }
+  // };
+  // xhr.open(
+  //   "GET",
+  //   `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${
+  //     person.id
+  //   }/foto?width=640&height=640&crop=no`,
+  //   true
+  // );
+  // xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+  // xhr.send();
+  // }
   $("#userDropdown > span").text(
     `${person.firstName} ${person.lastName} ${
-      course.group.description ? "(" + course.group.description + ")" : ""
+    course.group.description ? "(" + course.group.description + ")" : ""
     }`
   );
   $("#mobilePersonInfo").text(
     `${person.firstName} ${person.lastName} ${
-      course.group.description ? "(" + course.group.description + ")" : ""
+    course.group.description ? "(" + course.group.description + ")" : ""
     }`
   );
   var header = document.getElementById("accordionSidebar");
@@ -566,21 +574,21 @@ function generateHTML(lesson) {
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-green">${
-                          extraFirst.title
-                        }</div>
+    extraFirst.title
+    }</div>
                         <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
-                              extraFirst.value
-                            }</div>
+    extraFirst.value
+    }</div>
                         </div>
                         <!--<div class="col">
                             <div class="progress progress-sm mr-2">
                             <div class="progress-bar bg-info" role="progressbar" style="width: ${
-                              extraFirst.value
-                            }%" aria-valuenow="${
     extraFirst.value
-  }" aria-valuemin="0" aria-valuemax="100"></div>
+    }%" aria-valuenow="${
+    extraFirst.value
+    }" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>-->
                         </div>
@@ -599,13 +607,13 @@ function generateHTML(lesson) {
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">${
-                          extraSecond.title
-                        }</div>
+    extraSecond.title
+    }</div>
                         <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
-                              extraSecond.value
-                            }</div>
+    extraSecond.value
+    }</div>
                         </div>
                         </div>
                     </div>
@@ -623,11 +631,11 @@ function generateHTML(lesson) {
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">${
-                          extraThird.title
-                        }</div>
+    extraThird.title
+    }</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">${
-                          extraThird.value
-                        }</div>
+    extraThird.value
+    }</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-grin-beam-sweat fa-2x text-gray-300"></i>

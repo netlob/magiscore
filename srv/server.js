@@ -11,26 +11,16 @@
 const http = require('http');
 
 const fs = require('fs')
-// const MagisterAuth = require('./lib/magister/authcode.function');
 const getAuthCode = require('@magisterjs/dynamic-authcode');
 const webpush = require("web-push");
 const login = require('./lib/magister/login.function');
-var cijfers = fs.readFileSync("./cijfers.json")
-cijfers = JSON.parse(cijfers)
+const cijfers = require('./lib/magister/cijfers.function');
+var demo = fs.readFileSync("./cijfers.json")
+demo = JSON.parse(demo)
 const {
     default: magister,
     getSchools
 } = require('magister.js');
-
-
-const publicVapidKey = "BC79U18J9Pn9ddyl7Vme5nYZC3blOTTlZS3qWj2QyMbtgZiMpOwe2tEWJstSsUaoHXbNQRiJ5Wi8cX2D4upxZP4";
-const privateVapidKey = require('../secret.js').privateVapidKey;
-
-webpush.setVapidDetails(
-    "mailto:test@test.com",
-    publicVapidKey,
-    privateVapidKey
-);
 
 http.createServer((req, res) => {
     // Set CORS headers
@@ -42,21 +32,22 @@ http.createServer((req, res) => {
     // Handle normal request
     if ('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url == '/api/cijfers') {
         console.log('Request')
+        getAuthCode()
+            .then(mAuth => {
+                req.headers.code = mAuth
+                cijfers(req.headers, res)
+                    .catch(err => {
+                        res.writeHead(200);
+                        res.end('error: ' + err.toString());
+                    });
+            }).catch(err => {
+                res.writeHead(200);
+                res.end('error: ' + err.toString());
+            });
+    } else if (req.url == '/api/demo') {
         res.writeHead(200)
-        res.end(JSON.stringify(cijfers))
-        // getAuthCode()
-        // .then(mAuth => {
-        //     req.headers.code = mAuth
-        //     cijfers(req.headers, res)
-        //     .catch(err => {
-        //         res.writeHead(200);
-        //         res.end('error: ' + err.toString());
-        //     });
-        // }).catch(err => {
-        //     res.writeHead(200);
-        //     res.end('error: ' + err.toString());
-        // });
-    } else if ('subscription' in req.headers && req.url == '/api/notifications') {
+        res.end(JSON.stringify(demo))
+    } /* else if ('subscription' in req.headers && req.url == '/api/notifications') {
         res.writeHead(201);
         res.end(JSON.stringify({}))
         const payload = JSON.stringify({
@@ -66,15 +57,11 @@ http.createServer((req, res) => {
         webpush
             .sendNotification(JSON.parse(req.headers.subscription), payload)
             .catch(err => console.error(err));
-    } else {
+    } */ else {
         res.end("MAGISCORE API");
     }
 }).listen(7080);
 
-/**
- * Simple function to await some time.
- * @param {number} millis
- */
 function sleep(millis) {
     return new Promise(resolve => setTimeout(resolve, millis));
 }
