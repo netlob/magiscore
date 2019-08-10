@@ -161,7 +161,8 @@ body[theme="dark"] .active {
 
 body[theme="dark"] .form-control,
 body[theme="dark"] .form-control-user {
-  background-color: #454649 !important;
+  /* background-color: #454649 !important; */
+  color: #eee !important;
 }
 
 body[theme="dark"] .no-primary-hover:hover {

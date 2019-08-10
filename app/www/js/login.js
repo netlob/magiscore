@@ -991,7 +991,7 @@ function login(creds) {
                 'Begrepen'
             );
         } else {
-            msg('Vul alle velden in a.u.b.', 3000)
+            toast('Vul alle velden in a.u.b.', 3000)
         }
         $("#overlay").hide()
     }
