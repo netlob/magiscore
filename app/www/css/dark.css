@@ -180,3 +180,8 @@ body[theme="dark"] .dropdown-item {
 body[theme="dark"] .dropdown-divider {
   border-top: 1px solid #202124;
 }
+
+body[theme="dark"] .modal-dialog, body[theme="dark"] .modal-content {
+  background-color: #2c2d30 !important;
+  color: #eee !important;
+}

@@ -30,7 +30,7 @@ http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
     res.setHeader('Access-Control-Allow-Headers', 'school, username, password, token, subscription');
     // Handle normal request
-    if ('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url == '/api/cijfers') {
+    if ('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url == '/cijfers') {
         console.log('Request')
         getAuthCode()
             .then(mAuth => {
@@ -44,10 +44,10 @@ http.createServer((req, res) => {
                 res.writeHead(200);
                 res.end('error: ' + err.toString());
             });
-    } else if (req.url == '/api/demo') {
+    } else if (req.url == '/demo') {
         res.writeHead(200)
         res.end(JSON.stringify(demo))
-    } /* else if ('subscription' in req.headers && req.url == '/api/notifications') {
+    } /* else if ('subscription' in req.headers && req.url == '/notifications') {
         res.writeHead(201);
         res.end(JSON.stringify({}))
         const payload = JSON.stringify({

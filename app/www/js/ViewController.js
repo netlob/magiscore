@@ -147,6 +147,13 @@ class ViewController {
       });
     }
   }
+
+  savePassed() {
+    var passed = $('#passedRange').val()
+    console.dir(passed)
+    this.updateConfig({ "passed": passed })
+    this.render(currentLesson)
+  }
 }
 
 function updateSidebar() {

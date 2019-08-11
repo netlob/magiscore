@@ -891,8 +891,8 @@ function getLoginInfo() {
 }
 var res;
 
-function login(creds) {
-    if (!creds.school) {
+function login(creds, demo) {
+    if (!creds.school && !demo) {
         if (navigator.notification) {
             navigator.notification.alert(
                 `Geen geldige school \n Tip: type de eerste 3 letters van je school en kies je school uit het lijstje`,
@@ -907,17 +907,17 @@ function login(creds) {
         $('#login-school').val('')
         return;
     }
-    if (creds.username.length > 1 && creds.password.length > 1 && creds.school.length > 1) {
+    if (demo || (creds.username.length > 1 && creds.password.length > 1 && creds.school.length > 1)) {
         $("#overlay").show()
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "http://localhost:7080/api/demo",
+            "url": demo ? "https://api.magiscore.nl/demo" : "https://api.magiscore.nl/cijfers",
             "method": "GET",
             "headers": {
-                "username": creds.username,
-                "password": creds.password,
-                "school": creds.school
+                "username": demo ? "" : creds.username,
+                "password": demo ? "" : creds.password,
+                "school": demo ? "" : creds.school
             }
         }
 
@@ -933,13 +933,14 @@ function login(creds) {
                 var config = {
                     "isDesktop": $(window).width() > 600 ? true : false,
                     "tention": 0.3,
-                    "passed": 5.5
+                    "passed": 5.5,
+                    "darkTheme": false
                 }
                 localStorage.setItem("grades", JSON.stringify(grades));
                 localStorage.setItem("person", JSON.stringify(person));
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("school", JSON.stringify(school));
-                localStorage.setItem("creds", JSON.stringify(creds));
+                localStorage.setItem("creds", demo ? '{"demo": true}' : JSON.stringify(creds));
                 localStorage.setItem("course", JSON.stringify(course));
                 localStorage.setItem("config", JSON.stringify(config));
                 window.location = '../index.html'

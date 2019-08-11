@@ -382,6 +382,10 @@ select:-webkit-autofill:focus {
   bottom: -200px;
 }
 
+.btn-demo:hover {
+  text-decoration: underline !important;
+}
+
 /* #snackbar.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;

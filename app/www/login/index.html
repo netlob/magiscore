@@ -54,7 +54,7 @@
                   <input type="password" class="form-control form-control-user" id="login-password"
                     aria-describedby="password" placeholder="Wachtwoord">
                 </div>
-                <a onclick="login(getLoginInfo())" class="btn btn-primary btn-user bg-gradiant-primary"
+                <a onclick="login(getLoginInfo(), false)" class="btn btn-primary btn-user bg-gradiant-primary"
                   style="margin: 0px 1rem 0px 1rem; display: block;">Login</a>
               </form>
             </div>
@@ -63,6 +63,9 @@
       </div>
     </div>
   </div>
+
+  <a onclick="login({}, true)" class="btn btn-demo"
+    style="position: absolute; bottom: 30px; right: 40px; color: yellow !important">Demo login</a>
 
   <div id="overlay">
     <div class="spinner-border" role="status">
