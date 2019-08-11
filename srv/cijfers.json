@@ -1,6 +1,6 @@
 {
     "person": {
-        "id": "13009",
+        "id": "1337",
         "officialFirstNames": "John Doe",
         "initials": "J.D.",
         "namePrefix": null,
@@ -15,7 +15,7 @@
     },
     "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxRjFFNTQ2ODQ1MkVFQTM4QUM4NDVFODI4NkMzODNFNkRFQzMzQ0IiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJrZkhsUm9SUzdxT0t5RVhvS0d3NFBtM3NNOHMifQ.eyJuYmYiOjE1NTM1NDc0OTksImV4cCI6MTU1MzU1MTA5OSwiaXNzIjoiaHR0cHM6Ly9hY2NvdW50cy5tYWdpc3Rlci5uZXQiLCJhdWQiOlsiaHR0cHM6Ly9hY2NvdW50cy5tYWdpc3Rlci5uZXQvcmVzb3VyY2VzIiwibWFnaXN0ZXIuZWNzLmxlZ2FjeSIsIm1hZ2lzdGVyLm1kdi5icm9rZXIucmVhZCJdLCJjbGllbnRfaWQiOiJNNi1yc2dsYy5tYWdpc3Rlci5uZXQiLCJzdWIiOiI0MDA1YjRkN2QwY2E0Mzg4YTI4ZGE4YmE5ODdmYTg1YyIsImF1dGhfdGltZSI6MTU1MzU0NzQ5OSwiaWRwIjoibG9jYWwiLCJ1cm46bWFnaXN0ZXI6Y2xhaW1zOmlhbTp0ZW5hbnRJZCI6ImRhOGVlMzk5Nzk2YTRiMTJhYjk2YjE3YTZiNTJiYzA1IiwidXJuOm1hZ2lzdGVyOnRpZCI6ImRhOGVlMzk5Nzk2YTRiMTJhYjk2YjE3YTZiNTJiYzA1IiwidXJuOm1hZ2lzdGVyOmNsYWltczppYW06dGVuYW50IjoicnNnbGMubWFnaXN0ZXIubmV0IiwidXJuOm1hZ2lzdGVyOmNsYWltczppYW06dXNlcm5hbWUiOiIxMDE5MDYiLCJqdGkiOiI1OWViY2I1NDk2M2I4MzUwMjBmNjFiNWRmNzliZjA2NCIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJtYWdpc3Rlci5kbm4ucm9sZXMucmVhZCIsIm1hZ2lzdGVyLmVjcy5sZWdhY3kiLCJtYWdpc3Rlci5tZHYuYnJva2VyLnJlYWQiXSwiYW1yIjpbInB3ZCJdfQ.LHo50d2lxLK0YuiDb8kw7MQTZKspvKU0mg-LTtI6t5gmJJwoxYva9-HOu57GpI9CuWuzmk92BsE8JhVjt_cmhLaMRxKS49n8hySK25Y5Y3U96FHJs9JdprknounGOsl372VU6KZQhYXR-ZKe6buVvhSbd01_yxRChFePVaamvQVYMS9QxJEQio3Lnmyu_HIVXOCWEHUV3Ktuy3qXznD3PXLr4P67FHwMwwv1dV8fxpU5maBKlmL0yK_UgG9LEVPR3exCu3Tli4VnDM1no3gcuIjMNgbaGq4xcg_exAllFi_2j8z_dgh_0xUWpvMQNfc2e7WkMv9-F_W20SE6s4zwMg",
     "school": {
-        "url": "https://kajmunk.magister.net"
+        "url": "https://magiscore.magister.net"
     },
     "course": {
         "id": "64858",
@@ -35,8 +35,9 @@
             "N&T"
         ]
     },
-    "grades": [{
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225198",
+    "grades": [
+        {
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225198",
             "id": "8700964",
             "grade": "7,2",
             "passed": true,
@@ -74,7 +75,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225304",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225304",
             "id": "8708293",
             "grade": "9,1",
             "passed": true,
@@ -113,7 +114,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224928",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224928",
             "id": "8720069",
             "grade": "6,2",
             "passed": true,
@@ -151,7 +152,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225295",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225295",
             "id": "8724041",
             "grade": "8,2",
             "passed": true,
@@ -189,7 +190,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225072",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225072",
             "id": "8743491",
             "grade": "6,4",
             "passed": true,
@@ -227,7 +228,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225296",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225296",
             "id": "8749359",
             "grade": "7,5",
             "passed": true,
@@ -265,7 +266,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/228926",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/228926",
             "id": "8771840",
             "grade": "6,4",
             "passed": true,
@@ -303,7 +304,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225073",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225073",
             "id": "8775385",
             "grade": "6,5",
             "passed": true,
@@ -341,7 +342,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225282",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225282",
             "id": "8789450",
             "grade": "6,2",
             "passed": true,
@@ -379,7 +380,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225200",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225200",
             "id": "8793688",
             "grade": "8,3",
             "passed": true,
@@ -417,7 +418,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225301",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225301",
             "id": "8708294",
             "grade": "8",
             "passed": true,
@@ -455,7 +456,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225305",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225305",
             "id": "8797055",
             "grade": "7,3",
             "passed": true,
@@ -494,7 +495,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225312",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225312",
             "id": "8708296",
             "grade": "7,9",
             "passed": true,
@@ -532,7 +533,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224911",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224911",
             "id": "8720070",
             "grade": "6",
             "passed": true,
@@ -570,7 +571,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224920",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224920",
             "id": "8720072",
             "grade": "6,1",
             "passed": true,
@@ -608,7 +609,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224929",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224929",
             "id": "8827283",
             "grade": "6,0",
             "passed": true,
@@ -646,7 +647,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224967",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224967",
             "id": "8778579",
             "grade": "4,9",
             "passed": false,
@@ -684,7 +685,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225070",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225070",
             "id": "8743492",
             "grade": "6",
             "passed": true,
@@ -722,7 +723,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225074",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225074",
             "id": "8840133",
             "grade": "6,0",
             "passed": true,
@@ -760,7 +761,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225081",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225081",
             "id": "8743494",
             "grade": "6,3",
             "passed": true,
@@ -798,7 +799,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/228924",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/228924",
             "id": "8847623",
             "grade": "5,6",
             "passed": true,
@@ -836,7 +837,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/228925",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/228925",
             "id": "8847624",
             "grade": "6,8",
             "passed": true,
@@ -874,7 +875,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225201",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225201",
             "id": "8853067",
             "grade": "1,0",
             "passed": false,
@@ -912,7 +913,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224968",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224968",
             "id": "8888277",
             "grade": "Inh",
             "passed": true,
@@ -950,7 +951,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224965",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224965",
             "id": "8744318",
             "grade": "5",
             "passed": false,
@@ -988,7 +989,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224976",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224976",
             "id": "8744319",
             "grade": "5,5",
             "passed": true,
@@ -1026,7 +1027,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224979",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224979",
             "id": "8744317",
             "grade": "6,6",
             "passed": true,
@@ -1064,7 +1065,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225133",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225133",
             "id": "8771841",
             "grade": "6",
             "passed": true,
@@ -1102,7 +1103,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225144",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225144",
             "id": "8771843",
             "grade": "6,1",
             "passed": true,
@@ -1140,7 +1141,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/228933",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/228933",
             "id": "8894988",
             "grade": "Inh",
             "passed": true,
@@ -1178,7 +1179,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224966",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224966",
             "id": "8778580",
             "grade": "4,9",
             "passed": false,
@@ -1216,7 +1217,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225071",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225071",
             "id": "8743493",
             "grade": "6,3",
             "passed": true,
@@ -1254,7 +1255,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225134",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225134",
             "id": "8771842",
             "grade": "6,1",
             "passed": true,
@@ -1292,7 +1293,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225197",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225197",
             "id": "8700966",
             "grade": "4,5",
             "passed": false,
@@ -1330,7 +1331,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/224912",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/224912",
             "id": "8720071",
             "grade": "6,1",
             "passed": true,
@@ -1368,7 +1369,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225281",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225281",
             "id": "8789451",
             "grade": "6,2",
             "passed": true,
@@ -1406,7 +1407,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225302",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225302",
             "id": "8708295",
             "grade": "7,9",
             "passed": true,
@@ -1444,7 +1445,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225196",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225196",
             "id": "8700965",
             "grade": "5",
             "passed": false,
@@ -1482,7 +1483,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225207",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225207",
             "id": "8700967",
             "grade": "5,3",
             "passed": false,
@@ -1520,7 +1521,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/235798",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/235798",
             "id": "8916851",
             "grade": "8,4",
             "passed": true,
@@ -1558,7 +1559,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225280",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225280",
             "id": "8724042",
             "grade": "7",
             "passed": true,
@@ -1596,7 +1597,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225291",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225291",
             "id": "8724043",
             "grade": "6,8",
             "passed": true,
@@ -1634,7 +1635,7 @@
             "filled": true
         },
         {
-            "_fillUrl": "https://kajmunk.magister.net/api/personen/13009/aanmeldingen/64858/cijfers/extracijferkolominfo/225292",
+            "_fillUrl": "https://magiscore.magister.net/api/personen/1337/aanmeldingen/64858/cijfers/extracijferkolominfo/225292",
             "id": "8942723",
             "grade": "Inh",
             "passed": true,
