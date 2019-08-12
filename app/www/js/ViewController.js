@@ -25,7 +25,7 @@ class ViewController {
       `Alle cijfers van ${course.type.description}`
     );
     setChartData(this.config, "general", true);
-    // setCompleted()
+    setCompleted()
     currentLesson = "general";
     document.title = `Gemiddeld - Magiscore`;
     this.initTheme();
@@ -100,15 +100,15 @@ class ViewController {
     $("body").append(`<div id="snackbar" class="snackbar">${msg}</div>`);
     $("#snackbar").css("display", "block");
     $("#snackbar").animate({
-      bottom: "30px"
-    },
+        bottom: "30px"
+      },
       "slow"
     );
     if (duration) {
       setTimeout(function () {
         $("#snackbar").animate({
-          bottom: "-200px"
-        },
+            bottom: "-200px"
+          },
           "slow",
           function () {
             $("#snackbar").remove();
@@ -151,7 +151,9 @@ class ViewController {
   savePassed() {
     var passed = $('#passedRange').val()
     console.dir(passed)
-    this.updateConfig({ "passed": passed })
+    this.updateConfig({
+      "passed": passed
+    })
     this.render(currentLesson)
   }
 }

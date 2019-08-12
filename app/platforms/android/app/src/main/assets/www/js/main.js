@@ -1,15 +1,19 @@
-setTimeout(function(){ if($("#userDropdown > span").text() == "Voornaam Achternaam") { location.reload() } }, 1000)
+setTimeout(function () {
+  if ($("#userDropdown > span").text() == "Voornaam Achternaam") {
+    location.reload()
+  }
+}, 1000)
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController()
-    
+
 var currentLesson,
-    sorted = {},
-    person = JSON.parse(localStorage.getItem("person")),
-    token = JSON.parse(localStorage.getItem("token")),
-    school = JSON.parse(localStorage.getItem("school"),)
-    creds = JSON.parse(localStorage.getItem("creds")),
-    course = JSON.parse(localStorage.getItem("course"))
-  
+  sorted = {},
+  person = JSON.parse(localStorage.getItem("person")),
+  token = JSON.parse(localStorage.getItem("token")),
+  school = JSON.parse(localStorage.getItem("school"), )
+creds = JSON.parse(localStorage.getItem("creds")),
+  course = JSON.parse(localStorage.getItem("course"))
+
 viewController.setConfig()
 
 function main(l) {
@@ -19,33 +23,47 @@ function main(l) {
 
     grades.forEach(grade => {
       var vak = grade.class.description.capitalize()
-      if (sorted[vak] == null) { sorted[vak] = [] }
-      if (sorted[vak][grade.type.header] == null) { sorted[vak][grade.type.header] = [] }
-      if (sorted[vak]['Grades'] == null) { sorted[vak]['Grades'] = [] }
-      if (sorted[vak]['Completed'] == null) { sorted[vak]['Completed'] = [] }
+      if (sorted[vak] == null) {
+        sorted[vak] = []
+      }
+      if (sorted[vak][grade.type.header] == null) {
+        sorted[vak][grade.type.header] = []
+      }
+      if (sorted[vak]['Grades'] == null) {
+        sorted[vak]['Grades'] = []
+      }
+      if (sorted[vak]['Completed'] == null) {
+        sorted[vak]['Completed'] = []
+      }
       sorted[vak][grade.type.header].push(grade)
-      if(grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) { sorted[vak]['Grades'].push(grade) }
-      if(grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) { sorted[vak]['Completed'].push(grade) }
+      if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
+        sorted[vak]['Grades'].push(grade)
+      }
+      if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
+        sorted[vak]['Completed'].push(grade)
+      }
     })
-    for(var lesson in sorted) {
+    for (var lesson in sorted) {
       var data = sorted[lesson]
       var grades = data["Grades"]
       lessonController.add(lesson, grades, data, $("#lesson-wrapper"))
     }
 
     viewController.updateNav()
-    viewController.render(l?l:'general')
-    if($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) { document.querySelector('#sidebarToggleTop').click() }
+    viewController.render(l ? l : 'general')
+    if ($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
+      document.querySelector('#sidebarToggleTop').click()
+    }
     // $('#betaModal').modal({show:true})
   } else {
-    window.location = './login/index.html'
+    window.location = './login/'
     // alert(window.location)
   }
 }
 
 function logOut() {
   localStorage.clear()
-  window.location = './login/index.html'
+  window.location = './login/'
 }
 
 function getBase64Image(img) {
@@ -61,31 +79,31 @@ function getBase64Image(img) {
   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
-function round(num){
-  if(typeof num == "string") {
-    num = num.replace(',','.')
+function round(num) {
+  if (typeof num == "string") {
+    num = num.replace(',', '.')
   }
   return parseFloat(Math.round(num * 100) / 100).toFixed(2);
 }
 
 function syncGrades() {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     $("#overlay").show();
     var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://magiscore.nl/api/cijfers",
-        "method": "GET",
-        "headers": {
-            "username": creds.username,
-            "password": creds.password,
-            "school": creds.school
-        }
+      "async": true,
+      "crossDomain": true,
+      "url": "https://magiscore.nl/api/cijfers",
+      "method": "GET",
+      "headers": {
+        "username": creds.username,
+        "password": creds.password,
+        "school": creds.school
+      }
     }
-    
+
     $.ajax(settings).done(function (response) {
       // $("#overlay").show();
-      if(response.substring(0, 5) != 'error') {
+      if (response.substring(0, 5) != 'error') {
         lessonController.clear()
         localStorage.removeItem("grades");
         localStorage.removeItem("person");
@@ -106,13 +124,25 @@ function syncGrades() {
         localStorage.setItem("course", JSON.stringify(course));
         grades.forEach(grade => {
           var vak = grade.class.description.capitalize()
-          if (sorted[vak] == null) { sorted[vak] = [] }
-          if (sorted[vak][grade.type.header] == null) { sorted[vak][grade.type.header] = [] }
-          if (sorted[vak]['Grades'] == null) { sorted[vak]['Grades'] = [] }
-          if (sorted[vak]['Completed'] == null) { sorted[vak]['Completed'] = [] }
+          if (sorted[vak] == null) {
+            sorted[vak] = []
+          }
+          if (sorted[vak][grade.type.header] == null) {
+            sorted[vak][grade.type.header] = []
+          }
+          if (sorted[vak]['Grades'] == null) {
+            sorted[vak]['Grades'] = []
+          }
+          if (sorted[vak]['Completed'] == null) {
+            sorted[vak]['Completed'] = []
+          }
           sorted[vak][grade.type.header].push(grade)
-          if(grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) { sorted[vak]['Grades'].push(grade) }
-          if(grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) { sorted[vak]['Completed'].push(grade) }
+          if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
+            sorted[vak]['Grades'].push(grade)
+          }
+          if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
+            sorted[vak]['Completed'].push(grade)
+          }
         })
         $("#overlay").hide();
         viewController.lineChart.destroy();
@@ -128,29 +158,33 @@ function syncGrades() {
 }
 
 function updateCache() {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     viewController.removeToasts()
     $("#overlay").show();
     var msg_chan = new MessageChannel();
-    msg_chan.port1.onmessage = function(event) {
-        if(event.data.error) {
-            reject(event.data.error);
-        } else {
-            resolve(event.data);
-        }
+    msg_chan.port1.onmessage = function (event) {
+      if (event.data.error) {
+        reject(event.data.error);
+      } else {
+        resolve(event.data);
+      }
     };
     navigator.serviceWorker.controller.postMessage("updateAvailablePleaseUpdate", [msg_chan.port2]);
     location.reload();
   });
 }
 
-$("body").keypress(function(e) {
-  if(e.which == 114) {
+$("body").keypress(function (e) {
+  if (e.which == 114) {
     e.preventDefault();
     var elem = $("document");
-    $({deg: 0}).animate({deg: 360}, {
+    $({
+      deg: 0
+    }).animate({
+      deg: 360
+    }, {
       duration: 4000,
-      step: function(now){
+      step: function (now) {
         elem.css({
           transform: "rotate(" + now + "deg)"
         });
@@ -161,7 +195,7 @@ $("body").keypress(function(e) {
 
 const ptr = PullToRefresh.init({
   mainElement: '#ptr',
-  shouldPullToRefresh: function() {
+  shouldPullToRefresh: function () {
     return $(window).scrollTop() == 0
   },
   onRefresh: function (done) {
@@ -196,29 +230,41 @@ const ptr = PullToRefresh.init({
 //   }
 // });;
 
-String.prototype.capitalize = function(poep) {
+String.prototype.capitalize = function (poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-Array.prototype.remove = function() {
-  var what, a = arguments, L = a.length, ax;
+Array.prototype.remove = function () {
+  var what, a = arguments,
+    L = a.length,
+    ax;
   while (L && this.length) {
-      what = a[--L];
-      while ((ax = this.indexOf(what)) !== -1) {
-          this.splice(ax, 1);
-      }
+    what = a[--L];
+    while ((ax = this.indexOf(what)) !== -1) {
+      this.splice(ax, 1);
+    }
   }
   return this;
 };
 
-$('.container-fluid').click(function() {
-  if(!$('body').hasClass('sidebar-toggled') && $(window).width() < 767) { $('#sidebarToggleTop').click() }
+$('.container-fluid').click(function () {
+  if (!$('body').hasClass('sidebar-toggled') && $(window).width() < 767) {
+    $('#sidebarToggleTop').click()
+  }
 });
 
-document.addEventListener("deviceready", function(){
+document.addEventListener("deviceready", function () {
   alert("123");
-  $('#wrapper').bind('swipeleft', function() { if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
-  $('#wrapper').bind('swiperight', function() { if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
+  $('#wrapper').bind('swipeleft', function () {
+    if (!$('body').hasClass('sidebar-toggled')) {
+      $('#sidebarToggleTop').click()
+    }
+  });
+  $('#wrapper').bind('swiperight', function () {
+    if ($('body').hasClass('sidebar-toggled')) {
+      $('#sidebarToggleTop').click()
+    }
+  });
 }, true);
 
 main()

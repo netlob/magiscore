@@ -25,10 +25,11 @@ class ViewController {
       `Alle cijfers van ${course.type.description}`
     );
     setChartData(this.config, "general", true);
-    // setCompleted()
+    setCompleted()
     currentLesson = "general";
     document.title = `Gemiddeld - Magiscore`;
     this.initTheme();
+    $('*[data-toggle="tooltip"]').tooltip()
     $("#general-wrapper").show();
   }
 
@@ -50,6 +51,7 @@ class ViewController {
     currentLesson = lesson;
     document.title = `${lesson.capitalize()} - Magiscore`;
     this.initTheme();
+    $('*[data-toggle="tooltip"]').tooltip()
     $("#lesson-wrapper").show();
   }
 
@@ -100,15 +102,15 @@ class ViewController {
     $("body").append(`<div id="snackbar" class="snackbar">${msg}</div>`);
     $("#snackbar").css("display", "block");
     $("#snackbar").animate({
-      bottom: "30px"
-    },
+        bottom: "30px"
+      },
       "slow"
     );
     if (duration) {
       setTimeout(function () {
         $("#snackbar").animate({
-          bottom: "-200px"
-        },
+            bottom: "-200px"
+          },
           "slow",
           function () {
             $("#snackbar").remove();
@@ -151,7 +153,9 @@ class ViewController {
   savePassed() {
     var passed = $('#passedRange').val()
     console.dir(passed)
-    this.updateConfig({ "passed": passed })
+    this.updateConfig({
+      "passed": passed
+    })
     this.render(currentLesson)
   }
 }
@@ -500,40 +504,40 @@ function setTableData(lesson) {
 }
 
 function setCompleted() {
+  console.dir("test")
   var totcompleted = 0,
     totcomclass = 0,
     totgem = 0,
-    totgemclass = 0;
-  $("#general-progress").empty();
-  $("#averagesTable").empty();
-  for (var lesson in sorted) {
-    var completed = lessonController.getLesson(lesson).lesson.getCompleted();
-    var average = lessonController.getLesson(lesson).lesson.getAverage();
-    if (completed > 0) {
-      var html = generateProgressHTML(lesson);
-      $("#general-progress").append(html);
-    }
-    if (completed > -1 && completed < 101) {
-      totcompleted = totcompleted + parseFloat(completed);
-      totcomclass++;
-    }
+    totgemclass = 0
+  $('#general-progress').empty()
+  $('#averagesTable').empty()
+  lessonController.lessons.forEach(lesson => {
+    // var completed = lesson.getCompleted()
+    var average = lesson.lesson.getAverage()
+    // if (completed > 0) {
+    //   var html = generateProgressHTML(lesson.name)
+    //   $('#general-progress').append(html)
+    // }
+    // if (completed > -1 && completed < 101) {
+    //   totcompleted = totcompleted + parseFloat(completed)
+    //   totcomclass++
+    // }
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
-      $("#averagesTable").append(
+      $('#averagesTable').append(
         `<tr>
-                <td>${lesson}</td>
-                <td>${average}</td>
-            </tr>`
-      );
-      totgem = totgem + parseFloat(average);
-      totgemclass++;
+              <td>${lesson.name}</td>
+              <td>${average}</td>
+          </tr>`)
+      totgem = totgem + parseFloat(average)
+      totgemclass++
     }
-  }
-  var totcompleted = totcompleted / totcomclass;
-  $("#general-completed-bar").attr("aria-valuenow", totcompleted);
-  $("#general-completed-bar").attr("style", `width: ${totcompleted}%`);
-  $("#general-completed").text(`${round(totcompleted)}%`);
-  var totgem = totgem / totgemclass;
-  $("#general-average").text(`${round(totgem)}`);
+  })
+  // var totcompleted = totcompleted / totcomclass
+  // $('#general-completed-bar').attr('aria-valuenow', totcompleted)
+  // $('#general-completed-bar').attr('style', `width: ${totcompleted}%`)
+  // $('#general-completed').text(`${round(totcompleted)}%`)
+  var totgem = totgem / totgemclass
+  $('#general-average').text(`${round(totgem)}`)
 }
 
 function generateProgressHTML(lesson) {

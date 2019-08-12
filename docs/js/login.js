@@ -896,7 +896,7 @@ function login(creds, demo) {
         if (navigator.notification) {
             navigator.notification.alert(
                 `Geen geldige school \n Tip: type de eerste 3 letters van je school en kies je school uit het lijstje`,
-                function () { },
+                function () {},
                 'Oeps',
                 'Begrepen'
             );
@@ -943,14 +943,14 @@ function login(creds, demo) {
                 localStorage.setItem("creds", demo ? '{"demo": true}' : JSON.stringify(creds));
                 localStorage.setItem("course", JSON.stringify(course));
                 localStorage.setItem("config", JSON.stringify(config));
-                window.location = '../index.html'
+                window.location = '../'
             } else {
                 console.error(response)
                 if (response == 'error: AuthError: Invalid password') {
                     if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerd Magister wachtwoord',
-                            function () { },
+                            function () {},
                             'Oeps',
                             'Begrepen'
                         );
@@ -965,7 +965,7 @@ function login(creds, demo) {
                     if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerde Magister gebruikersnaam',
-                            function () { },
+                            function () {},
                             'Oeps',
                             'Begrepen'
                         );
@@ -987,7 +987,7 @@ function login(creds, demo) {
         if (navigator.notification) {
             navigator.notification.alert(
                 'Vul alle velden in a.u.b.',
-                function () { },
+                function () {},
                 'Oeps',
                 'Begrepen'
             );

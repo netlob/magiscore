@@ -25,7 +25,7 @@ class ViewController {
         }
         $('#general-area-title').text(`Alle cijfers van ${course.type.description}`)
         setChartData(this.config, 'general', true)
-        // setCompleted()
+        setCompleted()
         currentLesson = 'general'
         document.title = `Gemiddeld - Magiscore`
     }
@@ -405,17 +405,18 @@ function setTableData(lesson) {
 }
 
 function setCompleted() {
+    console.dir("test")
     var totcompleted = 0,
         totcomclass = 0,
         totgem = 0,
         totgemclass = 0
     $('#general-progress').empty()
     $('#averagesTable').empty()
-    for (var lesson in sorted) {
-        var completed = lessonController.getLesson(lesson).lesson.getCompleted()
-        var average = lessonController.getLesson(lesson).lesson.getAverage()
+    lessonController.lessons.forEach(lesson => {
+        var completed = lesson.getCompleted()
+        var average = lesson.getAverage()
         if (completed > 0) {
-            var html = generateProgressHTML(lesson)
+            var html = generateProgressHTML(lesson.name)
             $('#general-progress').append(html)
         }
         if (completed > -1 && completed < 101) {
@@ -425,13 +426,13 @@ function setCompleted() {
         if (parseFloat(average) > -1 && parseFloat(average) < 11) {
             $('#averagesTable').append(
                 `<tr>
-                <td>${lesson}</td>
+                <td>${lesson.name}</td>
                 <td>${average}</td>
             </tr>`)
             totgem = totgem + parseFloat(average)
             totgemclass++
         }
-    }
+    })
     var totcompleted = totcompleted / totcomclass
     $('#general-completed-bar').attr('aria-valuenow', totcompleted)
     $('#general-completed-bar').attr('style', `width: ${totcompleted}%`)
