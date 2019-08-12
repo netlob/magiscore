@@ -1,5 +1,0 @@
-[{
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target" : { "namespace": "android_app", "package_name": "nl.netlob.magistat",
-                 "sha256_cert_fingerprints": ["55:93:94:51:18:CD:6B:D3:E8:A1:7F:31:6A:C7:BC:6E:1B:D0:2F:B1:DD:B7:DB:8E:EE:D1:44:D4:F9:A3:14:2A"] }
-}]

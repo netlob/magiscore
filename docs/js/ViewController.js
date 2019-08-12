@@ -25,7 +25,7 @@ class ViewController {
       `Alle cijfers van ${course.type.description}`
     );
     setChartData(this.config, "general", true);
-    setCompleted()
+    setAverages()
     currentLesson = "general";
     document.title = `Gemiddeld - Magiscore`;
     this.initTheme();
@@ -102,15 +102,15 @@ class ViewController {
     $("body").append(`<div id="snackbar" class="snackbar">${msg}</div>`);
     $("#snackbar").css("display", "block");
     $("#snackbar").animate({
-        bottom: "30px"
-      },
+      bottom: "30px"
+    },
       "slow"
     );
     if (duration) {
       setTimeout(function () {
         $("#snackbar").animate({
-            bottom: "-200px"
-          },
+          bottom: "-200px"
+        },
           "slow",
           function () {
             $("#snackbar").remove();
@@ -503,7 +503,7 @@ function setTableData(lesson) {
   // $('#dataTable').DataTable();
 }
 
-function setCompleted() {
+function setAverages() {
   console.dir("test")
   var totcompleted = 0,
     totcomclass = 0,
@@ -512,30 +512,17 @@ function setCompleted() {
   $('#general-progress').empty()
   $('#averagesTable').empty()
   lessonController.lessons.forEach(lesson => {
-    // var completed = lesson.getCompleted()
     var average = lesson.lesson.getAverage()
-    // if (completed > 0) {
-    //   var html = generateProgressHTML(lesson.name)
-    //   $('#general-progress').append(html)
-    // }
-    // if (completed > -1 && completed < 101) {
-    //   totcompleted = totcompleted + parseFloat(completed)
-    //   totcomclass++
-    // }
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
       $('#averagesTable').append(
         `<tr>
-              <td>${lesson.name}</td>
-              <td>${average}</td>
-          </tr>`)
+          <td>${lesson.name}</td>
+          <td>${average}</td>
+         </tr>`)
       totgem = totgem + parseFloat(average)
       totgemclass++
     }
   })
-  // var totcompleted = totcompleted / totcomclass
-  // $('#general-completed-bar').attr('aria-valuenow', totcompleted)
-  // $('#general-completed-bar').attr('style', `width: ${totcompleted}%`)
-  // $('#general-completed').text(`${round(totcompleted)}%`)
   var totgem = totgem / totgemclass
   $('#general-average').text(`${round(totgem)}`)
 }
