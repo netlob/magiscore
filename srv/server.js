@@ -45,6 +45,7 @@ http.createServer((req, res) => {
                 res.end('error: ' + err.toString());
             });
     } else if (req.url == '/demo') {
+        console.log('Demo request')
         res.writeHead(200)
         res.end(JSON.stringify(demo))
     } /* else if ('subscription' in req.headers && req.url == '/notifications') {
