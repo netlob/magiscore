@@ -236,14 +236,13 @@ function updateSidebar() {
 }
 
 function setChartData(config, lesson, everything) {
+  // this.lineChart.clear()
   this.lineChart = "";
-  // lineChart.destroy();
   var data = [];
   var datums = [];
   var cijfers = [];
   var vol = 0;
   var onvol = 0;
-  // console.log(lesson)
   if (lesson == "general") {
     for (var lessonp in sorted) {
       if (lessonController.getLesson(lessonp).lesson.grades.length > 0) {
@@ -504,7 +503,6 @@ function setTableData(lesson) {
 }
 
 function setAverages() {
-  console.dir("test")
   var totcompleted = 0,
     totcomclass = 0,
     totgem = 0,

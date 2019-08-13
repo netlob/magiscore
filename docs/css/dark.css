@@ -173,7 +173,7 @@ body[theme="dark"] .dropdown-menu {
   background-color: #2c2d30 !important;
 }
 
-body[theme="dark"] .dropdown-item {
+body[theme="dark"] .dropdown-item, body[theme="dark"] .ptr--content, body[theme="dark"] .ptr--icon, body[theme="dark"] .ptr--text {
   color: #A9A9A9 !important;
 }
 
