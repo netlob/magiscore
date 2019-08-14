@@ -38,6 +38,7 @@ function main(l) {
       }
       sorted[vak][grade.type.header].push(grade)
       if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
+        grade.include = true;
         sorted[vak]['Grades'].push(grade)
       }
       if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {

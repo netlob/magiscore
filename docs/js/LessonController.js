@@ -3,10 +3,10 @@ class LessonController {
         this.lessons = [];
     }
 
-    add(lesson, data, grades, constroller) {
+    add(lesson, data, grades, controller) {
         var obj = {
             "name": lesson,
-            "lesson": new Lesson(lesson, grades, data, constroller)
+            "lesson": new Lesson(lesson, grades, data, controller)
         }
         this.lessons.push(obj)
     }

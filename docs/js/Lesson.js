@@ -73,7 +73,7 @@ class Lesson {
         var processed = 0;
         this.data['Grades'].forEach(_grade => {
           // console.log(_grade.type.isPTA)
-          if (Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1) {
+          if (Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1 && _grade.include) {
             // console.dir(_grade)
             processed++
             for (let i = 0; i < _grade.weight; i++) {

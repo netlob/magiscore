@@ -192,3 +192,8 @@ body[theme="dark"] .table thead th,
 body[theme="dark"] .table tbody+tbody {
   border-top: 2px solid #252729;
 }
+
+body[theme="dark"] .md-checkbox label:before {
+  background: #252729;
+  border: 2px solid #252729;
+}

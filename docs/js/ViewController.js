@@ -493,6 +493,12 @@ function setTableData(lesson) {
   $("#dataTable").show()
   grades.forEach(grade => {
     table.append(`<tr>
+                    <td>
+                      <div class="md-checkbox" style="font-size:1rem">
+                        <input id="${grade.id}" type="checkbox" ${grade.include ? "checked" : ""}>
+                        <label for="${grade.id}"></label>
+                      </div>
+                    </td>
                     <td>${grade.grade}</td>
                     <td>${grade.weight}x</td>
                     <td>${grade.description}</td>
@@ -787,6 +793,7 @@ function generateHTML(lesson) {
                         <table class="table" id="dataTable" width="100%" cellspacing="0">
                         <thead class="text-primary">
                             <tr>
+                            <th>Tel mee</th>
                             <th>Cijfer</th>
                             <th>Weging</th>
                             <th>Omschrijving</th>
@@ -801,6 +808,7 @@ function generateHTML(lesson) {
                         </thead>
                         <!-- <tfoot>
                             <tr>
+                            <th>Tel mee</th>
                             <th>Cijfer</th>
                             <th>Weging</th>
                             <th>Omschrijving</th>
