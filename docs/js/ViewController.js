@@ -769,34 +769,14 @@ function generateHTML(lesson) {
               <div class="col-lg-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">New unit ${lesson}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Feiten voor ${lesson}</h6>
                   </div>
                   <div class="card-body">
                   </div>
                 </div>
               </div>
-              <div class="col-lg-5">
-                <div class="card shadow mb-5">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">New unit ${lesson}</h6>
-                </div>
-                <div class="card-body">
-                </div>
-                </div>
-              </div>
-              <div class="col-lg-3">
-                <div class="card shadow mb-3">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">New unit ${lesson}</h6>
-                </div>
-                <div class="card-body">
-                </div>
-                </div>
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="col-xl-12">
+              <div class="col-xl-8">
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
