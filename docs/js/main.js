@@ -178,7 +178,7 @@ function updateCache() {
 $("body").keypress(function (e) {
   if (e.which == 114) {
     e.preventDefault();
-    var elem = $("document");
+    var elem = $("body");
     $({
       deg: 0
     }).animate({

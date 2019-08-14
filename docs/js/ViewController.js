@@ -298,7 +298,7 @@ function setChartData(config, lesson, everything) {
       datasets: [{
         label: "Cijfer",
         lineTension: config.tention,
-        backgroundColor: "rgba(0, 150, 219, 0.05)",
+        backgroundColor: "rgba(0, 150, 219, 0.06)",
         borderColor: "rgba(38, 186, 255, 1)",
         pointRadius: 3,
         pointBackgroundColor: "rgba(0, 150, 219, 1)",
@@ -485,6 +485,12 @@ function setTableData(lesson) {
   var table = $("#cijfersTable");
   var grades = sorted[lesson]["Grades"];
   grades.reverse();
+  if (grades.length == 0) {
+    $("#dataTable").hide()
+    $("#cijfersTableCard").append(`<h6 class="percentageGrades font-italic text-center">Geen cijfers voor dit vak...</h6>`)
+    return
+  }
+  $("#dataTable").show()
   grades.forEach(grade => {
     table.append(`<tr>
                     <td>${grade.grade}</td>
@@ -693,113 +699,147 @@ function generateHTML(lesson) {
 
             <div class="row">
 
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-                <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson}</h6>
-                    <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Uitschuiven" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Grafiek instellingen:</div>
-                        <div class="dropdown-item" href="#">Lijnintensiteit<input type="range" class="custom-range" min="0" max="10" step="0.1" id="lineTention"></div>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body chart-card">
-                    <div class="chart-area chart-container">
-                    <canvas id="lineChart"></canvas>
-                    </div>
-                </div>
-                </div>
+              <!-- Area Chart -->
+              <div class="col-xl-8 col-lg-7">
+                  <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson}</h6>
+                      <div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Uitschuiven" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                          <div class="dropdown-header">Grafiek instellingen:</div>
+                          <div class="dropdown-item" href="#">Lijnintensiteit<input type="range" class="custom-range" min="0" max="10" step="0.1" id="lineTention"></div>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                      </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body chart-card">
+                      <div class="chart-area chart-container">
+                      <canvas id="lineChart"></canvas>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+
+              <!-- Pie Chart -->
+              <div class="col-xl-4 col-lg-5">
+                  <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">Voldoendes / onvoldoendes</h6>
+                      <div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Download grafiek" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                          <div class="dropdown-header">Dropdown Header:</div>
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                      </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                      <h6 id="percentageGrades"></h6>
+                      <div class="chart-pie chart-container pt-4 pb-2">
+                      <canvas id="pieChart"></canvas>
+                      </div>
+                      <div class="mt-4 text-center small">
+                      <span class="mr-2">
+                          <i class="fas fa-circle" style="color: #0096db"></i> Voldoendes
+                      </span>
+                      <span class="mr-2">
+                          <i class="fas fa-circle" style="color: #e86458"></i> Onvoldoendes
+                      </span>
+                      </div>
+                  </div>
+                  </div>
+              </div>
             </div>
 
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
+            <div class="row">
+              <div class="col-lg-4">
                 <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Voldoendes / onvoldoendes</h6>
-                    <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Download grafiek" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                    </div>
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">New unit ${lesson}</h6>
+                  </div>
+                  <div class="card-body">
+                  </div>
                 </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <h6 id="percentageGrades"></h6>
-                    <div class="chart-pie chart-container pt-4 pb-2">
-                    <canvas id="pieChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                        <i class="fas fa-circle" style="color: #0096db"></i> Voldoendes
-                    </span>
-                    <span class="mr-2">
-                        <i class="fas fa-circle" style="color: #e86458"></i> Onvoldoendes
-                    </span>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
+              </div>
+              <div class="col-lg-5">
+                <div class="card shadow mb-5">
                 <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson}</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">New unit ${lesson}</h6>
                 </div>
                 <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="text-primary">
-                        <tr>
-                        <th>Cijfer</th>
-                        <th>Weging</th>
-                        <th>Omschrijving</th>
-                        <th>Telt mee</th>
-                        <th>Is voldoende</th>
-                        <th>Is PTA</th>
-                        <th>Inhalen</th>
-                        <th>Vrijstelling</th>
-                        <th>Docent</th>
-                        <th>Ingevoerd op</th>
-                        </tr>
-                    </thead>
-                    <!-- <tfoot>
-                        <tr>
-                        <th>Cijfer</th>
-                        <th>Weging</th>
-                        <th>Omschrijving</th>
-                        <th>Telt mee</th>
-                        <th>Is voldoende</th>
-                        <th>Is PTA</th>
-                        <th>Inhalen</th>
-                        <th>Vrijstelling</th>
-                        <th>Docent</th>
-                        <th>Ingevoerd op</th>
-                        </tr>
-                    </tfoot> -->
-                    <tbody id="cijfersTable">
-                    </tbody>
-                    </table>
                 </div>
                 </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="card shadow mb-3">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">New unit ${lesson}</h6>
+                </div>
+                <div class="card-body">
+                </div>
+                </div>
+              </div>
             </div>
+
+            <div class="row">
+              <div class="col-xl-12">
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson}</h6>
+                    </div>
+                    <div class="card-body">
+                    <div class="table-responsive" id="cijfersTableCard">
+                        <table class="table" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="text-primary">
+                            <tr>
+                            <th>Cijfer</th>
+                            <th>Weging</th>
+                            <th>Omschrijving</th>
+                            <th>Telt mee</th>
+                            <th>Is voldoende</th>
+                            <th>Is PTA</th>
+                            <th>Inhalen</th>
+                            <th>Vrijstelling</th>
+                            <th>Docent</th>
+                            <th>Ingevoerd op</th>
+                            </tr>
+                        </thead>
+                        <!-- <tfoot>
+                            <tr>
+                            <th>Cijfer</th>
+                            <th>Weging</th>
+                            <th>Omschrijving</th>
+                            <th>Telt mee</th>
+                            <th>Is voldoende</th>
+                            <th>Is PTA</th>
+                            <th>Inhalen</th>
+                            <th>Vrijstelling</th>
+                            <th>Docent</th>
+                            <th>Ingevoerd op</th>
+                            </tr>
+                        </tfoot> -->
+                        <tbody id="cijfersTable">
+                        </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+              </div>
             </div>`;
 
   // <!-- Content Row -->
