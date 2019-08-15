@@ -4,7 +4,7 @@ setTimeout(function () {
   }
 }, 1000)
 var viewController = new ViewController($("#content-wrapper"))
-var lessonController = new LessonController()
+var lessonController = new LessonController(viewController)
 
 viewController.setConfig()
 viewController.initTheme()
@@ -38,7 +38,7 @@ function main(l) {
       }
       sorted[vak][grade.type.header].push(grade)
       if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
-        grade.include = true;
+        grade.exclude = true;
         sorted[vak]['Grades'].push(grade)
       }
       if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
@@ -48,7 +48,7 @@ function main(l) {
     for (var lesson in sorted) {
       var data = sorted[lesson]
       var grades = data["Grades"]
-      lessonController.add(lesson, grades, data, $("#lesson-wrapper"))
+      lessonController.add(lesson, grades, data, lessonController)
     }
 
     viewController.updateNav()

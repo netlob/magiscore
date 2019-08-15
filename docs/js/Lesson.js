@@ -1,9 +1,9 @@
 class Lesson {
-  constructor(name, data, grades, viewcontroller) {
+  constructor(name, data, grades, lessoncontroller) {
     this.grades = grades;
     this.name = name;
     this.data = data;
-    this.controller = viewcontroller;
+    this.controller = lessoncontroller;
     this.extraFirst = undefined;
     this.extraSecond = undefined;
     this.extraThird = undefined;
@@ -14,12 +14,11 @@ class Lesson {
   }
 
   getFirst() {
-    // console.dir(this.data)
     var keys = Object.keys(this.data)
     keys = keys.remove("Grades")
     if (keys.length > 0 && this.data[keys[0]]) {
       var res = this.data[keys[0]][this.data[keys[0]].length - 1]
-      // console.dir(res)
+      this.extraFirst = keys[0]
       return {
         "title": res['type']['description'],
         "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
@@ -28,16 +27,29 @@ class Lesson {
   }
 
   getSecond() {
-    return {
-      "title": '',
-      "value": 0
+    var keys = Object.keys(this.data)
+    keys = keys.remove("Grades")
+    if (keys.length > 0 && this.data[keys[1]]) {
+      var res = this.data[keys[1]][this.data[keys[1]].length - 1]
+      if (res == undefined) return { "title": undefined, "value": undefined }
+      this.extraSecond = keys[1]
+      return {
+        "title": res['type']['description'],
+        "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
+      }
     }
   }
 
   getThird() {
-    return {
-      "title": '',
-      "value": 0
+    var keys = Object.keys(this.data)
+    keys = keys.remove("Grades")
+    if (keys.length > 1 && this.data[keys[2]]) {
+      var res = this.data[keys[2]][this.data[keys[2]].length - 1]
+      this.extraSecond = keys[2]
+      return {
+        "title": res['type']['description'],
+        "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
+      }
     }
   }
   getCompleted() {
@@ -68,31 +80,32 @@ class Lesson {
   getAverage(rounded) {
     if (this.data) {
       if (this.data['Grades'].length > 0) {
-        var newGrade = 0;
-        var Grades = []
+        var average = 0;
+        var grades = []
         var processed = 0;
         this.data['Grades'].forEach(_grade => {
           // console.log(_grade.type.isPTA)
-          if (Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1 && _grade.include) {
+          if (Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1) {
             // console.dir(_grade)
             processed++
-            for (let i = 0; i < _grade.weight; i++) {
-              Grades.push(Number(round(_grade.grade)))
-            }
-            if (processed == this.data['Grades'].length) {
-              var Average = 0;
-              for (let i = 0; i < Grades.length; i++) {
-                const Grade = Grades[i];
-                Average += Grade
+            if (!_grade.exclude) {
+              for (let i = 0; i < _grade.weight; i++) {
+                grades.push(Number(round(_grade.grade)))
               }
-              newGrade = Average / Grades.length
+              if (processed == this.data['Grades'].length) {
+                var averageTotal = 0;
+                for (let i = 0; i < grades.length; i++) {
+                  averageTotal += grades[i]
+                }
+                average = averageTotal / grades.length
+              }
             }
           }
         })
         if (rounded) {
-          return round(newGrade)
+          return round(average)
         } else {
-          return newGrade
+          return average
         }
       } else {
         return "Niet beschikbaar"
@@ -123,11 +136,7 @@ class Lesson {
       totaalweging += grades[i].weight;
     }
     var res = (((totaalweging + weight) * grade) - alles) / weight;
-    // console.dir(res +typeof res)
-    res = round(res)
-    if (res > 10) {
-      res = `<span style="color: red">${res}</span>`
-    }
+    res = `<span ${(round(res) > 10) ? 'style="color: red"' : ''}>${round(res)}</span>`
     $('#getGrade-newGrade').html(res)
     return res
   }
@@ -153,19 +162,28 @@ class Lesson {
     }
     this.grades.forEach(_grade => {
       processed++
-      for (let i = 0; i < _grade.weight; i++) {
-        grades.push(parseFloat(_grade.grade.replace(',', '.')))
-      }
-      if (processed == this.grades.length) {
-        var average = 0;
-        for (let i = 0; i < grades.length; i++) {
-          const grade = grades[i];
-          average += grade
+      if (!_grade.exclude) {
+        for (let i = 0; i < _grade.weight; i++) {
+          grades.push(parseFloat(_grade.grade.replace(',', '.')))
         }
-        newGrade = average / grades.length
+        if (processed == this.grades.length) {
+          var average = 0;
+          for (let i = 0; i < grades.length; i++) {
+            const grade = grades[i];
+            average += grade
+          }
+          newGrade = average / grades.length
+        }
       }
     })
     $('#newGrade-newGrade').text(round(newGrade))
     return round(newGrade)
+  }
+
+  exclude(grade) {
+    // this.
+    var currentExclude = this.controller.controller.config["exclude"]
+    currentExclude.push(grade)
+    this.controller.controller.updateConfig({ "exclude": currentExclude })
   }
 }

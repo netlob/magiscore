@@ -84,16 +84,18 @@ class ViewController {
   }
 
   setConfig() {
-    var config = JSON.parse(localStorage.getItem("config")) || false;
+    var config = localStorage.getItem("config") || false;
     if (!config) {
       config = {
         "isDesktop": false,
         "tention": 0.3,
         "passed": 5.5,
-        "darkTheme": false
+        "darkTheme": false,
+        "exclude": []
       }
       localStorage.setItem("config", JSON.stringify(config));
     }
+    config = JSON.parse(config)
     config["isDesktop"] = $(window).width() > 600 ? true : false;
     this.config = config;
   }
@@ -495,7 +497,7 @@ function setTableData(lesson) {
     table.append(`<tr>
                     <td>
                       <div class="md-checkbox" style="font-size:1rem">
-                        <input id="${grade.id}" type="checkbox" ${grade.include ? "checked" : ""}>
+                        <input id="${grade.id}" type="checkbox" ${(grade.exclude || grade.counts) ? "checked" : ""}>
                         <label for="${grade.id}"></label>
                       </div>
                     </td>
@@ -565,7 +567,7 @@ function generateHTML(lesson) {
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Gemiddeld cijfer</div>
+                        <div class="text-xs font-weight-bold text-primary-blue text-uppercase mb-1">Gemiddeld cijfer</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">${average}</div>
                     </div>
                     <div class="col-auto">
@@ -609,7 +611,7 @@ function generateHTML(lesson) {
                 </div>
             </div>
 
-            <!--<div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -651,7 +653,7 @@ function generateHTML(lesson) {
                     </div>
                 </div>
                 </div>
-            </div> -->
+            </div>
             </div>
 
             <div class="row">
@@ -793,7 +795,7 @@ function generateHTML(lesson) {
                         <table class="table" id="dataTable" width="100%" cellspacing="0">
                         <thead class="text-primary">
                             <tr>
-                            <th>Tel mee</th>
+                            <th></th>
                             <th>Cijfer</th>
                             <th>Weging</th>
                             <th>Omschrijving</th>

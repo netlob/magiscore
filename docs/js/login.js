@@ -896,7 +896,7 @@ function login(creds, demo) {
         if (navigator.notification) {
             navigator.notification.alert(
                 `Geen geldige school \n Tip: type de eerste 3 letters van je school en kies je school uit het lijstje`,
-                function () {},
+                function () { },
                 'Oeps',
                 'Begrepen'
             );
@@ -934,7 +934,8 @@ function login(creds, demo) {
                     "isDesktop": $(window).width() > 600 ? true : false,
                     "tention": 0.3,
                     "passed": 5.5,
-                    "darkTheme": false
+                    "darkTheme": false,
+                    "exclude": []
                 }
                 localStorage.setItem("grades", JSON.stringify(grades));
                 localStorage.setItem("person", JSON.stringify(person));
@@ -950,7 +951,7 @@ function login(creds, demo) {
                     if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerd Magister wachtwoord',
-                            function () {},
+                            function () { },
                             'Oeps',
                             'Begrepen'
                         );
@@ -965,7 +966,7 @@ function login(creds, demo) {
                     if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerde Magister gebruikersnaam',
-                            function () {},
+                            function () { },
                             'Oeps',
                             'Begrepen'
                         );
@@ -987,7 +988,7 @@ function login(creds, demo) {
         if (navigator.notification) {
             navigator.notification.alert(
                 'Vul alle velden in a.u.b.',
-                function () {},
+                function () { },
                 'Oeps',
                 'Begrepen'
             );

@@ -1,10 +1,14 @@
+body[theme="dark"] {
+  color: #A9A9A9 !important;
+}
+
 body[theme="dark"] .btn-light {
   color: #3a3b45;
   background-color: #202124;
   border-color: #202124;
 }
 
-body[theme="dark"] .btn-lightbody[theme="dark"] .disabled,
+body[theme="dark"] .btn-light .disabled,
 body[theme="dark"] .btn-light:disabled {
   color: #3a3b45;
   background-color: #202124;
@@ -30,7 +34,7 @@ body[theme="dark"] .btn-outline-light:disabled {
 
 body[theme="dark"] .btn-outline-light:not(:disabled):not(body[theme="dark"] .disabled):active,
 body[theme="dark"] .btn-outline-light:not(:disabled):not(body[theme="dark"] .disabled)body[theme="dark"] .active,
-body[theme="dark"] .show>body[theme="dark"] .btn-outline-lightbody[theme="dark"] .dropdown-toggle {
+body[theme="dark"] .show > body[theme="dark"] .btn-outline-lightbody[theme="dark"] .dropdown-toggle {
   color: #A9A9A9 !important;
   background-color: #202124;
   border-color: #202124;
