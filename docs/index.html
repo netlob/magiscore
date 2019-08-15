@@ -430,7 +430,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Gemiddeld cijfer</div>
+                      <div class="text-xs font-weight-bold text-primary-blue text-uppercase mb-1">Gemiddeld cijfer
+                      </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800" id="general-average">Niet beschikbaar</div>
                     </div>
                     <div class="col-auto">
@@ -447,7 +448,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">% Voltooid</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">% Voltooid</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="general-completed">Niet
@@ -560,7 +561,7 @@
                   <div class="chart-pie pt-4 pb-2">
                     <canvas id="pieChart"></canvas>
                   </div>
-                  <div class="mt-4 text-center small">
+                  <div class="text-center small">
                     <span class="mr-2">
                       <i class="fas fa-circle" style="color: #0096db"></i> Voldoendes
                     </span>
@@ -576,18 +577,18 @@
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Progress Column -->
-            <div class="col-lg-6 mb-4">
+
+            <div class="col-lg-4 mb-4">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">% voltooid per vak</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Algemene feiten</h6>
                 </div>
-                <div class="card-body" id="general-progress">
+                <div class="card-body" id="general-facts">
                 </div>
               </div>
             </div>
-            <!-- Progress Column -->
-            <div class="col-lg-6 mb-3">
+
+            <div class="col-lg-4 mb-3">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Gemiddeldes</h6>
@@ -607,9 +608,20 @@
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Color System -->
-              <!-- <div class="row">
+            <div class="col-lg-4 mb-4">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Laatste cijfers</h6>
+                </div>
+                <div class="card-body" id="general-facts">
+                </div>
+              </div>
+            </div>
+
+            <!-- Color System -->
+            <!-- <div class="row">
               <div class="col-lg-6 mb-4">
                 <div class="card bg-primary text-white shadow">
                   <div class="card-body">
@@ -660,7 +672,7 @@
               </div>
             </div> -->
 
-              <!-- <div class="col-lg-6 mb-4">
+            <!-- <div class="col-lg-6 mb-4">
 
               Illustrations
               <div class="card shadow mb-4">
@@ -688,163 +700,163 @@
               </div>
 
             </div> -->
-            </div>
-
           </div>
-          <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Main Content -->
+        <!-- /.container-fluid -->
 
-        <!-- Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright &copy; <a href="https://github.com/mamorgen/magbot-stat"
-                  aria-label="Github pagina van Magiscore" style="color: #858796">Magiscore</a> - <a
-                  href="https://netlob.app" aria-label="Github portfolio van de maker" style="color: #858796">Netlob</a>
-                <a href="https://wikipedia.org/wiki/2018" aria-label="2018" style="color: #858796">2018</a>-<a
-                  href="https://wikipedia.org/wiki/2019" aria-label="2019" style="color: #858796">2019</a></span>
-            </div>
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; <a href="https://github.com/mamorgen/magbot-stat"
+                aria-label="Github pagina van Magiscore" style="color: #858796">Magiscore</a> - <a
+                href="https://netlob.app" aria-label="Github portfolio van de maker" style="color: #858796">Netlob</a>
+              <a href="https://wikipedia.org/wiki/2018" aria-label="2018" style="color: #858796">2018</a>-<a
+                href="https://wikipedia.org/wiki/2019" aria-label="2019" style="color: #858796">2019</a></span>
           </div>
-        </footer>
-        <!-- End of Footer -->
-
-      </div>
-      <!-- End of Content Wrapper -->
-
-      <div id="overlay">
-        <div class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
         </div>
-      </div>
+      </footer>
+      <!-- End of Footer -->
 
     </div>
-    <!-- End of Page Wrapper -->
+    <!-- End of Content Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Klaar om uit te loggen?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Klik "Uitloggen" als je zeker weet dat je wilt uitloggen.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Annuleer">Annuleer</button>
-            <a class="btn btn-primary" href="#logout" onclick="logOut()" role="button"
-              aria-label="Uitloggen">Uitloggen</a>
-          </div>
-        </div>
+    <div id="overlay">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
     </div>
 
-    <!-- Passed Modal-->
-    <div class="modal fade" id="passedModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Voldoendegrens</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form oninput="passedOutput.value=passedRange.value" onload="passedOutput.value=passed">
-              <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en
-                dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
-              <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange">
-              <output name="passedOutput" for="passedRange"></output>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Anuleer">Annuleer</button>
-            <a class="btn btn-primary" href="#logout" onclick="viewController.savePassed()" role="button"
-              data-dismiss="modal" aria-label="Opslaan">Opslaan</a>
-          </div>
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Klaar om uit te loggen?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Klik "Uitloggen" als je zeker weet dat je wilt uitloggen.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Annuleer">Annuleer</button>
+          <a class="btn btn-primary" href="#logout" onclick="logOut()" role="button"
+            aria-label="Uitloggen">Uitloggen</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Beta Warning Modal-->
-    <div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Beta-versie</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Magiscore is momenteel nog in ontwikkeling. Dit betekend dat er errors en fouten kunnen optreden. Gebruik
-              is dan ook op eigen risico en alle rechten zijn voorbehouden.</p>
-
-            <span class="text-gray">Huidige versie: 0.2</span>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" aria-label="Anuleer"
-              onclick="window.location='https://google.com'">Annuleer</button>
-            <a class="btn btn-primary" href="#" role="button" data-dismiss="modal" aria-label="Akkoord">Akkoord</a>
-          </div>
+  <!-- Passed Modal-->
+  <div class="modal fade" id="passedModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Voldoendegrens</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form oninput="passedOutput.value=passedRange.value" onload="passedOutput.value=viewController.config.passed">
+            <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en
+              dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
+            <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange"">
+              <output name=" passedOutput" for="passedRange"></output>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Anuleer">Annuleer</button>
+          <a class="btn btn-primary" href="#logout" onclick="viewController.savePassed()" role="button"
+            data-dismiss="modal" aria-label="Opslaan">Opslaan</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Beta Warning Modal-->
+  <div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Beta-versie</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Magiscore is momenteel nog in ontwikkeling. Dit betekend dat er errors en fouten kunnen optreden. Gebruik
+            is dan ook op eigen risico en alle rechten zijn voorbehouden.</p>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+          <span class="text-gray">Huidige versie: 0.2</span>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" aria-label="Anuleer"
+            onclick="window.location='https://google.com'">Annuleer</button>
+          <a class="btn btn-primary" href="#" role="button" data-dismiss="modal" aria-label="Akkoord">Akkoord</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/deps/sb-admin-2.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <!-- <script src="js/demo/chart-area-demo.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/deps/sb-admin-2.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <!-- <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/demo/chart-bar-demo.js"></script> -->
 
-    <script src="js/deps/algebra.js"></script>
-    <script src="js/deps/imagecache.js"></script>
-    <script src="js/deps/chartannotation.js"></script>
-    <script src="js/deps/jspdf.min.js"></script>
-    <script src="js/deps/swipe.min.js"></script>
-    <script src="js/deps/pull.js"></script>
-    <script src="js/Lesson.js"></script>
-    <script src="js/ViewController.js"></script>
-    <script src="js/LessonController.js"></script>
-    <!-- <script src="js/push.js"></script> -->
-    <script src="js/main.js"></script>
-    <script>
-      var width = $(window).width();
-      if (width < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
+  <script src="js/deps/algebra.js"></script>
+  <script src="js/deps/imagecache.js"></script>
+  <script src="js/deps/chartannotation.js"></script>
+  <script src="js/deps/jspdf.min.js"></script>
+  <script src="js/deps/swipe.min.js"></script>
+  <script src="js/deps/pull.js"></script>
+  <script src="js/Lesson.js"></script>
+  <script src="js/ViewController.js"></script>
+  <script src="js/LessonController.js"></script>
+  <!-- <script src="js/push.js"></script> -->
+  <script src="js/main.js"></script>
+  <script>
+    var width = $(window).width();
+    if (width < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
+      document.querySelector('#sidebarToggleTop').click()
+    }
+    $(window).resize(function () {
+      if ($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar')
+        .classList.contains('toggled')) {
         document.querySelector('#sidebarToggleTop').click()
       }
-      $(window).resize(function () {
-        if ($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar')
-          .classList.contains('toggled')) {
-          document.querySelector('#sidebarToggleTop').click()
-        }
-      })
-      $(window).resize(function () {
-        if ($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar')
-          .classList.contains('toggled')) {
-          document.querySelector('#sidebarToggleTop').click()
-        }
-      })
+    })
+    $(window).resize(function () {
+      if ($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar')
+        .classList.contains('toggled')) {
+        document.querySelector('#sidebarToggleTop').click()
+      }
+    })
 
       // var registration;
 
@@ -907,7 +919,7 @@
       // if(viewController == undefined) {
       //   location.reload()
       // }
-    </script>
+  </script>
 </body>
 
 </html>

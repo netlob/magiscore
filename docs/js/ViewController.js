@@ -246,35 +246,39 @@ function setChartData(config, lesson, everything) {
   var vol = 0;
   var onvol = 0;
   if (lesson == "general") {
-    for (var lessonp in sorted) {
-      if (lessonController.getLesson(lessonp).lesson.grades.length > 0) {
-        lessonController.getLesson(lessonp).lesson.grades.forEach(grade => {
-          var gradegrade = grade.grade.replace(",", ".");
-          data.push({
-            t: new Date(grade.dateFilledIn),
-            y: gradegrade
-          });
-          gradegrade = parseFloat(gradegrade.replace(",", "."));
-          if (grade.passed) {
-            vol++;
-          } else {
-            onvol++;
+    lessonController.lessons.forEach(lesson => {
+      if (lesson.lesson.grades.length > 0) {
+        lesson.lesson.grades.forEach(grade => {
+          if (!grade.exclude) {
+            var gradegrade = grade.grade.replace(",", ".");
+            data.push({
+              t: new Date(grade.dateFilledIn),
+              y: gradegrade
+            });
+            gradegrade = parseFloat(gradegrade.replace(",", "."));
+            if (grade.passed) {
+              vol++;
+            } else {
+              onvol++;
+            }
           }
         });
       }
-    }
+    })
   } else {
     lessonController.getLesson(lesson).lesson.grades.forEach(grade => {
-      var gradegrade = grade.grade.replace(",", ".");
-      data.push({
-        t: new Date(grade.dateFilledIn),
-        y: gradegrade
-      });
-      gradegrade = parseFloat(gradegrade.replace(",", "."));
-      if (gradegrade >= 5.5) {
-        vol++;
-      } else {
-        onvol++;
+      if (!grade.exclude) {
+        var gradegrade = grade.grade.replace(",", ".");
+        data.push({
+          t: new Date(grade.dateFilledIn),
+          y: gradegrade
+        });
+        gradegrade = parseFloat(gradegrade.replace(",", "."));
+        if (gradegrade >= 5.5) {
+          vol++;
+        } else {
+          onvol++;
+        }
       }
     });
   }
@@ -484,9 +488,10 @@ function toShortFormat(d) {
 }
 
 function setTableData(lesson) {
+  var lesson = lessonController.getLesson(lesson).lesson
   var table = $("#cijfersTable");
-  var grades = sorted[lesson]["Grades"];
-  grades.reverse();
+  var grades = lesson.grades;
+  grades.sort();
   if (grades.length == 0) {
     $("#dataTable").hide()
     $("#cijfersTableCard").append(`<h6 class="percentageGrades font-italic text-center">Geen cijfers voor dit vak...</h6>`)
@@ -497,7 +502,7 @@ function setTableData(lesson) {
     table.append(`<tr>
                     <td>
                       <div class="md-checkbox" style="font-size:1rem">
-                        <input id="${grade.id}" type="checkbox" ${(grade.exclude || grade.counts) ? "checked" : ""}>
+                        <input id="${grade.id}" type="checkbox" onchange="lessonController.getLesson(currentLesson).lesson.exclude('${grade.id}', this)" ${(!grade.exclude) ? "checked" : ""}>
                         <label for="${grade.id}"></label>
                       </div>
                     </td>
@@ -583,7 +588,7 @@ function generateHTML(lesson) {
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-green">${
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-green">${
     extraFirst.title
     }</div>
                         <div class="row no-gutters align-items-center">
@@ -760,13 +765,13 @@ function generateHTML(lesson) {
                       <div class="chart-pie chart-container pt-4 pb-2">
                       <canvas id="pieChart"></canvas>
                       </div>
-                      <div class="mt-4 text-center small">
-                      <span class="mr-2">
-                          <i class="fas fa-circle" style="color: #0096db"></i> Voldoendes
-                      </span>
-                      <span class="mr-2">
-                          <i class="fas fa-circle" style="color: #e86458"></i> Onvoldoendes
-                      </span>
+                      <div class="text-center small">
+                        <span class="mr-2">
+                            <i class="fas fa-circle" style="color: #0096db"></i> Voldoendes
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle" style="color: #e86458"></i> Onvoldoendes
+                        </span>
                       </div>
                   </div>
                   </div>

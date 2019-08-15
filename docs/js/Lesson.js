@@ -18,6 +18,7 @@ class Lesson {
     keys = keys.remove("Grades")
     if (keys.length > 0 && this.data[keys[0]]) {
       var res = this.data[keys[0]][this.data[keys[0]].length - 1]
+      if (res == undefined) return { "title": undefined, "value": undefined }
       this.extraFirst = keys[0]
       return {
         "title": res['type']['description'],
@@ -45,6 +46,7 @@ class Lesson {
     keys = keys.remove("Grades")
     if (keys.length > 1 && this.data[keys[2]]) {
       var res = this.data[keys[2]][this.data[keys[2]].length - 1]
+      if (res == undefined) return { "title": undefined, "value": undefined }
       this.extraSecond = keys[2]
       return {
         "title": res['type']['description'],
@@ -52,6 +54,7 @@ class Lesson {
       }
     }
   }
+
   getCompleted() {
     if (this.data['Completed'] && this.data['Completed'][0]) {
       var res = round(this.data['Completed'][this.data['Completed'].length - 1]['grade'])
@@ -136,7 +139,7 @@ class Lesson {
       totaalweging += grades[i].weight;
     }
     var res = (((totaalweging + weight) * grade) - alles) / weight;
-    res = `<span ${(round(res) > 10) ? 'style="color: red"' : ''}>${round(res)}</span>`
+    res = `<span ${(round(res) > 10) ? 'style="color: #e86458;"' : ''}>${round(res)}</span>`
     $('#getGrade-newGrade').html(res)
     return res
   }
@@ -180,10 +183,12 @@ class Lesson {
     return round(newGrade)
   }
 
-  exclude(grade) {
-    // this.
+  exclude(id, input) {
+    this.grades.find(x => x.id === id).exclude = input.checked ? false : true
     var currentExclude = this.controller.controller.config["exclude"]
-    currentExclude.push(grade)
+    if (currentExclude.find(x => x === id) && !input.checked) currentExclude.remove(id)
+    input.checked ? currentExclude.remove(id) : currentExclude.push(id)
     this.controller.controller.updateConfig({ "exclude": currentExclude })
+    this.controller.controller.render(currentLesson)
   }
 }
