@@ -47,6 +47,12 @@ body[theme="dark"] .dropdown-item:focus {
   background-color: #202124;
 }
 
+body[theme="dark"] .dropdown-item:active {
+  color: #A9A9A9 !important;
+  text-decoration: none;
+  background-color: #151518 !important;
+}
+
 body[theme="dark"] .card {
   position: relative;
   display: -webkit-box;

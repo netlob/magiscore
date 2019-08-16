@@ -395,6 +395,12 @@ select:-webkit-autofill:focus {
   bottom: 25px !important;
 }
 
+/* #content-wrapper {
+  position: absolute !important;
+  left: 0px !important;
+  z-index: 100;
+} */
+
 /* #snackbar.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
