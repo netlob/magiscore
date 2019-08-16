@@ -400,6 +400,10 @@ select:-webkit-autofill:focus {
   right: 1rem;
 }
 
+#latest-grades-badge {
+  font-size: 1rem !important;
+}
+
 #latest-grades a:hover, #latest-grades a:focus {
   color: #0096db !important;
 }
