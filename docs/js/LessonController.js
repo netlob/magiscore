@@ -2,6 +2,7 @@ class LessonController {
     constructor(viewcontroller) {
         this.lessons = [];
         this.controller = viewcontroller;
+        this.allGrades = []
     }
 
     add(lesson, data, grades, controller) {

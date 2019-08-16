@@ -305,67 +305,22 @@
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1 no-primary-hover">
-              <a class="nav-link dropdown-toggle background-primary" href="#" id="messagesDropdown" role="button"
+              <a class="nav-link dropdown-toggle background-primary" id="messagesDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-clock fa-fw text-gray-100 d-block d-md-none"></i>
                 <i class="fas fa-clock fa-fw text-gray-600 d-none d-md-block"></i>
                 <span class="ml-1 mr-3 text-gray-600 d-none d-md-block">Laatste cijfers</span>
-                <span class="badge badge-primary badge-counter mr-2 d-none d-md-block">4</span>
+                <span class="badge badge-primary badge-counter mr-2 d-none d-md-block" id="latest-grades-badge">4</span>
               </a>
               <!-- Dropdown - Messages -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
                 aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
+                <h6 class="dropdown-header background-primary">
                   Laatste cijfers
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle">
-                      <h3 class="text-center mt-1">7.9</h3>
-                    </div>
-                    <!-- <div class="status-indicator bg-success"></div> -->
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Aardrijkskunde <span class="text-right">Test</span></div>
-                    <div class="small text-gray-600">Proefwerk systeem aarde + po</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle">
-                      <h3 class="text-center mt-1">7.2</h3>
-                    </div>
-                    <!-- <div class="status-indicator bg-success"></div> -->
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Economie</div>
-                    <div class="small text-gray-600">PW jong en oud hele boekje</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle">
-                      <h3 class="text-center mt-1">8.6</h3>
-                    </div>
-                    <!-- <div class="status-indicator bg-success"></div> -->
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Geschiedenis</div>
-                    <div class="small text-gray-600">SO jagers & boeren</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle">
-                      <h3 class="text-center mt-1">9.2</h3>
-                    </div>
-                    <!-- <div class="status-indicator bg-success"></div> -->
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Wiskunde</div>
-                    <div class="small  text-gray-600">Proefwerk h1 tm h6</div>
-                  </div>
-                </a>
+                <div id="latest-grades">
+                  <div class="text-center mt-3 mb-2">Geen recente cijfers...</div>
+                </div>
                 <a class="dropdown-item text-center medium text-gray-800" href="#">Alle cijfers</a>
               </div>
             </li>

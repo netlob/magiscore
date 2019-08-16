@@ -395,6 +395,11 @@ select:-webkit-autofill:focus {
   bottom: 25px !important;
 }
 
+.latest-grades-date {
+  position: absolute;
+  right: 1rem;
+}
+
 /* #content-wrapper {
   position: absolute !important;
   left: 0px !important;

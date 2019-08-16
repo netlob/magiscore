@@ -57,6 +57,7 @@ class ViewController {
 
   updateNav() {
     updateSidebar();
+    this.setLatestGrades();
   }
 
   downloadGraph() {
@@ -159,6 +160,31 @@ class ViewController {
       "passed": passed
     })
     this.render(currentLesson)
+  }
+
+  setLatestGrades() {
+    var dated = lessonController.allGrades.sort()
+    dated = dated.slice(-5)
+    $("#latest-grades").empty()
+    $("#latest-grades-badge").text(dated.length)
+    dated.forEach(grade => {
+      var d = new Date(grade.dateFilledIn)
+      $("#latest-grades").append(`
+        <a class="dropdown-item d-flex align-items-center" href="#">
+          <div class="dropdown-list-image mr-3">
+            <div class="rounded-circle">
+              <h3 class="text-center mt-1">${grade.grade}</h3>
+            </div>
+            <!-- <div class="status-indicator bg-success"></div> -->
+          </div>
+          <div>
+            <span class="text-truncate font-weight-bold text-capitalize">${grade.class.description}</span><span
+              class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</span>
+            <div class="small text-gray-600">${grade.description}</div>
+          </div>
+        </a>
+      `)
+    })
   }
 }
 
@@ -622,12 +648,12 @@ function generateHTML(lesson) {
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">${
-    extraSecond.title
+    extraSecond.title || "nee."
     }</div>
                         <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
-    extraSecond.value
+    extraSecond.value || "nee."
     }</div>
                         </div>
                         </div>
@@ -646,10 +672,10 @@ function generateHTML(lesson) {
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">${
-    extraThird.title
+    extraThird.title || "nee."
     }</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">${
-    extraThird.value
+    extraThird.value || "nee."
     }</div>
                     </div>
                     <div class="col-auto">
