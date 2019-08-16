@@ -912,7 +912,7 @@ function login(creds, demo) {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": demo ? "https://api.magiscore.nl/demo" : "https://api.magiscore.nl/cijfers",
+            "url": demo ? "https://api.magiscore.nl/demo" : "https://api.magiscore.nl/grades",
             "method": "GET",
             "headers": {
                 "username": demo ? "" : creds.username,

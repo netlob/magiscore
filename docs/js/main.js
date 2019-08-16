@@ -94,7 +94,7 @@ function syncGrades() {
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": creds.demo ? "https://api.magiscore.nl/demo" : "https://api.magiscore.nl/cijfers",
+      "url": creds.demo ? "https://api.magiscore.nl/demo" : "https://api.magiscore.nl/grades",
       "method": "GET",
       "headers": {
         "username": creds.demo ? "" : creds.username,
