@@ -170,7 +170,7 @@ class ViewController {
     dated.forEach(grade => {
       var d = new Date(grade.dateFilledIn)
       $("#latest-grades").append(`
-        <a class="dropdown-item d-flex align-items-center" href="#">
+        <a class="dropdown-item d-flex align-items-center" onclick="viewController.render('${grade.class.description.capitalize()}')">
           <div class="dropdown-list-image mr-3">
             <div class="rounded-circle">
               <h3 class="text-center mt-1">${grade.grade}</h3>

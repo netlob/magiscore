@@ -337,11 +337,11 @@
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div id="mobilePersonInfo" class="dropdown-header d-block d-md-none">Voornaam Achternaam</div>
-                <a class="dropdown-item" href="#sync" onclick="syncGrades()">
+                <a class="dropdown-item" onclick="syncGrades()">
                   <i class="fas fa-sync fa-sm fa-fw mr-2 text-gray-400"></i>
                   Sync cijfers
                 </a>
-                <a class="dropdown-item" href="#sync" data-toggle="modal" data-target="#passedModal">
+                <a class="dropdown-item" data-toggle="modal" data-target="#passedModal">
                   <i class="fas fa-check fa-sm fa-fw mr-2 text-gray-400"></i>
                   Voldoendegrens
                 </a>
@@ -350,7 +350,7 @@
                     Settings
                   </a> -->
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" onclick="viewController.toggleTheme()">
+                <a class="dropdown-item" data-toggle="theme" onclick="viewController.toggleTheme()">
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
                 </a>
