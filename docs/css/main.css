@@ -482,3 +482,39 @@ select:-webkit-autofill:focus {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 } */
+
+
+/*! CSS Used from: Embedded */
+a.magister-login{
+  background-color:#0096db !important;
+  margin: 0px 1rem 0px 1rem !important;
+  padding: 10px 10px !important;
+  font-size: 24px !important;
+  color: white !important;
+  /* margin-left:125px;
+  margin-bottom:20px; */
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: block !important;
+}
+a.magister-login:hover{
+  background-color:#20b9ff !important;
+}
+a.magister-login:before{
+  font-family:"magistersymbolsnormal" !important;
+  content:"Q" !important;
+  font-size: 40px !important;
+}
+/*! CSS Used from: Embedded ; media=screen */
+@media screen{
+a{background-color:transparent;}
+a:active,a:hover{outline:0;}
+}
+/*! CSS Used fontfaces */
+@font-face{
+  font-family:"magistersymbolsnormal";
+  font-style: normal;
+  font-weight: normal;
+  src:url(./magistersymbols-webfont.woff) format("woff");
+}
