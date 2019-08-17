@@ -6,6 +6,564 @@
  * http://opensource.org/licenses/MIT
  *
  * Github:  http://github.com/jakiestfu/Snap.js/
- * Version: 1.9.2
+ * Version: 1.9.3
  */
-(function (c, b) { var a = a || function (k) { var f = { element: null, dragger: null, disable: "none", addBodyClasses: true, hyperextensible: true, resistance: 0.5, flickThreshold: 50, transitionSpeed: 0.3, easing: "ease", maxPosition: 266, minPosition: -266, tapToClose: true, touchToDrag: true, slideIntent: 40, minDragDistance: 5 }, e = { simpleStates: { opening: null, towards: null, hyperExtending: null, halfway: null, flick: null, translation: { absolute: 0, relative: 0, sinceDirectionChange: 0, percentage: 0 } } }, h = {}, d = { hasTouch: (b.ontouchstart === null), eventType: function (m) { var l = { down: (d.hasTouch ? "touchstart" : "mousedown"), move: (d.hasTouch ? "touchmove" : "mousemove"), up: (d.hasTouch ? "touchend" : "mouseup"), out: (d.hasTouch ? "touchcancel" : "mouseout") }; return l[m] }, page: function (l, m) { return (d.hasTouch && m.touches.length && m.touches[0]) ? m.touches[0]["page" + l] : m["page" + l] }, klass: { has: function (m, l) { return (m.className).indexOf(l) !== -1 }, add: function (m, l) { if (!d.klass.has(m, l) && f.addBodyClasses) { m.className += " " + l } }, remove: function (m, l) { if (f.addBodyClasses) { m.className = (m.className).replace(l, "").replace(/^\s+|\s+$/g, "") } } }, dispatchEvent: function (l) { if (typeof h[l] === "function") { return h[l].call() } }, vendor: function () { var m = b.createElement("div"), n = "webkit Moz O ms".split(" "), l; for (l in n) { if (typeof m.style[n[l] + "Transition"] !== "undefined") { return n[l] } } }, transitionCallback: function () { return (e.vendor === "Moz" || e.vendor === "ms") ? "transitionend" : e.vendor + "TransitionEnd" }, canTransform: function () { return typeof f.element.style[e.vendor + "Transform"] !== "undefined" }, deepExtend: function (l, n) { var m; for (m in n) { if (n[m] && n[m].constructor && n[m].constructor === Object) { l[m] = l[m] || {}; d.deepExtend(l[m], n[m]) } else { l[m] = n[m] } } return l }, angleOfDrag: function (l, o) { var n, m; m = Math.atan2(-(e.startDragY - o), (e.startDragX - l)); if (m < 0) { m += 2 * Math.PI } n = Math.floor(m * (180 / Math.PI) - 180); if (n < 0 && n > -180) { n = 360 - Math.abs(n) } return Math.abs(n) }, events: { addEvent: function g(m, l, n) { if (m.addEventListener) { return m.addEventListener(l, n, false) } else { if (m.attachEvent) { return m.attachEvent("on" + l, n) } } }, removeEvent: function g(m, l, n) { if (m.addEventListener) { return m.removeEventListener(l, n, false) } else { if (m.attachEvent) { return m.detachEvent("on" + l, n) } } }, prevent: function (l) { if (l.preventDefault) { l.preventDefault() } else { l.returnValue = false } } }, parentUntil: function (n, l) { var m = typeof l === "string"; while (n.parentNode) { if (m && n.getAttribute && n.getAttribute(l)) { return n } else { if (!m && n === l) { return n } } n = n.parentNode } return null } }, i = { translate: { get: { matrix: function (n) { if (!d.canTransform()) { return parseInt(f.element.style.left, 10) } else { var m = c.getComputedStyle(f.element)[e.vendor + "Transform"].match(/\((.*)\)/), l = 8; if (m) { m = m[1].split(","); if (m.length === 16) { n += l } return parseInt(m[n], 10) } return 0 } } }, easeCallback: function () { f.element.style[e.vendor + "Transition"] = ""; e.translation = i.translate.get.matrix(4); e.easing = false; clearInterval(e.animatingInterval); if (e.easingTo === 0) { d.klass.remove(b.body, "snapjs-right"); d.klass.remove(b.body, "snapjs-left") } d.dispatchEvent("animated"); d.events.removeEvent(f.element, d.transitionCallback(), i.translate.easeCallback) }, easeTo: function (l) { if (!d.canTransform()) { e.translation = l; i.translate.x(l) } else { e.easing = true; e.easingTo = l; f.element.style[e.vendor + "Transition"] = "all " + f.transitionSpeed + "s " + f.easing; e.animatingInterval = setInterval(function () { d.dispatchEvent("animating") }, 1); d.events.addEvent(f.element, d.transitionCallback(), i.translate.easeCallback); i.translate.x(l) } if (l === 0) { f.element.style[e.vendor + "Transform"] = "" } }, x: function (m) { if ((f.disable === "left" && m > 0) || (f.disable === "right" && m < 0)) { return } if (!f.hyperextensible) { if (m === f.maxPosition || m > f.maxPosition) { m = f.maxPosition } else { if (m === f.minPosition || m < f.minPosition) { m = f.minPosition } } } m = parseInt(m, 10); if (isNaN(m)) { m = 0 } if (d.canTransform()) { var l = "translate3d(" + m + "px, 0,0)"; if (m >= 238) { d.klass.add(b.body, "sidenav-open") } else { d.klass.remove(b.body, "sidenav-open") } f.element.style[e.vendor + "Transform"] = l } else { f.element.style.width = (c.innerWidth || b.documentElement.clientWidth) + "px"; f.element.style.left = m + "px"; f.element.style.right = "" } } }, drag: { listen: function () { e.translation = 0; e.easing = false; d.events.addEvent(f.element, d.eventType("down"), i.drag.startDrag); d.events.addEvent(f.element, d.eventType("move"), i.drag.dragging); d.events.addEvent(f.element, d.eventType("up"), i.drag.endDrag) }, stopListening: function () { d.events.removeEvent(f.element, d.eventType("down"), i.drag.startDrag); d.events.removeEvent(f.element, d.eventType("move"), i.drag.dragging); d.events.removeEvent(f.element, d.eventType("up"), i.drag.endDrag) }, startDrag: function (n) { var m = n.target ? n.target : n.srcElement, l = d.parentUntil(m, "data-snap-ignore"); if (l) { d.dispatchEvent("ignore"); return } if (f.dragger) { var o = d.parentUntil(m, f.dragger); if (!o && (e.translation !== f.minPosition && e.translation !== f.maxPosition)) { return } } d.dispatchEvent("start"); f.element.style[e.vendor + "Transition"] = ""; e.isDragging = true; e.hasIntent = null; e.intentChecked = false; e.startDragX = d.page("X", n); e.startDragY = d.page("Y", n); e.dragWatchers = { current: 0, last: 0, hold: 0, state: "" }; e.simpleStates = { opening: null, towards: null, hyperExtending: null, halfway: null, flick: null, translation: { absolute: 0, relative: 0, sinceDirectionChange: 0, percentage: 0 } } }, dragging: function (s) { if (e.isDragging && f.touchToDrag) { var v = d.page("X", s), u = d.page("Y", s), t = e.translation, o = i.translate.get.matrix(4), n = v - e.startDragX, p = o > 0, q = n, w; if ((e.intentChecked && !e.hasIntent)) { return } if (f.addBodyClasses) { if ((o) > 0) { d.klass.add(b.body, "snapjs-left"); d.klass.remove(b.body, "snapjs-right") } else { if ((o) < 0) { d.klass.add(b.body, "snapjs-right"); d.klass.remove(b.body, "snapjs-left") } } } if (e.hasIntent === false || e.hasIntent === null) { var m = d.angleOfDrag(v, u), l = (m >= 0 && m <= f.slideIntent) || (m <= 360 && m > (360 - f.slideIntent)), r = (m >= 180 && m <= (180 + f.slideIntent)) || (m <= 180 && m >= (180 - f.slideIntent)); if (!r && !l) { e.hasIntent = false } else { e.hasIntent = true } e.intentChecked = true } if ((f.minDragDistance >= Math.abs(v - e.startDragX)) || (e.hasIntent === false)) { return } d.events.prevent(s); d.dispatchEvent("drag"); e.dragWatchers.current = v; if (e.dragWatchers.last > v) { if (e.dragWatchers.state !== "left") { e.dragWatchers.state = "left"; e.dragWatchers.hold = v } e.dragWatchers.last = v } else { if (e.dragWatchers.last < v) { if (e.dragWatchers.state !== "right") { e.dragWatchers.state = "right"; e.dragWatchers.hold = v } e.dragWatchers.last = v } } if (p) { if (f.maxPosition < o) { w = (o - f.maxPosition) * f.resistance; q = n - w } e.simpleStates = { opening: "left", towards: e.dragWatchers.state, hyperExtending: f.maxPosition < o, halfway: o > (f.maxPosition / 2), flick: Math.abs(e.dragWatchers.current - e.dragWatchers.hold) > f.flickThreshold, translation: { absolute: o, relative: n, sinceDirectionChange: (e.dragWatchers.current - e.dragWatchers.hold), percentage: (o / f.maxPosition) * 100 } } } else { if (f.minPosition > o) { w = (o - f.minPosition) * f.resistance; q = n - w } e.simpleStates = { opening: "right", towards: e.dragWatchers.state, hyperExtending: f.minPosition > o, halfway: o < (f.minPosition / 2), flick: Math.abs(e.dragWatchers.current - e.dragWatchers.hold) > f.flickThreshold, translation: { absolute: o, relative: n, sinceDirectionChange: (e.dragWatchers.current - e.dragWatchers.hold), percentage: (o / f.minPosition) * 100 } } } i.translate.x(q + t) } }, endDrag: function (m) { if (e.isDragging) { d.dispatchEvent("end"); var l = i.translate.get.matrix(4); if (e.dragWatchers.current === 0 && l !== 0 && f.tapToClose) { d.dispatchEvent("close"); d.events.prevent(m); i.translate.easeTo(0); e.isDragging = false; e.startDragX = 0; return } if (e.simpleStates.opening === "left") { if ((e.simpleStates.halfway || e.simpleStates.hyperExtending || e.simpleStates.flick)) { if (e.simpleStates.flick && e.simpleStates.towards === "left") { i.translate.easeTo(0) } else { if ((e.simpleStates.flick && e.simpleStates.towards === "right") || (e.simpleStates.halfway || e.simpleStates.hyperExtending)) { i.translate.easeTo(f.maxPosition) } } } else { i.translate.easeTo(0) } } else { if (e.simpleStates.opening === "right") { if ((e.simpleStates.halfway || e.simpleStates.hyperExtending || e.simpleStates.flick)) { if (e.simpleStates.flick && e.simpleStates.towards === "right") { i.translate.easeTo(0) } else { if ((e.simpleStates.flick && e.simpleStates.towards === "left") || (e.simpleStates.halfway || e.simpleStates.hyperExtending)) { i.translate.easeTo(f.minPosition) } } } else { i.translate.easeTo(0) } } } e.isDragging = false; e.startDragX = d.page("X", m) } } } }, j = function (l) { if (l.element) { d.deepExtend(f, l); e.vendor = d.vendor(); i.drag.listen() } }; this.open = function (l) { d.dispatchEvent("open"); d.klass.remove(b.body, "snapjs-expand-left"); d.klass.remove(b.body, "snapjs-expand-right"); if (l === "left") { e.simpleStates.opening = "left"; e.simpleStates.towards = "right"; d.klass.add(b.body, "snapjs-left"); d.klass.remove(b.body, "snapjs-right"); i.translate.easeTo(f.maxPosition) } else { if (l === "right") { e.simpleStates.opening = "right"; e.simpleStates.towards = "left"; d.klass.remove(b.body, "snapjs-left"); d.klass.add(b.body, "snapjs-right"); i.translate.easeTo(f.minPosition) } } }; this.close = function () { d.dispatchEvent("close"); i.translate.easeTo(0) }; this.expand = function (l) { var m = c.innerWidth || b.documentElement.clientWidth; if (l === "left") { d.dispatchEvent("expandLeft"); d.klass.add(b.body, "snapjs-expand-left"); d.klass.remove(b.body, "snapjs-expand-right") } else { d.dispatchEvent("expandRight"); d.klass.add(b.body, "snapjs-expand-right"); d.klass.remove(b.body, "snapjs-expand-left"); m *= -1 } i.translate.easeTo(m) }; this.on = function (l, m) { h[l] = m; return this }; this.off = function (l) { if (h[l]) { h[l] = false } }; this.enable = function () { d.dispatchEvent("enable"); i.drag.listen() }; this.disable = function () { d.dispatchEvent("disable"); i.drag.stopListening() }; this.settings = function (l) { d.deepExtend(f, l) }; this.state = function () { var l, m = i.translate.get.matrix(4); if (m === f.maxPosition) { l = "left" } else { if (m === f.minPosition) { l = "right" } else { l = "closed" } } return { state: l, info: e.simpleStates } }; j(k) }; if ((typeof module !== "undefined") && module.exports) { module.exports = a } if (typeof ender === "undefined") { this.Snap = a } if ((typeof define === "function") && define.amd) { define("snap", [], function () { return a }) } }).call(this, window, document);
+/*jslint browser: true*/
+/*global define, module, ender*/
+(function (win, doc) {
+    'use strict';
+    var Snap = Snap || function (userOpts) {
+        var settings = {
+            element: null,
+            dragger: null,
+            disable: 'none',
+            addBodyClasses: true,
+            hyperextensible: true,
+            resistance: 0.5,
+            flickThreshold: 50,
+            transitionSpeed: 0.3,
+            easing: 'ease',
+            maxPosition: 266,
+            minPosition: -266,
+            tapToClose: true,
+            touchToDrag: true,
+            slideIntent: 40, // degrees
+            minDragDistance: 5
+        },
+            cache = {
+                simpleStates: {
+                    opening: null,
+                    towards: null,
+                    hyperExtending: null,
+                    halfway: null,
+                    flick: null,
+                    translation: {
+                        absolute: 0,
+                        relative: 0,
+                        sinceDirectionChange: 0,
+                        percentage: 0
+                    }
+                }
+            },
+            eventList = {},
+            utils = {
+                hasTouch: ('ontouchstart' in doc.documentElement || win.navigator.msPointerEnabled),
+                eventType: function (action) {
+                    var eventTypes = {
+                        down: (utils.hasTouch ? 'touchstart' : 'mousedown'),
+                        move: (utils.hasTouch ? 'touchmove' : 'mousemove'),
+                        up: (utils.hasTouch ? 'touchend' : 'mouseup'),
+                        out: (utils.hasTouch ? 'touchcancel' : 'mouseout')
+                    };
+                    return eventTypes[action];
+                },
+                page: function (t, e) {
+                    return (utils.hasTouch && e.touches.length && e.touches[0]) ? e.touches[0]['page' + t] : e['page' + t];
+                },
+                klass: {
+                    has: function (el, name) {
+                        return (el.className).indexOf(name) !== -1;
+                    },
+                    add: function (el, name) {
+                        if (!utils.klass.has(el, name) && settings.addBodyClasses) {
+                            el.className += " " + name;
+                        }
+                    },
+                    remove: function (el, name) {
+                        if (settings.addBodyClasses) {
+                            el.className = (el.className).replace(name, "").replace(/^\s+|\s+$/g, '');
+                        }
+                    }
+                },
+                dispatchEvent: function (type) {
+                    if (typeof eventList[type] === 'function') {
+                        return eventList[type].call();
+                    }
+                },
+                vendor: function () {
+                    var tmp = doc.createElement("div"),
+                        prefixes = 'webkit Moz O ms'.split(' '),
+                        i;
+                    for (i in prefixes) {
+                        if (typeof tmp.style[prefixes[i] + 'Transition'] !== 'undefined') {
+                            return prefixes[i];
+                        }
+                    }
+                },
+                transitionCallback: function () {
+                    return (cache.vendor === 'Moz' || cache.vendor === 'ms') ? 'transitionend' : cache.vendor + 'TransitionEnd';
+                },
+                canTransform: function () {
+                    return typeof settings.element.style[cache.vendor + 'Transform'] !== 'undefined';
+                },
+                deepExtend: function (destination, source) {
+                    var property;
+                    for (property in source) {
+                        if (source[property] && source[property].constructor && source[property].constructor === Object) {
+                            destination[property] = destination[property] || {};
+                            utils.deepExtend(destination[property], source[property]);
+                        } else {
+                            destination[property] = source[property];
+                        }
+                    }
+                    return destination;
+                },
+                angleOfDrag: function (x, y) {
+                    var degrees, theta;
+                    // Calc Theta
+                    theta = Math.atan2(-(cache.startDragY - y), (cache.startDragX - x));
+                    if (theta < 0) {
+                        theta += 2 * Math.PI;
+                    }
+                    // Calc Degrees
+                    degrees = Math.floor(theta * (180 / Math.PI) - 180);
+                    if (degrees < 0 && degrees > -180) {
+                        degrees = 360 - Math.abs(degrees);
+                    }
+                    return Math.abs(degrees);
+                },
+                events: {
+                    addEvent: function addEvent(element, eventName, func) {
+                        if (element.addEventListener) {
+                            return element.addEventListener(eventName, func, false);
+                        } else if (element.attachEvent) {
+                            return element.attachEvent("on" + eventName, func);
+                        }
+                    },
+                    removeEvent: function addEvent(element, eventName, func) {
+                        if (element.addEventListener) {
+                            return element.removeEventListener(eventName, func, false);
+                        } else if (element.attachEvent) {
+                            return element.detachEvent("on" + eventName, func);
+                        }
+                    },
+                    prevent: function (e) {
+                        if (e.preventDefault) {
+                            e.preventDefault();
+                        } else {
+                            e.returnValue = false;
+                        }
+                    }
+                },
+                parentUntil: function (el, attr) {
+                    var isStr = typeof attr === 'string';
+                    while (el.parentNode) {
+                        if (isStr && el.getAttribute && el.getAttribute(attr)) {
+                            return el;
+                        } else if (!isStr && el === attr) {
+                            return el;
+                        }
+                        el = el.parentNode;
+                    }
+                    return null;
+                }
+            },
+            action = {
+                translate: {
+                    get: {
+                        matrix: function (index) {
+
+                            if (!utils.canTransform()) {
+                                return parseInt(settings.element.style.left, 10);
+                            } else {
+                                var matrix = win.getComputedStyle(settings.element)[cache.vendor + 'Transform'].match(/\((.*)\)/),
+                                    ieOffset = 8;
+                                if (matrix) {
+                                    matrix = matrix[1].split(',');
+                                    if (matrix.length === 16) {
+                                        index += ieOffset;
+                                    }
+                                    return parseInt(matrix[index], 10);
+                                }
+                                return 0;
+                            }
+                        }
+                    },
+                    easeCallback: function () {
+                        settings.element.style[cache.vendor + 'Transition'] = '';
+                        cache.translation = action.translate.get.matrix(4);
+                        cache.easing = false;
+                        clearInterval(cache.animatingInterval);
+
+                        if (cache.easingTo === 0) {
+                            utils.klass.remove(doc.body, 'snapjs-right');
+                            utils.klass.remove(doc.body, 'snapjs-left');
+                        }
+
+                        utils.dispatchEvent('animated');
+                        utils.events.removeEvent(settings.element, utils.transitionCallback(), action.translate.easeCallback);
+                    },
+                    easeTo: function (n) {
+
+                        if (!utils.canTransform()) {
+                            cache.translation = n;
+                            action.translate.x(n);
+                        } else {
+                            cache.easing = true;
+                            cache.easingTo = n;
+
+                            settings.element.style[cache.vendor + 'Transition'] = 'all ' + settings.transitionSpeed + 's ' + settings.easing;
+
+                            cache.animatingInterval = setInterval(function () {
+                                utils.dispatchEvent('animating');
+                            }, 1);
+
+                            utils.events.addEvent(settings.element, utils.transitionCallback(), action.translate.easeCallback);
+                            action.translate.x(n);
+                        }
+                        if (n === 0) {
+                            settings.element.style[cache.vendor + 'Transform'] = '';
+                        }
+                    },
+                    x: function (n) {
+                        if ((settings.disable === 'left' && n > 0) ||
+                            (settings.disable === 'right' && n < 0)
+                        ) { return; }
+
+                        if (!settings.hyperextensible) {
+                            if (n === settings.maxPosition || n > settings.maxPosition) {
+                                n = settings.maxPosition;
+                            } else if (n === settings.minPosition || n < settings.minPosition) {
+                                n = settings.minPosition;
+                            }
+                        }
+
+                        n = parseInt(n, 10);
+                        if (isNaN(n)) {
+                            n = 0;
+                        }
+
+                        if (utils.canTransform()) {
+                            var theTranslate = 'translate3d(' + n + 'px, 0,0)';
+                            settings.element.style[cache.vendor + 'Transform'] = theTranslate;
+                        } else {
+                            settings.element.style.width = (win.innerWidth || doc.documentElement.clientWidth) + 'px';
+
+                            settings.element.style.left = n + 'px';
+                            settings.element.style.right = '';
+                        }
+                    }
+                },
+                drag: {
+                    listen: function () {
+                        cache.translation = 0;
+                        cache.easing = false;
+                        utils.events.addEvent(settings.element, utils.eventType('down'), action.drag.startDrag);
+                        utils.events.addEvent(settings.element, utils.eventType('move'), action.drag.dragging);
+                        utils.events.addEvent(settings.element, utils.eventType('up'), action.drag.endDrag);
+                    },
+                    stopListening: function () {
+                        utils.events.removeEvent(settings.element, utils.eventType('down'), action.drag.startDrag);
+                        utils.events.removeEvent(settings.element, utils.eventType('move'), action.drag.dragging);
+                        utils.events.removeEvent(settings.element, utils.eventType('up'), action.drag.endDrag);
+                    },
+                    startDrag: function (e) {
+                        // No drag on ignored elements
+                        var target = e.target ? e.target : e.srcElement,
+                            ignoreParent = utils.parentUntil(target, 'data-snap-ignore');
+
+                        if (ignoreParent) {
+                            utils.dispatchEvent('ignore');
+                            return;
+                        }
+
+
+                        if (settings.dragger) {
+                            var dragParent = utils.parentUntil(target, settings.dragger);
+
+                            // Only use dragger if we're in a closed state
+                            if (!dragParent &&
+                                (cache.translation !== settings.minPosition &&
+                                    cache.translation !== settings.maxPosition
+                                )) {
+                                return;
+                            }
+                        }
+
+                        utils.dispatchEvent('start');
+                        settings.element.style[cache.vendor + 'Transition'] = '';
+                        cache.isDragging = true;
+                        cache.hasIntent = null;
+                        cache.intentChecked = false;
+                        cache.startDragX = utils.page('X', e);
+                        cache.startDragY = utils.page('Y', e);
+                        cache.dragWatchers = {
+                            current: 0,
+                            last: 0,
+                            hold: 0,
+                            state: ''
+                        };
+                        cache.simpleStates = {
+                            opening: null,
+                            towards: null,
+                            hyperExtending: null,
+                            halfway: null,
+                            flick: null,
+                            translation: {
+                                absolute: 0,
+                                relative: 0,
+                                sinceDirectionChange: 0,
+                                percentage: 0
+                            }
+                        };
+                    },
+                    dragging: function (e) {
+                        if (cache.isDragging && settings.touchToDrag) {
+
+                            var thePageX = utils.page('X', e),
+                                thePageY = utils.page('Y', e),
+                                translated = cache.translation,
+                                absoluteTranslation = action.translate.get.matrix(4),
+                                whileDragX = thePageX - cache.startDragX,
+                                openingLeft = absoluteTranslation > 0,
+                                translateTo = whileDragX,
+                                diff;
+
+                            // Shown no intent already
+                            if ((cache.intentChecked && !cache.hasIntent)) {
+                                return;
+                            }
+
+                            if (settings.addBodyClasses) {
+                                if ((absoluteTranslation) > 0) {
+                                    utils.klass.add(doc.body, 'snapjs-left');
+                                    utils.klass.remove(doc.body, 'snapjs-right');
+                                } else if ((absoluteTranslation) < 0) {
+                                    utils.klass.add(doc.body, 'snapjs-right');
+                                    utils.klass.remove(doc.body, 'snapjs-left');
+                                }
+                            }
+
+                            if (cache.hasIntent === false || cache.hasIntent === null) {
+                                var deg = utils.angleOfDrag(thePageX, thePageY),
+                                    inRightRange = (deg >= 0 && deg <= settings.slideIntent) || (deg <= 360 && deg > (360 - settings.slideIntent)),
+                                    inLeftRange = (deg >= 180 && deg <= (180 + settings.slideIntent)) || (deg <= 180 && deg >= (180 - settings.slideIntent));
+                                if (!inLeftRange && !inRightRange) {
+                                    cache.hasIntent = false;
+                                } else {
+                                    cache.hasIntent = true;
+                                }
+                                cache.intentChecked = true;
+                            }
+
+                            if (
+                                (settings.minDragDistance >= Math.abs(thePageX - cache.startDragX)) || // Has user met minimum drag distance?
+                                (cache.hasIntent === false)
+                            ) {
+                                return;
+                            }
+
+                            utils.events.prevent(e);
+                            utils.dispatchEvent('drag');
+
+                            cache.dragWatchers.current = thePageX;
+                            // Determine which direction we are going
+                            if (cache.dragWatchers.last > thePageX) {
+                                if (cache.dragWatchers.state !== 'left') {
+                                    cache.dragWatchers.state = 'left';
+                                    cache.dragWatchers.hold = thePageX;
+                                }
+                                cache.dragWatchers.last = thePageX;
+                            } else if (cache.dragWatchers.last < thePageX) {
+                                if (cache.dragWatchers.state !== 'right') {
+                                    cache.dragWatchers.state = 'right';
+                                    cache.dragWatchers.hold = thePageX;
+                                }
+                                cache.dragWatchers.last = thePageX;
+                            }
+                            if (openingLeft) {
+                                // Pulling too far to the right
+                                if (settings.maxPosition < absoluteTranslation) {
+                                    diff = (absoluteTranslation - settings.maxPosition) * settings.resistance;
+                                    translateTo = whileDragX - diff;
+                                }
+                                cache.simpleStates = {
+                                    opening: 'left',
+                                    towards: cache.dragWatchers.state,
+                                    hyperExtending: settings.maxPosition < absoluteTranslation,
+                                    halfway: absoluteTranslation > (settings.maxPosition / 2),
+                                    flick: Math.abs(cache.dragWatchers.current - cache.dragWatchers.hold) > settings.flickThreshold,
+                                    translation: {
+                                        absolute: absoluteTranslation,
+                                        relative: whileDragX,
+                                        sinceDirectionChange: (cache.dragWatchers.current - cache.dragWatchers.hold),
+                                        percentage: (absoluteTranslation / settings.maxPosition) * 100
+                                    }
+                                };
+                            } else {
+                                // Pulling too far to the left
+                                if (settings.minPosition > absoluteTranslation) {
+                                    diff = (absoluteTranslation - settings.minPosition) * settings.resistance;
+                                    translateTo = whileDragX - diff;
+                                }
+                                cache.simpleStates = {
+                                    opening: 'right',
+                                    towards: cache.dragWatchers.state,
+                                    hyperExtending: settings.minPosition > absoluteTranslation,
+                                    halfway: absoluteTranslation < (settings.minPosition / 2),
+                                    flick: Math.abs(cache.dragWatchers.current - cache.dragWatchers.hold) > settings.flickThreshold,
+                                    translation: {
+                                        absolute: absoluteTranslation,
+                                        relative: whileDragX,
+                                        sinceDirectionChange: (cache.dragWatchers.current - cache.dragWatchers.hold),
+                                        percentage: (absoluteTranslation / settings.minPosition) * 100
+                                    }
+                                };
+                            }
+                            action.translate.x(translateTo + translated);
+                        }
+                    },
+                    endDrag: function (e) {
+                        if (cache.isDragging) {
+                            utils.dispatchEvent('end');
+                            var translated = action.translate.get.matrix(4);
+
+                            // Tap Close
+                            if (cache.dragWatchers.current === 0 && translated !== 0 && settings.tapToClose) {
+                                utils.dispatchEvent('close');
+                                utils.events.prevent(e);
+                                action.translate.easeTo(0);
+                                cache.isDragging = false;
+                                cache.startDragX = 0;
+                                return;
+                            }
+
+                            // Revealing Left
+                            if (cache.simpleStates.opening === 'left') {
+                                // Halfway, Flicking, or Too Far Out
+                                if ((cache.simpleStates.halfway || cache.simpleStates.hyperExtending || cache.simpleStates.flick)) {
+                                    if (cache.simpleStates.flick && cache.simpleStates.towards === 'left') { // Flicking Closed
+                                        action.translate.easeTo(0);
+                                    } else if (
+                                        (cache.simpleStates.flick && cache.simpleStates.towards === 'right') || // Flicking Open OR
+                                        (cache.simpleStates.halfway || cache.simpleStates.hyperExtending) // At least halfway open OR hyperextending
+                                    ) {
+                                        action.translate.easeTo(settings.maxPosition); // Open Left
+                                    }
+                                } else {
+                                    action.translate.easeTo(0); // Close Left
+                                }
+                                // Revealing Right
+                            } else if (cache.simpleStates.opening === 'right') {
+                                // Halfway, Flicking, or Too Far Out
+                                if ((cache.simpleStates.halfway || cache.simpleStates.hyperExtending || cache.simpleStates.flick)) {
+                                    if (cache.simpleStates.flick && cache.simpleStates.towards === 'right') { // Flicking Closed
+                                        action.translate.easeTo(0);
+                                    } else if (
+                                        (cache.simpleStates.flick && cache.simpleStates.towards === 'left') || // Flicking Open OR
+                                        (cache.simpleStates.halfway || cache.simpleStates.hyperExtending) // At least halfway open OR hyperextending
+                                    ) {
+                                        action.translate.easeTo(settings.minPosition); // Open Right
+                                    }
+                                } else {
+                                    action.translate.easeTo(0); // Close Right
+                                }
+                            }
+                            cache.isDragging = false;
+                            cache.startDragX = utils.page('X', e);
+                        }
+                    }
+                }
+            },
+            init = function (opts) {
+                if (opts.element) {
+                    utils.deepExtend(settings, opts);
+                    cache.vendor = utils.vendor();
+                    action.drag.listen();
+                }
+            };
+        /*
+         * Public
+         */
+        this.open = function (side) {
+            utils.dispatchEvent('open');
+            utils.klass.remove(doc.body, 'snapjs-expand-left');
+            utils.klass.remove(doc.body, 'snapjs-expand-right');
+
+            if (side === 'left') {
+                cache.simpleStates.opening = 'left';
+                cache.simpleStates.towards = 'right';
+                utils.klass.add(doc.body, 'sidenav-open');
+                utils.klass.remove(doc.body, 'snapjs-right');
+                action.translate.easeTo(settings.maxPosition);
+            } else if (side === 'right') {
+                cache.simpleStates.opening = 'right';
+                cache.simpleStates.towards = 'left';
+                utils.klass.remove(doc.body, 'sidenav-open');
+                utils.klass.add(doc.body, 'snapjs-right');
+                action.translate.easeTo(settings.minPosition);
+            }
+        };
+        this.close = function () {
+            utils.dispatchEvent('close');
+            utils.klass.remove(doc.body, 'sidenav-open');
+            action.translate.easeTo(0);
+        };
+        this.expand = function (side) {
+            var to = win.innerWidth || doc.documentElement.clientWidth;
+
+            if (side === 'left') {
+                utils.dispatchEvent('expandLeft');
+                utils.klass.add(doc.body, 'snapjs-expand-left');
+                utils.klass.remove(doc.body, 'snapjs-expand-right');
+            } else {
+                utils.dispatchEvent('expandRight');
+                utils.klass.add(doc.body, 'snapjs-expand-right');
+                utils.klass.remove(doc.body, 'snapjs-expand-left');
+                to *= -1;
+            }
+            action.translate.easeTo(to);
+        };
+
+        this.on = function (evt, fn) {
+            eventList[evt] = fn;
+            return this;
+        };
+        this.off = function (evt) {
+            if (eventList[evt]) {
+                eventList[evt] = false;
+            }
+        };
+
+        this.enable = function () {
+            utils.dispatchEvent('enable');
+            action.drag.listen();
+        };
+        this.disable = function () {
+            utils.dispatchEvent('disable');
+            action.drag.stopListening();
+        };
+
+        this.settings = function (opts) {
+            utils.deepExtend(settings, opts);
+        };
+
+        this.state = function () {
+            var state,
+                fromLeft = action.translate.get.matrix(4);
+            if (fromLeft === settings.maxPosition) {
+                state = 'left';
+            } else if (fromLeft === settings.minPosition) {
+                state = 'right';
+            } else {
+                state = 'closed';
+            }
+            return {
+                state: state,
+                info: cache.simpleStates
+            };
+        };
+        init(userOpts);
+    };
+    if ((typeof module !== 'undefined') && module.exports) {
+        module.exports = Snap;
+    }
+    if (typeof ender === 'undefined') {
+        this.Snap = Snap;
+    }
+    if ((typeof define === "function") && define.amd) {
+        define("snap", [], function () {
+            return Snap;
+        });
+    }
+}).call(this, window, document);

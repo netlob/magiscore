@@ -186,9 +186,9 @@
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
+      <!-- <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle" aria-label="Toggle zijkant"></button>
-      </div>
+      </div> -->
 
     </ul>
     <!-- End of Sidebar -->
@@ -207,10 +207,10 @@
           <div class="container-fluid"> -->
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none bg-primary rounded-circle mr-3"
+          <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none bg-primary rounded-circle mr-3"
             aria-label="Toggle zijkant">
             <i class="fa fa-bars"></i>
-          </button>
+          </button> -->
 
           <!-- Topbar Search -->
           <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -225,7 +225,8 @@
             </form> -->
 
           <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-none d-md-block" id="currentRender">Gemiddeld</h1>
-          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-block d-md-none text-center text-mobile" id="currentRenderMobile">
+          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-block d-md-none text-center text-mobile ml-2"
+            id="currentRenderMobile">
             Gemiddeld</h1>
 
           <!-- Topbar Navbar -->
@@ -307,7 +308,7 @@
             <li class="nav-item dropdown no-arrow mx-1 no-primary-hover">
               <a class="nav-link dropdown-toggle background-primary" id="messagesDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-clock fa-fw text-gray-100 d-block d-md-none"></i>
+                <i class="fas fa-clock fa-fw d-block d-md-none mobile-clock"></i>
                 <i class="fas fa-clock fa-fw text-gray-600 d-none d-md-block"></i>
                 <span class="ml-1 mr-2 pr-4 text-gray-600 d-none d-md-block">Laatste cijfers</span>
                 <span class="badge badge-primary badge-counter mr-3 d-none d-md-block" id="latest-grades-badge">X</span>
@@ -740,11 +741,12 @@
           </button>
         </div>
         <div class="modal-body">
-          <form oninput="passedOutput.value=passedRange.value" onload="passedOutput.value=viewController.config.passed">
+          <form oninput="passedOutput.value=passedRange.value" onload="passedRange.valuee=viewController.config.passed">
             <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en
               dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
             <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange"">
-              <output name=" passedOutput" for="passedRange"></output>
+              <output name=" passedOutput" id="passedOutput" for="passedRange"
+              onload="this.value = passedRange.value"></output>
           </form>
         </div>
         <div class="modal-footer">
@@ -811,23 +813,23 @@
   <script src="js/LessonController.js"></script>
   <!-- <script src="js/push.js"></script> -->
   <script src="js/main.js"></script>
-  <script>
-    var width = $(window).width();
-    if (width < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
-      document.querySelector('#sidebarToggleTop').click()
-    }
-    $(window).resize(function () {
-      if ($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar')
-        .classList.contains('toggled')) {
-        document.querySelector('#sidebarToggleTop').click()
-      }
-    })
-    $(window).resize(function () {
-      if ($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar')
-        .classList.contains('toggled')) {
-        document.querySelector('#sidebarToggleTop').click()
-      }
-    })
+  <!-- <script>
+    // var width = $(window).width();
+    // if (width < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
+    //   document.querySelector('#sidebarToggleTop').click()
+    // }
+    // $(window).resize(function () {
+    //   if ($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar')
+    //     .classList.contains('toggled')) {
+    //     document.querySelector('#sidebarToggleTop').click()
+    //   }
+    // })
+    // $(window).resize(function () {
+    //   if ($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar')
+    //     .classList.contains('toggled')) {
+    //     document.querySelector('#sidebarToggleTop').click()
+    //   }
+    // })
 
       // var registration;
 
@@ -890,7 +892,7 @@
       // if(viewController == undefined) {
       //   location.reload()
       // }
-  </script>
+  </script> -->
 </body>
 
 </html>

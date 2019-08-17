@@ -381,7 +381,22 @@ a.magister-login:before {
   src: url(./magistersymbols-webfont.woff) format("woff");
 }
 
-@media (max-width: 465px) {
+@media only screen and (max-width: 465px) {
+  .sidebar {
+    position: fixed !important;
+    width: 238px !important;
+    display: block !important;
+    z-index: -10 !important;
+    top: 0px !important;
+    overflow-y: scroll !important;
+    max-height: 100vh !important;
+    max-width: 238px !important;
+  }
+  
+  /* .snapjs-left .sidebar {
+    z-index: 10 !important;
+  } */
+
   .newGrade,
   .getGrade {
     display: block !important;
@@ -396,28 +411,19 @@ a.magister-login:before {
     vertical-align: top !important;
   }
 
-  .sidebar {
-    position: fixed !important;
-    width: 238px !important;
-    display: block !important;
-    z-index: -10 !important;
-    top: 0px !important;
-    overflow-y: scroll !important;
-    max-height: 100vh !important; 
-  }
   
-  /* .snapjs-left .sidebar {
-    z-index: 10 !important;
-  } */
-  
-  body[class~="sidenav-open"] .sidebar {
-    z-index: 100 !important;
-  }
-  
-  body[class~="sidenav-open"] #content-wrapper {
-    overflow: hidden !important;
-    height: 100vh !important;
-  }
+}
+
+.sidenav-open > #wrapper > .sidebar {
+  z-index: 10 !important;
+  overflow-y: scroll !important;
+}
+
+
+.sidenav-open > #wrapper > #content-wrapper {
+  z-index: -20 !important;
+  overflow-y: hidden !important;
+  height: 100% !important;
 }
 
 @media (max-width: 767px) {

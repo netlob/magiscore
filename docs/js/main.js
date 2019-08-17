@@ -54,9 +54,9 @@ function main(l) {
 
     viewController.updateNav()
     viewController.render(l ? l : 'general')
-    if ($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
-      document.querySelector('#sidebarToggleTop').click()
-    }
+    // if ($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
+    //   document.querySelector('#sidebarToggleTop').click()
+    // }
     // $('#betaModal').modal({show:true})
   } else {
     window.location = './login/index.html'
@@ -232,20 +232,20 @@ const ptr = PullToRefresh.init({
 //     // if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
 //   }
 // });;
-
-if ($(window).width() < 465) {
-  var snapper = new Snap({
-    element: document.getElementById('content-wrapper'),
+var snapper;
+if ($(window).width() <= 465) {
+  snapper = new Snap({
+    element: document.querySelector('#content-wrapper'),
     dragger: null,
     disable: 'right',
     addBodyClasses: true,
-    hyperextensible: true,
-    resistance: 0.5,
-    flickThreshold: 50,
-    transitionSpeed: 0.3,
+    hyperextensible: false,
+    resistance: 0,
+    flickThreshold: 0,
+    transitionSpeed: 0.2,
     easing: 'ease',
     maxPosition: 238,
-    minPosition: -238,
+    minPosition: 0,
     tapToClose: true,
     touchToDrag: true,
     slideIntent: 40,
@@ -271,7 +271,7 @@ Array.prototype.remove = function () {
 };
 
 $('.container-fluid').click(function () {
-  if (!$('body').hasClass('sidebar-toggled') && $(window).width() < 767) {
+  if (!$('body').hasClass('sidenav-open') && $(window).width() < 767) {
     $('#sidebarToggleTop').click()
   }
 });
