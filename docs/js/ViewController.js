@@ -491,6 +491,10 @@ function setChartData(config, lesson, everything) {
   }
 }
 
+function setAllGrades() {
+
+}
+
 function toShortFormat(d) {
   d = new Date(d);
   var month_names = [
