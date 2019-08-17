@@ -56,62 +56,6 @@ footer {
   box-shadow: none !important;
 }
 
-@media (max-width: 465px) {
-  .newGrade,
-  .getGrade {
-    display: block !important;
-    width: 100% !important;
-  }
-
-  .showCalculatedGrade {
-    display: inline-block !important;
-    width: 100% !important;
-    text-align: center !important;
-    margin-top: 33px !important;
-    vertical-align: top !important;
-  }
-}
-
-@media (max-width: 767px) {
-  /* .card {
-        width: 100vw !important;
-        margin: 0px !important;
-        padding: 0px !important;
-        position: relative !important;
-        left: 0px !important;
-    }
-    .chartjs-render-monitor {
-        width: 100% !important;
-        height: 500px !important;
-    } */
-  .container,
-  .container-fluid {
-    padding-left: 7px !important;
-    padding-right: 7px !important;
-  }
-
-  .sidebar .nav-item .nav-link {
-    text-align: left !important;
-    word-break: break-all !important;
-  }
-
-  .sidebar {
-    width: 100vw !important;
-  }
-
-  .nav-link {
-    width: auto !important;
-  }
-
-  /* .nav-item {
-        font-size: 30vw !important;
-    } */
-  .sidebar .nav-item .nav-link span {
-    font-size: 0.85rem;
-    display: block;
-  }
-}
-
 input {
   border: none !important;
 }
@@ -408,37 +352,110 @@ select:-webkit-autofill:focus {
   color: #0096db !important;
 }
 
-/*! CSS Used from: Embedded */
-a.magister-login{
+a.magister-login {
   background-color:#0096db !important;
   margin: 0px 1rem 0px 1rem !important;
   padding: 10px 10px !important;
   font-size: 24px !important;
   color: white !important;
-  /* margin-left:125px;
-  margin-bottom:20px; */
   border-radius: 4px !important;
   cursor: pointer !important;
   text-decoration: none !important;
   display: block !important;
 }
-a.magister-login:hover{
-  background-color:#20b9ff !important;
+
+a.magister-login:hover {
+  background-color: #20b9ff !important;
 }
-a.magister-login:before{
-  font-family:"magistersymbolsnormal" !important;
-  content:"Q" !important;
+
+a.magister-login:before {
+  font-family: "magistersymbolsnormal" !important;
+  content: "Q" !important;
   font-size: 40px !important;
 }
-/*! CSS Used from: Embedded ; media=screen */
-@media screen{
-a{background-color:transparent;}
-a:active,a:hover{outline:0;}
-}
-/*! CSS Used fontfaces */
+
 @font-face{
-  font-family:"magistersymbolsnormal";
+  font-family: "magistersymbolsnormal";
   font-style: normal;
   font-weight: normal;
-  src:url(./magistersymbols-webfont.woff) format("woff");
+  src: url(./magistersymbols-webfont.woff) format("woff");
+}
+
+@media (max-width: 465px) {
+  .newGrade,
+  .getGrade {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .showCalculatedGrade {
+    display: inline-block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 33px !important;
+    vertical-align: top !important;
+  }
+
+  .sidebar {
+    position: fixed !important;
+    width: 238px !important;
+    display: block !important;
+    z-index: -10 !important;
+    top: 0px !important;
+    overflow-y: scroll !important;
+    max-height: 100vh !important; 
+  }
+  
+  /* .snapjs-left .sidebar {
+    z-index: 10 !important;
+  } */
+  
+  body[class~="sidenav-open"] .sidebar {
+    z-index: 100 !important;
+  }
+  
+  body[class~="sidenav-open"] #content-wrapper {
+    overflow: hidden !important;
+    height: 100vh !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* .card {
+        width: 100vw !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        position: relative !important;
+        left: 0px !important;
+    }
+    .chartjs-render-monitor {
+        width: 100% !important;
+        height: 500px !important;
+    } */
+  .container,
+  .container-fluid {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+  }
+
+  .sidebar .nav-item .nav-link {
+    text-align: left !important;
+    word-break: break-all !important;
+  }
+
+  .sidebar {
+    width: 100vw !important;
+  }
+
+  .nav-link {
+    width: auto !important;
+  }
+
+  /* .nav-item {
+        font-size: 30vw !important;
+    } */
+  .sidebar .nav-item .nav-link span {
+    font-size: 0.85rem;
+    display: block;
+  }
 }

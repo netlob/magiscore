@@ -233,6 +233,26 @@ const ptr = PullToRefresh.init({
 //   }
 // });;
 
+if ($(window).width() < 465) {
+  var snapper = new Snap({
+    element: document.getElementById('content-wrapper'),
+    dragger: null,
+    disable: 'right',
+    addBodyClasses: true,
+    hyperextensible: true,
+    resistance: 0.5,
+    flickThreshold: 50,
+    transitionSpeed: 0.3,
+    easing: 'ease',
+    maxPosition: 238,
+    minPosition: -238,
+    tapToClose: true,
+    touchToDrag: true,
+    slideIntent: 40,
+    minDragDistance: 5
+  });
+}
+
 String.prototype.capitalize = function (poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
@@ -256,18 +276,18 @@ $('.container-fluid').click(function () {
   }
 });
 
-document.addEventListener("deviceready", function () {
-  alert("123");
-  $('#wrapper').bind('swipeleft', function () {
-    if (!$('body').hasClass('sidebar-toggled')) {
-      $('#sidebarToggleTop').click()
-    }
-  });
-  $('#wrapper').bind('swiperight', function () {
-    if ($('body').hasClass('sidebar-toggled')) {
-      $('#sidebarToggleTop').click()
-    }
-  });
-}, true);
+// document.addEventListener("deviceready", function () {
+//   alert("123");
+//   $('#wrapper').bind('swipeleft', function () {
+//     if (!$('body').hasClass('sidebar-toggled')) {
+//       $('#sidebarToggleTop').click()
+//     }
+//   });
+//   $('#wrapper').bind('swiperight', function () {
+//     if ($('body').hasClass('sidebar-toggled')) {
+//       $('#sidebarToggleTop').click()
+//     }
+//   });
+// }, true);
 
 main()
