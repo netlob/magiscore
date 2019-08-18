@@ -320,7 +320,7 @@
                   Laatste cijfers
                 </h6>
                 <div id="latest-grades">
-                  <div class="text-center mt-3 mb-2">Geen cijfers afgelopen week...</div>
+                  <div class="text-center mt-3 mb-2" id="latest-grades-empty">Geen cijfers afgelopen week...</div>
                 </div>
                 <a class="dropdown-item text-center medium text-gray-800" href="#">Alle cijfers</a>
               </div>
@@ -354,6 +354,10 @@
                 <a class="dropdown-item" data-toggle="theme" onclick="viewController.toggleTheme()">
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
+                </a>
+                <a class="dropdown-item" onclick="viewController.openSettings()">
+                  <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Instellingen
                 </a>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -702,6 +706,8 @@
       </div>
     </div>
 
+    <div id="settings-overlay"></div>
+
   </div>
   <!-- End of Page Wrapper -->
 
@@ -771,13 +777,73 @@
         <div class="modal-body">
           <p>Magiscore is momenteel nog in ontwikkeling. Dit betekend dat er errors en fouten kunnen optreden. Gebruik
             is dan ook op eigen risico en alle rechten zijn voorbehouden.</p>
-
           <span class="text-gray">Huidige versie: 0.2</span>
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" aria-label="Anuleer"
             onclick="window.location='https://google.com'">Annuleer</button>
           <a class="btn btn-primary" href="#" role="button" data-dismiss="modal" aria-label="Akkoord">Akkoord</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="settings-wrapper">
+    <div class="settings-close" onclick="viewController.closeSettings()">
+      <i class="fa fa-times"></i>
+      <!-- <span class="ml-2 text-gray-800 font-weight-bold">Sluiten</span> -->
+    </div>
+    <div class="settings-body pt-10 pl-3 pr-3 pb-4">
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="card bg-white text-white shadow border-left-primary">
+            <div class="card-body text-gray-800 lead">
+              Setting 1
+              <div class="text-white-50 small">#0096db</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card bg-white text-white shadow border-left-primary">
+            <div class="card-body text-gray-800 lead">
+              Setting 2
+              <div class="text-white-50 small">#1cc88a</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card bg-white text-white shadow border-left-primary">
+            <div class="card-body text-gray-800 lead">
+              Setting 3
+              <div class="text-white-50 small">#36b9cc</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card bg-white text-white shadow border-left-primary">
+            <div class="card-body text-gray-800 lead">
+              Setting 4
+              <div class="text-white-50 small">#f6c23e</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card bg-white text-white shadow border-left-primary">
+            <div class="card-body text-gray-800 lead">
+              Setting 5
+              <div class="text-white-50 small">#e74a3b</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card bg-white text-white shadow border-left-primary">
+            <div class="card-body text-gray-800 lead h4">
+              Magbot
+              <hr>
+              <span class="btn btn-primary" style="font-size: 20px;"><span class="magister-icon-font">Q </span> Activeer
+                MagBot</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

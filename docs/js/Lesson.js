@@ -80,7 +80,7 @@ class Lesson {
   //   }
   // }
 
-  getAverage(rounded) {
+  getAverage(rounded, ignore) {
     if (this.data) {
       if (this.data['Grades'].length > 0) {
         var average = 0;
@@ -92,6 +92,9 @@ class Lesson {
             // console.dir(_grade)
             processed++
             if (!_grade.exclude) {
+              if (ignore > 0) {
+                grades.slice(0, ignore)
+              }
               for (let i = 0; i < _grade.weight; i++) {
                 grades.push(Number(round(_grade.grade)))
               }

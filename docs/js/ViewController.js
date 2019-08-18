@@ -163,28 +163,43 @@ class ViewController {
   }
 
   setLatestGrades() {
-    var dated = lessonController.allGrades.sort()
-    dated = dated.slice(-5)
-    $("#latest-grades").empty()
-    $("#latest-grades-badge").text(dated.length)
-    dated.forEach(grade => {
+    lessonController.allGrades.forEach(grade => {
       var d = new Date(grade.dateFilledIn)
-      $("#latest-grades").append(`
-        <a class="dropdown-item d-flex align-items-center" onclick="viewController.render('${grade.class.description.capitalize()}')">
-          <div class="dropdown-list-image mr-3">
-            <div class="rounded-circle">
-              <h3 class="text-center mt-1">${grade.grade}</h3>
+      var w = new Date().getDate() - 7;
+      if (d < w) {
+        length++
+        $("#latest-grades").append(`
+          <a class="dropdown-item d-flex align-items-center" onclick="viewController.render('${grade.class.description.capitalize()}')">
+            <div class="dropdown-list-image mr-3">
+              <div class="rounded-circle">
+                <h3 class="text-center mt-1">${grade.grade == "10,0" ? '<span class="text-success">10!</span>' : (round(grade.grade) < this.config.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}</h3>
+              </div>
+              <!-- <div class="status-indicator bg-success"></div> -->
             </div>
-            <!-- <div class="status-indicator bg-success"></div> -->
-          </div>
-          <div>
-            <span class="text-truncate font-weight-bold text-capitalize">${grade.class.description}</span><span
-              class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</span>
-            <div class="small text-gray-600">${grade.description}</div>
-          </div>
-        </a>
-      `)
+            <div>
+              <span class="text-truncate font-weight-bold text-capitalize">${grade.class.description}</span><span
+                class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</span>
+              <div class="small text-gray-600">${grade.description}</div>
+            </div>
+          </a>
+        `)
+      }
     })
+    if (length == 0) $("#latest-grades-empty").show()
+    else $("#latest-grades-empty").hide()
+    $("#latest-grades-badge").text(length)
+  }
+
+  openSettings() {
+    $("body").css("overflow-y", "hidden")
+    $("#settings-overlay").show()
+    $("#settings-wrapper").show()
+  }
+
+  closeSettings() {
+    $("body").css("overflow-y", "scroll")
+    $("#settings-overlay").hide()
+    $("#settings-wrapper").hide()
   }
 }
 
@@ -192,7 +207,7 @@ function updateSidebar() {
   $("#subjectsNav").empty();
   lessonController.lessons.map(lesson =>
     $("#subjectsNav").append(`
-        <li class="nav-item">
+        <li class="nav-item" id="${lesson.name}">
             <a class="nav-link" onclick="viewController.render('${
       lesson.name
       }')">
@@ -321,6 +336,9 @@ function setChartData(config, lesson, everything) {
 
   datums.reverse();
   cijfers.reverse();
+
+  if (cijfers.length == 1) datums.push(datums[0]), cijfers.push(cijfers[0])
+
   var ctx = document.getElementById("lineChart").getContext("2d");
   viewController.lineChart = new Chart(ctx, {
     type: "line",
@@ -703,7 +721,7 @@ function generateHTML(lesson) {
                                     <input type="number" class="form-control form-control-user" id="newGrade-grade" min="1" max="10" placeholder="Nieuw cijfer">
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-user" id="newGrade-weight" placeholder="Weging">
+                                    <input type="number" class="form-control form-control-user" id="newGrade-weight" min="0" placeholder="Weging">
                                 </div>
                             <a onclick="lessonController.getLesson('${lesson}').lesson.getNewAverage()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                             </form>
@@ -725,12 +743,12 @@ function generateHTML(lesson) {
                                     <input type="number" class="form-control form-control-user" id="getGrade-grade" min="1" max="10" placeholder="Ik wil staan">
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-user" id="getGrade-weight" placeholder="Weging">
+                                    <input type="number" class="form-control form-control-user" id="getGrade-weight" min="0" placeholder="Weging">
                                 </div>
                                 <a onclick="lessonController.getLesson('${lesson}').lesson.needToGet()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                             </form>
                             <div class="showCalculatedGrade">
-                            <h1 id="getGrade-newGrade"><i class="fas fa-chart-line fa-sm text-primary"></i></h1>
+                              <h1 id="getGrade-newGrade"><i class="fas fa-chart-line fa-sm text-primary"></i></h1>
                             </div>
                         </div>
                         </div>
@@ -764,7 +782,7 @@ function generateHTML(lesson) {
                   <!-- Card Body -->
                   <div class="card-body chart-card">
                       <div class="chart-area chart-container">
-                      <canvas id="lineChart"></canvas>
+                        <canvas id="lineChart"></canvas>
                       </div>
                   </div>
                   </div>

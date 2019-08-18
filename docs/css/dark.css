@@ -215,3 +215,7 @@ body[theme="dark"] .modal-footer {
 body[theme="dark"] .mobile-clock {
   color: #a9a9a9 !important;
 }
+
+/* body[theme="dark"] #settings-wrapper {
+  background-color: #202124 !important;
+} */
