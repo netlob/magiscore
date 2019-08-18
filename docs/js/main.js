@@ -186,20 +186,20 @@ $("body").keypress(function (e) {
     }).animate({
       deg: 360
     }, {
-        duration: 4000,
-        step: function (now) {
-          elem.css({
-            transform: `rotate(${now}deg)`
-          });
-        }
-      });
+      duration: 4000,
+      step: function (now) {
+        elem.css({
+          transform: `rotate(${now}deg)`
+        });
+      }
+    });
   }
 });
 
 const ptr = PullToRefresh.init({
   mainElement: '#ptr',
   shouldPullToRefresh: function () {
-    return $(window).scrollTop() == 0
+    return $(window).scrollTop() == 0 && $(".sidebar").css("z-index") < 0
   },
   onRefresh: function (done) {
     syncGrades().then(d => done())

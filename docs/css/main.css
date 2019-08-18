@@ -479,16 +479,20 @@ a.magister-login:before {
 
 }
 
-.sidenav-open>#wrapper>.sidebar {
+.sidenav-open .sidebar {
   z-index: 99999 !important;
   overflow-y: scroll !important;
 }
 
 
-.sidenav-open>#wrapper>#content-wrapper {
+.sidenav-open #content-wrapper {
   z-index: -20 !important;
   overflow-y: hidden !important;
   height: 100% !important;
+}
+
+.sidenav-open #settings-overlay {
+  display: block;
 }
 
 @media (max-width: 767px) {

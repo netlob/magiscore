@@ -14,22 +14,22 @@
     'use strict';
     var Snap = Snap || function (userOpts) {
         var settings = {
-            element: null,
-            dragger: null,
-            disable: 'none',
-            addBodyClasses: true,
-            hyperextensible: true,
-            resistance: 0.5,
-            flickThreshold: 50,
-            transitionSpeed: 0.3,
-            easing: 'ease',
-            maxPosition: 266,
-            minPosition: -266,
-            tapToClose: true,
-            touchToDrag: true,
-            slideIntent: 40, // degrees
-            minDragDistance: 5
-        },
+                element: null,
+                dragger: null,
+                disable: 'none',
+                addBodyClasses: true,
+                hyperextensible: true,
+                resistance: 0.5,
+                flickThreshold: 50,
+                transitionSpeed: 0.3,
+                easing: 'ease',
+                maxPosition: 266,
+                minPosition: -266,
+                tapToClose: true,
+                touchToDrag: true,
+                slideIntent: 40, // degrees
+                minDragDistance: 5
+            },
             cache = {
                 simpleStates: {
                     opening: null,
@@ -218,7 +218,9 @@
                     x: function (n) {
                         if ((settings.disable === 'left' && n > 0) ||
                             (settings.disable === 'right' && n < 0)
-                        ) { return; }
+                        ) {
+                            return;
+                        }
 
                         if (!settings.hyperextensible) {
                             if (n === settings.maxPosition || n > settings.maxPosition) {
