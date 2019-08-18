@@ -386,7 +386,7 @@ select:-webkit-autofill:focus {
   top: 2.8rem;
   right: 10rem;
   cursor: pointer;
-  background-color: #fff !important;
+  /* background-color: #fff !important; */
   width: 4rem;
   height: 4rem;
   text-align: center !important;
@@ -401,6 +401,13 @@ select:-webkit-autofill:focus {
   left: 25%;
   height: 80%;
   top: 10%; */
+}
+
+#settings-wrapper > input[type='range']::-webkit-slider-runnable-track,
+#settings-wrapper > input[type="range"]::-moz-range-track,
+#settings-wrapper > input[type="range"]::-ms-fill-lower,
+#settings-wrapper > input[type="range"]::-ms-fill-upper {
+  background-color: #0096db !important;
 }
 
 a.magister-login {

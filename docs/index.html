@@ -789,7 +789,7 @@
   </div>
 
   <div id="settings-wrapper">
-    <div class="settings-close" onclick="viewController.closeSettings()">
+    <div class="settings-close bg-white" onclick="viewController.closeSettings()">
       <i class="fa fa-times"></i>
       <!-- <span class="ml-2 text-gray-800 font-weight-bold">Sluiten</span> -->
     </div>
@@ -805,9 +805,17 @@
         </div>
         <div class="col-lg-6 mb-4">
           <div class="card bg-white text-white shadow border-left-primary">
-            <div class="card-body text-gray-800 lead">
-              Setting 2
-              <div class="text-white-50 small">#1cc88a</div>
+            <div class="card-body text-gray-800 lead h4">
+              Voldoendegrens
+              <form oninput="passedOutput.value=passedRange.value"
+                onload="passedRange.value=viewController.config.passed" class="text-white-50 small mt-2">
+                <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5,
+                  en
+                  dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
+                <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange"">
+                  <output class=" poep" name="passedOutput" id="passedOutput" for="passedRange"
+                  onload="this.value = passedRange.value"></output>
+              </form>
             </div>
           </div>
         </div>

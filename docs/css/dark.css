@@ -219,3 +219,12 @@ body[theme="dark"] .mobile-clock {
 /* body[theme="dark"] #settings-wrapper {
   background-color: #202124 !important;
 } */
+
+body[theme="dark"] #passedRange::-webkit-slider-runnable-track,
+body[theme="dark"] #passedRange::-moz-range-track,
+body[theme="dark"] #passedRange::-ms-fill-lower, 
+body[theme="dark"] #passedRange::-ms-fill-upper,
+body[theme="dark"] #passedRange {
+  background-color: #202124 !important;
+  border-radius: 50% !important;
+}

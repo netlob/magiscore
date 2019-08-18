@@ -191,13 +191,11 @@ class ViewController {
   }
 
   openSettings() {
-    $("body").css("overflow-y", "hidden")
     $("#settings-overlay").show()
     $("#settings-wrapper").show()
   }
 
   closeSettings() {
-    $("body").css("overflow-y", "scroll")
     $("#settings-overlay").hide()
     $("#settings-wrapper").hide()
   }
