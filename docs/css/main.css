@@ -78,7 +78,7 @@ input {
   vertical-align: top;
 }
 
-#subjectsNav > .nav-item > .nav-link {
+#subjectsNav>.nav-item>.nav-link {
   font-size: 1rem !important;
   word-break: break-all !important;
 }
@@ -87,8 +87,8 @@ input {
   font-size: 1rem !important;
 }
 
-.navbar-nav > .nav-item:hover,
-#subjectsNav > .nav-item:hover {
+.navbar-nav>.nav-item:hover,
+#subjectsNav>.nav-item:hover {
   /* background-color: rgb(21, 84, 45) !important; */
   background-color: rgb(0, 120, 175);
   /* box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .7); */
@@ -120,13 +120,13 @@ input {
 
 .rounded-circle,
 .rounded-circle:hover,
-.topbar > button.bg-primary:hover,
+.topbar>button.bg-primary:hover,
 .topbar #sidebarToggleTop:hover {
   background-color: transparent !important;
   color: #0096db !important;
 }
 
-#wrapper > .sidebar {
+#wrapper>.sidebar {
   transition: 200ms !important;
 }
 
@@ -138,7 +138,7 @@ input {
   background-color: rgba(0, 120, 175, 0.1) !important;
 }
 
-.rounded-circle > .fa {
+.rounded-circle>.fa {
   color: #0096db !important;
   font-size: 23px !important;
 }
@@ -269,7 +269,7 @@ input.form-control::placeholder {
   cursor: pointer;
 }
 
-#content > nav > form > div > input {
+#content>nav>form>div>input {
   height: 38px !important;
 }
 
@@ -277,7 +277,7 @@ input.form-control::placeholder {
   touch-action: pan-y;
 }
 
-#content-wrapper > table.gestures {
+#content-wrapper>table.gestures {
   touch-action: none !important;
 }
 
@@ -292,7 +292,7 @@ input.form-control::placeholder {
   padding-bottom: 10px !important;
 }
 
-#overlay > .spinner-border {
+#overlay>.spinner-border {
   position: fixed;
   top: 47vh;
   left: 47vw;
@@ -347,7 +347,8 @@ select:-webkit-autofill:focus {
   color: #4e73df !important;
 }
 
-#percentageGrades, #pieChart {
+#percentageGrades,
+#pieChart {
   position: relative;
   bottom: 25px !important;
 }
@@ -361,7 +362,8 @@ select:-webkit-autofill:focus {
   font-size: 1rem !important;
 }
 
-#latest-grades a:hover, #latest-grades a:focus {
+#latest-grades a:hover,
+#latest-grades a:focus {
   color: #0096db !important;
 }
 
@@ -375,10 +377,10 @@ select:-webkit-autofill:focus {
   width: 60vw;
   height: 90vh;
   z-index: 10 !important;
-  transition: display 2s ;
+  transition: display 2s;
 }
 
-#settings-wrapper > .settings-close {
+#settings-wrapper>.settings-close {
   font-size: 2.6rem;
   font-weight: lighter !important;
   color: #0096db !important;
@@ -390,10 +392,10 @@ select:-webkit-autofill:focus {
   width: 4rem;
   height: 4rem;
   text-align: center !important;
-  padding-top: 0.2rem 
+  padding-top: 0.2rem
 }
 
-#settings-wrapper > .settings-body {
+#settings-wrapper>.settings-body {
   padding: 10rem 10rem 5rem 10rem !important;
   /* background-color: #fff;
   position: absolute;
@@ -403,15 +405,15 @@ select:-webkit-autofill:focus {
   top: 10%; */
 }
 
-#settings-wrapper > input[type='range']::-webkit-slider-runnable-track,
-#settings-wrapper > input[type="range"]::-moz-range-track,
-#settings-wrapper > input[type="range"]::-ms-fill-lower,
-#settings-wrapper > input[type="range"]::-ms-fill-upper {
+#settings-wrapper>input[type='range']::-webkit-slider-runnable-track,
+#settings-wrapper>input[type="range"]::-moz-range-track,
+#settings-wrapper>input[type="range"]::-ms-fill-lower,
+#settings-wrapper>input[type="range"]::-ms-fill-upper {
   background-color: #0096db !important;
 }
 
 a.magister-login {
-  background-color:#0096db !important;
+  background-color: #0096db !important;
   margin: 0px 1rem 0px 1rem !important;
   padding: 10px 10px !important;
   font-size: 24px !important;
@@ -437,7 +439,7 @@ a.magister-login:before {
   font-size: 30px !important;
 }
 
-@font-face{
+@font-face {
   font-family: "magistersymbolsnormal";
   font-style: normal;
   font-weight: normal;
@@ -455,7 +457,7 @@ a.magister-login:before {
     max-height: 100vh !important;
     max-width: 238px !important;
   }
-  
+
   /* .snapjs-left .sidebar {
     z-index: 10 !important;
   } */
@@ -474,22 +476,23 @@ a.magister-login:before {
     vertical-align: top !important;
   }
 
-  
+
 }
 
-.sidenav-open > #wrapper > .sidebar {
-  z-index: 10 !important;
+.sidenav-open>#wrapper>.sidebar {
+  z-index: 99999 !important;
   overflow-y: scroll !important;
 }
 
 
-.sidenav-open > #wrapper > #content-wrapper {
+.sidenav-open>#wrapper>#content-wrapper {
   z-index: -20 !important;
   overflow-y: hidden !important;
   height: 100% !important;
 }
 
 @media (max-width: 767px) {
+
   /* .card {
         width: 100vw !important;
         margin: 0px !important;
