@@ -56,62 +56,6 @@ footer {
   box-shadow: none !important;
 }
 
-@media (max-width: 465px) {
-  .newGrade,
-  .getGrade {
-    display: block !important;
-    width: 100% !important;
-  }
-
-  .showCalculatedGrade {
-    display: inline-block !important;
-    width: 100% !important;
-    text-align: center !important;
-    margin-top: 33px !important;
-    vertical-align: top !important;
-  }
-}
-
-@media (max-width: 767px) {
-  /* .card {
-        width: 100vw !important;
-        margin: 0px !important;
-        padding: 0px !important;
-        position: relative !important;
-        left: 0px !important;
-    }
-    .chartjs-render-monitor {
-        width: 100% !important;
-        height: 500px !important;
-    } */
-  .container,
-  .container-fluid {
-    padding-left: 7px !important;
-    padding-right: 7px !important;
-  }
-
-  .sidebar .nav-item .nav-link {
-    text-align: left !important;
-    word-break: break-all !important;
-  }
-
-  .sidebar {
-    width: 100vw !important;
-  }
-
-  .nav-link {
-    width: auto !important;
-  }
-
-  /* .nav-item {
-        font-size: 30vw !important;
-    } */
-  .sidebar .nav-item .nav-link span {
-    font-size: 0.85rem;
-    display: block;
-  }
-}
-
 input {
   border: none !important;
 }
@@ -296,6 +240,19 @@ input.form-control::placeholder {
   cursor: wait;
 }
 
+#settings-overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
 .disabled {
   cursor: not-allowed !important;
 }
@@ -408,37 +365,159 @@ select:-webkit-autofill:focus {
   color: #0096db !important;
 }
 
-/*! CSS Used from: Embedded */
-a.magister-login{
+#settings-wrapper {
+  display: none;
+  /* background-color: #f8f9fc !important; */
+  background-color: transparent !important;
+  position: fixed;
+  top: 5vh;
+  left: 20vw;
+  width: 60vw;
+  height: 90vh;
+  z-index: 10 !important;
+  transition: display 2s ;
+}
+
+#settings-wrapper > .settings-close {
+  font-size: 2.6rem;
+  font-weight: lighter !important;
+  color: #0096db !important;
+  position: absolute;
+  top: 2.8rem;
+  right: 10rem;
+  cursor: pointer;
+  background-color: #fff !important;
+  width: 4rem;
+  height: 4rem;
+  text-align: center !important;
+  padding-top: 0.2rem 
+}
+
+#settings-wrapper > .settings-body {
+  padding: 10rem 10rem 5rem 10rem !important;
+  /* background-color: #fff;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  height: 80%;
+  top: 10%; */
+}
+
+a.magister-login {
   background-color:#0096db !important;
   margin: 0px 1rem 0px 1rem !important;
   padding: 10px 10px !important;
   font-size: 24px !important;
   color: white !important;
-  /* margin-left:125px;
-  margin-bottom:20px; */
   border-radius: 4px !important;
   cursor: pointer !important;
   text-decoration: none !important;
   display: block !important;
 }
-a.magister-login:hover{
-  background-color:#20b9ff !important;
+
+a.magister-login:hover {
+  background-color: #20b9ff !important;
 }
-a.magister-login:before{
-  font-family:"magistersymbolsnormal" !important;
-  content:"Q" !important;
+
+a.magister-login:before {
+  font-family: "magistersymbolsnormal" !important;
+  content: "Q" !important;
   font-size: 40px !important;
 }
-/*! CSS Used from: Embedded ; media=screen */
-@media screen{
-a{background-color:transparent;}
-a:active,a:hover{outline:0;}
+
+.magister-icon-font {
+  font-family: "magistersymbolsnormal" !important;
+  font-size: 30px !important;
 }
-/*! CSS Used fontfaces */
+
 @font-face{
-  font-family:"magistersymbolsnormal";
+  font-family: "magistersymbolsnormal";
   font-style: normal;
   font-weight: normal;
-  src:url(./magistersymbols-webfont.woff) format("woff");
+  src: url(./magistersymbols-webfont.woff) format("woff");
+}
+
+@media only screen and (max-width: 465px) {
+  .sidebar {
+    position: fixed !important;
+    width: 238px !important;
+    display: block !important;
+    z-index: -10 !important;
+    top: 0px !important;
+    overflow-y: scroll !important;
+    max-height: 100vh !important;
+    max-width: 238px !important;
+  }
+  
+  /* .snapjs-left .sidebar {
+    z-index: 10 !important;
+  } */
+
+  .newGrade,
+  .getGrade {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .showCalculatedGrade {
+    display: inline-block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 33px !important;
+    vertical-align: top !important;
+  }
+
+  
+}
+
+.sidenav-open > #wrapper > .sidebar {
+  z-index: 10 !important;
+  overflow-y: scroll !important;
+}
+
+
+.sidenav-open > #wrapper > #content-wrapper {
+  z-index: -20 !important;
+  overflow-y: hidden !important;
+  height: 100% !important;
+}
+
+@media (max-width: 767px) {
+  /* .card {
+        width: 100vw !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        position: relative !important;
+        left: 0px !important;
+    }
+    .chartjs-render-monitor {
+        width: 100% !important;
+        height: 500px !important;
+    } */
+  .container,
+  .container-fluid {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+  }
+
+  .sidebar .nav-item .nav-link {
+    text-align: left !important;
+    word-break: break-all !important;
+  }
+
+  .sidebar {
+    width: 100vw !important;
+  }
+
+  .nav-link {
+    width: auto !important;
+  }
+
+  /* .nav-item {
+        font-size: 30vw !important;
+    } */
+  .sidebar .nav-item .nav-link span {
+    font-size: 0.85rem;
+    display: block;
+  }
 }

@@ -54,9 +54,9 @@ function main(l) {
 
     viewController.updateNav()
     viewController.render(l ? l : 'general')
-    if ($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
-      document.querySelector('#sidebarToggleTop').click()
-    }
+    // if ($(window).width() < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
+    //   document.querySelector('#sidebarToggleTop').click()
+    // }
     // $('#betaModal').modal({show:true})
   } else {
     window.location = './login/index.html'
@@ -232,6 +232,26 @@ const ptr = PullToRefresh.init({
 //     // if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
 //   }
 // });;
+var snapper;
+if ($(window).width() <= 465) {
+  snapper = new Snap({
+    element: document.querySelector('#content-wrapper'),
+    dragger: null,
+    disable: 'right',
+    addBodyClasses: true,
+    hyperextensible: false,
+    resistance: 0,
+    flickThreshold: 0,
+    transitionSpeed: 0.2,
+    easing: 'ease',
+    maxPosition: 238,
+    minPosition: 0,
+    tapToClose: true,
+    touchToDrag: true,
+    slideIntent: 40,
+    minDragDistance: 5
+  });
+}
 
 String.prototype.capitalize = function (poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -251,23 +271,23 @@ Array.prototype.remove = function () {
 };
 
 $('.container-fluid').click(function () {
-  if (!$('body').hasClass('sidebar-toggled') && $(window).width() < 767) {
+  if (!$('body').hasClass('sidenav-open') && $(window).width() < 767) {
     $('#sidebarToggleTop').click()
   }
 });
 
-document.addEventListener("deviceready", function () {
-  alert("123");
-  $('#wrapper').bind('swipeleft', function () {
-    if (!$('body').hasClass('sidebar-toggled')) {
-      $('#sidebarToggleTop').click()
-    }
-  });
-  $('#wrapper').bind('swiperight', function () {
-    if ($('body').hasClass('sidebar-toggled')) {
-      $('#sidebarToggleTop').click()
-    }
-  });
-}, true);
+// document.addEventListener("deviceready", function () {
+//   alert("123");
+//   $('#wrapper').bind('swipeleft', function () {
+//     if (!$('body').hasClass('sidebar-toggled')) {
+//       $('#sidebarToggleTop').click()
+//     }
+//   });
+//   $('#wrapper').bind('swiperight', function () {
+//     if ($('body').hasClass('sidebar-toggled')) {
+//       $('#sidebarToggleTop').click()
+//     }
+//   });
+// }, true);
 
 main()

@@ -211,3 +211,11 @@ body[theme="dark"] .md-checkbox label:before {
 body[theme="dark"] .modal-footer {
   border-top-color: #252729 !important;
 }
+
+body[theme="dark"] .mobile-clock {
+  color: #a9a9a9 !important;
+}
+
+/* body[theme="dark"] #settings-wrapper {
+  background-color: #202124 !important;
+} */
