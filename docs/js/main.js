@@ -186,13 +186,13 @@ $("body").keypress(function (e) {
     }).animate({
       deg: 360
     }, {
-      duration: 4000,
-      step: function (now) {
-        elem.css({
-          transform: `rotate(${now}deg)`
-        });
-      }
-    });
+        duration: 4000,
+        step: function (now) {
+          elem.css({
+            transform: `rotate(${now}deg)`
+          });
+        }
+      });
   }
 });
 
@@ -249,9 +249,14 @@ if ($(window).width() <= 465) {
     tapToClose: true,
     touchToDrag: true,
     slideIntent: 40,
-    minDragDistance: 5
+    minDragDistance: 5,
+    // effect: 'pull'
   });
 }
+
+$(function () {
+  FastClick.attach(document.body);
+});
 
 String.prototype.capitalize = function (poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);
