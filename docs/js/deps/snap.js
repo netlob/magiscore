@@ -229,6 +229,8 @@
                         if (utils.canTransform()) {
                             if (settings.effect === 'push') {
                                 var theTranslate = 'translate3d(' + n + 'px, 0,0)';
+                                if (n == 238) $("body").addClass("sidenav-open")
+                                else $("body").removeClass("sidenav-open")
                                 settings.element.style[cache.vendor + 'Transform'] = theTranslate;
                             } else {
                                 settings.element.style.marginLeft = + n + 'px';
