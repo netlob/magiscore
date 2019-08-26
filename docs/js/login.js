@@ -896,7 +896,7 @@ function login(creds, demo) {
         if (navigator.notification) {
             navigator.notification.alert(
                 `Geen geldige school \n Tip: type de eerste 3 letters van je school en kies je school uit het lijstje`,
-                function () { },
+                function () {},
                 'Oeps',
                 'Begrepen'
             );
@@ -951,7 +951,7 @@ function login(creds, demo) {
                     if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerd Magister wachtwoord',
-                            function () { },
+                            function () {},
                             'Oeps',
                             'Begrepen'
                         );
@@ -966,7 +966,7 @@ function login(creds, demo) {
                     if (navigator.notification) {
                         navigator.notification.alert(
                             'Error: verkeerde Magister gebruikersnaam',
-                            function () { },
+                            function () {},
                             'Oeps',
                             'Begrepen'
                         );
@@ -988,7 +988,7 @@ function login(creds, demo) {
         if (navigator.notification) {
             navigator.notification.alert(
                 'Vul alle velden in a.u.b.',
-                function () { },
+                function () {},
                 'Oeps',
                 'Begrepen'
             );
@@ -1000,17 +1000,18 @@ function login(creds, demo) {
 }
 
 function toast(msg, duration) {
-    $('body').append(`<div id="snackbar" class="snackbar">${msg}</div>`);
-    $('#snackbar').css("display", "block")
-    $('#snackbar').animate({
+    var snackId = Math.floor((Math.random() * 1000) + 1)
+    $('body').append(`<div id="snackbar${snackId}" class="snackbar">${msg}</div>`);
+    $(`#snackbar${snackId}`).css("display", "block")
+    $(`#snackbar${snackId}`).animate({
         "bottom": "30px"
     }, "slow");
     if (duration) {
         setTimeout(function () {
-            $('#snackbar').animate({
+            $(`#snackbar${snackId}`).animate({
                 "bottom": "-200px"
             }, "slow", function () {
-                $('#snackbar').remove()
+                $(`#snackbar${snackId}`).remove()
             })
         }, duration);
     }

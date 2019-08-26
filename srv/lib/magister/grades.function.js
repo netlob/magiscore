@@ -31,9 +31,9 @@ module.exports = async function (params, res) {
                         res.writeHead(200)
                         res.end(JSON.stringify(response))
                     }).catch((err) => {
-                        console.error('something went wrong:', err);
-                        res.writeHead(200);
-                        res.end('error: ' + err.toString());
+                        // console.error('something went wrong:', err);
+                        // res.writeHead(200);
+                        // res.end('error: ' + err.toString());
                     });
             })
     }).catch(err => {
