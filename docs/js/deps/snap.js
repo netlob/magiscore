@@ -1,35 +1,24 @@
-/*
- * Snap.js
- *
- * Copyright 2013, Jacob Kelley - http://jakiestfu.com/
- * Released under the MIT Licence
- * http://opensource.org/licenses/MIT
- *
- * Github:  http://github.com/jakiestfu/Snap.js/
- * Version: 1.9.3
- */
-/*jslint browser: true*/
-/*global define, module, ender*/
 (function (win, doc) {
     'use strict';
     var Snap = Snap || function (userOpts) {
         var settings = {
-                element: null,
-                dragger: null,
-                disable: 'none',
-                addBodyClasses: true,
-                hyperextensible: true,
-                resistance: 0.5,
-                flickThreshold: 50,
-                transitionSpeed: 0.3,
-                easing: 'ease',
-                maxPosition: 266,
-                minPosition: -266,
-                tapToClose: true,
-                touchToDrag: true,
-                slideIntent: 40, // degrees
-                minDragDistance: 5
-            },
+            element: null,
+            dragger: null,
+            disable: 'none',
+            addBodyClasses: true,
+            hyperextensible: true,
+            resistance: 0.5,
+            flickThreshold: 50,
+            transitionSpeed: 0.3,
+            easing: 'ease',
+            maxPosition: 266,
+            minPosition: -266,
+            tapToClose: true,
+            touchToDrag: true,
+            slideIntent: 40, // degrees
+            minDragDistance: 5,
+            effect: 'push'
+        },
             cache = {
                 simpleStates: {
                     opening: null,
@@ -165,7 +154,7 @@
 
                             if (!utils.canTransform()) {
                                 return parseInt(settings.element.style.left, 10);
-                            } else {
+                            } else if (settings.effect === 'push') {
                                 var matrix = win.getComputedStyle(settings.element)[cache.vendor + 'Transform'].match(/\((.*)\)/),
                                     ieOffset = 8;
                                 if (matrix) {
@@ -176,6 +165,9 @@
                                     return parseInt(matrix[index], 10);
                                 }
                                 return 0;
+                            } else if (settings.effect === 'shrink') {
+                                var val = parseInt(settings.element.style.marginLeft);
+                                return (isNaN(val)) ? 0 : val;
                             }
                         }
                     },
@@ -213,14 +205,13 @@
                         }
                         if (n === 0) {
                             settings.element.style[cache.vendor + 'Transform'] = '';
+                            settings.element.style.marginLeft = '';
                         }
                     },
                     x: function (n) {
                         if ((settings.disable === 'left' && n > 0) ||
                             (settings.disable === 'right' && n < 0)
-                        ) {
-                            return;
-                        }
+                        ) { return; }
 
                         if (!settings.hyperextensible) {
                             if (n === settings.maxPosition || n > settings.maxPosition) {
@@ -236,8 +227,14 @@
                         }
 
                         if (utils.canTransform()) {
-                            var theTranslate = 'translate3d(' + n + 'px, 0,0)';
-                            settings.element.style[cache.vendor + 'Transform'] = theTranslate;
+                            if (settings.effect === 'push') {
+                                var theTranslate = 'translate3d(' + n + 'px, 0,0)';
+                                if (n == 238) $("body").addClass("sidenav-open")
+                                else $("body").removeClass("sidenav-open")
+                                settings.element.style[cache.vendor + 'Transform'] = theTranslate;
+                            } else {
+                                settings.element.style.marginLeft = + n + 'px';
+                            }
                         } else {
                             settings.element.style.width = (win.innerWidth || doc.documentElement.clientWidth) + 'px';
 
@@ -485,20 +482,19 @@
             if (side === 'left') {
                 cache.simpleStates.opening = 'left';
                 cache.simpleStates.towards = 'right';
-                utils.klass.add(doc.body, 'sidenav-open');
+                utils.klass.add(doc.body, 'snapjs-left');
                 utils.klass.remove(doc.body, 'snapjs-right');
                 action.translate.easeTo(settings.maxPosition);
             } else if (side === 'right') {
                 cache.simpleStates.opening = 'right';
                 cache.simpleStates.towards = 'left';
-                utils.klass.remove(doc.body, 'sidenav-open');
+                utils.klass.remove(doc.body, 'snapjs-left');
                 utils.klass.add(doc.body, 'snapjs-right');
                 action.translate.easeTo(settings.minPosition);
             }
         };
         this.close = function () {
             utils.dispatchEvent('close');
-            utils.klass.remove(doc.body, 'sidenav-open');
             action.translate.easeTo(0);
         };
         this.expand = function (side) {

@@ -480,20 +480,20 @@ a.magister-login:before {
 }
 
 .sidenav-open .sidebar {
-  z-index: 99999 !important;
+  z-index: 9999 !important;
   overflow-y: scroll !important;
 }
 
 
 .sidenav-open #content-wrapper {
-  z-index: -20 !important;
+  /* z-index: -20 !important; */
   overflow-y: hidden !important;
   height: 100% !important;
 }
 
-.sidenav-open #settings-overlay {
+/* .sidenav-open #settings-overlay {
   display: block;
-}
+} */
 
 @media (max-width: 767px) {
 

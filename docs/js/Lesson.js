@@ -60,7 +60,7 @@ class Lesson {
       var res = round(this.data['Completed'][this.data['Completed'].length - 1]['grade'])
       return res
     } else {
-      return "Niet beschikbaar"
+      return "-"
     }
   }
 
@@ -76,7 +76,7 @@ class Lesson {
   //   if (this.data['Inzet']) {
   //     return this.data['Inzet'][0]['grade']
   //   } else {
-  //     return "Niet beschikbaar"
+  //     return "-"
   //   }
   // }
 
@@ -114,7 +114,7 @@ class Lesson {
           return average
         }
       } else {
-        return "Niet beschikbaar"
+        return "-"
       }
     }
   }
@@ -157,7 +157,7 @@ class Lesson {
     grade = parseFloat(grade.replace(',', '.'))
     weight = parseFloat(weight.replace(',', '.'))
 
-    if (this.getAverage() == 'Niet beschikbaar') {
+    if (this.getAverage() == '-') {
       return 'Niet mogelijk voor dit vak';
     }
     var newGrade;
