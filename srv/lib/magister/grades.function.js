@@ -19,9 +19,11 @@ module.exports = async function (params, res) {
 
         m.courses()
             .then(courses => {
+                var current = courses.find(c => c.current).grades()
                 response["courses"] = courses;
-                response["courses"]["current"] = courses.find(c => c.current);
-                Promise.all(courses.find(c => c.current).grades(), courses.find(c => c.current).grades())
+                response["courses"]["current"] = current;
+                // courses.find(c => c.current).grades()
+                Promise.all(current.grades(), current.classes())
                     .then(values => {
                         response["classes"] = values[1]
                         response["grades"] = values[0]
