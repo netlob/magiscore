@@ -19,7 +19,7 @@ module.exports = async function (params, res) {
 
         m.courses()
             .then(courses => {
-                var current = courses.find(c => c.current).grades()
+                var current = courses.find(c => c.current)
                 response["courses"] = courses;
                 response["courses"]["current"] = current;
                 // courses.find(c => c.current).grades()
