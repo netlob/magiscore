@@ -186,13 +186,13 @@ $("body").keypress(function (e) {
     }).animate({
       deg: 360
     }, {
-        duration: 4000,
-        step: function (now) {
-          elem.css({
-            transform: `rotate(${now}deg)`
-          });
-        }
-      });
+      duration: 4000,
+      step: function (now) {
+        elem.css({
+          transform: `rotate(${now}deg)`
+        });
+      }
+    });
   }
 });
 

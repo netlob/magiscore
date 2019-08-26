@@ -20,6 +20,7 @@ module.exports = async function (params, res) {
         m.courses()
             .then(courses => {
                 var current = courses.find(c => c.current)
+                if (current == undefined) current = courses[courses.length - 1]
                 response["courses"] = courses;
                 response["courses"]["current"] = current;
                 // courses.find(c => c.current).grades()
