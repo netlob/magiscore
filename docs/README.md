@@ -6,3 +6,6 @@
 
 ## Dark mode
 ![Dark theme Magiscore](https://media.discordapp.net/attachments/588451250123833382/611648997203116071/magiscore.PNG)
+
+### Credits
+- https://github.com/idiidk
