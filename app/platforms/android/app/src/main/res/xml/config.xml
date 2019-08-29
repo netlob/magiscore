@@ -18,10 +18,7 @@
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <icon density="mdpi" src="platforms/android/app/src/main/res/icon-mdpi.png" />
     <icon density="hdpi" src="platforms/android/app/src/main/res/icon-hdpi.png" />

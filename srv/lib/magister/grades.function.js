@@ -12,29 +12,29 @@ const login = require('./login.function')
 module.exports = async function (params, res) {
     login(params, res)
         .then(token => {
-            var response = {}
-            response["tokens"] = token
-            fetch(`https://${params.school}.magister.net/api/personen/14935/aanmeldingen?geenToekomstige=false`, {
-                    "credentials": "include",
-                    "headers": {
-                        "accept": "application/json, text/plain, */*",
-                        "authorization": "Bearer " + token.access_token,
-                        "sec-fetch-mode": "cors"
-                    },
-                    "referrer": "https://kajmunk.magister.net/magister/",
-                    "referrerPolicy": "no-referrer-when-downgrade",
-                    "body": null,
-                    "method": "GET",
-                    "mode": "cors"
-                })
-                .then(res => res.json())
-                .then(json => {
-                    response["courses"] = json
-                    res.writeHead(200, {
-                        'Content-Type': 'application/json'
-                    })
-                    res.end(JSON.stringify(response))
-                })
+            // var response = {}
+            // response["tokens"] = token
+            // fetch(`https://${params.school}.magister.net/api/personen/14935/aanmeldingen?geenToekomstige=false`, {
+            //         "credentials": "include",
+            //         "headers": {
+            //             "accept": "application/json, text/plain, */*",
+            //             "authorization": "Bearer " + token.access_token,
+            //             "sec-fetch-mode": "cors"
+            //         },
+            //         "referrer": "https://kajmunk.magister.net/magister/",
+            //         "referrerPolicy": "no-referrer-when-downgrade",
+            //         "body": null,
+            //         "method": "GET",
+            //         "mode": "cors"
+            //     })
+            //     .then(res => res.json())
+            //     .then(json => {
+            // response["courses"] = json
+            res.writeHead(200, {
+                'Content-Type': 'application/json'
+            })
+            res.end(JSON.stringify(token))
+            //     })
         }).catch(err => {
             console.error(err)
         })
