@@ -935,7 +935,7 @@ function login(creds, demo) {
                 var person = data["person"]
                 var token = data["token"]
                 var school = data["school"]
-                var course = data["course"]
+                var course = data["courses"]
                 var config = {
                     "isDesktop": $(window).width() > 600 ? true : false,
                     "tention": 0.3,
@@ -948,7 +948,7 @@ function login(creds, demo) {
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("school", JSON.stringify(school));
                 localStorage.setItem("creds", demo ? '{"demo": true}' : JSON.stringify(creds));
-                localStorage.setItem("course", JSON.stringify(course));
+                localStorage.setItem("courses", JSON.stringify(course));
                 localStorage.setItem("config", JSON.stringify(config));
                 toast(window.location,15000);
                 window.location = '../index.html';
@@ -1029,7 +1029,7 @@ var person = localStorage.getItem("person");
 var token = localStorage.getItem("token");
 var school = localStorage.getItem("school");
 var creds = localStorage.getItem("creds");
-var course = localStorage.getItem("course");
+var course = localStorage.getItem("courses");
 var course = localStorage.getItem("config");
 
 if (grades && person && school && creds && course && config) {

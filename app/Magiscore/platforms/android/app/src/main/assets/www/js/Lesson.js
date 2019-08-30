@@ -18,7 +18,10 @@ class Lesson {
     keys = keys.remove("Grades")
     if (keys.length > 0 && this.data[keys[0]]) {
       var res = this.data[keys[0]][this.data[keys[0]].length - 1]
-      if (res == undefined) return { "title": "nee.", "value": "nee." }
+      if (res == undefined) return {
+        "title": "nee.",
+        "value": "nee."
+      }
       this.extraFirst = keys[0]
       return {
         "title": res['type']['description'],
@@ -32,7 +35,10 @@ class Lesson {
     keys = keys.remove("Grades")
     if (keys.length > 0 && this.data[keys[1]]) {
       var res = this.data[keys[1]][this.data[keys[1]].length - 1]
-      if (res == undefined) return { "title": "nee.", "value": "nee." }
+      if (res == undefined) return {
+        "title": "nee.",
+        "value": "nee."
+      }
       this.extraSecond = keys[1]
       return {
         "title": res['type']['description'],
@@ -46,7 +52,10 @@ class Lesson {
     keys = keys.remove("Grades")
     if (keys.length > 1 && this.data[keys[2]]) {
       var res = this.data[keys[2]][this.data[keys[2]].length - 1]
-      if (res == undefined) return { "title": "nee.", "value": "nee." }
+      if (res == undefined) return {
+        "title": "nee.",
+        "value": "nee."
+      }
       this.extraSecond = keys[2]
       return {
         "title": res['type']['description'],
@@ -191,7 +200,9 @@ class Lesson {
     var currentExclude = this.controller.controller.config["exclude"]
     if (currentExclude.find(x => x === id) && !input.checked) currentExclude.remove(id)
     input.checked ? currentExclude.remove(id) : currentExclude.push(id)
-    this.controller.controller.updateConfig({ "exclude": currentExclude })
+    this.controller.controller.updateConfig({
+      "exclude": currentExclude
+    })
     this.controller.controller.render(currentLesson)
   }
 }

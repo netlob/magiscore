@@ -105,15 +105,15 @@ class ViewController {
     $("body").append(`<div id="snackbar" class="snackbar">${msg}</div>`);
     $("#snackbar").css("display", "block");
     $("#snackbar").animate({
-      bottom: "30px"
-    },
+        bottom: "30px"
+      },
       "slow"
     );
     if (duration) {
       setTimeout(function () {
         $("#snackbar").animate({
-          bottom: "-200px"
-        },
+            bottom: "-200px"
+          },
           "slow",
           function () {
             $("#snackbar").remove();
@@ -256,13 +256,13 @@ function updateSidebar() {
   // xhr.send();
   // }
   $("#userDropdown > span").text(
-    `${person.firstName} ${person.lastName} ${
-    course.group.description ? "(" + course.group.description + ")" : ""
+    `${person.Voornaam} ${person.Achternaam} ${""
+    //course.group.description ? "(" + course.group.description + ")" : ""
     }`
   );
   $("#mobilePersonInfo").text(
-    `${person.firstName} ${person.lastName} ${
-    course.group.description ? "(" + course.group.description + ")" : ""
+    `${person.Voornaam} ${person.Achternaam} ${""
+    //course.group.description ? "(" + course.group.description + ")" : ""
     }`
   );
   var header = document.getElementById("accordionSidebar");
