@@ -14,75 +14,63 @@ class Lesson {
   }
 
   getFirst() {
-    // var keys = Object.keys(this.data)
-    // keys = keys.remove("Grades")
-    // if (keys.length > 0 && this.data[keys[0]]) {
-    //   var res = this.data[keys[0]][this.data[keys[0]].length - 1]
-    //   if (res == undefined) return {
-    //     "title": "nee.",
-    //     "value": "nee."
-    //   }
-    //   this.extraFirst = keys[0]
-    //   return {
-    //     "title": res['type']['description'],
-    //     "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
-    //   }
-    // }
-    return {
-      "title": "nee.",
-      "value": "nee."
+    var keys = Object.keys(this.data)
+    keys = keys.remove("Grades")
+    if (keys.length > 0 && this.data[keys[0]]) {
+      var res = this.data[keys[0]][this.data[keys[0]].length - 1]
+      if (res == undefined) return {
+        "title": "nee.",
+        "value": "nee."
+      }
+      this.extraFirst = keys[0]
+      return {
+        "title": res['type']['description'],
+        "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
+      }
     }
   }
 
   getSecond() {
-    // var keys = Object.keys(this.data)
-    // keys = keys.remove("Grades")
-    // if (keys.length > 0 && this.data[keys[1]]) {
-    //   var res = this.data[keys[1]][this.data[keys[1]].length - 1]
-    //   if (res == undefined) return {
-    //     "title": "nee.",
-    //     "value": "nee."
-    //   }
-    //   this.extraSecond = keys[1]
-    //   return {
-    //     "title": res['type']['description'],
-    //     "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
-    //   }
-    // }
-    return {
-      "title": "nee.",
-      "value": "nee."
+    var keys = Object.keys(this.data)
+    keys = keys.remove("Grades")
+    if (keys.length > 0 && this.data[keys[1]]) {
+      var res = this.data[keys[1]][this.data[keys[1]].length - 1]
+      if (res == undefined) return {
+        "title": "nee.",
+        "value": "nee."
+      }
+      this.extraSecond = keys[1]
+      return {
+        "title": res['type']['description'],
+        "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
+      }
     }
   }
 
   getThird() {
-    // var keys = Object.keys(this.data)
-    // keys = keys.remove("Grades")
-    // if (keys.length > 1 && this.data[keys[2]]) {
-    //   var res = this.data[keys[2]][this.data[keys[2]].length - 1]
-    //   if (res == undefined) return {
-    //     "title": "nee.",
-    //     "value": "nee."
-    //   }
-    //   this.extraSecond = keys[2]
-    //   return {
-    //     "title": res['type']['description'],
-    //     "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
-    //   }
-    // }
-    return {
-      "title": "nee.",
-      "value": "nee."
+    var keys = Object.keys(this.data)
+    keys = keys.remove("Grades")
+    if (keys.length > 1 && this.data[keys[2]]) {
+      var res = this.data[keys[2]][this.data[keys[2]].length - 1]
+      if (res == undefined) return {
+        "title": "nee.",
+        "value": "nee."
+      }
+      this.extraSecond = keys[2]
+      return {
+        "title": res['type']['description'],
+        "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
+      }
     }
   }
 
   getCompleted() {
-    // if (this.data['Completed'] && this.data['Completed'][0]) {
-    //   var res = round(this.data['Completed'][this.data['Completed'].length - 1]['grade'])
-    //   return res
-    // } else {
-    return "-"
-    // }
+    if (this.data['Completed'] && this.data['Completed'][0]) {
+      var res = round(this.data['Completed'][this.data['Completed'].length - 1]['grade'])
+      return res
+    } else {
+      return "-"
+    }
   }
 
   // getProgress() {
@@ -109,15 +97,15 @@ class Lesson {
         var processed = 0;
         this.data['Grades'].forEach(_grade => {
           // console.log(_grade.type.isPTA)
-          if (Number(round(_grade.CijferStr)) > 0 && Number(round(_grade.CijferStr)) < 10.1) {
+          if (Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1) {
             // console.dir(_grade)
             processed++
             if (!_grade.exclude) {
               if (ignore > 0) {
                 grades.slice(0, ignore)
               }
-              for (let i = 0; i < _grade.Weging; i++) {
-                grades.push(Number(round(_grade.CijferStr)))
+              for (let i = 0; i < _grade.weight; i++) {
+                grades.push(Number(round(_grade.grade)))
               }
               if (processed == this.data['Grades'].length) {
                 var averageTotal = 0;
@@ -154,13 +142,13 @@ class Lesson {
     var grades = this.data["Grades"]
     var alles = 0;
     for (var i = 0; i < grades.length; i++) {
-      var cijfer = grades[i].CijferStr.replace(',', '.')
+      var cijfer = grades[i].grade.replace(',', '.')
       cijfer = Number(cijfer)
-      alles += (cijfer * grades[i].Weging);
+      alles += (cijfer * grades[i].weight);
     }
     var totaalweging = 0;
     for (var i = 0; i < grades.length; i++) {
-      totaalweging += grades[i].Weging;
+      totaalweging += grades[i].weight;
     }
     var res = (((totaalweging + weight) * grade) - alles) / weight;
     res = `<span ${(round(res) > 10) ? 'style="color: #e86458;"' : ''}>${round(res)}</span>`
@@ -191,7 +179,7 @@ class Lesson {
       processed++
       if (!_grade.exclude) {
         for (let i = 0; i < _grade.weight; i++) {
-          grades.push(parseFloat(_grade.CijferStr.replace(',', '.')))
+          grades.push(parseFloat(_grade.grade.replace(',', '.')))
         }
         if (processed == this.grades.length) {
           var average = 0;

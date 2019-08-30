@@ -172,14 +172,14 @@ class ViewController {
           <a class="dropdown-item d-flex align-items-center" onclick="viewController.render('${grade.class.description.capitalize()}')">
             <div class="dropdown-list-image mr-3">
               <div class="rounded-circle">
-                <h3 class="text-center mt-1">${grade.CijferStr == "10,0" ? '<span class="text-success">10!</span>' : (round(grade.CijferStr) < this.config.passed) ? '<span class="text-danger">' + grade.CijferStr + '</span>' : grade.CijferStr}</h3>
+                <h3 class="text-center mt-1">${grade.grade == "10,0" ? '<span class="text-success">10!</span>' : (round(grade.grade) < this.config.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}</h3>
               </div>
               <!-- <div class="status-indicator bg-success"></div> -->
             </div>
             <div>
-              <span class="text-truncate font-weight-bold text-capitalize">${grade.Vak.Omschrijving}</span><span
+              <span class="text-truncate font-weight-bold text-capitalize">${grade.class.description}</span><span
                 class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</span>
-              <div class="small text-gray-600">${grade.Omschrijving}</div>
+              <div class="small text-gray-600">${grade.description}</div>
             </div>
           </a>
         `)
