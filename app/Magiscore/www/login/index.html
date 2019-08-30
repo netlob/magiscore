@@ -28,6 +28,8 @@
 </head>
 
 <body class="bg-gradient-primary">
+  <pre id="kehba"></pre>
+  <pre id="kehba2"></pre>
   <div class="container-login">
 
     <!-- Outer Row -->
@@ -55,7 +57,8 @@
                   <input type="password" class="form-control form-control-user" id="login-password"
                     aria-describedby="password" placeholder="Wachtwoord">
                 </div>
-                <a onclick="openLoginWindow();//var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes,hideurlbar=yes');" class="btn btn-primary btn-user bg-gradiant-primary"
+                <a onclick="openLoginWindow();//var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes,hideurlbar=yes');"
+                  class="btn btn-primary btn-user bg-gradiant-primary"
                   style="margin: 0px 1rem 0px 1rem; display: block;">Login</a>
                 <br>
                 <hr>
@@ -90,14 +93,14 @@
 
   <!-- Custom scripts for all pages-->
   <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
-  
+
   <script src="../js/deps/sb-admin-2.min.js"></script>
   <script src="../js/deps/cookies.js"></script>
   <script src="../js/login.js"></script>
 
-  
+
 
   <script>
     $(document).ready(function () {

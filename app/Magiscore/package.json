@@ -14,6 +14,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-android": "^8.0.0",
+    "cordova-plugin-customurlscheme": "^4.4.0",
     "cordova-plugin-inappbrowser": "^3.1.0",
     "openid-client": "^3.6.1",
     "phin": "^3.4.0",
@@ -25,7 +26,13 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-customurlscheme": {
+        "URL_SCHEME": "m6loapp",
+        "ANDROID_SCHEME": " ",
+        "ANDROID_HOST": " ",
+        "ANDROID_PATHPREFIX": "/"
+      }
     },
     "platforms": [
       "android"

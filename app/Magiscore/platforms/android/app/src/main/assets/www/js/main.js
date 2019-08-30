@@ -296,10 +296,11 @@ $('.container-fluid').click(function () {
 // }, true);
 
 main()
-function onDeviceReady(){
-  alert("poep");
+
+function onDeviceReady() {
   //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
 }
+
 function login(creds, demo) {
   //file:///android_asset/www/
   //alert("je moeder is een kehba");
