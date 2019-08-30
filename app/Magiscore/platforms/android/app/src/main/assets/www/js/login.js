@@ -14,6 +14,7 @@ function getLoginInfo() {
 
 function onDeviceReady() {
     //alert("poep");
+
 }
 
 function generateRandomString(length) {
