@@ -23,12 +23,12 @@ function main(l) {
     grades = JSON.parse(grades)
 
     grades.forEach(grade => {
-      var vak = grade.Vak.Omschrijving.capitalize()
+      var vak = grade.class.description.capitalize()
       if (sorted[vak] == null) {
         sorted[vak] = []
       }
-      if (sorted[vak][grade.KolomKop] == null) {
-        sorted[vak][grade.KolomKop] = []
+      if (sorted[vak][grade.type.header] == null) {
+        sorted[vak][grade.type.header] = []
       }
       if (sorted[vak]['Grades'] == null) {
         sorted[vak]['Grades'] = []
@@ -36,13 +36,13 @@ function main(l) {
       if (sorted[vak]['Completed'] == null) {
         sorted[vak]['Completed'] = []
       }
-      sorted[vak][grade.KolomKop].push(grade)
-      if (grade.KolomSoort == 1 && round(grade.CijferStr) > 0 && round(grade.CijferStr) < 11) {
+      sorted[vak][grade.type.header].push(grade)
+      if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
         grade.exclude = viewController.config.exclude.includes(grade.id);
         lessonController.allGrades.push(grade)
         sorted[vak]['Grades'].push(grade)
       }
-      if (grade.KolomSoort == 12 || grade.KolomSoort == 4 && round(grade.CijferStr) > -1 && round(grade.CijferStr) < 101) {
+      if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
         sorted[vak]['Completed'].push(grade)
       }
     })
@@ -128,12 +128,12 @@ function syncGrades() {
         localStorage.setItem("school", JSON.stringify(school));
         localStorage.setItem("course", JSON.stringify(course));
         grades.forEach(grade => {
-          var vak = grade.Vak.Omschrijving.capitalize()
+          var vak = grade.class.description.capitalize()
           if (sorted[vak] == null) {
             sorted[vak] = []
           }
-          if (sorted[vak][grade.KolomKop] == null) {
-            sorted[vak][grade.KolomKop] = []
+          if (sorted[vak][grade.type.header] == null) {
+            sorted[vak][grade.type.header] = []
           }
           if (sorted[vak]['Grades'] == null) {
             sorted[vak]['Grades'] = []
@@ -141,11 +141,11 @@ function syncGrades() {
           if (sorted[vak]['Completed'] == null) {
             sorted[vak]['Completed'] = []
           }
-          sorted[vak][grade.KolomKop].push(grade)
-          if (grade.KolomSoort == 1 && round(grade.CijferStr) > 0 && round(grade.CijferStr) < 11) {
+          sorted[vak][grade.type.header].push(grade)
+          if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
             sorted[vak]['Grades'].push(grade)
           }
-          if (grade.KolomSoort == 12 || grade.KolomSoort == 4 && round(grade.CijferStr) > -1 && round(grade.CijferStr) < 101) {
+          if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
             sorted[vak]['Completed'].push(grade)
           }
         })
