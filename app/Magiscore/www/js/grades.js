@@ -93,6 +93,12 @@ function getGrades() {
                         gradeRequest(access_token, school, leerling_id, course)
                             .then(response => {
                                 var grades = response.Items;
+                                grades.forEach(_grade => {
+                                    grade_id =
+                                        new_grade = {
+                                            "id":
+                                        }
+                                });
                                 localStorage.setItem("grades", JSON.stringify(grades));
                                 alert(JSON.stringify(grades))
                             })
