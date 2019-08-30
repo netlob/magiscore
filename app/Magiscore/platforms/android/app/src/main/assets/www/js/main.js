@@ -90,6 +90,8 @@ function round(num) {
 }
 
 function syncGrades() {
+  syncGradesT();
+
   return new Promise(function (resolve, reject) {
     $("#overlay").show();
     var settings = {
@@ -295,18 +297,24 @@ $('.container-fluid').click(function () {
 //   });
 // }, true);
 
-main()
+//main()
 
 function onDeviceReady() {
   //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
+  if (localStorage.getItem("tokens") === null) {
+    window.location = './login/index.html'
+  } else {
+    refreshToken();
+    main();
+  }
 }
 
-function login(creds, demo) {
-  //file:///android_asset/www/
-  //alert("je moeder is een kehba");
-  var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-  alert("je moeder is een kehba2");
-  ref.show();
-  alert("je moeder is een kehba3");
-}
+// function login(creds, demo) {
+//   //file:///android_asset/www/
+//   //alert("je moeder is een kehba");
+//   var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
+//   alert("je moeder is een kehba2");
+//   ref.show();
+//   alert("je moeder is een kehba3");
+// }
 document.addEventListener("deviceready", onDeviceReady, false);
