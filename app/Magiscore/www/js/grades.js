@@ -50,6 +50,7 @@ function leerlingIdRequest(bearerToken, school, callback) {
 
         $.ajax(settings)
             .done(function (response) {
+                localStorage.setItem("person", JSON.stringify(response.Persoon));
                 resolve(response.Persoon.Id)
             })
     })
@@ -78,7 +79,7 @@ function gradeRequest(bearerToken, school, leerling_id, course) {
     })
 }
 
-function syncGradesT() {
+function getGrades() {
     var tokens = JSON.parse(localStorage.getItem("tokens"))
     var access_token = tokens.access_token;
     var school = "kajmunk"
@@ -92,6 +93,7 @@ function syncGradesT() {
                         gradeRequest(access_token, school, leerling_id, course)
                             .then(response => {
                                 var grades = response.Items;
+                                localStorage.setItem("grades", JSON.stringify(grades));
                                 alert(JSON.stringify(grades))
                             })
                     });

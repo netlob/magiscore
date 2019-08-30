@@ -90,7 +90,7 @@ function round(num) {
 }
 
 function syncGrades() {
-  syncGradesT();
+  getGrades();
 
   return new Promise(function (resolve, reject) {
     $("#overlay").show();
