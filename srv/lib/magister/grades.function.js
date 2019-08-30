@@ -24,7 +24,11 @@ module.exports = async function (params, res) {
                                 course.Huidig = course.Start <= now && now <= course.Einde
                                 Promise.all(getGrades(course, params.person_id, params.school, tokens.access_token), getClasses(course, params.person_id, params.school, tokens.access_token))
                                     .then(values => {
-                                        course.Cijfers = values[0]
+                                        // course.Cijfers = values[0]
+                                        const grades = values[0].map(grade => {
+                                            return Promise.resolve(fillGrade(course, person_id, school, grade))
+                                        })
+                                        course.Cijfers = Promise.all(grades)
                                         course.Vakken = values[1]
                                         resolve()
                                     }).catch(err => {
@@ -183,6 +187,34 @@ function getClasses(course, person_id, school, access_token) {
                 resolve(json)
             })
     })
+}
+
+function fillGrade(course, person_id, school, grade, access_token) {
+    fetch(`https://${school}.magister.net/api/personen/${person_id}/aanmeldingen/${course.Id}/cijfers/extracijferkolominfo/${grade.CijferKolom.Id}`, {
+            "credentials": "include",
+            "headers": {
+                "accept": "application/json, text/plain, */*",
+                "accept-language": "en-US,en;q=0.9,nl-NL;q=0.8,nl;q=0.7",
+                "authorization": "Bearer " + access_token,
+                "cache-control": "no-cache",
+                "pragma": "no-cache",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-origin"
+            },
+            "referrerPolicy": "no-referrer-when-downgrade",
+            "body": null,
+            "method": "GET",
+            "mode": "cors"
+        })
+        .then(res => res.json())
+        .then(json => {
+            grade.testDate = new Date(json.WerkinformatieDatumIngevoerd).toISOString()
+            grade.description = json.WerkInformatieOmschrijving.trim()
+            grade.weight = Number.parseInt(json.Weging, 10) || 0
+            grade.type.level = json.KolomNiveau
+            grade.type.description = json.KolomOmschrijving.trim()
+            resolve(grade)
+        })
 }
 
 function formatDate(date) {
