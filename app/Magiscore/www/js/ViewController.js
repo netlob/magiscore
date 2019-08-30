@@ -256,13 +256,13 @@ function updateSidebar() {
   // xhr.send();
   // }
   $("#userDropdown > span").text(
-    `${person.firstName} ${person.lastName} ${
-    course.group.description ? "(" + course.group.description + ")" : ""
+    `${person.Voornaam} ${person.Achternaam} ${""
+    //course.group.description ? "(" + course.group.description + ")" : ""
     }`
   );
   $("#mobilePersonInfo").text(
-    `${person.firstName} ${person.lastName} ${
-    course.group.description ? "(" + course.group.description + ")" : ""
+    `${person.Voornaam} ${person.Achternaam} ${""
+    //course.group.description ? "(" + course.group.description + ")" : ""
     }`
   );
   var header = document.getElementById("accordionSidebar");

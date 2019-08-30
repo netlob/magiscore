@@ -1,8 +1,8 @@
-setTimeout(function () {
-  if ($("#userDropdown > span").text() == "Voornaam Achternaam") {
-    location.reload()
-  }
-}, 1000)
+// setTimeout(function () {
+//   if ($("#userDropdown > span").text() == "Voornaam Achternaam") {
+//     location.reload()
+//   }
+// }, 1000)
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController(viewController)
 
@@ -15,11 +15,11 @@ var currentLesson,
   token = JSON.parse(localStorage.getItem("token")),
   school = JSON.parse(localStorage.getItem("school")),
   creds = JSON.parse(localStorage.getItem("creds")),
-  course = JSON.parse(localStorage.getItem("course"))
+  course = JSON.parse(localStorage.getItem("courses"))
 
 function main(l) {
   var grades = localStorage.getItem("grades");
-  if (grades && person && course && creds && school && viewController.config) {
+  if (grades && person && course && school && viewController.config) {
     grades = JSON.parse(grades)
 
     grades.forEach(grade => {
@@ -59,7 +59,7 @@ function main(l) {
     // }
     // $('#betaModal').modal({show:true})
   } else {
-    window.location = './login/index.html'
+    //window.location = './login/index.html'
     // alert(window.location)
   }
 }
@@ -114,19 +114,19 @@ function syncGrades() {
         localStorage.removeItem("person");
         localStorage.removeItem("token");
         localStorage.removeItem("school");
-        localStorage.removeItem("course");
+        localStorage.removeItem("courses");
         sorted = {}
         var data = JSON.parse(response)
         var grades = data["grades"]
         var person = data["person"]
         var token = data["token"]
         var school = data["school"]
-        var course = data["course"]
+        var course = data["courses"]
         localStorage.setItem("grades", JSON.stringify(grades));
         localStorage.setItem("person", JSON.stringify(person));
         localStorage.setItem("token", JSON.stringify(token));
         localStorage.setItem("school", JSON.stringify(school));
-        localStorage.setItem("course", JSON.stringify(course));
+        localStorage.setItem("courses", JSON.stringify(course));
         grades.forEach(grade => {
           var vak = grade.class.description.capitalize()
           if (sorted[vak] == null) {
@@ -301,8 +301,9 @@ $('.container-fluid').click(function () {
 
 function onDeviceReady() {
   //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-  if (localStorage.getItem("tokens") === null) {
+  if (JSON.parse(localStorage.getItem("tokens")).refresh_token === null) {
     window.location = './login/index.html'
+    alert(JSON.parse(localStorage.getItem("tokens")))
   } else {
     refreshToken();
     main();

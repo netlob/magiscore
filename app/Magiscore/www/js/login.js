@@ -117,26 +117,22 @@ function validateLogin(code, codeVerifier) {
             refresh_token: response.refresh_token,
             id_token: response.id_token
         }
-        alert(JSON.stringify(tokens));
+
+        localStorage.setItem("tokens", JSON.stringify(tokens));
         var data = JSON.parse(response)
         var grades = data["grades"]
         var person = data["person"]
         var school = data["school"]
-        var course = data["course"]
+        var course = data["courses"]
         var config = {
-            "isDesktop": $(window).width() > 600 ? true : false,
+            "isDesktop": false,
             "tention": 0.3,
             "passed": 5.5,
             "darkTheme": false,
             "exclude": []
         }
-        localStorage.setItem("tokens", JSON.stringify(tokens))
-        localStorage.setItem("grades", JSON.stringify(grades));
-        localStorage.setItem("person", JSON.stringify(person));
-        localStorage.setItem("school", JSON.stringify(school));
-        localStorage.setItem("course", JSON.stringify(course));
+
         localStorage.setItem("config", JSON.stringify(config));
-        toast(window.location, 15000);
         window.location = '../index.html';
         //document.write(JSON.stringify(JSON.parse(response)))
 

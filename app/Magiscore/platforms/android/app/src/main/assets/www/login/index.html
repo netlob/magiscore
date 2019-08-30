@@ -49,25 +49,14 @@
                   <input type="text" class="form-control form-control-user" id="login-school" aria-describedby="school"
                     placeholder="School">
                 </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="login-username"
-                    aria-describedby="username" placeholder="Gebruikersnaam">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-user" id="login-password"
-                    aria-describedby="password" placeholder="Wachtwoord">
-                </div>
                 <a onclick="openLoginWindow();//var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes,hideurlbar=yes');"
                   class="btn btn-primary btn-user bg-gradiant-primary"
                   style="margin: 0px 1rem 0px 1rem; display: block;">Login</a>
                 <br>
                 <hr>
                 <br>
-                <a class="magister-login btn btn-primary btn-user bg-gradiant-primary" onclick="syncGradesT()">
+                <a class="magister-login btn btn-primary btn-user bg-gradiant-primary" onclick="getGrades()">
                   TestDieSync</a>
-                <a class="magister-login btn btn-primary btn-user bg-gradiant-primary"
-                  onclick="javascript:void window.open('https://accounts.magister.net','1565974004108','width=900,height=700,toolbar=0,menubar=0,location=1,status=1,scrollbars=0,resizable=1,left=0,top=0');return false;">
-                  Inloggen via Magister</a>
               </form>
             </div>
           </div>
@@ -114,46 +103,6 @@
         })
       });
     });
-
-    // window.isUpdateAvailable = new Promise(function(resolve, reject) {
-    //   // lazy way of disabling service workers while developing
-    //   if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
-    //     navigator.serviceWorker.register('../service-worker.js', { scope: "/" })
-    //     .then(reg => {
-    //       console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
-    //       reg.onupdatefound = () => {
-    //         const installingWorker = reg.installing;
-    //         installingWorker.onstatechange = () => {
-    //           switch (installingWorker.state) {
-    //             case 'installed':
-    //               if (navigator.serviceWorker.controller) {
-    //                 // new update available
-    //                 console.dir("==================================================================================")
-    //                 console.dir(true)
-    //                 console.dir("==================================================================================")
-    //                 resolve(true);
-    //               } else {
-    //                 // no update available
-    //                 console.dir("==================================================================================")
-    //                 console.dir(false)
-    //                 console.dir("==================================================================================")
-    //                 resolve(false);
-    //               }
-    //               break;
-    //           }
-    //         };
-    //       };
-    //     })
-    //     .catch(err => console.error('[ServiceWorker] registration failed: ', err));
-    //   }
-    // });
-
-    // window['isUpdateAvailable']
-    // .then(isAvailable => {
-    //   if (isAvailable) {
-    //     viewController.toast("Update beschikbaar!")
-    //   }
-    // });
   </script>
 </body>
 
