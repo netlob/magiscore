@@ -11,7 +11,6 @@
 const http = require('http');
 
 const fs = require('fs')
-const getAuthCode = require('@magisterjs/dynamic-authcode');
 const login = require('./lib/magister/login.function');
 const grades = require('./lib/magister/grades.function');
 var demo = fs.readFileSync("./grades.json")
@@ -23,42 +22,27 @@ http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', "*");
     res.setHeader('Access-Control-Request-Method', 'OPTIONS, GET');
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-    res.setHeader('Access-Control-Allow-Headers', 'school, username, password, token, subscription');
+    res.setHeader('Access-Control-Allow-Headers', 'school, username, password, token, person_id');
     // Handle normal request
-    if ('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url.substring(0, 7) == '/grades') {
-        console.log('Request')
-        getAuthCode()
-            .then(mAuth => {
-                req.headers.code = mAuth
-                grades(req.headers, res)
-                    .catch(err => {
-                        res.writeHead(200);
-                        res.end('error: ' + err.toString());
-                    });
-            }).catch(err => {
+    if ((('username' in req.headers && 'password' in req.headers) || ('refresh' in req.headers && 'person_id' in req.headers)) && 'school' in req.headers && req.url.substring(0, 7) == '/grades') {
+        grades(req.headers, res)
+            .catch(err => {
                 res.writeHead(200);
                 res.end('error: ' + err.toString());
             });
-    } else if ('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url == '/login') {
-        console.log('Request')
-        getAuthCode()
-            .then(mAuth => {
-                req.headers.code = mAuth
-                login(req.headers, res)
-                    .then(tokens => {
-                        res.writeHead(200, {
-                            'Content-Type': 'application/json'
-                        })
-                        res.end(JSON.stringify(tokens))
-                    })
-                    .catch(err => {
-                        res.writeHead(200);
-                        res.end('error: ' + err.toString());
-                    });
-            }).catch(err => {
-                res.writeHead(200);
-                res.end('error: ' + err.toString());
-            });
+        // } else if ('username' in req.headers && 'password' in req.headers && 'school' in req.headers && req.url.substring(0, 6) == '/login') {
+        //     console.log('Request')
+        //     login(req.headers, res)
+        //         .then(tokens => {
+        //             res.writeHead(200, {
+        //                 'Content-Type': 'application/json'
+        //             })
+        //             res.end(JSON.stringify(tokens))
+        //         })
+        //         .catch(err => {
+        //             res.writeHead(200);
+        //             res.end('error: ' + err.toString());
+        //         });
     } else if (req.url == '/demo') {
         console.log('Demo request')
         res.writeHead(200)
