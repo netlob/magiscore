@@ -10,9 +10,9 @@ function coursesRequest(bearerToken, school, leerling) {
                 "Authorization": "Bearer " + bearerToken
             },
             "error": function (request, status, error) {
-                alert(request.status)
-                alert(error)
-                alert(status)
+                logConsole(request.status)
+                logConsole(error)
+                logConsole(status)
             }
         }
         $.ajax(settings)
@@ -23,7 +23,7 @@ function coursesRequest(bearerToken, school, leerling) {
 }
 
 function leerlingIdRequest(bearerToken, school, callback) {
-    alert("leerlingidreq")
+    logConsole("leerlingidreq")
     return new Promise(async function (resolve, reject) {
         var settings = {
             "dataType": "json",
@@ -35,9 +35,9 @@ function leerlingIdRequest(bearerToken, school, callback) {
                 "Authorization": "Bearer " + bearerToken
             },
             "error": function (request, status, error) {
-                alert(request.status)
-                alert(error)
-                alert(status)
+                logConsole(request.status)
+                logConsole(error)
+                logConsole(status)
             }
         }
 
@@ -54,7 +54,7 @@ function leerlingIdRequest(bearerToken, school, callback) {
 function gradeRequest(bearerToken, school, leerling, course) {
     return new Promise(async function (resolve, reject) {
 
-        alert(course.id)
+        logConsole(course.id)
         var settings = {
             "dataType": "json",
             "async": true,
@@ -65,9 +65,9 @@ function gradeRequest(bearerToken, school, leerling, course) {
                 "Authorization": "Bearer " + bearerToken
             },
             "error": function (request, status, error) {
-                alert(request.status)
-                alert(error)
-                alert(status)
+                logConsole(request.status)
+                logConsole(error)
+                logConsole(status)
             }
         }
         $.ajax(settings)
@@ -91,9 +91,9 @@ function singleGradeRequest(bearerToken, school, leerling, grade, course) {
                 "Authorization": "Bearer " + bearerToken
             },
             // "error": function (request, status, error) {
-            //     alert(request.status)
-            //     alert(error)
-            //     alert(status)
+            //     logConsole(request.status)
+            //     logConsole(error)
+            //     logConsole(status)
             // }
         }
         $.ajax(settings)
@@ -115,7 +115,7 @@ function singleGradeRequest(bearerToken, school, leerling, grade, course) {
                 grade.weight = json.Weging != null ? Number.parseInt(json.Weging, 10) || 0 : false
                 grade.type.level = json.KolomNiveau
                 grade.type.description = json.KolomOmschrijving != null ? json.KolomOmschrijving.trim() : false
-                //alert(JSON.stringify(grade))
+                //logConsole(JSON.stringify(grade))
                 resolve(grade)
             })
     })
@@ -123,26 +123,26 @@ function singleGradeRequest(bearerToken, school, leerling, grade, course) {
 
 function getGrades() {
     return new Promise(async function (resolve, reject) {
-        alert("getgrades")
+        logConsole("getgrades")
         var tokens = JSON.parse(localStorage.getItem("tokens"))
         var access_token = tokens.access_token;
         var school = "kajmunk"
-        alert(access_token)
+        logConsole(access_token)
         leerlingIdRequest(access_token, school)
             .then(leerling => {
                 coursesRequest(access_token, school, leerling)
                     .then(courses => {
-                        alert(courses)
+                        logConsole(courses)
                         var course_promises = courses.map(course => {
-                            alert(course)
+                            logConsole(course)
                             return Promise.resolve(
                                 gradeRequest(access_token, school, leerling, course)
                                 .then(response => {
                                     var grades = response.Items;
-                                    //alert("length: " + grades.length)
-                                    //alert("grades1" + JSON.stringify(grades))
+                                    //logConsole("length: " + grades.length)
+                                    //logConsole("grades1" + JSON.stringify(grades))
                                     var promises = grades.map(grade => {
-                                        return Promise.resolve(singleGradeRequest(access_token, school, leerling, grade, course))
+                                        return singleGradeRequest(access_token, school, leerling, grade, course)
                                     })
                                     Promise.all(promises)
                                         .then(grades => {
@@ -150,17 +150,17 @@ function getGrades() {
                                             // localStorage.setItem("school", JSON.stringify(school));
                                             // localStorage.setItem("courses", JSON.stringify(courses));
 
-                                            alert("grades2: " + JSON.stringify(grades))
+                                            logConsole("grades2: " + JSON.stringify(grades))
                                             //window.location = '../index.html'
                                             return grades
 
                                         })
                                         .catch(e => {
-                                            alert(e)
+                                            logConsole(e)
                                         })
 
                                 }).catch(e => {
-                                    alert(e)
+                                    logConsole(e)
                                 })
                             )
                         })
@@ -169,11 +169,15 @@ function getGrades() {
                             localStorage.setItem("grades", JSON.stringify(merged_all_grades));
                             resolve(merged_all_grades)
                         }).catch(e => {
-                            alert(e)
+                            logConsole(e)
                         })
                     });
 
             })
     })
 
+}
+
+function logConsole(err) {
+    $("#Terminal").append(err + "</br>")
 }
