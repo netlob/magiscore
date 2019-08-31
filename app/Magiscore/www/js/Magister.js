@@ -61,7 +61,7 @@ class Magister {
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}.magister.net/api/leerlingen/${this.person.id}/aanmeldingen`,
+                    "url": `https://${this.tenant}.magister.net/api/leerlingen/${this.person.id}/aanmeldingen?begin=2009-01-01&einde=2020-01-01`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
