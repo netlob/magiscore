@@ -63,6 +63,11 @@ function gradeRequest(bearerToken, school, leerling, course) {
             "method": "GET",
             "headers": {
                 "Authorization": "Bearer " + bearerToken
+            },
+            "error": function (request, status, error) {
+                alert(request.status)
+                alert(error)
+                alert(status)
             }
         }
         $.ajax(settings)
@@ -80,11 +85,16 @@ function singleGradeRequest(bearerToken, school, leerling, grade, course) {
             "dataType": "json",
             "async": true,
             "crossDomain": true,
-            "url": `https://kajmunk.magister.net/api/personen/${leerling.Id}/aanmeldingen/${course.id}/cijfers/extracijferkolominfo/${grade.CijferKolom.Id}`,
+            "url": `https://${school}.magister.net/api/personen/${leerling.Id}/aanmeldingen/${course.id}/cijfers/extracijferkolominfo/${grade.CijferKolom.Id}`,
             "method": "GET",
             "headers": {
                 "Authorization": "Bearer " + bearerToken
-            }
+            },
+            // "error": function (request, status, error) {
+            //     alert(request.status)
+            //     alert(error)
+            //     alert(status)
+            // }
         }
         $.ajax(settings)
             .done(function (json) {
@@ -100,51 +110,70 @@ function singleGradeRequest(bearerToken, school, leerling, grade, course) {
                     "counts": grade.TeltMee,
                     "type": grade.CijferKolom
                 }
-                grade.testDate = new Date(json.WerkinformatieDatumIngevoerd).toISOString()
-                grade.description = json.WerkInformatieOmschrijving.trim()
-                grade.weight = Number.parseInt(json.Weging, 10) || 0
+                grade.testDate = json.WerkinformatieDatumIngevoerd != null ? new Date(json.WerkinformatieDatumIngevoerd).toISOString() : false
+                grade.description = json.WerkInformatieOmschrijving != null ? json.WerkInformatieOmschrijving.trim() : false
+                grade.weight = json.Weging != null ? Number.parseInt(json.Weging, 10) || 0 : false
                 grade.type.level = json.KolomNiveau
-                grade.type.description = json.KolomOmschrijving.trim()
+                grade.type.description = json.KolomOmschrijving != null ? json.KolomOmschrijving.trim() : false
+                //alert(JSON.stringify(grade))
                 resolve(grade)
             })
     })
 }
 
 function getGrades() {
-    alert("getgrades")
-    var tokens = JSON.parse(localStorage.getItem("tokens"))
-    var access_token = tokens.access_token;
-    var school = "kajmunk"
-    alert(access_token)
-    leerlingIdRequest(access_token, school)
-        .then(leerling => {
-            alert(1);
-            coursesRequest(access_token, school, leerling)
-                .then(courses => {
-                    alert(2)
-                    courses.forEach(course => {
-                        gradeRequest(access_token, school, leerling, course)
-                            .then(response => {
-                                var grades = response.Items;
-
-                                var promises = grades.map(grade => {
-                                    return Promise.resolve(singleGradeRequest(access_token, school, leerling, grade, course))
-                                })
-                                grades = Promise.all(promises)
-                                    .then(() => {
-                                        localStorage.setItem("person", JSON.stringify(leerling));
-                                        localStorage.setItem("school", JSON.stringify(school));
-                                        localStorage.setItem("courses", JSON.stringify(courses));
-                                        localStorage.setItem("grades", JSON.stringify(grades));
-                                        alert(JSON.stringify(grades[0]))
-                                        window.location = '../index.html'
+    return new Promise(async function (resolve, reject) {
+        alert("getgrades")
+        var tokens = JSON.parse(localStorage.getItem("tokens"))
+        var access_token = tokens.access_token;
+        var school = "kajmunk"
+        alert(access_token)
+        leerlingIdRequest(access_token, school)
+            .then(leerling => {
+                coursesRequest(access_token, school, leerling)
+                    .then(courses => {
+                        alert(courses)
+                        var course_promises = courses.map(course => {
+                            alert(course)
+                            return Promise.resolve(
+                                gradeRequest(access_token, school, leerling, course)
+                                .then(response => {
+                                    var grades = response.Items;
+                                    //alert("length: " + grades.length)
+                                    //alert("grades1" + JSON.stringify(grades))
+                                    var promises = grades.map(grade => {
+                                        return Promise.resolve(singleGradeRequest(access_token, school, leerling, grade, course))
                                     })
+                                    Promise.all(promises)
+                                        .then(grades => {
+                                            // localStorage.setItem("person", JSON.stringify(leerling));
+                                            // localStorage.setItem("school", JSON.stringify(school));
+                                            // localStorage.setItem("courses", JSON.stringify(courses));
 
-                            })
+                                            alert("grades2: " + JSON.stringify(grades))
+                                            //window.location = '../index.html'
+                                            return grades
 
-                    })
-                });
+                                        })
+                                        .catch(e => {
+                                            alert(e)
+                                        })
 
-        })
+                                }).catch(e => {
+                                    alert(e)
+                                })
+                            )
+                        })
+                        Promise.all(course_promises).then(all_grades => {
+                            var merged_all_grades = [].concat.apply([], all_grades)
+                            localStorage.setItem("grades", JSON.stringify(merged_all_grades));
+                            resolve(merged_all_grades)
+                        }).catch(e => {
+                            alert(e)
+                        })
+                    });
+
+            })
+    })
 
 }

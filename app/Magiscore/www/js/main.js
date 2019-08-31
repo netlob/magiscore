@@ -90,43 +90,46 @@ function round(num) {
 }
 
 function syncGrades() {
-  getGrades();
-
   return new Promise(function (resolve, reject) {
-    $("#overlay").show();
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": creds.demo ? "https://api.magiscore.nl/demo" : "https://api.magiscore.nl/grades",
-      "method": "GET",
-      "headers": {
-        "username": creds.demo ? "" : creds.username,
-        "password": creds.demo ? "" : creds.password,
-        "school": creds.demo ? "" : creds.school
-      }
-    }
+    // $("#overlay").show();
+    // var settings = {
+    //   "async": true,
+    //   "crossDomain": true,
+    //   "url": creds.demo ? "https://api.magiscore.nl/demo" : "https://api.magiscore.nl/grades",
+    //   "method": "GET",
+    //   "headers": {
+    //     "username": creds.demo ? "" : creds.username,
+    //     "password": creds.demo ? "" : creds.password,
+    //     "school": creds.demo ? "" : creds.school
+    //   }
+    // }
 
-    $.ajax(settings).done(function (response) {
-      // $("#overlay").show();
-      if (response.substring(0, 5) != 'error') {
+    // $.ajax(settings).done(function (response) {
+    // $("#overlay").show();
+    getGrades()
+      .then((grades) => {
         lessonController.clear()
-        localStorage.removeItem("grades");
-        localStorage.removeItem("person");
-        localStorage.removeItem("token");
-        localStorage.removeItem("school");
-        localStorage.removeItem("courses");
-        sorted = {}
-        var data = JSON.parse(response)
-        var grades = data["grades"]
-        var person = data["person"]
-        var token = data["token"]
-        var school = data["school"]
-        var course = data["courses"]
-        localStorage.setItem("grades", JSON.stringify(grades));
-        localStorage.setItem("person", JSON.stringify(person));
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("school", JSON.stringify(school));
-        localStorage.setItem("courses", JSON.stringify(course));
+        alert("getGradesSucces")
+        alert(JSON.stringify(grades))
+        // localStorage.removeItem("grades");
+        // localStorage.removeItem("person");
+        // localStorage.removeItem("token");
+        // localStorage.removeItem("school");
+        // localStorage.removeItem("courses");
+        // sorted = {}
+        // var data = JSON.parse(response)
+        // var grades = data["grades"]
+        // var person = data["person"]
+        // var token = data["token"]
+        // var school = data["school"]
+        // var course = data["courses"]
+        // localStorage.setItem("grades", JSON.stringify(grades));
+        // localStorage.setItem("person", JSON.stringify(person));
+        // localStorage.setItem("token", JSON.stringify(token));
+        // localStorage.setItem("school", JSON.stringify(school));
+        // localStorage.setItem("courses", JSON.stringify(course));
+        //var grades = localStorage.getItem("grades")
+        var sorted = {}
         grades.forEach(grade => {
           var vak = grade.class.description.capitalize()
           if (sorted[vak] == null) {
@@ -149,16 +152,66 @@ function syncGrades() {
             sorted[vak]['Completed'].push(grade)
           }
         })
+        alert("sortedgrades")
         $("#overlay").hide();
         viewController.lineChart.destroy();
         main(currentLesson)
         resolve()
-      } else {
+      }).catch((e) => {
+        alert(e)
         $("#overlay").hide();
-        viewController.toast(response, 5000)
+        //viewController.toast(response, 5000)
         reject()
-      }
-    });
+      })
+    // lessonController.clear()
+    // localStorage.removeItem("grades");
+    // localStorage.removeItem("person");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("school");
+    // localStorage.removeItem("courses");
+    // sorted = {}
+    // var data = JSON.parse(response)
+    // var grades = data["grades"]
+    // var person = data["person"]
+    // var token = data["token"]
+    // var school = data["school"]
+    // var course = data["courses"]
+    // localStorage.setItem("grades", JSON.stringify(grades));
+    // localStorage.setItem("person", JSON.stringify(person));
+    // localStorage.setItem("token", JSON.stringify(token));
+    // localStorage.setItem("school", JSON.stringify(school));
+    // localStorage.setItem("courses", JSON.stringify(course));
+    // grades.forEach(grade => {
+    //   var vak = grade.class.description.capitalize()
+    //   if (sorted[vak] == null) {
+    //     sorted[vak] = []
+    //   }
+    //   if (sorted[vak][grade.type.header] == null) {
+    //     sorted[vak][grade.type.header] = []
+    //   }
+    //   if (sorted[vak]['Grades'] == null) {
+    //     sorted[vak]['Grades'] = []
+    //   }
+    //   if (sorted[vak]['Completed'] == null) {
+    //     sorted[vak]['Completed'] = []
+    //   }
+    //   sorted[vak][grade.type.header].push(grade)
+    //   if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
+    //     sorted[vak]['Grades'].push(grade)
+    //   }
+    //   if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
+    //     sorted[vak]['Completed'].push(grade)
+    //   //   }
+    //   // })
+    //   // $("#overlay").hide();
+    //   // viewController.lineChart.destroy();
+    //   // main(currentLesson)
+    //   // resolve()
+    // } else {
+    //   $("#overlay").hide();
+    //   viewController.toast(response, 5000)
+    //   reject()
+    // }
   });
 }
 

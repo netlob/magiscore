@@ -125,7 +125,7 @@ function validateLogin(code, codeVerifier) {
         var school = data["school"]
         var course = data["courses"]
         var config = {
-            "isDesktop": $(window).width() > 600 ? true : false,
+            "isDesktop": false,
             "tention": 0.3,
             "passed": 5.5,
             "darkTheme": false,
