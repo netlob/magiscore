@@ -191,19 +191,38 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
     return false;
 }
 errorConsole("test")
+logConsole("test")
 
 function getGrades() {
     var tokens = JSON.parse(localStorage.getItem("tokens"))
     var m = new Magister("kajmunk", tokens.access_token)
     m.info()
-        .then(info => {
+        .then(person => {
+            logConsole("info")
             m.courses()
                 .then(courses => {
                     var current = courses.find(c => c.current)
+                    //current = courses[3]
+                    logConsole("courses")
                     current.classes()
                         .then(classes => {
-                            logConsole(classes)
+                            logConsole("GOT CLASSES")
+                            //logConsole(JSON.stringify(classes))
+                        }).catch(err => {
+                            errorConsole(err + " 1")
                         })
+                    current.grades()
+                        .then(grades => {
+                            logConsole("GotGRADES")
+                            logConsole(grades)
+                        }).catch(err => {
+                            errorConsole(err + " 5")
+                        })
+                }).catch(err => {
+                    errorConsole(err + " 2")
                 })
+        }).catch(err => {
+            errorConsole(err + " 3")
         })
 }
+getGrades()

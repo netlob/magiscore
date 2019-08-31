@@ -90,7 +90,6 @@ function round(num) {
 }
 
 function syncGrades() {
-  getdsfv()
   return new Promise(function (resolve, reject) {
     // $("#overlay").show();
     // var settings = {
