@@ -61,14 +61,17 @@ class Magister {
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}.magister.net/api/leerlingen/${this.person.id}/aanmeldingen?begin=2009-01-01&einde=2020-01-01`,
+                    "url": `https://${this.tenant}.magister.net/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
                     }
                 })
                 .done((res) => {
-                    resolve(res.items.map(c => new Course(this, c)))
+                    var res = res.items || res.Items
+                    logConsole("Courses.length: " + res.length)
+                    logConsole(JSON.stringify(res[0]))
+                    resolve(res.map(c => new Course(this, c)))
                 })
         })
     }

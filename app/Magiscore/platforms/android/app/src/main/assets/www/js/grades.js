@@ -190,8 +190,8 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 
     return false;
 }
-errorConsole("test")
-logConsole("test")
+// errorConsole("test")
+// logConsole("test")
 
 function getGrades() {
     var tokens = JSON.parse(localStorage.getItem("tokens"))
@@ -201,19 +201,20 @@ function getGrades() {
             logConsole("info")
             m.courses()
                 .then(courses => {
-                    // var current = courses.find(c => c.current)
-                    var current = courses[1]
+                    logConsole("COURSES:")
                     logConsole(JSON.stringify(courses))
+                    // var current = courses.find(c => c.current)
+                    var current = courses[0]
                     current.classes()
                         .then(classes => {
-                            logConsole("GOT CLASSES")
+                            logConsole("classes")
                             //logConsole(JSON.stringify(classes))
                         }).catch(err => {
                             errorConsole(err + " 1")
                         })
                     current.grades()
                         .then(grades => {
-                            logConsole("GotGRADES")
+                            logConsole("grades")
                             logConsole(grades)
                         }).catch(err => {
                             errorConsole(err + " 5")

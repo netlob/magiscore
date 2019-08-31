@@ -22,5 +22,10 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="m6loapp:*" />
+    <icon density="hdpi" src="icons/res/mipmap-hdpi/ic_launcher.png" />
+    <icon density="mdpi" src="icons/res/mipmap-mdpi/ic_launcher.png" />
+    <icon density="xhdpi" src="icons/res/mipmap-xhdpi/ic_launcher.png" />
+    <icon density="xxhdpi" src="icons/res/mipmap-xxhdpi/ic_launcher.png" />
+    <icon density="xxxhdpi" src="icons/res/mipmap-xxxhdpi/ic_launcher.png" />
     <preference name="loglevel" value="DEBUG" />
 </widget>

@@ -11,12 +11,18 @@
         Sj3rd
     </author>
     <content src="index.html" />
+    <!-- <icon src="www/img/icons/icon-128x128.png" width="128" height="128" platform="android"/> -->
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <platform name="android">
         <allow-intent href="m6loapp:*" />
+        <icon src="icons/res/mipmap-hdpi/ic_launcher.png" density="hdpi" />
+        <icon src="icons/res/mipmap-mdpi/ic_launcher.png" density="mdpi" />
+        <icon src="icons/res/mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
+        <icon src="icons/res/mipmap-xxhdpi/ic_launcher.png" density="xxhdpi" />
+        <icon src="icons/res/mipmap-xxxhdpi/ic_launcher.png" density="xxxhdpi" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
