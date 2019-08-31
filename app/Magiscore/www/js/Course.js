@@ -6,32 +6,31 @@ class Course {
      */
     constructor(magister, raw) {
         //super(magister)
+        this._magister = magister
 
         /**
          * @type {String}
          * @readonly
          */
-        this.id = toString(raw.id || raw.Id)
-
-        this._magister = magister
+        this.id = toString(raw.Id)
 
         /**
          * @type {Date}
          * @readonly
          */
-        this.start = parseDate(raw.Start || raw.start)
+        this.start = parseDate(raw.Start)
         /**
          * @type {Date}
          * @readonly
          */
-        this.end = parseDate(raw.Einde || raw.start)
+        this.end = parseDate(raw.Einde)
 
         /**
          * The school year of this course, e.g: '1617'
          * @type {String}
          * @readonly
          */
-        this.schoolPeriod = raw.Lesperiode || raw.lesperiode
+        this.schoolPeriod = raw.Lesperiode
 
         /**
          * Basic type information of this course, e.g: { description: "VWO 6", id: 420 }
@@ -39,8 +38,8 @@ class Course {
          * @readonly
          */
         this.type = ({
-            id: raw.studie.id || raw.Studie.Id,
-            description: raw.studie.omschrijving || raw.Studie.Omschrijving,
+            id: raw.Studie.Id,
+            description: raw.Studie.Omschrijving,
         })
 
         /**
@@ -49,27 +48,30 @@ class Course {
          * @readonly
          */
         this.group = ({
-            id: raw.groep.id || raw.Groep.Id,
+            id: raw.Groep.Id,
             get description() {
-                const group = raw.Groep.Omschrijving || raw.groep.omschrijving
+                const group = raw.Groep.Omschrijving
                 return group != null ?
                     group.split(' ').find(w => /\d/.test(w)) || group :
                     null
             },
-            locationId: raw.Groep.LocatieId || raw.groep.locatieid,
+            locationId: raw.Groep.LocatieId,
         })
 
         /**
          * @type {String[]}
          * @readonly
          */
-        this.curricula = _.compact([(raw.Profiel || raw.profiel), (raw.Profiel2 || raw.profiel2)])
+        this.curricula = _.compact([raw.Profiel, raw.Profiel2])
 
         /**
          * @type {Object[]}
          * @readonly
          */
         this.raw = raw
+
+        logConsole("-----------")
+        logConsole(JSON.stringify(this.raw))
     }
 
     /**

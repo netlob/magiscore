@@ -70,8 +70,21 @@ class Magister {
                 .done((res) => {
                     var res = res.items || res.Items
                     logConsole("Courses.length: " + res.length)
-                    logConsole(JSON.stringify(res[0]))
-                    resolve(res.map(c => new Course(this, c)))
+                    res.splice(-1, 1) // DIT HAALT DE LAATSTE UIT HET ARRAY
+
+
+
+
+                    // logConsole(JSON.stringify(res[0]))
+                    // logConsole("---------------")
+                    // logConsole(JSON.stringify(res[1]))
+                    // logConsole("---------------")
+                    // logConsole(JSON.stringify(res[2]))
+                    // logConsole("---------------")
+                    // logConsole(JSON.stringify(res[3]))
+                    // logConsole("---------------")
+                    // logConsole(JSON.stringify(res[4]))
+                    resolve(_.sortBy(res.map(course => new Course(this, course), 'start')))
                 })
         })
     }

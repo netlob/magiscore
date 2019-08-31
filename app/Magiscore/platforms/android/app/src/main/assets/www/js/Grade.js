@@ -125,7 +125,7 @@ class Grade {
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}.magister.net/api/personen/${this.person.id}/aanmeldingen`,
+                    "url": this._fillUrl,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token

@@ -5,7 +5,7 @@ class GradeType {
      * @param {Object} raw
      */
     constructor(magister, raw) {
-        super(magister)
+        // super(magister)
 
         /**
          * @type {String}
