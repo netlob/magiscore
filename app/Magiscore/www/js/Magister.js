@@ -44,7 +44,7 @@ class Magister {
                 this.fullName = res.Persoon.Naam || res.persoon.naam
                 this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
                 this.group = res.Persoon.Groep || res.persoon.groep
-                return this.person
+                Promise.resolve(this.person)
             })
     }
 
