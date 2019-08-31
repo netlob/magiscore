@@ -181,3 +181,13 @@
 function logConsole(err) {
     $("#Terminal").append(err + "</br>")
 }
+
+function errorConsole(err) {
+    $("#Terminal").append("<p style = \"color: red;\">" + err + "</p>")
+}
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+    errorConsole(msg + " line: " + lineNo + " " + url)
+
+    return false;
+}
+errorConsole("test")

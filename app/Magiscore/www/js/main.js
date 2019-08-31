@@ -90,6 +90,7 @@ function round(num) {
 }
 
 function syncGrades() {
+  getdsfv()
   return new Promise(function (resolve, reject) {
     // $("#overlay").show();
     // var settings = {
@@ -354,9 +355,9 @@ $('.container-fluid').click(function () {
 
 function onDeviceReady() {
   //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-  if (JSON.parse(localStorage.getItem("tokens")).refresh_token === null) {
+  if (localStorage.getItem("tokens") === null) {
     window.location = './login/index.html'
-    alert(JSON.parse(localStorage.getItem("tokens")))
+
   } else {
     refreshToken();
     main();

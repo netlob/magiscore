@@ -110,7 +110,6 @@ function validateLogin(code, codeVerifier) {
         //alert(response.responseText);
         //$("#kebha").empty()
         //$("#kebha2").empty()
-        $("#kebha").text(JSON.stringify(response))
         //document.write(response.access_token);
         var tokens = {
             access_token: response.access_token,
@@ -119,11 +118,11 @@ function validateLogin(code, codeVerifier) {
         }
 
         localStorage.setItem("tokens", JSON.stringify(tokens));
-        var data = JSON.parse(response)
-        var grades = data["grades"]
-        var person = data["person"]
-        var school = data["school"]
-        var course = data["courses"]
+        //var data = JSON.parse(response)
+        // var grades = data["grades"]
+        // var person = data["person"]
+        // var school = data["school"]
+        // var course = data["courses"]
         var config = {
             "isDesktop": false,
             "tention": 0.3,
@@ -131,7 +130,6 @@ function validateLogin(code, codeVerifier) {
             "darkTheme": false,
             "exclude": []
         }
-
         localStorage.setItem("config", JSON.stringify(config));
         window.location = '../index.html';
         //document.write(JSON.stringify(JSON.parse(response)))
