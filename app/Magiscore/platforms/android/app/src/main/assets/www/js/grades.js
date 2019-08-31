@@ -203,7 +203,7 @@ function getGrades() {
                 .then(courses => {
                     var current = courses.find(c => c.current)
                     //current = courses[3]
-                    logConsole("courses")
+                    logConsole(JSON.stringify(courses))
                     current.classes()
                         .then(classes => {
                             logConsole("GOT CLASSES")
