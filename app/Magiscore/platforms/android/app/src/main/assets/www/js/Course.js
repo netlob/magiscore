@@ -115,7 +115,8 @@ class Course {
         latest = false
     } = {}) {
         return new Promise((resolve, reject) => {
-            var date = this.current() ? formatDate(new Date()) : formatDate(new Date(this.end))
+            logConsole(this.end)
+            var date = this.current() ? formatDate(new Date()) : formatDate(this.end)
             const urlPrefix = `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/cijfers`
             const url = latest ?
                 `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0` :
