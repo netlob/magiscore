@@ -201,9 +201,9 @@ function getGrades() {
             logConsole("info")
             m.courses()
                 .then(courses => {
-                    var current = courses.find(c => c.current)
-                    //current = courses[3]
-                    logConsole(JSON.stringify(courses))
+                    // var current = courses.find(c => c.current)
+                    var current = courses[0]
+                    logConsole(courses[0])
                     current.classes()
                         .then(classes => {
                             logConsole("GOT CLASSES")
@@ -211,7 +211,7 @@ function getGrades() {
                         }).catch(err => {
                             errorConsole(err + " 1")
                         })
-                    current.grades()
+                    courses[0].grades()
                         .then(grades => {
                             logConsole("GotGRADES")
                             logConsole(grades)
@@ -225,4 +225,3 @@ function getGrades() {
             errorConsole(err + " 3")
         })
 }
-getGrades()

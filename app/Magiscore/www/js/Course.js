@@ -115,10 +115,11 @@ class Course {
         latest = false
     } = {}) {
         return new Promise((resolve, reject) => {
+            var date = current() ? formatDate(new Date()) : formatDate(new Date(this.end))
             const urlPrefix = `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/cijfers`
             const url = latest ?
                 `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0` :
-                `${urlPrefix}/cijferoverzichtvooraanmelding?actievePerioden=false&alleenBerekendeKolommen=false&alleenPTAKolommen=false`
+                `${urlPrefix}/cijferoverzichtvooraanmelding?actievePerioden=false&alleenBerekendeKolommen=false&alleenPTAKolommen=false&peildatum=${date}`
             logConsole(url)
             $.ajax({
                     "dataType": "json",

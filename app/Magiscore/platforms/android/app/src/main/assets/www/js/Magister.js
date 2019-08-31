@@ -38,10 +38,11 @@ class Magister {
                     }
                 })
                 .done((res) => {
-                    this.person.id = res.Persoon.Id || res.persoon.id
-                    this.person.firstName = res.Persoon.Roepnaam || res.persoon.roepnaam
-                    this.person.lastName = res.Persoon.Achternaam || res.persoon.achternaam
-                    this.namePrefix = res.Persoon.Tussenvoegsel
+                    var res = res.Persoon || res.persoon
+                    this.person.id = res.Id || res.id
+                    this.person.firstName = res.Roepnaam || res.roepnaam
+                    this.person.lastName = res.Achternaam || res.achternaam
+                    this.namePrefix = res.Tussenvoegsel || res.tussenvoegsel
                     //this.fullName = res.Persoon.Naam || res.persoon.naam
                     //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
                     //this.group = res.Persoon.Groep || res.persoon.groep
