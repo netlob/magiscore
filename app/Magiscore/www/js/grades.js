@@ -183,7 +183,7 @@ function logConsole(err) {
 }
 
 function getGrades() {
-
+    var tokens = JSON.parse(localStorage.getItem("tokens"))
     var m = new Magister("kajmunk", tokens.access_token)
     m.info()
         .then(info => {
