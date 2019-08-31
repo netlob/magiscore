@@ -9,11 +9,70 @@ const {
     generators
 } = require("openid-client");
 const login = require('./login.function')
+const {
+    default: magister,
+    getSchools
+} = require('magister.js');
+
 
 module.exports = async function (params, res) {
     if (params.refresh && params.person_id && params.school) {
         refreshToken(params.refresh)
             .then(tokens => {
+                // var response = {}
+                // response["tokens"] = tokens
+                // magister({
+                //     school: {
+                //         url: `https://${params.school}.magister.net`
+                //     },
+                //     token: tokens.access_token,
+                // }).then(m => {
+                //     response["person"] = m.profileInfo
+                //     response["school"] = m.school
+                //     m.courses()
+                //         .then(courses => {
+                //             let requests = courses.map((course) => {
+                //                 return new Promise((resolve) => {
+                //                     Promise.all([course.grades(), course.classes()])
+                //                         .then(values => {
+                //                             course.grades = values[0]
+                //                             course.classes = values[1]
+                //                             resolve(course)
+                //                         }).catch(err => {
+                //                             res.end(err.toString())
+                //                         });
+                //                 });
+                //             })
+                //             Promise.all(requests)
+                //                 .then(values => {
+                //                     response["courses"] = values;
+                //                     res.writeHead(200, {
+                //                         'Content-Type': 'application/json'
+                //                     })
+                //                     res.end(JSON.stringify(response))
+                //                 }).catch((err) => {
+                //                     console.error('something went wrong:', err);
+                //                     res.writeHead(200);
+                //                     res.end('error: ' + err.toString());
+                //                 });
+                //             // Promise.all(current.grades(), current.classes())
+                //             //     .then(values => {
+                //             //         response["grades"] = values[0]
+                //             //         response["classes"] = values[1]
+                //             //         res.writeHead(200, {
+                //             //             'Content-Type': 'application/json'
+                //             //         })
+                //             //         res.end(JSON.stringify(response))
+                //             //     }).catch((err) => {
+                //             //         console.error('something went wrong:', err);
+                //             //         res.writeHead(200);
+                //             //         res.end('error: ' + err.toString());
+                //             //     });
+                //         })
+                // }).catch(err => {
+                //     res.writeHead(200);
+                //     res.end('error: ' + err.toString());
+                // });
                 var response = {}
                 response["tokens"] = tokens
                 getCourses(tokens.access_token, params.school)
@@ -22,18 +81,22 @@ module.exports = async function (params, res) {
                             return new Promise((resolve) => {
                                 const now = new Date()
                                 course.Huidig = course.Start <= now && now <= course.Einde
-                                Promise.all(getGrades(course, params.person_id, params.school, tokens.access_token), getClasses(course, params.person_id, params.school, tokens.access_token))
+                                Promise.all([getGrades(course, params.person_id, params.school, tokens.access_token), getClasses(course, params.person_id, params.school, tokens.access_token)])
                                     .then(values => {
-                                        // course.Cijfers = values[0]
-                                        const grades = values[0].map(grade => {
-                                            return Promise.resolve(fillGrade(course, person_id, school, grade))
-                                        })
-                                        course.Cijfers = Promise.all(grades)
+                                        course.Cijfers = values[0]
                                         course.Vakken = values[1]
-                                        resolve()
+                                        if (values[0].TotalCount > 0) {
+                                            const grades = values[0].Items.map(grade => {
+                                                return Promise.resolve(fillGrade(course, params.school, params.school, grade))
+                                            })
+                                            Promise.all(grades).then(gardes => {
+                                                course.Cijfers.Items = gardes
+                                                resolve()
+                                            })
+                                        } else resolve()
                                     }).catch(err => {
-                                        res.writeHead(200)
-                                        res.end("error: ", err.toString())
+                                        // res.writeHead(200)
+                                        res.end(err.toString())
                                     });
                             });
                         })
@@ -45,17 +108,17 @@ module.exports = async function (params, res) {
                                 })
                                 res.end(JSON.stringify(response))
                             }).catch(err => {
-                                res.writeHead(200)
-                                res.end("error: ", err.toString())
+                                // res.writeHead(200)
+                                res.end(err.toString())
                             });
                     }).catch(err => {
                         res.writeHead(200)
-                        res.end("error: ", err.toString())
+                        res.end(err.toString())
                     })
 
             }).catch(err => {
                 res.writeHead(200)
-                res.end("error: ", err.toString())
+                res.end(err.toString())
             })
 
     } else {
@@ -160,6 +223,7 @@ function getGrades(course, person_id, school, access_token) {
             })
             .then(res => res.json())
             .then(json => {
+                // console.log(json)
                 resolve(json)
             })
     })
@@ -190,31 +254,35 @@ function getClasses(course, person_id, school, access_token) {
 }
 
 function fillGrade(course, person_id, school, grade, access_token) {
-    fetch(`https://${school}.magister.net/api/personen/${person_id}/aanmeldingen/${course.Id}/cijfers/extracijferkolominfo/${grade.CijferKolom.Id}`, {
-            "credentials": "include",
-            "headers": {
-                "accept": "application/json, text/plain, */*",
-                "accept-language": "en-US,en;q=0.9,nl-NL;q=0.8,nl;q=0.7",
-                "authorization": "Bearer " + access_token,
-                "cache-control": "no-cache",
-                "pragma": "no-cache",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-site": "same-origin"
-            },
-            "referrerPolicy": "no-referrer-when-downgrade",
-            "body": null,
-            "method": "GET",
-            "mode": "cors"
-        })
-        .then(res => res.json())
-        .then(json => {
-            grade.testDate = new Date(json.WerkinformatieDatumIngevoerd).toISOString()
-            grade.description = json.WerkInformatieOmschrijving.trim()
-            grade.weight = Number.parseInt(json.Weging, 10) || 0
-            grade.type.level = json.KolomNiveau
-            grade.type.description = json.KolomOmschrijving.trim()
-            resolve(grade)
-        })
+    return new Promise(async function (resolve, reject) {
+        fetch(`https://${school}.magister.net/api/personen/${person_id}/aanmeldingen/${course.Id}/cijfers/extracijferkolominfo/${grade.CijferKolom.Id}`, {
+                "credentials": "include",
+                "headers": {
+                    "accept": "application/json, text/plain, */*",
+                    "accept-language": "en-US,en;q=0.9,nl-NL;q=0.8,nl;q=0.7",
+                    "authorization": "Bearer " + access_token,
+                    "cache-control": "no-cache",
+                    "pragma": "no-cache",
+                    "sec-fetch-mode": "cors",
+                    "sec-fetch-site": "same-origin"
+                },
+                "referrerPolicy": "no-referrer-when-downgrade",
+                "body": null,
+                "method": "GET",
+                "mode": "cors"
+            })
+            .then(res => res.json())
+            .then(json => {
+                grade.fill = json
+                grade.testDate = json.WerkinformatieDatumIngevoerd != null ? new Date(json.WerkinformatieDatumIngevoerd).toISOString() : false
+                grade.description = json.WerkInformatieOmschrijving != null ? json.WerkInformatieOmschrijving.trim() : false
+                grade.weight = json.Weging != null ? Number.parseInt(json.Weging, 10) || 0 : false
+                grade.type = {}
+                grade.type.level = json.KolomNiveau
+                grade.type.description = json.KolomOmschrijving != null ? json.KolomOmschrijving.trim() : false
+                resolve(grade)
+            }).catch(err => console.error(err))
+    })
 }
 
 function formatDate(date) {
