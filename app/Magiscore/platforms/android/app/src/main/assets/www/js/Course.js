@@ -115,7 +115,7 @@ class Course {
         latest = false
     } = {}) {
         return new Promise((resolve, reject) => {
-            var date = current() ? formatDate(new Date()) : formatDate(new Date(this.end))
+            var date = this.current() ? formatDate(new Date()) : formatDate(new Date(this.end))
             const urlPrefix = `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/cijfers`
             const url = latest ?
                 `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0` :
@@ -152,4 +152,14 @@ class Course {
         })
 
     }
+}
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
 }
