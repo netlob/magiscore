@@ -182,15 +182,18 @@ function logConsole(err) {
     $("#Terminal").append(err + "</br>")
 }
 
-var m = new Magister("kajmunk", tokens.access_token)
-m.info()
-    .then(info => {
-        m.courses()
-            .then(courses => {
-                var current = courses.find(c => c.current)
-                current.classes()
-                    .then(classes => {
-                        logConsole(classes)
-                    })
-            })
-    })
+function getGrades() {
+
+    var m = new Magister("kajmunk", tokens.access_token)
+    m.info()
+        .then(info => {
+            m.courses()
+                .then(courses => {
+                    var current = courses.find(c => c.current)
+                    current.classes()
+                        .then(classes => {
+                            logConsole(classes)
+                        })
+                })
+        })
+}
