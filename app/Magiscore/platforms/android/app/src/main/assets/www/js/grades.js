@@ -32,7 +32,7 @@ function getGrades() {
                         }).catch(err => {
                             errorConsole(err + " 1")
                         })
-                    courses[0].grades()
+                    current.grades()
                         .then(grades => {
                             logConsole("grades")
                             logConsole(grades)

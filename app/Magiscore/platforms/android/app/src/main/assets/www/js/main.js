@@ -360,6 +360,7 @@ function onDeviceReady() {
   } else {
     refreshToken();
     main();
+    getGrades()
   }
 }
 
