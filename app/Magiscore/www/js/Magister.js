@@ -63,7 +63,7 @@ class Magister {
                 }
             })
             .done(function (res) {
-                res = res.Items.map(c => new Course(this, c))
+                Promise.resolve(res.Items.map(c => new Course(this, c)))
             })
     }
 }
