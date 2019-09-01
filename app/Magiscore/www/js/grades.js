@@ -57,3 +57,21 @@ function getGrades() {
     })
 
 }
+
+function getLatestGrades() {
+    return new Promise((resolve, reject) => {
+        m.info()
+            .then(person => {
+                logConsole("info")
+                m.courses()
+                    .then(courses => {
+                        var current = courses.find(c => c.current)
+                        current.grades()
+                            .then(grades => {
+                                resolve(grades)
+                            })
+                    })
+            })
+    })
+
+}

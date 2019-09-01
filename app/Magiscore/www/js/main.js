@@ -368,6 +368,7 @@ function onDeviceReady() {
       .then(() => {
         main();
         syncGrades()
+        getLatestGrades().then()
       });
   } else {
     window.location = './login/index.html'

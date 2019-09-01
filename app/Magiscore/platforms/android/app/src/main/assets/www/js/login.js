@@ -55,7 +55,9 @@ function base64URL(string) {
     return string.toString(CryptoJS.enc.Base64).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
 }
 
-function openLoginWindow() {
+function openLoginWindow(tenant) {
+    console.log("Tenant: ", tenant)
+    if (cordova === undefined) return
     verifier = base64URL(generateCodeVerifier());
     //$("#login-school").val(verifier);
 
@@ -65,7 +67,7 @@ function openLoginWindow() {
     var challenge = base64URL(generateCodeChallenge(verifier));
     //file:///android_asset/www/
     //alert("je moeder is een kehba");
-    var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&acr_values=tenant:kajmunk.magister.net&prompt=select_account`
+    var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&acr_values=tenant:${tenant}&prompt=select_account`
     var ref = cordova.InAppBrowser.open(url, '_system', 'location=yes,hideurlbar=yes');
 }
 
@@ -1029,5 +1031,9 @@ var schools = {
     "ISW": "isw",
     "KSE": "kse"
 }
-var scholen = Object.keys(schools)
+var scholen = Object.keys(schools).map(s => s = {
+    label: s,
+    value: (schools[s] + ".magister.net")
+})
+
 //https://accounts.magister.net/account/login?sessionId=1934dbf3472a440592931cee427e6344&returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DM6LOAPP%26redirect_uri%3Dm6loapp%253A%252F%252Foauth2redirect%252F%26scope%3Dopenid%2520profile%2520offline_access%2520magister.mobile%2520magister.ecs%26response_type%3Dcode%2520id_token%26state%3Dqodmwkubaafcntmz%26nonce%3D643f293da9ea55c13d99a485d3e2ba82%26code_challenge%3DTP52UMRqrzurvKwdB0O_WPE4bP_f6AqKy3RZmHGJq7U%26code_challenge_method%3DS256%26acr_values%3Dtenant%253Akajmunk.magister.net#!/rswp
