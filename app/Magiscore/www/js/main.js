@@ -354,13 +354,12 @@ $('.container-fluid').click(function () {
 
 function onDeviceReady() {
   //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-  if (localStorage.getItem("tokens") === null) {
-    window.location = './login/index.html'
-
-  } else {
+  if ("tokens" in localStorage) {
     refreshToken();
     main();
     getGrades()
+  } else {
+    window.location = './login/index.html'
   }
 }
 
