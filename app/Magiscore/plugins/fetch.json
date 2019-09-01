@@ -24,5 +24,13 @@
     "variables": {
       "URL_SCHEME": "m6loapp"
     }
+  },
+  "cordova-plugin-vibration": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-vibration"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

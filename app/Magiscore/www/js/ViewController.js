@@ -4,6 +4,7 @@ class ViewController {
     this.lineChart = lineChart;
     this.pieChart = pieChart;
     this.config = {};
+    this.currentCourse = {}
   }
 
   render(lesson) {
