@@ -70,7 +70,7 @@ class Magister {
                 .done((res) => {
                     var res = res.items || res.Items
                     logConsole("Courses.length: " + res.length)
-                    logConsole(JSON.stringify(res[0]))
+                    logConsole(JSON.stringify(res))
                     resolve(res.map(c => new Course(this, c)))
                 })
         })

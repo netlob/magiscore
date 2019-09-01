@@ -5,6 +5,7 @@ class Course {
      * @param {Object} raw
      */
     constructor(magister, raw) {
+
         //super(magister)
 
         /**
@@ -85,6 +86,7 @@ class Course {
      * @returns {Promise<Object[]>}
      */
     classes() {
+        logConsole(raw)
         return new Promise((resolve, reject) => {
             // logConsole("person id " + this._magister.person.id)
             const url = `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/vakken`
