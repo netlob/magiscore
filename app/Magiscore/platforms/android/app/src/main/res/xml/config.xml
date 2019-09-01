@@ -10,7 +10,7 @@
     <feature name="LaunchMyApp">
         <param name="android-package" value="nl.xservices.plugins.LaunchMyApp" />
     </feature>
-    <name>Magiscore</name>
+    <name short="Magiscore">Magiscore - Magister statistiek</name>
     <description>
         Magiscore very nice 10/10.
     </description>
@@ -28,4 +28,6 @@
     <icon density="xxhdpi" src="icons/res/mipmap-xxhdpi/ic_launcher.png" />
     <icon density="xxxhdpi" src="icons/res/mipmap-xxxhdpi/ic_launcher.png" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="BackgroundColor" value="0xff0096db" />
+    <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
 </widget>

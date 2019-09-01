@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="nl.sj3rd.magiscore" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Magiscore</name>
+    <name short="Magiscore">Magiscore - Magister statistiek</name>
     <description>
         Magiscore very nice 10/10.
     </description>
@@ -14,10 +14,12 @@
     <!-- <icon src="www/img/icons/icon-128x128.png" width="128" height="128" platform="android"/> -->
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
+    <preference name="BackgroundColor" value="0xff0096db"/>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <platform name="android">
         <allow-intent href="m6loapp:*" />
+        <preference name="LoadingDialog" value="Oeps,Er ging iets fout..."/>
         <icon src="icons/res/mipmap-hdpi/ic_launcher.png" density="hdpi" />
         <icon src="icons/res/mipmap-mdpi/ic_launcher.png" density="mdpi" />
         <icon src="icons/res/mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
