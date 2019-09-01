@@ -184,7 +184,7 @@ input {
   border-radius: 0px !important;
   -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
-  width: 400px !important;
+  /* width: 400px !important; */
   cursor: pointer;
   list-style-type: none !important;
   padding: 0px !important;
@@ -413,25 +413,25 @@ select:-webkit-autofill:focus {
 }
 
 a.magister-login {
-  background-color: #0096db !important;
+  /* color: #0096db !important; */
+  /* background-color: #0096db !important; */
   margin: 0px 1rem 0px 1rem !important;
   padding: 10px 10px !important;
-  font-size: 24px !important;
+  font-size: 1.2rem !important;
   color: white !important;
-  border-radius: 4px !important;
   cursor: pointer !important;
   text-decoration: none !important;
   display: block !important;
 }
 
 a.magister-login:hover {
-  background-color: #20b9ff !important;
+  /* background-color: #20b9ff !important; */
 }
 
 a.magister-login:before {
   font-family: "magistersymbolsnormal" !important;
   content: "Q" !important;
-  font-size: 40px !important;
+  font-size: 20px !important;
 }
 
 .magister-icon-font {

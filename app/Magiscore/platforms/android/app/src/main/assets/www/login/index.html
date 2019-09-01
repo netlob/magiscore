@@ -27,7 +27,7 @@
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary" style="overflow: hidden !important">
   <pre id="kehba"></pre>
   <pre id="kehba2"></pre>
   <div class="container-login">
@@ -42,21 +42,25 @@
             <!-- Nested Row within Card Body -->
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Magister Login</h1>
+                <h1 class="h4 text-gray-900 mb-4">Login</h1>
               </div>
               <form class="user">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="login-school" aria-describedby="school"
                     placeholder="School">
                 </div>
-                <a onclick="openLoginWindow();//var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes,hideurlbar=yes');"
+                <a class="magister-login btn btn-primary btn-user bg-gradiant-primary"
+                  style="margin: 0px 1rem 0px 1rem; display: block;" onclick="openLoginWindow()">
+                  Login</a>
+                <!-- <a onclick=";//var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes,hideurlbar=yes');"
                   class="btn btn-primary btn-user bg-gradiant-primary"
-                  style="margin: 0px 1rem 0px 1rem; display: block;">Login</a>
-                <br>
-                <hr>
-                <br>
-                <a class="magister-login btn btn-primary btn-user bg-gradiant-primary" onclick="getGrades()">
-                  TestDieSync</a>
+                  style="margin: 0px 1rem 0px 1rem; display: block;">Login</a> -->
+                <!-- <br> -->
+                <!-- <hr> -->
+                <!-- <br> -->
+                <!-- <div>Login bij Magiscore door je school in te vullen en aan te klikken en vervolgens op de grote login
+                  knop te drukken. Dit opent een browser-pagina met magister waar je na het invullen van je gegevens
+                  terug gestuurd wordt naar Magiscore.</div> -->
               </form>
             </div>
           </div>
@@ -65,8 +69,8 @@
     </div>
   </div>
 
-  <a onclick="//login({}, true)" class="btn btn-demo"
-    style="position: absolute; bottom: 30px; right: 40px; color: yellow !important">Demo login</a>
+  <!-- <a onclick="//login({}, true)" class="btn btn-demo"
+    style="position: absolute; bottom: 30px; right: 40px; color: yellow !important">Demo login</a> -->
 
   <div id="overlay">
     <div class="spinner-border" role="status">
@@ -113,7 +117,15 @@
         $('#login-school').autocomplete({
           source: scholen
         })
+        // $('#ui-id-1').css("width", ($('#login-school').css("width") + " !important"))
       });
+    });
+    $.extend($.ui.autocomplete.prototype.options, {
+      open: function (event, ui) {
+        $(this).autocomplete("widget").css({
+          "width": ($(this).width() + "px")
+        });
+      }
     });
   </script>
 </body>

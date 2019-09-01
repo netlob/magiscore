@@ -412,6 +412,18 @@ select:-webkit-autofill:focus {
   background-color: #0096db !important;
 }
 
+.schools-table {
+  margin: 0px 1rem 0px 1rem !important;
+  width: 100%;
+  font-size: 0.8rem !important;
+  max-height: 120px !important;
+}
+
+.schools-table>tr {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
 a.magister-login {
   /* color: #0096db !important; */
   /* background-color: #0096db !important; */

@@ -160,7 +160,7 @@ function syncGrades() {
         })
         alert("sortedgrades")
         $("#overlay").hide();
-        viewController.lineChart.destroy();
+        // viewController.lineChart.destroy();
         main(currentLesson)
         resolve()
       }).catch((e) => {
