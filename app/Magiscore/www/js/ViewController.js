@@ -163,8 +163,8 @@ class ViewController {
     this.render(currentLesson)
   }
 
-  setLatestGrades() {
-    lessonController.allGrades.forEach(grade => {
+  setLatestGrades(grades) {
+    grades.forEach(grade => {
       var d = new Date(grade.dateFilledIn)
       var w = new Date().getDate() - 7;
       if (d < w) {

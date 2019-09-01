@@ -77,3 +77,29 @@ function getGrades() {
     })
 
 }
+
+function getLatestGrades() {
+    return new Promise((resolve, reject) => {
+        logConsole("wtf")
+        var tokens = JSON.parse(localStorage.getItem("tokens"))
+        var m = new Magister("kajmunk", tokens.access_token)
+        m.info()
+            .then(person => {
+                logConsole("info")
+                m.courses()
+                    .then(courses => {
+                        var current = courses.find(c => c.current)
+                        current.grades({
+                                fillGrades = false,
+                                latest = true,
+                                firstTime = false
+                            })
+                            .then(grades => {
+                                logConsole("GRADES")
+                                resolve(grades)
+                            })
+                    })
+            })
+    })
+
+}
