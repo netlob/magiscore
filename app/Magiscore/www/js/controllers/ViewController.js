@@ -33,7 +33,7 @@ class ViewController {
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip()
     $("#general-wrapper").show();
-    $(".vibrate").on("click", function(){ navigator.vibrate(10) })
+    $(".vibrate").on("click", function(){ navigator.vibrate(15)})
   }
 
   renderLesson(lesson) {
@@ -56,7 +56,7 @@ class ViewController {
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip()
     $("#lesson-wrapper").show();
-    $(".vibrate").on("click", function(){ navigator.vibrate(10) })
+    $(".vibrate").on("click", function(){ navigator.vibrate(15)})
   }
 
   renderCourse(courseid) {

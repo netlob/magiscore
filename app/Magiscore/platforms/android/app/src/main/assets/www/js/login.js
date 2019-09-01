@@ -1,6 +1,8 @@
 //import { createBrotliDecompress } from "zlib";
 
 var verifier = "";
+var tenant = "";
+var popup = null
 
 function getLoginInfo() {
     return {
@@ -55,8 +57,9 @@ function base64URL(string) {
     return string.toString(CryptoJS.enc.Base64).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
 }
 
-function openLoginWindow(tenant) {
+function openLoginWindow(school) {
     console.log("Tenant: ", tenant)
+    tenant = school
     if (cordova === undefined) return
     verifier = base64URL(generateCodeVerifier());
     //$("#login-school").val(verifier);
@@ -67,8 +70,8 @@ function openLoginWindow(tenant) {
     var challenge = base64URL(generateCodeChallenge(verifier));
     //file:///android_asset/www/
     //alert("je moeder is een kehba");
-    var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&acr_values=tenant:${tenant}&prompt=select_account`
-    var ref = cordova.InAppBrowser.open(url, '_system', 'location=yes,hideurlbar=yes');
+    var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&acr_values=tenant:${school}&prompt=select_account`
+    var popup = cordova.InAppBrowser.open(url, '_system', 'location=yes,hideurlbar=yes');
 }
 
 
@@ -120,6 +123,7 @@ function validateLogin(code, codeVerifier) {
         }
 
         localStorage.setItem("tokens", JSON.stringify(tokens));
+        localStorage.setItem("school", tenant);
         //var data = JSON.parse(response)
         // var grades = data["grades"]
         // var person = data["person"]

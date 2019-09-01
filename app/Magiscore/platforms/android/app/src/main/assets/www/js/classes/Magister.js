@@ -5,6 +5,8 @@ class Magister {
      * 
      */
     constructor(tenant, token) {
+        logConsole("new Magister -> " + tenant)
+        
         /**
          * @type {String}
          * @readonly
@@ -31,7 +33,7 @@ class Magister {
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}.magister.net/api/account?noCache=0`,
+                    "url": `https://${this.tenant}/api/account?noCache=0`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
@@ -45,8 +47,7 @@ class Magister {
                     this.namePrefix = res.Tussenvoegsel || res.tussenvoegsel
                     //this.fullName = res.Persoon.Naam || res.persoon.naam
                     //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
-                    //this.group = res.Persoon.Groep || res.persoon.groep
-                    logConsole(this.person)
+                    //this.group = res.Persoon.Groep || res.persoon.groep)
                     resolve(this.person)
                 })
         })
@@ -61,7 +62,7 @@ class Magister {
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}.magister.net/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`,
+                    "url": `https://${this.tenant}/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
@@ -84,7 +85,7 @@ class Magister {
                     // logConsole(JSON.stringify(res[3]))
                     // logConsole("---------------")
                     // logConsole(JSON.stringify(res[4]))
-                    resolve(_.sortBy(res.map(course => new Course(this, course), 'start')))
+                    resolve([new Course(this, res[0])])//_.sortBy(res.map(course => new Course(this, course), 'start')))
                 })
         })
     }

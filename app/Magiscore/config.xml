@@ -16,16 +16,25 @@
     <access origin="*" />
     <preference name="BackgroundColor" value="0xff0096db"/>
     <!-- <preference name="AutoHideSplashScreen" value="false" /> -->
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false"/>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <platform name="android">
         <allow-intent href="m6loapp:*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..."/>
-        <icon src="icons/res/mipmap-hdpi/ic_launcher.png" density="hdpi" />
-        <icon src="icons/res/mipmap-mdpi/ic_launcher.png" density="mdpi" />
-        <icon src="icons/res/mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
-        <icon src="icons/res/mipmap-xxhdpi/ic_launcher.png" density="xxhdpi" />
-        <icon src="icons/res/mipmap-xxxhdpi/ic_launcher.png" density="xxxhdpi" />
+        <icon src="res/drawable-ldpi/icon.png" density="ldpi" />
+        <icon src="res/drawable-mdpi/icon.png" density="mdpi" />
+        <icon src="res/drawable-hdpi/icon.png" density="hdpi" />
+        <icon src="res/drawable-xhdpi/icon.png" density="xhdpi" />
+        <icon src="res/drawable-xxhdpi/icon.png" density="xxhdpi" />
+        <icon src="res/drawable-xxxhdpi/icon.png" density="xxxhdpi" />
+        <splash src="res/drawable-ldpi/screen.png" density="port-ldpi"/>
+        <splash src="res/drawable-mdpi/screen.png" density="port-mdpi"/>
+        <splash src="res/drawable-hdpi/screen.png" density="port-hdpi"/>
+        <splash src="res/drawable-xhdpi/screen.png" density="port-xhdpi"/>
+        <splash src="res/drawable-xxhdpi/screen.png" density="port-xxhdpi"/>
+        <splash src="res/drawable-xxxhdpi/screen.png" density="port-xxxhdpi"/>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

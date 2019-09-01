@@ -26,12 +26,21 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="m6loapp:*" />
-    <icon density="hdpi" src="icons/res/mipmap-hdpi/ic_launcher.png" />
-    <icon density="mdpi" src="icons/res/mipmap-mdpi/ic_launcher.png" />
-    <icon density="xhdpi" src="icons/res/mipmap-xhdpi/ic_launcher.png" />
-    <icon density="xxhdpi" src="icons/res/mipmap-xxhdpi/ic_launcher.png" />
-    <icon density="xxxhdpi" src="icons/res/mipmap-xxxhdpi/ic_launcher.png" />
+    <icon density="ldpi" src="res/drawable-ldpi/icon.png" />
+    <icon density="mdpi" src="res/drawable-mdpi/icon.png" />
+    <icon density="hdpi" src="res/drawable-hdpi/icon.png" />
+    <icon density="xhdpi" src="res/drawable-xhdpi/icon.png" />
+    <icon density="xxhdpi" src="res/drawable-xxhdpi/icon.png" />
+    <icon density="xxxhdpi" src="res/drawable-xxxhdpi/icon.png" />
+    <splash density="port-ldpi" src="res/drawable-ldpi/screen.png" />
+    <splash density="port-mdpi" src="res/drawable-mdpi/screen.png" />
+    <splash density="port-hdpi" src="res/drawable-hdpi/screen.png" />
+    <splash density="port-xhdpi" src="res/drawable-xhdpi/screen.png" />
+    <splash density="port-xxhdpi" src="res/drawable-xxhdpi/screen.png" />
+    <splash density="port-xxxhdpi" src="res/drawable-xxxhdpi/screen.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="BackgroundColor" value="0xff0096db" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
 </widget>

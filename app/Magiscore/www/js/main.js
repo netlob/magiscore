@@ -17,9 +17,9 @@ viewController.initTheme()
 var sorted = {},
   person = JSON.parse(localStorage.getItem("person")),
   token = JSON.parse(localStorage.getItem("token")),
-  school = JSON.parse(localStorage.getItem("school")),
   creds = JSON.parse(localStorage.getItem("creds")),
   courses = JSON.parse(localStorage.getItem("courses")),
+  school = localStorage.getItem("school"),
   m = null
 
 function main(l) {
@@ -99,80 +99,64 @@ function round(num) {
 }
 
 function syncGrades() {
-  return new Promise(function (resolve, reject) {
-    // $("#overlay").show();
-    // var settings = {
-    //   "async": true,
-    //   "crossDomain": true,
-    //   "url": creds.demo ? "https://api.magiscore.nl/demo" : "https://api.magiscore.nl/grades",
-    //   "method": "GET",
-    //   "headers": {
-    //     "username": creds.demo ? "" : creds.username,
-    //     "password": creds.demo ? "" : creds.password,
-    //     "school": creds.demo ? "" : creds.school
-    //   }
-    // }
+  m.courses()
+    .then(courses => {
+        let requests = courses.map((course) => {
+            return new Promise((resolve) => {
+                Promise.all([course.grades(), course.classes()])
+                    .then(values => {
+                        logConsole("Grades.length: " + values[0].length)
+                        logConsole("Classes.length: " + values[1].length)
+                        course.grades = values[0]
+                        course.classes = values[1]
+                        resolve(course)
+                    }).catch(err => {
+                        res.end(err.toString())
+                    });
+            });
+        })
 
-    // $.ajax(settings).done(function (response) {
-    // $("#overlay").show();
-    getGrades()
-      .then(() => {
-        lessonController.clear()
-        logConsole("getGradesSucces")
-        // logConsole(JSON.stringify(grades))
-        // localStorage.removeItem("grades");
-        // localStorage.removeItem("person");
-        // localStorage.removeItem("token");
-        // localStorage.removeItem("school");
-        // localStorage.removeItem("courses");
-        // sorted = {}
-        // var data = JSON.parse(response)
-        // var grades = data["grades"]
-        // var person = data["person"]
-        // var token = data["token"]
-        // var school = data["school"]
-        // var course = data["courses"]
-        // localStorage.setItem("grades", JSON.stringify(grades));
-        // localStorage.setItem("person", JSON.stringify(person));
-        // localStorage.setItem("token", JSON.stringify(token));
-        // localStorage.setItem("school", JSON.stringify(school));
-        // localStorage.setItem("courses", JSON.stringify(course));
-        courses = JSON.parse(localStorage.getItem("courses"))
-        // var grades = 
-        // var sorted = {}
-        // grades.forEach(grade => {
-        //   var vak = grade.class.description.capitalize()
-        //   if (sorted[vak] == null) {
-        //     sorted[vak] = []
-        //   }
-        //   if (sorted[vak][grade.type.header] == null) {
-        //     sorted[vak][grade.type.header] = []
-        //   }
-        //   if (sorted[vak]['Grades'] == null) {
-        //     sorted[vak]['Grades'] = []
-        //   }
-        //   if (sorted[vak]['Completed'] == null) {
-        //     sorted[vak]['Completed'] = []
-        //   }
-        //   sorted[vak][grade.type.header].push(grade)
-        //   if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
-        //     sorted[vak]['Grades'].push(grade)
-        //   }
-        //   if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
-        //     sorted[vak]['Completed'].push(grade)
-        //   }
-        // })
-        //alert("sortedgrades")
-        // $("#overlay").hide();
-        // viewController.lineChart.destroy();
-        main()
-        resolve()
-      }).catch((e) => {
-        errorConsole(e)
-        $("#overlay").hide();
-        //viewController.toast(response, 5000)
-        reject()
-      })
+        Promise.all(requests)
+            .then(values => {
+                localStorage.setItem("person", JSON.stringify(person));
+                localStorage.setItem("school", m.tenant);
+                localStorage.setItem("courses", JSON.stringify(values));
+                person = person
+                courses = values
+                main()
+                // resolve(values)
+            })
+    }).catch(err => {
+        errorConsole(err + " 2")
+    })
+  // var grades = 
+  // var sorted = {}
+  // grades.forEach(grade => {
+  //   var vak = grade.class.description.capitalize()
+  //   if (sorted[vak] == null) {
+  //     sorted[vak] = []
+  //   }
+  //   if (sorted[vak][grade.type.header] == null) {
+  //     sorted[vak][grade.type.header] = []
+  //   }
+  //   if (sorted[vak]['Grades'] == null) {
+  //     sorted[vak]['Grades'] = []
+  //   }
+  //   if (sorted[vak]['Completed'] == null) {
+  //     sorted[vak]['Completed'] = []
+  //   }
+  //   sorted[vak][grade.type.header].push(grade)
+  //   if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
+  //     sorted[vak]['Grades'].push(grade)
+  //   }
+  //   if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
+  //     sorted[vak]['Completed'].push(grade)
+  //   }
+  // })
+  //alert("sortedgrades")
+  // $("#overlay").hide();
+  // viewController.lineChart.destroy();
+}
     // lessonController.clear()
     // localStorage.removeItem("grades");
     // localStorage.removeItem("person");
@@ -222,26 +206,6 @@ function syncGrades() {
     //   viewController.toast(response, 5000)
     //   reject()
     // }
-  }).then().catch(e => {
-    errorConsole(e)
-  })
-}
-
-function updateCache() {
-  return new Promise(function (resolve, reject) {
-    viewController.removeToasts()
-    $("#overlay").show();
-    var msg_chan = new MessageChannel();
-    msg_chan.port1.onmessage = function (event) {
-      if (event.data.error) {
-        reject(event.data.error);
-      } else {
-        resolve(event.data);
-      }
-    };
-    navigator.serviceWorker.controller.postMessage("updateAvailablePleaseUpdate", [msg_chan.port2]);
-    location.reload();
-  });
 }
 
 $("body").keypress(function (e) {
@@ -366,31 +330,31 @@ $('.container-fluid').click(function () {
 function onDeviceReady() {
   if (localStorage.getItem("tokens") != null) {
     logConsole('Device ready!')
+    navigator.vibrate([30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 200, 1000]);
     refreshToken()
       .then((tokens) => {
+        logConsole('Got tokens!')
         m = new Magister(school, tokens.access_token)
-        m.info()
-          .then(person => {
-            logConsole("info")
-            m.courses()
-          })
+        // m.info()
+        //   .then(person => {
+        //     logConsole("Got person info!")
+        //     m.courses()
+        //   })
         syncGrades()
-          .then(() => {
-
-
-            main();
-          }).catch(err => {
-            errorConsole(err)
-            // getLatestGrades()
-            //   .then((grades) => viewController.setLatestGrades(grades))
-            //   .catch(err => {
-            //     errorConsole(err)
-            //     //navigator.vibrate([20, 10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 200, 1000]);
-            //   })
-          })
-          .catch(err => {
-            errorConsole(err)
-          })
+          // .then(() => {
+          //   logConsole('Synced grades!')
+          // }).catch(err => {
+          //   throw new Error(err)
+          //   // getLatestGrades()
+          //   //   .then((grades) => viewController.setLatestGrades(grades))
+          //   //   .catch(err => {
+          //   //     errorConsole(err)
+          //   //     //navigator.vibrate([20, 10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 200, 1000]);
+          //   //   })
+          // })
+          // .catch(err => {
+          //   throw new Error(err)
+          // })
       });
   } else {
     window.location = './login/index.html'
