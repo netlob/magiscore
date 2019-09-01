@@ -24,6 +24,7 @@ var currentLesson,
 function main(l) {
   sorted = {}
   viewController.currentCourse = courses[courses.length - 1]
+  viewController.courses = courses
   var grades = localStorage.getItem("grades");
   if (grades && person && courses && school && viewController.config) {
     grades = JSON.parse(viewController.currentCourse.grades)
@@ -370,16 +371,18 @@ function onDeviceReady() {
         syncGrades()
           .then(() => {
             main();
+          }).catch(err => {
+            errorConsole(err)
+            // getLatestGrades()
+            //   .then((grades) => viewController.setLatestGrades(grades))
+            //   .catch(err => {
+            //     errorConsole(err)
+            //     //navigator.vibrate([20, 10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 200, 1000]);
+            //   })
           })
-        // getLatestGrades()
-        //   .then((grades) => viewController.setLatestGrades(grades))
-        //   .catch(err => {
-        //     errorConsole(err)
-        //     //navigator.vibrate([20, 10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 200, 1000]);
-        //   })
-      })
-      .catch(err => {
-        errorConsole(err)
+          .catch(err => {
+            errorConsole(err)
+          })
       });
   } else {
     window.location = './login/index.html'

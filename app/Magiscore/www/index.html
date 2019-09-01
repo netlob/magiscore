@@ -304,7 +304,28 @@
               </div>
             </li> -->
 
-            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1 no-primary-hover">
+              <a class="nav-link dropdown-toggle background-primary" id="yearDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-calendar-alt fa-fw d-block d-md-none mobile-clock"></i>
+                <i class="fas fa-calendar-alt fa-fw text-gray-600 d-none d-md-block"></i>
+                <span class="ml-1 mr-2 text-gray-600 d-none d-md-block">Leerjaren</span>
+              </a>
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
+                aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header background-primary">
+                  Kies een schooljaar
+                </h6>
+                <div id="years">
+                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">15/16 - Klas 1S1</a>
+                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">16/17 - Klas 2S1</a>
+                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">17/18 - Klas 3S1</a>
+                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">18/19 - Klas 4H6 (E&M)</a>
+                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">19/20 - Klas 5H1 (E&M)</a>
+                </div>
+              </div>
+            </li>
+
             <li class="nav-item dropdown no-arrow mx-1 no-primary-hover">
               <a class="nav-link dropdown-toggle background-primary" id="messagesDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -313,7 +334,6 @@
                 <span class="ml-1 mr-2 pr-4 text-gray-600 d-none d-md-block">Laatste cijfers</span>
                 <span class="badge badge-primary badge-counter mr-3 d-none d-md-block" id="latest-grades-badge">X</span>
               </a>
-              <!-- Dropdown - Messages -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
                 aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header background-primary">
@@ -889,8 +909,6 @@
   <script src="js/Grade.js"></script>
   <script src="js/Magister.js"></script>
 
-  <script src="js/deps/magister.js"></script>
-  <script src="js/deps/algebra.js"></script>
   <script src="js/deps/imagecache.js"></script>
   <script src="js/deps/chartannotation.js"></script>
   <script src="js/deps/jspdf.min.js"></script>
