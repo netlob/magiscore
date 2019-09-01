@@ -161,7 +161,7 @@ function syncGrades() {
         })
         //alert("sortedgrades")
         $("#overlay").hide();
-        viewController.lineChart.destroy();
+        // viewController.lineChart.destroy();
         main(currentLesson)
         resolve()
       }).catch((e) => {
@@ -363,16 +363,14 @@ $('.container-fluid').click(function () {
 
 function onDeviceReady() {
   //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-  if (localStorage.getItem("tokens") === null) {
-    window.location = './login/index.html'
-
-  } else {
+  if ("tokens" in localStorage) {
     refreshToken()
       .then(() => {
         main();
         syncGrades()
       });
-
+  } else {
+    window.location = './login/index.html'
   }
 }
 

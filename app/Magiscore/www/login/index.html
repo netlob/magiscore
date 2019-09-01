@@ -27,7 +27,7 @@
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary" style="overflow: hidden !important">
   <pre id="kehba"></pre>
   <pre id="kehba2"></pre>
   <div class="container-login">
@@ -42,21 +42,30 @@
             <!-- Nested Row within Card Body -->
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Magister Login</h1>
+                <h1 class="h4 text-gray-900 mb-4">Login</h1>
               </div>
-              <form class="user">
+              <form class="user" onsubmit="return">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="login-school" aria-describedby="school"
                     placeholder="School">
+                  <table class="schools-table"
+                    style="max-height: 190px !important; overflow-y: scroll !important; display: block; width: 100%">
+                    <tbody id="schools-table">
+                    </tbody>
+                  </table>
                 </div>
-                <a onclick="openLoginWindow();//var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes,hideurlbar=yes');"
+                <!-- <a class="magister-login btn btn-primary btn-user bg-gradiant-primary"
+                  style="margin: 0px 1rem 0px 1rem; display: block;" onclick="openLoginWindow()">
+                  Login</a> -->
+                <!-- <a onclick=";//var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes,hideurlbar=yes');"
                   class="btn btn-primary btn-user bg-gradiant-primary"
-                  style="margin: 0px 1rem 0px 1rem; display: block;">Login</a>
-                <br>
-                <hr>
-                <br>
-                <a class="magister-login btn btn-primary btn-user bg-gradiant-primary" onclick="getGrades()">
-                  TestDieSync</a>
+                  style="margin: 0px 1rem 0px 1rem; display: block;">Login</a> -->
+                <!-- <br> -->
+                <!-- <hr> -->
+                <!-- <br> -->
+                <!-- <div>Login bij Magiscore door je school in te vullen en aan te klikken en vervolgens op de grote login
+                  knop te drukken. Dit opent een browser-pagina met magister waar je na het invullen van je gegevens
+                  terug gestuurd wordt naar Magiscore.</div> -->
               </form>
             </div>
           </div>
@@ -65,8 +74,8 @@
     </div>
   </div>
 
-  <a onclick="//login({}, true)" class="btn btn-demo"
-    style="position: absolute; bottom: 30px; right: 40px; color: yellow !important">Demo login</a>
+  <!-- <a onclick="//login({}, true)" class="btn btn-demo"
+    style="position: absolute; bottom: 30px; right: 40px; color: yellow !important">Demo login</a> -->
 
   <div id="overlay">
     <div class="spinner-border" role="status">
@@ -110,11 +119,37 @@
   <script>
     $(document).ready(function () {
       $(function () {
-        $('#login-school').autocomplete({
-          source: scholen
+        $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
+          var self = this;
+          $("#schools-table").empty()
+          $.each(items, function (index, item) {
+            self._renderItemData(ul, $("#schools-table"), item);
+          });
+        };
+        $.ui.autocomplete.prototype._renderItemData = function (ul, table, item) {
+          return this._renderItem($("#schools-table"), item).data("ui-autocomplete-item", item);
+        };
+        $.ui.autocomplete.prototype._renderItem = function (table, item) {
+          return $("<tr role='presentation'></tr>")
+            //.data( "item.autocomplete", item )
+            .append(
+              `<td onclick="openLoginWindow('${item.value}')"><span class="font-weight-bold">${item.label}</span><br>${item.value}<hr class="mb-1 mt-1"></td>`
+            )
+            .appendTo($("#schools-table"));
+        };
+        $("#login-school").autocomplete({
+          minLength: 1,
+          source: scholen,
         })
       });
     });
+    // $.extend($.ui.autocomplete.prototype.options, {
+    //   open: function (event, ui) {
+    //     $(this).autocomplete("widget").css({
+    //       "width": ($(this).width() + "px")
+    //     });
+    //   }
+    // });
   </script>
 </body>
 
