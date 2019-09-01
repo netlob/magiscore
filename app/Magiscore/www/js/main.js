@@ -19,14 +19,14 @@ var currentLesson,
   token = JSON.parse(localStorage.getItem("token")),
   school = JSON.parse(localStorage.getItem("school")),
   creds = JSON.parse(localStorage.getItem("creds")),
-  courses = JSON.parse(localStorage.getItem("courses")),
-  course = JSON.parse(localStorage.getItem("course"))
+  courses = JSON.parse(localStorage.getItem("courses"))
 
 function main(l) {
   sorted = {}
+  viewController.currentCourse = courses[courses.length - 1]
   var grades = localStorage.getItem("grades");
-  if (grades && person && course && school && viewController.config) {
-    grades = JSON.parse(grades)
+  if (grades && person && courses && school && viewController.config) {
+    grades = JSON.parse(viewController.currentCourse.grades)
 
     grades.forEach(grade => {
       var vak = grade.class.description.capitalize()
@@ -116,7 +116,7 @@ function syncGrades() {
       .then(() => {
         lessonController.clear()
         logConsole("getGradesSucces")
-        logConsole(JSON.stringify(grades))
+        // logConsole(JSON.stringify(grades))
         // localStorage.removeItem("grades");
         // localStorage.removeItem("person");
         // localStorage.removeItem("token");
@@ -134,35 +134,35 @@ function syncGrades() {
         // localStorage.setItem("token", JSON.stringify(token));
         // localStorage.setItem("school", JSON.stringify(school));
         // localStorage.setItem("courses", JSON.stringify(course));
-
-        var grades = JSON.parse(localStorage.getItem("grades"))
-        var sorted = {}
-        grades.forEach(grade => {
-          var vak = grade.class.description.capitalize()
-          if (sorted[vak] == null) {
-            sorted[vak] = []
-          }
-          if (sorted[vak][grade.type.header] == null) {
-            sorted[vak][grade.type.header] = []
-          }
-          if (sorted[vak]['Grades'] == null) {
-            sorted[vak]['Grades'] = []
-          }
-          if (sorted[vak]['Completed'] == null) {
-            sorted[vak]['Completed'] = []
-          }
-          sorted[vak][grade.type.header].push(grade)
-          if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
-            sorted[vak]['Grades'].push(grade)
-          }
-          if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
-            sorted[vak]['Completed'].push(grade)
-          }
-        })
+        courses = JSON.parse(localStorage.getItem("courses"))
+        // var grades = 
+        // var sorted = {}
+        // grades.forEach(grade => {
+        //   var vak = grade.class.description.capitalize()
+        //   if (sorted[vak] == null) {
+        //     sorted[vak] = []
+        //   }
+        //   if (sorted[vak][grade.type.header] == null) {
+        //     sorted[vak][grade.type.header] = []
+        //   }
+        //   if (sorted[vak]['Grades'] == null) {
+        //     sorted[vak]['Grades'] = []
+        //   }
+        //   if (sorted[vak]['Completed'] == null) {
+        //     sorted[vak]['Completed'] = []
+        //   }
+        //   sorted[vak][grade.type.header].push(grade)
+        //   if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
+        //     sorted[vak]['Grades'].push(grade)
+        //   }
+        //   if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
+        //     sorted[vak]['Completed'].push(grade)
+        //   }
+        // })
         //alert("sortedgrades")
-        $("#overlay").hide();
+        // $("#overlay").hide();
         // viewController.lineChart.destroy();
-        main(currentLesson)
+        main()
         resolve()
       }).catch((e) => {
         errorConsole(e)
@@ -263,7 +263,7 @@ $("body").keypress(function (e) {
 const ptr = PullToRefresh.init({
   mainElement: '#ptr',
   shouldPullToRefresh: function () {
-    return $(window).scrollTop() == 0 && $(".sidebar").css("z-index") < 0
+    return ($(window).scrollTop() == 0) && ($(".sidebar").css("z-index") < 0) && ($("#overlay").css("display") == "none")
   },
   onRefresh: function (done) {
     syncGrades().then(d => done())
@@ -368,6 +368,7 @@ function onDeviceReady() {
       .then(() => {
         main();
         syncGrades()
+        navigator.vibrate([20, 10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 200, 1000]);
       });
   } else {
     window.location = './login/index.html'

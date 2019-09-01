@@ -44,14 +44,19 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Login</h1>
               </div>
-              <form class="user">
+              <form class="user" onsubmit="return">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="login-school" aria-describedby="school"
                     placeholder="School">
+                  <table class="schools-table"
+                    style="max-height: 190px !important; overflow-y: scroll !important; display: block; width: 100%">
+                    <tbody id="schools-table">
+                    </tbody>
+                  </table>
                 </div>
-                <a class="magister-login btn btn-primary btn-user bg-gradiant-primary"
+                <!-- <a class="magister-login btn btn-primary btn-user bg-gradiant-primary"
                   style="margin: 0px 1rem 0px 1rem; display: block;" onclick="openLoginWindow()">
-                  Login</a>
+                  Login</a> -->
                 <!-- <a onclick=";//var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes,hideurlbar=yes');"
                   class="btn btn-primary btn-user bg-gradiant-primary"
                   style="margin: 0px 1rem 0px 1rem; display: block;">Login</a> -->
@@ -68,6 +73,11 @@
       </div>
     </div>
   </div>
+
+  <!-- <div
+    style="font-size: 250px; color: white; position: fixed; bottom: 0px; margin: 0px !important; width: 100vw; text-align: center !important">
+    <i class="fa fa-chart-line"></i>
+  </div> -->
 
   <!-- <a onclick="//login({}, true)" class="btn btn-demo"
     style="position: absolute; bottom: 30px; right: 40px; color: yellow !important">Demo login</a> -->
@@ -114,19 +124,37 @@
   <script>
     $(document).ready(function () {
       $(function () {
-        $('#login-school').autocomplete({
-          source: scholen
+        $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
+          var self = this;
+          $("#schools-table").empty()
+          $.each(items, function (index, item) {
+            self._renderItemData(ul, $("#schools-table"), item);
+          });
+        };
+        $.ui.autocomplete.prototype._renderItemData = function (ul, table, item) {
+          return this._renderItem($("#schools-table"), item).data("ui-autocomplete-item", item);
+        };
+        $.ui.autocomplete.prototype._renderItem = function (table, item) {
+          return $("<tr role='presentation'></tr>")
+            //.data( "item.autocomplete", item )
+            .append(
+              `<td onclick="openLoginWindow('${item.value}')"><span class="font-weight-bold">${item.label}</span><br>${item.value}<hr class="mb-1 mt-1"></td>`
+            )
+            .appendTo($("#schools-table"));
+        };
+        $("#login-school").autocomplete({
+          minLength: 1,
+          source: scholen,
         })
-        // $('#ui-id-1').css("width", ($('#login-school').css("width") + " !important"))
       });
     });
-    $.extend($.ui.autocomplete.prototype.options, {
-      open: function (event, ui) {
-        $(this).autocomplete("widget").css({
-          "width": ($(this).width() + "px")
-        });
-      }
-    });
+    // $.extend($.ui.autocomplete.prototype.options, {
+    //   open: function (event, ui) {
+    //     $(this).autocomplete("widget").css({
+    //       "width": ($(this).width() + "px")
+    //     });
+    //   }
+    // });
   </script>
 </body>
 
