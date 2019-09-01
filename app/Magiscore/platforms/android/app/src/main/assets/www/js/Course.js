@@ -120,8 +120,7 @@ class Course {
      */
     grades({
         fillGrades = true,
-        latest = false,
-        firstTime = false
+        latest = false
     } = {}) {
         return new Promise((resolve, reject) => {
             logConsole("RAW:")

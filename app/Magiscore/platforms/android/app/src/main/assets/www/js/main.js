@@ -19,7 +19,8 @@ var currentLesson,
   token = JSON.parse(localStorage.getItem("token")),
   school = JSON.parse(localStorage.getItem("school")),
   creds = JSON.parse(localStorage.getItem("creds")),
-  courses = JSON.parse(localStorage.getItem("courses"))
+  courses = JSON.parse(localStorage.getItem("courses")),
+  m = null
 
 function main(l) {
   sorted = {}
@@ -364,12 +365,17 @@ $('.container-fluid').click(function () {
 
 function onDeviceReady() {
   //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-  if ("tokens" in localStorage) {
-    refreshToken()
-      .then(() => {
 
+
+  if (localStorage.getItem("tokens") != null) {
+
+    refreshToken()
+      .then((tokens) => {
+        m = new Magister(school, tokens.access_token)
         syncGrades()
           .then(() => {
+
+
             main();
           }).catch(err => {
             errorConsole(err)

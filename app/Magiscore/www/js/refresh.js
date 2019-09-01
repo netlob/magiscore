@@ -25,7 +25,7 @@ function refreshToken() {
                 id_token: response.id_token
             }
             localStorage.setItem("tokens", JSON.stringify(tokens))
-            resolve()
+            resolve(tokens)
         });
     })
 

@@ -19,7 +19,8 @@ var currentLesson,
   token = JSON.parse(localStorage.getItem("token")),
   school = JSON.parse(localStorage.getItem("school")),
   creds = JSON.parse(localStorage.getItem("creds")),
-  courses = JSON.parse(localStorage.getItem("courses"))
+  courses = JSON.parse(localStorage.getItem("courses")),
+  m = null
 
 function main(l) {
   sorted = {}
@@ -364,23 +365,35 @@ $('.container-fluid').click(function () {
 
 function onDeviceReady() {
   //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-  if ("tokens" in localStorage) {
-    refreshToken()
-      .then(() => {
 
+
+  if (localStorage.getItem("tokens") != null) {
+
+    refreshToken()
+      .then((tokens) => {
+        m = new Magister(school, tokens.access_token)
+        m.info()
+          .then(person => {
+            logConsole("info")
+            m.courses()
+          })
         syncGrades()
           .then(() => {
+
+
             main();
+          }).catch(err => {
+            errorConsole(err)
+            // getLatestGrades()
+            //   .then((grades) => viewController.setLatestGrades(grades))
+            //   .catch(err => {
+            //     errorConsole(err)
+            //     //navigator.vibrate([20, 10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 200, 1000]);
+            //   })
           })
-        // getLatestGrades()
-        //   .then((grades) => viewController.setLatestGrades(grades))
-        //   .catch(err => {
-        //     errorConsole(err)
-        //     //navigator.vibrate([20, 10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 200, 1000]);
-        //   })
-      })
-      .catch(err => {
-        errorConsole(err)
+          .catch(err => {
+            errorConsole(err)
+          })
       });
   } else {
     window.location = './login/index.html'
