@@ -147,7 +147,32 @@ function handleOpenURL(url) {
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
-
+$(document).ready(function () {
+    $(function () {
+        $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
+            var self = this;
+            $("#schools-table").empty()
+            $.each(items, function (index, item) {
+                self._renderItemData(ul, $("#schools-table"), item);
+            });
+        };
+        $.ui.autocomplete.prototype._renderItemData = function (ul, table, item) {
+            return this._renderItem($("#schools-table"), item).data("ui-autocomplete-item", item);
+        };
+        $.ui.autocomplete.prototype._renderItem = function (table, item) {
+            return $("<tr role='presentation'></tr>")
+                //.data( "item.autocomplete", item )
+                .append(
+                    `<td onclick="openLoginWindow('${item.value}')"><span class="font-weight-bold">${item.label}</span><br>${item.value}<hr class="mb-1 mt-1"></td>`
+                )
+                .appendTo($("#schools-table"));
+        };
+        $("#login-school").autocomplete({
+            minLength: 1,
+            source: scholen,
+        })
+    });
+});
 
 var schools = {
     "De Faam": "zaam",

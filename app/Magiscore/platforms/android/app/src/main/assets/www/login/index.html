@@ -88,74 +88,21 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="../vendor/jquery/jquery.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-
+  <!-- Cordova core -->
   <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
-  <script src="../js/deps/lodash.js"></script>
-  <script src="../js/utils.js"></script>
-  <script src="../js/Class.js"></script>
-  <script src="../js/GradeType.js"></script>
-  <script src="../js/Person.js"></script>
-  <script src="../js/Course.js"></script>
-  <script src="../js/GradePeriod.js"></script>
-  <script src="../js/Grade.js"></script>
-  <script src="../js/grades.js"></script>
-  <script src="../js/refresh.js"></script>
-  <script src="../js/Magister.js"></script>
 
+  <!-- Core dependencies -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../vendor/chart.js/Chart.min.js"></script>
+  <script src="../js/deps/jquery-ui.js"></script>
+  <script src="../js/deps/crypto-js.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
-
-  <script src="../js/deps/sb-admin-2.min.js"></script>
-  <script src="../js/deps/cookies.js"></script>
+  <!-- Page level scripts-->
   <script src="../js/login.js"></script>
-
-
-
-
-  <script>
-    $(document).ready(function () {
-      $(function () {
-        $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
-          var self = this;
-          $("#schools-table").empty()
-          $.each(items, function (index, item) {
-            self._renderItemData(ul, $("#schools-table"), item);
-          });
-        };
-        $.ui.autocomplete.prototype._renderItemData = function (ul, table, item) {
-          return this._renderItem($("#schools-table"), item).data("ui-autocomplete-item", item);
-        };
-        $.ui.autocomplete.prototype._renderItem = function (table, item) {
-          return $("<tr role='presentation'></tr>")
-            //.data( "item.autocomplete", item )
-            .append(
-              `<td onclick="openLoginWindow('${item.value}')"><span class="font-weight-bold">${item.label}</span><br>${item.value}<hr class="mb-1 mt-1"></td>`
-            )
-            .appendTo($("#schools-table"));
-        };
-        $("#login-school").autocomplete({
-          minLength: 1,
-          source: scholen,
-        })
-      });
-    });
-    // $.extend($.ui.autocomplete.prototype.options, {
-    //   open: function (event, ui) {
-    //     $(this).autocomplete("widget").css({
-    //       "width": ($(this).width() + "px")
-    //     });
-    //   }
-    // });
-  </script>
 </body>
 
 </html>

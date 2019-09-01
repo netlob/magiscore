@@ -10,6 +10,10 @@
     <feature name="LaunchMyApp">
         <param name="android-package" value="nl.xservices.plugins.LaunchMyApp" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
     <name short="Magiscore">Magiscore - Magister statistiek</name>
     <description>
         Magiscore very nice 10/10.

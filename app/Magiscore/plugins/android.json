@@ -22,6 +22,9 @@
     },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
     }
   },
   "dependent_plugins": {}

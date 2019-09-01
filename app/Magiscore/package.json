@@ -16,6 +16,7 @@
     "cordova-android": "^8.0.0",
     "cordova-plugin-customurlscheme": "^4.4.0",
     "cordova-plugin-inappbrowser": "^3.1.0",
+    "cordova-plugin-splashscreen": "^5.0.3",
     "cordova-plugin-vibration": "^3.1.1",
     "openid-client": "^3.6.1",
     "phin": "^3.4.0",
@@ -34,7 +35,8 @@
         "ANDROID_HOST": " ",
         "ANDROID_PATHPREFIX": "/"
       },
-      "cordova-plugin-vibration": {}
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-splashscreen": {}
     },
     "platforms": [
       "android"

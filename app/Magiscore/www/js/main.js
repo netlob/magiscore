@@ -9,12 +9,12 @@
 // }, 1000)
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController(viewController)
+var courseController = new CourseController(viewController)
 
 viewController.setConfig()
 viewController.initTheme()
 
-var currentLesson,
-  sorted = {},
+var sorted = {},
   person = JSON.parse(localStorage.getItem("person")),
   token = JSON.parse(localStorage.getItem("token")),
   school = JSON.parse(localStorage.getItem("school")),
@@ -25,10 +25,11 @@ var currentLesson,
 function main(l) {
   sorted = {}
   viewController.currentCourse = courses[courses.length - 1]
-  viewController.courses = courses
   var grades = localStorage.getItem("grades");
   if (grades && person && courses && school && viewController.config) {
     grades = JSON.parse(viewController.currentCourse.grades)
+
+    courses.forEach(c => courseController.add(c))
 
     grades.forEach(grade => {
       var vak = grade.class.description.capitalize()
@@ -214,7 +215,7 @@ function syncGrades() {
     //   // })
     //   // $("#overlay").hide();
     //   // viewController.lineChart.destroy();
-    //   // main(currentLesson)
+    //   // main(viewController.currentLesson)
     //   // resolve()
     // } else {
     //   $("#overlay").hide();
@@ -362,13 +363,9 @@ $('.container-fluid').click(function () {
 // }, true);
 
 //main()
-
 function onDeviceReady() {
-  //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-
-
   if (localStorage.getItem("tokens") != null) {
-
+    logConsole('Device ready!')
     refreshToken()
       .then((tokens) => {
         m = new Magister(school, tokens.access_token)

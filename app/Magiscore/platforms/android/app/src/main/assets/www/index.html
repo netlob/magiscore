@@ -95,7 +95,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" onclick="viewController.render('general')">
+        <a class="nav-link vibrate" onclick="viewController.render('general')">
           <!-- <i class="fas fa-fw fa-graduation-cap"></i> -->
           <span>Gemiddeld</span></a>
       </li>
@@ -305,7 +305,7 @@
             </li> -->
 
             <li class="nav-item dropdown no-arrow mx-1 no-primary-hover">
-              <a class="nav-link dropdown-toggle background-primary" id="yearDropdown" role="button"
+              <a class="nav-link dropdown-toggle background-primary vibrate" id="yearDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-calendar-alt fa-fw d-block d-md-none mobile-clock"></i>
                 <i class="fas fa-calendar-alt fa-fw text-gray-600 d-none d-md-block"></i>
@@ -317,17 +317,13 @@
                   Kies een schooljaar
                 </h6>
                 <div id="years">
-                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">15/16 - Klas 1S1</a>
-                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">16/17 - Klas 2S1</a>
-                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">17/18 - Klas 3S1</a>
-                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">18/19 - Klas 4H6 (E&M)</a>
-                  <a class="pt-3 pl-4 pb-3 pr-4 dropdown-item">19/20 - Klas 5H1 (E&M)</a>
+                  <div class="text-center mt-3 mb-2">Geen schooljaren beschikbaar...</div>
                 </div>
               </div>
             </li>
 
             <li class="nav-item dropdown no-arrow mx-1 no-primary-hover">
-              <a class="nav-link dropdown-toggle background-primary" id="messagesDropdown" role="button"
+              <a class="nav-link dropdown-toggle background-primary vibrate" id="messagesDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-clock fa-fw d-block d-md-none mobile-clock"></i>
                 <i class="fas fa-clock fa-fw text-gray-600 d-none d-md-block"></i>
@@ -350,7 +346,7 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow no-primary-hover">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+              <a class="nav-link dropdown-toggle vibrate" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-label="Uitklappen" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-lg-inline text-gray-600 small d-none d-md-block">Voornaam Achternaam</span>
                 <img class="img-profile rounded-circle" id="imgelem" src="" alt="">
@@ -358,11 +354,11 @@
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div id="mobilePersonInfo" class="dropdown-header d-block d-md-none">Voornaam Achternaam</div>
-                <a class="dropdown-item" onclick="syncGrades()">
+                <a class="dropdown-item vibrate" onclick="syncGrades()">
                   <i class="fas fa-sync fa-sm fa-fw mr-2 text-gray-400"></i>
                   Sync cijfers
                 </a>
-                <a class="dropdown-item" data-toggle="modal" data-target="#passedModal">
+                <a class="dropdown-item vibrate" data-toggle="modal" data-target="#passedModal">
                   <i class="fas fa-check fa-sm fa-fw mr-2 text-gray-400"></i>
                   Voldoendegrens
                 </a>
@@ -371,15 +367,15 @@
                     Settings
                   </a> -->
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" data-toggle="theme" onclick="viewController.toggleTheme()">
+                <a class="dropdown-item vibrate" data-toggle="theme" onclick="viewController.toggleTheme()">
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
                 </a>
-                <a class="dropdown-item" onclick="viewController.openSettings()">
+                <a class="dropdown-item vibrate" onclick="viewController.openSettings()">
                   <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                   Instellingen
                 </a>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item vibrate" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Uitloggen
                 </a>
@@ -722,7 +718,7 @@
     </div>
     <!-- End of Content Wrapper -->
 
-    <div id="overlay">
+    <div id="overlay" class="vibrate">
       <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
@@ -744,14 +740,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Klaar om uit te loggen?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+          <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">Klik "Uitloggen" als je zeker weet dat je wilt uitloggen.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Annuleer">Annuleer</button>
-          <a class="btn btn-primary" href="#logout" onclick="logOut()" role="button"
+          <button class="btn btn-secondary vibrate" type="button" data-dismiss="modal" aria-label="Annuleer">Annuleer</button>
+          <a class="btn btn-primary vibrate" href="#logout" onclick="logOut()" role="button"
             aria-label="Uitloggen">Uitloggen</a>
         </div>
       </div>
@@ -764,7 +760,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Voldoendegrens</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+          <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -778,8 +774,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Anuleer">Annuleer</button>
-          <a class="btn btn-primary" href="#logout" onclick="viewController.savePassed()" role="button"
+          <button class="btn btn-secondary vibrate" type="button" data-dismiss="modal" aria-label="Anuleer">Annuleer</button>
+          <a class="btn btn-primary vibrate" href="#logout" onclick="viewController.savePassed()" role="button"
             data-dismiss="modal" aria-label="Opslaan">Opslaan</a>
         </div>
       </div>
@@ -792,7 +788,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Beta-versie</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+          <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -802,16 +798,16 @@
           <span class="text-gray">Huidige versie: 0.2</span>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" aria-label="Anuleer"
+          <button class="btn btn-secondary vibrate" type="button" aria-label="Anuleer"
             onclick="window.location='https://google.com'">Annuleer</button>
-          <a class="btn btn-primary" href="#" role="button" data-dismiss="modal" aria-label="Akkoord">Akkoord</a>
+          <a class="btn btn-primary vibrate" href="#" role="button" data-dismiss="modal" aria-label="Akkoord">Akkoord</a>
         </div>
       </div>
     </div>
   </div>
 
   <div id="settings-wrapper">
-    <div class="settings-close bg-white" onclick="viewController.closeSettings()">
+    <div class="settings-close bg-white vibrate" onclick="viewController.closeSettings()">
       <i class="fa fa-times"></i>
       <!-- <span class="ml-2 text-gray-800 font-weight-bold">Sluiten</span> -->
     </div>
@@ -879,36 +875,18 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/deps/sb-admin-2.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <!-- <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
-  <script src="js/demo/chart-bar-demo.js"></script> -->
-
+  <!-- Cordova core -->
   <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
-  <script src="js/deps/lodash.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/Class.js"></script>
-  <script src="js/GradeType.js"></script>
-  <script src="js/Person.js"></script>
-  <script src="js/Course.js"></script>
-  <script src="js/GradePeriod.js"></script>
-  <script src="js/Grade.js"></script>
-  <script src="js/Magister.js"></script>
+  <!-- Core dependencies -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/chart.js/Chart.min.js"></script>
 
+  <!-- Page dependencies -->
+  <script src="js/deps/main.js"></script>
+  <script src="js/deps/lodash.js"></script>
   <script src="js/deps/imagecache.js"></script>
   <script src="js/deps/chartannotation.js"></script>
   <script src="js/deps/jspdf.min.js"></script>
@@ -916,93 +894,23 @@
   <script src="js/deps/pull.js"></script>
   <script src="js/deps/snap.js"></script>
   <script src="js/deps/fastclick.js"></script>
-  <script src="js/Lesson.js"></script>
-  <script src="js/ViewController.js"></script>
-  <script src="js/LessonController.js"></script>
+
+  <!-- Page scripts and magister classes -->
+  <script src="js/utils.js"></script>
+  <script src="js/classes/Class.js"></script>
+  <script src="js/classes/GradeType.js"></script>
+  <script src="js/classes/Person.js"></script>
+  <script src="js/classes/Course.js"></script>
+  <script src="js/classes/GradePeriod.js"></script>
+  <script src="js/classes/Grade.js"></script>
+  <script src="js/classes/Magister.js"></script>
+  <script src="js/classes/Lesson.js"></script>
+  <script src="js/controllers/ViewController.js"></script>
+  <script src="js/controllers/CourseController.js"></script>
+  <script src="js/controllers/LessonController.js"></script>
   <script src="js/grades.js"></script>
   <script src="js/refresh.js"></script>
-  <!-- <script src="js/push.js"></script> -->
   <script src="js/main.js"></script>
-  <!-- <script>
-    // var width = $(window).width();
-    // if (width < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
-    //   document.querySelector('#sidebarToggleTop').click()
-    // }
-    // $(window).resize(function () {
-    //   if ($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar')
-    //     .classList.contains('toggled')) {
-    //     document.querySelector('#sidebarToggleTop').click()
-    //   }
-    // })
-    // $(window).resize(function () {
-    //   if ($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar')
-    //     .classList.contains('toggled')) {
-    //     document.querySelector('#sidebarToggleTop').click()
-    //   }
-    // })
-
-      // var registration;
-
-      // window.isUpdateAvailable = new Promise(function(resolve, reject) {
-      //   if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
-      //     navigator.serviceWorker.register('./service-worker.js', { scope: "/" })
-      //     .then(reg => {
-      //       const subscribeOptions = {
-      //         userVisibleOnly: true,
-      //         applicationServerKey: urlBase64ToUint8Array('BC79U18J9Pn9ddyl7Vme5nYZC3blOTTlZS3qWj2QyMbtgZiMpOwe2tEWJstSsUaoHXbNQRiJ5Wi8cX2D4upxZP4')
-      //       };
-
-      //       reg.pushManager.subscribe(subscribeOptions)
-      //       .then(subscription => {
-      //         var settings = {
-      //           "async": true,
-      //           "crossDomain": true,
-      //           "url": "https://magiscore.nl/api/notifications",
-      //           "method": "GET",
-      //           "headers": {
-      //               "subscription": JSON.stringify(subscription)
-      //           }
-      //         }
-
-      //         $.ajax(settings).done(function (response) {
-      //           console.log(response)
-      //         })
-      //       })
-
-      //       console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
-      //       reg.onupdatefound = () => {
-      //         const installingWorker = reg.installing;
-      //         installingWorker.onstatechange = () => {
-      //           switch (installingWorker.state) {
-      //             case 'installed':
-      //               if (navigator.serviceWorker.controller) {
-      //                 resolve(true);
-      //               } else {
-      //                 resolve(false);
-      //               }
-      //               break;
-      //           }
-      //         };
-      //       };
-      //     })
-      //     // .then(function(pushSubscription) {
-      //     //   console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
-      //     //   return pushSubscription;
-      //     // })
-      //     .catch(err => console.error('[ServiceWorker] registration failed: ', err));
-      //   }
-      // });
-
-      // window['isUpdateAvailable']
-      // .then(isAvailable => {
-      //   if (isAvailable) {
-      //     viewController.toast(`Update beschikbaar! <button role="button" style="color: #FFFF00; outline: none !important; background: none !important; border: none !important;" onclick="updateCache()">Update</button>`)
-      //   }
-      // });
-      // if(viewController == undefined) {
-      //   location.reload()
-      // }
-  </script> -->
 </body>
 
 </html>
