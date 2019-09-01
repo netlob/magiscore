@@ -145,7 +145,7 @@ class Grade {
                     this.type.level = res.KolomNiveau
                     this.type.description = _.trim(res.KolomOmschrijving)
 
-                    this.filled = true
+                    this._filled = true
                     resolve(this)
                 })
         })

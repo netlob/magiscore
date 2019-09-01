@@ -21,9 +21,9 @@ class ViewController {
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
     }
-    $("#general-area-title").text(
-      `Alle cijfers van ${course.type.description}`
-    );
+    // $("#general-area-title").text(
+    //   `Alle cijfers van ${course.type.description}`
+    // );
     setChartData(this.config, "general", true);
     setAverages()
     currentLesson = "general";

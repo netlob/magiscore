@@ -1,3 +1,7 @@
+// import {
+//   sync
+// } from "glob";
+
 // setTimeout(function () {
 //   if ($("#userDropdown > span").text() == "Voornaam Achternaam") {
 //     location.reload()
@@ -15,7 +19,8 @@ var currentLesson,
   token = JSON.parse(localStorage.getItem("token")),
   school = JSON.parse(localStorage.getItem("school")),
   creds = JSON.parse(localStorage.getItem("creds")),
-  course = JSON.parse(localStorage.getItem("courses"))
+  courses = JSON.parse(localStorage.getItem("courses")),
+  course = JSON.parse(localStorage.getItem("course"))
 
 function main(l) {
   var grades = localStorage.getItem("grades");
@@ -107,10 +112,10 @@ function syncGrades() {
     // $.ajax(settings).done(function (response) {
     // $("#overlay").show();
     getGrades()
-      .then((grades) => {
+      .then(() => {
         lessonController.clear()
-        alert("getGradesSucces")
-        alert(JSON.stringify(grades))
+        logConsole("getGradesSucces")
+        logConsole(JSON.stringify(grades))
         // localStorage.removeItem("grades");
         // localStorage.removeItem("person");
         // localStorage.removeItem("token");
@@ -128,7 +133,8 @@ function syncGrades() {
         // localStorage.setItem("token", JSON.stringify(token));
         // localStorage.setItem("school", JSON.stringify(school));
         // localStorage.setItem("courses", JSON.stringify(course));
-        //var grades = localStorage.getItem("grades")
+
+        var grades = JSON.parse(localStorage.getItem("grades"))
         var sorted = {}
         grades.forEach(grade => {
           var vak = grade.class.description.capitalize()
@@ -158,7 +164,7 @@ function syncGrades() {
         main(currentLesson)
         resolve()
       }).catch((e) => {
-        alert(e)
+        errorConsole(e)
         $("#overlay").hide();
         //viewController.toast(response, 5000)
         reject()
@@ -212,7 +218,9 @@ function syncGrades() {
     //   viewController.toast(response, 5000)
     //   reject()
     // }
-  });
+  }).then().catch(e => {
+    errorConsole(e)
+  })
 }
 
 function updateCache() {
@@ -355,9 +363,11 @@ $('.container-fluid').click(function () {
 function onDeviceReady() {
   //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
   if ("tokens" in localStorage) {
-    refreshToken();
-    main();
-    getGrades()
+    refreshToken()
+      .then(() => {
+        main();
+        syncGrades()
+      });
   } else {
     window.location = './login/index.html'
   }
