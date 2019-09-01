@@ -23,6 +23,7 @@ var currentLesson,
   course = JSON.parse(localStorage.getItem("course"))
 
 function main(l) {
+  sorted = {}
   var grades = localStorage.getItem("grades");
   if (grades && person && course && school && viewController.config) {
     grades = JSON.parse(grades)
@@ -158,7 +159,7 @@ function syncGrades() {
             sorted[vak]['Completed'].push(grade)
           }
         })
-        alert("sortedgrades")
+        //alert("sortedgrades")
         $("#overlay").hide();
         viewController.lineChart.destroy();
         main(currentLesson)
