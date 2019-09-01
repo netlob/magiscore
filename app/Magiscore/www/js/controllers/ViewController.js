@@ -69,7 +69,7 @@ class ViewController {
 
   updateNav() {
     updateSidebar();
-    this.setLatestGrades();
+    this.setLatestGrades(courseController.allGrades);
     this.setCourses();
   }
 
@@ -176,38 +176,39 @@ class ViewController {
   }
 
   setLatestGrades(grades) {
-    grades.forEach(grade => {
-      var d = new Date(grade.dateFilledIn)
-      var w = new Date().getDate() - 7;
-      if (d < w) {
-        length++
-        $("#latest-grades").append(`
-          <a class="dropdown-item d-flex align-items-center vibrate" onclick="viewController.render('${grade.class.description.capitalize()}')">
-            <div class="dropdown-list-image mr-3">
-              <div class="rounded-circle">
-                <h3 class="text-center mt-1">${grade.grade == "10,0" ? '<span class="text-success">10!</span>' : (round(grade.grade) < this.config.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}</h3>
-              </div>
-              <!-- <div class="status-indicator bg-success"></div> -->
-            </div>
-            <div>
-              <span class="text-truncate font-weight-bold text-capitalize">${grade.class.description}</span><span
-                class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</span>
-              <div class="small text-gray-600">${grade.description}</div>
-            </div>
-          </a>
-        `)
-      }
-    })
-    if (length == 0) $("#latest-grades-empty").show()
-    else $("#latest-grades-empty").hide()
-    $("#latest-grades-badge").text(length)
+    // grades.forEach(grade => {
+    //   var d = new Date(grade.dateFilledIn)
+    //   var w = new Date().getDate() - 7;
+    //   if (d < w) {
+    //     length++
+    //     $("#latest-grades").append(`
+    //       <a class="dropdown-item d-flex align-items-center vibrate" onclick="viewController.render('${grade.class.description.capitalize()}')">
+    //         <div class="dropdown-list-image mr-3">
+    //           <div class="rounded-circle">
+    //             <h3 class="text-center mt-1">${grade.grade == "10,0" ? '<span class="text-success">10!</span>' : (round(grade.grade) < this.config.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}</h3>
+    //           </div>
+    //           <!-- <div class="status-indicator bg-success"></div> -->
+    //         </div>
+    //         <div>
+    //           <span class="text-truncate font-weight-bold text-capitalize">${grade.class.description}</span><span
+    //             class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</span>
+    //           <div class="small text-gray-600">${grade.description}</div>
+    //         </div>
+    //       </a>
+    //     `)
+    //   }
+    // })
+    // if (length == 0) $("#latest-grades-empty").show()
+    // else $("#latest-grades-empty").hide()
+    // $("#latest-grades-badge").text(length)
   }
 
   setCourses() {
     $("#years").empty()
     courseController.courses.forEach(course => {
-      var sexyDate = `${new Date(course.start).getFullYear().substring(1,3)}/${new Date(course.end).getFullYear().substring(1,3)}`
-      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="renderCourse('${course.id}')">${sexyDate} - ${course.group.description} (${course.curricula})</a>`)
+      // var sexyDate = `${new Date(course.start).getFullYear().substring(1,3)}/${new Date(course.end).getFullYear().substring(1,3)}`
+      var sexyDate = 'nee.'
+      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="renderCourse('${course.id}')">${sexyDate} - ${""/*course.group.description*/} (${course.curricula})</a>`)
     })
   }
 
