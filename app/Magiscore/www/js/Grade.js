@@ -13,6 +13,7 @@ class Grade {
          * @private
          */
         this._fillUrl = undefined
+        this._magister = magister
 
         /**
          * @type {String}
@@ -120,7 +121,7 @@ class Grade {
             if (this._filled) {
                 resolve(this)
             }
-
+            //errorConsole(this._magister.token)
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -128,7 +129,7 @@ class Grade {
                     "url": this._fillUrl,
                     "method": "GET",
                     "headers": {
-                        "Authorization": "Bearer " + this.token
+                        "Authorization": "Bearer " + this._magister.token
                     },
                     "error": function (request, status, error) {
                         errorConsole(request.status)

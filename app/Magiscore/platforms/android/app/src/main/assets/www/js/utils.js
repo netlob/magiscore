@@ -1,5 +1,5 @@
 function parseDate(val) {
-    logConsole(val)
+    //logConsole(val)
     const n = Date.parse(val)
     if (!isNaN(n)) {
         return new Date(n)

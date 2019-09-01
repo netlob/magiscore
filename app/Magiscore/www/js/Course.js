@@ -88,7 +88,6 @@ class Course {
      * @returns {Promise<Object[]>}
      */
     classes() {
-        logConsole(raw)
         return new Promise((resolve, reject) => {
             // logConsole("person id " + this._magister.person.id)
             const url = `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/vakken`
@@ -149,13 +148,16 @@ class Course {
                 })
                 .done((res) => {
                     var grades = res.Items
+                    logConsole("got grades")
                     grades = _.reject(grades, raw => raw.CijferId === 0)
-
+                    logConsole("reject works")
                     const promises = grades.map(raw => {
                         const grade = new Grade(this._magister, raw)
                         grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${_.get(raw, 'CijferKolom.Id')}`
+                        //errorConsole(grade._fillUrl)
                         return fillGrades ? grade.fill() : grade
                     })
+                    logConsole("making promises works")
                     Promise.all(promises).then(grades => {
                         resolve(grades)
                     })

@@ -28,14 +28,14 @@ function getGrades() {
                     current.classes()
                         .then(classes => {
                             logConsole("classes")
-                            logConsole(JSON.stringify(classes))
+                            //logConsole(JSON.stringify(classes))
                         }).catch(err => {
                             errorConsole(err + " 1")
                         })
                     current.grades()
                         .then(grades => {
-                            logConsole("grades")
-                            logConsole(grades)
+                            errorConsole("grades")
+                            logConsole(JSON.stringify(grades))
                         }).catch(err => {
                             errorConsole(err + " 5")
                         })
