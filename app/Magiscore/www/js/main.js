@@ -24,6 +24,7 @@ var currentLesson,
 function main(l) {
   sorted = {}
   viewController.currentCourse = courses[courses.length - 1]
+  viewController.courses = courses
   var grades = localStorage.getItem("grades");
   if (grades && person && courses && school && viewController.config) {
     grades = JSON.parse(viewController.currentCourse.grades)

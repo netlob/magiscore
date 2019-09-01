@@ -5,6 +5,7 @@ class ViewController {
     this.pieChart = pieChart;
     this.config = {};
     this.currentCourse = {}
+    this.courses = []
   }
 
   render(lesson) {
@@ -56,9 +57,14 @@ class ViewController {
     $("#lesson-wrapper").show();
   }
 
+  renderCourse(courseid) {
+
+  }
+
   updateNav() {
     updateSidebar();
     this.setLatestGrades();
+    this.setCourses();
   }
 
   downloadGraph() {
@@ -189,6 +195,13 @@ class ViewController {
     if (length == 0) $("#latest-grades-empty").show()
     else $("#latest-grades-empty").hide()
     $("#latest-grades-badge").text(length)
+  }
+
+  setCourses() {
+    this.courses.forEach(course => {
+      var sexyDate = `${new Date(course.start).getFullYear().substring(1,3)}/${new Date(course.end).getFullYear().substring(1,3)}`
+      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item" onclick="renderCourse('${course.id}')">${sexyDate} - ${course.group.description} (${course.curricula})</a>`)
+    })
   }
 
   openSettings() {
