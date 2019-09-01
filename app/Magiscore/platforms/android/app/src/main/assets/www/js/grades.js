@@ -17,10 +17,10 @@ function getGrades() {
     return new Promise((resolve, reject) => {
         var tokens = JSON.parse(localStorage.getItem("tokens"))
         //var m = new Magister("kajmunk", tokens.access_token)
-        m.info()
+        m.getInfo()
             .then(person => {
                 logConsole("info")
-                
+
             }).catch(err => {
                 errorConsole(err + " 3")
             })

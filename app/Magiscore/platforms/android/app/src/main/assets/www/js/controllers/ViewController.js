@@ -33,7 +33,9 @@ class ViewController {
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip()
     $("#general-wrapper").show();
-    $(".vibrate").on("click", function(){ navigator.vibrate(15)})
+    $(".vibrate").on("click", function () {
+      navigator.vibrate(15)
+    })
   }
 
   renderLesson(lesson) {
@@ -56,7 +58,9 @@ class ViewController {
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip()
     $("#lesson-wrapper").show();
-    $(".vibrate").on("click", function(){ navigator.vibrate(15)})
+    $(".vibrate").on("click", function () {
+      navigator.vibrate(15)
+    })
   }
 
   renderCourse(courseid) {
@@ -201,7 +205,7 @@ class ViewController {
 
   setCourses() {
     $("#years").empty()
-    this.courses.forEach(course => {
+    courseController.courses.forEach(course => {
       var sexyDate = `${new Date(course.start).getFullYear().substring(1,3)}/${new Date(course.end).getFullYear().substring(1,3)}`
       $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="renderCourse('${course.id}')">${sexyDate} - ${course.group.description} (${course.curricula})</a>`)
     })
@@ -274,12 +278,12 @@ function updateSidebar() {
   // }
   $("#userDropdown > span").text(
     `${person.firstName} ${person.lastName} ${
-    course.group.description ? "(" + course.group.description + ")" : ""
+    viewController.currentCourse.group.description ? "(" + viewController.currentCourse.group.description + ")" : ""
     }`
   );
   $("#mobilePersonInfo").text(
     `${person.firstName} ${person.lastName} ${
-    course.group.description ? "(" + course.group.description + ")" : ""
+      viewController.currentCourse.group.description ? "(" + viewController.currentCourse.group.description + ")" : ""
     }`
   );
   var header = document.getElementById("accordionSidebar");

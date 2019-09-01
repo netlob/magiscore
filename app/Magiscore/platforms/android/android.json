@@ -23,6 +23,10 @@
             {
               "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -68,6 +72,9 @@
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
     }
   },
   "dependent_plugins": {},
@@ -96,6 +103,22 @@
       "clobbers": [
         "navigator.splashscreen"
       ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification",
+      "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification_android",
+      "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -103,6 +126,7 @@
     "cordova-plugin-inappbrowser": "3.1.0",
     "cordova-plugin-customurlscheme": "4.4.0",
     "cordova-plugin-vibration": "3.1.1",
-    "cordova-plugin-splashscreen": "5.0.3"
+    "cordova-plugin-splashscreen": "5.0.3",
+    "cordova-plugin-dialogs": "2.0.2"
   }
 }

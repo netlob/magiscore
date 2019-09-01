@@ -6,7 +6,7 @@ class Magister {
      */
     constructor(tenant, token) {
         logConsole("new Magister -> " + tenant)
-        
+
         /**
          * @type {String}
          * @readonly
@@ -27,7 +27,7 @@ class Magister {
     /**
      * @returns {Promise<Object[]>}
      */
-    info() {
+    getInfo() {
         return new Promise((resolve, reject) => {
             $.ajax({
                     "dataType": "json",
@@ -56,8 +56,10 @@ class Magister {
     /**
      * @returns {Promise<Course[]>}
      */
-    courses() {
+    getCourses() {
         return new Promise((resolve, reject) => {
+            if (this.person.id == undefined) reject("Person.id is undefined!")
+            logConsole(`https://${this.tenant}/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`)
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -85,7 +87,7 @@ class Magister {
                     // logConsole(JSON.stringify(res[3]))
                     // logConsole("---------------")
                     // logConsole(JSON.stringify(res[4]))
-                    resolve([new Course(this, res[0])])//_.sortBy(res.map(course => new Course(this, course), 'start')))
+                    resolve([new Course(this, res[0])]) //_.sortBy(res.map(course => new Course(this, course), 'start')))
                 })
         })
     }
