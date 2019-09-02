@@ -27,11 +27,13 @@ function generateRandomString(length) {
 }
 
 function generateCodeVerifier() {
+    $("#loader pre").append(`<small>Code verifier gegenereerd!<small>\n`)
     var code_verifier = generateRandomString(128)
     return code_verifier;
 }
 
 function generateRandomBase64(length) {
+    $("#loader pre").append(`<small>Base64 identifier gegenereerd!<small>\n`)
     var text = "";
     var possible = "abcdef0123456789";
     for (var i = 0; i < length; i++) {
@@ -50,6 +52,7 @@ function generateRandomState(length) {
 }
 
 function generateCodeChallenge(code_verifier) {
+    $("#loader pre").append(`<small>Code challenger gegenereerd!<small>\n`)
     return code_challenge = base64URL(CryptoJS.SHA256(code_verifier))
 }
 
@@ -62,6 +65,7 @@ function openLoginWindow(school) {
     tenant = school
     if (cordova === undefined) return
     verifier = base64URL(generateCodeVerifier());
+    $("#loader pre").append(`<small>School ${tenant}<small>\n`)
     //$("#login-school").val(verifier);
 
     var nonce = generateRandomBase64(32);
@@ -94,6 +98,7 @@ function toast(msg, duration) {
 }
 
 function validateLogin(code, codeVerifier) {
+    $("#loader pre").append(`<small>Login valideren...<small>\n`)
     var settings = {
         "error": function (jqXHR, textStatus, errorThrown) {
             alert(textStatus);
@@ -112,6 +117,9 @@ function validateLogin(code, codeVerifier) {
     }
 
     $.ajax(settings).done(function (response) {
+        $("#login").hide()
+        $("#loader").show()
+        $("#loader pre").append("<small>Succesvol oauth tokens binnengehaald!<small>\n")
         //alert(response.responseText);
         //$("#kebha").empty()
         //$("#kebha2").empty()
@@ -137,7 +145,8 @@ function validateLogin(code, codeVerifier) {
             "exclude": []
         }
         localStorage.setItem("config", JSON.stringify(config));
-        window.location = '../index.html';
+        $("#loader pre").append("<small>Succesvol config bestanden opgeslagen!<small>\n")
+        // window.location = '../index.html';
         //document.write(JSON.stringify(JSON.parse(response)))
 
     });

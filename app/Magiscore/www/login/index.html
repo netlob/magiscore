@@ -28,45 +28,49 @@
 </head>
 
 <body class="bg-gradient-primary" style="overflow: hidden !important">
-  <pre id="kehba"></pre>
-  <pre id="kehba2"></pre>
-  <div class="container-login">
 
-    <!-- Outer Row -->
+  <div class="container-login" id="login" style="display: block">
     <div class="row justify-content-center">
-
       <div class="col-xl-10 col-md-9">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card o-hidden border-0 shadow-lg my-3">
           <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="p-5">
-              <div class="text-center">
+            <div class="p-3">
+              <div class="text-center mt-3">
                 <h1 class="h4 text-gray-900 mb-4">Login</h1>
               </div>
-              <form class="user" onsubmit="return">
+              <div class="user" onsubmit="return">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="login-school" aria-describedby="school"
                     placeholder="School">
                   <table class="schools-table"
-                    style="max-height: 190px !important; overflow-y: scroll !important; display: block; width: 100%">
+                    style="max-height: 190px !important; overflow-y: scroll !important; display: table; width: 100%">
                     <tbody id="schools-table">
                     </tbody>
                   </table>
                 </div>
-                <!-- <a class="magister-login btn btn-primary btn-user bg-gradiant-primary"
-                  style="margin: 0px 1rem 0px 1rem; display: block;" onclick="openLoginWindow()">
-                  Login</a> -->
-                <!-- <a onclick=";//var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes,hideurlbar=yes');"
-                  class="btn btn-primary btn-user bg-gradiant-primary"
-                  style="margin: 0px 1rem 0px 1rem; display: block;">Login</a> -->
-                <!-- <br> -->
-                <!-- <hr> -->
-                <!-- <br> -->
-                <!-- <div>Login bij Magiscore door je school in te vullen en aan te klikken en vervolgens op de grote login
-                  knop te drukken. Dit opent een browser-pagina met magister waar je na het invullen van je gegevens
-                  terug gestuurd wordt naar Magiscore.</div> -->
-              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-login" id="loader" style="display: none">
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-3">
+          <div class="card-body p-0">
+            <div class="p-3">
+              <div class="text-center mt-3">
+                <h1 class="h4 text-gray-900 mb-4">Cijfers ophalen</h1>
+              </div>
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                style="width: 75%; height: 20px;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              <br>
+              <h6>Tijd resterend: ~3 minuten</h6>
+              <hr>
+              <pre class="overflow-auto"></pre>
             </div>
           </div>
         </div>
