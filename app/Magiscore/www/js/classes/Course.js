@@ -48,22 +48,25 @@ class Course {
          * @type {{ description: String, id: Number, LocatieId: Number }}
          * @readonly
          */
-        this.group = ({
+        this.group = {
             id: raw.Groep.Id,
-            get description() {
-                const group = raw.Groep.Omschrijving
-                return group != null ?
-                    group.split(' ').find(w => /\d/.test(w)) || group :
-                    null
-            },
+            description: raw.Groep.Omschrijving,
+            // description() {
+            //     const group = raw.Groep.Omschrijving
+            //     return group != null ?
+            //         group.split(' ').find(w => /\d/.test(w)) || group :
+            //         null
+            // },
             locationId: raw.Groep.LocatieId,
-        })
+        }
+        logConsole(JSON.stringify(this.group))
 
         /**
          * @type {String[]}
          * @readonly
          */
         this.curricula = _.compact([raw.Profiel, raw.Profiel2])
+        //logConsole("curricula " + this.curricula)
 
         /**
          * @type {Object[]}
@@ -99,7 +102,7 @@ class Course {
     getClasses() {
         return new Promise((resolve, reject) => {
             // logConsole("person id " + this._magister.person.id)
-            const url = `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/vakken`
+            const url = `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/vakken`
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -135,9 +138,9 @@ class Course {
             logConsole("RAW:")
             logConsole(JSON.stringify(this.raw))
             var date = this.current() ? formatDate(new Date()) : this.raw.Einde
-            const urlPrefix = `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/cijfers`
+            const urlPrefix = `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/cijfers`
             const url = latest ?
-                `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0` :
+                `https://${this._magister.tenant}magister.net/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0` :
                 `${urlPrefix}/cijferoverzichtvooraanmelding?actievePerioden=false&alleenBerekendeKolommen=false&alleenPTAKolommen=false&peildatum=${date}`
             // logConsole(url)
             $.ajax({

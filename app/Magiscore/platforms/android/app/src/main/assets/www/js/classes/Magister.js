@@ -11,7 +11,7 @@ class Magister {
          * @type {String}
          * @readonly
          */
-        this.tenant = tenant
+        this.tenant = tenant.replace("\"", "").replace("\"", "")
         /**
          * @type {String}
          * @readonly
@@ -29,14 +29,20 @@ class Magister {
      */
     getInfo() {
         return new Promise((resolve, reject) => {
+            logConsole(`https://${this.tenant}.magister.net/api/account?noCache=0`)
             $.ajax({
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}/api/account?noCache=0`,
+                    "url": `https://${this.tenant}.magister.net/api/account?noCache=0`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
+                    },
+                    "error": function (request, status, error) {
+                        errorConsole(request.status)
+                        errorConsole(error)
+                        errorConsole(status)
                     }
                 })
                 .done((res) => {
@@ -59,15 +65,20 @@ class Magister {
     getCourses() {
         return new Promise((resolve, reject) => {
             if (this.person.id == undefined) reject("Person.id is undefined!")
-            logConsole(`https://${this.tenant}/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`)
+            logConsole(`https://${this.tenant}.magister.net/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`)
             $.ajax({
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`,
+                    "url": `https://${this.tenant}.magister.net/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
+                    },
+                    "error": function (request, status, error) {
+                        errorConsole(request.status)
+                        errorConsole(error)
+                        errorConsole(status)
                     }
                 })
                 .done((res) => {
@@ -87,7 +98,7 @@ class Magister {
                     // logConsole(JSON.stringify(res[3]))
                     // logConsole("---------------")
                     // logConsole(JSON.stringify(res[4]))
-                    resolve([new Course(this, res[0])]) //_.sortBy(res.map(course => new Course(this, course), 'start')))
+                    _.sortBy(res.map(course => new Course(this, course), 'start'))
                 })
         })
     }

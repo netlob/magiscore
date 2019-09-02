@@ -22,15 +22,17 @@ var sorted = {},
   school = localStorage.getItem("school"),
   m = null
 
+viewController.currentCourse = courses[courses.length - 1]
+
 function main(l) {
   sorted = {}
-  viewController.currentCourse = courses[courses.length - 1]
+  //viewController.currentCourse = courses[courses.length - 1]
   // if ( /*grades &&*/ f && courses && school && viewController.config) {
-
+  courseController.courses = []
   courses.forEach(c => courseController.add(c))
-  logConsole(courseController.allGrades)
+  //logConsole(courseController.allGrades)
 
-  courseController.allGrades.forEach(grade => {
+  viewController.currentCourse.grades.forEach(grade => {
     var vak = grade.class.description.capitalize()
     if (sorted[vak] == null) {
       sorted[vak] = []
@@ -103,6 +105,7 @@ function syncGrades() {
     logConsole("Sync started!")
     m.getCourses()
       .then(courses => {
+        logConsole(courses.length)
         let requests = courses.map((course) => {
           return new Promise((resolve) => {
             logConsole(JSON.stringify(course))
