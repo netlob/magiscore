@@ -132,9 +132,7 @@ class Grade {
                         "Authorization": "Bearer " + this._magister.token
                     },
                     "error": function (request, status, error) {
-                        errorConsole(request.status)
-                        errorConsole(error)
-                        errorConsole(status)
+                        reject(error)
                     }
                 })
                 .done((res) => {

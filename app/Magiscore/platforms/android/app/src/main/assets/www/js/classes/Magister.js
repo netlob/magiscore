@@ -1,12 +1,11 @@
 class Magister {
     /**
      * @private
-     * @param {String} school
+     * @param {String} tenant
+     * @param {String} token
      * 
      */
     constructor(tenant, token) {
-        logConsole("new Magister -> " + tenant)
-
         /**
          * @type {String}
          * @readonly
@@ -29,7 +28,7 @@ class Magister {
      */
     getInfo() {
         return new Promise((resolve, reject) => {
-            logConsole(`https://${this.tenant}.magister.net/api/account?noCache=0`)
+            // logConsole(`https://${this.tenant}.magister.net/api/account?noCache=0`)
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -40,9 +39,7 @@ class Magister {
                         "Authorization": "Bearer " + this.token
                     },
                     "error": function (request, status, error) {
-                        errorConsole(request.status)
-                        errorConsole(error)
-                        errorConsole(status)
+                        reject(error)
                     }
                 })
                 .done((res) => {
@@ -65,7 +62,7 @@ class Magister {
     getCourses() {
         return new Promise((resolve, reject) => {
             if (this.person.id == undefined) reject("Person.id is undefined!")
-            logConsole(`https://${this.tenant}.magister.net/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`)
+            $("#loader pre").append("<small>https://${this.tenant}.magister.net/api/personen/${this.person.id}<small>\n")
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -76,14 +73,12 @@ class Magister {
                         "Authorization": "Bearer " + this.token
                     },
                     "error": function (request, status, error) {
-                        errorConsole(request.status)
-                        errorConsole(error)
-                        errorConsole(status)
+                        reject(error)
                     }
                 })
                 .done((res) => {
                     var res = res.items || res.Items
-                    logConsole("Courses.length: " + res.length)
+                    // logConsole("Courses.length: " + res.length)
                     res.splice(-1, 1) // DIT HAALT DE LAATSTE UIT HET ARRAY
 
 

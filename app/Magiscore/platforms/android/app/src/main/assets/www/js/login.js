@@ -28,12 +28,14 @@ function generateRandomString(length) {
 
 function generateCodeVerifier() {
     $("#loader pre").append(`<small>Code verifier gegenereerd!<small>\n`)
+    addLoader(2)
     var code_verifier = generateRandomString(128)
     return code_verifier;
 }
 
 function generateRandomBase64(length) {
     $("#loader pre").append(`<small>Base64 identifier gegenereerd!<small>\n`)
+    addLoader(2)
     var text = "";
     var possible = "abcdef0123456789";
     for (var i = 0; i < length; i++) {
@@ -53,6 +55,7 @@ function generateRandomState(length) {
 
 function generateCodeChallenge(code_verifier) {
     $("#loader pre").append(`<small>Code challenger gegenereerd!<small>\n`)
+    addLoader(2)
     return code_challenge = base64URL(CryptoJS.SHA256(code_verifier))
 }
 
@@ -66,6 +69,7 @@ function openLoginWindow(school) {
     if (cordova === undefined) return
     verifier = base64URL(generateCodeVerifier());
     $("#loader pre").append(`<small>School ${tenant}<small>\n`)
+    addLoader(2)
     //$("#login-school").val(verifier);
 
     var nonce = generateRandomBase64(32);
@@ -120,23 +124,14 @@ function validateLogin(code, codeVerifier) {
         $("#login").hide()
         $("#loader").show()
         $("#loader pre").append("<small>Succesvol oauth tokens binnengehaald!<small>\n")
-        //alert(response.responseText);
-        //$("#kebha").empty()
-        //$("#kebha2").empty()
-        //document.write(response.access_token);
+        addLoader(3)
         var tokens = {
             access_token: response.access_token,
             refresh_token: response.refresh_token,
             id_token: response.id_token
         }
-
         localStorage.setItem("tokens", JSON.stringify(tokens));
         localStorage.setItem("school", tenant);
-        //var data = JSON.parse(response)
-        // var grades = data["grades"]
-        // var person = data["person"]
-        // var school = data["school"]
-        // var course = data["courses"]
         var config = {
             "isDesktop": false,
             "tention": 0.3,
@@ -146,9 +141,23 @@ function validateLogin(code, codeVerifier) {
         }
         localStorage.setItem("config", JSON.stringify(config));
         $("#loader pre").append("<small>Succesvol config bestanden opgeslagen!<small>\n")
-        // window.location = '../index.html';
-        //document.write(JSON.stringify(JSON.parse(response)))
+        addLoader(1)
 
+        var m = new Magister(tenant, response.access_token)
+        m.getInfo()
+            .then(info => {
+                $("#loader pre").append(`<small>Succesvol leerlingid (${info.person.id}) opgehaald!<small>\n`)
+                addLoader(3)
+                m.getCourses(courses => {
+                    $("#loader pre").append(`<small>Succesvol ${courses.length} leerjaren opgehaald!<small>\n`)
+                    addLoader(10)
+                }).catch(err => {
+                    throw new Error(err.toString())
+                })
+            }).catch(err => {
+                throw new Error(err.toString())
+            })
+        // window.location = '../index.html';
     });
 }
 
@@ -157,6 +166,15 @@ function handleOpenURL(url) {
     validateLogin(code, verifier);
 }
 
+function addLoader(val) {
+    var val = val + parseInt($(".progress-bar").attr("aria-valuenow"))
+    $(".progress-bar").css("width", val + "%").attr("aria-valuenow", val)
+}
+
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+    $("#loader pre").append(`<small>${msg} line: ${lineNo}\n url: ${url}`)
+    return false;
+}
 
 document.addEventListener("deviceready", onDeviceReady, false);
 

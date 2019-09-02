@@ -59,7 +59,7 @@ class Course {
             // },
             locationId: raw.Groep.LocatieId,
         }
-        logConsole(JSON.stringify(this.group))
+        // logConsole(JSON.stringify(this.group))
 
         /**
          * @type {String[]}
@@ -113,9 +113,7 @@ class Course {
                         "Authorization": "Bearer " + this._magister.token
                     },
                     "error": function (request, status, error) {
-                        errorConsole(request.status)
-                        errorConsole(error)
-                        errorConsole(status)
+                        reject(error)
                     }
                 })
                 .done((res) => {
@@ -135,8 +133,8 @@ class Course {
         latest = false
     } = {}) {
         return new Promise((resolve, reject) => {
-            logConsole("RAW:")
-            logConsole(JSON.stringify(this.raw))
+            // logConsole("RAW:")
+            // logConsole(JSON.stringify(this.raw))
             var date = this.current() ? formatDate(new Date()) : this.raw.Einde
             const urlPrefix = `https://${this._magister.tenant}.magister.net/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/cijfers`
             const url = latest ?
@@ -153,9 +151,7 @@ class Course {
                         "Authorization": "Bearer " + this._magister.token
                     },
                     "error": function (request, status, error) {
-                        errorConsole(request.status)
-                        errorConsole(error)
-                        errorConsole(status)
+                        reject(error)
                     }
                 })
                 .done((res) => {
