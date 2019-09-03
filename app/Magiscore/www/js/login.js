@@ -27,14 +27,14 @@ function generateRandomString(length) {
 }
 
 function generateCodeVerifier() {
-    $("#loader pre").append(`<small>Code verifier gegenereerd!<small>\n`)
+    logConsole(`Code verifier gegenereerd!<small>\n`)
     addLoader(2)
     var code_verifier = generateRandomString(128)
     return code_verifier;
 }
 
 function generateRandomBase64(length) {
-    $("#loader pre").append(`<small>Base64 identifier gegenereerd!<small>\n`)
+    logConsole(`Base64 identifier gegenereerd!<small>\n`)
     addLoader(2)
     var text = "";
     var possible = "abcdef0123456789";
@@ -54,7 +54,7 @@ function generateRandomState(length) {
 }
 
 function generateCodeChallenge(code_verifier) {
-    $("#loader pre").append(`<small>Code challenger gegenereerd!<small>\n`)
+    logConsole(`Code challenger gegenereerd!<small>\n`)
     addLoader(2)
     return code_challenge = base64URL(CryptoJS.SHA256(code_verifier))
 }
@@ -68,7 +68,7 @@ function openLoginWindow(school) {
     tenant = school
     if (cordova === undefined) return
     verifier = base64URL(generateCodeVerifier());
-    $("#loader pre").append(`<small>School ${tenant}<small>\n`)
+    logConsole(`School ${tenant}<small>\n`)
     addLoader(2)
     //$("#login-school").val(verifier);
 
@@ -102,7 +102,7 @@ function toast(msg, duration) {
 }
 
 function validateLogin(code, codeVerifier) {
-    $("#loader pre").append(`<small>Login valideren...<small>\n`)
+    logConsole(`Login valideren...<small>\n`)
     var settings = {
         "error": function (jqXHR, textStatus, errorThrown) {
             alert(textStatus);
@@ -146,16 +146,17 @@ function validateLogin(code, codeVerifier) {
         var m = new Magister(tenant, response.access_token)
         m.getInfo()
             .then(info => {
-                $("#loader pre").append(`<small>Succesvol leerlingid (${info.person.id}) opgehaald!<small>\n`)
+                logConsole(`Succesvol leerlingid (${info.person.id}) opgehaald!<small>\n`)
                 addLoader(3)
                 m.getCourses(courses => {
-                    $("#loader pre").append(`<small>Succesvol ${courses.length} leerjaren opgehaald!<small>\n`)
+                    logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`)
                     addLoader(10)
                 }).catch(err => {
-                    throw new Error(err.toString())
+                    // throw new Error(err.toString())
+                    errorConsole(err.toString())
                 })
             }).catch(err => {
-                throw new Error(err.toString())
+                errorConsole(err.toString())
             })
         // window.location = '../index.html';
     });
@@ -171,8 +172,16 @@ function addLoader(val) {
     $(".progress-bar").css("width", val + "%").attr("aria-valuenow", val)
 }
 
+function logConsole(err) {
+    $("#loader pre").append(`<small class="text-info">${err}"</small>\n`)
+}
+
+function errorConsole(err) {
+    $("#loader pre").append(`<small class="text-danger">${err}"</small>\n`)
+}
+
 window.onerror = function (msg, url, lineNo, columnNo, error) {
-    $("#loader pre").append(`<small>${msg} line: ${lineNo}\n url: ${url}`)
+    errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
     return false;
 }
 
