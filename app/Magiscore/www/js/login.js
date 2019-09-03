@@ -4,6 +4,19 @@ var verifier = "";
 var tenant = "";
 var popup = null
 
+function logConsole(err) {
+    $("#loader pre").prepend(`<small class="text-info">${err}</small>\n`)
+}
+
+function errorConsole(err) {
+    $("#loader pre").prepend(`<small class="text-danger">${err}</small>\n`)
+}
+
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+    errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
+    return false;
+}
+
 function getLoginInfo() {
     return {
         username: $('#login-username').val(),
@@ -27,15 +40,13 @@ function generateRandomString(length) {
 }
 
 function generateCodeVerifier() {
-    logConsole(`Code verifier gegenereerd!<small>\n`)
-    addLoader(2)
+    logConsole(`Code verifier gegenereerd!`)
     var code_verifier = generateRandomString(128)
     return code_verifier;
 }
 
 function generateRandomBase64(length) {
-    logConsole(`Base64 identifier gegenereerd!<small>\n`)
-    addLoader(2)
+    logConsole(`Base64 identifier gegenereerd!`)
     var text = "";
     var possible = "abcdef0123456789";
     for (var i = 0; i < length; i++) {
@@ -54,8 +65,7 @@ function generateRandomState(length) {
 }
 
 function generateCodeChallenge(code_verifier) {
-    logConsole(`Code challenger gegenereerd!<small>\n`)
-    addLoader(2)
+    logConsole(`Code challenger gegenereerd!`)
     return code_challenge = base64URL(CryptoJS.SHA256(code_verifier))
 }
 
@@ -68,8 +78,7 @@ function openLoginWindow(school) {
     tenant = school
     if (cordova === undefined) return
     verifier = base64URL(generateCodeVerifier());
-    logConsole(`School ${tenant}<small>\n`)
-    addLoader(2)
+    logConsole(`School ${tenant}`)
     //$("#login-school").val(verifier);
 
     var nonce = generateRandomBase64(32);
@@ -101,8 +110,8 @@ function toast(msg, duration) {
     }
 }
 
-function validateLogin(code, codeVerifier) {
-    logConsole(`Login valideren...<small>\n`)
+async function validateLogin(code, codeVerifier) {
+    logConsole(`Login valideren...`)
     var settings = {
         "error": function (jqXHR, textStatus, errorThrown) {
             alert(textStatus);
@@ -120,10 +129,10 @@ function validateLogin(code, codeVerifier) {
         "data": `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${codeVerifier}`,
     }
 
-    $.ajax(settings).done(function (response) {
+    $.ajax(settings).done((response) => {
         $("#login").hide()
         $("#loader").show()
-        $("#loader pre").append("<small>Succesvol oauth tokens binnengehaald!<small>\n")
+        logConsole(`Succesvol oauth tokens binnengehaald!`)
         addLoader(3)
         var tokens = {
             access_token: response.access_token,
@@ -140,23 +149,71 @@ function validateLogin(code, codeVerifier) {
             "exclude": []
         }
         localStorage.setItem("config", JSON.stringify(config));
-        $("#loader pre").append("<small>Succesvol config bestanden opgeslagen!<small>\n")
+        logConsole("Succesvol config bestanden opgeslagen!")
         addLoader(1)
 
         var m = new Magister(tenant, response.access_token)
+        logConsole(JSON.stringify(m))
         m.getInfo()
-            .then(info => {
-                logConsole(`Succesvol leerlingid (${info.person.id}) opgehaald!<small>\n`)
+            .then(person => {
+                logConsole(`Succesvol leerlingid (${person.id}) opgehaald!`)
                 addLoader(3)
-                m.getCourses(courses => {
-                    logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`)
-                    addLoader(10)
-                }).catch(err => {
-                    // throw new Error(err.toString())
-                    errorConsole(err.toString())
-                })
+                m.getCourses()
+                    .then(courses => {
+                        logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`)
+                        addLoader(7)
+                        const requests = courses.map(async course => {
+                            const [grades, classes] = await Promise.all([course.getGrades(), course.getClasses()]);
+                            course.grades = grades
+                            course.courses = classes
+                            return course
+                        })
+
+                        Promise.all(requests)
+                            .then(values => {
+                                addLoader(8) // 12% total, 88% remaining
+                                var totalGrades = 0
+                                var years = values.length
+                                var all = []
+                                values.forEach(value => {
+                                    totalGrades += value.grades.length
+                                    // value.grades.forEach(grade => {
+                                    //     all.push(grade)
+                                    // })
+                                    value.promises = value.grades.map(async grade => {
+                                        const filled = await grade.fill()
+                                        grade = filled
+                                        return filled
+                                    })
+                                })
+                                // var loader_total = totalGrades / 88
+                                logConsole(`Totaal ${totalGrades} cijfers!`)
+                                var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
+                                $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
+                                $("#grades-remaining").text(totalGrades)
+                                values.forEach((value, index) => {
+                                    var timeout = (index == 0) ? 0 : index * 30500
+                                    logConsole("This timeout is: " + timeout)
+                                    setTimeout(async () => {
+                                        var filled = await Promise.all(value.promises)
+                                        value.grades = filled
+                                        logConsole(filled.length)
+                                        years--
+                                        filled.length
+                                        var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
+                                        $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
+                                        $("#grades-remaining").text(totalGrades - filled.length)
+                                        addLoader(((filled.length / totalGrades) * 100), true)
+                                    }, timeout)
+                                })
+                            }).catch(err => {
+                                errorConsole(err + " 420")
+                            })
+                    }).catch(err => {
+                        errorConsole(err)
+                    })
             }).catch(err => {
-                errorConsole(err.toString())
+                errorConsole(err)
             })
         // window.location = '../index.html';
     });
@@ -167,22 +224,9 @@ function handleOpenURL(url) {
     validateLogin(code, verifier);
 }
 
-function addLoader(val) {
-    var val = val + parseInt($(".progress-bar").attr("aria-valuenow"))
+function addLoader(val, set) {
+    if (!set) var val = val + parseInt($(".progress-bar").attr("aria-valuenow"))
     $(".progress-bar").css("width", val + "%").attr("aria-valuenow", val)
-}
-
-function logConsole(err) {
-    $("#loader pre").append(`<small class="text-info">${err}"</small>\n`)
-}
-
-function errorConsole(err) {
-    $("#loader pre").append(`<small class="text-danger">${err}"</small>\n`)
-}
-
-window.onerror = function (msg, url, lineNo, columnNo, error) {
-    errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
-    return false;
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);

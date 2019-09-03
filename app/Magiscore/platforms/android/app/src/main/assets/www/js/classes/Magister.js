@@ -28,12 +28,12 @@ class Magister {
      */
     getInfo() {
         return new Promise((resolve, reject) => {
-            // logConsole(`https://${this.tenant}.magister.net/api/account?noCache=0`)
+            // logConsole(`https://${this.tenant}/api/account?noCache=0`)
             $.ajax({
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}.magister.net/api/account?noCache=0`,
+                    "url": `https://${this.tenant}/api/account?noCache=0`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
@@ -62,12 +62,12 @@ class Magister {
     getCourses() {
         return new Promise((resolve, reject) => {
             if (this.person.id == undefined) reject("Person.id is undefined!")
-            $("#loader pre").append("<small>https://${this.tenant}.magister.net/api/personen/${this.person.id}<small>\n")
+            logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
             $.ajax({
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}.magister.net/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`,
+                    "url": `https://${this.tenant}/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
@@ -78,22 +78,9 @@ class Magister {
                 })
                 .done((res) => {
                     var res = res.items || res.Items
-                    // logConsole("Courses.length: " + res.length)
                     res.splice(-1, 1) // DIT HAALT DE LAATSTE UIT HET ARRAY
-
-
-
-
-                    // logConsole(JSON.stringify(res[0]))
-                    // logConsole("---------------")
-                    // logConsole(JSON.stringify(res[1]))
-                    // logConsole("---------------")
-                    // logConsole(JSON.stringify(res[2]))
-                    // logConsole("---------------")
-                    // logConsole(JSON.stringify(res[3]))
-                    // logConsole("---------------")
-                    // logConsole(JSON.stringify(res[4]))
-                    _.sortBy(res.map(course => new Course(this, course), 'start'))
+                    // resolve(res.map(c => new Course(this, c)))
+                    resolve(_.sortBy(res.map(c => new Course(this, c)), 'start'))
                 })
         })
     }

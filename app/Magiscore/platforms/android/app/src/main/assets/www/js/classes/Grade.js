@@ -131,8 +131,14 @@ class Grade {
                     "headers": {
                         "Authorization": "Bearer " + this._magister.token
                     },
-                    "error": function (request, status, error) {
-                        reject(error)
+                    "error": function (jqXHR, statusCode, error) {
+                        errorConsole(status)
+                        // reject(error)
+                    },
+                    "statusCode": {
+                        429: function () {
+                            errorConsole("429: too many requests")
+                        }
                     }
                 })
                 .done((res) => {
