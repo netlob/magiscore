@@ -4,19 +4,6 @@ var verifier = "";
 var tenant = "";
 var popup = null
 
-function logConsole(err) {
-    $("#loader pre").prepend(`<small class="text-info">${err}</small>\n`)
-}
-
-function errorConsole(err) {
-    $("#loader pre").prepend(`<small class="text-danger">${err}</small>\n`)
-}
-
-window.onerror = function (msg, url, lineNo, columnNo, error) {
-    errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
-    return false;
-}
-
 function getLoginInfo() {
     return {
         username: $('#login-username').val(),
