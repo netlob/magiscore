@@ -4,7 +4,7 @@ class Grade {
      * @param {Magister} magister
      * @param {Object} raw
      */
-    constructor(magister, raw) {
+    constructor(magister, raw, courseId) {
         //super(magister)
 
         /**
@@ -14,6 +14,8 @@ class Grade {
          */
         this._fillUrl = undefined
         this._magister = magister
+
+        this.courseId = courseId
 
         /**
          * @type {String}
@@ -110,6 +112,11 @@ class Grade {
          * @default undefined
          */
         this.testDate = undefined
+
+        this._filled = false
+        this._filling = false;
+
+
     }
 
     // TODO: add ability to fill persons
@@ -117,6 +124,7 @@ class Grade {
      * @returns {Promise<Grade>}
      */
     fill() {
+        this._filling = true;
         return new Promise((resolve, reject) => {
             if (this._filled) {
                 resolve(this)
@@ -132,13 +140,22 @@ class Grade {
                         "Authorization": "Bearer " + this._magister.token
                     },
                     "error": function (jqXHR, statusCode, error) {
-                        errorConsole(status)
+                        errorConsole(statusCode)
                         // reject(error)
-                    },
-                    "statusCode": {
-                        429: function () {
+                        this._filling = false
+                        if (statusCode == 429) {
                             errorConsole("429: too many requests")
+                            this._magister.timedOut = true;
+                            this._filling = false
+                            this._magister.setTimeOut()
+                            logConsole("timedOut")
+                            setTimeout(function () {
+                                this.fill()
+                                    .then(grade => resolve(grade))
+                            }, 31000);
+
                         }
+
                     }
                 })
                 .done((res) => {
