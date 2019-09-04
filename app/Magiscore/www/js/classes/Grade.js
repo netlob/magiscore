@@ -160,9 +160,9 @@ class Grade {
                     "statusCode": {
                         429: function (responseObject, textStatus, jqXHR) {
                             errorConsole("429...")
-                            setTimeout(function () {
-                                this.fill()
-                            }, 31000);
+                            // setTimeout(function () {
+                            //     this.fill()
+                            // }, 31000);
                         }
                     }
                 })
