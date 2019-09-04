@@ -157,13 +157,13 @@ class Course {
                 .done((res) => {
                     var grades = res.Items || res.items
                     grades = _.reject(grades, raw => raw.CijferId === 0)
-                    grades = grades.map(raw => {
-                        const grade = new Grade(this._magister, raw, this.id)
-                        grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${_.get(raw, 'CijferKolom.Id')}`
-                        raw = grade
-                        return grade
-                    })
-                    logConsole(JSON.stringify(grades[0]))
+                    // grades = grades.map(raw => {
+                    //     const grade = new Grade(this._magister, raw, this.id)
+                    //     grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${_.get(raw, 'CijferKolom.Id')}`
+                    //     raw = grade
+                    //     return grade
+                    // })
+                    // logConsole(JSON.stringify(grades[0]))
                     // grades.forEach(grade => {
                     //     grade._filled = false;
                     //     grade._filling = false;

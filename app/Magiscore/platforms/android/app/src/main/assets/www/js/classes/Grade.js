@@ -3,6 +3,7 @@ class Grade {
      * @private
      * @param {Magister} magister
      * @param {Object} raw
+     * @param {String} courseId
      */
     constructor(magister, raw, courseId) {
         //super(magister)
@@ -42,7 +43,8 @@ class Grade {
          * @type {Class}
          * @readonly
          */
-        this.class = new Class(magister, raw.Vak)
+        this.class = new Class(magister, (raw.Vak || raw.vak), raw)
+        // this.class = (raw.Vak || raw.vak) ? new Class(magister, (raw.Vak || raw.vak)) : false
 
         /**
          * @type {Boolean}
@@ -140,22 +142,27 @@ class Grade {
                         "Authorization": "Bearer " + this._magister.token
                     },
                     "error": function (jqXHR, statusCode, error) {
-                        errorConsole(statusCode)
+                        // errorConsole("Statuscode:" + statusCode)
                         // reject(error)
-                        this._filling = false
-                        if (statusCode == 429) {
-                            errorConsole("429: too many requests")
-                            this._magister.timedOut = true;
-                            this._filling = false
-                            this._magister.setTimeOut()
-                            logConsole("timedOut")
+                        // this._filling = false
+                        // if (statusCode == 429) {
+                        // errorConsole("429: too many requests")
+                        // this._magister.timedOut = true;
+                        // this._filling = false
+                        // this._magister.setTimeOut()
+                        // logConsole("timedOut")
+                        // setTimeout(function () {
+                        //     this.fill()
+                        //         .then(grade => resolve(grade))
+                        // }, 31000);
+                        // }
+                    },
+                    "statusCode": {
+                        429: function (responseObject, textStatus, jqXHR) {
                             setTimeout(function () {
                                 this.fill()
-                                    .then(grade => resolve(grade))
                             }, 31000);
-
                         }
-
                     }
                 })
                 .done((res) => {
@@ -168,6 +175,9 @@ class Grade {
 
                     this._filled = true
                     resolve(this)
+                })
+                .fail(function (jqXHR, textStatus) {
+                    errorConsole('Something went wrong: ' + textStatus);
                 })
         })
 
