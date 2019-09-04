@@ -151,8 +151,8 @@ async function validateLogin(code, codeVerifier) {
                         addLoader(7)
                         const requests = courses.map(async course => {
                             const [grades, classes] = await Promise.all([course.getGrades({
-                                fillGrades = false,
-                                latest = false
+                                fillGrades: false,
+                                latest: false
                             }), course.getClasses()]);
                             course.grades = grades
                             course.courses = classes

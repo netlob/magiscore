@@ -93,7 +93,20 @@
     </div>
   </div>
 
+  <script>
+    function logConsole(err) {
+      $("#loader pre").prepend(`<small class="text-info">${err}</small>\n`)
+    }
 
+    function errorConsole(err) {
+      $("#loader pre").prepend(`<small class="text-danger">${err}</small>\n`)
+    }
+
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+      errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
+      return false;
+    }
+  </script>
 
   <!-- Cordova core -->
   <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
