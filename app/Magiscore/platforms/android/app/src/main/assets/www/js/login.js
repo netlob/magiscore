@@ -163,7 +163,10 @@ async function validateLogin(code, codeVerifier) {
                         logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`)
                         addLoader(7)
                         const requests = courses.map(async course => {
-                            const [grades, classes] = await Promise.all([course.getGrades(), course.getClasses()]);
+                            const [grades, classes] = await Promise.all([course.getGrades({
+                                fillGrades = false,
+                                latest = false
+                            }), course.getClasses()]);
                             course.grades = grades
                             course.courses = classes
                             return course
@@ -192,19 +195,19 @@ async function validateLogin(code, codeVerifier) {
                                 $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
                                 $("#grades-remaining").text(totalGrades)
                                 values.forEach((value, index) => {
-                                    var timeout = (index == 0) ? 0 : index * 30500
-                                    logConsole("This timeout is: " + timeout)
-                                    setTimeout(async () => {
-                                        var filled = await Promise.all(value.promises)
-                                        value.grades = filled
-                                        logConsole(filled.length)
-                                        years--
-                                        filled.length
-                                        var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
-                                        $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
-                                        $("#grades-remaining").text(totalGrades - filled.length)
-                                        addLoader(((filled.length / totalGrades) * 100), true)
-                                    }, timeout)
+                                    // var timeout = (index == 0) ? 0 : index * 30500
+                                    // logConsole("This timeout is: " + timeout)
+                                    // setTimeout(async () => {
+                                    var filled = await Promise.all(value.promises)
+                                    value.grades = filled
+                                    logConsole(filled.length)
+                                    years--
+                                    filled.length
+                                    var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
+                                    $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
+                                    $("#grades-remaining").text(totalGrades - filled.length)
+                                    addLoader(((filled.length / totalGrades) * 100), true)
+                                    // }, timeout)
                                 })
                             }).catch(err => {
                                 errorConsole(err + " 420")

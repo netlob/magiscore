@@ -155,13 +155,31 @@ class Course {
                     }
                 })
                 .done((res) => {
-                    var grades = res.Items
+                    var grades = res.Items || res.items
                     grades = _.reject(grades, raw => raw.CijferId === 0)
+                    grades = grades.map(raw => {
+                        const grade = new Grade(this._magister, raw, this.id)
+                        grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${_.get(raw, 'CijferKolom.Id')}`
+                        raw = grade
+                        return grade
+                    })
+                    logConsole(JSON.stringify(grades[0]))
+                    // grades.forEach(grade => {
+                    //     grade._filled = false;
+                    //     grade._filling = false;
+                    //     while (!grade._filled) {
+                    //         if (!grade._filling && !this._magister.timedOut) {
+                    //             grade.fill()
+                    //         }
+                    //     }
+
+                    // });
+
                     const promises = grades.map(raw => {
-                        const grade = new Grade(this._magister, raw)
+                        const grade = new Grade(this._magister, raw, this.id)
                         grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${_.get(raw, 'CijferKolom.Id')}`
                         //errorConsole(grade._fillUrl)
-                        return /*fillGrades ? grade.fill() :*/ grade
+                        return fillGrades ? grade.fill() : grade
                     })
                     Promise.all(promises).then(grades => {
                         resolve(grades)

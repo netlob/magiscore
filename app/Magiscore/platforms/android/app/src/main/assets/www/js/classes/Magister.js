@@ -21,6 +21,7 @@ class Magister {
          * @readonly
          */
         this.person = {}
+        this.timedOut = false
     }
 
     /**
@@ -83,5 +84,12 @@ class Magister {
                     resolve(_.sortBy(res.map(c => new Course(this, c)), 'start'))
                 })
         })
+    }
+
+    setTimeOut() {
+        setTimeout(function () {
+            this.timedOut = false;
+            logConsole("stopped timeout")
+        }, 31000);
     }
 }
