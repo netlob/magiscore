@@ -148,17 +148,16 @@ class Grade {
                         "Authorization": "Bearer " + this._magister.token
                     },
                     "error": function (jqXHR, statusCode, error) {
-                        errorConsole(statusCode)
-                        errorConsole(error)
-                        errorConsole(jqXHR)
+                        // errorConsole(statusCode)
+                        // errorConsole(error)
+                        // errorConsole("statuss: " + jqXHR.status)
+                        // errorConsole(JSON.stringify(jqXHR))
                         // reject(error)
                         this._filling = false
 
-                        if (statusCode == 429) {
+                        if (jqXHR.status == 429) {
                             errorConsole("429: too many requests")
-                            this._magister.timedOut = true;
                             this._filling = false
-                            this._magister.setTimeOut()
                             logConsole("timedOut")
                             // setTimeout(function () {
                             //     this.fill()
@@ -180,9 +179,6 @@ class Grade {
 
                     this._filled = true
                     resolve(this)
-                })
-                .fail(function (jqXHR, textStatus) {
-                    errorConsole('Something went wrong: ' + textStatus);
                 })
         })
 

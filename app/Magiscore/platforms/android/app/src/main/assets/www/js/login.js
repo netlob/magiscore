@@ -5,8 +5,21 @@ var tenant = "";
 var popup = null
 
 var currentGradeIndex = 0
-var all_grades = []
 var totalGrades = 0
+
+Array.prototype.chunk = function (chunkSize) {
+    var R = [];
+    for (var i = 0; i < this.length; i += chunkSize) {
+        var chunkArr = this.slice(i, i + chunkSize);
+        var chunk = {}
+        chunk.array = chunkArr
+        chunk.gradeIndex = 0
+        R.push(chunk)
+    }
+
+    return R;
+
+};
 
 function getLoginInfo() {
     return {
@@ -113,20 +126,22 @@ function makeRequestChain(val, vals) {
 
 }
 
-function fillAGrade() {
-    logConsole("starting new fill: " + (currentGradeIndex < all_grades.length))
-    if (currentGradeIndex < all_grades.length) {
-        var currentGrade = all_grades[currentGradeIndex]
+function fillAGrade(chunk) {
+    logConsole("starting new fill: " + (chunk.gradeIndex < chunk.array.length))
+    if (chunk.gradeIndex < chunk.array.length) {
+        var currentGrade = chunk.array[chunk.gradeIndex]
         currentGrade.fill().then(value => {
             logConsole("filledAGrade")
-            currentGradeIndex += 1
+            chunk.gradeIndex += 1
             totalGrades -= 1
             $("#grades-remaining").text(totalGrades)
             //logConsole(fillAGrade)
-            fillAGrade()
+            fillAGrade(chunk)
         }).catch(err => {
             if (err == 429) {
-                setTimeout(fillAGrade, 31000)
+                setTimeout(function () {
+                    fillAGrade(chunk)
+                }, 21000)
             }
         })
     }
@@ -211,8 +226,11 @@ async function validateLogin(code, codeVerifier) {
                                 var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
                                 $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
                                 $("#grades-remaining").text(totalGrades)
+                                var chunkedGrades = all_grades.chunk(6)
+                                chunkedGrades.forEach(element => {
+                                    fillAGrade(element)
+                                });
 
-                                fillAGrade()
 
                                 // logConsole("ahnee")
                                 // var promiseChain = makeRequestChain(all[0], all)
