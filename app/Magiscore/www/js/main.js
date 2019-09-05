@@ -349,7 +349,8 @@ function onDeviceReady() {
           .then(p => {
             person = p
             logConsole("Got person info!")
-            syncGrades()
+            main()
+            //syncGrades()
           })
         // .then(() => {
         //   logConsole('Synced grades!')
