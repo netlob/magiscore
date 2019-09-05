@@ -186,9 +186,9 @@
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->
-      <!-- <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle" aria-label="Toggle zijkant"></button>
-      </div> -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggleTop" aria-label="Toggle zijkant"></button>
+      </div>
 
     </ul>
     <!-- End of Sidebar -->
@@ -500,7 +500,7 @@
           <!-- Content Row -->
           <h6 class="m-0 font-weight-bold text-primary" id="general-area-title" style="overflow-y:scroll">Terminal</h6>
           <div class="card shadow mb-4" style="min-height:300px">
-            <div id="Terminal"></div>
+            <pre id="Terminal"></pre>
           </div>
           <div class="row">
 
@@ -879,6 +879,21 @@
     </div>
   </div>
 
+  <script>
+    function logConsole(err) {
+      $("#Terminal").prepend(`<small class="text-info">${err}</small>\n`)
+    }
+
+    function errorConsole(err) {
+      $("#Terminal").prepend(`<small class="text-danger">${err}</small>\n`)
+    }
+
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+      errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
+      return false;
+    }
+  </script>
+
   <!-- Cordova core -->
   <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
@@ -912,7 +927,6 @@
   <script src="js/controllers/ViewController.js"></script>
   <script src="js/controllers/CourseController.js"></script>
   <script src="js/controllers/LessonController.js"></script>
-  <script src="js/grades.js"></script>
   <script src="js/refresh.js"></script>
   <script src="js/main.js"></script>
 </body>
