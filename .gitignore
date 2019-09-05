@@ -69,3 +69,4 @@ app/build.json
 *.keystore
 app/magiscore.keystore
 .DS_Store
+app/Magiscore/platforms/android/app/src/main/assets/www

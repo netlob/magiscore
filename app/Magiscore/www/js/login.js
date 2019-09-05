@@ -7,6 +7,7 @@ var popup = null
 var currentGradeIndex = 0
 var totalGrades = 0
 var all_courses = []
+var all = []
 
 Array.prototype.chunk = function (chunkSize) {
     var R = [];
@@ -138,6 +139,12 @@ function fillAGrade(chunk) {
             $("#grades-remaining").text(totalGrades)
             //logConsole(fillAGrade)
             fillAGrade(chunk)
+
+            // var remaining = Math.round(((totalGrades + 1) * 0.2) * 10) / 10
+            // $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
+            $("#grades-remaining").text(totalGrades)
+            addLoader((100 - ((totalGrades / all.length) * 100)), true)
+
             if (totalGrades == 0) {
                 localStorage.setItem("courses", JSON.stringify(all_courses))
                 window.location = '../index.html'
@@ -219,8 +226,7 @@ async function validateLogin(code, codeVerifier) {
                                 logConsole("donerequests")
                                 addLoader(8) // 12% total, 88% remaining
                                 var years = values.length
-                                var all = []
-
+                                all = []
                                 values.forEach(value => {
                                     totalGrades += value.grades.length
                                     value.grades.forEach(grade => {
@@ -236,36 +242,7 @@ async function validateLogin(code, codeVerifier) {
                                 chunkedGrades.forEach(element => {
                                     fillAGrade(element)
                                 });
-
-
-                                // logConsole("ahnee")
-                                // var promiseChain = makeRequestChain(all[0], all)
-                                // logConsole("madeChain")
-                                // promiseChain.then(logConsole("gotAll"))
-                                //     value.promises = value.grades.map(async grade => {
-                                //         const filled = await grade.fill()
-                                //         grade = filled
-                                //         return filled
-                                //     })
                             }).catch(err => errorConsole(err))
-                        // var loader_total = totalGrades / 88
-
-
-                        // values.forEach((value, index) => {
-                        //     // var timeout = (index == 0) ? 0 : index * 30500
-                        //     // logConsole("This timeout is: " + timeout)
-                        //     // setTimeout(async () => {
-                        //     var filled = await Promise.all(value.promises)
-                        //     value.grades = filled
-                        //     logConsole(filled.length)
-                        //     years--
-                        //     filled.length
-                        //     var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
-                        //     $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
-                        //     $("#grades-remaining").text(totalGrades - filled.length)
-                        //     addLoader(((filled.length / totalGrades) * 100), true)
-                        //     // }, timeout)
-                        // })
                     }).catch(err => {
                         errorConsole(err + " 420")
                     })
@@ -275,7 +252,7 @@ async function validateLogin(code, codeVerifier) {
     }).catch(err => {
         errorConsole(err)
     })
-    // window.location = '../index.html';);
+    // window.location = '../index.html';
 }
 
 function handleOpenURL(url) {
