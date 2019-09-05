@@ -6,6 +6,7 @@ var popup = null
 
 var currentGradeIndex = 0
 var totalGrades = 0
+var all_courses = []
 
 Array.prototype.chunk = function (chunkSize) {
     var R = [];
@@ -137,6 +138,10 @@ function fillAGrade(chunk) {
             $("#grades-remaining").text(totalGrades)
             //logConsole(fillAGrade)
             fillAGrade(chunk)
+            if (totalGrades == 0) {
+                localStorage.setItem("courses", JSON.stringify(all_courses))
+                window.location = '../index.html'
+            }
         }).catch(err => {
             if (err == 429) {
                 setTimeout(function () {
@@ -196,6 +201,7 @@ async function validateLogin(code, codeVerifier) {
                 addLoader(3)
                 m.getCourses()
                     .then(async courses => {
+                        all_courses = courses
                         logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`)
                         addLoader(7)
                         const requests = await courses.map(async course => {

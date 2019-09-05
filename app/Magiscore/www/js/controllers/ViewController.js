@@ -209,7 +209,7 @@ class ViewController {
     courseController.courses.forEach(course => {
       // var sexyDate = `${new Date(course.start).getFullYear().substring(1,3)}/${new Date(course.end).getFullYear().substring(1,3)}`
       var sexyDate = 'nee.'
-      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="renderCourse('${coursese.group.description} (${"course.curricula"})</a.id}')">${sexyDate} - ${"course.group.description"} (${"course.curricula"})</a>`)
+      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="renderCourse('${courses.group.description} (${"course.curricula"})</a.id}')">${sexyDate} - ${"course.group.description"} (${"course.curricula"})</a>`)
     })
   }
 
