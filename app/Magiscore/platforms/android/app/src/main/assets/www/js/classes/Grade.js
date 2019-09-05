@@ -42,7 +42,13 @@ class Grade {
          * @type {Class}
          * @readonly
          */
-        this.class = new Class(magister, raw.Vak)
+        if (raw.Vak == undefined) {
+            // errorConsole(JSON.stringify(raw))
+        } else {
+            // logConsole(JSON.stringify(raw))
+            this.class = new Class(magister, raw.Vak)
+        }
+
 
         /**
          * @type {Boolean}
@@ -130,6 +136,7 @@ class Grade {
                 resolve(this)
             }
             //errorConsole(this._magister.token)
+            logConsole(this._fillUrl)
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -141,30 +148,35 @@ class Grade {
                     },
                     "error": function (jqXHR, statusCode, error) {
                         errorConsole(statusCode)
+                        errorConsole(error)
+                        errorConsole(jqXHR)
                         // reject(error)
                         this._filling = false
+
                         if (statusCode == 429) {
                             errorConsole("429: too many requests")
                             this._magister.timedOut = true;
                             this._filling = false
                             this._magister.setTimeOut()
                             logConsole("timedOut")
-                            setTimeout(function () {
-                                this.fill()
-                                    .then(grade => resolve(grade))
-                            }, 31000);
+                            // setTimeout(function () {
+                            //     this.fill()
+                            //         .then(grade => resolve(grade))
+                            // }, 31000);
+                            reject(429)
 
                         }
 
                     }
                 })
                 .done((res) => {
+
                     this.testDate = parseDate(res.WerkinformatieDatumIngevoerd)
                     this.description = _.trim(res.WerkInformatieOmschrijving)
                     this.weight = Number.parseInt(res.Weging, 10) || 0
 
-                    this.type.level = res.KolomNiveau
-                    this.type.description = _.trim(res.KolomOmschrijving)
+                    this.type["level"] = res.KolomNiveau
+                    this.type["description"] = _.trim(res.KolomOmschrijving)
 
                     this._filled = true
                     resolve(this)

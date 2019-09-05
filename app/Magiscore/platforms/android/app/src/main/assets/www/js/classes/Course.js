@@ -129,7 +129,7 @@ class Course {
      * @returns {Promise<Grade[]>}
      */
     getGrades({
-        fillGrades = true,
+        fillGrades = false,
         latest = false
     } = {}) {
         return new Promise((resolve, reject) => {
@@ -163,7 +163,8 @@ class Course {
                         raw = grade
                         return grade
                     })
-                    logConsole(JSON.stringify(grades[0]))
+                    resolve(grades)
+                    //logConsole(JSON.stringify(grades[0]))
                     // grades.forEach(grade => {
                     //     grade._filled = false;
                     //     grade._filling = false;
@@ -175,15 +176,17 @@ class Course {
 
                     // });
 
-                    const promises = grades.map(raw => {
-                        const grade = new Grade(this._magister, raw, this.id)
-                        grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${_.get(raw, 'CijferKolom.Id')}`
-                        //errorConsole(grade._fillUrl)
-                        return fillGrades ? grade.fill() : grade
-                    })
-                    Promise.all(promises).then(grades => {
-                        resolve(grades)
-                    })
+                    // const promises = grades.map(raw => {
+                    //     const grade = new Grade(this._magister, raw, this.id)
+                    //     //grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${raw._fillUrl}`
+                    //     grade._fillUrl = raw._fillUrl
+                    //     logConsole(JSON.stringify(grade))
+                    //     //errorConsole(grade._fillUrl)
+                    //     return fillGrades ? grade.fill() : grade
+                    // })
+                    // Promise.all(promises).then(grades => {
+                    //     resolve(grades)
+                    // })
                 })
         })
 

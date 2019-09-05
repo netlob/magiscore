@@ -10,6 +10,7 @@ class Class {
          * @type {String}
          * @readonly
          */
+        // logConsole(JSON.stringify(raw))
         this.id = toString(raw.id || raw.Id)
         /**
          * @type {Date}

@@ -4,6 +4,10 @@ var verifier = "";
 var tenant = "";
 var popup = null
 
+var currentGradeIndex = 0
+var all_grades = []
+var totalGrades = 0
+
 function getLoginInfo() {
     return {
         username: $('#login-username').val(),
@@ -97,6 +101,34 @@ function toast(msg, duration) {
     }
 }
 
+function makeRequestChain(val, vals) {
+    var index = vals.indexOf(val)
+    if (index + 1 != vals.length) {
+        return val.fill().then(makeRequestChain(vals[index + 1], vals))
+    } else {
+        return logConsole("endofchain")
+    }
+
+}
+
+function fillAGrade() {
+    logConsole("starting new fill: " + (currentGradeIndex < all_grades.length))
+    if (currentGradeIndex < all_grades.length) {
+        var currentGrade = all_grades[currentGradeIndex]
+        currentGrade.fill().then(value => {
+            logConsole("filledAGrade")
+            currentGradeIndex += 1
+            totalGrades -= 1
+            $("#grades-remaining").text(totalGrades)
+            //logConsole(fillAGrade)
+            fillAGrade()
+        }).catch(err => {
+            if (err == 429) {
+                setTimeout(fillAGrade, 31000)
+            }
+        })
+    }
+}
 async function validateLogin(code, codeVerifier) {
     logConsole(`Login valideren...`)
     var settings = {
@@ -146,13 +178,13 @@ async function validateLogin(code, codeVerifier) {
                 logConsole(`Succesvol leerlingid (${person.id}) opgehaald!`)
                 addLoader(3)
                 m.getCourses()
-                    .then(courses => {
+                    .then(async courses => {
                         logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`)
                         addLoader(7)
-                        const requests = courses.map(async course => {
+                        const requests = await courses.map(async course => {
                             const [grades, classes] = await Promise.all([course.getGrades({
-                                fillGrades = false,
-                                latest = false
+                                fillGrades: false,
+                                latest: false
                             }), course.getClasses()]);
                             course.grades = grades
                             course.courses = classes
@@ -161,52 +193,63 @@ async function validateLogin(code, codeVerifier) {
 
                         Promise.all(requests)
                             .then(values => {
+                                logConsole("donerequests")
                                 addLoader(8) // 12% total, 88% remaining
-                                var totalGrades = 0
                                 var years = values.length
                                 var all = []
+
                                 values.forEach(value => {
                                     totalGrades += value.grades.length
-                                    // value.grades.forEach(grade => {
-                                    //     all.push(grade)
-                                    // })
-                                    value.promises = value.grades.map(async grade => {
-                                        const filled = await grade.fill()
-                                        grade = filled
-                                        return filled
+                                    value.grades.forEach(grade => {
+                                        all.push(grade)
                                     })
                                 })
-                                // var loader_total = totalGrades / 88
+                                all_grades = all
                                 logConsole(`Totaal ${totalGrades} cijfers!`)
                                 var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
                                 $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
                                 $("#grades-remaining").text(totalGrades)
-                                values.forEach((value, index) => {
-                                    // var timeout = (index == 0) ? 0 : index * 30500
-                                    // logConsole("This timeout is: " + timeout)
-                                    // setTimeout(async () => {
-                                    var filled = await Promise.all(value.promises)
-                                    value.grades = filled
-                                    logConsole(filled.length)
-                                    years--
-                                    filled.length
-                                    var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
-                                    $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
-                                    $("#grades-remaining").text(totalGrades - filled.length)
-                                    addLoader(((filled.length / totalGrades) * 100), true)
-                                    // }, timeout)
-                                })
-                            }).catch(err => {
-                                errorConsole(err + " 420")
-                            })
+
+                                fillAGrade()
+
+                                // logConsole("ahnee")
+                                // var promiseChain = makeRequestChain(all[0], all)
+                                // logConsole("madeChain")
+                                // promiseChain.then(logConsole("gotAll"))
+                                //     value.promises = value.grades.map(async grade => {
+                                //         const filled = await grade.fill()
+                                //         grade = filled
+                                //         return filled
+                                //     })
+                            }).catch(err => errorConsole(err))
+                        // var loader_total = totalGrades / 88
+
+
+                        // values.forEach((value, index) => {
+                        //     // var timeout = (index == 0) ? 0 : index * 30500
+                        //     // logConsole("This timeout is: " + timeout)
+                        //     // setTimeout(async () => {
+                        //     var filled = await Promise.all(value.promises)
+                        //     value.grades = filled
+                        //     logConsole(filled.length)
+                        //     years--
+                        //     filled.length
+                        //     var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
+                        //     $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
+                        //     $("#grades-remaining").text(totalGrades - filled.length)
+                        //     addLoader(((filled.length / totalGrades) * 100), true)
+                        //     // }, timeout)
+                        // })
                     }).catch(err => {
-                        errorConsole(err)
+                        errorConsole(err + " 420")
                     })
             }).catch(err => {
                 errorConsole(err)
             })
-        // window.location = '../index.html';
-    });
+    }).catch(err => {
+        errorConsole(err)
+    })
+    // window.location = '../index.html';);
 }
 
 function handleOpenURL(url) {
