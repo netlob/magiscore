@@ -22,17 +22,14 @@ var sorted = {},
   school = localStorage.getItem("school"),
   m = null
 
-viewController.currentCourse = courses[courses.length - 1]
+courseController.clear()
+courses.forEach(c => courseController.add(c))
+viewController.currentCourse = courseController.current()
 
 function main(l) {
   sorted = {}
-  //viewController.currentCourse = courses[courses.length - 1]
-  // if ( /*grades &&*/ f && courses && school && viewController.config) {
-  courseController.courses = []
-  courses.forEach(c => courseController.add(c))
-  //logConsole(courseController.allGrades)
 
-  viewController.currentCourse.grades.forEach(grade => {
+  viewController.currentCourse.course.grades.forEach(grade => {
     var vak = grade.class.description.capitalize()
     if (sorted[vak] == null) {
       sorted[vak] = []
@@ -101,122 +98,9 @@ function round(num) {
 }
 
 function syncGrades() {
-  return new Promise((resolve, reject) => {
-    logConsole("Sync started!")
-    m.getCourses()
-      .then(courses => {
-        logConsole(courses.length)
-        let requests = courses.map((course) => {
-          return new Promise((resolve) => {
-            logConsole(JSON.stringify(course))
-            Promise.all([course.getGrades(), course.getClasses()])
-              .then(values => {
-                // logConsole("Grades: " + JSON.stringify(values[0]))
-                // logConsole("Classes: " + JSON.stringify(values[1]))
-                logConsole("Grades.length: " + values[0].length)
-                logConsole("Classes.length: " + values[1].length)
-                course.grades = values[0]
-                course.classes = values[1]
-                resolve(course)
-              }).catch(err => {
-                errorConsole(err + " 69")
-              });
-          });
-        })
+  // return new Promise((resolve, reject) => {
+  logConsole("Sync started!")
 
-        Promise.all(requests)
-          .then(values => {
-            localStorage.setItem("person", JSON.stringify(person));
-            localStorage.setItem("school", m.tenant);
-            localStorage.setItem("courses", JSON.stringify(values));
-            person = person
-            courses = values
-            logConsole("Starting main()!")
-            main()
-            resolve()
-          }).catch(err => errorConsole(err + " 420"))
-      }).catch(err => {
-        errorConsole(err + " 2")
-        reject()
-      })
-  })
-  // var grades = 
-  // var sorted = {}
-  // grades.forEach(grade => {
-  //   var vak = grade.class.description.capitalize()
-  //   if (sorted[vak] == null) {
-  //     sorted[vak] = []
-  //   }
-  //   if (sorted[vak][grade.type.header] == null) {
-  //     sorted[vak][grade.type.header] = []
-  //   }
-  //   if (sorted[vak]['Grades'] == null) {
-  //     sorted[vak]['Grades'] = []
-  //   }
-  //   if (sorted[vak]['Completed'] == null) {
-  //     sorted[vak]['Completed'] = []
-  //   }
-  //   sorted[vak][grade.type.header].push(grade)
-  //   if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
-  //     sorted[vak]['Grades'].push(grade)
-  //   }
-  //   if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
-  //     sorted[vak]['Completed'].push(grade)
-  //   }
-  // })
-  //alert("sortedgrades")
-  // $("#overlay").hide();
-  // viewController.lineChart.destroy();
-  //}
-  // lessonController.clear()
-  // localStorage.removeItem("grades");
-  // localStorage.removeItem("person");
-  // localStorage.removeItem("token");
-  // localStorage.removeItem("school");
-  // localStorage.removeItem("courses");
-  // sorted = {}
-  // var data = JSON.parse(response)
-  // var grades = data["grades"]
-  // var person = data["person"]
-  // var token = data["token"]
-  // var school = data["school"]
-  // var course = data["courses"]
-  // localStorage.setItem("grades", JSON.stringify(grades));
-  // localStorage.setItem("person", JSON.stringify(person));
-  // localStorage.setItem("token", JSON.stringify(token));
-  // localStorage.setItem("school", JSON.stringify(school));
-  // localStorage.setItem("courses", JSON.stringify(course));
-  // grades.forEach(grade => {
-  //   var vak = grade.class.description.capitalize()
-  //   if (sorted[vak] == null) {
-  //     sorted[vak] = []
-  //   }
-  //   if (sorted[vak][grade.type.header] == null) {
-  //     sorted[vak][grade.type.header] = []
-  //   }
-  //   if (sorted[vak]['Grades'] == null) {
-  //     sorted[vak]['Grades'] = []
-  //   }
-  //   if (sorted[vak]['Completed'] == null) {
-  //     sorted[vak]['Completed'] = []
-  //   }
-  //   sorted[vak][grade.type.header].push(grade)
-  //   if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
-  //     sorted[vak]['Grades'].push(grade)
-  //   }
-  //   if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
-  //     sorted[vak]['Completed'].push(grade)
-  //   //   }
-  //   // })
-  //   // $("#overlay").hide();
-  //   // viewController.lineChart.destroy();
-  //   // main(viewController.currentLesson)
-  //   // resolve()
-  // } else {
-  //   $("#overlay").hide();
-  //   viewController.toast(response, 5000)
-  //   reject()
-  // }
 }
 $("body").keypress(function (e) {
   if (e.which == 114) {

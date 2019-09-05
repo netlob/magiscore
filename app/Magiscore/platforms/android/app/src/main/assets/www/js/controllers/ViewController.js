@@ -72,7 +72,7 @@ class ViewController {
     updateSidebar();
     this.setCourses();
     this.setLatestGrades(courseController.allGrades);
-    logConsole(courseController.allGrades)
+    // logConsole(courseController.allGrades)
   }
 
   downloadGraph() {
@@ -152,6 +152,7 @@ class ViewController {
   }
 
   toggleTheme() {
+    this.setCourses()
     var theme = this.config.darkTheme
     if (!theme) {
       $("*").attr("theme", "dark")
@@ -207,12 +208,11 @@ class ViewController {
 
   setCourses() {
     $("#years").empty()
-    logConsole(courseController.courses.length)
+    // logConsole(courseController.courses.length)
     courseController.courses.forEach(course => {
-      // var sexyDate = `${new Date(course.start).getFullYear().substring(1,3)}/${new Date(course.end).getFullYear().substring(1,3)}`
-      logConsole(course)
-      var sexyDate = 'nee.'
-      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="renderCourse('${course.group.description})">${sexyDate} - ${course.group.description} (${course.curricula})</a>`)
+      var sexyDate = `${new Date(course.course.start).getFullYear().toString().substring(2)}/${new Date(course.course.end).getFullYear().toString().substring(2)}`
+      // var sexyDate = course.raw.Start
+      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}')">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
     })
   }
 
@@ -283,12 +283,12 @@ function updateSidebar() {
   // }
   $("#userDropdown > span").text(
     `${person.firstName} ${person.lastName} ${
-    viewController.currentCourse.group.description ? "(" + viewController.currentCourse.group.description + ")" : ""
+    viewController.currentCourse.course.group.description ? "(" + viewController.currentCourse.course.group.description + ")" : ""
     }`
   );
   $("#mobilePersonInfo").text(
     `${person.firstName} ${person.lastName} ${
-      viewController.currentCourse.group.description ? "(" + viewController.currentCourse.group.description + ")" : ""
+      viewController.currentCourse.course.group.description ? "(" + viewController.currentCourse.course.group.description + ")" : ""
     }`
   );
   var header = document.getElementById("accordionSidebar");

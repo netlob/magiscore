@@ -28,6 +28,10 @@ class CourseController {
         this.allGrades = []
     }
 
+    current() {
+        return this.courses.find(x => x.course.current === true) || this.courses[this.courses.length - 1]
+    }
+
     getCourse(id) {
         return this.courses.find(x => x.id === id)
     }
