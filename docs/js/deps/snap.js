@@ -179,6 +179,8 @@
                         clearInterval(cache.animatingInterval);
 
                         if (cache.easingTo === 0) {
+                            console.log("close")
+                            $("body").removeClass("sidenav-open")
                             utils.klass.remove(doc.body, 'snapjs-right');
                             utils.klass.remove(doc.body, 'snapjs-left');
                         }
@@ -196,6 +198,7 @@
                             cache.easingTo = n;
 
                             settings.element.style[cache.vendor + 'Transition'] = 'all ' + settings.transitionSpeed + 's ' + settings.easing;
+                            $("body").addClass("sidenav-open")
 
                             cache.animatingInterval = setInterval(function () {
                                 utils.dispatchEvent('animating');
@@ -465,9 +468,6 @@
                             }
                             cache.isDragging = false;
                             cache.startDragX = utils.page('X', e);
-                        } else {
-                            console.log("open")
-                            $("body").addClass("sidenav-open")
                         }
                     }
                 }

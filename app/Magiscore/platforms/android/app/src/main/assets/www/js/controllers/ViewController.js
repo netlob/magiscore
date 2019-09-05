@@ -229,7 +229,8 @@ class ViewController {
 
 function updateSidebar() {
   $("#subjectsNav").empty();
-  lessonController.lessons.map(lesson =>
+  logConsole("Lessonslength: " + lessonController.lessons.length)
+  lessonController.lessons.forEach(lesson => {
     $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
             <a class="nav-link" onclick="viewController.render('${
@@ -239,48 +240,47 @@ function updateSidebar() {
             </a>
         </li>
     `)
-  );
+  });
 
-  var profilepic = document.getElementById("imgelem");
-  profilepic.setAttribute("src", "./img/stock-profile-picture.png");
-  // var profilepicStorage = localStorage.getItem("profilepic")
-  //   profilepic = document.getElementById("imgelem");
-  // if (profilepicStorage) {
-  //   console.info("[INFO] Using saved pic");
-  //   profilepic.setAttribute("src", profilepicStorage);
-  // } //else {
-  // var xhr = new XMLHttpRequest(),
-  //   blob,
-  //   fileReader = new FileReader();
-  // xhr.responseType = "blob";
-  // xhr.onreadystatechange = function () {
-  //   if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-  //     blob = new Blob([xhr.response], {
-  //       type: "image/png"
-  //     });
-  //     fileReader.onload = function (evt) {
-  //       var result = evt.target.result;
-  //       profilepic.setAttribute("src", result);
-  //       try {
-  //         console.log("[INFO] Storage of image succes");
-  //         localStorage.setItem("profilepic", result);
-  //       } catch (e) {
-  //         console.error("[ERROR] Storage failed: " + e);
-  //       }
-  //     };
-  //     fileReader.readAsDataURL(blob);
-  //   }
-  // };
-  // xhr.open(
-  //   "GET",
-  //   `https://cors-anywhere.herokuapp.com/${school.url}/api/personen/${
-  //     person.id
-  //   }/foto?width=640&height=640&crop=no`,
-  //   true
-  // );
-  // xhr.setRequestHeader("Authorization", `Bearer ${token}`);
-  // xhr.send();
-  // }
+  // var profilepic = document.getElementById("imgelem");
+  // profilepic.setAttribute("src", "./img/stock-profile-picture.png");
+  var profilepicStorage = localStorage.getItem("profilepic")
+  profilepic = document.getElementById("imgelem");
+  if (profilepicStorage) {
+    console.info("[INFO] Using saved pic");
+    profilepic.setAttribute("src", profilepicStorage);
+  } //else {
+  var xhr = new XMLHttpRequest(),
+    blob,
+    fileReader = new FileReader();
+  xhr.responseType = "blob";
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+      blob = new Blob([xhr.response], {
+        type: "image/png"
+      });
+      fileReader.onload = function (evt) {
+        var result = evt.target.result;
+        profilepic.setAttribute("src", result);
+        try {
+          console.log("[INFO] Storage of image succes");
+          localStorage.setItem("profilepic", result);
+        } catch (e) {
+          console.error("[ERROR] Storage failed: " + e);
+        }
+      };
+      fileReader.readAsDataURL(blob);
+    }
+  };
+  logConsole(`https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`)
+  xhr.open(
+    "GET",
+    `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`,
+    true
+  );
+  xhr.setRequestHeader("Authorization", `Bearer ${tokens.access_token}`);
+  xhr.send();
+
   $("#userDropdown > span").text(
     `${person.firstName} ${person.lastName} ${
     viewController.currentCourse.course.group.description ? "(" + viewController.currentCourse.course.group.description + ")" : ""

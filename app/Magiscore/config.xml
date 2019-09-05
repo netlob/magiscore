@@ -37,7 +37,5 @@
         <splash src="res/drawable-xxxhdpi/screen.png" density="port-xxxhdpi"/>
     </platform>
     <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
     </platform>
 </widget>

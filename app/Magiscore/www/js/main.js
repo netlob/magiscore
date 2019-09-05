@@ -29,6 +29,8 @@ viewController.currentCourse = courseController.current()
 function main(l) {
   sorted = {}
   lessonController.clear()
+  lessonController.allGrades = []
+  lessonController.lessons = []
 
   viewController.currentCourse.course.grades.forEach(grade => {
     var vak = grade.class.description.capitalize()
