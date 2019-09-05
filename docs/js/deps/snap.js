@@ -1,24 +1,25 @@
 (function (win, doc) {
     'use strict';
+    console.log("poep")
     var Snap = Snap || function (userOpts) {
         var settings = {
-            element: null,
-            dragger: null,
-            disable: 'none',
-            addBodyClasses: true,
-            hyperextensible: true,
-            resistance: 0.5,
-            flickThreshold: 50,
-            transitionSpeed: 0.3,
-            easing: 'ease',
-            maxPosition: 266,
-            minPosition: -266,
-            tapToClose: true,
-            touchToDrag: true,
-            slideIntent: 40, // degrees
-            minDragDistance: 5,
-            effect: 'push'
-        },
+                element: null,
+                dragger: null,
+                disable: 'none',
+                addBodyClasses: true,
+                hyperextensible: true,
+                resistance: 0.5,
+                flickThreshold: 50,
+                transitionSpeed: 0.3,
+                easing: 'ease',
+                maxPosition: 266,
+                minPosition: -266,
+                tapToClose: true,
+                touchToDrag: true,
+                slideIntent: 40, // degrees
+                minDragDistance: 5,
+                effect: 'push'
+            },
             cache = {
                 simpleStates: {
                     opening: null,
@@ -211,7 +212,9 @@
                     x: function (n) {
                         if ((settings.disable === 'left' && n > 0) ||
                             (settings.disable === 'right' && n < 0)
-                        ) { return; }
+                        ) {
+                            return;
+                        }
 
                         if (!settings.hyperextensible) {
                             if (n === settings.maxPosition || n > settings.maxPosition) {
@@ -229,11 +232,11 @@
                         if (utils.canTransform()) {
                             if (settings.effect === 'push') {
                                 var theTranslate = 'translate3d(' + n + 'px, 0,0)';
-                                if (n == 238) $("body").addClass("sidenav-open")
-                                else $("body").removeClass("sidenav-open")
+                                // if (n == 238) $("body").addClass("sidenav-open")
+                                // else $("body").removeClass("sidenav-open")
                                 settings.element.style[cache.vendor + 'Transform'] = theTranslate;
                             } else {
-                                settings.element.style.marginLeft = + n + 'px';
+                                settings.element.style.marginLeft = +n + 'px';
                             }
                         } else {
                             settings.element.style.width = (win.innerWidth || doc.documentElement.clientWidth) + 'px';
@@ -257,6 +260,8 @@
                         utils.events.removeEvent(settings.element, utils.eventType('up'), action.drag.endDrag);
                     },
                     startDrag: function (e) {
+                        console.log("close")
+                        $("body").removeClass("sidenav-open")
                         // No drag on ignored elements
                         var target = e.target ? e.target : e.srcElement,
                             ignoreParent = utils.parentUntil(target, 'data-snap-ignore');
@@ -460,6 +465,9 @@
                             }
                             cache.isDragging = false;
                             cache.startDragX = utils.page('X', e);
+                        } else {
+                            console.log("open")
+                            $("body").addClass("sidenav-open")
                         }
                     }
                 }

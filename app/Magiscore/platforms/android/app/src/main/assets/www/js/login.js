@@ -140,8 +140,8 @@ function fillAGrade(chunk) {
             //logConsole(fillAGrade)
             fillAGrade(chunk)
 
-            // var remaining = Math.round(((totalGrades + 1) * 0.2) * 10) / 10
-            // $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
+            var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
+            $("#time-remaining").text(`${remaining} minuten`)
             $("#grades-remaining").text(totalGrades)
             addLoader((100 - ((totalGrades / all.length) * 100)), true)
 

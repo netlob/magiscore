@@ -363,6 +363,7 @@ function setChartData(config, lesson, everything) {
 
   if (cijfers.length == 1) datums.push(datums[0]), cijfers.push(cijfers[0])
 
+  // viewController.lineChart.destroy();
   var ctx = document.getElementById("lineChart").getContext("2d");
   viewController.lineChart = new Chart(ctx, {
     type: "line",
@@ -478,6 +479,7 @@ function setChartData(config, lesson, everything) {
     }
   });
 
+  // viewController.pieChart.destroy();
   var ctx = document.getElementById("pieChart");
   viewController.pieChart = new Chart(ctx, {
     type: "doughnut",

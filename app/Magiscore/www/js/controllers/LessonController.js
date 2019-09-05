@@ -19,6 +19,7 @@ class LessonController {
 
     clear() {
         this.lessons = []
+        this.allGrades = []
     }
 
     getLesson(lesson) {
