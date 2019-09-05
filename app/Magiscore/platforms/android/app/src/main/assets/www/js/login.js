@@ -16,6 +16,8 @@ function getLoginInfo() {
     }
 }
 
+// Array.prototype.forEach
+
 function onDeviceReady() {
     //alert("poep");
 

@@ -3,9 +3,10 @@ class Class {
      * @private
      * @param {Magister} magister
      * @param {Object} raw
+     * @param {Object} grade
      */
-    constructor(magister, raw) {
-
+    constructor(magister, raw, grade) {
+        if (raw == undefined) logConsole("Undefined -> " + JSON.stringify(grade))
         /**
          * @type {String}
          * @readonly

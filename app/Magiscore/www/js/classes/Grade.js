@@ -3,6 +3,7 @@ class Grade {
      * @private
      * @param {Magister} magister
      * @param {Object} raw
+     * @param {String} courseId
      */
     constructor(magister, raw, courseId) {
         //super(magister)
@@ -166,7 +167,6 @@ class Grade {
                             reject(429)
 
                         }
-
                     }
                 })
                 .done((res) => {
