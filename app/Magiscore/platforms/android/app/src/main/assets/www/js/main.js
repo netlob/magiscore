@@ -101,9 +101,10 @@ function round(num) {
 }
 
 function syncGrades() {
-  // return new Promise((resolve, reject) => {
-  logConsole("Sync started!")
-
+  return new Promise((resolve, reject) => {
+    logConsole("Sync started!")
+    resolve()
+  })
 }
 $("body").keypress(function (e) {
   if (e.which == 114) {
