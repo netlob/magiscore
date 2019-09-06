@@ -227,7 +227,6 @@ $('.container-fluid').click(function () {
 function onDeviceReady() {
   if (localStorage.getItem("tokens") != null) {
     logConsole('Device ready!')
-    navigator.vibrate([30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 200, 1000]);
     refreshToken()
       .then((tokens) => {
         logConsole('Got tokens!')
@@ -237,34 +236,12 @@ function onDeviceReady() {
             person = p
             logConsole("Got person info!")
             main()
-            //syncGrades()
+            // viewcontroller.renderCourse(false, false, courseController.current())
           })
-        // .then(() => {
-        //   logConsole('Synced grades!')
-        // }).catch(err => {
-        //   throw new Error(err)
-        //   // getLatestGrades()
-        //   //   .then((grades) => viewController.setLatestGrades(grades))
-        //   //   .catch(err => {
-        //   //     errorConsole(err)
-        //   //     //navigator.vibrate([20, 10, 20, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 200, 1000]);
-        //   //   })
-        // })
-        // .catch(err => {
-        //   throw new Error(err)
-        // })
       });
   } else {
     window.location = './login/index.html'
   }
 }
 
-// function login(creds, demo) {
-//   //file:///android_asset/www/
-//   //alert("je moeder is een kehba");
-//   var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
-//   alert("je moeder is een kehba2");
-//   ref.show();
-//   alert("je moeder is een kehba3");
-// }
 document.addEventListener("deviceready", onDeviceReady, false);

@@ -371,6 +371,10 @@
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
                 </a>
+                <a class="dropdown-item vibrate" data-toggle="theme" onclick="$('#terminal-wrapper').toggle()">
+                  <i class="fas fa-terminal fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Toggle terminal
+                </a>
                 <a class="dropdown-item vibrate" onclick="viewController.openSettings()">
                   <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                   Instellingen
@@ -410,8 +414,7 @@
           <div class="row">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2" data-toggle="tooltip" data-placement="bottom"
-                title="Je gemiddelde cijfer van al je vakken bij elkaar">
+              <div class="card border-left-primary shadow h-100 py-2">
                 <!-- <div style="position: absolute; bottom: 1px; right: 1px; color: #d5d5d5">
                   <a class="dropdown-toggle no-arrow" href="#" role="button" id="dropdownFirst" data-toggle="dropdown" aria-label="Pas aan" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-edit fa-sm"></i>
@@ -432,9 +435,8 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2" data-toggle="tooltip" data-placement="bottom"
-                title="Het gemiddeld % voltooid van al je vakken. (Let op: deze functie werkt mogelijk (nog) niet voor jouw school, en zal binnenkort vervangen worden!)">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -457,9 +459,9 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -479,7 +481,6 @@
               </div>
             </div>
 
-            <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -494,15 +495,22 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
-          <!-- Content Row -->
-          <h6 class="m-0 font-weight-bold text-primary" id="general-area-title" style="overflow-y:scroll">Terminal</h6>
-          <div class="card shadow mb-4" style="min-height:300px">
-            <pre id="Terminal"></pre>
-          </div>
           <div class="row">
+            <div class="col-xl-8 col-lg-7" style="display: none;" id="terminal-wrapper">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Terminal</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <pre style="max-height: 500px;" id="terminal"></pre>
+                </div>
+              </div>
+            </div>
+
 
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
@@ -510,12 +518,12 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary" id="general-area-title">Alle cijfers</h6>
-                  <div class="dropdown no-arrow">
+                  <!-- <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" aria-label="Download grafiek"
                       onclick="viewController.downloadGraph()">
                       <i class="fas fa-download fa-sm"></i>
                     </a>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -587,7 +595,7 @@
                 </div>
                 <div class="card-body" id="general-averages">
                   <div class="table-responsive">
-                    <table class="table" width="100%" cellspacing="0">
+                    <table class="table" width="100%" cellspacing="0" data-snap-ignore="true">
                       <thead class="text-primary">
                         <tr>
                           <th>Vak</th>
@@ -881,11 +889,11 @@
 
   <script>
     function logConsole(err) {
-      $("#Terminal").prepend(`<small class="text-info">${err}</small>\n`)
+      $("#terminal").prepend(`<small class="text-info">${err}</small>\n`)
     }
 
     function errorConsole(err) {
-      $("#Terminal").prepend(`<small class="text-danger">${err}</small>\n`)
+      $("#terminal").prepend(`<small class="text-danger">${err}</small>\n`)
     }
 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -909,7 +917,6 @@
   <script src="js/deps/imagecache.js"></script>
   <script src="js/deps/chartannotation.js"></script>
   <script src="js/deps/jspdf.min.js"></script>
-  <script src="js/deps/swipe.min.js"></script>
   <script src="js/deps/pull.js"></script>
   <script src="js/deps/snap.js"></script>
   <script src="js/deps/fastclick.js"></script>

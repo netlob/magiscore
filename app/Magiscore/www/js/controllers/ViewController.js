@@ -63,9 +63,16 @@ class ViewController {
     })
   }
 
-  renderCourse(courseid) {
-    viewController.currentCourse = courseController.getCourse(courseid)
+  renderCourse(courseid, loader, course) {
+    if (loader) $("#overlay").show()
+    if (!courseid && course) viewController.currentCourse = course
+    else viewController.currentCourse = courseController.getCourse(courseid)
     main()
+    $("#years").children().removeClass("course-selected")
+    $(`#course-${courseid}`).addClass("course-selected")
+    setTimeout(function () {
+      $("#overlay").hide()
+    }, 100)
   }
 
   updateNav() {
@@ -212,8 +219,10 @@ class ViewController {
     courseController.courses.forEach(course => {
       var sexyDate = `${new Date(course.course.start).getFullYear().toString().substring(2)}/${new Date(course.course.end).getFullYear().toString().substring(2)}`
       // var sexyDate = course.raw.Start
-      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}')">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
+      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}', true, false)" id="course-${course.course.id}">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
     })
+    $("#years").children().removeClass("course-selected")
+    $(`#course-${this.currentCourse.course.id}`).addClass("course-selected")
   }
 
   openSettings() {
@@ -293,6 +302,8 @@ function updateSidebar() {
   var btns = header.getElementsByClassName("nav-item");
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
+      $("body").removeClass("sidenav-open")
+      snapper.close()
       var current = $(".active");
       current[0].className = current[0].className.replace(" active", "");
       this.className += " active";
@@ -869,7 +880,7 @@ function generateHTML(lesson) {
                     </div>
                     <div class="card-body">
                     <div class="table-responsive" id="cijfersTableCard">
-                        <table class="table" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table" id="dataTable" width="100%" cellspacing="0" data-snap-ignore="true">
                         <thead class="text-primary">
                             <tr>
                             <th></th>

@@ -548,3 +548,17 @@ a.magister-login:before {
     display: block;
   }
 }
+
+#currentRender {
+  max-width: 40vw !important;
+  text-overflow: ellipsis !important;
+}
+
+#currentRenderMobile {
+  max-width: 40vw !important;
+  text-overflow: ellipsis !important;
+}
+
+.course-selected {
+  background-color: #eaecf4 !important;
+}

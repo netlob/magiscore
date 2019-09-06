@@ -33,8 +33,8 @@ body[theme="dark"] .btn-outline-light:disabled {
 }
 
 body[theme="dark"] .btn-outline-light:not(:disabled):not(body[theme="dark"] .disabled):active,
-body[theme="dark"] .btn-outline-light:not(:disabled):not(body[theme="dark"] .disabled)body[theme="dark"] .active,
-body[theme="dark"] .show > body[theme="dark"] .btn-outline-lightbody[theme="dark"] .dropdown-toggle {
+body[theme="dark"] .btn-outline-light:not(:disabled):not(body[theme="dark"] .disabled) body[theme="dark"] .active,
+body[theme="dark"] .show>body[theme="dark"] .btn-outline-lightbody[theme="dark"] .dropdown-toggle {
   color: #A9A9A9 !important;
   background-color: #202124;
   border-color: #202124;
@@ -183,7 +183,10 @@ body[theme="dark"] .dropdown-menu {
   background-color: #2c2d30 !important;
 }
 
-body[theme="dark"] .dropdown-item, body[theme="dark"] .ptr--content, body[theme="dark"] .ptr--icon, body[theme="dark"] .ptr--text {
+body[theme="dark"] .dropdown-item,
+body[theme="dark"] .ptr--content,
+body[theme="dark"] .ptr--icon,
+body[theme="dark"] .ptr--text {
   color: #A9A9A9 !important;
 }
 
@@ -191,7 +194,8 @@ body[theme="dark"] .dropdown-divider {
   border-top: 1px solid #202124;
 }
 
-body[theme="dark"] .modal-dialog, body[theme="dark"] .modal-content {
+body[theme="dark"] .modal-dialog,
+body[theme="dark"] .modal-content {
   background-color: #2c2d30 !important;
   color: #eee !important;
 }
@@ -222,9 +226,13 @@ body[theme="dark"] .mobile-clock {
 
 body[theme="dark"] #passedRange::-webkit-slider-runnable-track,
 body[theme="dark"] #passedRange::-moz-range-track,
-body[theme="dark"] #passedRange::-ms-fill-lower, 
+body[theme="dark"] #passedRange::-ms-fill-lower,
 body[theme="dark"] #passedRange::-ms-fill-upper,
 body[theme="dark"] #passedRange {
   background-color: #202124 !important;
   border-radius: 50% !important;
+}
+
+body[theme="dark"] .course-selected {
+  background-color: #242429 !important;
 }
