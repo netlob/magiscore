@@ -494,6 +494,7 @@ a.magister-login:before {
 .sidenav-open .sidebar {
   z-index: 9999 !important;
   overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 
 
