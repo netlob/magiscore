@@ -236,3 +236,7 @@ body[theme="dark"] #passedRange {
 body[theme="dark"] .course-selected {
   background-color: #242429 !important;
 }
+
+body[theme="dark"] .list-group-item {
+  background-color: #2c2d30 !important;
+}

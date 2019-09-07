@@ -19,8 +19,8 @@ class ViewController {
   renderGeneral() {
     $("#lesson-wrapper").hide();
     $("#settings-wrapper").hide();
-    $("#currentRender").text("Gemiddeld");
-    $("#currentRenderMobile").text("Gemiddeld");
+    $("#currentRender").html("Gemiddeld");
+    $("#currentRenderMobile").html("Gemiddeld");
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
     }
@@ -48,8 +48,8 @@ class ViewController {
     $("#general-wrapper").hide();
     $("#settings-wrapper").hide();
     // $("#lesson-wrapper").show();
-    $("#currentRender").text(lesson);
-    $("#currentRenderMobile").text(lesson);
+    $("#currentRender").html(lesson);
+    $("#currentRenderMobile").html(lesson);
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
     }
@@ -163,13 +163,13 @@ class ViewController {
   toggleTheme() {
     var theme = this.config.darkTheme
     if (!theme) {
-      $("*").attr("theme", "dark")
+      $("body").attr("theme", "dark")
       this.updateConfig({
         "darkTheme": true,
         "isDesktop": this.config.isDesktop
       });
     } else {
-      $("*").attr("theme", "light")
+      $("body").attr("theme", "light")
       this.updateConfig({
         "darkTheme": false,
         "isDesktop": this.config.isDesktop
@@ -177,13 +177,27 @@ class ViewController {
     }
   }
 
-  savePassed() {
-    var passed = $('#passedRange').val()
-    console.dir(passed)
+  lightTheme() {
+    $("body").attr("theme", "light")
     this.updateConfig({
-      "passed": passed
+      "darkTheme": false,
+      "isDesktop": this.config.isDesktop
+    });
+  }
+
+  darkTheme() {
+    $("body").attr("theme", "dark")
+    this.updateConfig({
+      "darkTheme": true,
+      "isDesktop": this.config.isDesktop
+    });
+  }
+
+  savePassed(e) {
+    this.updateConfig({
+      "passed": e.valueAsNumber
     })
-    this.render(this.currentLesson)
+    // this.render(this.currentLesson)
   }
 
   setLatestGrades(grades) {
@@ -229,11 +243,14 @@ class ViewController {
   openSettings() {
     $("#general-wrapper").hide();
     $("#lesson-wrapper").hide();
+    $("#currentRender").html('Instellingen');
+    $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3" onclick="viewController.closeSettings()"></i>Instellingen');
     $("#settings-wrapper").show();
   }
 
   closeSettings() {
-    this.render(this.currentLesson.name)
+    this.render("general")
+    // this.render(this.currentLesson.name)
   }
 }
 

@@ -18,8 +18,9 @@ class ViewController {
 
   renderGeneral() {
     $("#lesson-wrapper").hide();
-    $("#currentRender").text("Gemiddeld");
-    $("#currentRenderMobile").text("Gemiddeld");
+    $("#settings-wrapper").hide();
+    $("#currentRender").html("Gemiddeld");
+    $("#currentRenderMobile").html("Gemiddeld");
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
     }
@@ -45,9 +46,10 @@ class ViewController {
       .empty()
       .html(html);
     $("#general-wrapper").hide();
+    $("#settings-wrapper").hide();
     // $("#lesson-wrapper").show();
-    $("#currentRender").text(lesson);
-    $("#currentRenderMobile").text(lesson);
+    $("#currentRender").html(lesson);
+    $("#currentRenderMobile").html(lesson);
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
     }
@@ -159,16 +161,15 @@ class ViewController {
   }
 
   toggleTheme() {
-    this.setCourses()
     var theme = this.config.darkTheme
     if (!theme) {
-      $("*").attr("theme", "dark")
+      $("body").attr("theme", "dark")
       this.updateConfig({
         "darkTheme": true,
         "isDesktop": this.config.isDesktop
       });
     } else {
-      $("*").attr("theme", "light")
+      $("body").attr("theme", "light")
       this.updateConfig({
         "darkTheme": false,
         "isDesktop": this.config.isDesktop
@@ -176,13 +177,27 @@ class ViewController {
     }
   }
 
-  savePassed() {
-    var passed = $('#passedRange').val()
-    console.dir(passed)
+  lightTheme() {
+    $("body").attr("theme", "light")
     this.updateConfig({
-      "passed": passed
+      "darkTheme": false,
+      "isDesktop": this.config.isDesktop
+    });
+  }
+
+  darkTheme() {
+    $("body").attr("theme", "dark")
+    this.updateConfig({
+      "darkTheme": true,
+      "isDesktop": this.config.isDesktop
+    });
+  }
+
+  savePassed(e) {
+    this.updateConfig({
+      "passed": e.valueAsNumber
     })
-    this.render(this.currentLesson)
+    // this.render(this.currentLesson)
   }
 
   setLatestGrades(grades) {
@@ -226,13 +241,16 @@ class ViewController {
   }
 
   openSettings() {
-    $("#settings-overlay").show()
-    $("#settings-wrapper").show()
+    $("#general-wrapper").hide();
+    $("#lesson-wrapper").hide();
+    $("#currentRender").html('Instellingen');
+    $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3" onclick="viewController.closeSettings()"></i>Instellingen');
+    $("#settings-wrapper").show();
   }
 
   closeSettings() {
-    $("#settings-overlay").hide()
-    $("#settings-wrapper").hide()
+    this.render("general")
+    // this.render(this.currentLesson.name)
   }
 }
 
@@ -1039,3 +1057,19 @@ function generateHTML(lesson) {
   //   </div>
   // </div>`
 }
+
+// function generateSettingsHTML() {
+//   return `
+//   <div class="row">
+//     <div class="col-xl-8 col-lg-7">
+//         <div class="card shadow mb-4">
+//           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+//               <h6 class="m-0 font-weight-bold text-primary">Instellingen</h6>
+//           </div>
+//           <div class="card-body">
+//           </div>
+//         </div>
+//     </div>
+
+//   </div>`
+// }

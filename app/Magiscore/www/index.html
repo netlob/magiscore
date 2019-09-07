@@ -395,12 +395,36 @@
         <div class="mt-4" id="ptr"></div>
 
         <div class="container-fluid" id="settings-wrapper" style="display: none;">
+          <h6 class="ml-1 pl-3 font-weight-bold text-primary">Magiscore</h6>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item list-group-item-light">Vestibulum at eros</li>
+            <li class="list-group-item shadow mb-2">Thema <a class="float-right menu-a ml-2 vibrate"
+                onclick="viewController.darkTheme()">DONKER</a><a class="float-right menu-a vibrate"
+                onclick="viewController.lightTheme()">LICHT</a>
+            </li>
+            <li class="list-group-item shadow mb-2 d-inline-block">Developer
+              mode</i>
+              <div class="md-checkbox vibrate d-inline-block float-right" style="font-size:1rem">
+                <input id="test-checkbox" type="checkbox" onchange="" checked>
+                <label for="test-checkbox"></label>
+              </div>
+            </li>
+          </ul>
+          <hr>
+          <h6 class="ml-3 pl-1 font-weight-bold text-primary">Cijfers</h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item shadow mb-2">Reset alle uitgeschakelde cijfers <a
+                class="float-right menu-a vibrate" onclick="viewController.setConfig({'exclude': []})">RESET</a>
+            </li>
+            <li class="list-group-item shadow mb-2 d-inline-block">Refresh geen oude cijfers
+              <div class="md-checkbox vibrate d-inline-block float-right" style="font-size:1rem">
+                <input id="test-checkbox2" type="checkbox" onchange="" checked>
+                <label for="test-checkbox2"></label>
+              </div>
+            </li>
+            <li class="list-group-item shadow mb-2">Voldoendegrens <input type="number"
+                class="float-right d-inline-block pl-2 bg-transparent text-primary-blue" min="1" max="10"
+                onchange="viewController.savePassed(this)" placeholder="5.5">
+            </li>
           </ul>
         </div>
 

@@ -25,10 +25,19 @@ body {
 #wrapper {
   overflow: auto !important;
   position: relative;
+  min-height: 100vh !important;
 }
 
 body {
   background-color: #0096db !important;
+}
+
+.menu-a {
+  color: #0096db !important;
+}
+
+.menu-a:active {
+  color: #0072a7 !important;
 }
 
 span::selection,

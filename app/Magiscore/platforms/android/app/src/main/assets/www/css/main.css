@@ -25,10 +25,19 @@ body {
 #wrapper {
   overflow: auto !important;
   position: relative;
+  min-height: 100vh !important;
 }
 
 body {
   background-color: #0096db !important;
+}
+
+.menu-a {
+  color: #0096db !important;
+}
+
+.menu-a:active {
+  color: #0072a7 !important;
 }
 
 span::selection,
@@ -367,9 +376,8 @@ select:-webkit-autofill:focus {
   color: #0096db !important;
 }
 
-#settings-wrapper {
+/* #settings-wrapper {
   display: none;
-  /* background-color: #f8f9fc !important; */
   background-color: transparent !important;
   position: fixed;
   top: 5vh;
@@ -388,7 +396,6 @@ select:-webkit-autofill:focus {
   top: 2.8rem;
   right: 10rem;
   cursor: pointer;
-  /* background-color: #fff !important; */
   width: 4rem;
   height: 4rem;
   text-align: center !important;
@@ -397,13 +404,7 @@ select:-webkit-autofill:focus {
 
 #settings-wrapper>.settings-body {
   padding: 10rem 10rem 5rem 10rem !important;
-  /* background-color: #fff;
-  position: absolute;
-  width: 50%;
-  left: 25%;
-  height: 80%;
-  top: 10%; */
-}
+} */
 
 #settings-wrapper>input[type='range']::-webkit-slider-runnable-track,
 #settings-wrapper>input[type="range"]::-moz-range-track,
