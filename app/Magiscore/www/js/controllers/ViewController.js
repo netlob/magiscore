@@ -18,6 +18,7 @@ class ViewController {
 
   renderGeneral() {
     $("#lesson-wrapper").hide();
+    $("#settings-wrapper").hide();
     $("#currentRender").text("Gemiddeld");
     $("#currentRenderMobile").text("Gemiddeld");
     if (!this.config.isDesktop) {
@@ -45,6 +46,7 @@ class ViewController {
       .empty()
       .html(html);
     $("#general-wrapper").hide();
+    $("#settings-wrapper").hide();
     // $("#lesson-wrapper").show();
     $("#currentRender").text(lesson);
     $("#currentRenderMobile").text(lesson);
@@ -159,7 +161,6 @@ class ViewController {
   }
 
   toggleTheme() {
-    this.setCourses()
     var theme = this.config.darkTheme
     if (!theme) {
       $("*").attr("theme", "dark")
@@ -226,13 +227,13 @@ class ViewController {
   }
 
   openSettings() {
-    $("#settings-overlay").show()
-    $("#settings-wrapper").show()
+    $("#general-wrapper").hide();
+    $("#lesson-wrapper").hide();
+    $("#settings-wrapper").show();
   }
 
   closeSettings() {
-    $("#settings-overlay").hide()
-    $("#settings-wrapper").hide()
+    this.render(this.currentLesson.name)
   }
 }
 
@@ -1039,3 +1040,19 @@ function generateHTML(lesson) {
   //   </div>
   // </div>`
 }
+
+// function generateSettingsHTML() {
+//   return `
+//   <div class="row">
+//     <div class="col-xl-8 col-lg-7">
+//         <div class="card shadow mb-4">
+//           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+//               <h6 class="m-0 font-weight-bold text-primary">Instellingen</h6>
+//           </div>
+//           <div class="card-body">
+//           </div>
+//         </div>
+//     </div>
+
+//   </div>`
+// }
