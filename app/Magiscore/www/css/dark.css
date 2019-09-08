@@ -123,6 +123,15 @@ body[theme="dark"] #wrapper #content-wrapper {
   overflow-x: hidden;
 }
 
+body[theme="dark"] .btn-secondary {
+  color: #fff !important;
+}
+
+body[theme="dark"] .close {
+  color: #fff !important;
+  text-shadow: none !important;
+}
+
 body[theme="dark"] .bg-gradient-primary {
   /* background-color: #156a36; #4e73df; */
   background-color: #2c2d30;

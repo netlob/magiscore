@@ -493,7 +493,7 @@ a.magister-login:before {
 }
 
 .sidenav-open .sidebar {
-  z-index: 9999 !important;
+  z-index: 999 !important;
   overflow-y: scroll !important;
   -webkit-overflow-scrolling: touch !important;
 }
@@ -503,6 +503,17 @@ a.magister-login:before {
   /* z-index: -20 !important; */
   overflow-y: hidden !important;
   height: 100% !important;
+}
+
+.btn-secondary {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #3a3b45 !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+  text-decoration: underline !important;
 }
 
 /* .sidenav-open #settings-overlay {

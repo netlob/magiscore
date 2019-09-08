@@ -261,8 +261,8 @@
                         utils.events.removeEvent(settings.element, utils.eventType('up'), action.drag.endDrag);
                     },
                     startDrag: function (e) {
-                        $("#accordionSidebar").css("z-index", "-99999")
-                        $("#content-wrapper").css("z-index", "99999")
+                        $("#accordionSidebar").css("z-index", "-999")
+                        $("#content-wrapper").css("z-index", "999")
                         $("body").removeClass("sidenav-open")
                         // No drag on ignored elements
                         var target = e.target ? e.target : e.srcElement,
