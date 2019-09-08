@@ -16,7 +16,7 @@ viewController.initTheme()
 
 var sorted = {},
   person = JSON.parse(localStorage.getItem("person")),
-  token = JSON.parse(localStorage.getItem("token")),
+  tokens = JSON.parse(localStorage.getItem("token")),
   creds = JSON.parse(localStorage.getItem("creds")),
   courses = JSON.parse(localStorage.getItem("courses")),
   school = localStorage.getItem("school"),
@@ -33,29 +33,27 @@ function main(l) {
   lessonController.lessons = []
 
   viewController.currentCourse.course.grades.forEach(grade => {
-    if (grade.class != undefined && viewController.currentCourse.course.classes.find(x => x.id === grade.class.id)) {
-      var vak = grade.class.description.capitalize()
-      if (sorted[vak] == null) {
-        sorted[vak] = []
-      }
-      if (sorted[vak][grade.type.header] == null) {
-        sorted[vak][grade.type.header] = []
-      }
-      if (sorted[vak]['Grades'] == null) {
-        sorted[vak]['Grades'] = []
-      }
-      if (sorted[vak]['Completed'] == null) {
-        sorted[vak]['Completed'] = []
-      }
-      sorted[vak][grade.type.header].push(grade)
-      if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
-        grade.exclude = viewController.config.exclude.includes(grade.id);
-        lessonController.allGrades.push(grade)
-        sorted[vak]['Grades'].push(grade)
-      }
-      if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
-        sorted[vak]['Completed'].push(grade)
-      }
+    var vak = grade.class.description.capitalize()
+    if (sorted[vak] == null) {
+      sorted[vak] = []
+    }
+    if (sorted[vak][grade.type.header] == null) {
+      sorted[vak][grade.type.header] = []
+    }
+    if (sorted[vak]['Grades'] == null) {
+      sorted[vak]['Grades'] = []
+    }
+    if (sorted[vak]['Completed'] == null) {
+      sorted[vak]['Completed'] = []
+    }
+    sorted[vak][grade.type.header].push(grade)
+    if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
+      grade.exclude = viewController.config.exclude.includes(grade.id);
+      lessonController.allGrades.push(grade)
+      sorted[vak]['Grades'].push(grade)
+    }
+    if (grade.type._type == 12 || grade.type._type == 4 && round(grade.grade) > -1 && round(grade.grade) < 101) {
+      sorted[vak]['Completed'].push(grade)
     }
   })
   for (var lesson in sorted) {

@@ -16,7 +16,7 @@ viewController.initTheme()
 
 var sorted = {},
   person = JSON.parse(localStorage.getItem("person")),
-  token = JSON.parse(localStorage.getItem("token")),
+  tokens = JSON.parse(localStorage.getItem("token")),
   creds = JSON.parse(localStorage.getItem("creds")),
   courses = JSON.parse(localStorage.getItem("courses")),
   school = localStorage.getItem("school"),
