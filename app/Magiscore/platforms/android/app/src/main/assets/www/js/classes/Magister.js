@@ -79,8 +79,7 @@ class Magister {
                 })
                 .done((res) => {
                     var res = res.items || res.Items
-                    res.splice(-1, 1) // DIT HAALT DE LAATSTE UIT HET ARRAY
-                    // resolve(res.map(c => new Course(this, c)))
+
                     resolve(_.sortBy(res.map(c => new Course(this, c)), 'start'))
                 })
         })
