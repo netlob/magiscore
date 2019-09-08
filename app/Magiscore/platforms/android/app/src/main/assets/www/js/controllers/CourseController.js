@@ -30,12 +30,12 @@ class CourseController {
     }
 
     current() {
-        var latestDate = new Date(Math.max(null, this.courses.map(x => {
-            return x.end
-        })))
-        var currentCourse = this.courses.find(x => x.end == latestDate)
-        return currentCourse
-        //return this.courses.find(x => x.course.current === true) || this.courses[this.courses.length - 1]
+        // var latestDate = new Date(Math.max(null, this.courses.map(x => {
+        //     return x.end
+        // })))
+        // var currentCourse = this.courses.find(x => x.end == latestDate)
+        // return currentCourse
+        return this.courses.find(x => x.course.current === true) || this.courses[this.courses.length - 1]
     }
 
     getCourse(id) {

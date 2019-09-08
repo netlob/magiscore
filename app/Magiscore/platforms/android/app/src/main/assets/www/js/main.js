@@ -26,6 +26,7 @@ var sorted = {},
 courseController.clear()
 courses.forEach(c => courseController.add(c))
 viewController.currentCourse = courseController.current()
+logConsole("poep: " + JSON.stringify(viewController.currentCourse))
 //courses.splice(courses.indexOf(courseController.current()))
 
 function main(l) {
