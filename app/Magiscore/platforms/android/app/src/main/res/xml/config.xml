@@ -46,4 +46,5 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
+    <preference name="Orientation" value="portrait" />
 </widget>

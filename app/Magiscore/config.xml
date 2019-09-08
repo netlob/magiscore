@@ -22,7 +22,8 @@
     <allow-intent href="https://*/*" />
     <platform name="android">
         <allow-intent href="m6loapp:*" />
-        <preference name="LoadingDialog" value="Oeps,Er ging iets fout..."/>
+        <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
+        <preference name="Orientation" value="portrait" />
         <icon src="res/drawable-ldpi/icon.png" density="ldpi" />
         <icon src="res/drawable-mdpi/icon.png" density="mdpi" />
         <icon src="res/drawable-hdpi/icon.png" density="hdpi" />

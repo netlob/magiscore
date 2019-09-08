@@ -6,6 +6,7 @@ class ViewController {
     this.config = {};
     this.currentCourse = {}
     this.currentLesson = {}
+    this.settingsOpen = false
   }
 
   render(lesson) {
@@ -126,21 +127,22 @@ class ViewController {
   }
 
   toast(msg, duration) {
-    $("body").append(`<div id="snackbar" class="snackbar">${msg}</div>`);
-    $("#snackbar").css("display", "block");
-    $("#snackbar").animate({
+    var snackId = Math.floor((Math.random() * 1000) + 1)
+    $("body").append(`<div id="snackbar-${snackId}" class="snackbar">${msg}</div>`);
+    $(`#snackbar-${snackId}`).css("display", "block");
+    $(`#snackbar-${snackId}`).animate({
         bottom: "30px"
       },
       "slow"
     );
     if (duration) {
       setTimeout(function () {
-        $("#snackbar").animate({
+        $(`#snackbar-${snackId}`).animate({
             bottom: "-200px"
           },
           "slow",
           function () {
-            $("#snackbar").remove();
+            $(`#snackbar-${snackId}`).remove();
           }
         );
       }, duration);
@@ -183,6 +185,7 @@ class ViewController {
       "darkTheme": false,
       "isDesktop": this.config.isDesktop
     });
+    this.toast("Thema veranderd naar licht", 2000)
   }
 
   darkTheme() {
@@ -191,12 +194,14 @@ class ViewController {
       "darkTheme": true,
       "isDesktop": this.config.isDesktop
     });
+    this.toast("Thema veranderd naar donker", 2000)
   }
 
   savePassed(e) {
     this.updateConfig({
       "passed": e.valueAsNumber
     })
+    this.toast("Voldoendegrens veranderd naar " + e.valueAsNumber, 2000)
     // this.render(this.currentLesson)
   }
 
@@ -246,10 +251,12 @@ class ViewController {
     $("#currentRender").html('Instellingen');
     $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3" onclick="viewController.closeSettings()"></i>Instellingen');
     $("#settings-wrapper").show();
+    this.settingsOpen = true
   }
 
   closeSettings() {
     this.render("general")
+    this.settingsOpen = true
     // this.render(this.currentLesson.name)
   }
 }

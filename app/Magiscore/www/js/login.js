@@ -217,7 +217,7 @@ async function validateLogin(code, codeVerifier) {
                                 latest: false
                             }), course.getClasses()]);
                             course.grades = grades
-                            course.courses = classes
+                            course.classes = classes
                             return course
                         })
 
