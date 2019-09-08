@@ -280,7 +280,7 @@ function updateSidebar() {
   var profilepicStorage = localStorage.getItem("profilepic"),
     profilepic = document.getElementById("imgelem");
   if (profilepicStorage) {
-    console.info("[INFO] Using saved pic");
+    logConsole("[INFO] Using saved pic");
     profilepic.setAttribute("src", profilepicStorage);
   } else {
     var xhr = new XMLHttpRequest(),
