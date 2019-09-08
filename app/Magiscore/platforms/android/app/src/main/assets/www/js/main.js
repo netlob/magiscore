@@ -19,6 +19,7 @@ var sorted = {},
   tokens = JSON.parse(localStorage.getItem("token")),
   creds = JSON.parse(localStorage.getItem("creds")),
   courses = JSON.parse(localStorage.getItem("courses")),
+  latest = JSON.parse(localStorage.getItem("latest")),
   school = localStorage.getItem("school"),
   m = null
 
@@ -239,8 +240,18 @@ function onDeviceReady() {
             main()
             courseController.getLatestGrades()
               .then(grades => {
+                logConsole("Grades: " + JSON.stringify(grades))
+                logConsole("Latest: " + JSON.stringify(latest))
                 logConsole("Got latest grades!")
-                logConsole(JSON.stringify(grades[0]))
+                // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
+                localStorage.setItem("latest", JSON.stringify(grades))
+                for(let grade in grades) {
+                  if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
+                    viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><span class="text-warning float-right" onclick="syncCijfers()">UPDATE</span>', 4000, true)
+                    break;
+                  }
+                }
+                // logConsole(JSON.stringify(grades[0]))
               })
             // viewcontroller.renderCourse(false, false, courseController.current())
           })

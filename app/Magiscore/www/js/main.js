@@ -19,6 +19,7 @@ var sorted = {},
   tokens = JSON.parse(localStorage.getItem("token")),
   creds = JSON.parse(localStorage.getItem("creds")),
   courses = JSON.parse(localStorage.getItem("courses")),
+  latest = JSON.parse(localStorage.getItem("latest")),
   school = localStorage.getItem("school"),
   m = null
 
@@ -103,27 +104,10 @@ function round(num) {
 function syncGrades() {
   return new Promise((resolve, reject) => {
     logConsole("Sync started!")
+    
     resolve()
   })
 }
-$("body").keypress(function (e) {
-  if (e.which == 114) {
-    e.preventDefault();
-    var elem = $("body");
-    $({
-      deg: 0
-    }).animate({
-      deg: 360
-    }, {
-      duration: 4000,
-      step: function (now) {
-        elem.css({
-          transform: `rotate(${now}deg)`
-        });
-      }
-    });
-  }
-});
 
 const ptr = PullToRefresh.init({
   mainElement: '#ptr',
@@ -136,31 +120,6 @@ const ptr = PullToRefresh.init({
   }
 });
 
-// $("#content-wrapper").touchwipe({
-//   wipeLeft: function() { if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
-//   wipeRight: function() { if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
-//   min_move_x: 40,
-//   preventDefaultEvents: true,
-//   allowPageScroll: "vertical"
-// });
-// $("#content-wrapper.div:not(:last-child)")
-// $("#content-wrapper").on('swiperight',  function(){ if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
-// $("#content-wrapper").on('swipeleft',  function(){ if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
-// var s = Swiped.init({
-//   query: '#content-wrapper',
-//   left: 180,
-//   left: 180,
-//   onOpen: function() {
-//     console.dir('Open')
-//       $('#content-wrapper').css('transform', 'none')
-//       if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
-//   },
-//   onClose: function() {
-//     console.dir('Close')
-//     // $('#content-wrapper').css('transform', 'none')
-//     // if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
-//   }
-// });;
 var snapper;
 if ($(window).width() <= 465) {
   snapper = new Snap({
@@ -239,8 +198,18 @@ function onDeviceReady() {
             main()
             courseController.getLatestGrades()
               .then(grades => {
+                logConsole("Grades: " + JSON.stringify(grades))
+                logConsole("Latest: " + JSON.stringify(latest))
                 logConsole("Got latest grades!")
-                logConsole(JSON.stringify(grades[0]))
+                // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
+                localStorage.setItem("latest", JSON.stringify(grades))
+                for(let grade in grades) {
+                  if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
+                    viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><span class="text-warning float-right vibrate" onclick="syncCijfers()">UPDATE</span>', 4000, true)
+                    break;
+                  }
+                }
+                // logConsole(JSON.stringify(grades[0]))
               })
             // viewcontroller.renderCourse(false, false, courseController.current())
           })
