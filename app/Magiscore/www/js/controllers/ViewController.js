@@ -71,7 +71,7 @@ class ViewController {
     if (!courseid && course) viewController.currentCourse = course
     else viewController.currentCourse = courseController.getCourse(courseid)
     if (lesson) main(lesson)
-    else main() 
+    else main()
     $("#years").children().removeClass("course-selected")
     $(`#course-${courseid}`).addClass("course-selected")
     setTimeout(function () {
@@ -215,7 +215,7 @@ class ViewController {
       // if (d < w) {
       length++
       $("#latest-grades").append(`
-          <a class="dropdown-item d-flex align-items-center vibrate" onclick="if(viewController.currentCourse == courseController.current()) { viewController.render('${grade.vak.omschrijving.capitalize()}') } else { viewController.renderCourse(viewController.currentCourse, true, false, '${grade.vak.omschrijving.capitalize()}') }">
+          <a class="dropdown-item d-flex align-items-center vibrate" onclick="if(viewController.currentCourse.course == courseController.current()) { viewController.render('${grade.vak.omschrijving.capitalize()}') } else { viewController.renderCourse(viewController.currentCourse.course.id, true, false, '${grade.vak.omschrijving.capitalize()}') }">
             <div class="dropdown-list-image mr-3">
               <div class="rounded-circle">
                 <h3 class="text-center mt-1">${grade.waarde == "10,0" ? '<span class="text-success">10</span>' : (round(grade.waarde) < this.config.passed) ? '<span class="text-danger">' + grade.waarde + '</span>' : grade.waarde}<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important;">${grade.weegfactor}x</sup></h3>
