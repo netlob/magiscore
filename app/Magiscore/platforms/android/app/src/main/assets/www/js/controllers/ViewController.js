@@ -82,7 +82,7 @@ class ViewController {
   updateNav() {
     updateSidebar();
     this.setCourses();
-    this.setLatestGrades(courseController.latestGrades);
+    // this.setLatestGrades(courseController.latestGrades);
     // logConsole(courseController.allGrades)
   }
 
@@ -131,11 +131,12 @@ class ViewController {
 
   toast(msg, duration, fullWidth) {
     var snackId = Math.floor((Math.random() * 1000) + 1)
+    var bottom = $(".snackbar").length < 1 ? 30 : ($(".snackbar").length * 65) + 30
     $("body").append(`<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""}">${msg}</div>`);
     $(`#snackbar-${snackId}`).css("margin-left", -($(`#snackbar-${snackId}`).width()/2+16))
     $(`#snackbar-${snackId}`).css("display", "block");
     $(`#snackbar-${snackId}`).animate({
-        bottom: "30px"
+        bottom: `${bottom}px`
       },
       "slow"
     );
@@ -255,7 +256,7 @@ class ViewController {
     $("#general-wrapper").hide();
     $("#lesson-wrapper").hide();
     $("#currentRender").html('Instellingen');
-    $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3" onclick="viewController.closeSettings()"></i>Instellingen');
+    $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
     $("#settings-wrapper").show();
     this.settingsOpen = true
   }
@@ -668,7 +669,7 @@ function setAverages() {
     }
   })
   var totgem = totgem / totgemclass
-  $('#general-average').text(`${round(totgem)}`)
+  $('#general-average').text(`${round(totgem) == "NaN" ? "Geen cijfers..." : round(totgem)}`)
 }
 
 function generateProgressHTML(lesson) {

@@ -82,7 +82,7 @@ class ViewController {
   updateNav() {
     updateSidebar();
     this.setCourses();
-    this.setLatestGrades(courseController.latestGrades);
+    // this.setLatestGrades(courseController.latestGrades);
     // logConsole(courseController.allGrades)
   }
 
@@ -131,11 +131,12 @@ class ViewController {
 
   toast(msg, duration, fullWidth) {
     var snackId = Math.floor((Math.random() * 1000) + 1)
+    var bottom = $(".snackbar").length < 1 ? 30 : ($(".snackbar").length * 65) + 30
     $("body").append(`<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""}">${msg}</div>`);
     $(`#snackbar-${snackId}`).css("margin-left", -($(`#snackbar-${snackId}`).width()/2+16))
     $(`#snackbar-${snackId}`).css("display", "block");
     $(`#snackbar-${snackId}`).animate({
-        bottom: "30px"
+        bottom: `${bottom}px`
       },
       "slow"
     );
@@ -668,7 +669,7 @@ function setAverages() {
     }
   })
   var totgem = totgem / totgemclass
-  $('#general-average').text(`${round(totgem)}`)
+  $('#general-average').text(`${round(totgem) == "NaN" ? "Geen cijfers..." : round(totgem)}`)
 }
 
 function generateProgressHTML(lesson) {

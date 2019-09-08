@@ -28,6 +28,9 @@
     },
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
     }
   },
   "dependent_plugins": {}

@@ -104,7 +104,7 @@ function round(num) {
 function syncGrades() {
   return new Promise((resolve, reject) => {
     logConsole("Sync started!")
-    
+
     resolve()
   })
 }
@@ -194,6 +194,7 @@ function onDeviceReady() {
         m.getInfo()
           .then(p => {
             person = p
+            localStorage.setItem("person", JSON.stringify(p))
             logConsole("Got person info!")
             main()
             courseController.getLatestGrades()
@@ -203,9 +204,9 @@ function onDeviceReady() {
                 logConsole("Got latest grades!")
                 // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
                 localStorage.setItem("latest", JSON.stringify(grades))
-                for(let grade in grades) {
+                for (let grade in grades) {
                   if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
-                    viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><span class="text-warning float-right vibrate" onclick="syncCijfers()">UPDATE</span>', 4000, true)
+                    viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncCijfers()">UPDATE</a>', 4000, true)
                     break;
                   }
                 }
@@ -219,4 +220,17 @@ function onDeviceReady() {
   }
 }
 
+// function onOffline() {
+//   main()
+//   viewController.toast("Het lijkt erop dat je offline bent...", 2500, false)
+// }
+
+// function onOnline() {
+//   alert("online")
+//   // viewController.toast("Je bent weer online!", false, false)
+// }
+
 document.addEventListener("deviceready", onDeviceReady, false);
+// document.addEventListener("offline", onOffline, false);
+// document.addEventListener("online", onDeviceReady, false);
+// document.addEventListener("online", onDeviceReady, false);

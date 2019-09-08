@@ -17,6 +17,7 @@
     "cordova-plugin-customurlscheme": "^4.4.0",
     "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-inappbrowser": "^3.1.0",
+    "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-splashscreen": "^5.0.3",
     "cordova-plugin-vibration": "^3.1.1",
     "openid-client": "^3.6.1",
@@ -38,7 +39,8 @@
       },
       "cordova-plugin-vibration": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-dialogs": {}
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-network-information": {}
     },
     "platforms": [
       "android"

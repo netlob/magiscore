@@ -1,6 +1,5 @@
 (function (win, doc) {
     'use strict';
-    console.log("poep")
     var Snap = Snap || function (userOpts) {
         var settings = {
                 element: null,
@@ -179,7 +178,6 @@
                         clearInterval(cache.animatingInterval);
 
                         if (cache.easingTo === 0) {
-                            console.log("close")
                             $("body").removeClass("sidenav-open")
                             utils.klass.remove(doc.body, 'snapjs-right');
                             utils.klass.remove(doc.body, 'snapjs-left');
@@ -263,7 +261,8 @@
                         utils.events.removeEvent(settings.element, utils.eventType('up'), action.drag.endDrag);
                     },
                     startDrag: function (e) {
-                        console.log("close")
+                        $("#accordionSidebar").css("z-index", "-99999")
+                        $("#content-wrapper").css("z-index", "99999")
                         $("body").removeClass("sidenav-open")
                         // No drag on ignored elements
                         var target = e.target ? e.target : e.srcElement,
