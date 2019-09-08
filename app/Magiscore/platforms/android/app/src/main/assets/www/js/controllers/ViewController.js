@@ -71,7 +71,7 @@ class ViewController {
     if (!courseid && course) viewController.currentCourse = course
     else viewController.currentCourse = courseController.getCourse(courseid)
     if (lesson) main(lesson)
-    else main() 
+    else main()
     $("#years").children().removeClass("course-selected")
     $(`#course-${courseid}`).addClass("course-selected")
     setTimeout(function () {
@@ -108,6 +108,7 @@ class ViewController {
     localStorage.removeItem("config");
     localStorage.setItem("config", JSON.stringify(base));
     this.config = base;
+    if (config["exclude"]) main(this.currentLesson)
   }
 
   setConfig() {
@@ -125,6 +126,7 @@ class ViewController {
     config = JSON.parse(config)
     config["isDesktop"] = $(window).width() > 600 ? true : false;
     this.config = config;
+    logConsole(config.exclude.toString())
   }
 
   toast(msg, duration) {
