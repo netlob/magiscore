@@ -58,7 +58,7 @@ class Lesson {
       }
       this.extraSecond = keys[2]
       return {
-        "title": res['type']['description'],
+        "title": "", //res['type']['description'],
         "value": [isNaN(res['grade'])] ? res['grade'] : round(res['grade'])
       }
     }

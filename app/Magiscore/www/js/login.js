@@ -129,11 +129,11 @@ function makeRequestChain(val, vals) {
 }
 
 function fillAGrade(chunk) {
-    logConsole("starting new fill: " + (chunk.gradeIndex < chunk.array.length))
+    //logConsole("starting new fill: " + (chunk.gradeIndex < chunk.array.length))
     if (chunk.gradeIndex < chunk.array.length) {
         var currentGrade = chunk.array[chunk.gradeIndex]
         currentGrade.fill().then(value => {
-            logConsole("filledAGrade")
+            //logConsole("filledAGrade")
             chunk.gradeIndex += 1
             totalGrades -= 1
             $("#grades-remaining").text(totalGrades)
@@ -217,12 +217,16 @@ async function validateLogin(code, codeVerifier) {
                                 latest: false
                             }), course.getClasses()]);
                             course.grades = grades
-                            course.courses = classes
+                            course.classes = classes
                             return course
                         })
 
+
                         Promise.all(requests)
                             .then(values => {
+                                // courses.forEach(course => {
+                                //     logConsole(course.grades.length)
+                                // });
                                 logConsole("donerequests")
                                 addLoader(8) // 12% total, 88% remaining
                                 var years = values.length

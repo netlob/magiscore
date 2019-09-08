@@ -10,11 +10,14 @@ class LessonController {
             "name": lesson,
             "lesson": new Lesson(lesson, grades, data, controller)
         }
+
         this.lessons.push(obj)
     }
 
     remove(lesson) {
-
+        var removeLesson = this.getLesson(lesson)
+        var index = this.lessons.indexOf(removeLesson)
+        this.lessons.splice(index)
     }
 
     clear() {

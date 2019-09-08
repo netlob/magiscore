@@ -191,7 +191,38 @@ class Course {
         })
 
     }
+    getLatestGrades() {
+        return new Promise((resolve, reject) => {
+            const url = `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0`
+            $.ajax({
+                    "dataType": "json",
+                    "async": true,
+                    "crossDomain": true,
+                    "url": url,
+                    "method": "GET",
+                    "headers": {
+                        "Authorization": "Bearer " + this._magister.token
+                    },
+                    "error": function (request, status, error) {
+                        reject(error)
+                    }
+                })
+                .done((res) => {
+                    // var grades = res.Items || res.items
+                    // grades = _.reject(grades, raw => raw.CijferId === 0)
+                    // grades = grades.map(raw => {
+                    //     const grade = new Grade(this._magister, raw, this.id)
+                    //     grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${_.get(raw, 'CijferKolom.Id')}`
+                    //     raw = grade
+                    //     return grade
+                    // })
+                    resolve(grades)
+                })
+        })
+
+    }
 }
+
 
 function formatDate(date) {
     var d = new Date(date),
