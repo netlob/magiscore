@@ -26,7 +26,7 @@ var sorted = {},
 courseController.clear()
 courses.forEach(c => courseController.add(c))
 viewController.currentCourse = courseController.current()
-courses.splice(courses.indexOf(courseController.current()))
+//courses.splice(courses.indexOf(courseController.current()))
 
 function main(l) {
   sorted = {}
@@ -102,93 +102,73 @@ function round(num) {
   return parseFloat(Math.round(num * 100) / 100).toFixed(2);
 }
 
-// function fillAGrade(chunk) {
-//   logConsole("starting new fill: " + (chunk.gradeIndex < chunk.array.length))
-//   if (chunk.gradeIndex < chunk.array.length) {
-//     var currentGrade = chunk.array[chunk.gradeIndex]
-//     currentGrade.fill().then(value => {
-//       logConsole("filledAGrade")
-//       chunk.gradeIndex += 1
-//       totalGrades -= 1
-//       //logConsole(fillAGrade)
-//       fillAGrade(chunk)
+function fillAGrade(chunk) {
+  logConsole("starting new fill: " + (chunk.gradeIndex < chunk.array.length))
+  if (chunk.gradeIndex < chunk.array.length) {
+    var currentGrade = chunk.array[chunk.gradeIndex]
+    currentGrade.fill().then(value => {
+      logConsole("filledAGrade")
+      chunk.gradeIndex += 1
+      totalGrades -= 1
+      //logConsole(fillAGrade)
+      fillAGrade(chunk)
 
 
-//       if (totalGrades == 0) {
-//         localStorage.setItem("courses", JSON.stringify(all_courses))
-//         //window.location = '../index.html'
-//         logConsole("done Filling sync")
-//       }
-//     }).catch(err => {
-//       if (err == 429) {
-//         setTimeout(function () {
-//           fillAGrade(chunk)
-//         }, 21000)
-//       }
-//     })
-//   }
-// }
-
-function syncGrades() {
-  return new Promise((resolve, reject) => {})
+      if (totalGrades == 0) {
+        localStorage.setItem("courses", JSON.stringify(all_courses))
+        //window.location = '../index.html'
+        logConsole("done Filling sync")
+      }
+    }).catch(err => {
+      if (err == 429) {
+        setTimeout(function () {
+          fillAGrade(chunk)
+        }, 21000)
+      }
+    })
+  }
 }
 
-// function syncGrades() {
-//   return new Promise((resolve, reject) => {
-//     logConsole("Sync started!")
-//     m.getCourses().then(syncCourses => {
-//       syncCourses.forEach(course => {
-//         if (!(courses.find(x => x.id == course.id))) {
-//           courses.push(course)
-//           courseController.add(course)
-//           localStorage.setItem("courses", JSON.stringify(courses))
 
-//         }
-//       });
-//       var currentCourse = courseController.current()
-//       currentCourse.getGrades().then(currentGrades => {
-//         var allGradeIds = currentCourse.grades.map(x => {
-//           return x.id
-//         })
-//         var newGrades = []
-//         currentGrades.forEach(grade => {
-//           if (!(allGradeIds.includes(grade.id))) {
-//             newGrades.push(grade)
-//             currentCourse.grades.push(grade)
-//           }
-//         })
-//         if (newGrades.length > 0) {
-//           var chunk = {}
-//           chunk.array = newGrades
-//           chunk.gradeIndex = 0
-//           fillAGrade(chunk)
-//         }
-//         resolve()
-//       }).catch(err => {
-//         errorConsole(err)
-//       })
-//     })
 
-//   })
-// }
-$("body").keypress(function (e) {
-  if (e.which == 114) {
-    e.preventDefault();
-    var elem = $("body");
-    $({
-      deg: 0
-    }).animate({
-      deg: 360
-    }, {
-      duration: 4000,
-      step: function (now) {
-        elem.css({
-          transform: `rotate(${now}deg)`
-        });
-      }
-    });
-  }
-});
+function syncGrades() {
+  return new Promise((resolve, reject) => {
+    logConsole("Sync started!")
+    m.getCourses().then(syncCourses => {
+      syncCourses.forEach(course => {
+        if (!(courses.find(x => x.id == course.id))) {
+          courses.push(course)
+          courseController.add(course)
+          localStorage.setItem("courses", JSON.stringify(courses))
+
+        }
+      });
+      var currentCourse = courseController.current()
+      currentCourse.getGrades().then(currentGrades => {
+        var allGradeIds = currentCourse.grades.map(x => {
+          return x.id
+        })
+        var newGrades = []
+        currentGrades.forEach(grade => {
+          if (!(allGradeIds.includes(grade.id))) {
+            newGrades.push(grade)
+            currentCourse.grades.push(grade)
+          }
+        })
+        if (newGrades.length > 0) {
+          var chunk = {}
+          chunk.array = newGrades
+          chunk.gradeIndex = 0
+          fillAGrade(chunk)
+        }
+        resolve()
+      }).catch(err => {
+        errorConsole(err)
+      })
+    })
+
+  })
+}
 
 const ptr = PullToRefresh.init({
   mainElement: '#ptr',
@@ -201,31 +181,6 @@ const ptr = PullToRefresh.init({
   }
 });
 
-// $("#content-wrapper").touchwipe({
-//   wipeLeft: function() { if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
-//   wipeRight: function() { if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } },
-//   min_move_x: 40,
-//   preventDefaultEvents: true,
-//   allowPageScroll: "vertical"
-// });
-// $("#content-wrapper.div:not(:last-child)")
-// $("#content-wrapper").on('swiperight',  function(){ if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
-// $("#content-wrapper").on('swipeleft',  function(){ if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() } });
-// var s = Swiped.init({
-//   query: '#content-wrapper',
-//   left: 180,
-//   left: 180,
-//   onOpen: function() {
-//     console.dir('Open')
-//       $('#content-wrapper').css('transform', 'none')
-//       if($('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
-//   },
-//   onClose: function() {
-//     console.dir('Close')
-//     // $('#content-wrapper').css('transform', 'none')
-//     // if(!$('body').hasClass('sidebar-toggled')) { $('#sidebarToggleTop').click() }
-//   }
-// });;
 var snapper;
 if ($(window).width() <= 465) {
   snapper = new Snap({
@@ -309,17 +264,17 @@ function onDeviceReady() {
                 logConsole("Got latest grades!")
                 // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
                 localStorage.setItem("latest", JSON.stringify(grades))
-                for(let grade in grades) {
+                for (let grade in grades) {
                   if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
-                    viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><span class="text-warning float-right" onclick="syncCijfers()">UPDATE</span>', 4000, true)
+                    viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><span class="text-warning float-right vibrate" onclick="syncCijfers()">UPDATE</span>', 4000, true)
                     break;
                   }
                 }
                 // logConsole(JSON.stringify(grades[0]))
               })
             // viewcontroller.renderCourse(false, false, courseController.current())
-          })
-      });
+          }).catch(err => errorConsole(err))
+      }).catch(err => errorConsole(err));
   } else {
     window.location = './login/index.html'
   }

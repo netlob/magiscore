@@ -26,7 +26,7 @@ var sorted = {},
 courseController.clear()
 courses.forEach(c => courseController.add(c))
 viewController.currentCourse = courseController.current()
-courses.splice(courses.indexOf(courseController.current()))
+//courses.splice(courses.indexOf(courseController.current()))
 
 function main(l) {
   sorted = {}
@@ -273,8 +273,8 @@ function onDeviceReady() {
                 // logConsole(JSON.stringify(grades[0]))
               })
             // viewcontroller.renderCourse(false, false, courseController.current())
-          })
-      });
+          }).catch(err => errorConsole(err))
+      }).catch(err => errorConsole(err));
   } else {
     window.location = './login/index.html'
   }

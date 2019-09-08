@@ -255,7 +255,7 @@ class ViewController {
     $("#general-wrapper").hide();
     $("#lesson-wrapper").hide();
     $("#currentRender").html('Instellingen');
-    $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3" onclick="viewController.closeSettings()"></i>Instellingen');
+    $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
     $("#settings-wrapper").show();
     this.settingsOpen = true
   }
