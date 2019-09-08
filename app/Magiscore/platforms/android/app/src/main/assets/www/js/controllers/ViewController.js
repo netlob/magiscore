@@ -129,9 +129,10 @@ class ViewController {
     logConsole(config.exclude.toString())
   }
 
-  toast(msg, duration) {
+  toast(msg, duration, fullWidth) {
     var snackId = Math.floor((Math.random() * 1000) + 1)
-    $("body").append(`<div id="snackbar-${snackId}" class="snackbar">${msg}</div>`);
+    $("body").append(`<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""}">${msg}</div>`);
+    $(`#snackbar-${snackId}`).css("margin-left", -($(`#snackbar-${snackId}`).width()/2+16))
     $(`#snackbar-${snackId}`).css("display", "block");
     $(`#snackbar-${snackId}`).animate({
         bottom: "30px"
@@ -188,7 +189,7 @@ class ViewController {
       "darkTheme": false,
       "isDesktop": this.config.isDesktop
     });
-    this.toast("Thema veranderd naar licht", 2000)
+    this.toast("Thema veranderd naar licht", 2000, false)
   }
 
   darkTheme() {
@@ -197,14 +198,14 @@ class ViewController {
       "darkTheme": true,
       "isDesktop": this.config.isDesktop
     });
-    this.toast("Thema veranderd naar donker", 2000)
+    this.toast("Thema veranderd naar donker", 2000, false)
   }
 
   savePassed(e) {
     this.updateConfig({
       "passed": e.valueAsNumber
     })
-    this.toast("Voldoendegrens veranderd naar " + e.valueAsNumber, 2000)
+    this.toast("Voldoendegrens veranderd naar " + e.valueAsNumber, 2000, false)
     // this.render(this.currentLesson)
   }
 

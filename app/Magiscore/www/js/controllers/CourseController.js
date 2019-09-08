@@ -63,10 +63,11 @@ class CourseController {
                 })
                 .done((res) => {
                     var grades = res.Items || res.items
-                    grades = _.reject(grades, raw => raw.CijferId === 0)
+                    // grades = _.reject(grades, raw => raw.CijferId === 0)
                     this.latestGrades = grades
                     viewController.setLatestGrades(this.latestGrades)
-                    resolve(grades)
+                    logConsole("[pe[")
+                    resolve(this.latestGrades)
                 })
         })
     }
