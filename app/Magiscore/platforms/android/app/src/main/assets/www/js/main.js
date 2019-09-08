@@ -34,7 +34,6 @@ function main(l) {
 
   viewController.currentCourse.course.grades.forEach(grade => {
     if (grade.class != undefined && viewController.currentCourse.course.classes.find(x => x.id === grade.class.id)) {
-      logConsole(JSON.stringify(grade.type))
       var vak = grade.class.description.capitalize()
       if (sorted[vak] == null) {
         sorted[vak] = []
