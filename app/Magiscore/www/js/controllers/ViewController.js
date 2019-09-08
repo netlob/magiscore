@@ -292,29 +292,29 @@ function updateSidebar() {
         if (xhr.status === 200) {
           logConsole(xhr.responseText)
         } else {
-          errorConsole("Error", xhr.statusText);
+          errorLog("Error", xhr.statusText);
         }
       }
     };
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-        blob = new Blob([xhr.response], {
-          type: "image/png"
-        });
-        fileReader.onload = function (evt) {
-          var result = evt.target.result;
-          profilepic.setAttribute("src", result);
-          try {
-            console.log("[INFO] Storage of image succes");
-            localStorage.setItem("profilepic", result);
-          } catch (e) {
-            console.error("[ERROR] Storage failed: " + e);
-          }
-        };
-        fileReader.readAsDataURL(blob);
-      }
-    };
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+    //     blob = new Blob([xhr.response], {
+    //       type: "image/png"
+    //     });
+    //     fileReader.onload = function (evt) {
+    //       var result = evt.target.result;
+    //       profilepic.setAttribute("src", result);
+    //       try {
+    //         console.log("[INFO] Storage of image succes");
+    //         localStorage.setItem("profilepic", result);
+    //       } catch (e) {
+    //         console.error("[ERROR] Storage failed: " + e);
+    //       }
+    //     };
+    //     fileReader.readAsDataURL(blob);
+    //   }
+    // };
     xhr.open(
       "GET",
       `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`,
