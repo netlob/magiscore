@@ -66,11 +66,12 @@ class ViewController {
     })
   }
 
-  renderCourse(courseid, loader, course) {
+  renderCourse(courseid, loader, course, lesson) {
     if (loader) $("#overlay").show()
     if (!courseid && course) viewController.currentCourse = course
     else viewController.currentCourse = courseController.getCourse(courseid)
-    main()
+    if (lesson) main(lesson)
+    else main() 
     $("#years").children().removeClass("course-selected")
     $(`#course-${courseid}`).addClass("course-selected")
     setTimeout(function () {
@@ -81,7 +82,7 @@ class ViewController {
   updateNav() {
     updateSidebar();
     this.setCourses();
-    this.setLatestGrades(courseController.allGrades);
+    this.setLatestGrades(courseController.latestGrades);
     // logConsole(courseController.allGrades)
   }
 
@@ -206,27 +207,29 @@ class ViewController {
   }
 
   setLatestGrades(grades) {
+    grades.slice(0, 5)
+    $('#latest-grades').find('*').not('#latest-grades-empty').remove();
     grades.forEach(grade => {
-      var d = new Date(grade.dateFilledIn)
-      var w = new Date().getDate() - 7;
-      if (d < w) {
-        length++
-        $("#latest-grades").append(`
-          <a class="dropdown-item d-flex align-items-center vibrate" onclick="viewController.render('${grade.class.description.capitalize()}')">
+      var d = new Date(grade.ingevoerdOp)
+      // var w = new Date().getDate() - 7;
+      // if (d < w) {
+      length++
+      $("#latest-grades").append(`
+          <a class="dropdown-item d-flex align-items-center vibrate" onclick="if(viewController.currentCourse == courseController.current()) { viewController.render('${grade.vak.omschrijving.capitalize()}') } else { viewController.renderCourse(viewController.currentCourse, true, false, '${grade.vak.omschrijving.capitalize()}') }">
             <div class="dropdown-list-image mr-3">
               <div class="rounded-circle">
-                <h3 class="text-center mt-1">${grade.grade == "10,0" ? '<span class="text-success">10!</span>' : (round(grade.grade) < this.config.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}</h3>
+                <h3 class="text-center mt-1">${grade.waarde == "10,0" ? '<span class="text-success">10</span>' : (round(grade.waarde) < this.config.passed) ? '<span class="text-danger">' + grade.waarde + '</span>' : grade.waarde}<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important;">${grade.weegfactor}x</sup></h3>
               </div>
               <!-- <div class="status-indicator bg-success"></div> -->
             </div>
-            <div>
-              <span class="text-truncate font-weight-bold text-capitalize">${grade.class.description}</span><span
+            <div class="ml-2">
+              <span class="text-truncate font-weight-bold text-capitalize">${grade.vak.omschrijving}</span><span
                 class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</span>
-              <div class="small text-gray-600">${grade.description}</div>
+              <div class="small text-gray-600">${grade.omschrijving}</div>
             </div>
           </a>
         `)
-      }
+      // }
     })
     if (length == 0) $("#latest-grades-empty").show()
     else $("#latest-grades-empty").hide()
@@ -239,7 +242,7 @@ class ViewController {
     courseController.courses.forEach(course => {
       var sexyDate = `${new Date(course.course.start).getFullYear().toString().substring(2)}/${new Date(course.course.end).getFullYear().toString().substring(2)}`
       // var sexyDate = course.raw.Start
-      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}', true, false)" id="course-${course.course.id}">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
+      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}', true, false, false)" id="course-${course.course.id}">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
     })
     $("#years").children().removeClass("course-selected")
     $(`#course-${this.currentCourse.course.id}`).addClass("course-selected")
@@ -277,7 +280,7 @@ function updateSidebar() {
 
   // var profilepic = document.getElementById("imgelem");
   // profilepic.setAttribute("src", "./img/stock-profile-picture.png");
-  var profilepicStorage = localStorage.getItem("profilepic"),
+  var profilepicStorage = localStorage.getItem("profilepic") || false,
     profilepic = document.getElementById("imgelem");
   if (profilepicStorage) {
     logConsole("[INFO] Using saved pic");
@@ -287,34 +290,37 @@ function updateSidebar() {
       blob,
       fileReader = new FileReader();
     xhr.responseType = "blob";
-    xhr.onreadystatechange = function (oEvent) {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          logConsole(xhr.responseText)
-        } else {
-          errorLog("Error", xhr.statusText);
-        }
-      }
-    };
-
-    // xhr.onreadystatechange = function () {
-    //   if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-    //     blob = new Blob([xhr.response], {
-    //       type: "image/png"
-    //     });
-    //     fileReader.onload = function (evt) {
-    //       var result = evt.target.result;
-    //       profilepic.setAttribute("src", result);
-    //       try {
-    //         console.log("[INFO] Storage of image succes");
-    //         localStorage.setItem("profilepic", result);
-    //       } catch (e) {
-    //         console.error("[ERROR] Storage failed: " + e);
-    //       }
-    //     };
-    //     fileReader.readAsDataURL(blob);
+    // xhr.onreadystatechange = function (oEvent) {
+    //   if (xhr.readyState === 4) {
+    //     if (xhr.status === 200) {
+    //       logConsole(xhr.responseText)
+    //     } else {
+    //       errorLog("Error", xhr.statusText);
+    //     }
     //   }
     // };
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+        blob = new Blob([xhr.response], {
+          type: "image/png"
+        });
+        fileReader.onload = function (evt) {
+          var result = evt.target.result;
+          // logConsole(result)
+          profilepic.setAttribute("src", result);
+          try {
+            logConsole("[INFO] Storage of image succes");
+            localStorage.setItem("profilepic", result);
+          } catch (e) {
+            errorConsole("[ERROR] Storage failed: " + e);
+          }
+        };
+        fileReader.readAsDataURL(blob);
+      }
+    };
+    logConsole(`https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`)
+    logConsole(`Bearer ${tokens.access_token}`)
     xhr.open(
       "GET",
       `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`,
@@ -338,7 +344,7 @@ function updateSidebar() {
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
       $("body").removeClass("sidenav-open")
-      snapper.close()
+      if ($(window).width() <= 465) snapper.close()
       var current = $(".active");
       current[0].className = current[0].className.replace(" active", "");
       this.className += " active";

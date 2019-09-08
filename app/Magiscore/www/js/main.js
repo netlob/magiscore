@@ -229,14 +229,19 @@ function onDeviceReady() {
   if (localStorage.getItem("tokens") != null) {
     logConsole('Device ready!')
     refreshToken()
-      .then((tokens) => {
-        logConsole('Got tokens!')
+      .then((refreshTokens) => {
+        tokens = refreshTokens
         m = new Magister(school, tokens.access_token)
         m.getInfo()
           .then(p => {
             person = p
             logConsole("Got person info!")
             main()
+            courseController.getLatestGrades()
+              .then(grades => {
+                logConsole("Got latest grades!")
+                logConsole(JSON.stringify(grades[0]))
+              })
             // viewcontroller.renderCourse(false, false, courseController.current())
           })
       });
