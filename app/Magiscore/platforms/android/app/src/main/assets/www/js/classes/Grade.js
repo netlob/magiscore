@@ -137,7 +137,7 @@ class Grade {
                 resolve(this)
             }
             //errorConsole(this._magister.token)
-            //logConsole(this._fillUrl)
+            logConsole(this._fillUrl)
             $.ajax({
                     "dataType": "json",
                     "async": true,

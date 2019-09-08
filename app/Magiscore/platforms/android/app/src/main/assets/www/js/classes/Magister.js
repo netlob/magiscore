@@ -63,7 +63,7 @@ class Magister {
     getCourses() {
         return new Promise((resolve, reject) => {
             if (this.person.id == undefined) reject("Person.id is undefined!")
-            //logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
+            logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
             $.ajax({
                     "dataType": "json",
                     "async": true,

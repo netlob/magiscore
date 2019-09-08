@@ -42,7 +42,6 @@ class ViewController {
   renderLesson(lesson) {
     // this.setConfig()
     var html = generateHTML(lesson);
-    //if (html == "error") return
     $("#lesson-wrapper")
       .empty()
       .html(html);
@@ -269,7 +268,6 @@ function updateSidebar() {
     `)
   );
 
-
   var profilepic = document.getElementById("imgelem");
   profilepic.setAttribute("src", "./img/stock-profile-picture.png");
   // var profilepicStorage = localStorage.getItem("profilepic")
@@ -323,7 +321,7 @@ function updateSidebar() {
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
       $("body").removeClass("sidenav-open")
-      if (snapper) snapper.close()
+      snapper.close()
       var current = $(".active");
       current[0].className = current[0].className.replace(" active", "");
       this.className += " active";
@@ -663,9 +661,6 @@ function generateHTML(lesson) {
   var average = lessonController.getLesson(lesson).lesson.getAverage(true);
   var extraSecond = lessonController.getLesson(lesson).lesson.getSecond();
   var extraThird = lessonController.getLesson(lesson).lesson.getThird();
-  if (extraThird == undefined) {
-    return "error"
-  }
   return `<!-- Page Heading -->
             <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">${lesson.capitalize()}</h1>
