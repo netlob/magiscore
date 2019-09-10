@@ -31,7 +31,20 @@
     },
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-plugin-background-fetch": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    }
+  }
 }

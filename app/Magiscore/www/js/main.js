@@ -150,8 +150,10 @@ function syncGrades() {
           return x.id
         })
         var newGrades = []
+        logConsole(allGradeIds.length)
         currentGrades.forEach(grade => {
           if (!(allGradeIds.includes(grade.id))) {
+            logConsole("Not in id list")
             newGrades.push(grade)
             currentCourse.grades.push(grade)
           }
@@ -162,7 +164,7 @@ function syncGrades() {
           chunk.gradeIndex = 0
           fillAGrade(chunk)
         }
-        resolve()
+        resolve(newGrades)
       }).catch(err => {
         errorConsole(err)
       })
@@ -268,7 +270,7 @@ function onDeviceReady() {
                 localStorage.setItem("latest", JSON.stringify(grades))
                 for (let grade in grades) {
                   if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
-                    viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncCijfers()">UPDATE</a>', 4000, true)
+                    viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
                     break;
                   }
                 }
@@ -277,6 +279,38 @@ function onDeviceReady() {
             // viewcontroller.renderCourse(false, false, courseController.current())
           }).catch(err => errorConsole(err))
       }).catch(err => errorConsole(err));
+    var BackgroundFetch = window.BackgroundFetch;
+
+    // Your background-fetch handler.
+    var fetchCallback = function () {
+      cordova.plugins.notification.local.schedule({
+        title: 'Callback gemaakt',
+        text: 'ewa',
+        foreground: true
+      });
+      syncGrades().then(newGrades => {
+        if (newGrades.length > 0) {
+          cordova.plugins.notification.local.schedule({
+            title: 'Nieuwe cijfers',
+            text: 'Er staan nieuwe cijfers op Magister!',
+            foreground: true
+          });
+        }
+      })
+
+      // Required: Signal completion of your task to native code
+      // If you fail to do this, the OS can terminate your app
+      // or assign battery-blame for consuming too much background-time
+      BackgroundFetch.finish();
+    };
+
+    var failureCallback = function (error) {
+      console.log('- BackgroundFetch failed', error);
+    };
+
+    BackgroundFetch.configure(fetchCallback, failureCallback, {
+      minimumFetchInterval: 15 // <-- default is 15
+    });
   } else {
     window.location = './login/index.html'
   }
