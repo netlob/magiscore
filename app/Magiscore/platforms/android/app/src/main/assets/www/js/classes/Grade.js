@@ -165,6 +165,8 @@ class Grade {
                             // }, 31000);
                             reject(429)
 
+                        } else {
+                            reject(jqXHR.status)
                         }
                     }
                 })

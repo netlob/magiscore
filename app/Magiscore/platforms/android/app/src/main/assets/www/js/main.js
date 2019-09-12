@@ -24,9 +24,28 @@ var sorted = {},
   m = null
 
 courseController.clear()
-courses.forEach(c => courseController.add(c))
+
+
+
+courses.forEach(c => {
+  var newCourse = Course.create()
+  Object.keys(c).forEach(key => {
+    logConsole(key)
+    newCourse[key] = c[key]
+  });
+  c = newCourse
+  courseController.add(c)
+})
 viewController.currentCourse = courseController.current()
 logConsole("poep: " + JSON.stringify(viewController.currentCourse))
+
+//logConsole("Courses" + JSON.stringify(courses))
+courses[3].grades.splice(0, 10)
+
+localStorage.setItem("courses", JSON.stringify(courses))
+logConsole("removed grades")
+
+
 //courses.splice(courses.indexOf(courseController.current()))
 
 function main(l) {
@@ -34,8 +53,9 @@ function main(l) {
   lessonController.clear()
   lessonController.allGrades = []
   lessonController.lessons = []
-
+  logConsole("yes")
   viewController.currentCourse.course.grades.forEach(grade => {
+    logConsole("no")
     var vak = grade.class.description.capitalize()
     if (sorted[vak] == null) {
       sorted[vak] = []
@@ -110,14 +130,15 @@ function fillAGrade(chunk) {
     currentGrade.fill().then(value => {
       logConsole("filledAGrade")
       chunk.gradeIndex += 1
-      totalGrades -= 1
+      chunk.totalGrades -= 1
       //logConsole(fillAGrade)
       fillAGrade(chunk)
 
 
-      if (totalGrades == 0) {
-        localStorage.setItem("courses", JSON.stringify(all_courses))
+      if (chunk.totalGrades == 0) {
+        localStorage.setItem("courses", JSON.stringify(courses))
         //window.location = '../index.html'
+        main()
         logConsole("done Filling sync")
       }
     }).catch(err => {
@@ -125,12 +146,21 @@ function fillAGrade(chunk) {
         setTimeout(function () {
           fillAGrade(chunk)
         }, 21000)
+      } else {
+        errorConsole(err)
       }
     })
   }
 }
 
-
+function syncGradeswithError() {
+  syncGrades()
+    .then(vfa => {
+      logConsole('donesyncing')
+    }).catch(err => {
+      errorConsole(err)
+    })
+}
 
 function syncGrades() {
   return new Promise((resolve, reject) => {
@@ -141,34 +171,54 @@ function syncGrades() {
           courses.push(course)
           courseController.add(course)
           localStorage.setItem("courses", JSON.stringify(courses))
+          logConsole("addedCourse")
 
         }
-      });
-      var currentCourse = courseController.current()
-      currentCourse.getGrades().then(currentGrades => {
-        var allGradeIds = currentCourse.grades.map(x => {
-          return x.id
-        })
-        var newGrades = []
-        logConsole(allGradeIds.length)
-        currentGrades.forEach(grade => {
-          if (!(allGradeIds.includes(grade.id))) {
-            logConsole("Not in id list")
-            newGrades.push(grade)
-            currentCourse.grades.push(grade)
-          }
-        })
-        if (newGrades.length > 0) {
-          var chunk = {}
-          chunk.array = newGrades
-          chunk.gradeIndex = 0
-          fillAGrade(chunk)
-        }
-        resolve(newGrades)
-      }).catch(err => {
-        errorConsole(err)
       })
-    })
+      //var currentCourse = courseController.current()
+      var allNewGrades = []
+      courses.forEach(currentCourse => {
+        var newCourse = Course.create()
+        Object.keys(currentCourse).forEach(key => {
+          logConsole(key)
+          newCourse[key] = currentCourse[key]
+        });
+        currentCourse = newCourse
+        logConsole("is course: " + (currentCourse instanceof Course))
+        logConsole(JSON.stringify(currentCourse))
+        logConsole("course: " + currentCourse.id)
+        currentCourse.getGrades().then(currentGrades => {
+          logConsole("got grades")
+          var allGradeIds = currentCourse.grades.map(x => {
+            return x.id
+          })
+          var newGrades = []
+          logConsole(allGradeIds.length)
+          currentGrades.forEach(grade => {
+            if (!(allGradeIds.includes(grade.id))) {
+              //logConsole("Not in id list")
+              newGrades.push(grade)
+              allNewGrades.push(grade)
+              currentCourse.grades.push(grade)
+            }
+          })
+          logConsole("grades to fill: " + newGrades.length)
+          if (newGrades.length > 0) {
+            var chunk = {}
+            chunk.array = newGrades
+            chunk.gradeIndex = 0
+            chunk.totalGrades = newGrades.length
+            fillAGrade(chunk)
+          }
+
+        }).catch(err => {
+          errorConsole(err)
+        })
+        logConsole("requested grades")
+      });
+      resolve(allNewGrades)
+
+    }).catch(err => errorConsole(err))
 
   })
 }
@@ -255,6 +305,7 @@ function onDeviceReady() {
       .then((refreshTokens) => {
         tokens = refreshTokens
         m = new Magister(school, tokens.access_token)
+
         m.getInfo()
           .then(p => {
             person = p
@@ -279,7 +330,7 @@ function onDeviceReady() {
             // viewcontroller.renderCourse(false, false, courseController.current())
           }).catch(err => errorConsole(err))
       }).catch(err => errorConsole(err));
-    var BackgroundFetch = window.BackgroundFetch;
+    var BackgroFetch = window.BackgroundFetch;
 
     // Your background-fetch handler.
     var fetchCallback = function () {

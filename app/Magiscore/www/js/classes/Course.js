@@ -86,6 +86,9 @@ class Course {
          */
         this.grades = []
     }
+    static create() {
+        return Object.create(this.prototype);
+    }
 
     /**
      * @type {boolean}
