@@ -30,7 +30,6 @@ courseController.clear()
 courses.forEach(c => {
   var newCourse = Course.create()
   Object.keys(c).forEach(key => {
-    logConsole(key)
     newCourse[key] = c[key]
   });
   c = newCourse
@@ -40,10 +39,10 @@ viewController.currentCourse = courseController.current()
 logConsole("poep: " + JSON.stringify(viewController.currentCourse))
 
 //logConsole("Courses" + JSON.stringify(courses))
-courses[3].grades.splice(0, 10)
+// courses[3].grades.splice(0, 10)
 
-localStorage.setItem("courses", JSON.stringify(courses))
-logConsole("removed grades")
+// localStorage.setItem("courses", JSON.stringify(courses))
+// logConsole("removed grades")
 
 
 //courses.splice(courses.indexOf(courseController.current()))
@@ -53,9 +52,7 @@ function main(l) {
   lessonController.clear()
   lessonController.allGrades = []
   lessonController.lessons = []
-  logConsole("yes")
   viewController.currentCourse.course.grades.forEach(grade => {
-    logConsole("no")
     var vak = grade.class.description.capitalize()
     if (sorted[vak] == null) {
       sorted[vak] = []
@@ -162,6 +159,45 @@ function syncGradeswithError() {
     })
 }
 
+function checkForUpdate() {
+  return new Promise((resolve, reject) => {
+    m.getCourses().then(syncCourses => {
+      syncCourses.forEach(course => {
+        if (!(courses.find(x => x.id == course.id))) {
+          resolve(true)
+
+        }
+      })
+      //var currentCourse = courseController.current()
+      courses.forEach(currentCourse => {
+        var newCourse = Course.create()
+        Object.keys(currentCourse).forEach(key => {
+          newCourse[key] = currentCourse[key]
+        });
+        currentCourse = newCourse
+
+        currentCourse.getGrades().then(currentGrades => {
+          logConsole("got grades")
+          var allGradeIds = currentCourse.grades.map(x => {
+            return x.id
+          })
+          logConsole(allGradeIds.length)
+          currentGrades.forEach(grade => {
+            if (!(allGradeIds.includes(grade.id))) {
+              resolve(true)
+              //logConsole("Not in id list")
+
+            }
+          })
+          if (courses.indexOf(currentCourse) == courses.length - 1) {
+            resolve(false)
+          }
+        })
+      })
+    })
+  })
+}
+
 function syncGrades() {
   return new Promise((resolve, reject) => {
     logConsole("Sync started!")
@@ -180,7 +216,6 @@ function syncGrades() {
       courses.forEach(currentCourse => {
         var newCourse = Course.create()
         Object.keys(currentCourse).forEach(key => {
-          logConsole(key)
           newCourse[key] = currentCourse[key]
         });
         currentCourse = newCourse
@@ -312,21 +347,28 @@ function onDeviceReady() {
             localStorage.setItem("person", JSON.stringify(p))
             logConsole("Got person info!")
             main()
-            courseController.getLatestGrades()
-              .then(grades => {
-                logConsole("Grades: " + JSON.stringify(grades))
-                logConsole("Latest: " + JSON.stringify(latest))
-                logConsole("Got latest grades!")
-                // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
-                localStorage.setItem("latest", JSON.stringify(grades))
-                for (let grade in grades) {
-                  if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
-                    viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
-                    break;
-                  }
-                }
-                // logConsole(JSON.stringify(grades[0]))
-              })
+            checkForUpdate().then(hasUpdate => {
+              if (hasUpdate) {
+                viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
+              }
+
+            })
+            // courseController.getLatestGrades()
+            //   .then(grades => {
+            //     logConsole("Grades: " + JSON.stringify(grades))
+            //     logConsole("Latest: " + JSON.stringify(latest))
+            //     logConsole("Got latest grades!")
+            //     // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
+            //     localStorage.setItem("latest", JSON.stringify(grades))
+            //     logConsole(JSON.stringify(latest))
+            //     for (let grade in grades) {
+            //       if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
+            //         viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
+            //         break;
+            //       }
+            //     }
+            //     // logConsole(JSON.stringify(grades[0]))
+            //   })
             // viewcontroller.renderCourse(false, false, courseController.current())
           }).catch(err => errorConsole(err))
       }).catch(err => errorConsole(err));
