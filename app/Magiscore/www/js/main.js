@@ -20,10 +20,10 @@ viewController.initTheme()
 var sorted = {},
   person = JSON.parse(localStorage.getItem("person")),
   tokens = JSON.parse(localStorage.getItem("token")),
-  creds = JSON.parse(localStorage.getItem("creds")),
   courses = JSON.parse(localStorage.getItem("courses")),
   latest = JSON.parse(localStorage.getItem("latest")),
   school = localStorage.getItem("school"),
+  dev = false,
   m = null
 
 
@@ -41,7 +41,6 @@ courses.forEach(c => {
   courseController.add(c)
 })
 viewController.currentCourse = courseController.current()
-logConsole("poep: " + JSON.stringify(viewController.currentCourse))
 
 //logConsole("Courses" + JSON.stringify(courses))
 // courses[3].grades.splice(0, 10)
@@ -153,15 +152,6 @@ function fillAGrade(chunk) {
       }
     })
   }
-}
-
-function syncGradeswithError() {
-  syncGrades()
-    .then(vfa => {
-      logConsole('donesyncing')
-    }).catch(err => {
-      errorConsole(err)
-    })
 }
 
 function checkForUpdate() {
