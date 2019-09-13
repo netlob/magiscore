@@ -7,6 +7,9 @@
 //     location.reload()
 //   }
 // }, 1000)
+
+
+
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController(viewController)
 var courseController = new CourseController(viewController)
@@ -22,6 +25,8 @@ var sorted = {},
   latest = JSON.parse(localStorage.getItem("latest")),
   school = localStorage.getItem("school"),
   m = null
+
+
 
 courseController.clear()
 
@@ -372,7 +377,7 @@ function onDeviceReady() {
             // viewcontroller.renderCourse(false, false, courseController.current())
           }).catch(err => errorConsole(err))
       }).catch(err => errorConsole(err));
-    var BackgroFetch = window.BackgroundFetch;
+    var BackgroundFetch = window.BackgroundFetch;
 
     // Your background-fetch handler.
     var fetchCallback = function () {
