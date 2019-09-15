@@ -594,9 +594,9 @@ function setChartData(config, lesson, everything) {
       maintainAspectRatio: false,
       tooltips: {
         backgroundColor: "#0096db",
-        titleMarginBottom: 5,
-        titleFontSize: 10,
-        bodyFontSize: 9,
+        titleMarginBottom: 2,
+        titleFontSize: 12,
+        bodyFontSize: 12,
         borderColor: "rgba(0, 150, 219, 1)",
         borderWidth: 1,
         xPadding: 8,
