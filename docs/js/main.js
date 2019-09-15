@@ -1,8 +1,8 @@
-setTimeout(function () {
-  if ($("#userDropdown > span").text() == "Voornaam Achternaam") {
-    location.reload()
-  }
-}, 1000)
+// setTimeout(function () {
+//   if ($("#userDropdown > span").text() == "Voornaam Achternaam") {
+//     location.reload()
+//   }
+// }, 1000)
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController(viewController)
 

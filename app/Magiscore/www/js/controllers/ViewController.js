@@ -1,8 +1,9 @@
 class ViewController {
   constructor(element, lineChart, pieChart, lessonController) {
     this.element = element[0];
-    this.lineChart = lineChart;
-    this.pieChart = pieChart;
+    this.lineChart = false;
+    this.lineChart2 = false;
+    this.pieChart = false;
     this.config = {};
     this.currentCourse = {}
     this.currentLesson = {}
@@ -31,7 +32,6 @@ class ViewController {
     setChartData(this.config, "general", true);
     setAverages()
     this.currentLesson = "general";
-    document.title = `Gemiddeld - Magiscore`;
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip()
     $("#general-wrapper").show();
@@ -57,7 +57,6 @@ class ViewController {
     setChartData(this.config, lesson);
     setTableData(lesson);
     this.currentLesson = lesson;
-    document.title = `${lesson.capitalize()} - Magiscore`;
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip()
     $("#lesson-wrapper").show();
@@ -67,6 +66,7 @@ class ViewController {
   }
 
   renderCourse(courseid, loader, course, lesson) {
+    navigator.vibrate(15)
     if (loader) $("#overlay").show()
     if (!courseid && course) viewController.currentCourse = course
     else viewController.currentCourse = courseController.getCourse(courseid)
@@ -103,11 +103,13 @@ class ViewController {
   updateConfig(config, theme) {
     var base = JSON.parse(localStorage.getItem("config"));
     for (var key in config) {
+      // if (key == 'includeGradesInAverageChart' && base['includeGradesInAverageChart'] == true) config[key] == false
       base[key] = config[key];
     }
     localStorage.removeItem("config");
     localStorage.setItem("config", JSON.stringify(base));
     this.config = base;
+    if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
     if (config["exclude"]) main(this.currentLesson)
   }
 
@@ -119,6 +121,7 @@ class ViewController {
         "tention": 0.3,
         "passed": 5.5,
         "darkTheme": false,
+        "includeGradesInAverageChart": false,
         "exclude": []
       }
       localStorage.setItem("config", JSON.stringify(config));
@@ -133,7 +136,7 @@ class ViewController {
     var snackId = Math.floor((Math.random() * 1000) + 1)
     var bottom = $(".snackbar").length < 1 ? 30 : ($(".snackbar").length * 65) + 30
     $("body").append(`<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""}">${msg}</div>`);
-    $(`#snackbar-${snackId}`).css("margin-left", -($(`#snackbar-${snackId}`).width()/2+16))
+    $(`#snackbar-${snackId}`).css("margin-left", -($(`#snackbar-${snackId}`).width() / 2 + 16))
     $(`#snackbar-${snackId}`).css("display", "block");
     $(`#snackbar-${snackId}`).animate({
         bottom: `${bottom}px`
@@ -362,6 +365,8 @@ function setChartData(config, lesson, everything) {
   var data = [];
   var datums = [];
   var cijfers = [];
+  var wegingen = [];
+  var gemiddeldes = [];
   var vol = 0;
   var onvol = 0;
   if (lesson == "general") {
@@ -372,7 +377,9 @@ function setChartData(config, lesson, everything) {
             var gradegrade = grade.grade.replace(",", ".");
             data.push({
               t: new Date(grade.dateFilledIn),
-              y: gradegrade
+              y: gradegrade,
+              a: grade.average,
+              w: grade.weight
             });
             gradegrade = parseFloat(gradegrade.replace(",", "."));
             if (grade.passed) {
@@ -390,7 +397,9 @@ function setChartData(config, lesson, everything) {
         var gradegrade = grade.grade.replace(",", ".");
         data.push({
           t: new Date(grade.dateFilledIn),
-          y: gradegrade
+          y: gradegrade,
+          a: grade.average,
+          w: grade.weight
         });
         gradegrade = parseFloat(gradegrade.replace(",", "."));
         if (gradegrade >= 5.5) {
@@ -410,14 +419,18 @@ function setChartData(config, lesson, everything) {
     //   datums.push(`${value.t.getMonth()+1}/${value.t.getFullYear().toString().substr(-2)}`)
     datums.push(toShortFormat(value.t));
     cijfers.push(value.y);
+    gemiddeldes.push(Math.round(value.a.value * 100) / 100);
+    wegingen.push(value.w);
   });
 
   datums.reverse();
   cijfers.reverse();
+  wegingen.reverse();
+  gemiddeldes.reverse();
 
-  if (cijfers.length == 1) datums.push(datums[0]), cijfers.push(cijfers[0])
+  if (cijfers.length == 1) datums.push(datums[0]), cijfers.push(cijfers[0]), gemiddeldes.push(gemiddeldes[0])
 
-  // viewController.lineChart.destroy();
+  // if (viewController.lineChart != false) viewController.lineChart.destroy();
   var ctx = document.getElementById("lineChart").getContext("2d");
   viewController.lineChart = new Chart(ctx, {
     type: "line",
@@ -425,22 +438,40 @@ function setChartData(config, lesson, everything) {
       labels: datums,
       // labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
       datasets: [{
-        label: "Cijfer",
-        lineTension: config.tention,
-        backgroundColor: "rgba(0, 150, 219, 0.06)",
-        borderColor: "rgba(38, 186, 255, 1)",
-        pointRadius: 3,
-        pointBackgroundColor: "rgba(0, 150, 219, 1)",
-        pointBorderColor: "rgba(0, 150, 219, 1)",
-        pointHoverRadius: 3,
-        pointHoverBackgroundColor: "rgba(0, 150, 219, 1)",
-        pointHoverBorderColor: "rgba(0, 150, 219, 1)",
-        pointHitRadius: 10,
-        pointBorderWidth: 2,
-        borderWidth: config.isDesktop ? 3 : 2,
-        data: cijfers,
-        pointRadius: 0
-      }]
+          label: "Cijfer",
+          lineTension: config.tention,
+          backgroundColor: "rgba(0, 150, 219, 0.06)",
+          borderColor: "rgba(38, 186, 255, 1)",
+          pointRadius: 3,
+          pointBackgroundColor: "rgba(0, 150, 219, 1)",
+          pointBorderColor: "rgba(0, 150, 219, 1)",
+          pointHoverRadius: 3,
+          pointHoverBackgroundColor: "rgba(0, 150, 219, 1)",
+          pointHoverBorderColor: "rgba(0, 150, 219, 1)",
+          pointHitRadius: 10,
+          pointBorderWidth: 2,
+          borderWidth: config.isDesktop ? 3 : 1,
+          data: cijfers,
+          pointRadius: 1
+        } //,
+        // {
+        //   label: "Weging",
+        //   lineTension: config.tention,
+        //   backgroundColor: "rgba(0, 150, 219, 0)",
+        //   borderColor: "rgba(38, 186, 255, 0)",
+        //   pointRadius: 0,
+        //   pointBackgroundColor: "rgba(0, 150, 219, 0)",
+        //   pointBorderColor: "rgba(0, 150, 219, 0)",
+        //   pointHoverRadius: 0,
+        //   pointHoverBackgroundColor: "rgba(0, 150, 219, 0)",
+        //   pointHoverBorderColor: "rgba(0, 150, 219, 0)",
+        //   pointHitRadius: 0,
+        //   pointBorderWidth: 0,
+        //   borderWidth: 0,
+        //   data: wegingen,
+        //   pointRadius: 0
+        // }
+      ]
     },
     options: {
       maintainAspectRatio: false,
@@ -484,7 +515,7 @@ function setChartData(config, lesson, everything) {
             maxTicksLimit: 10,
             padding: 10,
             beginAtZero: false,
-            steps: 10,
+            steps: 1,
             max: 10,
             min: 1,
             display: config.isDesktop
@@ -504,17 +535,18 @@ function setChartData(config, lesson, everything) {
       tooltips: {
         backgroundColor: "#0096db",
         // bodyFontColor: "#858796",
-        titleMarginBottom: 10,
+        titleMarginBottom: 2,
         // titleFontColor: "#6e707e",
-        titleFontSize: 14,
+        titleFontSize: 9,
+        bodyFontSize: 9,
         borderColor: "rgba(0, 150, 219, 1)",
         borderWidth: 1,
-        xPadding: 15,
-        yPadding: 15,
+        xPadding: 8,
+        yPadding: 8,
         displayColors: false,
-        intersect: false,
+        intersect: true,
         mode: "index",
-        caretPadding: 10
+        caretPadding: 4
       },
       annotation: {
         annotations: [{
@@ -523,7 +555,7 @@ function setChartData(config, lesson, everything) {
           scaleID: "y-axis-0",
           value: config.passed,
           borderColor: "rgb(232, 100, 88)",
-          borderWidth: 2,
+          borderWidth: 1,
           label: {
             enabled: false,
             content: "Onvoldoende"
@@ -533,7 +565,7 @@ function setChartData(config, lesson, everything) {
     }
   });
 
-  // viewController.pieChart.destroy();
+  // if (viewController.pieChart != false) viewController.pieChart.destroy();
   var ctx = document.getElementById("pieChart");
   viewController.pieChart = new Chart(ctx, {
     type: "doughnut",
@@ -550,27 +582,18 @@ function setChartData(config, lesson, everything) {
     options: {
       maintainAspectRatio: false,
       tooltips: {
-        // backgroundColor: "rgb(255,255,255)",
-        // bodyFontColor: "#858796",
-        // borderColor: "transparent",
-        // borderWidth: 0,
-        // xPadding: 15,
-        // yPadding: 15,
-        // displayColors: true,
-        // caretPadding: 10
         backgroundColor: "#0096db",
-        // bodyFontColor: "#858796",
-        titleMarginBottom: 10,
-        // titleFontColor: "#6e707e",
-        titleFontSize: 14,
+        titleMarginBottom: 5,
+        titleFontSize: 10,
+        bodyFontSize: 9,
         borderColor: "rgba(0, 150, 219, 1)",
         borderWidth: 1,
-        xPadding: 15,
-        yPadding: 15,
+        xPadding: 8,
+        yPadding: 8,
         displayColors: false,
         intersect: false,
         mode: "index",
-        caretPadding: 10
+        caretPadding: 4
       },
       legend: {
         display: false
@@ -586,6 +609,163 @@ function setChartData(config, lesson, everything) {
     $("#percentageGrades").text(`${vol}% voldoende - ${onvol}% onvoldoende`);
   } else {
     $("#percentageGrades").text(`Geen cijfers voor dit vak...`);
+  }
+
+  // if (viewController.lineChart2 != false) viewController.lineChart2.destroy();
+  if (lesson != "general") {
+    var ctx = document.getElementById("lineChart2").getContext("2d");
+    var data = [{
+        label: "Gemiddelde",
+        lineTension: config.tention,
+        backgroundColor: "rgba(0, 150, 219, 0.06)",
+        borderColor: "rgba(38, 186, 255, 1)",
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(0, 150, 219, 1)",
+        pointBorderColor: "rgba(0, 150, 219, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(0, 150, 219, 1)",
+        pointHoverBorderColor: "rgba(0, 150, 219, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        borderWidth: config.isDesktop ? 3 : 1,
+        data: gemiddeldes,
+        pointRadius: 1
+      } //,
+      // {
+      //   label: "Weging",
+      //   lineTension: config.tention,
+      //   backgroundColor: "rgba(0, 150, 219, 0)",
+      //   borderColor: "rgba(38, 186, 255, 0)",
+      //   pointRadius: 0,
+      //   pointBackgroundColor: "rgba(0, 150, 219, 0)",
+      //   pointBorderColor: "rgba(0, 150, 219, 0)",
+      //   pointHoverRadius: 0,
+      //   pointHoverBackgroundColor: "rgba(0, 150, 219, 0)",
+      //   pointHoverBorderColor: "rgba(0, 150, 219, 0)",
+      //   pointHitRadius: 0,
+      //   pointBorderWidth: 0,
+      //   borderWidth: 0,
+      //   data: wegingen,
+      //   pointRadius: 0
+      // }
+    ]
+    if (config.includeGradesInAverageChart) {
+      data.push({
+        label: "Cijfer",
+        lineTension: config.tention,
+        backgroundColor: "rgba(0, 219, 69, 0.06)",
+        borderColor: "rgba(0, 252, 80, 1)",
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(0, 219, 69, 1)",
+        pointBorderColor: "rgba(0, 219, 69, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(0, 219, 69, 1)",
+        pointHoverBorderColor: "rgba(0, 219, 69, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        borderWidth: config.isDesktop ? 3 : 1,
+        data: cijfers,
+        pointRadius: 1
+      })
+    }
+    viewController.lineChart2 = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: datums,
+        // labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
+        datasets: data
+      },
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
+        layout: {
+          padding: {
+            //   left: 10,
+            //   right: 25,
+            //   top: 25,
+            //   bottom: 0
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
+        },
+        scales: {
+          xAxes: [{
+            time: {
+              unit: "month",
+              displayFormats: {
+                quarter: "ll"
+              }
+            },
+            gridLines: {
+              display: false,
+              drawBorder: false
+            },
+            ticks: {
+              maxTicksLimit: 4,
+              autoSkip: true,
+              maxRotation: 0,
+              minRotation: 0
+            },
+            // type: 'time',
+            distribution: "linear",
+            display: config.isDesktop
+          }],
+          yAxes: [{
+            ticks: {
+              maxTicksLimit: 10,
+              padding: 10,
+              beginAtZero: false,
+              steps: 1,
+              max: 10,
+              min: 1,
+              display: config.isDesktop
+            }
+            // gridLines: {
+            //     color: "rgb(234, 236, 244)",
+            //     zeroLineColor: "rgb(234, 236, 244)",
+            //     drawBorder: false,
+            //     borderDash: [2],
+            //     zeroLineBorderDash: [2]
+            // }
+          }]
+        },
+        legend: {
+          display: false
+        },
+        tooltips: {
+          backgroundColor: "#0096db",
+          // bodyFontColor: "#858796",
+          titleMarginBottom: 2,
+          // titleFontColor: "#6e707e",
+          titleFontSize: 9,
+          bodyFontSize: 9,
+          borderColor: "rgba(0, 150, 219, 1)",
+          borderWidth: 1,
+          xPadding: 8,
+          yPadding: 8,
+          displayColors: false,
+          intersect: true,
+          mode: "index",
+          caretPadding: 4
+        },
+        annotation: {
+          annotations: [{
+            type: "line",
+            mode: "horizontal",
+            scaleID: "y-axis-0",
+            value: config.passed,
+            borderColor: "rgb(232, 100, 88)",
+            borderWidth: 1,
+            label: {
+              enabled: false,
+              content: "Onvoldoende"
+            }
+          }]
+        }
+      }
+    });
   }
 }
 
@@ -662,7 +842,7 @@ function setAverages() {
       $('#averagesTable').append(
         `<tr>
           <td>${lesson.name}</td>
-          <td>${average}</td>
+          <td>${Math.round(average * 100) / 100}</td>
          </tr>`)
       totgem = totgem + parseFloat(average)
       totgemclass++
@@ -711,36 +891,27 @@ function generateHTML(lesson) {
                 </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-green">${
-    extraFirst.title
-    }</div>
-                        <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
-    extraFirst.value
-    }</div>
-                        </div>
-                        <!--<div class="col">
-                            <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: ${
-    extraFirst.value
-    }%" aria-valuenow="${
-    extraFirst.value
-    }" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>-->
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-spinner fa-2x text-gray-300"></i>
-                    </div>
-                    </div>
-                </div>
+                  <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-green">${
+      extraFirst.title
+      }</div>
+                          <div class="row no-gutters align-items-center">
+                          <div class="col-auto">
+                              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
+      extraFirst.value
+      }</div>
+                          </div>
+                          </div>
+                      </div>
+                      <div class="col-auto">
+                          <i class="fas fa-spinner fa-2x text-gray-300"></i>
+                      </div>
+                      </div>
+                  </div>
                 </div>
             </div>
 
@@ -786,10 +957,34 @@ function generateHTML(lesson) {
                     </div>
                 </div>
                 </div>
-            </div>
+            </div> -->
             </div>
 
             <div class="row">
+              <div class="col-xl-8 col-lg-7">
+                  <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">Gemiddelde van ${lesson}</h6>
+                      <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Uitschuiven" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Grafiek instellingen:</div>
+                            <a class="dropdown-item" href="#" onclick="viewController.updateConfig({'includeGradesInAverageChart': true})">Laat bijbehorende cijfers zien</a>
+                        </div>
+                      </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body chart-card">
+                      <div class="chart-area chart-container">
+                        <canvas id="lineChart2"></canvas>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+
                 <div class="col-lg-6 mb-4">
                     <div class="card text-gray-800 shadow">
                         <div class="card-body">
@@ -840,35 +1035,21 @@ function generateHTML(lesson) {
 
             <div class="row">
 
-              <!-- Area Chart -->
-              <div class="col-xl-8 col-lg-7">
-                  <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson}</h6>
-                      <div class="dropdown no-arrow">
-                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Uitschuiven" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                          <div class="dropdown-header">Grafiek instellingen:</div>
-                          <div class="dropdown-item" href="#">Lijnintensiteit<input type="range" class="custom-range" min="0" max="10" step="0.1" id="lineTention"></div>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                      </div>
-                  </div>
-                  <!-- Card Body -->
-                  <div class="card-body chart-card">
-                      <div class="chart-area chart-container">
-                        <canvas id="lineChart"></canvas>
-                      </div>
-                  </div>
-                  </div>
-              </div>
+            <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson}</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body chart-card">
+                    <div class="chart-area chart-container">
+                      <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+                </div>
+            </div>
 
-              <!-- Pie Chart -->
               <div class="col-xl-4 col-lg-5">
                   <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->

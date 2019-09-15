@@ -167,7 +167,7 @@ function checkForUpdate() {
         currentCourse = newCourse
 
         currentCourse.getGrades().then(currentGrades => {
-          logConsole("got grades")
+          // logConsole("got grades")
           var allGradeIds = currentCourse.grades.map(x => {
             return x.id
           })
@@ -213,7 +213,7 @@ function syncGrades() {
         logConsole(JSON.stringify(currentCourse))
         logConsole("course: " + currentCourse.id)
         currentCourse.getGrades().then(currentGrades => {
-          logConsole("got grades")
+          // logConsole("got grades")
           var allGradeIds = currentCourse.grades.map(x => {
             return x.id
           })
@@ -247,6 +247,8 @@ function syncGrades() {
 
   })
 }
+
+function fillTimeout() {}
 
 const ptr = PullToRefresh.init({
   mainElement: '#ptr',

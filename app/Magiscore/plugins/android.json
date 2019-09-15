@@ -37,6 +37,9 @@
     },
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-open-native-settings": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
     }
   },
   "dependent_plugins": {

@@ -37,41 +37,6 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./img/icons/icon-128x128.png">
   <link rel="apple-touch-icon" sizes="152x152" href="./img/icons/icon-152x152.png">
-  <link href="img/splashscreens/iphone5_splash.png"
-    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
-    rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/iphone6_splash.png"
-    media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
-    rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/iphoneplus_splash.png"
-    media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)"
-    rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/iphonex_splash.png"
-    media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
-    rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/ipad_splash.png"
-    media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
-    rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/ipadpro1_splash.png"
-    media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
-    rel="apple-touch-startup-image" />
-  <link href="img/splashscreens/ipadpro2_splash.png"
-    media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
-    rel="apple-touch-startup-image" />
-
-  <!-- <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="/img/splashscreens/iphoneplus_splash.png"> -->
-  <!-- <link rel="apple-touch-startup-image" href="/img/iphoneplus_splash.png"> -->
-  <!-- <link href="/img/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-  <link href="/img/splashscreens/iphone6_splash.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-  <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="/img/splashscreens/iphoneplus_splash.png"> -->
-  <!-- <link rel="apple-touch-startup-image" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" href="/img/splashscreens/iphoneplus_splash.png" /> -->
-  <!-- <link href="/img/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-  <link href="/img/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-  <link href="/img/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-  <link href="/img/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-  <link href="/img/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-  <link href="/img/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-  <link href="/img/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" /> -->
 </head>
 
 <body id="page-top">
@@ -354,23 +319,23 @@
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div id="mobilePersonInfo" class="dropdown-header d-block d-md-none">Voornaam Achternaam</div>
-                <a class="dropdown-item vibrate" onclick="syncGradeswithError()">
+                <a class="dropdown-item vibrate" onclick="syncGrades()">
                   <i class="fas fa-sync fa-sm fa-fw mr-2 text-gray-400"></i>
                   Sync cijfers
                 </a>
-                <a class="dropdown-item vibrate" data-toggle="modal" data-target="#passedModal">
+                <!-- <a class="dropdown-item vibrate" data-toggle="modal" data-target="#passedModal">
                   <i class="fas fa-check fa-sm fa-fw mr-2 text-gray-400"></i>
                   Voldoendegrens
-                </a>
+                </a> -->
                 <!-- <a class="dropdown-item" href="#">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
                   </a> -->
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item vibrate" data-toggle="theme" onclick="viewController.toggleTheme()">
+                <!-- <a class="dropdown-item vibrate" data-toggle="theme" onclick="viewController.toggleTheme()">
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
-                </a>
+                </a> -->
                 <a class="dropdown-item vibrate" data-toggle="theme" onclick="$('#terminal-wrapper').toggle()">
                   <i class="fas fa-terminal fa-sm fa-fw mr-2 text-gray-400"></i>
                   Toggle terminal
@@ -922,6 +887,12 @@
   </div> -->
 
   <script>
+    if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
+        "courses") === null) {
+      localStorage.clear()
+      window.location = './login/index.html'
+    }
+
     function logConsole(err) {
       $("#terminal").prepend(`<small class="text-info">${err}</small>\n`)
     }

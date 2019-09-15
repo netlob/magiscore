@@ -137,7 +137,7 @@ class Grade {
                 resolve(this)
             }
             //errorConsole(this._magister.token)
-            logConsole(this._fillUrl)
+            // logConsole(this._fillUrl)
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -156,9 +156,10 @@ class Grade {
                         this._filling = false
 
                         if (jqXHR.status == 429) {
-                            errorConsole("429: too many requests")
+                            // errorConsole(JSON.parse(jqXHR.responseText).Message)
+                            fillTimeout(JSON.parse(jqXHR.responseText).SecondsLeft)
                             this._filling = false
-                            logConsole("timedOut")
+                            // logConsole("timedOut")
                             // setTimeout(function () {
                             //     this.fill()
                             //         .then(grade => resolve(grade))

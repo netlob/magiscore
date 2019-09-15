@@ -1,6 +1,8 @@
 class Lesson {
   constructor(name, data, grades, lessoncontroller) {
-    this.grades = grades;
+    this.grades = _.sortBy(grades, 'dateFilledIn');
+    this.average = this.getAverage(true, -1)
+    this.grades = this.fillGradeAverages()
     this.name = name;
     this.data = data;
     this.controller = lessoncontroller;
@@ -18,9 +20,11 @@ class Lesson {
     keys = keys.remove("Grades")
     if (keys.length > 0 && this.data[keys[0]]) {
       var res = this.data[keys[0]][this.data[keys[0]].length - 1]
-      if (res == undefined) return {
-        "title": "nee.",
-        "value": "nee."
+      if (res == undefined) {
+        return {
+          "title": "nee.",
+          "value": "nee."
+        }
       }
       this.extraFirst = keys[0]
       return {
@@ -35,9 +39,11 @@ class Lesson {
     keys = keys.remove("Grades")
     if (keys.length > 0 && this.data[keys[1]]) {
       var res = this.data[keys[1]][this.data[keys[1]].length - 1]
-      if (res == undefined) return {
-        "title": "nee.",
-        "value": "nee."
+      if (res == undefined) {
+        return {
+          "title": "nee.",
+          "value": "nee."
+        }
       }
       this.extraSecond = keys[1]
       return {
@@ -52,9 +58,11 @@ class Lesson {
     keys = keys.remove("Grades")
     if (keys.length > 1 && this.data[keys[2]]) {
       var res = this.data[keys[2]][this.data[keys[2]].length - 1]
-      if (res == undefined) return {
-        "title": "nee.",
-        "value": "nee."
+      if (res == undefined) {
+        return {
+          "title": "nee.",
+          "value": "nee."
+        }
       }
       this.extraSecond = keys[2]
       return {
@@ -90,24 +98,23 @@ class Lesson {
   // }
 
   getAverage(rounded, ignore) {
-    if (this.data) {
-      if (this.data['Grades'].length > 0) {
+    if (this.grades) {
+      if (this.grades.length > 0) {
         var average = 0;
+        var all = this.grades
         var grades = []
         var processed = 0;
-        this.data['Grades'].forEach(_grade => {
+        if (ignore > 0) all = all.slice(0, ignore)
+        all.forEach(_grade => {
           // console.log(_grade.type.isPTA)
           if (Number(round(_grade.grade)) > 0 && Number(round(_grade.grade)) < 10.1) {
             // console.dir(_grade)
             processed++
             if (!_grade.exclude) {
-              if (ignore > 0) {
-                grades.slice(0, ignore)
-              }
               for (let i = 0; i < _grade.weight; i++) {
                 grades.push(Number(round(_grade.grade)))
               }
-              if (processed == this.data['Grades'].length) {
+              if (processed == all.length) {
                 var averageTotal = 0;
                 for (let i = 0; i < grades.length; i++) {
                   averageTotal += grades[i]
@@ -193,6 +200,17 @@ class Lesson {
     })
     $('#newGrade-newGrade').text(round(newGrade))
     return round(newGrade)
+  }
+
+  fillGradeAverages() {
+    return this.grades.map((grade, index) => {
+      var average = this.getAverage(false, index + 1)
+      grade.average = {
+        "value": average,
+        "delta": (index > 0) ? (average - this.grades[index - 1].average.value) : 0
+      }
+      return grade
+    })
   }
 
   exclude(id, input) {

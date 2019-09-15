@@ -17,10 +17,10 @@ viewController.initTheme()
 var sorted = {},
   person = JSON.parse(localStorage.getItem("person")),
   tokens = JSON.parse(localStorage.getItem("token")),
-  creds = JSON.parse(localStorage.getItem("creds")),
   courses = JSON.parse(localStorage.getItem("courses")),
   latest = JSON.parse(localStorage.getItem("latest")),
   school = localStorage.getItem("school"),
+  dev = false,
   m = null
 
 courseController.clear()
@@ -36,7 +36,6 @@ courses.forEach(c => {
   courseController.add(c)
 })
 viewController.currentCourse = courseController.current()
-logConsole("poep: " + JSON.stringify(viewController.currentCourse))
 
 //logConsole("Courses" + JSON.stringify(courses))
 // courses[3].grades.splice(0, 10)
@@ -150,15 +149,6 @@ function fillAGrade(chunk) {
   }
 }
 
-function syncGradeswithError() {
-  syncGrades()
-    .then(vfa => {
-      logConsole('donesyncing')
-    }).catch(err => {
-      errorConsole(err)
-    })
-}
-
 function checkForUpdate() {
   return new Promise((resolve, reject) => {
     m.getCourses().then(syncCourses => {
@@ -177,7 +167,7 @@ function checkForUpdate() {
         currentCourse = newCourse
 
         currentCourse.getGrades().then(currentGrades => {
-          logConsole("got grades")
+          // logConsole("got grades")
           var allGradeIds = currentCourse.grades.map(x => {
             return x.id
           })
@@ -223,7 +213,7 @@ function syncGrades() {
         logConsole(JSON.stringify(currentCourse))
         logConsole("course: " + currentCourse.id)
         currentCourse.getGrades().then(currentGrades => {
-          logConsole("got grades")
+          // logConsole("got grades")
           var allGradeIds = currentCourse.grades.map(x => {
             return x.id
           })
@@ -257,6 +247,8 @@ function syncGrades() {
 
   })
 }
+
+function fillTimeout() {}
 
 const ptr = PullToRefresh.init({
   mainElement: '#ptr',
@@ -372,7 +364,7 @@ function onDeviceReady() {
             // viewcontroller.renderCourse(false, false, courseController.current())
           }).catch(err => errorConsole(err))
       }).catch(err => errorConsole(err));
-    var BackgroFetch = window.BackgroundFetch;
+    var BackgroundFetch = window.BackgroundFetch;
 
     // Your background-fetch handler.
     var fetchCallback = function () {

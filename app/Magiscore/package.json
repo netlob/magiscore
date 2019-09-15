@@ -14,6 +14,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-android": "^8.0.0",
+    "cordova-open-native-settings": "1.5.2",
     "cordova-plugin-background-fetch": "^5.6.0",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-customurlscheme": "^4.4.0",
@@ -46,7 +47,8 @@
       "cordova-plugin-dialogs": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-background-fetch": {},
-      "cordova-plugin-local-notification": {}
+      "cordova-plugin-local-notification": {},
+      "cordova-open-native-settings": {}
     },
     "platforms": [
       "android"

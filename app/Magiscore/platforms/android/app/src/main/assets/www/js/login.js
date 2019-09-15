@@ -34,8 +34,20 @@ function getLoginInfo() {
 // Array.prototype.forEach
 
 function onDeviceReady() {
-    //alert("poep");
 
+}
+
+function onOffline() {
+    navigator.notification.confirm(
+        "Het lijkt erop dat je geen internetverbinding hebt... \n Om in te loggen is een actieve internetverbinding vereist.", // message
+        window.cordova.plugins.settings.open("wifi", function () {}, function () {}),
+        'Geen internet',
+        ['Open instellingen', 'Anuleer']
+    )
+}
+
+function fillTimeout(remaining) {
+    $("#timeout-remaining").text(`${remaining} seconden`)
 }
 
 function generateRandomString(length) {
@@ -82,7 +94,6 @@ function base64URL(string) {
 }
 
 function openLoginWindow(school) {
-    console.log("Tenant: ", tenant)
     tenant = school
     if (cordova === undefined) return
     verifier = base64URL(generateCodeVerifier());
@@ -93,8 +104,6 @@ function openLoginWindow(school) {
     var state = generateRandomState(16);
 
     var challenge = base64URL(generateCodeChallenge(verifier));
-    //file:///android_asset/www/
-    //alert("je moeder is een kehba");
     var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&acr_values=tenant:${school}&prompt=select_account`
     var popup = cordova.InAppBrowser.open(url, '_system', 'location=yes,hideurlbar=yes');
 }
@@ -129,11 +138,11 @@ function makeRequestChain(val, vals) {
 }
 
 function fillAGrade(chunk) {
-    logConsole("starting new fill: " + (chunk.gradeIndex < chunk.array.length))
+    // logConsole("starting new fill: " + (chunk.gradeIndex < chunk.array.length))
     if (chunk.gradeIndex < chunk.array.length) {
         var currentGrade = chunk.array[chunk.gradeIndex]
         currentGrade.fill().then(value => {
-            logConsole("filledAGrade")
+            // logConsole("filledAGrade")
             chunk.gradeIndex += 1
             totalGrades -= 1
             $("#grades-remaining").text(totalGrades)
@@ -201,7 +210,7 @@ async function validateLogin(code, codeVerifier) {
         addLoader(1)
 
         var m = new Magister(tenant, response.access_token)
-        logConsole(JSON.stringify(m))
+        // logConsole(JSON.stringify(m))
         m.getInfo()
             .then(person => {
                 logConsole(`Succesvol leerlingid (${person.id}) opgehaald!`)
@@ -223,7 +232,7 @@ async function validateLogin(code, codeVerifier) {
 
                         Promise.all(requests)
                             .then(values => {
-                                logConsole("donerequests")
+                                logConsole("Cijfers en vakken opgehaald!")
                                 addLoader(8) // 12% total, 88% remaining
                                 var years = values.length
                                 all = []
@@ -266,6 +275,8 @@ function addLoader(val, set) {
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("offline", onOffline, false);
+
 
 $(document).ready(function () {
     $(function () {

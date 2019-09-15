@@ -1,0 +1,86 @@
+{
+  "_from": "cordova-open-native-settings@1.5.2",
+  "_id": "cordova-open-native-settings@1.5.2",
+  "_inBundle": false,
+  "_integrity": "sha512-UvcTZAH3/r3U/jred2bOqoYIXUo5Gmq0in6fgkqvwgRCcOSQtQJWnUqg4i0RlHkEd1zKDi61JdpeSyJT+K8ZRQ==",
+  "_location": "/cordova-open-native-settings",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-open-native-settings@1.5.2",
+    "name": "cordova-open-native-settings",
+    "escapedName": "cordova-open-native-settings",
+    "rawSpec": "1.5.2",
+    "saveSpec": null,
+    "fetchSpec": "1.5.2"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-open-native-settings/-/cordova-open-native-settings-1.5.2.tgz",
+  "_shasum": "9dadfc47ecb953630369743228f88afa452f0088",
+  "_spec": "cordova-open-native-settings@1.5.2",
+  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "author": {
+    "name": "Guy Rombaut",
+    "email": "admin@gsrweb.net"
+  },
+  "bugs": {
+    "url": "https://github.com/guyromb/Cordova-open-native-settings/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Guy Rombaut",
+      "email": "admin@gsrweb.net",
+      "url": "http://gsrweb.net"
+    },
+    {
+      "name": "unknown"
+    },
+    {
+      "name": "unknown"
+    },
+    {
+      "name": "unknown"
+    },
+    {
+      "name": "unknown"
+    },
+    {
+      "name": "unknown"
+    }
+  ],
+  "cordova": {
+    "id": "cordova-open-native-settings",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Native settings opener for Cordova",
+  "engines": {
+    "cordovaDependencies": {
+      "1.5.0": {
+        "cordova": ">4.0.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/guyromb/Cordova-open-native-settings#readme",
+  "keywords": [
+    "native-settings",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-open-native-settings",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guyromb/Cordova-open-native-settings.git"
+  },
+  "version": "1.5.2"
+}
