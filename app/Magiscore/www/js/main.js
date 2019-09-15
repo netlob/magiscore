@@ -7,6 +7,9 @@
 //     location.reload()
 //   }
 // }, 1000)
+
+
+
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController(viewController)
 var courseController = new CourseController(viewController)
@@ -22,6 +25,8 @@ var sorted = {},
   school = localStorage.getItem("school"),
   dev = false,
   m = null
+
+
 
 courseController.clear()
 
