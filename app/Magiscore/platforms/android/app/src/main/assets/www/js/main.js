@@ -29,11 +29,12 @@ courses.forEach(c => {
   courseController.add(c)
 })
 viewController.currentCourse = courseController.current()
-logConsole("Courses" + JSON.stringify(courses[3].grades))
-courses[3].grades.splice(0, 1)
 
-localStorage.setItem("courses", JSON.stringify(courses))
-logConsole("removed grades")
+//logConsole("Courses" + JSON.stringify(courses))
+// courses[3].grades.splice(0, 10)
+
+// localStorage.setItem("courses", JSON.stringify(courses))
+// logConsole("removed grades")
 
 
 //courses.splice(courses.indexOf(courseController.current()))
@@ -183,16 +184,24 @@ function checkForUpdate() {
 function syncGrades() {
   return new Promise((resolve, reject) => {
     logConsole("Sync started!")
-    courses = []
     m.getCourses().then(syncCourses => {
+      syncCourses.forEach(course => {
+        if (!(courses.find(x => x.id == course.id))) {
+          courses.push(course)
+          courseController.add(course)
+          localStorage.setItem("courses", JSON.stringify(courses))
+          logConsole("addedCourse")
+
+        }
+      })
       //var currentCourse = courseController.current()
       var allNewGrades = []
-      syncCourses.forEach(currentCourse => {
-        // var newCourse = new Course()
-        // Object.keys(currentCourse).forEach(key => {
-        //   newCourse[key] = currentCourse[key]
-        // });
-        // currentCourse = courses
+      courses.forEach(currentCourse => {
+        var newCourse = Course.create()
+        Object.keys(currentCourse).forEach(key => {
+          newCourse[key] = currentCourse[key]
+        });
+        currentCourse = newCourse
         logConsole("is course: " + (currentCourse instanceof Course))
         logConsole(JSON.stringify(currentCourse))
         logConsole("course: " + currentCourse.id)
@@ -224,15 +233,8 @@ function syncGrades() {
           errorConsole(err)
         })
         logConsole("requested grades")
-
-        if (!(courses.find(x => x.id == currentCourse.id))) {
-          courses.push(currentCourse)
-          courseController.add(currentCourse)
-        }
       });
       resolve(allNewGrades)
-      localStorage.setItem("courses", JSON.stringify(courses))
-      logConsole("addedCourses")
 
     }).catch(err => errorConsole(err))
 

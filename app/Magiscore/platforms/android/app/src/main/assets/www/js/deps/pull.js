@@ -43,7 +43,7 @@
             update: function (t) {
                 var n = t.ptrElement.querySelector("." + t.classPrefix + "icon"),
                     s = t.ptrElement.querySelector("." + t.classPrefix + "text");
-                n && ("refreshing" === e.state ? n.innerHTML = t.iconRefreshing : n.innerHTML = t.iconArrow), s && ("releasing" === e.state && (s.innerHTML = t.instructionsReleaseToRefresh), "pulling" !== e.state && "pending" !== e.state || (s.innerHTML = t.instructionsPullToRefresh), "refreshing" === e.state && (s.innerHTML = t.instructionsRefreshing))
+                n && ("refreshing" === e.state ? n.innerHTML = t.iconRefreshing : n.innerHTML = t.iconArrow), s && ("releasing" === e.state && (s.innerHTML = t.instructionsReleaseToRefresh, navigator.vibrate(15)), "pulling" !== e.state && "pending" !== e.state || (s.innerHTML = t.instructionsPullToRefresh), "refreshing" === e.state && (s.innerHTML = t.instructionsRefreshing))
             }
         },
         n = function (t) {
@@ -109,7 +109,7 @@
             cssProp: "min-height",
             iconArrow: "&#8675;",
             iconRefreshing: "&hellip;",
-            instructionsPullToRefresh: "Veeg om cijfers te synchroniseren",
+            instructionsPullToRefresh: "Trek om cijfers te synchroniseren",
             instructionsReleaseToRefresh: "Laat los om cijfers te synchroniseren",
             instructionsRefreshing: "Cijfers aan het synchroniseren",
             refreshTimeout: 500,
