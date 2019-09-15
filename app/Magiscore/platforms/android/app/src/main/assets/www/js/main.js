@@ -14,11 +14,7 @@ var sorted = {},
   dev = false,
   m = null
 
-
-
 courseController.clear()
-
-
 
 courses.forEach(c => {
   var newCourse = Course.create()
@@ -358,51 +354,51 @@ function onDeviceReady() {
             // viewcontroller.renderCourse(false, false, courseController.current())
           }).catch(err => errorConsole(err))
       }).catch(err => errorConsole(err));
-    var BackgroundFetch = window.BackgroundFetch;
+    // var BackgroundFetch = window.BackgroundFetch;
 
-    // Your background-fetch handler.
-    var fetchCallback = function () {
-      refreshToken()
-        .then((refreshTokens) => {
-          tokens = refreshTokens
-          m = new Magister(school, tokens.access_token)
-          cordova.plugins.notification.local.schedule({
-            title: 'Callback gemaakt',
-            text: 'ewa',
-            foreground: true
-          });
-          syncGrades().then(newGrades => {
-            cordova.plugins.notification.local.schedule({
-              title: 'Cijfers binnengecallbackt',
-              text: 'poep',
-              foreground: true
-            });
-            if (newGrades.length > 0) {
-              var message = newGrades.map(grade => {
-                return `${grade.grade} voor ${grade.class.abbreviation || grade.class.description}`
-              })
-              cordova.plugins.notification.local.schedule({
-                title: newGrades.length < 2 ? `${newGrades.length} nieuw cijfer` : `${newGrades.length} nieuwe cijfers`,
-                text: message.join(", "),
-                foreground: true
-              });
-            }
-          })
+    // // Your background-fetch handler.
+    // var fetchCallback = function () {
+    //   refreshToken()
+    //     .then((refreshTokens) => {
+    //       tokens = refreshTokens
+    //       m = new Magister(school, tokens.access_token)
+    //       cordova.plugins.notification.local.schedule({
+    //         title: 'Callback gemaakt',
+    //         text: 'ewa',
+    //         foreground: true
+    //       });
+    //       syncGrades().then(newGrades => {
+    //         cordova.plugins.notification.local.schedule({
+    //           title: 'Cijfers binnengecallbackt',
+    //           text: 'poep',
+    //           foreground: true
+    //         });
+    //         if (newGrades.length > 0) {
+    //           var message = newGrades.map(grade => {
+    //             return `${grade.grade} voor ${grade.class.abbreviation || grade.class.description}`
+    //           })
+    //           cordova.plugins.notification.local.schedule({
+    //             title: newGrades.length < 2 ? `${newGrades.length} nieuw cijfer` : `${newGrades.length} nieuwe cijfers`,
+    //             text: message.join(", "),
+    //             foreground: true
+    //           });
+    //         }
+    //       })
 
-          // Required: Signal completion of your task to native code
-          // If you fail to do this, the OS can terminate your app
-          // or assign battery-blame for consuming too much background-time
-          BackgroundFetch.finish();
-        })
-    };
+    //       // Required: Signal completion of your task to native code
+    //       // If you fail to do this, the OS can terminate your app
+    //       // or assign battery-blame for consuming too much background-time
+    //       BackgroundFetch.finish();
+    //     })
+    // };
 
-    var failureCallback = function (error) {
-      console.log('- BackgroundFetch failed', error);
-    };
+    // var failureCallback = function (error) {
+    //   console.log('- BackgroundFetch failed', error);
+    // };
 
-    BackgroundFetch.configure(fetchCallback, failureCallback, {
-      minimumFetchInterval: 15 // <-- default is 15
-    });
+    // BackgroundFetch.configure(fetchCallback, failureCallback, {
+    //   minimumFetchInterval: 15 // <-- default is 15
+    // });
   } else {
     window.location = './login/index.html'
   }

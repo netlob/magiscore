@@ -453,17 +453,17 @@ function setChartData(config, lesson, everything) {
           lineTension: config.tention,
           backgroundColor: "rgba(0, 150, 219, 0.06)",
           borderColor: "rgba(38, 186, 255, 1)",
-          pointRadius: 3,
+          pointRadius: 2,
           pointBackgroundColor: "rgba(0, 150, 219, 1)",
           pointBorderColor: "rgba(0, 150, 219, 1)",
-          pointHoverRadius: 3,
+          pointHoverRadius: 4,
           pointHoverBackgroundColor: "rgba(0, 150, 219, 1)",
           pointHoverBorderColor: "rgba(0, 150, 219, 1)",
-          pointHitRadius: 10,
+          pointHitRadius: 30,
           pointBorderWidth: 2,
-          borderWidth: config.isDesktop ? 3 : 1,
+          borderWidth: config.isDesktop ? 3 : 1.5,
           data: cijfers,
-          pointRadius: 1
+          // pointRadius: 1
         } //,
         // {
         //   label: "Weging",
@@ -548,8 +548,8 @@ function setChartData(config, lesson, everything) {
         // bodyFontColor: "#858796",
         titleMarginBottom: 2,
         // titleFontColor: "#6e707e",
-        titleFontSize: 9,
-        bodyFontSize: 9,
+        titleFontSize: 12,
+        bodyFontSize: 12,
         borderColor: "rgba(0, 150, 219, 1)",
         borderWidth: 1,
         xPadding: 8,
@@ -630,17 +630,17 @@ function setChartData(config, lesson, everything) {
         lineTension: config.tention,
         backgroundColor: "rgba(0, 150, 219, 0.06)",
         borderColor: "rgba(38, 186, 255, 1)",
-        pointRadius: 3,
+        pointRadius: 2,
         pointBackgroundColor: "rgba(0, 150, 219, 1)",
         pointBorderColor: "rgba(0, 150, 219, 1)",
-        pointHoverRadius: 3,
+        pointHoverRadius: 4,
         pointHoverBackgroundColor: "rgba(0, 150, 219, 1)",
         pointHoverBorderColor: "rgba(0, 150, 219, 1)",
-        pointHitRadius: 10,
+        pointHitRadius: 30,
         pointBorderWidth: 2,
-        borderWidth: config.isDesktop ? 3 : 1,
+        borderWidth: config.isDesktop ? 3 : 1.5,
         data: gemiddeldes,
-        pointRadius: 1
+        // pointRadius: 1
       } //,
       // {
       //   label: "Weging",
@@ -667,17 +667,17 @@ function setChartData(config, lesson, everything) {
         lineTension: config.tention,
         backgroundColor: "rgba(0, 219, 69, 0.06)",
         borderColor: "rgba(0, 252, 80, 1)",
-        pointRadius: 3,
+        pointRadius: 2,
         pointBackgroundColor: "rgba(0, 219, 69, 1)",
         pointBorderColor: "rgba(0, 219, 69, 1)",
-        pointHoverRadius: 3,
+        pointHoverRadius: 4,
         pointHoverBackgroundColor: "rgba(0, 219, 69, 1)",
         pointHoverBorderColor: "rgba(0, 219, 69, 1)",
-        pointHitRadius: 10,
+        pointHitRadius: 30,
         pointBorderWidth: 2,
-        borderWidth: config.isDesktop ? 3 : 1,
+        borderWidth: config.isDesktop ? 3 : 1.5,
         data: cijfers,
-        pointRadius: 1
+        // pointRadius: 1
       })
     }
     viewController.lineChart2 = new Chart(ctx, {
@@ -745,15 +745,20 @@ function setChartData(config, lesson, everything) {
         },
         legend: {
           display: true,
-          position: 'bottom'
+          position: 'bottom',
+          labels: {
+            fontSize: 15,
+            boxWidth: 50
+          },
+          // onClick: navigator.vibrate(15)
         },
         tooltips: {
           backgroundColor: "#0096db",
           // bodyFontColor: "#858796",
           titleMarginBottom: 2,
           // titleFontColor: "#6e707e",
-          titleFontSize: 9,
-          bodyFontSize: 9,
+          titleFontSize: 12,
+          bodyFontSize: 12,
           borderColor: "rgba(0, 150, 219, 1)",
           borderWidth: 1,
           xPadding: 8,
@@ -979,7 +984,7 @@ function generateHTML(lesson) {
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                       <h6 class="m-0 font-weight-bold text-primary">Gemiddelde van ${lesson}</h6>
-                      <div class="dropdown no-arrow">
+                      <!--<div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Uitschuiven" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                         </a>
@@ -987,7 +992,7 @@ function generateHTML(lesson) {
                             <div class="dropdown-header">Grafiek instellingen:</div>
                             <a class="dropdown-item" href="#" onclick="viewController.updateConfig({'includeGradesInAverageChart': true})">Laat bijbehorende cijfers zien</a>
                         </div>
-                      </div>
+                      </div>-->
                   </div>
                   <!-- Card Body -->
                   <div class="card-body chart-card">

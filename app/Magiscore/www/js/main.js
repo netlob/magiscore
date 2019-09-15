@@ -14,11 +14,7 @@ var sorted = {},
   dev = false,
   m = null
 
-
-
 courseController.clear()
-
-
 
 courses.forEach(c => {
   var newCourse = Course.create()
