@@ -464,13 +464,14 @@ a.magister-login:before {
 
   .newGrade,
   .getGrade {
-    display: block !important;
-    width: 100% !important;
+    display: inline-block !important;
+    width: 50% !important;
   }
 
   .showCalculatedGrade {
     display: inline-block !important;
-    width: 100% !important;
+    width: 48% !important;
+    padding: 0.625rem 0px 0px 0.625rem;
     text-align: center !important;
     margin-top: 33px !important;
     vertical-align: top !important;

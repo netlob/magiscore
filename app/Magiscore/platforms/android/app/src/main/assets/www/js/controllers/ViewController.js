@@ -133,20 +133,21 @@ class ViewController {
   }
 
   toast(msg, duration, fullWidth) {
-    var snackId = Math.floor((Math.random() * 1000) + 1)
-    var bottom = $(".snackbar").length < 1 ? 30 : ($(".snackbar").length * 65) + 30
-    $("body").append(`<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""}">${msg}</div>`);
+    var snackId = Math.floor((Math.random() * 1000000) + 1)
+    var bottom = 30
+    // var bottom = $(".snackbar").length < 1 ? 30 : ($(".snackbar").length * 65) + 30
+    $("body").append(`<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""}">${msg}${snackId}</div>`);
     $(`#snackbar-${snackId}`).css("margin-left", -($(`#snackbar-${snackId}`).width() / 2 + 16))
     $(`#snackbar-${snackId}`).css("display", "block");
     $(`#snackbar-${snackId}`).animate({
-        bottom: `${bottom}px`
+        "bottom": `${bottom}px`
       },
       "slow"
     );
     if (duration) {
       setTimeout(function () {
         $(`#snackbar-${snackId}`).animate({
-            bottom: "-200px"
+            "bottom": "-200px"
           },
           "slow",
           function () {
@@ -194,6 +195,7 @@ class ViewController {
       "isDesktop": this.config.isDesktop
     });
     this.toast("Thema veranderd naar licht", 2000, false)
+    logConsole("Theme changed to light")
   }
 
   darkTheme() {
@@ -203,6 +205,7 @@ class ViewController {
       "isDesktop": this.config.isDesktop
     });
     this.toast("Thema veranderd naar donker", 2000, false)
+    logConsole("Theme changed to dark")
   }
 
   savePassed(e) {
@@ -210,6 +213,7 @@ class ViewController {
       "passed": e.valueAsNumber
     })
     this.toast("Voldoendegrens veranderd naar " + e.valueAsNumber, 2000, false)
+    logConsole("Passed changed to " + e.valueAsNumber)
     // this.render(this.currentLesson)
   }
 
@@ -272,9 +276,10 @@ class ViewController {
 }
 
 function updateSidebar() {
-  $("#subjectsNav").empty();
-  lessonController.lessons.map(lesson =>
-    $("#subjectsNav").append(`
+  if (lessonController.lessons.length > 0) {
+    $("#subjectsNav").empty();
+    lessonController.lessons.map(lesson =>
+      $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
             <a class="nav-link" onclick="viewController.render('${
       lesson.name
@@ -283,7 +288,13 @@ function updateSidebar() {
             </a>
         </li>
     `)
-  );
+    )
+  } else {
+    $("#subjectsNav").html(`
+      <li class="text-center text-gray-500 mt-4">
+            <span>Geen cijfers dit jaar...</span>
+      </li>`)
+  }
 
   // var profilepic = document.getElementById("imgelem");
   // profilepic.setAttribute("src", "./img/stock-profile-picture.png");
@@ -649,7 +660,8 @@ function setChartData(config, lesson, everything) {
       //   pointRadius: 0
       // }
     ]
-    if (config.includeGradesInAverageChart) {
+    // if (config.includeGradesInAverageChart) {
+    if (true) {
       data.push({
         label: "Cijfer",
         lineTension: config.tention,
@@ -732,7 +744,8 @@ function setChartData(config, lesson, everything) {
           }]
         },
         legend: {
-          display: false
+          display: true,
+          position: 'bottom'
         },
         tooltips: {
           backgroundColor: "#0096db",

@@ -1,12 +1,3 @@
-// import {
-//   sync
-// } from "glob";
-
-// setTimeout(function () {
-//   if ($("#userDropdown > span").text() == "Voornaam Achternaam") {
-//     location.reload()
-//   }
-// }, 1000)
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController(viewController)
 var courseController = new CourseController(viewController)
@@ -23,6 +14,8 @@ var sorted = {},
   dev = false,
   m = null
 
+
+
 courseController.clear()
 
 
@@ -36,12 +29,11 @@ courses.forEach(c => {
   courseController.add(c)
 })
 viewController.currentCourse = courseController.current()
+logConsole("Courses" + JSON.stringify(courses[3].grades))
+courses[3].grades.splice(0, 1)
 
-//logConsole("Courses" + JSON.stringify(courses))
-// courses[3].grades.splice(0, 10)
-
-// localStorage.setItem("courses", JSON.stringify(courses))
-// logConsole("removed grades")
+localStorage.setItem("courses", JSON.stringify(courses))
+logConsole("removed grades")
 
 
 //courses.splice(courses.indexOf(courseController.current()))
@@ -191,24 +183,16 @@ function checkForUpdate() {
 function syncGrades() {
   return new Promise((resolve, reject) => {
     logConsole("Sync started!")
+    courses = []
     m.getCourses().then(syncCourses => {
-      syncCourses.forEach(course => {
-        if (!(courses.find(x => x.id == course.id))) {
-          courses.push(course)
-          courseController.add(course)
-          localStorage.setItem("courses", JSON.stringify(courses))
-          logConsole("addedCourse")
-
-        }
-      })
       //var currentCourse = courseController.current()
       var allNewGrades = []
-      courses.forEach(currentCourse => {
-        var newCourse = Course.create()
-        Object.keys(currentCourse).forEach(key => {
-          newCourse[key] = currentCourse[key]
-        });
-        currentCourse = newCourse
+      syncCourses.forEach(currentCourse => {
+        // var newCourse = new Course()
+        // Object.keys(currentCourse).forEach(key => {
+        //   newCourse[key] = currentCourse[key]
+        // });
+        // currentCourse = courses
         logConsole("is course: " + (currentCourse instanceof Course))
         logConsole(JSON.stringify(currentCourse))
         logConsole("course: " + currentCourse.id)
@@ -240,8 +224,15 @@ function syncGrades() {
           errorConsole(err)
         })
         logConsole("requested grades")
+
+        if (!(courses.find(x => x.id == currentCourse.id))) {
+          courses.push(currentCourse)
+          courseController.add(currentCourse)
+        }
       });
       resolve(allNewGrades)
+      localStorage.setItem("courses", JSON.stringify(courses))
+      logConsole("addedCourses")
 
     }).catch(err => errorConsole(err))
 
@@ -257,7 +248,7 @@ const ptr = PullToRefresh.init({
   },
   onRefresh: function (done) {
     syncGrades().then(d => done())
-    done()
+    // done()
   }
 });
 
@@ -339,6 +330,7 @@ function onDeviceReady() {
             localStorage.setItem("person", JSON.stringify(p))
             logConsole("Got person info!")
             main()
+            viewController.toast("Yeet", 3000, true)
             checkForUpdate().then(hasUpdate => {
               if (hasUpdate) {
                 viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
@@ -368,25 +360,38 @@ function onDeviceReady() {
 
     // Your background-fetch handler.
     var fetchCallback = function () {
-      cordova.plugins.notification.local.schedule({
-        title: 'Callback gemaakt',
-        text: 'ewa',
-        foreground: true
-      });
-      syncGrades().then(newGrades => {
-        if (newGrades.length > 0) {
+      refreshToken()
+        .then((refreshTokens) => {
+          tokens = refreshTokens
+          m = new Magister(school, tokens.access_token)
           cordova.plugins.notification.local.schedule({
-            title: 'Nieuwe cijfers',
-            text: 'Er staan nieuwe cijfers op Magister!',
+            title: 'Callback gemaakt',
+            text: 'ewa',
             foreground: true
           });
-        }
-      })
+          syncGrades().then(newGrades => {
+            cordova.plugins.notification.local.schedule({
+              title: 'Cijfers binnengecallbackt',
+              text: 'poep',
+              foreground: true
+            });
+            if (newGrades.length > 0) {
+              var message = newGrades.map(grade => {
+                return `${grade.grade} voor ${grade.class.abbreviation || grade.class.description}`
+              })
+              cordova.plugins.notification.local.schedule({
+                title: newGrades.length < 2 ? `${newGrades.length} nieuw cijfer` : `${newGrades.length} nieuwe cijfers`,
+                text: message.join(", "),
+                foreground: true
+              });
+            }
+          })
 
-      // Required: Signal completion of your task to native code
-      // If you fail to do this, the OS can terminate your app
-      // or assign battery-blame for consuming too much background-time
-      BackgroundFetch.finish();
+          // Required: Signal completion of your task to native code
+          // If you fail to do this, the OS can terminate your app
+          // or assign battery-blame for consuming too much background-time
+          BackgroundFetch.finish();
+        })
     };
 
     var failureCallback = function (error) {

@@ -1,15 +1,3 @@
-// import {
-//   sync
-// } from "glob";
-
-// setTimeout(function () {
-//   if ($("#userDropdown > span").text() == "Voornaam Achternaam") {
-//     location.reload()
-//   }
-// }, 1000)
-
-
-
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController(viewController)
 var courseController = new CourseController(viewController)
@@ -262,7 +250,7 @@ const ptr = PullToRefresh.init({
   },
   onRefresh: function (done) {
     syncGrades().then(d => done())
-    done()
+    // done()
   }
 });
 
@@ -344,6 +332,7 @@ function onDeviceReady() {
             localStorage.setItem("person", JSON.stringify(p))
             logConsole("Got person info!")
             main()
+            viewController.toast("Yeet", 3000, true)
             checkForUpdate().then(hasUpdate => {
               if (hasUpdate) {
                 viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
@@ -373,25 +362,38 @@ function onDeviceReady() {
 
     // Your background-fetch handler.
     var fetchCallback = function () {
-      cordova.plugins.notification.local.schedule({
-        title: 'Callback gemaakt',
-        text: 'ewa',
-        foreground: true
-      });
-      syncGrades().then(newGrades => {
-        if (newGrades.length > 0) {
+      refreshToken()
+        .then((refreshTokens) => {
+          tokens = refreshTokens
+          m = new Magister(school, tokens.access_token)
           cordova.plugins.notification.local.schedule({
-            title: 'Nieuwe cijfers',
-            text: 'Er staan nieuwe cijfers op Magister!',
+            title: 'Callback gemaakt',
+            text: 'ewa',
             foreground: true
           });
-        }
-      })
+          syncGrades().then(newGrades => {
+            cordova.plugins.notification.local.schedule({
+              title: 'Cijfers binnengecallbackt',
+              text: 'poep',
+              foreground: true
+            });
+            if (newGrades.length > 0) {
+              var message = newGrades.map(grade => {
+                return `${grade.grade} voor ${grade.class.abbreviation || grade.class.description}`
+              })
+              cordova.plugins.notification.local.schedule({
+                title: newGrades.length < 2 ? `${newGrades.length} nieuw cijfer` : `${newGrades.length} nieuwe cijfers`,
+                text: message.join(", "),
+                foreground: true
+              });
+            }
+          })
 
-      // Required: Signal completion of your task to native code
-      // If you fail to do this, the OS can terminate your app
-      // or assign battery-blame for consuming too much background-time
-      BackgroundFetch.finish();
+          // Required: Signal completion of your task to native code
+          // If you fail to do this, the OS can terminate your app
+          // or assign battery-blame for consuming too much background-time
+          BackgroundFetch.finish();
+        })
     };
 
     var failureCallback = function (error) {
