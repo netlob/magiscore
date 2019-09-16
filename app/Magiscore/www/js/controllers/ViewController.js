@@ -20,7 +20,7 @@ class ViewController {
   }
 
   renderGeneral() {
-    $("#lesson-wrapper").hide();
+    $("#lesson-wrapper").empty();
     $("#settings-wrapper").hide();
     $("#currentRender").html(`Gemiddeld`) // (${this.currentCourse.course.group.description})`);
     $("#currentRenderMobile").html(`Gemiddeld`) // (${this.currentCourse.course.group.description})`);
@@ -214,13 +214,21 @@ class ViewController {
     logConsole("Theme changed to dark")
   }
 
-  savePassed(e) {
-    this.updateConfig({
-      "passed": e.valueAsNumber
-    })
-    this.toast("Voldoendegrens veranderd naar " + e.valueAsNumber, 2000, false)
-    logConsole("Passed changed to " + e.valueAsNumber)
-    // this.render(this.currentLesson)
+  savePassed() {
+    var e = parseFloat($("#passed-input").val())
+    if (e <= 10 && e >= 1) {
+      this.updateConfig({
+        "passed": e
+      })
+      this.toast("Voldoendegrens veranderd naar " + e, 2000, false)
+      logConsole("Passed changed to " + e)
+    } else if (e < 1) {
+      this.toast("Vul een getal groter dan 1 in", 3000, false)
+    } else if (e > 10) {
+      this.toast("Vul een getal kleiner dan 10 in", 3000, false)
+    } else {
+      this.toast("Ongeldige waarde...", 3000, false)
+    }
   }
 
   setLatestGrades(grades) {
@@ -270,6 +278,7 @@ class ViewController {
     $("#lesson-wrapper").hide();
     $("#currentRender").html('Instellingen');
     $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
+    $("#passed-input").attr("placeholder", this.config.passed);
     $("#settings-wrapper").show();
     this.settingsOpen = true
   }
@@ -1098,7 +1107,7 @@ function generateHTML(lesson) {
                   </div>
                   <!-- Card Body -->
                   <div class="card-body chart-card">
-                      <div class="chart-area chart-container lineChart2-container">
+                      <div class="chart-area chart-container lineChart2-container-lesson">
                         <canvas id="lineChart2"></canvas>
                       </div>
                   </div>
@@ -1163,7 +1172,7 @@ function generateHTML(lesson) {
                 </div>
                 <!-- Card Body -->
                 <div class="card-body chart-card">
-                    <div class="chart-area chart-container lineChart-container">
+                    <div class="chart-area chart-container lineChart-container-lesson">
                       <canvas id="lineChart"></canvas>
                     </div>
                 </div>
@@ -1191,7 +1200,7 @@ function generateHTML(lesson) {
                   <!-- Card Body -->
                   <div class="card-body">
                       <h6 id="percentageGrades"></h6>
-                      <div class="chart-pie chart-container pt-4 pb-2 pieChart-container">
+                      <div class="chart-pie chart-container pt-4 pb-2 pieChart-container-lesson">
                         <canvas id="pieChart"></canvas>
                       </div>
                       <div class="text-center small">
@@ -1226,7 +1235,7 @@ function generateHTML(lesson) {
                   </div>
                   <!-- Card Body -->
                   <div class="card-body">
-                      <div class="chart-bar chart-container pt-4 pb-2 barChart-container">
+                      <div class="chart-bar chart-container pt-4 pb-2 barChart-container-lesson">
                       <canvas id="barChart"></canvas>
                       </div>
                   </div>

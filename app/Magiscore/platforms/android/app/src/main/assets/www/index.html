@@ -383,15 +383,21 @@
             <li class="list-group-item shadow mb-2">Reset alle uitgeschakelde cijfers <a
                 class="float-right menu-a vibrate" onclick="viewController.updateConfig({'exclude': []})">RESET</a>
             </li>
-            <li class="list-group-item shadow mb-2 d-inline-block">Refresh geen oude cijfers
+            <li class="list-group-item shadow mb-2 d-inline-block">Refresh oude cijfers
               <div class="md-checkbox vibrate d-inline-block float-right" style="font-size:1rem">
-                <input id="test-checkbox2" type="checkbox" onchange="" checked>
+                <input id="test-checkbox2" type="checkbox" onchange="">
                 <label for="test-checkbox2"></label>
               </div>
             </li>
-            <li class="list-group-item shadow mb-2">Voldoendegrens <input type="number"
-                class="float-right d-inline-block pl-2 bg-transparent text-primary-blue" min="1" max="10"
-                onchange="viewController.savePassed(this)" placeholder="5.5">
+            <li class="list-group-item shadow mb-2">
+              <div>Voldoendegrens
+                <a class="float-right menu-a vibrate" onclick="viewController.savePassed()">OPSLAAN</a>
+                <input type="number" class="float-right d-inline-block pl-2 bg-transparent text-primary-blue"
+                  pattern="^\d*\.?\d$" min="1" max="10" placeholder="5.5" id="passed-input"></div>
+              <hr class="mt-2 mb-1">
+              <span class="text-gray-500" style="font-size: 11px"><i class="far fa-info-circle fa-s"></i>
+                Wil je een kommagetal? Gebruik dan een punt(.) als komma(,) - Bijvoorbeeld 5.5 ipv 5,5
+              </span>
             </li>
           </ul>
         </div>
@@ -530,7 +536,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area">
+                  <div class="chart-area" id="lineChart-container">
                     <!-- <div class="table-responsive"> -->
                     <canvas id="lineChart"></canvas>
                     <!-- </div> -->
@@ -561,7 +567,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <h6 id="percentageGrades"></h6>
-                  <div class="chart-pie pt-4 pb-2">
+                  <div class="chart-pie pt-4 pb-2" id="pieChart-container">
                     <canvas id="pieChart"></canvas>
                   </div>
                   <div class="text-center small">
@@ -597,7 +603,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area">
+                  <div class="chart-area" id="barChart-container">
                     <canvas id="barChart"></canvas>
                   </div>
                 </div>
