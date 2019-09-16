@@ -189,7 +189,8 @@
               </div>
             </form> -->
 
-          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-none d-md-block" id="currentRender">Gemiddeld</h1>
+          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-none d-md-block" id="currentRender">Gemiddeld
+          </h1>
           <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-block d-md-none text-center text-mobile ml-2"
             id="currentRenderMobile">
             Gemiddeld</h1>
@@ -275,6 +276,8 @@
                 <i class="fas fa-calendar-alt fa-fw d-block d-md-none mobile-clock"></i>
                 <i class="fas fa-calendar-alt fa-fw text-gray-600 d-none d-lg-block"></i>
                 <span class="ml-1 mr-2 text-gray-600 d-none d-lg-block">Leerjaren</span>
+                <span class="badge badge-primary badge-counter mr-3 d-none d-md-block"
+                  id="current-course-badge">-</span>
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
                 aria-labelledby="messagesDropdown">
@@ -572,6 +575,34 @@
                 </div>
               </div>
             </div>
+
+
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Afgerond behaalde cijfers</h6>
+                  <!--<div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Download grafiek" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div> -->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="barChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Content Row -->
@@ -732,8 +763,6 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-
-    <div id="settings-overlay"></div>
 
   </div>
   <!-- End of Page Wrapper -->

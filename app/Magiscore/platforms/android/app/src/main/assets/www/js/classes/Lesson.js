@@ -202,6 +202,48 @@ class Lesson {
     return round(newGrade)
   }
 
+  getDays() {
+    var passed = {
+      "days": 0
+    }
+    var not_passed = {
+      "days": 0
+    }
+    this.grades.forEach((grade, index) => {
+      var remaining = this.grades.slice(index - 1);
+      var start = new Date(grade.dateFilledIn)
+      if (grade.passed) {
+        var end = remaining.find(x => x.passed === true) ? new Date(remaining.find(x => x.passed === true).dateFilledIn) : start
+        var days = Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1
+        logConsole("days: " + days)
+        if (days >= passed.days) {
+          passed = {
+            "start": toShortFormat(start),
+            "end": toShortFormat(end),
+            "days": days
+          }
+        }
+      } else if (!grade.passed) {
+        var end = remaining.find(x => x.passed === false) ? new Date(remaining.find(x => x.passed === false).dateFilledIn) : start
+        var days = Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1
+        logConsole("days: " + days)
+        if (days >= not_passed.days) {
+          not_passed = {
+            "start": toShortFormat(start),
+            "end": toShortFormat(end),
+            "days": days
+          }
+        }
+      }
+    })
+    logConsole("passed: " + JSON.stringify(passed))
+    logConsole("not_passed: " + JSON.stringify(not_passed))
+    return {
+      "passed": passed,
+      "not_passed": not_passed
+    }
+  }
+
   fillGradeAverages() {
     return this.grades.map((grade, index) => {
       var average = this.getAverage(false, index + 1)

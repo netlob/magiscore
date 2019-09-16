@@ -1,3 +1,5 @@
+// If you want comments. Go fuck yourself
+
 var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController(viewController)
 var courseController = new CourseController(viewController)
@@ -179,6 +181,7 @@ function checkForUpdate() {
 
 function syncGrades() {
   return new Promise((resolve, reject) => {
+    $("#overlay").show()
     logConsole("Sync started!")
     m.getCourses().then(syncCourses => {
       syncCourses.forEach(course => {
@@ -231,6 +234,7 @@ function syncGrades() {
         logConsole("requested grades")
       });
       resolve(allNewGrades)
+      $("#overlay").hide()
 
     }).catch(err => errorConsole(err))
 
@@ -320,21 +324,21 @@ function onDeviceReady() {
     refreshToken()
       .then((refreshTokens) => {
         tokens = refreshTokens
+        logConsole("tokens: " + Object.keys(refreshTokens))
         m = new Magister(school, tokens.access_token)
 
         m.getInfo()
           .then(p => {
             person = p
             localStorage.setItem("person", JSON.stringify(p))
-            logConsole("Got person info!")
+            logConsole("person: " + Object.keys(p))
             main()
-            viewController.toast("Yeet", 3000, true)
-            checkForUpdate().then(hasUpdate => {
-              if (hasUpdate) {
-                viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
-              }
-
-            })
+            // checkForUpdate().then(hasUpdate => {
+            //   logConsole("hasUpdate: " + hasUpdate)
+            //   if (hasUpdate) {
+            //     viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
+            //   }
+            // })
             // courseController.getLatestGrades()
             //   .then(grades => {
             //     logConsole("Grades: " + JSON.stringify(grades))

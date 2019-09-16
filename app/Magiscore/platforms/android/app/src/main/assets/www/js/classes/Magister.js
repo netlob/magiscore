@@ -29,7 +29,8 @@ class Magister {
      */
     getInfo() {
         return new Promise((resolve, reject) => {
-            // logConsole(`https://${this.tenant}/api/account?noCache=0`)
+            logConsole(`https://${this.tenant}/api/account?noCache=0`)
+            logConsole("Bearer " + this.token)
             $.ajax({
                     "dataType": "json",
                     "async": true,

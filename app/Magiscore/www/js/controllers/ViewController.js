@@ -4,6 +4,7 @@ class ViewController {
     this.lineChart = false;
     this.lineChart2 = false;
     this.pieChart = false;
+    this.barChart = false;
     this.config = {};
     this.currentCourse = {}
     this.currentLesson = {}
@@ -21,11 +22,15 @@ class ViewController {
   renderGeneral() {
     $("#lesson-wrapper").hide();
     $("#settings-wrapper").hide();
-    $("#currentRender").html("Gemiddeld");
-    $("#currentRenderMobile").html("Gemiddeld");
+    $("#currentRender").html(`Gemiddeld`) // (${this.currentCourse.course.group.description})`);
+    $("#currentRenderMobile").html(`Gemiddeld`) // (${this.currentCourse.course.group.description})`);
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
     }
+    $("#lineChart-container").empty().append(`<canvas id="lineChart""></canvas>`)
+    $("#lineChart2-container").empty().append(`<canvas id="lineChart2""></canvas>`)
+    $("#pieChart-container").empty().append(`<canvas id="pieChart""></canvas>`)
+    $("#barChart-container").empty().append(`<canvas id="barChart""></canvas>`)
     // $("#general-area-title").text(
     //   `Alle cijfers van ${course.type.description}`
     // );
@@ -74,6 +79,7 @@ class ViewController {
     else main()
     $("#years").children().removeClass("course-selected")
     $(`#course-${courseid}`).addClass("course-selected")
+    $("#current-course-badge").text(this.currentCourse.course.group.description)
     setTimeout(function () {
       $("#overlay").hide()
     }, 100)
@@ -134,9 +140,9 @@ class ViewController {
 
   toast(msg, duration, fullWidth) {
     var snackId = Math.floor((Math.random() * 1000000) + 1)
-    var bottom = 30
-    // var bottom = $(".snackbar").length < 1 ? 30 : ($(".snackbar").length * 65) + 30
-    $("body").append(`<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""}">${msg}${snackId}</div>`);
+    // var bottom = 30
+    var bottom = $(".snackbar").length < 1 ? 30 : ($(".snackbar").length * 65) + 30
+    $("body").append(`<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""}">${msg}</div>`);
     $(`#snackbar-${snackId}`).css("margin-left", -($(`#snackbar-${snackId}`).width() / 2 + 16))
     $(`#snackbar-${snackId}`).css("display", "block");
     $(`#snackbar-${snackId}`).animate({
@@ -301,9 +307,10 @@ function updateSidebar() {
   var profilepicStorage = localStorage.getItem("profilepic") || false,
     profilepic = document.getElementById("imgelem");
   if (profilepicStorage) {
-    logConsole("[INFO] Using saved pic");
+    logConsole("profile picture from localstorage");
     profilepic.setAttribute("src", profilepicStorage);
   } else {
+    logConsole("profile picture from request");
     var xhr = new XMLHttpRequest(),
       blob,
       fileReader = new FileReader();
@@ -373,11 +380,15 @@ function updateSidebar() {
 function setChartData(config, lesson, everything) {
   // this.lineChart.clear()
   this.lineChart = "";
+  this.lineChart2 = "";
+  this.pieChart = "";
+  this.barChart = "";
   var data = [];
   var datums = [];
   var cijfers = [];
   var wegingen = [];
   var gemiddeldes = [];
+  var afgerond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   var vol = 0;
   var onvol = 0;
   if (lesson == "general") {
@@ -432,6 +443,38 @@ function setChartData(config, lesson, everything) {
     cijfers.push(value.y);
     gemiddeldes.push(Math.round(value.a.value * 100) / 100);
     wegingen.push(value.w);
+    switch (Math.round(value.y)) {
+      case 1:
+        afgerond[0]++
+        break;
+      case 2:
+        afgerond[1]++
+        break;
+      case 3:
+        afgerond[2]++
+        break;
+      case 4:
+        afgerond[3]++
+        break;
+      case 5:
+        afgerond[4]++
+        break;
+      case 6:
+        afgerond[5]++
+        break;
+      case 7:
+        afgerond[6]++
+        break;
+      case 8:
+        afgerond[7]++
+        break;
+      case 9:
+        afgerond[8]++
+        break;
+      case 10:
+        afgerond[9]++
+        break;
+    }
   });
 
   datums.reverse();
@@ -584,16 +627,16 @@ function setChartData(config, lesson, everything) {
       labels: ["Voldoendes", "Onvoldoendes"],
       datasets: [{
         data: [vol, onvol],
-        backgroundColor: ["#0096db", "#e86458"],
-        hoverBackgroundColor: ["#0096db", "#e86458"],
-        hoverBorderColor: "transparent",
-        borderColor: "transparent", //config.darkTheme ? "#2c2d30" : "#fff"
+        backgroundColor: ["rgba(0, 150, 219, 0.2)", "rgba(232, 100, 88, 0.2)"],
+        hoverBackgroundColor: ["rgba(0, 150, 219, 0.4)", "rgba(232, 100, 88, 0.4)"],
+        hoverBorderColor: ["#0096db", "#e86458"],
+        borderColor: ["#0096db", "#e86458"], //config.darkTheme ? "#2c2d30" : "#fff"
       }]
     },
     options: {
       maintainAspectRatio: false,
       tooltips: {
-        backgroundColor: "#0096db",
+        backgroundColor: "rgba(0, 150, 219, 1)",
         titleMarginBottom: 2,
         titleFontSize: 12,
         bodyFontSize: 12,
@@ -622,7 +665,7 @@ function setChartData(config, lesson, everything) {
     $("#percentageGrades").text(`Geen cijfers voor dit vak...`);
   }
 
-  // if (viewController.lineChart2 != false) viewController.lineChart2.destroy();
+  // if (viewController.lineChart2 != false) viewController.lineChart2.update();
   if (lesson != "general") {
     var ctx = document.getElementById("lineChart2").getContext("2d");
     var data = [{
@@ -785,6 +828,64 @@ function setChartData(config, lesson, everything) {
       }
     });
   }
+
+  // $("#barChart-container").empty().append(`<canvas id="barChart""></canvas>`)
+  viewController.barChart = new Chart(document.getElementById("barChart"), {
+    type: "bar",
+    data: {
+      labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      datasets: [{
+        label: "Afgerond behaalde cijfers",
+        data: afgerond,
+        fill: false,
+        backgroundColor: ["rgba(255,0,0,0.2)", "rgba(255,35,0,0.2)", "rgba(255,87,0,0.2)", "rgba(255,140,0,0.2)", "rgba(255,193,0,0.2)", "rgba(255,246,0,0.2)", "rgba(212,255,0,0.2)", "rgba(159,255,0,0.2)", "rgba(106,255,0,0.2)", "rgba(53,255,0,0.2)", "rgba(0,255,0,0.2)"],
+        borderColor: ["rgba(255,0,0,1)", "rgba(255,35,0,1)", "rgba(255,87,0,1)", "rgba(255,140,0,1)", "rgba(255,193,0,1)", "rgba(255,246,0,1)", "rgba(212,255,0,1)", "rgba(159,255,0,1)", "rgba(106,255,0,1)", "rgba(53,255,0,1)", "rgba(0,255,0,1)"],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      },
+      maintainAspectRatio: false,
+      responsive: true,
+      layout: {
+        padding: {
+          //   left: 10,
+          //   right: 25,
+          //   top: 25,
+          //   bottom: 0
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0
+        }
+      },
+      legend: {
+        display: false,
+      },
+      tooltips: {
+        backgroundColor: "#0096db",
+        // bodyFontColor: "#858796",
+        titleMarginBottom: 2,
+        // titleFontColor: "#6e707e",
+        titleFontSize: 12,
+        bodyFontSize: 12,
+        borderColor: "rgba(0, 150, 219, 1)",
+        borderWidth: 1,
+        xPadding: 8,
+        yPadding: 8,
+        displayColors: false,
+        intersect: true,
+        mode: "index",
+        caretPadding: 4
+      },
+    }
+  });
 }
 
 function setAllGrades() {
@@ -886,6 +987,7 @@ function generateHTML(lesson) {
   var average = lessonController.getLesson(lesson).lesson.getAverage(true);
   var extraSecond = lessonController.getLesson(lesson).lesson.getSecond();
   var extraThird = lessonController.getLesson(lesson).lesson.getThird();
+  var facts = lessonController.getLesson(lesson).lesson.getDays()
   return `<!-- Page Heading -->
             <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">${lesson.capitalize()}</h1>
@@ -996,7 +1098,7 @@ function generateHTML(lesson) {
                   </div>
                   <!-- Card Body -->
                   <div class="card-body chart-card">
-                      <div class="chart-area chart-container">
+                      <div class="chart-area chart-container lineChart2-container">
                         <canvas id="lineChart2"></canvas>
                       </div>
                   </div>
@@ -1061,7 +1163,7 @@ function generateHTML(lesson) {
                 </div>
                 <!-- Card Body -->
                 <div class="card-body chart-card">
-                    <div class="chart-area chart-container">
+                    <div class="chart-area chart-container lineChart-container">
                       <canvas id="lineChart"></canvas>
                     </div>
                 </div>
@@ -1073,24 +1175,24 @@ function generateHTML(lesson) {
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                       <h6 class="m-0 font-weight-bold text-primary">Voldoendes / onvoldoendes</h6>
-                      <div class="dropdown no-arrow">
-                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Download grafiek" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                          <div class="dropdown-header">Dropdown Header:</div>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                      </div>
+                      <!--<div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Download grafiek" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dropdown Header:</div>
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div> -->
                   </div>
                   <!-- Card Body -->
                   <div class="card-body">
                       <h6 id="percentageGrades"></h6>
-                      <div class="chart-pie chart-container pt-4 pb-2">
-                      <canvas id="pieChart"></canvas>
+                      <div class="chart-pie chart-container pt-4 pb-2 pieChart-container">
+                        <canvas id="pieChart"></canvas>
                       </div>
                       <div class="text-center small">
                         <span class="mr-2">
@@ -1099,6 +1201,33 @@ function generateHTML(lesson) {
                         <span class="mr-2">
                             <i class="fas fa-circle" style="color: #e86458"></i> Onvoldoendes
                         </span>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+
+              <div class="col-xl-4 col-lg-5">
+                  <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">Afgerond behaalde cijfers</h6>
+                      <!--<div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Download grafiek" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dropdown Header:</div>
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div> -->
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                      <div class="chart-bar chart-container pt-4 pb-2 barChart-container">
+                      <canvas id="barChart"></canvas>
                       </div>
                   </div>
                   </div>
@@ -1112,6 +1241,7 @@ function generateHTML(lesson) {
                     <h6 class="m-0 font-weight-bold text-primary">Feiten voor ${lesson}</h6>
                   </div>
                   <div class="card-body">
+                  ${JSON.stringify(facts)}
                   </div>
                 </div>
               </div>

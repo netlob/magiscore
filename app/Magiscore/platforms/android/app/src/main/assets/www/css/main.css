@@ -232,7 +232,7 @@ input.form-control::placeholder {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  z-index: 99999;
 }
 
 #overlay {
@@ -245,7 +245,7 @@ input.form-control::placeholder {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 99999;
   cursor: wait;
 }
 
@@ -259,7 +259,7 @@ input.form-control::placeholder {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: 2;
+  z-index: 99999;
 }
 
 .disabled {
@@ -303,8 +303,8 @@ input.form-control::placeholder {
 
 #overlay>.spinner-border {
   position: fixed;
-  top: 47vh;
-  left: 47vw;
+  top: 45vh;
+  left: 45vw;
   color: white;
   width: 3rem;
   height: 3rem;
@@ -343,7 +343,7 @@ select:-webkit-autofill:focus {
   border-radius: 2px;
   padding: 16px;
   position: fixed;
-  z-index: 1;
+  z-index: 99998;
   left: 50%;
   bottom: -200px;
 }
