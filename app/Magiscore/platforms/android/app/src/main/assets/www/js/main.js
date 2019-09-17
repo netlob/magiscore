@@ -29,7 +29,7 @@ courses.forEach(c => {
 viewController.currentCourse = courseController.current()
 
 //logConsole("Courses" + JSON.stringify(courses))
-// courses[3].grades.splice(0, 10)
+// courses[1].grades.splice(0, 100)
 
 // localStorage.setItem("courses", JSON.stringify(courses))
 // logConsole("removed grades")
