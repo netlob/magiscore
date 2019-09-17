@@ -276,8 +276,8 @@
                 <i class="fas fa-calendar-alt fa-fw d-block d-md-none mobile-clock"></i>
                 <i class="fas fa-calendar-alt fa-fw text-gray-600 d-none d-lg-block"></i>
                 <span class="ml-1 mr-2 text-gray-600 d-none d-lg-block">Leerjaren</span>
-                <span class="badge badge-primary badge-counter mr-3 d-none d-md-block"
-                  id="current-course-badge">-</span>
+                <!-- <span class="badge badge-primary badge-counter mr-3 d-none d-md-block"
+                  id="current-course-badge">-</span> -->
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
                 aria-labelledby="messagesDropdown">
@@ -339,7 +339,8 @@
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
                 </a> -->
-                <a class="dropdown-item vibrate" data-toggle="theme" onclick="$('#terminal-wrapper').toggle()">
+                <a class="dropdown-item vibrate" style="display: none;" data-toggle="terminal"
+                  onclick="$('#terminal-wrapper').toggle()" id="toggle-terminal">
                   <i class="fas fa-terminal fa-sm fa-fw mr-2 text-gray-400"></i>
                   Toggle terminal
                 </a>
@@ -372,8 +373,9 @@
             <li class="list-group-item shadow mb-2 d-inline-block">Developer
               mode</i>
               <div class="md-checkbox vibrate d-inline-block float-right" style="font-size:1rem">
-                <input id="test-checkbox" type="checkbox" onchange="" checked>
-                <label for="test-checkbox"></label>
+                <input id="devMode-checkbox" type="checkbox"
+                  onchange="viewController.updateConfig({'devMode': this.checked})" checked="false">
+                <label for="devMode-checkbox"></label>
               </div>
             </li>
           </ul>
