@@ -13,7 +13,6 @@ var sorted = {},
   courses = JSON.parse(localStorage.getItem("courses")),
   latest = JSON.parse(localStorage.getItem("latest")),
   school = localStorage.getItem("school"),
-  dev = false,
   m = null
 
 courseController.clear()

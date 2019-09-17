@@ -79,7 +79,7 @@ class ViewController {
     else main()
     $("#years").children().removeClass("course-selected")
     $(`#course-${courseid}`).addClass("course-selected")
-    $("#current-course-badge").text(this.currentCourse.course.group.description)
+    // $("#current-course-badge").text(this.currentCourse.course.group.description)
     setTimeout(function () {
       $("#overlay").hide()
     }, 100)
@@ -115,27 +115,30 @@ class ViewController {
     localStorage.removeItem("config");
     localStorage.setItem("config", JSON.stringify(base));
     this.config = base;
-    if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
+    // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
     if (config["exclude"]) main(this.currentLesson)
+    if (config["devMode"] && this.config.devMode) $("#toggle-terminal").show()
+    else $("#toggle-terminal").hide()
   }
 
   setConfig() {
     var config = localStorage.getItem("config") || false;
-    if (!config) {
+    if (true) { //!config) {
       config = {
         "isDesktop": false,
         "tention": 0.3,
         "passed": 5.5,
         "darkTheme": false,
         "includeGradesInAverageChart": false,
+        "devMode": false,
         "exclude": []
       }
       localStorage.setItem("config", JSON.stringify(config));
+      config = JSON.stringify(config)
     }
     config = JSON.parse(config)
     config["isDesktop"] = $(window).width() > 600 ? true : false;
     this.config = config;
-    logConsole(config.exclude.toString())
   }
 
   toast(msg, duration, fullWidth) {
@@ -276,9 +279,11 @@ class ViewController {
   openSettings() {
     $("#general-wrapper").hide();
     $("#lesson-wrapper").hide();
-    $("#currentRender").html('Instellingen');
+    $("#currentRender").html('<i class="fa fa-arrow-left fa-sm mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
     $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
     $("#passed-input").attr("placeholder", this.config.passed);
+    logConsole(Object.keys(this.config))
+    $("#devMode-checkbox").prop('checked', this.config.devMode);
     $("#settings-wrapper").show();
     this.settingsOpen = true
   }
@@ -310,6 +315,9 @@ function updateSidebar() {
             <span>Geen cijfers dit jaar...</span>
       </li>`)
   }
+
+  // if (this.config.devMode) $("#toggle-terminal").show()
+  // else $("#toggle-terminal").hide()
 
   // var profilepic = document.getElementById("imgelem");
   // profilepic.setAttribute("src", "./img/stock-profile-picture.png");
