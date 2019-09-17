@@ -363,8 +363,9 @@ select:-webkit-autofill:focus {
 }
 
 .latest-grades-date {
-  position: absolute;
-  right: 1rem;
+  /* position: absolute;
+  right: 1rem; */
+  text-align: right !important;
 }
 
 #latest-grades-badge {
@@ -374,6 +375,20 @@ select:-webkit-autofill:focus {
 #latest-grades a:hover,
 #latest-grades a:focus {
   color: #0096db !important;
+}
+
+.grades-table-date {
+  /* position: absolute;
+  right: 2em !important;
+  bottom: 2.5em; */
+}
+
+.grade-card {
+  padding: 0.3em 0.5em 0.5em 0.5em;
+}
+
+.grade-small {
+  font-size: 0.75rem !important;
 }
 
 /* #settings-wrapper {

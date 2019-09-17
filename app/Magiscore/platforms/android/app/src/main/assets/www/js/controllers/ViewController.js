@@ -85,6 +85,32 @@ class ViewController {
     }, 100)
   }
 
+  renderGrade(gradeid) {
+    logConsole(gradeid)
+    logConsole(courseController.allGrades.length)
+    var grade = courseController.allGrades.find(x => x.id == gradeid)
+    $("#grade-modal-grade").text(grade.grade)
+    $("#grade-modal-weight").text(grade.weight)
+    $("#grade-modal-weight2").text(grade.weight)
+    $("#grade-modal-description").text(grade.description)
+    $("#grade-modal-counts").text(grade.counts ? "Ja" : "Nee")
+    $("#grade-modal-ispta").text(grade.type.isPTA ? "Ja" : "Nee")
+    $("#grade-modal-teacher").text(grade.teacher.teacherCode)
+    $("#grade-modal-date").text(toShortFormat(grade.dateFilledIn))
+
+    $("#grade-modal-count").attr("onchange", `lessonController.getLesson(viewController.currentLesson).lesson.exclude('${grade.id}', this)`)
+    $("#grade-modal-count").prop("checked", !grade.exclude)
+
+    //                 <td>${grade.teacher.teacherCode}</td>
+    //                 <td>${toShortFormat(grade.dateFilledIn)}</td>
+    // <li><b>Weging</b><br><span id="grade-modal-weight2"></span>x</li>
+    // <li><b>Omschrijving</b><br><span id="grade-modal-description"></span></li>
+    // <li><b>Telt mee</b><br><span id="grade-modal-counts"></span></li>
+    // <li><b>Is PTA</b><br><span id="grade-modal-ispta"></span></li>
+    // <li><b>Ingevuld door</b><br><span id="grade-modal-teacher"></span></li>
+    // <li><b>Ingevuld op</b><br><span id="grade-modal-date"></span></li>
+  }
+
   updateNav() {
     updateSidebar();
     this.setCourses();
@@ -252,7 +278,7 @@ class ViewController {
             </div>
             <div class="ml-2">
               <span class="text-truncate font-weight-bold text-capitalize">${grade.vak.omschrijving}</span><span
-                class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</span>
+                class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</br>
               <div class="small text-gray-600">${grade.omschrijving}</div>
             </div>
           </a>
@@ -864,7 +890,9 @@ function setChartData(config, lesson, everything) {
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            maxTicksLimit: 10,
+            beginAtZero: true,
+            steps: 1
           }
         }]
       },
@@ -937,30 +965,48 @@ function setTableData(lesson) {
   var grades = lesson.grades;
   grades.sort();
   if (grades.length == 0) {
-    $("#dataTable").hide()
-    $("#cijfersTableCard").append(`<h6 class="percentageGrades font-italic text-center">Geen cijfers voor dit vak...</h6>`)
+    // $("#dataTable").hide()
+    $("#cijfersTable").empty().append(`<h6 class="percentageGrades font-italic text-center">Geen cijfers voor dit vak...</h6>`)
     return
   }
-  $("#dataTable").show()
-  grades.forEach(grade => {
-    table.append(`<tr>
-                    <td>
-                      <div class="md-checkbox vibrate" style="font-size:1rem">
-                        <input id="${grade.id}" type="checkbox" onchange="lessonController.getLesson(viewController.currentLesson).lesson.exclude('${grade.id}', this)" ${(!grade.exclude) ? "checked" : ""}>
-                        <label for="${grade.id}"></label>
-                      </div>
-                    </td>
-                    <td>${grade.grade}</td>
-                    <td>${grade.weight}x</td>
-                    <td>${grade.description}</td>
-                    <td>${grade.counts ? "Ja" : "Nee"}</td>
-                    <td>${grade.passed ? "Ja" : "Nee"}</td>
-                    <td>${grade.type.isPTA ? "Ja" : "Nee"}</td>
-                    <td>${grade.atLaterDate ? "Ja" : "Nee"}</td>
-                    <td>${grade.exemption ? "Ja" : "Nee"}</td>
-                    <td>${grade.teacher.teacherCode}</td>
-                    <td>${toShortFormat(grade.dateFilledIn)}</td>
-                  </tr>`);
+  // $("#dataTable").show()
+  grades.forEach((grade, index) => {
+    var d = new Date(grade.dateFilledIn)
+    table.append(`
+      <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${grade.id})">
+        <div class="dropdown-list-image ml-1 mr-2" style="margin-bottom: -9px">
+          <div class="rounded-circle">
+            <h4 class="text-center mt-2">${grade.grade > 9.9 ? '<span class="text-success">10</span>' : (!grade.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important;">${grade.weight}x</sup></h4>
+          </div>
+          <!-- <div class="status-indicator bg-success"></div> -->
+        </div>
+        <div class="ml-1" style="padding-top: -6px">
+          <span class="text-truncate font-weight-bold text-gray-800 small grade-small text-capitalize">${grade.description}</span>
+          <span
+            class="grades-table-date small grade-small text-gray-600">${d.getDate()}-${d.getMonth() + 1}-${d.getFullYear()}</span>
+          <div class="small grade-small text-gray-600">${grade.description}</div>
+        </div>
+      </a>
+      ${index != grades.length-1 ? '<hr class="m-0 p-0">' : ''}
+    `)
+    // table.append(` < tr >
+    //                 <td>
+    //                   <div class="md-checkbox vibrate" style="font-size:1rem">
+    //                     <input id="${grade.id}" type="checkbox" onchange="lessonController.getLesson(viewController.currentLesson).lesson.exclude('${grade.id}', this)" ${(!grade.exclude) ? "checked" : ""}>
+    //                     <label for="${grade.id}"></label>
+    //                   </div>
+    //                 </td>
+    //                 <td>${grade.grade}</td>
+    //                 <td>${grade.weight}x</td>
+    //                 <td>${grade.description}</td>
+    //                 <td>${grade.counts ? "Ja" : "Nee"}</td>
+    //                 <td>${grade.passed ? "Ja" : "Nee"}</td>
+    //                 <td>${grade.type.isPTA ? "Ja" : "Nee"}</td>
+    //                 <td>${grade.atLaterDate ? "Ja" : "Nee"}</td>
+    //                 <td>${grade.exemption ? "Ja" : "Nee"}</td>
+    //                 <td>${grade.teacher.teacherCode}</td>
+    //                 <td>${toShortFormat(grade.dateFilledIn)}</td>
+    //               </tr>`);
   });
   // $('#dataTable').DataTable();
 }
@@ -1114,7 +1160,7 @@ function generateHTML(lesson) {
                       </div>-->
                   </div>
                   <!-- Card Body -->
-                  <div class="card-body chart-card">
+                  <div class="card-body pt-0 chart-card">
                       <div class="chart-area chart-container lineChart2-container-lesson">
                         <canvas id="lineChart2"></canvas>
                       </div>
@@ -1179,7 +1225,7 @@ function generateHTML(lesson) {
                     <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson}</h6>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body chart-card">
+                <div class="card-body pt-0 chart-card">
                     <div class="chart-area chart-container lineChart-container-lesson">
                       <canvas id="lineChart"></canvas>
                     </div>
@@ -1242,7 +1288,7 @@ function generateHTML(lesson) {
                       </div> -->
                   </div>
                   <!-- Card Body -->
-                  <div class="card-body">
+                  <div class="card-body pt-0">
                       <div class="chart-bar chart-container pt-4 pb-2 barChart-container-lesson">
                       <canvas id="barChart"></canvas>
                       </div>
@@ -1269,43 +1315,30 @@ function generateHTML(lesson) {
                     <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson}</h6>
                     </div>
-                    <div class="card-body">
-                    <div class="table-responsive" id="cijfersTableCard">
+                    <div class="card-body pt-0">
+                      <div id="cijfersTable">
+                      </div>
+                      <!--<div class="table-responsive" id="cijfersTableCard">
                         <table class="table" id="dataTable" width="100%" cellspacing="0" data-snap-ignore="true">
-                        <thead class="text-primary">
-                            <tr>
-                            <th></th>
-                            <th>Cijfer</th>
-                            <th>Weging</th>
-                            <th>Omschrijving</th>
-                            <th>Telt mee</th>
-                            <th>Is voldoende</th>
-                            <th>Is PTA</th>
-                            <th>Inhalen</th>
-                            <th>Vrijstelling</th>
-                            <th>Docent</th>
-                            <th>Ingevoerd op</th>
-                            </tr>
-                        </thead>
-                        <!-- <tfoot>
-                            <tr>
-                            <th>Tel mee</th>
-                            <th>Cijfer</th>
-                            <th>Weging</th>
-                            <th>Omschrijving</th>
-                            <th>Telt mee</th>
-                            <th>Is voldoende</th>
-                            <th>Is PTA</th>
-                            <th>Inhalen</th>
-                            <th>Vrijstelling</th>
-                            <th>Docent</th>
-                            <th>Ingevoerd op</th>
-                            </tr>
-                        </tfoot> -->
-                        <tbody id="cijfersTable">
-                        </tbody>
+                          <thead class="text-primary">
+                              <tr>
+                              <th></th>
+                              <th>Cijfer</th>
+                              <th>Weging</th>
+                              <th>Omschrijving</th>
+                              <th>Telt mee</th>
+                              <th>Is voldoende</th>
+                              <th>Is PTA</th>
+                              <th>Inhalen</th>
+                              <th>Vrijstelling</th>
+                              <th>Docent</th>
+                              <th>Ingevoerd op</th>
+                              </tr>
+                          </thead>
+                          <tbody id="cijfersTable">
+                          </tbody>
                         </table>
-                    </div>
+                      </div> -->
                     </div>
                 </div>
               </div>

@@ -71,3 +71,10 @@ app/magiscore.keystore
 .DS_Store
 app/Magiscore/platforms/android/app/src/main/assets/www
 app/Magiscore/platforms/android/app/src/main/assets/www/*
+
+app/Magiscore/platforms/ios
+app/Magiscore/platforms/ios/*
+
+app/platforms/ios
+app/platforms/ios/*
+app/Magiscore/plugins/ios.json
