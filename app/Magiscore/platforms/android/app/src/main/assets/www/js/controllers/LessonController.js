@@ -5,11 +5,14 @@ class LessonController {
         this.allGrades = []
     }
 
-    add(lesson, data, grades, controller) {
+    add(name, lesson) {
         var obj = {
-            "name": lesson,
-            "lesson": new Lesson(lesson, grades, data, controller)
+            "name": name,
+            "lesson": lesson
         }
+        lesson.grades.forEach(grade => {
+            this.allGrades.push(grade)
+        });
         this.lessons.push(obj)
     }
 

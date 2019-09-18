@@ -1,5 +1,5 @@
 class Lesson {
-  constructor(name, data, grades, lessoncontroller) {
+  constructor(name, data, grades, lessoncontroller, course) {
     this.grades = _.sortBy(grades, 'dateFilledIn');
     this.average = this.getAverage(true, -1)
     this.grades = this.fillGradeAverages()
@@ -9,6 +9,7 @@ class Lesson {
     this.extraFirst = undefined;
     this.extraSecond = undefined;
     this.extraThird = undefined;
+    this.course = course
   }
 
   render() {
@@ -132,6 +133,58 @@ class Lesson {
       } else {
         return "-"
       }
+    }
+  }
+  getAverageOnDate(date) {
+    var gradesFilledIn = []
+    var total = 0
+    var overallWeight = 0
+    this.grades.forEach(grade => {
+      logConsole("Date grade: " + grade.dateFilledIn)
+      logConsole("Date input: " + date)
+      logConsole("Has been: " + (Number(date.getTime()) <= Number(date.getTime())).toString())
+
+      if (Number(Date.parse(grade.dateFilledIn)) <= Number(date.getTime())) {
+        gradesFilledIn.push(grade)
+      }
+    })
+    gradesFilledIn.forEach(grade => {
+      // console.log(_grade.type.isPTA)
+      if (Number(round(grade.grade)) > 0 && Number(round(grade.grade)) < 10.1) {
+        // console.dir(_grade)
+        if (!grade.exclude) {
+          total += parseFloat(grade.grade) * Number(grade.weight)
+          overallWeight += Number(grade.weight)
+        }
+      }
+    })
+    var average = total / overallWeight
+    return round(average)
+  }
+
+  standsBetterThanLastYearFactFunctionYaKnow() {
+    var index = courses.findIndex(c => this.course.id == c.id)
+    if (index == courses.length - 1) {
+      var currentCourseSorted = this.course.sortGrades()
+      var yearEarlierCourse = courses[index - 1]
+      var yearEarlierCourseInstance = Course.create()
+      Object.keys(yearEarlierCourse).forEach(key => {
+        yearEarlierCourseInstance[key] = yearEarlierCourse[key]
+      });
+      var yearEarlierCourseSorted = yearEarlierCourseInstance.sortGrades()
+      //currentCourseVakken = Object.keys(currentCourseSorted)
+      var yearEarlierVakken = Object.keys(yearEarlierCourseSorted)
+
+      if (yearEarlierVakken.includes(this.name)) {
+        var currentDate = new Date()
+        var courseLastYearDate = new Date(yearEarlierCourse.start)
+        currentDate.setFullYear(currentDate.getFullYear() - 1)
+        var dateLastYear = currentDate
+        var yearEarlierVak = yearEarlierCourseSorted[this.name]["Lesson"]
+        var yearEarlierAverage = yearEarlierVak.getAverageOnDate(dateLastYear)
+        return yearEarlierAverage
+      }
+
     }
   }
 

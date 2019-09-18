@@ -270,7 +270,7 @@ class ViewController {
     courseController.courses.forEach(course => {
       var sexyDate = `${new Date(course.course.start).getFullYear().toString().substring(2)}/${new Date(course.course.end).getFullYear().toString().substring(2)}`
       // var sexyDate = course.raw.Start
-      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}', true, false, false)" id="course-${course.course.id}">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
+      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}', false, false, false)" id="course-${course.course.id}">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
     })
     $("#years").children().removeClass("course-selected")
     $(`#course-${this.currentCourse.course.id}`).addClass("course-selected")
