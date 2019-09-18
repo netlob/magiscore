@@ -39,6 +39,7 @@
     </platform>
     <platform name="ios">
         <preference name="Orientation" value="portrait" />
+         <preference name="DisallowOverscroll" value="true" />
         <allow-intent href="m6loapp:*" />
     </platform>
 </widget>

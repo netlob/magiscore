@@ -327,89 +327,95 @@ $('.container-fluid').click(function () {
 //main()
 function onDeviceReady() {
   if (localStorage.getItem("tokens") != null) {
-    logConsole('Device ready!')
-    refreshToken()
-      .then((refreshTokens) => {
-        tokens = refreshTokens
-        logConsole("tokens: " + Object.keys(refreshTokens))
-        m = new Magister(school, tokens.access_token)
+    logConsole("Device ready!")
+    logConsole("Connection type: " + navigator.connection.type)
+    if (navigator.connection.type !== Connection.NONE) {
+      refreshToken()
+        .then((refreshTokens) => {
+          tokens = refreshTokens
+          logConsole("tokens: " + Object.keys(refreshTokens))
+          m = new Magister(school, tokens.access_token)
 
-        m.getInfo()
-          .then(p => {
-            person = p
-            localStorage.setItem("person", JSON.stringify(p))
-            logConsole("person: " + Object.keys(p))
-            main()
-            // checkForUpdate().then(hasUpdate => {
-            //   logConsole("hasUpdate: " + hasUpdate)
-            //   if (hasUpdate) {
-            //     viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
-            //   }
-            // })
-            // courseController.getLatestGrades()
-            //   .then(grades => {
-            //     logConsole("Grades: " + JSON.stringify(grades))
-            //     logConsole("Latest: " + JSON.stringify(latest))
-            //     logConsole("Got latest grades!")
-            //     // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
-            //     localStorage.setItem("latest", JSON.stringify(grades))
-            //     logConsole(JSON.stringify(latest))
-            //     for (let grade in grades) {
-            //       if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
-            //         viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
-            //         break;
-            //       }
-            //     }
-            //     // logConsole(JSON.stringify(grades[0]))
-            //   })
-            // viewcontroller.renderCourse(false, false, courseController.current())
-          }).catch(err => errorConsole(err))
-      }).catch(err => errorConsole(err));
-    // var BackgroundFetch = window.BackgroundFetch;
+          m.getInfo()
+            .then(p => {
+              person = p
+              localStorage.setItem("person", JSON.stringify(p))
+              logConsole("person: " + Object.keys(p))
+              main()
+              // checkForUpdate().then(hasUpdate => {
+              //   logConsole("hasUpdate: " + hasUpdate)
+              //   if (hasUpdate) {
+              //     viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
+              //   }
+              // })
+              // courseController.getLatestGrades()
+              //   .then(grades => {
+              //     logConsole("Grades: " + JSON.stringify(grades))
+              //     logConsole("Latest: " + JSON.stringify(latest))
+              //     logConsole("Got latest grades!")
+              //     // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
+              //     localStorage.setItem("latest", JSON.stringify(grades))
+              //     logConsole(JSON.stringify(latest))
+              //     for (let grade in grades) {
+              //       if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
+              //         viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
+              //         break;
+              //       }
+              //     }
+              //     // logConsole(JSON.stringify(grades[0]))
+              //   })
+              // viewcontroller.renderCourse(false, false, courseController.current())
+            }).catch(err => errorConsole(err))
+        }).catch(err => errorConsole(err));
+      // var BackgroundFetch = window.BackgroundFetch;
 
-    // // Your background-fetch handler.
-    // var fetchCallback = function () {
-    //   refreshToken()
-    //     .then((refreshTokens) => {
-    //       tokens = refreshTokens
-    //       m = new Magister(school, tokens.access_token)
-    //       cordova.plugins.notification.local.schedule({
-    //         title: 'Callback gemaakt',
-    //         text: 'ewa',
-    //         foreground: true
-    //       });
-    //       syncGrades().then(newGrades => {
-    //         cordova.plugins.notification.local.schedule({
-    //           title: 'Cijfers binnengecallbackt',
-    //           text: 'poep',
-    //           foreground: true
-    //         });
-    //         if (newGrades.length > 0) {
-    //           var message = newGrades.map(grade => {
-    //             return `${grade.grade} voor ${grade.class.abbreviation || grade.class.description}`
-    //           })
-    //           cordova.plugins.notification.local.schedule({
-    //             title: newGrades.length < 2 ? `${newGrades.length} nieuw cijfer` : `${newGrades.length} nieuwe cijfers`,
-    //             text: message.join(", "),
-    //             foreground: true
-    //           });
-    //         }
-    //       })
+      // // Your background-fetch handler.
+      // var fetchCallback = function () {
+      //   refreshToken()
+      //     .then((refreshTokens) => {
+      //       tokens = refreshTokens
+      //       m = new Magister(school, tokens.access_token)
+      //       cordova.plugins.notification.local.schedule({
+      //         title: 'Callback gemaakt',
+      //         text: 'ewa',
+      //         foreground: true
+      //       });
+      //       syncGrades().then(newGrades => {
+      //         cordova.plugins.notification.local.schedule({
+      //           title: 'Cijfers binnengecallbackt',
+      //           text: 'poep',
+      //           foreground: true
+      //         });
+      //         if (newGrades.length > 0) {
+      //           var message = newGrades.map(grade => {
+      //             return `${grade.grade} voor ${grade.class.abbreviation || grade.class.description}`
+      //           })
+      //           cordova.plugins.notification.local.schedule({
+      //             title: newGrades.length < 2 ? `${newGrades.length} nieuw cijfer` : `${newGrades.length} nieuwe cijfers`,
+      //             text: message.join(", "),
+      //             foreground: true
+      //           });
+      //         }
+      //       })
 
-    //       // Required: Signal completion of your task to native code
-    //       // If you fail to do this, the OS can terminate your app
-    //       // or assign battery-blame for consuming too much background-time
-    //       BackgroundFetch.finish();
-    //     })
-    // };
+      //       // Required: Signal completion of your task to native code
+      //       // If you fail to do this, the OS can terminate your app
+      //       // or assign battery-blame for consuming too much background-time
+      //       BackgroundFetch.finish();
+      //     })
+      // };
 
-    // var failureCallback = function (error) {
-    //   console.log('- BackgroundFetch failed', error);
-    // };
+      // var failureCallback = function (error) {
+      //   console.log('- BackgroundFetch failed', error);
+      // };
 
-    // BackgroundFetch.configure(fetchCallback, failureCallback, {
-    //   minimumFetchInterval: 15 // <-- default is 15
-    // });
+      // BackgroundFetch.configure(fetchCallback, failureCallback, {
+      //   minimumFetchInterval: 15 // <-- default is 15
+      // });
+    } else {
+      logConsole("Continuing offline...")
+      main()
+    }
   } else {
     window.location = './login/index.html'
   }

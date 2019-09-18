@@ -11,9 +11,10 @@
 
   <title>Magiscore</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
+  <link href="css/fonts.css" rel="stylesheet">
+  <!-- <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
+    rel="stylesheet"> -->
 
   <!-- Light theme -->
   <link href="css/light.css" type="text/css" rel="stylesheet">
@@ -339,7 +340,7 @@
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
                 </a> -->
-                <a class="dropdown-item vibrate" style="display: none;" data-toggle="terminal"
+                <a class="dropdown-item vibrate" style="display: block;" data-toggle="terminal"
                   onclick="$('#terminal-wrapper').toggle()" id="toggle-terminal">
                   <i class="fas fa-terminal fa-sm fa-fw mr-2 text-gray-400"></i>
                   Toggle terminal
@@ -537,7 +538,7 @@
                   </div> -->
                 </div>
                 <!-- Card Body -->
-                <div class="card-body pt-0">
+                <div class="card-body pt-0 pl-1">
                   <div class="chart-area" id="lineChart-container">
                     <!-- <div class="table-responsive"> -->
                     <canvas id="lineChart"></canvas>
@@ -656,7 +657,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Alle cijfers</h6>
 
                 </div>
-                <div class="card-body pt-0" id="cijfersTable">
+                <div class="card-body pt-0" id="generalGradesTable">
                 </div>
               </div>
             </div>
@@ -835,60 +836,6 @@
         <div class="md-checkbox vibrate m-4" style="font-size:1rem">
           <input id="grade-modal-count" type="checkbox">
           <label for="grade-modal-count small">Tel cijfer mee in berekeningen</label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Passed Modal-->
-  <div class="modal fade" id="passedModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Voldoendegrens</h5>
-          <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form oninput="passedOutput.value=passedRange.value" onload="passedRange.valuee=viewController.config.passed">
-            <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en
-              dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
-            <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange"">
-              <output name=" passedOutput" id="passedOutput" for="passedRange"
-              onload="this.value = passedRange.value"></output>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary vibrate" type="button" data-dismiss="modal"
-            aria-label="Anuleer">Annuleer</button>
-          <a class="btn btn-primary vibrate" href="#logout" onclick="viewController.savePassed()" role="button"
-            data-dismiss="modal" aria-label="Opslaan">Opslaan</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Beta Warning Modal-->
-  <div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Beta-versie</h5>
-          <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Magiscore is momenteel nog in ontwikkeling. Dit betekend dat er errors en fouten kunnen optreden. Gebruik
-            is dan ook op eigen risico en alle rechten zijn voorbehouden.</p>
-          <span class="text-gray">Huidige versie: 0.2</span>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary vibrate" type="button" aria-label="Anuleer"
-            onclick="window.location='https://google.com'">Annuleer</button>
-          <a class="btn btn-primary vibrate" href="#" role="button" data-dismiss="modal"
-            aria-label="Akkoord">Akkoord</a>
         </div>
       </div>
     </div>

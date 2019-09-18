@@ -378,6 +378,9 @@ select:-webkit-autofill:focus {
 }
 
 .grades-table-date {
+  position: absolute;
+  right: 1.75em;
+  padding-top: 0.3rem !important;
   /* position: absolute;
   right: 2em !important;
   bottom: 2.5em; */

@@ -261,6 +261,7 @@
                         utils.events.removeEvent(settings.element, utils.eventType('up'), action.drag.endDrag);
                     },
                     startDrag: function (e) {
+                        if (viewController.settingsOpen) return
                         $("#accordionSidebar").css("z-index", "-999")
                         $("#content-wrapper").css("z-index", "999")
                         $("body").removeClass("sidenav-open")

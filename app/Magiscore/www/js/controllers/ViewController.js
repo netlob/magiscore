@@ -35,6 +35,7 @@ class ViewController {
     //   `Alle cijfers van ${course.type.description}`
     // );
     setChartData(this.config, "general", true);
+    setTableData("general")
     setAverages()
     this.currentLesson = "general";
     this.initTheme();
@@ -149,7 +150,7 @@ class ViewController {
 
   setConfig() {
     var config = localStorage.getItem("config") || false;
-    if (true) { //!config) {
+    if (!config) {
       config = {
         "isDesktop": false,
         "tention": 0.3,
@@ -309,6 +310,9 @@ class ViewController {
     $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
     $("#passed-input").attr("placeholder", this.config.passed);
     logConsole(Object.keys(this.config))
+    $(".vibrate").on("click", function () {
+      navigator.vibrate(15)
+    })
     $("#devMode-checkbox").prop('checked', this.config.devMode);
     $("#settings-wrapper").show();
     this.settingsOpen = true
@@ -316,7 +320,7 @@ class ViewController {
 
   closeSettings() {
     this.render("general")
-    this.settingsOpen = true
+    this.settingsOpen = false
     // this.render(this.currentLesson.name)
   }
 }
@@ -342,8 +346,8 @@ function updateSidebar() {
       </li>`)
   }
 
-  // if (this.config.devMode) $("#toggle-terminal").show()
-  // else $("#toggle-terminal").hide()
+  if (viewController.config.devMode) $("#toggle-terminal").show()
+  else $("#toggle-terminal").hide()
 
   // var profilepic = document.getElementById("imgelem");
   // profilepic.setAttribute("src", "./img/stock-profile-picture.png");
@@ -609,13 +613,14 @@ function setChartData(config, lesson, everything) {
         }],
         yAxes: [{
           ticks: {
-            maxTicksLimit: 10,
-            padding: 10,
+            maxTicksLimit: 1,
+            padding: 5,
             beginAtZero: false,
+            stepSize: 1,
             steps: 1,
             max: 10,
             min: 1,
-            display: config.isDesktop
+            display: true //config.isDesktop
           }
           // gridLines: {
           //     color: "rgb(234, 236, 244)",
@@ -812,13 +817,14 @@ function setChartData(config, lesson, everything) {
           }],
           yAxes: [{
             ticks: {
-              maxTicksLimit: 10,
-              padding: 10,
+              maxTicksLimit: 1,
+              padding: 5,
               beginAtZero: false,
+              stepSize: 1,
               steps: 1,
               max: 10,
               min: 1,
-              display: config.isDesktop
+              display: true //config.isDesktop
             }
             // gridLines: {
             //     color: "rgb(234, 236, 244)",
@@ -960,53 +966,44 @@ function toShortFormat(d) {
 }
 
 function setTableData(lesson) {
-  var lesson = lessonController.getLesson(lesson).lesson
-  var table = $("#cijfersTable");
-  var grades = lesson.grades;
-  grades.sort();
+  var lesson, table, grades;
+  if (lesson = "general") {
+    grades = viewController.currentCourse.course.grades
+    table = $("#generalGradesTable");
+  } else {
+    lesson = lessonController.getLesson(lesson).lesson
+    table = $("#cijfersTable");
+    grades = lesson.grades;
+  }
+  _.sortBy(grades, 'dateFilledIn')
+  table.empty()
   if (grades.length == 0) {
-    // $("#dataTable").hide()
-    $("#cijfersTable").empty().append(`<h6 class="percentageGrades font-italic text-center">Geen cijfers voor dit vak...</h6>`)
+    table.empty().append(`<h6 class="percentageGrades text-center">${lesson = "general" ? "Je hebt nog geen cijfers dit jaar" : "Geen cijfers voor dit vak"}...</h6>`)
     return
   }
   // $("#dataTable").show()
+  grades.reverse()
   grades.forEach((grade, index) => {
-    var d = new Date(grade.dateFilledIn)
-    table.append(`
-      <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${grade.id})">
-        <div class="dropdown-list-image ml-1 mr-2" style="margin-bottom: -9px">
-          <div class="rounded-circle">
-            <h4 class="text-center mt-2">${grade.grade > 9.9 ? '<span class="text-success">10</span>' : (!grade.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important;">${grade.weight}x</sup></h4>
+    if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
+      var d = new Date(grade.dateFilledIn)
+      table.append(`
+        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${grade.id})">
+          <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
+            <div class="rounded-circle">
+              <h4 class="text-center mt-2">${grade.grade == "10,0" ? '<span class="text-success">10</span><span class="invisible">,</span>' : (!grade.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${grade.weight < 10 ? grade.weight + 'x<span class="invisible">0</span>' : grade.weight + "x"}</sup></h4>
+            </div>
+            <!-- <div class="status-indicator bg-success"></div> -->
           </div>
-          <!-- <div class="status-indicator bg-success"></div> -->
-        </div>
-        <div class="ml-1" style="padding-top: -6px">
-          <span class="text-truncate font-weight-bold text-gray-800 small grade-small text-capitalize">${grade.description}</span>
-          <span
-            class="grades-table-date small grade-small text-gray-600">${d.getDate()}-${d.getMonth() + 1}-${d.getFullYear()}</span>
-          <div class="small grade-small text-gray-600">${grade.description}</div>
-        </div>
-      </a>
-      ${index != grades.length-1 ? '<hr class="m-0 p-0">' : ''}
-    `)
-    // table.append(` < tr >
-    //                 <td>
-    //                   <div class="md-checkbox vibrate" style="font-size:1rem">
-    //                     <input id="${grade.id}" type="checkbox" onchange="lessonController.getLesson(viewController.currentLesson).lesson.exclude('${grade.id}', this)" ${(!grade.exclude) ? "checked" : ""}>
-    //                     <label for="${grade.id}"></label>
-    //                   </div>
-    //                 </td>
-    //                 <td>${grade.grade}</td>
-    //                 <td>${grade.weight}x</td>
-    //                 <td>${grade.description}</td>
-    //                 <td>${grade.counts ? "Ja" : "Nee"}</td>
-    //                 <td>${grade.passed ? "Ja" : "Nee"}</td>
-    //                 <td>${grade.type.isPTA ? "Ja" : "Nee"}</td>
-    //                 <td>${grade.atLaterDate ? "Ja" : "Nee"}</td>
-    //                 <td>${grade.exemption ? "Ja" : "Nee"}</td>
-    //                 <td>${grade.teacher.teacherCode}</td>
-    //                 <td>${toShortFormat(grade.dateFilledIn)}</td>
-    //               </tr>`);
+          <div class="ml-1" style="padding-top: -6px">
+            <span class="text-truncate font-weight-bold text-gray-800 small grade-small text-capitalize">${lesson = "general" ? grade.class.description : grade.description}</span>
+            <span
+              class="grades-table-date small grade-small float-right text-gray-600">${d.getDate()}-${d.getMonth() + 1}-${d.getFullYear()}</span>
+            <div class="small grade-small text-gray-600">${grade.description == "" ? "<i>Geen beschrijving...</i>" : grade.description}</div>
+          </div>
+        </a>
+        ${index != grades.length-1 ? '<hr class="m-0 p-0">' : ''}
+      `)
+    }
   });
   // $('#dataTable').DataTable();
 }
