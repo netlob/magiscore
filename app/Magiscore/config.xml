@@ -38,5 +38,7 @@
         <splash src="res/drawable-xxxhdpi/screen.png" density="port-xxxhdpi"/>
     </platform>
     <platform name="ios">
+        <preference name="Orientation" value="portrait" />
+        <allow-intent href="m6loapp:*" />
     </platform>
 </widget>
