@@ -346,8 +346,8 @@ function updateSidebar() {
       </li>`)
   }
 
-  // if (this.config.devMode) $("#toggle-terminal").show()
-  // else $("#toggle-terminal").hide()
+  if (viewController.config.devMode) $("#toggle-terminal").show()
+  else $("#toggle-terminal").hide()
 
   // var profilepic = document.getElementById("imgelem");
   // profilepic.setAttribute("src", "./img/stock-profile-picture.png");
@@ -975,7 +975,7 @@ function setTableData(lesson) {
     table = $("#cijfersTable");
     grades = lesson.grades;
   }
-  grades.sort();
+  _.sortBy(grades, 'dateFilledIn')
   table.empty()
   if (grades.length == 0) {
     table.empty().append(`<h6 class="percentageGrades text-center">${lesson = "general" ? "Je hebt nog geen cijfers dit jaar" : "Geen cijfers voor dit vak"}...</h6>`)

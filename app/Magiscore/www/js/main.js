@@ -208,6 +208,7 @@ function syncGrades() {
           newCourse[key] = currentCourse[key]
         });
         currentCourse = newCourse
+        currentCourse._magister = m
         logConsole("is course: " + (currentCourse instanceof Course))
         logConsole(JSON.stringify(currentCourse))
         logConsole("course: " + currentCourse.id)
@@ -220,7 +221,7 @@ function syncGrades() {
           logConsole(allGradeIds.length)
           currentGrades.forEach(grade => {
             if (!(allGradeIds.includes(grade.id))) {
-              //logConsole("Not in id list")
+              logConsole("Not in id list")
               newGrades.push(grade)
               allNewGrades.push(grade)
               currentCourse.grades.push(grade)
@@ -237,6 +238,7 @@ function syncGrades() {
 
         }).catch(err => {
           errorConsole(err)
+          errorConsole("ohno")
         })
         logConsole("requested grades")
       });

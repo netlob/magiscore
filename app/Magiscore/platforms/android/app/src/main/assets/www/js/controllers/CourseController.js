@@ -14,7 +14,7 @@ class CourseController {
         course.grades.forEach(grade => {
             this.allGrades.push(grade)
         })
-        _.sortBy(this.allGrades, 'start')
+        _.sortBy(this.allGrades, 'dateFilledIn')
     }
 
     remove(course) {
