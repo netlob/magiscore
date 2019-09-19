@@ -73,7 +73,7 @@ function main(l) {
       lessonController.add(vak, lesson)
       //logConsole(vak + ": " + lesson.averageLastYearFact())
       lesson.compareYearBeforeAverageFact()
-      logConsole("compared")
+      //logConsole("compared")
     }
     // var data = sorted[lesson]
     // var grades = data["Grades"]
