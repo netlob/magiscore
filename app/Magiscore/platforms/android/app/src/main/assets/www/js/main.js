@@ -71,7 +71,9 @@ function main(l) {
 
     if (lesson.grades.length > 0) {
       lessonController.add(vak, lesson)
-      logConsole(vak + ": " + lesson.standsBetterThanLastYearFactFunctionYaKnow())
+      //logConsole(vak + ": " + lesson.averageLastYearFact())
+      lesson.compareYearBeforeAverageFact()
+      logConsole("compared")
     }
     // var data = sorted[lesson]
     // var grades = data["Grades"]
