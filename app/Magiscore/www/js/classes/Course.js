@@ -202,7 +202,6 @@ class Course {
     }
 
     sortGrades() {
-
         var sorted = {}
         this.grades.forEach(grade => {
             //logConsole(grade)
