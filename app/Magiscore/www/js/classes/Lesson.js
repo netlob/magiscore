@@ -140,21 +140,23 @@ class Lesson {
     var total = 0
     var overallWeight = 0
     this.grades.forEach(grade => {
-      logConsole("Date grade: " + grade.dateFilledIn)
-      logConsole("Date input: " + date)
-      logConsole("Has been: " + (Number(date.getTime()) <= Number(date.getTime())).toString())
+      // logConsole("Date grade: " + grade.dateFilledIn)
+      // logConsole("Date input: " + date)
+      // logConsole("Has been: " + (Number(date.getTime()) <= Number(date.getTime())).toString())
 
       if (Number(Date.parse(grade.dateFilledIn)) <= Number(date.getTime())) {
         gradesFilledIn.push(grade)
       }
     })
+
     gradesFilledIn.forEach(grade => {
       // console.log(_grade.type.isPTA)
       if (Number(round(grade.grade)) > 0 && Number(round(grade.grade)) < 10.1) {
         // console.dir(_grade)
         if (!grade.exclude) {
-          total += parseFloat(grade.grade) * Number(grade.weight)
-          overallWeight += Number(grade.weight)
+
+          total += Number(round(grade.grade)) * parseFloat(grade.weight)
+          overallWeight += parseFloat(grade.weight)
         }
       }
     })
@@ -189,9 +191,7 @@ class Lesson {
   }
   compareYearBeforeAverageFact() {
     var index = courses.findIndex(c => this.course.id == c.id)
-    errorConsole(index)
 
-    errorConsole(1)
     var currentCourseSorted = this.course.sortGrades()
     var yearEarlierCourse = courses[index - 1]
     var yearEarlierCourseInstance = Course.create()
@@ -203,10 +203,9 @@ class Lesson {
     var yearEarlierVakken = Object.keys(yearEarlierCourseSorted)
 
     if (yearEarlierVakken.includes(this.name)) {
-      errorConsole(2)
       var yearEarlierLesson = yearEarlierCourseSorted[this.name]["Lesson"]
-      var lastYearAverage = yearEarlierLesson.average //yearEarlierLesson.getAverageOnDate(new Date(yearEarlierCourse.end))
-      var currentYearAverage = this.average //this.getAverageOnDate(new Date(this.course.end))
+      var lastYearAverage = yearEarlierLesson.getAverageOnDate(new Date()) //yearEarlierLesson.average
+      var currentYearAverage = this.getAverageOnDate(new Date()) //this.average 
       logConsole(this.name + " lastYearAverage: " + lastYearAverage)
       logConsole(this.name + " currentYearAverage: " + currentYearAverage)
     }
@@ -293,7 +292,7 @@ class Lesson {
       if (grade.passed) {
         var end = remaining.find(x => x.passed === true) ? new Date(remaining.find(x => x.passed === true).dateFilledIn) : start
         var days = Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1
-        logConsole("days: " + days)
+        // logConsole("days: " + days)
         if (days >= passed.days) {
           passed = {
             "start": toShortFormat(start),
@@ -304,7 +303,7 @@ class Lesson {
       } else if (!grade.passed) {
         var end = remaining.find(x => x.passed === false) ? new Date(remaining.find(x => x.passed === false).dateFilledIn) : start
         var days = Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1
-        logConsole("days: " + days)
+        // logConsole("days: " + days)
         if (days >= not_passed.days) {
           not_passed = {
             "start": toShortFormat(start),
@@ -314,8 +313,8 @@ class Lesson {
         }
       }
     })
-    logConsole("passed: " + JSON.stringify(passed))
-    logConsole("not_passed: " + JSON.stringify(not_passed))
+    // logConsole("passed: " + JSON.stringify(passed))
+    // logConsole("not_passed: " + JSON.stringify(not_passed))
     return {
       "passed": passed,
       "not_passed": not_passed

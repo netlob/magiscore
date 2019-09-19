@@ -50,13 +50,14 @@ class Course {
          */
         this.group = {
             id: raw.Groep.Id,
-            description: raw.Groep.Omschrijving,
-            // description() {
-            //     const group = raw.Groep.Omschrijving
-            //     return group != null ?
-            //         group.split(' ').find(w => /\d/.test(w)) || group :
-            //         null
-            // },
+            // description: raw.Groep.Omschrijving,
+            code: raw.Groep.code,
+            description() {
+                const group = raw.Groep.Omschrijving
+                return group != null ?
+                    group.split(' ').find(w => /\d/.test(w)) || group :
+                    null
+            },
             locationId: raw.Groep.LocatieId,
         }
         // logConsole(JSON.stringify(this.group))
