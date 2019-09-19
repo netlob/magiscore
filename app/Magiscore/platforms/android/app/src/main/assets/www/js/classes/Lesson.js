@@ -162,7 +162,7 @@ class Lesson {
     return round(average)
   }
 
-  standsBetterThanLastYearFactFunctionYaKnow() {
+  averageLastYearFact() {
     var index = courses.findIndex(c => this.course.id == c.id)
     if (index == courses.length - 1) {
       var currentCourseSorted = this.course.sortGrades()
@@ -186,6 +186,31 @@ class Lesson {
       }
 
     }
+  }
+  compareYearBeforeAverageFact() {
+    var index = courses.findIndex(c => this.course.id == c.id)
+    errorConsole(index)
+
+    errorConsole(1)
+    var currentCourseSorted = this.course.sortGrades()
+    var yearEarlierCourse = courses[index - 1]
+    var yearEarlierCourseInstance = Course.create()
+    Object.keys(yearEarlierCourse).forEach(key => {
+      yearEarlierCourseInstance[key] = yearEarlierCourse[key]
+    });
+    var yearEarlierCourseSorted = yearEarlierCourseInstance.sortGrades()
+    //currentCourseVakken = Object.keys(currentCourseSorted)
+    var yearEarlierVakken = Object.keys(yearEarlierCourseSorted)
+
+    if (yearEarlierVakken.includes(this.name)) {
+      errorConsole(2)
+      var yearEarlierLesson = yearEarlierCourseSorted[this.name]["Lesson"]
+      var lastYearAverage = yearEarlierLesson.average //yearEarlierLesson.getAverageOnDate(new Date(yearEarlierCourse.end))
+      var currentYearAverage = this.average //this.getAverageOnDate(new Date(this.course.end))
+      logConsole(this.name + " lastYearAverage: " + lastYearAverage)
+      logConsole(this.name + " currentYearAverage: " + currentYearAverage)
+    }
+
   }
 
   needToGet(grade, weight) {

@@ -144,7 +144,9 @@ class Course {
             const url = latest ?
                 `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0` :
                 `${urlPrefix}/cijferoverzichtvooraanmelding?actievePerioden=false&alleenBerekendeKolommen=false&alleenPTAKolommen=false&peildatum=${date}`
-            // logConsole(url)
+            logConsole("URL: " + url)
+
+
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -155,7 +157,7 @@ class Course {
                         "Authorization": "Bearer " + this._magister.token
                     },
                     "error": function (request, status, error) {
-                        reject(error)
+                        reject(request.status)
                     }
                 })
                 .done((res) => {
