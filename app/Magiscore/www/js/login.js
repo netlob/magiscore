@@ -155,6 +155,7 @@ function fillAGrade(chunk) {
             addLoader((100 - ((totalGrades / all.length) * 100)), true)
 
             if (totalGrades == 0) {
+                window.plugins.insomnia.allowSleepAgain()
                 localStorage.setItem("courses", JSON.stringify(all_courses))
                 window.location = '../index.html'
             }
@@ -187,6 +188,7 @@ async function validateLogin(code, codeVerifier) {
     }
 
     $.ajax(settings).done((response) => {
+        window.plugins.insomnia.keepAwake()
         $("#login").hide()
         $("#loader").show()
         logConsole(`Succesvol oauth tokens binnengehaald!`)

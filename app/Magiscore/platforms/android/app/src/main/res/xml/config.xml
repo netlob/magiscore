@@ -32,6 +32,9 @@
     <feature name="NativeSettings">
         <param name="android-package" value="com.phonegap.plugins.nativesettings.NativeSettings" />
     </feature>
+    <feature name="Insomnia">
+        <param name="android-package" value="nl.xservices.plugins.Insomnia" />
+    </feature>
     <feature name="Badge">
         <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
     </feature>

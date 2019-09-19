@@ -47,6 +47,10 @@
             {
               "xml": "<feature name=\"NativeSettings\"><param name=\"android-package\" value=\"com.phonegap.plugins.nativesettings.NativeSettings\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Insomnia\"><param name=\"android-package\" value=\"nl.xservices.plugins.Insomnia\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -158,6 +162,9 @@
       "PACKAGE_NAME": "nl.sj3rd.magiscore"
     },
     "cordova-open-native-settings": {
+      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-plugin-insomnia": {
       "PACKAGE_NAME": "nl.sj3rd.magiscore"
     }
   },
@@ -278,6 +285,14 @@
       "clobbers": [
         "cordova.plugins.settings"
       ]
+    },
+    {
+      "id": "cordova-plugin-insomnia.Insomnia",
+      "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
+      "pluginId": "cordova-plugin-insomnia",
+      "clobbers": [
+        "window.plugins.insomnia"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -292,6 +307,7 @@
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
-    "cordova-open-native-settings": "1.5.2"
+    "cordova-open-native-settings": "1.5.2",
+    "cordova-plugin-insomnia": "4.3.0"
   }
 }
