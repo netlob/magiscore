@@ -271,14 +271,14 @@
               </div>
             </li> -->
 
-            <li class="nav-item dropdown no-arrow mx-1 no-primary-hover">
+            <li class="nav-item dropdown no-arrow mx-4 no-primary-hover">
               <a class="nav-link dropdown-toggle background-primary vibrate" id="yearDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-calendar-alt fa-fw d-block d-md-none mobile-clock"></i>
+                <h9 class="mobile-clock text-gray-600" id="current-course-badge"></h9>
+                <!-- <i class="fas fa-calendar-alt fa-fw mr-7 d-block d-md-none mobile-clock"></i> -->
                 <i class="fas fa-calendar-alt fa-fw text-gray-600 d-none d-lg-block"></i>
                 <span class="ml-1 mr-2 text-gray-600 d-none d-lg-block">Leerjaren</span>
-                <!-- <span class="badge badge-primary badge-counter mr-3 d-none d-md-block"
-                  id="current-course-badge">-</span> -->
+                <!-- <span class="badge badge-primary badge-counter ml-7 d-md-block" id="current-course-badge">-</span> -->
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
                 aria-labelledby="messagesDropdown">
@@ -298,6 +298,7 @@
                 <i class="fas fa-clock fa-fw text-gray-600 d-none d-lg-block"></i>
                 <span class="ml-1 mr-2 pr-4 text-gray-600 d-none d-lg-block">Laatste cijfers</span>
                 <span class="badge badge-primary badge-counter mr-3 d-none d-md-block" id="latest-grades-badge">X</span>
+                <!-- d-none -->
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
                 aria-labelledby="messagesDropdown">
@@ -910,11 +911,11 @@
   </div> -->
 
   <script>
-    // if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
-    //     "courses") === null) {
-    //   localStorage.clear()
-    //   window.location = './login/index.html'
-    // }
+    if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
+        "courses") === null) {
+      localStorage.clear()
+      window.location = './login/index.html'
+    }
 
     function logConsole(err) {
       $("#terminal").prepend(`<small class="text-info">${err}</small>\n`)

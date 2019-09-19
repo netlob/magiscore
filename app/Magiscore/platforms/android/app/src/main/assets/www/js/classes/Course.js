@@ -43,6 +43,8 @@ class Course {
             description: raw.Studie.Omschrijving,
         })
 
+        var group = raw.Groep.Omschrijving
+
         /**
          * The group of this course, e.g: { description: "Klas 6v3", id: 420, locationId: 0 }
          * @type {{ description: String, id: Number, LocatieId: Number }}
@@ -50,13 +52,15 @@ class Course {
          */
         this.group = {
             id: raw.Groep.Id,
-            description: raw.Groep.Omschrijving,
+            // description: raw.Groep.Omschrijving,
+            // code: raw.Groep.code,
             // description() {
             //     const group = raw.Groep.Omschrijving
-            //     return group != null ?
-            //         group.split(' ').find(w => /\d/.test(w)) || group :
-            //         null
-            // },
+            //     return group //  != undefined ?
+            //     //group.split(' ').find(w => /\d/.test(w)) || group :
+            //     //undefined
+            // }
+            description: group == undefined ? undefined : (group.split(' ').find(w => /\d/.test(w)) || group),
             locationId: raw.Groep.LocatieId,
         }
         // logConsole(JSON.stringify(this.group))

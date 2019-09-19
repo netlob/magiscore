@@ -80,7 +80,7 @@ class ViewController {
     else main()
     $("#years").children().removeClass("course-selected")
     $(`#course-${courseid}`).addClass("course-selected")
-    // $("#current-course-badge").text(this.currentCourse.course.group.description)
+    $("#current-course-badge").text(this.currentCourse.course.group.description)
     setTimeout(function () {
       $("#overlay").hide()
     }, 100)
@@ -301,6 +301,8 @@ class ViewController {
     })
     $("#years").children().removeClass("course-selected")
     $(`#course-${this.currentCourse.course.id}`).addClass("course-selected")
+    $("#current-course-badge").text(this.currentCourse.course.group.description)
+    // $(`#course-${this.currentCourse.course.id}`).addClass("course-selected")
   }
 
   openSettings() {
@@ -346,8 +348,11 @@ function updateSidebar() {
       </li>`)
   }
 
-  if (viewController.config.devMode) $("#toggle-terminal").show()
-  else $("#toggle-terminal").hide()
+  if (viewController.config.devMode) {
+    $("#toggle-terminal").show()
+  } else {
+    $("#toggle-terminal").hide()
+  }
 
   // var profilepic = document.getElementById("imgelem");
   // profilepic.setAttribute("src", "./img/stock-profile-picture.png");
@@ -967,7 +972,7 @@ function toShortFormat(d) {
 
 function setTableData(lesson) {
   var lesson, table, grades;
-  if (lesson = "general") {
+  if (lesson == "general") {
     grades = viewController.currentCourse.course.grades
     table = $("#generalGradesTable");
   } else {
