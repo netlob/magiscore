@@ -191,23 +191,24 @@ class Lesson {
   }
   compareYearBeforeAverageFact() {
     var index = courses.findIndex(c => this.course.id == c.id)
+    if (index > 0) {
+      var currentCourseSorted = this.course.sortGrades()
+      var yearEarlierCourse = courses[index - 1]
+      var yearEarlierCourseInstance = Course.create()
+      Object.keys(yearEarlierCourse).forEach(key => {
+        yearEarlierCourseInstance[key] = yearEarlierCourse[key]
+      });
+      var yearEarlierCourseSorted = yearEarlierCourseInstance.sortGrades()
+      //currentCourseVakken = Object.keys(currentCourseSorted)
+      var yearEarlierVakken = Object.keys(yearEarlierCourseSorted)
 
-    var currentCourseSorted = this.course.sortGrades()
-    var yearEarlierCourse = courses[index - 1]
-    var yearEarlierCourseInstance = Course.create()
-    Object.keys(yearEarlierCourse).forEach(key => {
-      yearEarlierCourseInstance[key] = yearEarlierCourse[key]
-    });
-    var yearEarlierCourseSorted = yearEarlierCourseInstance.sortGrades()
-    //currentCourseVakken = Object.keys(currentCourseSorted)
-    var yearEarlierVakken = Object.keys(yearEarlierCourseSorted)
-
-    if (yearEarlierVakken.includes(this.name)) {
-      var yearEarlierLesson = yearEarlierCourseSorted[this.name]["Lesson"]
-      var lastYearAverage = yearEarlierLesson.getAverageOnDate(new Date()) //yearEarlierLesson.average
-      var currentYearAverage = this.getAverageOnDate(new Date()) //this.average 
-      logConsole(this.name + " lastYearAverage: " + lastYearAverage)
-      logConsole(this.name + " currentYearAverage: " + currentYearAverage)
+      if (yearEarlierVakken.includes(this.name)) {
+        var yearEarlierLesson = yearEarlierCourseSorted[this.name]["Lesson"]
+        var lastYearAverage = yearEarlierLesson.getAverageOnDate(new Date()) //yearEarlierLesson.average
+        var currentYearAverage = this.getAverageOnDate(new Date()) //this.average 
+        logConsole(this.name + " lastYearAverage: " + lastYearAverage)
+        logConsole(this.name + " currentYearAverage: " + currentYearAverage)
+      }
     }
 
   }
