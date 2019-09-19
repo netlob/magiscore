@@ -967,7 +967,7 @@ function toShortFormat(d) {
 
 function setTableData(lesson) {
   var lesson, table, grades;
-  if (lesson = "general") {
+  if (lesson == "general") {
     grades = viewController.currentCourse.course.grades
     table = $("#generalGradesTable");
   } else {
