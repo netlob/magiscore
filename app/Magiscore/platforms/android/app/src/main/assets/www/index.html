@@ -911,11 +911,11 @@
   </div> -->
 
   <script>
-    // if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
-    //     "courses") === null) {
-    //   localStorage.clear()
-    //   window.location = './login/index.html'
-    // }
+    if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
+        "courses") === null) {
+      localStorage.clear()
+      window.location = './login/index.html#notokens'
+    }
 
     function logConsole(err) {
       $("#terminal").prepend(`<small class="text-info">${err}</small>\n`)

@@ -147,7 +147,7 @@ class Course {
             const url = latest ?
                 `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0` :
                 `${urlPrefix}/cijferoverzichtvooraanmelding?actievePerioden=false&alleenBerekendeKolommen=false&alleenPTAKolommen=false&peildatum=${date}`
-            logConsole("URL: " + url)
+            // logConsole("URL: " + url)
 
 
             $.ajax({

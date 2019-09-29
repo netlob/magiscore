@@ -45,6 +45,10 @@ class Magister {
                     }
                 })
                 .done((res) => {
+                    this.isParent = res.Groep[0].Privileges.some(x =>
+                        x.Naam.toLowerCase() === "kinderen" &&
+                        x.AccessType.some(a => a.toLowerCase() === "read")
+                    )
                     var res = res.Persoon || res.persoon
                     this.person.id = res.Id || res.id
                     this.person.firstName = res.Roepnaam || res.roepnaam

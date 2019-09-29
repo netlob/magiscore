@@ -31,10 +31,21 @@ function getLoginInfo() {
     }
 }
 
-// Array.prototype.forEach
-
 function onDeviceReady() {
+    if(window.location.hash == "#notokens" && Object.entries(localStorage).length > 0) {
+        navigator.notification.alert(
+            'Het lijkt erop dat je (per ongeluk) bent uitgelogd. Dit kan bijvoorbeeld gebeuren door een software update van je telefoon. Log opnieuw in om Magiscore weer te gebruiken.',
+            emptyFuntion,
+            'Uitgelogd',
+            'Oké'
+        );
+    }
+}
 
+function emptyFuntion() {}
+
+function retryLogin() {
+    window.location = './index.html'
 }
 
 function onOffline() {
@@ -42,7 +53,7 @@ function onOffline() {
         "Het lijkt erop dat je geen internetverbinding hebt... \n Om in te loggen is een actieve internetverbinding vereist.", // message
         window.cordova.plugins.settings.open("wifi", function () {}, function () {}),
         'Geen internet',
-        ['Open instellingen', 'Anuleer']
+        ['Open instellingen', 'Annuleer']
     )
 }
 
@@ -215,6 +226,14 @@ async function validateLogin(code, codeVerifier) {
         // logConsole(JSON.stringify(m))
         m.getInfo()
             .then(person => {
+                if(person.isParent) {
+                    navigator.notification.confirm(
+                        "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een leerlingaccount en probeer het opnieuw.", // message
+                        retryLogin,
+                        'Geen internet',
+                        ['Opnieuw inloggen', 'Annuleer']
+                    )
+                }
                 logConsole(`Succesvol leerlingid (${person.id}) opgehaald!`)
                 addLoader(3)
                 m.getCourses()
