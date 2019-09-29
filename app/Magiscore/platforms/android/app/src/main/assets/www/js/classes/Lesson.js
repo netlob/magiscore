@@ -10,6 +10,9 @@ class Lesson {
     this.extraSecond = undefined;
     this.extraThird = undefined;
     this.course = course
+    this.lastYearAverage = undefined;
+    this.currentYearAverage = undefined;
+    this.lastYearGroup = undefined;
   }
 
   render() {
@@ -206,8 +209,11 @@ class Lesson {
         var yearEarlierLesson = yearEarlierCourseSorted[this.name]["Lesson"]
         var lastYearAverage = yearEarlierLesson.getAverageOnDate(new Date()) //yearEarlierLesson.average
         var currentYearAverage = this.getAverageOnDate(new Date()) //this.average 
-        logConsole(this.name + " lastYearAverage: " + lastYearAverage)
-        logConsole(this.name + " currentYearAverage: " + currentYearAverage)
+        // logConsole(this.name + " lastYearAverage: " + lastYearAverage)
+        // logConsole(this.name + " currentYearAverage: " + currentYearAverage)
+        this.lastYearAverage = lastYearAverage
+        this.currentYearAverage = currentYearAverage
+        this.lastYearGroup = yearEarlierCourseInstance.group
       }
     }
 
@@ -282,34 +288,42 @@ class Lesson {
 
   getDays() {
     var passed = {
-      "days": 0
+      "start": "nooit",
+      "end": "nooit",
+      "days": 0,
+      "grades": 0
     }
     var not_passed = {
-      "days": 0
+      "start": "nooit",
+      "end": "nooit",
+      "days": 0,
+      "grades": 0
     }
     this.grades.forEach((grade, index) => {
       var remaining = this.grades.slice(index - 1);
       var start = new Date(grade.dateFilledIn)
       if (grade.passed) {
-        var end = remaining.find(x => x.passed === true) ? new Date(remaining.find(x => x.passed === true).dateFilledIn) : start
-        var days = Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1
+        var end = remaining.find(x => x.passed === true) ? remaining.find(x => x.passed === true) : start
+        var days = Math.round((new Date(end.dateFilledIn) - start) / (1000 * 60 * 60 * 24)) + 1
         // logConsole("days: " + days)
         if (days >= passed.days) {
           passed = {
             "start": toShortFormat(start),
-            "end": toShortFormat(end),
-            "days": days
+            "end": toShortFormat(new Date(end.dateFilledIn)),
+            "days": days,
+            "grades": (this.grades.indexOf(end) - this.grades.indexOf(grade)) + 1
           }
         }
       } else if (!grade.passed) {
-        var end = remaining.find(x => x.passed === false) ? new Date(remaining.find(x => x.passed === false).dateFilledIn) : start
-        var days = Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1
+        var end = remaining.find(x => x.passed === false) ? remaining.find(x => x.passed === false) : start
+        var days = Math.round((new Date(end.dateFilledIn) - start) / (1000 * 60 * 60 * 24)) + 1
         // logConsole("days: " + days)
         if (days >= not_passed.days) {
           not_passed = {
             "start": toShortFormat(start),
-            "end": toShortFormat(end),
-            "days": days
+            "end": toShortFormat(new Date(end.dateFilledIn)),
+            "days": days,
+            "grades": (this.grades.indexOf(end) - this.grades.indexOf(grade)) + 1
           }
         }
       }

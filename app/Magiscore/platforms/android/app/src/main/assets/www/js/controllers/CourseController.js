@@ -63,10 +63,10 @@ class CourseController {
                 })
                 .done((res) => {
                     var grades = res.Items || res.items
+                    // alert(JSON.stringify(grades))
                     // grades = _.reject(grades, raw => raw.CijferId === 0)
                     this.latestGrades = grades
                     viewController.setLatestGrades(this.latestGrades)
-                    logConsole("[pe[")
                     resolve(this.latestGrades)
                 })
         })

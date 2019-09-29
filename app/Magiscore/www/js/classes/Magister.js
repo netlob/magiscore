@@ -45,7 +45,7 @@ class Magister {
                     }
                 })
                 .done((res) => {
-                    this.isParent = res.Groep[0].Privileges.some(x =>
+                    this.person.isParent = res.Groep[0].Privileges.some(x =>
                         x.Naam.toLowerCase() === "kinderen" &&
                         x.AccessType.some(a => a.toLowerCase() === "read")
                     )

@@ -352,7 +352,7 @@ function onDeviceReady() {
               //     viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
               //   }
               // })
-              // courseController.getLatestGrades()
+              courseController.getLatestGrades()
               //   .then(grades => {
               //     logConsole("Grades: " + JSON.stringify(grades))
               //     logConsole("Latest: " + JSON.stringify(latest))

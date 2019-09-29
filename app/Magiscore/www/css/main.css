@@ -363,8 +363,8 @@ select:-webkit-autofill:focus {
 }
 
 .latest-grades-date {
-  /* position: absolute;
-  right: 1rem; */
+  position: absolute;
+  right: 1rem;
   text-align: right !important;
 }
 

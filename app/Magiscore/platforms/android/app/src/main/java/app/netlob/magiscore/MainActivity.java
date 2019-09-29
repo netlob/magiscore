@@ -17,7 +17,7 @@
        under the License.
  */
 
-package nl.sj3rd.magiscore;
+package app.netlob.magiscore;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

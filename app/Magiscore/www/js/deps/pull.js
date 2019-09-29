@@ -98,17 +98,17 @@
             }
         },
         r = {
-            distThreshold: 60,
-            distMax: 80,
-            distReload: 50,
+            distThreshold: 130,
+            distMax: 150,
+            distReload: 100,
             distIgnore: 0,
             mainElement: "body",
             triggerElement: "body",
             ptrElement: ".ptr",
             classPrefix: "ptr--",
             cssProp: "min-height",
-            iconArrow: "&#8675;",
-            iconRefreshing: "&hellip;",
+            iconArrow: '<i class="far fa-sync-alt"></i>', //"&#8675;",
+            iconRefreshing: '<i class="far fa-sync-alt fa-spin"></i>', //"&hellip;",
             instructionsPullToRefresh: "Trek om cijfers te synchroniseren",
             instructionsReleaseToRefresh: "Laat los om cijfers te synchroniseren",
             instructionsRefreshing: "Cijfers aan het synchroniseren",
@@ -124,7 +124,7 @@
                 return location.reload()
             },
             resistanceFunction: function (e) {
-                return Math.min(1, e / 2.5)
+                return Math.min(1, e / 4)
             },
             shouldPullToRefresh: function () {
                 return "string" == typeof this.mainElement ? !document.querySelector(this.mainElement).scrollTop : this.mainElement && !this.mainElement.scrollTop

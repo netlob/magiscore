@@ -1,5 +1,3 @@
-//import { createBrotliDecompress } from "zlib";
-
 var verifier = "";
 var tenant = "";
 var popup = null
@@ -8,6 +6,8 @@ var currentGradeIndex = 0
 var totalGrades = 0
 var all_courses = []
 var all = []
+
+console.log("Loaded login page :)")
 
 Array.prototype.chunk = function (chunkSize) {
     var R = [];
@@ -32,11 +32,20 @@ function getLoginInfo() {
 }
 
 function onDeviceReady() {
-    if(window.location.hash == "#notokens" && Object.entries(localStorage).length > 0) {
+    // alert(Object.entries(localStorage) + window.location.hash)
+    if (window.location.hash == "#notokens" && Object.entries(localStorage).length > 0) {
         navigator.notification.alert(
             'Het lijkt erop dat je (per ongeluk) bent uitgelogd. Dit kan bijvoorbeeld gebeuren door een software update van je telefoon. Log opnieuw in om Magiscore weer te gebruiken.',
             emptyFuntion,
             'Uitgelogd',
+            'Oké'
+        );
+    }
+    if (window.location.hash == "#failedlogin") {
+        navigator.notification.alert(
+            'Het inloggen vorige keer is niet goed gelukt. Dit kan bijvoorbeeld zijn omdat je de app had afgesloten of omdat je internetverbinding weg was gevallen.\nTip: houd de app open tijdens het inloggen/cijfers ophalen',
+            emptyFuntion,
+            'Login mislukt',
             'Oké'
         );
     }
@@ -45,12 +54,13 @@ function onDeviceReady() {
 function emptyFuntion() {}
 
 function retryLogin() {
+    localStorage.clear()
     window.location = './index.html'
 }
 
 function onOffline() {
     navigator.notification.confirm(
-        "Het lijkt erop dat je geen internetverbinding hebt... \n Om in te loggen is een actieve internetverbinding vereist.", // message
+        "Het lijkt erop dat je geen internetverbinding hebt...\nOm in te loggen is een actieve internetverbinding vereist.",
         window.cordova.plugins.settings.open("wifi", function () {}, function () {}),
         'Geen internet',
         ['Open instellingen', 'Annuleer']
@@ -166,8 +176,10 @@ function fillAGrade(chunk) {
             addLoader((100 - ((totalGrades / all.length) * 100)), true)
 
             if (totalGrades == 0) {
+                // alert("Done :)")
                 window.plugins.insomnia.allowSleepAgain()
                 localStorage.setItem("courses", JSON.stringify(all_courses))
+                localStorage.setItem("loginSuccess", "true")
                 window.location = '../index.html'
             }
         }).catch(err => {
@@ -216,6 +228,9 @@ async function validateLogin(code, codeVerifier) {
             "tention": 0.3,
             "passed": 5.5,
             "darkTheme": false,
+            "refreshOldGrades": false,
+            "includeGradesInAverageChart": false,
+            "devMode": false,
             "exclude": []
         }
         localStorage.setItem("config", JSON.stringify(config));
@@ -226,11 +241,13 @@ async function validateLogin(code, codeVerifier) {
         // logConsole(JSON.stringify(m))
         m.getInfo()
             .then(person => {
-                if(person.isParent) {
+                // alert(JSON.stringify(person) + Object.entries(localStorage).length)
+                if (person.isParent) {
+                    localStorage.clear()
                     navigator.notification.confirm(
-                        "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een leerlingaccount en probeer het opnieuw.", // message
+                        "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een leerlingaccount en probeer het opnieuw.",
                         retryLogin,
-                        'Geen internet',
+                        'Ouder account',
                         ['Opnieuw inloggen', 'Annuleer']
                     )
                 }
