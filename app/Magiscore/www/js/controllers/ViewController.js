@@ -327,7 +327,7 @@ class ViewController {
     $("#general-wrapper").hide();
     $("#lesson-wrapper").hide();
     $("#currentRender").html('<i class="fa fa-arrow-left fa-sm mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
-    // $("#currentRenderMobile").html('<i class="fa fa-arrow-left mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
+    $("#currentRenderMobile").html('<i class="fa fa-arrow-left fa-sm mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
     // alert(JSON.stringify(this.config))
     $("#passed-input").attr("placeholder", this.config.passed);
     $("#passed-input").val("");

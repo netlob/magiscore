@@ -21,7 +21,7 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <platform name="android">
-        <allow-intent href="m6loapp:*" />
+        <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
         <preference name="Orientation" value="portrait" />
         <icon src="res/drawable-ldpi/icon.png" density="ldpi" />
@@ -40,7 +40,7 @@
     <platform name="ios">
         <preference name="Orientation" value="portrait" />
          <preference name="DisallowOverscroll" value="true" />
-        <allow-intent href="m6loapp:*" />
+        <allow-intent href="m6loapp://oauth2redirect/*" />
         <icon src="res/ios/icon-60@3x.png" width="180" height="180" />
         <splash src="res/ios/Default-736h.png" width="1242" height="2208"/>
     </platform>
