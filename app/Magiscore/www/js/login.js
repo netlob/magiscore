@@ -32,7 +32,7 @@ function getLoginInfo() {
 }
 
 function onDeviceReady() {
-    alert(navigator.connection.type)
+    // alert(navigator.connection.type)
     // alert(Object.entries(localStorage) + window.location.hash)
     if (window.location.hash == "#notokens" && Object.entries(localStorage).length > 0) {
         navigator.notification.alert(
@@ -123,6 +123,7 @@ function base64URL(string) {
 }
 
 function openLoginWindow(school) {
+    school = /(.+:\/\/)?([^\/]+)(\/.*)*/i.exec(school)[2]
     tenant = school
     if (cordova === undefined) return
     verifier = base64URL(generateCodeVerifier());
@@ -360,6 +361,7 @@ $(document).ready(function () {
                     url: "https://mijn.magister.net/api/schools?filter=" + request.term,
                     dataType: "json",
                     success: function (data) {
+                        $(".snackbar").remove()
                         response(data);
                     },
                     error: function (data) {
@@ -368,5 +370,11 @@ $(document).ready(function () {
                 });
             }
         })
+        $("#showMore").click(function () {
+            $('pre').slideToggle(250, function () {
+                $('#showMore > i').toggleClass('fa-chevron-down')
+                $('#showMore > i').toggleClass('fa-chevron-up')
+            });
+        });
     });
 });
