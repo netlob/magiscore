@@ -332,9 +332,6 @@ class ViewController {
     $("#passed-input").attr("placeholder", this.config.passed);
     $("#passed-input").val("");
     logConsole(Object.keys(this.config))
-    $(".vibrate").on("click", function () {
-      navigator.vibrate(15)
-    })
     $("#devMode-checkbox").prop('checked', this.config.devMode);
     $("#refreshAll-checkbox").prop('checked', this.config.refreshOldGrades);
     $("#settings-wrapper").show();
@@ -344,6 +341,7 @@ class ViewController {
   closeSettings() {
     this.render("general")
     this.settingsOpen = false
+    navigator.vibrate(15)
     // this.render(this.currentLesson.name)
   }
 
