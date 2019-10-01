@@ -95,8 +95,19 @@ function main(l) {
 }
 
 function logOut() {
-  localStorage.clear()
-  window.location = './login/index.html'
+  navigator.notification.confirm(
+    "Klik op \"Uitloggen\" als je zeker weet dat je wilt uitloggen. \n\nTip: er wordt momenteel gewerkt aan support voor meerdere accounts",
+    confirmLogout,
+    'Weet je het zeker?',
+    ['Ja', 'Nee']
+  )
+}
+
+function confirmLogout(b) {
+  if (b == 1) {
+    localStorage.clear()
+    window.location = './login/index.html'
+  }
 }
 
 function getBase64Image(img) {
@@ -142,6 +153,8 @@ function fillAGrade(chunk) {
         setTimeout(function () {
           fillAGrade(chunk)
         }, 21000)
+      } else if (err == "no internet") {
+        viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
       } else {
         errorConsole(err)
       }
@@ -239,16 +252,24 @@ function syncGrades() {
           }
 
         }).catch(err => {
+          if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
           errorConsole(err)
           errorConsole("ohno")
         })
         logConsole("requested grades")
       });
+      if (allNewGrades.length > 0) {
+        viewController.toast(`${allNewGrades.length} nieuwe cijfers gevonden!`, 2000, false)
+      } else {
+        viewController.toast("Geen nieuwe cijfers gevonden...", 2000, false)
+      }
       resolve(allNewGrades)
       $("#overlay").hide()
-
-    }).catch(err => errorConsole(err))
-
+    }).catch(err => {
+      if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+      errorConsole(err)
+      $("#overlay").hide()
+    })
   })
 }
 
@@ -260,6 +281,7 @@ const ptr = PullToRefresh.init({
     return ($(window).scrollTop() == 0) && ($(".sidebar").css("z-index") < 0) && ($("#overlay").css("display") == "none") && viewController.settingsOpen == false
   },
   onRefresh: function (done) {
+    vibrate(15, true)
     syncGrades().then(d => done())
     // done()
   }
@@ -313,6 +335,15 @@ $('.container-fluid').click(function () {
     $('#sidebarToggleTop').click()
   }
 });
+
+function vibrate(time, strong) {
+  if (window.TapticEngine) {
+    if (strong) TapticEngine.unofficial.strongBoom()
+    else TapticEngine.unofficial.weakBoom()
+  } else {
+    navigator.vibrate(time || 15)
+  }
+}
 
 // document.addEventListener("deviceready", function () {
 //   alert("123");
@@ -369,8 +400,17 @@ function onDeviceReady() {
               //     // logConsole(JSON.stringify(grades[0]))
               //   })
               // viewcontroller.renderCourse(false, false, courseController.current())
-            }).catch(err => errorConsole(err))
-        }).catch(err => errorConsole(err));
+            }).catch(err => {
+              if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+              errorConsole(err)
+            })
+        }).catch(err => {
+          if (err == "no internet") {
+            viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+            person = JSON.parse(localStorage.getItem("person"))
+            main()
+          }
+        });
       // var BackgroundFetch = window.BackgroundFetch;
 
       // // Your background-fetch handler.
@@ -418,6 +458,8 @@ function onDeviceReady() {
       // });
     } else {
       logConsole("Continuing offline...")
+      viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+      person = JSON.parse(localStorage.getItem("person"))
       main()
     }
   } else {

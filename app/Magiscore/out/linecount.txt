@@ -1,0 +1,260 @@
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2019-10-01 20:30:36
+count workspace : /Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore
+total files : 153
+total code lines : 20166
+total comment lines : 1683
+total blank lines : 2939
+
+www/.well-known/assetlinks.json, code is 5, comment is 0, blank is 0.
+www/404.html, code is 99, comment is 0, blank is 16.
+www/CNAME, code is 1, comment is 0, blank is 0.
+www/coming-soon/custom.html, code is 153, comment is 18, blank is 25.
+www/coming-soon/index.html, code is 231, comment is 17, blank is 34.
+www/css/dark.css, code is 198, comment is 11, blank is 43.
+www/css/fonts.css, code is 112, comment is 42, blank is 13.
+www/css/light.css, code is 10999, comment is 52, blank is 2321.
+www/css/magistersymbols-webfont.woff, it is a binary file.
+www/css/main.css, code is 391, comment is 117, blank is 95.
+www/fonts/nunito-v11-latin-200.eot, it is a binary file.
+www/fonts/nunito-v11-latin-200.svg, code is 238, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-200.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-200.woff, it is a binary file.
+www/fonts/nunito-v11-latin-200.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-200italic.eot, it is a binary file.
+www/fonts/nunito-v11-latin-200italic.svg, code is 242, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-200italic.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-200italic.woff, it is a binary file.
+www/fonts/nunito-v11-latin-200italic.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-300.eot, it is a binary file.
+www/fonts/nunito-v11-latin-300.svg, code is 239, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-300.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-300.woff, it is a binary file.
+www/fonts/nunito-v11-latin-300.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-300italic.eot, it is a binary file.
+www/fonts/nunito-v11-latin-300italic.svg, code is 244, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-300italic.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-300italic.woff, it is a binary file.
+www/fonts/nunito-v11-latin-300italic.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-600.eot, it is a binary file.
+www/fonts/nunito-v11-latin-600.svg, code is 240, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-600.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-600.woff, it is a binary file.
+www/fonts/nunito-v11-latin-600.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-600italic.eot, it is a binary file.
+www/fonts/nunito-v11-latin-600italic.svg, code is 248, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-600italic.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-600italic.woff, it is a binary file.
+www/fonts/nunito-v11-latin-600italic.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-700.eot, it is a binary file.
+www/fonts/nunito-v11-latin-700.svg, code is 241, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-700.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-700.woff, it is a binary file.
+www/fonts/nunito-v11-latin-700.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-700italic.eot, it is a binary file.
+www/fonts/nunito-v11-latin-700italic.svg, code is 246, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-700italic.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-700italic.woff, it is a binary file.
+www/fonts/nunito-v11-latin-700italic.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-800.eot, it is a binary file.
+www/fonts/nunito-v11-latin-800.svg, code is 242, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-800.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-800.woff, it is a binary file.
+www/fonts/nunito-v11-latin-800.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-800italic.eot, it is a binary file.
+www/fonts/nunito-v11-latin-800italic.svg, code is 249, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-800italic.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-800italic.woff, it is a binary file.
+www/fonts/nunito-v11-latin-800italic.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-900.eot, it is a binary file.
+www/fonts/nunito-v11-latin-900.svg, code is 244, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-900.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-900.woff, it is a binary file.
+www/fonts/nunito-v11-latin-900.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-900italic.eot, it is a binary file.
+www/fonts/nunito-v11-latin-900italic.svg, code is 245, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-900italic.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-900italic.woff, it is a binary file.
+www/fonts/nunito-v11-latin-900italic.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-italic.eot, it is a binary file.
+www/fonts/nunito-v11-latin-italic.svg, code is 247, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-italic.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-italic.woff, it is a binary file.
+www/fonts/nunito-v11-latin-italic.woff2, it is a binary file.
+www/fonts/nunito-v11-latin-regular.eot, it is a binary file.
+www/fonts/nunito-v11-latin-regular.svg, code is 241, comment is 0, blank is 0.
+www/fonts/nunito-v11-latin-regular.ttf, it is a binary file.
+www/fonts/nunito-v11-latin-regular.woff, it is a binary file.
+www/fonts/nunito-v11-latin-regular.woff2, it is a binary file.
+www/img/coming-soon/1.png, it is a binary file.
+www/img/coming-soon/2.png, it is a binary file.
+www/img/coming-soon/3.png, it is a binary file.
+www/img/coming-soon/app-store-icon.png, it is a binary file.
+www/img/coming-soon/banner-bg.jpg, it is a binary file.
+www/img/coming-soon/curved-bg.jpg, it is a binary file.
+www/img/coming-soon/curved-bgg.jpg, it is a binary file.
+www/img/coming-soon/download-section-bg.jpg, it is a binary file.
+www/img/coming-soon/google-play-icon.jpg, it is a binary file.
+www/img/coming-soon/google-play-icon.png, it is a binary file.
+www/img/coming-soon/icon-1.png, it is a binary file.
+www/img/coming-soon/icon-2.png, it is a binary file.
+www/img/coming-soon/icon-3.png, it is a binary file.
+www/img/coming-soon/iphone.png, it is a binary file.
+www/img/coming-soon/left-arrow.jpg, it is a binary file.
+www/img/coming-soon/phone-image-old.png, it is a binary file.
+www/img/coming-soon/phone-image.png, it is a binary file.
+www/img/coming-soon/quotes-1.jpg, it is a binary file.
+www/img/coming-soon/quotes-2.jpg, it is a binary file.
+www/img/coming-soon/right-arrow.jpg, it is a binary file.
+www/img/coming-soon/smartphone-1-old.png, it is a binary file.
+www/img/coming-soon/smartphone-1.png, it is a binary file.
+www/img/coming-soon/smartphone-2-old.png, it is a binary file.
+www/img/coming-soon/smartphone-2.png, it is a binary file.
+www/img/favicon.ico, it is a binary file.
+www/img/icons/icon-128x128.png, it is a binary file.
+www/img/icons/icon-144x144.png, it is a binary file.
+www/img/icons/icon-152x152.png, it is a binary file.
+www/img/icons/icon-192x192.png, it is a binary file.
+www/img/icons/icon-384x384.png, it is a binary file.
+www/img/icons/icon-512x512.png, it is a binary file.
+www/img/icons/icon-72x72.png, it is a binary file.
+www/img/icons/icon-96x96.png, it is a binary file.
+www/img/splash.png, it is a binary file.
+www/img/splashscreens/ipad_splash.png, it is a binary file.
+www/img/splashscreens/ipadpro1_splash.png, it is a binary file.
+www/img/splashscreens/ipadpro2_splash.png, it is a binary file.
+www/img/splashscreens/ipadpro3_splash.png, it is a binary file.
+www/img/splashscreens/iphone5_splash.png, it is a binary file.
+www/img/splashscreens/iphone6_splash.png, it is a binary file.
+www/img/splashscreens/iphoneplus_splash.png, it is a binary file.
+www/img/splashscreens/iphonex_splash.png, it is a binary file.
+www/img/splashscreens/iphonexr_splash.png, it is a binary file.
+www/img/splashscreens/iphonexsmax_splash.png, it is a binary file.
+www/img/splashscreens/new_iphoneplus_splash.png, it is a binary file.
+www/img/splashscreens/old_iphoneplus_splash.png, it is a binary file.
+www/img/stock-profile-picture.png, it is a binary file.
+www/index.html, code is 417, comment is 477, blank is 87.
+www/js/classes/Class.js, code is 13, comment is 39, blank is 0.
+www/js/classes/Course.js, code is 148, comment is 102, blank is 22.
+www/js/classes/Grade.js, code is 73, comment is 100, blank is 21.
+www/js/classes/GradePeriod.js, code is 9, comment is 28, blank is 1.
+www/js/classes/GradeType.js, code is 55, comment is 74, blank is 5.
+www/js/classes/Lesson.js, code is 306, comment is 33, blank is 23.
+www/js/classes/Magister.js, code is 89, comment is 32, blank is 3.
+www/js/classes/Person.js, code is 63, comment is 77, blank is 13.
+www/js/controllers/CourseController.js, code is 69, comment is 11, blank is 6.
+www/js/controllers/LessonController.js, code is 26, comment is 0, blank is 5.
+www/js/controllers/ViewController.js, code is 1210, comment is 261, blank is 71.
+www/js/demo/chart-area-demo.js, code is 110, comment is 6, blank is 2.
+www/js/demo/chart-bar-demo.js, code is 103, comment is 6, blank is 2.
+www/js/demo/chart-pie-demo.js, code is 32, comment is 2, blank is 1.
+www/js/demo/datatables-demo.js, code is 3, comment is 1, blank is 0.
+www/js/login.js, code is 1183, comment is 14, blank is 39.
+www/js/main.js, code is 283, comment is 141, blank is 48.
+www/js/refresh.js, code is 45, comment is 8, blank is 4.
+www/js/utils.js, code is 13, comment is 1, blank is 1.
+www/LICENSE, code is 17, comment is 0, blank is 4.
+www/login/index.html, code is 123, comment is 10, blank is 20.
+www/manifest.json, code is 11, comment is 0, blank is 0.
+www/manifest.webmanifest, code is 54, comment is 0, blank is 0.
+www/README.md, code is 5, comment is 2, blank is 3.
+www/service-worker.js, code is 111, comment is 1, blank is 11.
+===============================================================================
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2019-10-01 20:31:26
+count workspace : /Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore
+total files : 83
+total code lines : 16760
+total comment lines : 1683
+total blank lines : 2939
+
+www/.well-known/assetlinks.json, code is 5, comment is 0, blank is 0.
+www/404.html, code is 99, comment is 0, blank is 16.
+www/CNAME, code is 1, comment is 0, blank is 0.
+www/coming-soon/custom.html, code is 153, comment is 18, blank is 25.
+www/coming-soon/index.html, code is 231, comment is 17, blank is 34.
+www/css/dark.css, code is 198, comment is 11, blank is 43.
+www/css/fonts.css, code is 112, comment is 42, blank is 13.
+www/css/light.css, code is 10999, comment is 52, blank is 2321.
+www/css/magistersymbols-webfont.woff, it is a binary file.
+www/css/main.css, code is 391, comment is 117, blank is 95.
+www/img/coming-soon/1.png, it is a binary file.
+www/img/coming-soon/2.png, it is a binary file.
+www/img/coming-soon/3.png, it is a binary file.
+www/img/coming-soon/app-store-icon.png, it is a binary file.
+www/img/coming-soon/banner-bg.jpg, it is a binary file.
+www/img/coming-soon/curved-bg.jpg, it is a binary file.
+www/img/coming-soon/curved-bgg.jpg, it is a binary file.
+www/img/coming-soon/download-section-bg.jpg, it is a binary file.
+www/img/coming-soon/google-play-icon.jpg, it is a binary file.
+www/img/coming-soon/google-play-icon.png, it is a binary file.
+www/img/coming-soon/icon-1.png, it is a binary file.
+www/img/coming-soon/icon-2.png, it is a binary file.
+www/img/coming-soon/icon-3.png, it is a binary file.
+www/img/coming-soon/iphone.png, it is a binary file.
+www/img/coming-soon/left-arrow.jpg, it is a binary file.
+www/img/coming-soon/phone-image-old.png, it is a binary file.
+www/img/coming-soon/phone-image.png, it is a binary file.
+www/img/coming-soon/quotes-1.jpg, it is a binary file.
+www/img/coming-soon/quotes-2.jpg, it is a binary file.
+www/img/coming-soon/right-arrow.jpg, it is a binary file.
+www/img/coming-soon/smartphone-1-old.png, it is a binary file.
+www/img/coming-soon/smartphone-1.png, it is a binary file.
+www/img/coming-soon/smartphone-2-old.png, it is a binary file.
+www/img/coming-soon/smartphone-2.png, it is a binary file.
+www/img/favicon.ico, it is a binary file.
+www/img/icons/icon-128x128.png, it is a binary file.
+www/img/icons/icon-144x144.png, it is a binary file.
+www/img/icons/icon-152x152.png, it is a binary file.
+www/img/icons/icon-192x192.png, it is a binary file.
+www/img/icons/icon-384x384.png, it is a binary file.
+www/img/icons/icon-512x512.png, it is a binary file.
+www/img/icons/icon-72x72.png, it is a binary file.
+www/img/icons/icon-96x96.png, it is a binary file.
+www/img/splash.png, it is a binary file.
+www/img/splashscreens/ipad_splash.png, it is a binary file.
+www/img/splashscreens/ipadpro1_splash.png, it is a binary file.
+www/img/splashscreens/ipadpro2_splash.png, it is a binary file.
+www/img/splashscreens/ipadpro3_splash.png, it is a binary file.
+www/img/splashscreens/iphone5_splash.png, it is a binary file.
+www/img/splashscreens/iphone6_splash.png, it is a binary file.
+www/img/splashscreens/iphoneplus_splash.png, it is a binary file.
+www/img/splashscreens/iphonex_splash.png, it is a binary file.
+www/img/splashscreens/iphonexr_splash.png, it is a binary file.
+www/img/splashscreens/iphonexsmax_splash.png, it is a binary file.
+www/img/splashscreens/new_iphoneplus_splash.png, it is a binary file.
+www/img/splashscreens/old_iphoneplus_splash.png, it is a binary file.
+www/img/stock-profile-picture.png, it is a binary file.
+www/index.html, code is 417, comment is 477, blank is 87.
+www/js/classes/Class.js, code is 13, comment is 39, blank is 0.
+www/js/classes/Course.js, code is 148, comment is 102, blank is 22.
+www/js/classes/Grade.js, code is 73, comment is 100, blank is 21.
+www/js/classes/GradePeriod.js, code is 9, comment is 28, blank is 1.
+www/js/classes/GradeType.js, code is 55, comment is 74, blank is 5.
+www/js/classes/Lesson.js, code is 306, comment is 33, blank is 23.
+www/js/classes/Magister.js, code is 89, comment is 32, blank is 3.
+www/js/classes/Person.js, code is 63, comment is 77, blank is 13.
+www/js/controllers/CourseController.js, code is 69, comment is 11, blank is 6.
+www/js/controllers/LessonController.js, code is 26, comment is 0, blank is 5.
+www/js/controllers/ViewController.js, code is 1210, comment is 261, blank is 71.
+www/js/demo/chart-area-demo.js, code is 110, comment is 6, blank is 2.
+www/js/demo/chart-bar-demo.js, code is 103, comment is 6, blank is 2.
+www/js/demo/chart-pie-demo.js, code is 32, comment is 2, blank is 1.
+www/js/demo/datatables-demo.js, code is 3, comment is 1, blank is 0.
+www/js/login.js, code is 1183, comment is 14, blank is 39.
+www/js/main.js, code is 283, comment is 141, blank is 48.
+www/js/refresh.js, code is 45, comment is 8, blank is 4.
+www/js/utils.js, code is 13, comment is 1, blank is 1.
+www/LICENSE, code is 17, comment is 0, blank is 4.
+www/login/index.html, code is 123, comment is 10, blank is 20.
+www/manifest.json, code is 11, comment is 0, blank is 0.
+www/manifest.webmanifest, code is 54, comment is 0, blank is 0.
+www/README.md, code is 5, comment is 2, blank is 3.
+www/service-worker.js, code is 111, comment is 1, blank is 11.
+===============================================================================

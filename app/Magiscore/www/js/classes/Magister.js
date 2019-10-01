@@ -40,9 +40,21 @@ class Magister {
                     "headers": {
                         "Authorization": "Bearer " + this.token
                     },
-                    "error": function (request, status, error) {
-                        reject(error)
-                    }
+                    "error": function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error: " + XMLHttpRequest.statusText)
+                        if (XMLHttpRequest.readyState == 4) {
+                            logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                            alert("first: " + XMLHttpRequest.statusText)
+                        } else if (XMLHttpRequest.readyState == 0) {
+                            logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            alert("second: " + XMLHttpRequest.statusText)
+                            reject("no internet")
+                        } else {
+                            logConsole("something weird is happening")
+                            alert("third: " + XMLHttpRequest.statusText)
+                        }
+                    },
+                    "timeout": 5000
                 })
                 .done((res) => {
                     this.person.isParent = res.Groep[0].Privileges.some(x =>
@@ -78,9 +90,21 @@ class Magister {
                     "headers": {
                         "Authorization": "Bearer " + this.token
                     },
-                    "error": function (request, status, error) {
-                        reject(error)
-                    }
+                    "error": function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error: " + XMLHttpRequest.statusText)
+                        if (XMLHttpRequest.readyState == 4) {
+                            logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                            alert("first: " + XMLHttpRequest.statusText)
+                        } else if (XMLHttpRequest.readyState == 0) {
+                            logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            alert("second: " + XMLHttpRequest.statusText)
+                            reject("no internet")
+                        } else {
+                            logConsole("something weird is happening")
+                            alert("third: " + XMLHttpRequest.statusText)
+                        }
+                    },
+                    "timeout": 5000
                 })
                 .done((res) => {
                     var res = res.items || res.Items

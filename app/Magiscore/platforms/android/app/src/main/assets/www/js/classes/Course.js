@@ -119,9 +119,17 @@ class Course {
                     "headers": {
                         "Authorization": "Bearer " + this._magister.token
                     },
-                    "error": function (request, status, error) {
-                        reject(error)
-                    }
+                    "error": function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (XMLHttpRequest.readyState == 4) {
+                            logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                        } else if (XMLHttpRequest.readyState == 0) {
+                            logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            reject("no internet")
+                        } else {
+                            logConsole("something weird is happening")
+                        }
+                    },
+                    "timeout": 5000
                 })
                 .done((res) => {
                     resolve(res.map(c => new Class(this._magister, c)))
@@ -159,9 +167,21 @@ class Course {
                     "headers": {
                         "Authorization": "Bearer " + this._magister.token
                     },
-                    "error": function (request, status, error) {
-                        reject(request.status)
-                    }
+                    "error": function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("error: " + XMLHttpRequest.statusText)
+                        if (XMLHttpRequest.readyState == 4) {
+                            logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                            alert("first: " + XMLHttpRequest.statusText)
+                        } else if (XMLHttpRequest.readyState == 0) {
+                            logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            alert("second: " + XMLHttpRequest.statusText)
+                            reject("no internet")
+                        } else {
+                            logConsole("something weird is happening")
+                            alert("third: " + XMLHttpRequest.statusText)
+                        }
+                    },
+                    "timeout": 5000
                 })
                 .done((res) => {
                     var grades = res.Items || res.items

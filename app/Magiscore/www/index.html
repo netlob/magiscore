@@ -291,9 +291,9 @@
               </div>
             </li>
 
-            <li class="nav-item dropdown no-arrow mx-1 no-primary-hover">
-              <a class="nav-link dropdown-toggle background-primary vibrate" id="messagesDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown no-arrow mx-1 no-primary-hover grades-dropdown" id="messagesDrop">
+              <a class="nav-link dropdown-toggle background-primary vibrate" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-clock fa-fw d-block d-md-none mobile-clock"></i>
                 <i class="fas fa-clock fa-fw text-gray-600 d-none d-lg-block"></i>
                 <span class="ml-1 mr-2 pr-4 text-gray-600 d-none d-lg-block">Laatste cijfers</span>
@@ -301,9 +301,12 @@
                 <!-- d-none -->
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
-                aria-labelledby="messagesDropdown">
+                id="messagesDropdownDrop" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header background-primary">
-                  Laatste cijfers
+                  Laatste cijfers <a class="float-right"><span class="text-white"
+                      style="font-size: 9px !important; font-weight: light !important;"
+                      onclick="courseController.getLatestGrades(true)">Refresh</span><i
+                      class="ml-2 fa fa-sync-alt text-white"></i></a>
                 </h6>
                 <div id="latest-grades">
                   <div class="text-center mt-3 mb-2" id="latest-grades-empty">Geen recente cijfers...</div>
@@ -342,8 +345,9 @@
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
                 </a> -->
-                <a class="dropdown-item vibrate" style="display: none;" data-toggle="terminal"
-                  onclick="$('#terminal-wrapper').toggle()" id="toggle-terminal">
+                <a class="dropdown-item vibrate" data-toggle="terminal" onclick="$('#terminal-wrapper').toggle()"
+                  id="toggle-terminal">
+                  <!-- style="display: none;" -->
                   <i class="fas fa-terminal fa-sm fa-fw mr-2 text-gray-400"></i>
                   Toggle terminal
                 </a>
@@ -351,10 +355,10 @@
                   <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                   Instellingen
                 </a>
-                <a class="dropdown-item vibrate" href="#" data-toggle="modal" data-target="#logoutModal">
+                <!-- <a class="dropdown-item vibrate" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Uitloggen
-                </a>
+                </a> -->
               </div>
             </li>
 
@@ -403,6 +407,13 @@
               <span class="text-gray-500" style="font-size: 11px"><i class="far fa-info-circle fa-s"></i>
                 Wil je een kommagetal? Gebruik dan een punt(.) als komma(,) - Bijvoorbeeld 5.5 ipv 5,5
               </span>
+            </li>
+          </ul>
+          <hr>
+          <h6 class="ml-3 pl-1 font-weight-bold text-primary">Account</h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item shadow mb-2">Uitloggen<a class="float-right menu-a vibrate"
+                onclick="logOut()">UITLOGGEN</a>
             </li>
           </ul>
         </div>

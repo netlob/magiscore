@@ -104,5 +104,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-taptic-engine": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-taptic-engine"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

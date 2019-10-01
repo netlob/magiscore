@@ -29,6 +29,7 @@
   <style>
     body {
       background-color: #0096db !important;
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, .05) 20px, rgba(255, 255, 255, .05) 40px);
     }
 
     * {
@@ -52,11 +53,13 @@
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="login-school" aria-describedby="school"
                     placeholder="School">
-                  <table class="schools-table"
+                  <ul class="list-group list-group-flush" id="schools-table">
+                  </ul>
+                  <!-- <table class="schools-table"
                     style="max-height: 190px !important; overflow-y: scroll !important; display: table; width: 100%">
                     <tbody id="schools-table" class="mh-50">
                     </tbody>
-                  </table>
+                  </table> -->
                 </div>
                 <span class="text-gray-500" style="font-size: 12px"><i
                     class="far fa-info-circle fa-s display-inline-block mr-1 ml-2 mb-2 mt-3"></i>

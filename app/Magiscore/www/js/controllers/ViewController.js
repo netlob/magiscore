@@ -42,7 +42,7 @@ class ViewController {
     $('*[data-toggle="tooltip"]').tooltip()
     $("#general-wrapper").show();
     $(".vibrate").on("click", function () {
-      navigator.vibrate(15)
+      vibrate(15, false)
     })
   }
 
@@ -67,12 +67,12 @@ class ViewController {
     $('*[data-toggle="tooltip"]').tooltip()
     $("#lesson-wrapper").show();
     $(".vibrate").on("click", function () {
-      navigator.vibrate(15)
+      vibrate(15, false)
     })
   }
 
   renderCourse(courseid, loader, course, lesson) {
-    navigator.vibrate(15)
+    vibrate(15, false)
     if (loader) $("#overlay").show()
     setTimeout(function () {
       $("#overlay").hide()
@@ -279,7 +279,7 @@ class ViewController {
     }
   }
 
-  setLatestGrades(grades) {
+  setLatestGrades(grades, open) {
     grades.slice(0, 5)
     $('#latest-grades').find('*').not('#latest-grades-empty').remove();
     grades.forEach(grade => {
@@ -291,7 +291,7 @@ class ViewController {
           <a class="dropdown-item d-flex align-items-center vibrate" onclick="if(viewController.currentCourse == courseController.current()) { viewController.render('${grade.vak.omschrijving.capitalize()}') } else { viewController.renderCourse(courseController.current().course.id, true, false, '${grade.vak.omschrijving.capitalize()}') }">
             <div class="dropdown-list-image mr-3">
               <div class="rounded-circle">
-                <h3 class="text-center mt-1">${grade.waarde == "10,0" ? '<span class="text-success">10</span>' : (round(grade.waarde) < this.config.passed) ? '<span class="text-danger">' + grade.waarde + '</span>' : grade.waarde}<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important;">${grade.weegfactor}x</sup></h3>
+                <h3 class="text-center mt-1">${grade.waarde == "10,0" ? '<span class="text-success">10</span>' : (round(grade.waarde) < this.config.passed) ? '<span class="text-danger">' + grade.waarde + '</span>' : grade.waarde}<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important; right: -15px !important;">${grade.weegfactor}x</sup></h3>
               </div>
               <!-- <div class="status-indicator bg-success"></div> -->
             </div>
@@ -307,6 +307,12 @@ class ViewController {
     if (length == 0) $("#latest-grades-empty").show()
     else $("#latest-grades-empty").hide()
     $("#latest-grades-badge").text(length)
+    if (open) {
+      $("#messagesDropdownDrop").addClass('show')
+      $("#messagesDrop").addClass('show')
+      $("#messagesDrop").addClass('open')
+      $("#overlay").hide()
+    }
   }
 
   setCourses() {
@@ -341,7 +347,7 @@ class ViewController {
   closeSettings() {
     this.render("general")
     this.settingsOpen = false
-    navigator.vibrate(15)
+    vibrate(15, false)
     // this.render(this.currentLesson.name)
   }
 
@@ -368,7 +374,8 @@ function confirmRefreshOldGrades(button) {
 function updateSidebar() {
   if (lessonController.lessons.length > 0) {
     $("#subjectsNav").empty();
-    lessonController.lessons.map(lesson =>
+    _.sortBy(lessonController.lessons, ['name']);
+    lessonController.lessons.forEach(lesson =>
       $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
             <a class="nav-link" onclick="viewController.render('${
@@ -381,8 +388,8 @@ function updateSidebar() {
     )
   } else {
     $("#subjectsNav").html(`
-      <li class="text-center text-gray-500 mt-4">
-            <span>Geen cijfers dit jaar...</span>
+      <li class="text-center mt-4">
+            <span class="text-gray-300">Geen cijfers dit jaar...</span>
       </li>`)
   }
 
@@ -885,7 +892,7 @@ function setChartData(config, lesson, everything) {
             fontSize: 15,
             boxWidth: 50
           },
-          // onClick: navigator.vibrate(15)
+          // onClick: navigator.vibrate(15, false)
         },
         tooltips: {
           backgroundColor: "#0096db",

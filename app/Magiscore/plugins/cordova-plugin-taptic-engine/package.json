@@ -1,0 +1,68 @@
+{
+  "_from": "cordova-plugin-taptic-engine",
+  "_id": "cordova-plugin-taptic-engine@2.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-PTiwOnoy9JBdw3f9ai7F4IbQA/c=",
+  "_location": "/cordova-plugin-taptic-engine",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-taptic-engine",
+    "name": "cordova-plugin-taptic-engine",
+    "escapedName": "cordova-plugin-taptic-engine",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-taptic-engine/-/cordova-plugin-taptic-engine-2.1.0.tgz",
+  "_shasum": "3d38b03a7a32f4905dc377fd6a2ec5e086d003f7",
+  "_spec": "cordova-plugin-taptic-engine",
+  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "author": {
+    "name": "Eddy Verbruggen",
+    "email": "eddyverbruggen@gmail.com",
+    "url": "https://github.com/EddyVerbruggen"
+  },
+  "bugs": {
+    "url": "https://github.com/EddyVerbruggen/cordova-plugin-taptic-engine/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-taptic-engine",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Use Apple's Taptic Engine to vibrate your iPhone 6s (or up) in a variety of ways.",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.5.0"
+    }
+  ],
+  "homepage": "https://github.com/EddyVerbruggen/cordova-plugin-taptic-engine#readme",
+  "keywords": [
+    "Taptic Engine",
+    "Haptic",
+    "Haptic Feedback",
+    "Taptic",
+    "Taptic Feedback",
+    "Vibrate",
+    "Vibration",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-taptic-engine",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EddyVerbruggen/cordova-plugin-taptic-engine.git"
+  },
+  "version": "2.1.0"
+}

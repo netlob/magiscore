@@ -26,6 +26,7 @@
     "cordova-plugin-local-notification": "^0.9.0-beta.2",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-splashscreen": "^5.0.3",
+    "cordova-plugin-taptic-engine": "^2.1.0",
     "cordova-plugin-vibration": "^3.1.1",
     "openid-client": "^3.6.1",
     "phin": "^3.4.0",
@@ -51,7 +52,8 @@
       "cordova-plugin-background-fetch": {},
       "cordova-plugin-local-notification": {},
       "cordova-open-native-settings": {},
-      "cordova-plugin-insomnia": {}
+      "cordova-plugin-insomnia": {},
+      "cordova-plugin-taptic-engine": {}
     },
     "platforms": [
       "android",

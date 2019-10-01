@@ -18,6 +18,14 @@ body {
     transition: color 1000ms linear;
 } */
 
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .progress {
   display: none !important;
 }

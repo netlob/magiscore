@@ -42,7 +42,9 @@ class CourseController {
         return this.courses.find(x => x.id === id)
     }
 
-    getLatestGrades() {
+    getLatestGrades(open) {
+        if (!open) open = false
+        else if (open) $("#overlay").show()
         return new Promise((resolve, reject) => {
             // logConsole("RAW:")
             // logConsole(JSON.stringify(this.raw))
@@ -57,16 +59,25 @@ class CourseController {
                     "headers": {
                         "Authorization": "Bearer " + tokens.access_token
                     },
-                    "error": function (request, status, error) {
-                        reject(error)
-                    }
+                    "error": function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.statusText)
+                        if (XMLHttpRequest.readyState == 4) {
+                            logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                        } else if (XMLHttpRequest.readyState == 0) {
+                            logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            reject("no internet")
+                        } else {
+                            logConsole("something weird is happening")
+                        }
+                    },
+                    "timeout": 5000
                 })
                 .done((res) => {
                     var grades = res.Items || res.items
                     // alert(JSON.stringify(grades))
                     // grades = _.reject(grades, raw => raw.CijferId === 0)
                     this.latestGrades = grades
-                    viewController.setLatestGrades(this.latestGrades)
+                    viewController.setLatestGrades(this.latestGrades, open)
                     resolve(this.latestGrades)
                 })
         })

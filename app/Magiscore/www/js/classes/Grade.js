@@ -155,7 +155,12 @@ class Grade {
                         // reject(error)
                         this._filling = false
 
-                        if (jqXHR.status == 429) {
+                        if (XMLHttpRequest.readyState == 4) {
+                            logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                        } else if (XMLHttpRequest.readyState == 0) {
+                            logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            reject("no internet")
+                        } else if (jqXHR.status == 429) {
                             // errorConsole(JSON.parse(jqXHR.responseText).Message)
                             fillTimeout(JSON.parse(jqXHR.responseText).SecondsLeft)
                             this._filling = false
@@ -165,11 +170,11 @@ class Grade {
                             //         .then(grade => resolve(grade))
                             // }, 31000);
                             reject(429)
-
                         } else {
-                            reject(jqXHR.status)
+                            logConsole("something weird is happening")
                         }
-                    }
+                    },
+                    "timeout": 5000
                 })
                 .done((res) => {
 

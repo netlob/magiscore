@@ -43,6 +43,9 @@
     },
     "cordova-plugin-insomnia": {
       "PACKAGE_NAME": "nl.sj3rd.magiscore"
+    },
+    "cordova-plugin-taptic-engine": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {
