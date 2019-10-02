@@ -345,26 +345,28 @@ function vibrate(time, strong) {
   }
 }
 
-// document.addEventListener("deviceready", function () {
-//   alert("123");
-//   $('#wrapper').bind('swipeleft', function () {
-//     if (!$('body').hasClass('sidebar-toggled')) {
-//       $('#sidebarToggleTop').click()
-//     }
-//   });
-//   $('#wrapper').bind('swiperight', function () {
-//     if ($('body').hasClass('sidebar-toggled')) {
-//       $('#sidebarToggleTop').click()
-//     }
-//   });
-// }, true);
+// function gaSuccess(poep) {
+//   window.ga.debugMode();
+//   window.ga.setAllowIDFACollection(true);
+//   window.ga.trackView('Screen Title', '', true)
+//   window.ga.trackEvent('Magister', 'Refreshed_token', 'poep', 1)
+//   window.ga.dispatch()
+//   logConsole(JSON.stringify(window.ga))
+//   logConsole("Ga success")
+//   logConsole(poep)
+// }
 
-//main()
+// function gaError(poep) {
+//   logConsole("Ga error")
+//   logConsole(poep)
+// }
+
 function onDeviceReady() {
   if (localStorage.getItem("tokens") != null) {
     logConsole("Device ready!")
     logConsole("Connection type: " + navigator.connection.type)
     if (navigator.connection.type !== Connection.NONE) {
+      // window.ga.startTrackerWithId('211709234', 30, gaSuccess, gaError)
       refreshToken()
         .then((refreshTokens) => {
           tokens = refreshTokens

@@ -1,28 +1,25 @@
 {
-  "_from": "cordova-plugin-inappbrowser@3.1.0",
-  "_id": "cordova-plugin-inappbrowser@3.1.0",
+  "_from": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+  "_id": "cordova-plugin-inappbrowser@3.1.1-dev",
   "_inBundle": false,
-  "_integrity": "sha512-YqrZfYgbGTS20SFID0mrRxud312VH072QVlFonCAkPgtGg1Svy7lELOCNFd+KU7t4mVtZeTEjZPEeefvjaetwQ==",
+  "_integrity": "",
   "_location": "/cordova-plugin-inappbrowser",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
-    "registry": true,
-    "raw": "cordova-plugin-inappbrowser@3.1.0",
-    "name": "cordova-plugin-inappbrowser",
-    "escapedName": "cordova-plugin-inappbrowser",
-    "rawSpec": "3.1.0",
-    "saveSpec": null,
-    "fetchSpec": "3.1.0"
+    "type": "git",
+    "raw": "https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+    "rawSpec": "https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+    "saveSpec": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+    "fetchSpec": "https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+    "gitCommittish": null
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-3.1.0.tgz",
-  "_shasum": "61520b8de3eb75b37842d2340f5d90a84a073747",
-  "_spec": "cordova-plugin-inappbrowser@3.1.0",
-  "_where": "C:\\Users\\Admin\\Desktop\\Magiscore cordova\\Magiscore",
+  "_resolved": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git#0147b9b019660da32292a9c481e250d5f52cd508",
+  "_spec": "https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Apache Software Foundation"
   },
@@ -86,5 +83,5 @@
     "test": "npm run eslint"
   },
   "types": "./types/index.d.ts",
-  "version": "3.1.0"
+  "version": "3.1.1-dev"
 }

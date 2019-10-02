@@ -167,7 +167,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow" data-snap-ignore="true">
           <!-- <div style="height: 70px; position: fixed;"></div> -->
           <!-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 navbar-static-top shadow" style="position: fixed !important; z-index: 100; width: 100vw;">
           <div class="container-fluid"> -->
@@ -370,12 +370,23 @@
 
         <div class="mt-4" id="ptr"></div>
 
-        <div class="container-fluid" id="settings-wrapper" style="display: none;">
+        <div class="container-fluid" id="settings-wrapper" style="display: none;" data-snap-ignore="true">
           <h6 class="ml-1 pl-3 font-weight-bold text-primary">Magiscore</h6>
           <ul class="list-group list-group-flush">
             <li class="list-group-item shadow mb-2">Thema <a class="float-right menu-a ml-2 vibrate"
                 onclick="viewController.darkTheme()">DONKER</a><a class="float-right menu-a vibrate"
                 onclick="viewController.lightTheme()">LICHT</a>
+            </li>
+            <li class="list-group-item shadow mb-2">Profielfoto <a class="float-right menu-a ml-2 vibrate"
+                onclick="setProfilePic(true)"><i class="far fa-sync-alt fa-sm"></i></a><a
+                class="float-right menu-a ml-2 vibrate"
+                onclick="viewController.updateConfig({'smiley': false})">FOTO</a><a class="float-right menu-a vibrate"
+                onclick="viewController.updateConfig({'smiley': true})">SMILEY</a>
+              <hr class="mt-2 mb-1">
+              <span class="text-gray-500" style="font-size: 11px"><i class="far fa-info-circle fa-s"></i>
+                Is je schoolfoto niet zo goed gelukt? Dan kun je een coole smiley als profielfoto gebruiken! Druk op <i
+                  class="far fa-sync-alt fa-s"></i> om je schoolfoto te refreshen
+              </span>
             </li>
             <li class="list-group-item shadow mb-2 d-inline-block">Developer
               mode</i>

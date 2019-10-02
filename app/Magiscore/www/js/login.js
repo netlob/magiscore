@@ -70,7 +70,7 @@ function onOffline() {
 
 function openWifiSettings(b) {
     if (b == 1) {
-        window.cordova.plugins.settings.open("wifi", function () {}, function () {})
+        window.cordova.plugins.settings.open("wifi", emptyFuntion, emptyFuntion)
         localStorage.clear()
     } else return
 }
@@ -135,7 +135,18 @@ function openLoginWindow(school) {
 
     var challenge = base64URL(generateCodeChallenge(verifier));
     var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&acr_values=tenant:${school}&prompt=select_account`
-    var popup = cordova.InAppBrowser.open(url, '_system', 'location=yes,hideurlbar=yes');
+    popup = cordova.InAppBrowser.open(url, '_blank', 'location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,closebuttoncolor=#eeeeee');
+    popup.addEventListener("loaderror", customScheme);
+}
+
+function customScheme(iab) {
+    popup.hide()
+    if (iab.url.substring(0, 25) == "m6loapp://oauth2redirect/") {
+        var code = iab.url.split("code=")[1].split("&")[0];
+        validateLogin(code, verifier);
+    } else {
+        toast("Er is een onbekende error opgetreden... Probeer het in een ogenblik opnieuw", 5000, true)
+    }
 }
 
 function toast(msg, duration, fullWidth) {
@@ -207,6 +218,7 @@ function fillAGrade(chunk) {
     }
 }
 async function validateLogin(code, codeVerifier) {
+    toast("Succesvolle login!", 2000, true)
     logConsole(`Login valideren...`)
     var settings = {
         "error": function (jqXHR, textStatus, errorThrown) {
@@ -243,6 +255,7 @@ async function validateLogin(code, codeVerifier) {
             "tention": 0.3,
             "passed": 5.5,
             "darkTheme": false,
+            "smiley": false,
             "refreshOldGrades": false,
             "includeGradesInAverageChart": false,
             "devMode": false,

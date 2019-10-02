@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "216773507184",
+    "firebase_url": "https://magiscore-android.firebaseio.com",
+    "project_id": "magiscore-android",
+    "storage_bucket": "magiscore-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216773507184:android:4ac91d5c16f1d688515cb5",
+        "android_client_info": {
+          "package_name": "app.netlob.magiscore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216773507184-o2v61pbcbs3qti3b7o4aak7qg7amd0b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc__BBAwDvFAvfDr6WVV66qci1lzDU8tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216773507184-o2v61pbcbs3qti3b7o4aak7qg7amd0b6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -93,6 +93,7 @@ ext {
 apply from: "../cordova-plugin-background-fetch/magiscore-build.gradle"
 apply from: "../cordova-plugin-badge/magiscore-badge.gradle"
 apply from: "../cordova-plugin-local-notification/magiscore-localnotification.gradle"
+apply from: "../cordova-annotated-plugin-android/magiscore-build.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -270,6 +271,7 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
     implementation "com.android.support:support-v4:26.+"
+    implementation "com.google.android.gms:play-services-analytics:11.0.1"
     // SUB-PROJECT DEPENDENCIES END
 }
 

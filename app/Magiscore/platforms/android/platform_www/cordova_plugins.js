@@ -1,15 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
   module.exports = [
     {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
-      ]
-    },
-    {
       "id": "cordova-plugin-customurlscheme.LaunchMyApp",
       "file": "plugins/cordova-plugin-customurlscheme/www/android/LaunchMyApp.js",
       "pluginId": "cordova-plugin-customurlscheme",
@@ -131,11 +122,28 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "TapticEngine"
       ]
+    },
+    {
+      "id": "cordova-plugin-google-analytics.UniversalAnalytics",
+      "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
+      "pluginId": "cordova-plugin-google-analytics",
+      "clobbers": [
+        "analytics",
+        "ga"
+      ]
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open",
+        "window.open"
+      ]
     }
   ];
   module.exports.metadata = {
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-inappbrowser": "3.1.0",
     "cordova-plugin-customurlscheme": "4.4.0",
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-splashscreen": "5.0.3",
@@ -147,6 +155,10 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-open-native-settings": "1.5.2",
     "cordova-plugin-insomnia": "4.3.0",
-    "cordova-plugin-taptic-engine": "2.1.0"
+    "cordova-plugin-taptic-engine": "2.1.0",
+    "cordova-play-services-version-adapter": "1.0.2",
+    "cordova-annotated-plugin-android": "1.0.4",
+    "cordova-plugin-google-analytics": "1.8.6",
+    "cordova-plugin-inappbrowser": "3.1.1-dev"
   };
 });

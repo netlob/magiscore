@@ -7,14 +7,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-inappbrowser": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-inappbrowser@^3.1.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-customurlscheme": {
     "source": {
       "type": "registry",
@@ -109,6 +101,24 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-taptic-engine"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-google-analytics": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-google-analytics@^1.8.6"
+    },
+    "is_top_level": true,
+    "variables": {
+      "GMS_VERSION": "11.0.1"
+    }
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/Netlob/cordova-plugin-inappbrowser.git"
     },
     "is_top_level": true,
     "variables": {}

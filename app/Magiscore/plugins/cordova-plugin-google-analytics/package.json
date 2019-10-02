@@ -1,0 +1,63 @@
+{
+  "_from": "cordova-plugin-google-analytics",
+  "_id": "cordova-plugin-google-analytics@1.8.6",
+  "_inBundle": false,
+  "_integrity": "sha512-shg8e3ris1MzmhC8roraScc2GEcfe7sVlbKkvrO3wZUAlYr31sf+4wxZr/VQB6tEcPsmTAkoNjGr1zMwoYjMeg==",
+  "_location": "/cordova-plugin-google-analytics",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-google-analytics",
+    "name": "cordova-plugin-google-analytics",
+    "escapedName": "cordova-plugin-google-analytics",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-google-analytics/-/cordova-plugin-google-analytics-1.8.6.tgz",
+  "_shasum": "7886bd7ac9264e4dec7355ebed64d939b274731a",
+  "_spec": "cordova-plugin-google-analytics",
+  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "author": {
+    "name": "Dan Wilson"
+  },
+  "bugs": {
+    "url": "https://github.com/danwilson/google-analytics-plugin/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-google-analytics",
+    "platforms": [
+      "android",
+      "ios",
+      "windows",
+      "browser"
+    ]
+  },
+  "deprecated": false,
+  "description": "Google Universal Analytics Plugin",
+  "homepage": "https://github.com/danwilson/google-analytics-plugin#readme",
+  "keywords": [
+    "cordova",
+    "googleanalytics",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "analytics",
+    "google",
+    "universal",
+    "universalanalytics"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-google-analytics",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danwilson/google-analytics-plugin.git"
+  },
+  "version": "1.8.6"
+}

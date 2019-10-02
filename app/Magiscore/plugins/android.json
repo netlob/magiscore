@@ -8,52 +8,62 @@
   },
   "installed_plugins": {
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
-    },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-customurlscheme": {
       "URL_SCHEME": "m6loapp",
       "ANDROID_SCHEME": " ",
       "ANDROID_HOST": " ",
       "ANDROID_PATHPREFIX": "/",
-      "PACKAGE_NAME": "io.cordova.hellocordova"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-background-fetch": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-open-native-settings": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-insomnia": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-taptic-engine": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-google-analytics": {
+      "GMS_VERSION": "11.0.1",
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-badge": {
-      "PACKAGE_NAME": "nl.sj3rd.magiscore"
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-play-services-version-adapter": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-annotated-plugin-android": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   }
 }

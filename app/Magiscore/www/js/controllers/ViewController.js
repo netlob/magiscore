@@ -41,6 +41,7 @@ class ViewController {
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip()
     $("#general-wrapper").show();
+    // window.ga.trackView('general')
     $(".vibrate").on("click", function () {
       vibrate(15, false)
     })
@@ -74,9 +75,6 @@ class ViewController {
   renderCourse(courseid, loader, course, lesson) {
     vibrate(15, false)
     if (loader) $("#overlay").show()
-    setTimeout(function () {
-      $("#overlay").hide()
-    }, 110)
     if (!courseid && course) viewController.currentCourse = course
     else viewController.currentCourse = courseController.getCourse(courseid)
     if (lesson && viewController.currentCourse.course.classes.findIndex(c => c.description.toLowerCase() == lesson.toLowerCase()) > -1) main(lesson)
@@ -84,6 +82,9 @@ class ViewController {
     $("#years").children().removeClass("course-selected")
     $(`#course-${courseid}`).addClass("course-selected")
     $("#current-course-badge").text(this.currentCourse.course.group.description)
+    setTimeout(function () {
+      $("#overlay").hide()
+    }, 110)
   }
 
   renderGrade(gradeid) {
@@ -145,6 +146,7 @@ class ViewController {
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
     if (config["exclude"]) main(this.currentLesson)
     if (config["devMode"] && this.config.devMode) $("#toggle-terminal").show()
+    if ("smiley" in config) setProfilePic()
     else $("#toggle-terminal").hide()
   }
 
@@ -156,6 +158,7 @@ class ViewController {
         "tention": 0.3,
         "passed": 5.5,
         "darkTheme": false,
+        "smiley": false,
         "refreshOldGrades": false,
         "includeGradesInAverageChart": false,
         "devMode": false,
@@ -321,7 +324,7 @@ class ViewController {
     courseController.courses.forEach(course => {
       var sexyDate = `${new Date(course.course.start).getFullYear().toString().substring(2)}/${new Date(course.course.end).getFullYear().toString().substring(2)}`
       // var sexyDate = course.raw.Start
-      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}', false, false, false)" id="course-${course.course.id}">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
+      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}', true, false, false)" id="course-${course.course.id}">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
     })
     $("#years").children().removeClass("course-selected")
     $(`#course-${this.currentCourse.course.id}`).addClass("course-selected")
@@ -332,8 +335,8 @@ class ViewController {
   openSettings() {
     $("#general-wrapper").hide();
     $("#lesson-wrapper").hide();
-    $("#currentRender").html('<i class="fa fa-arrow-left fa-sm mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
-    $("#currentRenderMobile").html('<i class="fa fa-arrow-left fa-sm mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen');
+    $("#currentRender").html('<span onclick="viewController.closeSettings()"><i class="fa fa-arrow-left fa-sm mr-3 vibrate"></i>Instellingen</span>');
+    $("#currentRenderMobile").html('<span onclick="viewController.closeSettings()"><i class="fa fa-arrow-left fa-sm mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen</span>');
     // alert(JSON.stringify(this.config))
     $("#passed-input").attr("placeholder", this.config.passed);
     $("#passed-input").val("");
@@ -371,6 +374,53 @@ function confirmRefreshOldGrades(button) {
   }
 }
 
+function setProfilePic(forceRefresh) {
+  if (!forceRefresh) forceRefresh = false
+  // alert(viewController.config.smiley)
+  var profilepicStorage = localStorage.getItem("profilepic") || false,
+    profilepic = document.getElementById("imgelem");
+  if (viewController.config.smiley && !forceRefresh) {
+    logConsole("profile picture as smiley");
+    profilepic.setAttribute("src", "./img/smiley.png");
+  } else if (profilepicStorage && !forceRefresh) {
+    logConsole("profile picture from localstorage");
+    profilepic.setAttribute("src", profilepicStorage);
+  } else {
+    logConsole("profile picture from request");
+    var xhr = new XMLHttpRequest(),
+      blob,
+      fileReader = new FileReader();
+    xhr.responseType = "blob";
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+        blob = new Blob([xhr.response], {
+          type: "image/png"
+        });
+        fileReader.onload = function (evt) {
+          var result = evt.target.result;
+          // logConsole(result)
+          profilepic.setAttribute("src", result);
+          try {
+            logConsole("[INFO] Storage of image succes");
+            localStorage.setItem("profilepic", result);
+          } catch (e) {
+            errorConsole("[ERROR] Storage failed: " + e);
+          }
+        };
+        fileReader.readAsDataURL(blob);
+      }
+    };
+    logConsole(`https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`)
+    xhr.open(
+      "GET",
+      `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`,
+      true
+    );
+    xhr.setRequestHeader("Authorization", `Bearer ${tokens.access_token}`);
+    xhr.send();
+  }
+}
+
 function updateSidebar() {
   if (lessonController.lessons.length > 0) {
     $("#subjectsNav").empty();
@@ -399,58 +449,8 @@ function updateSidebar() {
     $("#toggle-terminal").hide()
   }
 
-  // var profilepic = document.getElementById("imgelem");
-  // profilepic.setAttribute("src", "./img/stock-profile-picture.png");
-  var profilepicStorage = localStorage.getItem("profilepic") || false,
-    profilepic = document.getElementById("imgelem");
-  if (profilepicStorage) {
-    logConsole("profile picture from localstorage");
-    profilepic.setAttribute("src", profilepicStorage);
-  } else {
-    logConsole("profile picture from request");
-    var xhr = new XMLHttpRequest(),
-      blob,
-      fileReader = new FileReader();
-    xhr.responseType = "blob";
-    // xhr.onreadystatechange = function (oEvent) {
-    //   if (xhr.readyState === 4) {
-    //     if (xhr.status === 200) {
-    //       logConsole(xhr.responseText)
-    //     } else {
-    //       errorLog("Error", xhr.statusText);
-    //     }
-    //   }
-    // };
+  setProfilePic()
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-        blob = new Blob([xhr.response], {
-          type: "image/png"
-        });
-        fileReader.onload = function (evt) {
-          var result = evt.target.result;
-          // logConsole(result)
-          profilepic.setAttribute("src", result);
-          try {
-            logConsole("[INFO] Storage of image succes");
-            localStorage.setItem("profilepic", result);
-          } catch (e) {
-            errorConsole("[ERROR] Storage failed: " + e);
-          }
-        };
-        fileReader.readAsDataURL(blob);
-      }
-    };
-    logConsole(`https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`)
-    logConsole(`Bearer ${tokens.access_token}`)
-    xhr.open(
-      "GET",
-      `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`,
-      true
-    );
-    xhr.setRequestHeader("Authorization", `Bearer ${tokens.access_token}`);
-    xhr.send();
-  }
   $("#userDropdown > span").text(
     `${person.firstName} ${person.lastName} ${
     courseController.current().course.group.description ? "(" + courseController.current().course.group.description + ")" : ""
