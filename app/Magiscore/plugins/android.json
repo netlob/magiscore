@@ -29,12 +29,6 @@
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-background-fetch": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
     "cordova-open-native-settings": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
@@ -44,21 +38,14 @@
     "cordova-plugin-taptic-engine": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-google-analytics": {
-      "GMS_VERSION": "11.0.1",
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-inappbrowser": {
+    "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-badge": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
     "cordova-play-services-version-adapter": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },

@@ -19,17 +19,13 @@
     "cordova-open-native-settings": "1.5.2",
     "cordova-play-services-version-adapter": "1.0.2",
     "cordova-plugin-analytics": "2.0.0",
-    "cordova-plugin-background-fetch": "^5.6.0",
-    "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-customurlscheme": "^4.4.0",
-    "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-dialogs": "^2.0.2",
-    "cordova-plugin-google-analytics": "^1.8.6",
     "cordova-plugin-inappbrowser": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
     "cordova-plugin-insomnia": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
-    "cordova-plugin-local-notification": "^0.9.0-beta.2",
     "cordova-plugin-network-information": "^2.0.2",
     "cordova-plugin-splashscreen": "^5.0.3",
+    "cordova-plugin-statusbar": "^2.4.3",
     "cordova-plugin-taptic-engine": "^2.1.0",
     "cordova-plugin-vibration": "^3.1.1",
     "openid-client": "^3.6.1",
@@ -52,15 +48,11 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-dialogs": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-background-fetch": {},
-      "cordova-plugin-local-notification": {},
       "cordova-open-native-settings": {},
       "cordova-plugin-insomnia": {},
       "cordova-plugin-taptic-engine": {},
-      "cordova-plugin-google-analytics": {
-        "GMS_VERSION": "11.0.1"
-      },
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-statusbar": {}
     },
     "platforms": [
       "android",

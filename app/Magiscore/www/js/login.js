@@ -1,6 +1,7 @@
 var verifier = "";
 var tenant = "";
 var popup = null
+var lastSchools = []
 
 var currentGradeIndex = 0
 var totalGrades = 0
@@ -8,6 +9,8 @@ var all_courses = []
 var all = []
 
 console.log("Loaded login page :)")
+
+alert("ff tijdelijk: HOUD DE APP OPEN TIJDENS HET OPHALEN VAN JE CIJFERS!")
 
 Array.prototype.chunk = function (chunkSize) {
     var R = [];
@@ -32,6 +35,10 @@ function getLoginInfo() {
 }
 
 function onDeviceReady() {
+
+    StatusBar.overlaysWebView(false);
+    StatusBar.backgroundColorByHexString("#0096db");
+    StatusBar.styleLightContent();
     // alert(navigator.connection.type)
     // alert(Object.entries(localStorage) + window.location.hash)
     if (window.location.hash == "#notokens" && Object.entries(localStorage).length > 0) {
@@ -77,6 +84,11 @@ function openWifiSettings(b) {
 
 function fillTimeout(remaining) {
     $("#timeout-remaining").text(`${remaining} seconden`)
+    setInterval(() => {
+        remaining--
+        $("#timeout-remaining").text(`${remaining} seconden`)
+        if (remaining == 0) return
+    }, 1000)
 }
 
 function generateRandomString(length) {
@@ -204,6 +216,7 @@ function fillAGrade(chunk) {
             if (totalGrades == 0) {
                 // alert("Done :)")
                 window.plugins.insomnia.allowSleepAgain()
+                // all_courses[4].grades = []
                 localStorage.setItem("courses", JSON.stringify(all_courses))
                 localStorage.setItem("loginSuccess", "true")
                 window.location = '../index.html'
@@ -237,7 +250,7 @@ async function validateLogin(code, codeVerifier) {
         "data": `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${codeVerifier}`,
     }
 
-    $.ajax(settings).done((response) => {
+    $.ajax(settings).done(async (response) => {
         window.plugins.insomnia.keepAwake()
         $("#login").hide()
         $("#loader").show()
@@ -268,7 +281,7 @@ async function validateLogin(code, codeVerifier) {
         var m = new Magister(tenant, response.access_token)
         // logConsole(JSON.stringify(m))
         m.getInfo()
-            .then(person => {
+            .then(async (person) => {
                 // alert(JSON.stringify(person) + Object.entries(localStorage).length)
                 if (person.isParent) {
                     localStorage.clear()
@@ -282,7 +295,7 @@ async function validateLogin(code, codeVerifier) {
                 logConsole(`Succesvol leerlingid (${person.id}) opgehaald!`)
                 addLoader(3)
                 m.getCourses()
-                    .then(async courses => {
+                    .then(async (courses) => {
                         all_courses = courses
                         logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`)
                         addLoader(7)
@@ -297,7 +310,7 @@ async function validateLogin(code, codeVerifier) {
                         })
 
                         Promise.all(requests)
-                            .then(values => {
+                            .then(async (values) => {
                                 logConsole("Cijfers en vakken opgehaald!")
                                 addLoader(8) // 12% total, 88% remaining
                                 var years = values.length
@@ -313,10 +326,38 @@ async function validateLogin(code, codeVerifier) {
                                 var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
                                 $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
                                 $("#grades-remaining").text(totalGrades)
-                                var chunkedGrades = all_grades.chunk(6)
-                                chunkedGrades.forEach(element => {
-                                    fillAGrade(element)
-                                });
+                                for (let grade of all_grades) {
+                                    try {
+                                        grade = await grade.fill()
+                                        var i = _.findIndex(all_grades, {
+                                            id: grade.id
+                                        })
+                                        logConsole(i + ' ' + (Number(all_grades.length) - 1))
+
+                                        $("#grades-remaining").text((Number(all_grades.length) - 1) - i)
+                                        // var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
+                                        var time = ((Number(all_grades.length) - 1) - i) * 0.2
+                                        var minutes = Math.floor(time / 60)
+                                        var seconds = time - minutes * 60;
+                                        $("#time-remaining").text(`${Math.round(minutes)}min ${Math.round(seconds)}sec`)
+                                        addLoader((100 - ((((Number(all_grades.length) - 1) - i) / all_grades.length) * 100)), true)
+
+                                        if (i == (Number(all_grades.length) - 1)) {
+                                            // alert("Done :)")
+                                            window.plugins.insomnia.allowSleepAgain()
+                                            // all_courses[4].grades = []
+                                            localStorage.setItem("courses", JSON.stringify(all_courses))
+                                            localStorage.setItem("loginSuccess", "true")
+                                            window.location = '../index.html'
+                                        }
+                                    } catch (err) {
+                                        errorConsole(err)
+                                    }
+                                }
+                                // var chunkedGrades = all_grades.chunk(6)
+                                // chunkedGrades.forEach(element => {
+                                //     fillAGrade(element)
+                                // });
                             }).catch(err => errorConsole(err))
                     }).catch(err => {
                         errorConsole(err + " 420")
@@ -366,7 +407,7 @@ $(document).ready(function () {
         $("#login-school").autocomplete({
             minLength: 3,
             source: function (request, response) {
-                $("#schools-table").html(`<br><center><i class="ml-2 far fa-lg display fa-spinner-third fa-spin"></center>`)
+                $("#schools-table").html(`<br><center><i class="ml-2 far fa-lg display fa-spinner-third fa-spin"></i></center>`)
                 $.ajax({
                     beforeSend: function (request) {
                         request.setRequestHeader("Accept", "application/json;odata=verbose;charset=utf-8");
@@ -374,8 +415,10 @@ $(document).ready(function () {
                     url: "https://mijn.magister.net/api/schools?filter=" + request.term,
                     dataType: "json",
                     success: function (data) {
+                        if (data.length > 0) lastSchools = data, response(data);
+                        else if (data.length == 0 && lastSchools.length != 0) response(lastSchools);
+                        else $("#schools-table").html(`<br><center>Geen scholen gevonden :(</center>`)
                         $(".snackbar").remove()
-                        response(data);
                     },
                     error: function (data) {
                         toast("Er kon geen verbinding met Magister gemaakt worden... Tip: check je internetverbinding", false, true);

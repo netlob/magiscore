@@ -173,9 +173,9 @@
           <div class="container-fluid"> -->
 
           <!-- Sidebar Toggle (Topbar) -->
-          <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none bg-primary rounded-circle mr-3"
+          <!-- <button onclick="snapper.toggle('left')" class="btn btn-link d-md-none bg-primary rounded-circle mr-1"
             aria-label="Toggle zijkant">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-s fa-bars"></i>
           </button> -->
 
           <!-- Topbar Search -->
@@ -312,7 +312,7 @@
                   <div class="text-center mt-3 mb-2" id="latest-grades-empty">Geen recente cijfers...</div>
                 </div>
                 <a class="dropdown-item text-center medium text-gray-800" href="#"
-                  onclick="viewController.currentAllGrades()">Alle cijfers</a>
+                  onclick="viewController.currentAllGrades()" id="latest-grades-all">Alle cijfers</a>
               </div>
             </li>
 
@@ -413,7 +413,8 @@
               <div>Voldoendegrens
                 <a class="float-right menu-a vibrate" onclick="viewController.savePassed()">OPSLAAN</a>
                 <input type="number" class="float-right d-inline-block pl-2 bg-transparent text-primary-blue"
-                  pattern="^\d*\.?\d$" min="1" max="10" placeholder="5.5" id="passed-input"></div>
+                  pattern="^\d*\.?\d$" min="1" max="10" placeholder="5.5" title="Getal met max 1 decimaal"
+                  id="passed-input"></div>
               <hr class="mt-2 mb-1">
               <span class="text-gray-500" style="font-size: 11px"><i class="far fa-info-circle fa-s"></i>
                 Wil je een kommagetal? Gebruik dan een punt(.) als komma(,) - Bijvoorbeeld 5.5 ipv 5,5
@@ -642,7 +643,7 @@
           <div class="row">
 
 
-            <div class="col-lg-4 mb-4">
+            <!-- <div class="col-lg-4 mb-4">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Algemene feiten</h6>
@@ -650,7 +651,7 @@
                 <div class="card-body" id="general-facts">
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="col-lg-4 mb-3">
               <div class="card shadow mb-4">
@@ -859,7 +860,7 @@
         <!-- <hr class="mt-1 mb-1 p-0"> -->
         <div class="md-checkbox vibrate m-4" style="font-size:1rem">
           <input id="grade-modal-count" type="checkbox">
-          <label for="grade-modal-count small">Tel cijfer mee in berekeningen</label>
+          <label for="grade-modal-count">Tel cijfer mee in berekeningen</label>
         </div>
       </div>
     </div>

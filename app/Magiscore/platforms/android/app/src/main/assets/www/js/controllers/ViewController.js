@@ -145,9 +145,9 @@ class ViewController {
     this.config = base;
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
     if (config["exclude"]) main(this.currentLesson)
-    if (config["devMode"] && this.config.devMode) $("#toggle-terminal").show()
-    if ("smiley" in config) setProfilePic()
+    if (config["devMode"]) $("#toggle-terminal").show()
     else $("#toggle-terminal").hide()
+    if ("smiley" in config) setProfilePic()
   }
 
   setConfig() {
@@ -204,9 +204,14 @@ class ViewController {
 
   initTheme() {
     var theme = this.config.darkTheme
+    StatusBar.overlaysWebView(false);
     if (theme) {
+      StatusBar.backgroundColorByHexString("#2c2d30");
+      StatusBar.styleLightContent();
       $("body").attr("theme", "dark")
     } else {
+      StatusBar.backgroundColorByHexString("#ffffff");
+      StatusBar.styleDefault();
       $("body").attr("theme", "light")
     }
   }
@@ -229,6 +234,9 @@ class ViewController {
   }
 
   lightTheme() {
+    StatusBar.overlaysWebView(false);
+    StatusBar.backgroundColorByHexString("#ffffff");
+    StatusBar.styleDefault();
     $("body").attr("theme", "light")
     this.updateConfig({
       "darkTheme": false,
@@ -239,6 +247,9 @@ class ViewController {
   }
 
   darkTheme() {
+    StatusBar.overlaysWebView(false);
+    StatusBar.backgroundColorByHexString("#2c2d30");
+    StatusBar.styleLightContent();
     $("body").attr("theme", "dark")
     this.updateConfig({
       "darkTheme": true,
@@ -283,9 +294,9 @@ class ViewController {
   }
 
   setLatestGrades(grades, open) {
-    grades.slice(0, 5)
+    var slgrades = grades.slice(0, 5)
     $('#latest-grades').find('*').not('#latest-grades-empty').remove();
-    grades.forEach(grade => {
+    slgrades.forEach(grade => {
       var d = new Date(grade.ingevoerdOp)
       // var w = new Date().getDate() - 7;
       // if (d < w) {
@@ -307,6 +318,7 @@ class ViewController {
         `)
       // }
     })
+    if (grades.length > 5) $("#latest-grades-all").text(`Alle cijfers (${grades.length} nieuwe cijfers!)`)
     if (length == 0) $("#latest-grades-empty").show()
     else $("#latest-grades-empty").hide()
     $("#latest-grades-badge").text(length)
@@ -357,7 +369,7 @@ class ViewController {
   currentAllGrades() {
     if (this.currentCourse != courseController.current()) this.renderCourse(courseController.current().course.id, false, false, "general")
     $('html, body').animate({
-      scrollTop: $("#generalGradesTable").offset().top - 300
+      scrollTop: $("#generalGradesTable").offset().top - 55
     }, 1000)
   }
 }
@@ -468,7 +480,9 @@ function updateSidebar() {
       $("body").removeClass("sidenav-open")
       if ($(window).width() <= 465) snapper.close()
       var current = $(".active");
-      current[0].className = current[0].className.replace(" active", "");
+      if (current.length > 0) {
+        current[0].className = current[0].className.replace(" active", "");
+      }
       this.className += " active";
     });
   }

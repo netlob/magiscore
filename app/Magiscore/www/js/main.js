@@ -4,9 +4,6 @@ var viewController = new ViewController($("#content-wrapper"))
 var lessonController = new LessonController(viewController)
 var courseController = new CourseController(viewController)
 
-viewController.setConfig()
-viewController.initTheme()
-
 var sorted = {},
   person = JSON.parse(localStorage.getItem("person")),
   tokens = JSON.parse(localStorage.getItem("token")),
@@ -23,6 +20,7 @@ courses.forEach(c => {
     newCourse[key] = c[key]
   });
   c = newCourse
+  // if(c.id == "31089" || c.id == 31089) c.grades = []
   courseController.add(c)
 })
 viewController.currentCourse = courseController.current()
@@ -37,6 +35,8 @@ viewController.currentCourse = courseController.current()
 //courses.splice(courses.indexOf(courseController.current()))
 
 function main(l) {
+  viewController.setConfig()
+  viewController.initTheme()
   //sorted = {}
   lessonController.clear()
   lessonController.allGrades = []
@@ -201,75 +201,98 @@ function checkForUpdate() {
   })
 }
 
-function syncGrades() {
+async function syncGrades() {
   return new Promise((resolve, reject) => {
     $("#overlay").show()
     logConsole("Sync started!")
-    m.getCourses().then(syncCourses => {
+    m.getCourses().then(async (syncCourses) => {
       syncCourses.forEach(course => {
         if (!(courses.find(x => x.id == course.id))) {
           courses.push(course)
           courseController.add(course)
           localStorage.setItem("courses", JSON.stringify(courses))
           logConsole("addedCourse")
-
         }
       })
-      //var currentCourse = courseController.current()
-      var allNewGrades = []
-      courses.forEach(currentCourse => {
-        var newCourse = Course.create()
-        Object.keys(currentCourse).forEach(key => {
-          newCourse[key] = currentCourse[key]
-        });
-        currentCourse = newCourse
-        currentCourse._magister = m
-        logConsole("is course: " + (currentCourse instanceof Course))
-        logConsole(JSON.stringify(currentCourse))
-        logConsole("course: " + currentCourse.id)
-        currentCourse.getGrades().then(currentGrades => {
-          // logConsole("got grades")
-          var allGradeIds = currentCourse.grades.map(x => {
-            return x.id
-          })
-          var newGrades = []
-          logConsole(allGradeIds.length)
-          currentGrades.forEach(grade => {
-            if (!(allGradeIds.includes(grade.id))) {
-              logConsole("Not in id list")
-              newGrades.push(grade)
-              allNewGrades.push(grade)
-              currentCourse.grades.push(grade)
-            }
-          })
-          logConsole("grades to fill: " + newGrades.length)
-          if (newGrades.length > 0) {
-            var chunk = {}
-            chunk.array = newGrades
-            chunk.gradeIndex = 0
-            chunk.totalGrades = newGrades.length
-            fillAGrade(chunk)
-          }
-
-        }).catch(err => {
-          if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
-          errorConsole(err)
-          errorConsole("ohno")
-        })
-        logConsole("requested grades")
+      var currentCourse = courseController.current()
+      var newGrades = []
+      // courses.forEach(currentCourse => {
+      var newCourse = Course.create()
+      // alert(Object.keys(currentCourse.course))
+      Object.keys(currentCourse.course).forEach(key => {
+        newCourse[key] = currentCourse.course[key]
       });
-      if (allNewGrades.length > 0) {
-        viewController.toast(`${allNewGrades.length} nieuwe cijfers gevonden!`, 2000, false)
-      } else {
-        viewController.toast("Geen nieuwe cijfers gevonden...", 2000, false)
-      }
-      resolve(allNewGrades)
-      $("#overlay").hide()
+      currentCourse = newCourse
+      currentCourse._magister = m
+      currentCourse.getGrades().then(async (currentGrades) => {
+        // if(currentCourse.id == "31089" || currentCourse.id == 31089) currentCourse.grades = []
+        var allGradeIds = currentCourse.grades.map(x => {
+          return x.id
+        })
+        logConsole(allGradeIds.length)
+        currentGrades.forEach(grade => {
+          if (!(allGradeIds.includes(grade.id))) {
+            // logConsole("Not in id list")
+            newGrades.push(grade)
+            currentCourse.grades.push(grade)
+          }
+        })
+        logConsole("grades to fill: " + newGrades.length)
+        if (newGrades.length == 0) {
+          viewController.toast("Geen nieuwe cijfers gevonden...", 2000, false)
+          $("#overlay").hide()
+          resolve(newGrades)
+        }
+        // if(newGrades.length > 0) {
+        currentCourse.grades = _.unionBy(currentCourse.grades, 'id');
+        // alert(newGrades.length)
+        for (let grade of newGrades) {
+          try {
+            grade = await grade.fill()
+            // logConsole(JSON.stringify(grade))
+            var i = _.findIndex(currentCourse.grades, {
+              id: grade.id
+            })
+            currentCourse.grades[i] = grade
+            i = _.findIndex(newGrades, {
+              id: grade.id
+            })
+            logConsole(i + ' ' + (Number(newGrades.length) - 1))
+            if (i == (Number(newGrades.length) - 1)) {
+              logConsole("yeet")
+              viewController.toast(`${newGrades.length} nieuwe cijfers gesycned!`, 2000, false)
+              courseController.remove(currentCourse)
+              courseController.add(currentCourse)
+              courseController.save()
+              main(viewController.currentLesson)
+              $("#overlay").hide()
+              resolve(newGrades)
+            }
+          } catch (err) {
+            errorConsole(err)
+          }
+        }
+        // }
+        // if (newGrades.length > 0) {
+        //   var chunk = {}
+        //   chunk.array = newGrades
+        //   chunk.gradeIndex = 0
+        //   chunk.totalGrades = newGrades.length
+        //   fillAGrade(chunk)
+        // }
+      }).catch(err => {
+        if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+        errorConsole(err)
+        errorConsole("ohno")
+      })
+      logConsole("requested grades")
+      // });
     }).catch(err => {
       if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
       errorConsole(err)
       $("#overlay").hide()
     })
+    // })
   })
 }
 

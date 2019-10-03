@@ -482,6 +482,11 @@
         /*
          * Public
          */
+
+        this.toggle = function (side) {
+            if (utils.klass.has(doc.body, 'snapjs-left')) this.close()
+            else this.open(side)
+        };
         this.open = function (side) {
             utils.dispatchEvent('open');
             utils.klass.remove(doc.body, 'snapjs-expand-left');

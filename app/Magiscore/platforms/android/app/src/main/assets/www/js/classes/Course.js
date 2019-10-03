@@ -24,14 +24,14 @@ class Course {
          * @type {Date}
          * @readonly
          */
-        this.end = parseDate(raw.Einde)
+        this.end = parseDate(raw.Einde || raw.end)
 
         /**
          * The school year of this course, e.g: '1617'
          * @type {String}
          * @readonly
          */
-        this.schoolPeriod = raw.Lesperiode
+        this.schoolPeriod = raw.Lesperiode || raw.schoolPeriod
 
         /**
          * Basic type information of this course, e.g: { description: "VWO 6", id: 420 }
@@ -39,11 +39,11 @@ class Course {
          * @readonly
          */
         this.type = ({
-            id: raw.Studie.Id,
-            description: raw.Studie.Omschrijving,
+            id: raw.Studie.Id || raw.type.id,
+            description: raw.Studie.Omschrijving || raw.type.description,
         })
 
-        var group = raw.Groep.Omschrijving
+        var group = raw.Groep ? raw.Groep.Omschrijving : raw.group.description
 
         /**
          * The group of this course, e.g: { description: "Klas 6v3", id: 420, locationId: 0 }
@@ -51,7 +51,7 @@ class Course {
          * @readonly
          */
         this.group = {
-            id: raw.Groep.Id,
+            id: raw.Groep.Id || raw.group.id,
             // description: raw.Groep.Omschrijving,
             // code: raw.Groep.code,
             // description() {
@@ -61,7 +61,7 @@ class Course {
             //     //undefined
             // }
             description: group == undefined ? undefined : (group.split(' ').find(w => /\d/.test(w)) || group),
-            locationId: raw.Groep.LocatieId,
+            locationId: raw.Groep ? raw.Groep.LocatieId : raw.group.locationId,
         }
         // logConsole(JSON.stringify(this.group))
 
@@ -69,7 +69,7 @@ class Course {
          * @type {String[]}
          * @readonly
          */
-        this.curricula = _.compact([raw.Profiel, raw.Profiel2])
+        this.curricula = raw.curricula || _.compact([raw.Profiel, raw.Profiel2])
         //logConsole("curricula " + this.curricula)
 
         /**
@@ -82,14 +82,16 @@ class Course {
          * @type {Object[]}
          * @readonly
          */
-        this.classes = []
+        this.classes = raw.classes || []
 
         /**
          * @type {Object[]}
          * @readonly
          */
-        this.grades = []
+        this.grades = raw.grades || []
     }
+
+
     static create() {
         return Object.create(this.prototype);
     }

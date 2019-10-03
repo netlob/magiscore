@@ -50,56 +50,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-background-fetch.BackgroundFetch",
-      "file": "plugins/cordova-plugin-background-fetch/www/BackgroundFetch.js",
-      "pluginId": "cordova-plugin-background-fetch",
-      "clobbers": [
-        "window.BackgroundFetch"
-      ]
-    },
-    {
-      "id": "cordova-plugin-device.device",
-      "file": "plugins/cordova-plugin-device/www/device.js",
-      "pluginId": "cordova-plugin-device",
-      "clobbers": [
-        "device"
-      ]
-    },
-    {
-      "id": "cordova-plugin-badge.Badge",
-      "file": "plugins/cordova-plugin-badge/www/badge.js",
-      "pluginId": "cordova-plugin-badge",
-      "clobbers": [
-        "cordova.plugins.notification.badge"
-      ]
-    },
-    {
-      "id": "cordova-plugin-local-notification.LocalNotification",
-      "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
-      "pluginId": "cordova-plugin-local-notification",
-      "clobbers": [
-        "cordova.plugins.notification.local"
-      ]
-    },
-    {
-      "id": "cordova-plugin-local-notification.LocalNotification.Core",
-      "file": "plugins/cordova-plugin-local-notification/www/local-notification-core.js",
-      "pluginId": "cordova-plugin-local-notification",
-      "clobbers": [
-        "cordova.plugins.notification.local.core",
-        "plugin.notification.local.core"
-      ]
-    },
-    {
-      "id": "cordova-plugin-local-notification.LocalNotification.Util",
-      "file": "plugins/cordova-plugin-local-notification/www/local-notification-util.js",
-      "pluginId": "cordova-plugin-local-notification",
-      "merges": [
-        "cordova.plugins.notification.local.core",
-        "plugin.notification.local.core"
-      ]
-    },
-    {
       "id": "cordova-open-native-settings.Settings",
       "file": "plugins/cordova-open-native-settings/www/settings.js",
       "pluginId": "cordova-open-native-settings",
@@ -124,21 +74,20 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-google-analytics.UniversalAnalytics",
-      "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
-      "pluginId": "cordova-plugin-google-analytics",
-      "clobbers": [
-        "analytics",
-        "ga"
-      ]
-    },
-    {
       "id": "cordova-plugin-inappbrowser.inappbrowser",
       "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
       "pluginId": "cordova-plugin-inappbrowser",
       "clobbers": [
         "cordova.InAppBrowser.open",
         "window.open"
+      ]
+    },
+    {
+      "id": "cordova-plugin-statusbar.statusbar",
+      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+      "pluginId": "cordova-plugin-statusbar",
+      "clobbers": [
+        "window.StatusBar"
       ]
     }
   ];
@@ -149,16 +98,12 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-dialogs": "2.0.2",
     "cordova-plugin-network-information": "2.0.2",
-    "cordova-plugin-background-fetch": "5.6.0",
-    "cordova-plugin-device": "2.0.3",
-    "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-open-native-settings": "1.5.2",
     "cordova-plugin-insomnia": "4.3.0",
     "cordova-plugin-taptic-engine": "2.1.0",
     "cordova-play-services-version-adapter": "1.0.2",
     "cordova-annotated-plugin-android": "1.0.4",
-    "cordova-plugin-google-analytics": "1.8.6",
-    "cordova-plugin-inappbrowser": "3.1.1-dev"
+    "cordova-plugin-inappbrowser": "3.1.1-dev",
+    "cordova-plugin-statusbar": "2.4.3"
   };
 });

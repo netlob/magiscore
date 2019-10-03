@@ -49,22 +49,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-background-fetch": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-background-fetch@5.6.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-local-notification": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-local-notification"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-device": {
     "source": {
       "type": "registry",
@@ -105,20 +89,18 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-google-analytics": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-google-analytics@^1.8.6"
-    },
-    "is_top_level": true,
-    "variables": {
-      "GMS_VERSION": "11.0.1"
-    }
-  },
   "cordova-plugin-inappbrowser": {
     "source": {
       "type": "registry",
       "id": "https://github.com/Netlob/cordova-plugin-inappbrowser.git"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-statusbar": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-statusbar@2.4.3"
     },
     "is_top_level": true,
     "variables": {}

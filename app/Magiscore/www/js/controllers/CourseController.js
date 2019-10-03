@@ -18,15 +18,22 @@ class CourseController {
     }
 
     remove(course) {
-        this.courses.remove({
-            "id": course.id,
-            "course": course
+        _.remove(this.courses, function (c) {
+            return c.id == course.id;
         })
+        // this.courses.remove({
+        //     "id": course.id,
+        //     "course": course
+        // })
     }
 
     clear() {
         this.courses = []
         this.allGrades = []
+    }
+
+    save() {
+        localStorage.setItem("courses", JSON.stringify(this.courses));
     }
 
     current() {

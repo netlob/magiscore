@@ -21,18 +21,18 @@ class GradePeriod {
          * @type {Date}
          * @readonly
          */
-        this.end = parseDate(raw.Einde)
+        this.end = parseDate(raw.Einde || raw.end)
         /**
          * @type {String}
          * @readonly
          * @default ''
          */
-        this.name = _.trim(raw.Naam)
+        this.name = _.trim(raw.Naam || raw.name)
         /**
          * @type {String}
          * @readonly
          * @default ''
          */
-        this.description = _.trim(raw.Omschrijving)
+        this.description = _.trim(raw.Omschrijving || raw.description)
     }
 }

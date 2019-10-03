@@ -100,6 +100,11 @@ input {
   word-break: break-all !important;
 }
 
+#passed-input {
+  width: auto !important;
+  margin-top: -.7px !important;
+}
+
 .text-mobile {
   font-size: 1rem !important;
 }
