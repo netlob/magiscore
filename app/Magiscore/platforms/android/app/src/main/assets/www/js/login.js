@@ -237,7 +237,9 @@ async function validateLogin(code, codeVerifier) {
     logConsole(`Login valideren...`)
     var settings = {
         "error": function (jqXHR, textStatus, errorThrown) {
-            alert(textStatus);
+            toast("Er kon geen verbinden met Magister gemaakt worden... Probeer het over een tijdje weer", false)
+            return
+            // alert(textStatus);
         },
         "dataType": "json",
         "async": true,

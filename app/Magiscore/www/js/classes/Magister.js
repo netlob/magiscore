@@ -41,17 +41,17 @@ class Magister {
                         "Authorization": "Bearer " + this.token
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("error: " + XMLHttpRequest.statusText)
+                        // alert("error: " + XMLHttpRequest.statusText)
                         if (XMLHttpRequest.readyState == 4) {
                             logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
-                            alert("first: " + XMLHttpRequest.statusText)
+                            // alert("first: " + XMLHttpRequest.statusText)
                         } else if (XMLHttpRequest.readyState == 0) {
                             logConsole("[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)")
-                            alert("second: " + XMLHttpRequest.statusText)
+                            // alert("second: " + XMLHttpRequest.statusText)
                             reject("no internet")
                         } else {
                             logConsole("[ERROR] something weird is happening")
-                            alert("third: " + XMLHttpRequest.statusText)
+                            // alert("third: " + XMLHttpRequest.statusText)
                         }
                     },
                     "timeout": 5000
@@ -91,17 +91,17 @@ class Magister {
                         "Authorization": "Bearer " + this.token
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("error: " + XMLHttpRequest.statusText)
+                        // alert("error: " + XMLHttpRequest.statusText)
                         if (XMLHttpRequest.readyState == 4) {
                             logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
-                            alert("first: " + XMLHttpRequest.statusText)
+                            // alert("first: " + XMLHttpRequest.statusText)
                         } else if (XMLHttpRequest.readyState == 0) {
                             logConsole("[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)")
-                            alert("second: " + XMLHttpRequest.statusText)
+                            // alert("second: " + XMLHttpRequest.statusText)
                             reject("no internet")
                         } else {
                             logConsole("[ERROR] something weird is happening")
-                            alert("third: " + XMLHttpRequest.statusText)
+                            // alert("third: " + XMLHttpRequest.statusText)
                         }
                     },
                     "timeout": 5000
@@ -116,7 +116,7 @@ class Magister {
     setTimeOut() {
         setTimeout(function () {
             this.timedOut = false;
-            logConsole("[INFO] Timeout ended")
+            logConsole("[INFO]   Timeout ended")
         }, 31000);
     }
 }

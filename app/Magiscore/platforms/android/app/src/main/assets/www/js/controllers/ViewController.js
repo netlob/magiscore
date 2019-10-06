@@ -274,7 +274,7 @@ class ViewController {
       "isDesktop": this.config.isDesktop
     });
     this.toast("Thema veranderd naar licht", 2000, false)
-    logConsole("[INFO] Theme changed to light")
+    logConsole("[INFO]   Theme changed to light")
   }
 
   darkTheme() {
@@ -287,7 +287,7 @@ class ViewController {
       "isDesktop": this.config.isDesktop
     });
     this.toast("Thema veranderd naar donker", 2000, false)
-    logConsole("[INFO] Theme changed to dark")
+    logConsole("[INFO]   Theme changed to dark")
   }
 
   savePassed() {
@@ -297,7 +297,7 @@ class ViewController {
         "passed": e
       })
       this.toast("Voldoendegrens veranderd naar " + e, 2000, false)
-      logConsole("[INFO] Passed changed to " + e)
+      logConsole("[INFO]   Passed changed to " + e)
     } else if (e < 1) {
       this.toast("Vul een getal groter dan 1 in", 3000, false)
     } else if (e > 10) {
@@ -422,13 +422,13 @@ function setProfilePic(forceRefresh) {
   var profilepicStorage = localStorage.getItem("profilepic") || false,
     profilepic = document.getElementById("imgelem");
   if (viewController.config.smiley && !forceRefresh) {
-    logConsole("[INFO] Profile picture as smiley");
+    logConsole("[INFO]   Profile picture as smiley");
     profilepic.setAttribute("src", "./img/smiley.png");
   } else if (profilepicStorage && !forceRefresh) {
-    logConsole("[INFO] Profile picture from localstorage");
+    logConsole("[INFO]   Profile picture from localstorage");
     profilepic.setAttribute("src", profilepicStorage);
   } else {
-    logConsole("[INFO] Profile picture from request");
+    logConsole("[INFO]   Profile picture from request");
     var xhr = new XMLHttpRequest(),
       blob,
       fileReader = new FileReader();
@@ -443,7 +443,7 @@ function setProfilePic(forceRefresh) {
           // logConsole(result)
           profilepic.setAttribute("src", result);
           try {
-            logConsole("[INFO] Storage of image success");
+            logConsole("[INFO]   Storage of image success");
             localStorage.setItem("profilepic", result);
           } catch (e) {
             errorConsole("[ERROR] Storage failed: " + e);

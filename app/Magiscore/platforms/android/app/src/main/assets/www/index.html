@@ -947,8 +947,12 @@
       window.location = './login/index.html#notokens'
     }
 
-    function logConsole(err) {
-      $("#terminal").prepend(`<small class="text-info">${err}</small>\n`)
+    function logConsole(msg) {
+      if (typeof msg != "string") return
+      if (msg.substring(0, 7) == "[ERROR]") $("#terminal").prepend(`<small class="text-danger">${msg}</small>\n`)
+      else if (msg.substring(0, 7) == "[DEBUG]") $("#terminal").prepend(`<small class="text-warning">${msg}</small>\n`)
+      else if (msg.substring(0, 6) == "[INFO]") $("#terminal").prepend(`<small class="text-info">${msg}</small>\n`)
+      else $("#terminal").prepend(`<small>${msg}</small>\n`)
     }
 
     function errorConsole(err) {
@@ -981,6 +985,7 @@
   <script src="js/deps/pull.js"></script>
   <script src="js/deps/snap.js"></script>
   <script src="js/deps/fastclick.js"></script>
+  <script src="js/deps/crypto-js.min.js"></script>
 
   <!-- Page scripts and magister classes -->
   <script src="js/utils.js"></script>

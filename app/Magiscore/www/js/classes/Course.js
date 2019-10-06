@@ -170,17 +170,17 @@ class Course {
                         "Authorization": "Bearer " + this._magister.token
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("error: " + XMLHttpRequest.statusText)
+                        // alert("error: " + XMLHttpRequest.statusText)
                         if (XMLHttpRequest.readyState == 4) {
                             logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
-                            alert("first: " + XMLHttpRequest.statusText)
+                            // alert("first: " + XMLHttpRequest.statusText)
                         } else if (XMLHttpRequest.readyState == 0) {
                             logConsole("[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)")
-                            alert("second: " + XMLHttpRequest.statusText)
+                            // alert("second: " + XMLHttpRequest.statusText)
                             reject("no internet")
                         } else {
                             logConsole("[ERROR] something weird is happening")
-                            alert("third: " + XMLHttpRequest.statusText)
+                            // alert("third: " + XMLHttpRequest.statusText)
                         }
                     },
                     "timeout": 5000

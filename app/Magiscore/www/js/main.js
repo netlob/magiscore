@@ -104,7 +104,7 @@ function logOut() {
 }
 
 function confirmLogout(b) {
-  if (b == 1) {
+  if (b != 0) {
     localStorage.clear()
     window.location = './login/index.html'
   }
@@ -201,10 +201,43 @@ function checkForUpdate() {
 
 async function syncGrades() {
   return new Promise((resolve, reject) => {
+    if (m == null || m == undefined) {
+      if (navigator.connection.type !== Connection.NONE) {
+        refreshToken()
+          .then((refreshTokens) => {
+            tokens = refreshTokens
+            m = new Magister(school, tokens.access_token)
+            m.getInfo()
+              .then(p => {
+                person = p
+                localStorage.setItem("person", JSON.stringify(p))
+                courseController.getLatestGrades()
+              }).catch(err => {
+                if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+                errorConsole(err)
+                viewController.overlay("hide")
+                reject()
+                return
+              })
+          }).catch(err => {
+            if (err == "no internet") {
+              viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+              viewController.overlay("hide")
+              reject()
+              return
+            }
+          });
+      } else {
+        viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+        viewController.overlay("hide")
+        reject()
+        return
+      }
+    }
     viewController.overlay("show")
-    logConsole("[INFO] Sync started!")
+    logConsole("[INFO]   Sync started!")
     // m.getCourses().then(async (syncCourses) => {
-    //   logConsole("[INFO] Received courses")
+    //   logConsole("[INFO]   Received courses")
     // syncCourses.forEach(course => {
     //   if (!_.includes(courseController.courseIds, course.id)) {
     //     courseController.add(course)
@@ -221,7 +254,15 @@ async function syncGrades() {
     });
     currentCourse = newCourse
     currentCourse._magister = m
+    if (currentCourse._magister == null || currentCourse._magister == undefined) {
+      viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+      viewController.overlay("hide")
+      reject()
+      return
+    }
     currentCourse.getGrades().then(async (currentGrades) => {
+      // alert(currentGrades)
+      // alert(JSON.stringify(currentGrades))
       // if(currentCourse.id == "31089" || currentCourse.id == 31089) currentCourse.grades = []
       var allGradeIds = currentCourse.grades.map(x => {
         return x.id
@@ -233,7 +274,7 @@ async function syncGrades() {
           currentCourse.grades.push(grade)
         }
       })
-      logConsole("[INFO] Grades to fill: " + newGrades.length)
+      logConsole("[INFO]   Grades to fill: " + newGrades.length)
       if (newGrades.length == 0) {
         viewController.toast("Geen nieuwe cijfers gevonden...", 2000, false)
         viewController.overlay("hide")
@@ -243,7 +284,7 @@ async function syncGrades() {
         currentCourse.grades = _.unionBy(currentCourse.grades, 'id');
         var snack = viewController.toast(`<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
         style="width: 20%; height: 20px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sync-progress"></div><br><span class="text-center"><span id="sync-synced">0/${newGrades.length}</span> van je nieuwe cijfers gesynced</span>`, false, true)
-        $(`#snackbar-${snack}`).css("z-index", "99999")
+        $(`#snackbar-${snack}`).css("z-index", "100000")
         var percent = 80 / (Number(newGrades.length) - 1)
         for (let grade of newGrades) {
           try {
@@ -278,14 +319,21 @@ async function syncGrades() {
               currentCourse._magister = undefined
               coursesStorage[i] = currentCourse
               localStorage.setItem("courses", JSON.stringify(coursesStorage))
-              logConsole("[INFO] Saved new graden in courses")
+              logConsole("[INFO]   Saved new graden in courses")
               // courseController.save()
               main(viewController.currentLesson)
               viewController.overlay("hide")
               resolve(newGrades)
             }
           } catch (err) {
+            if (err == "no internet") {
+              viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+              viewController.overlay("hide")
+              reject()
+              return
+            }
             errorConsole(err)
+            errorConsole("[ERROR] Error while syncing grades")
           }
         }
       }
@@ -298,11 +346,16 @@ async function syncGrades() {
       //   fillAGrade(chunk)
       // }
     }).catch(err => {
-      if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+      if (err == "no internet") {
+        viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+        viewController.overlay("hide")
+        reject()
+        return
+      }
       errorConsole(err)
-      errorConsole("ohno")
+      errorConsole("[ERROR] Error while syncing grades")
     })
-    logConsole("[INFO] Requested grades")
+    logConsole("[INFO]   Requested grades")
     // });
     // }).catch(err => {
     //   if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
@@ -322,7 +375,7 @@ const ptr = PullToRefresh.init({
   },
   onRefresh: function (done) {
     vibrate(15, true)
-    syncGrades().then(d => done())
+    syncGrades().then(d => done()).catch(e => done())
     // done()
   }
 });
@@ -403,8 +456,8 @@ function vibrate(time, strong) {
 
 function onDeviceReady() {
   if (localStorage.getItem("tokens") != null) {
-    logConsole("[INFO] Device ready!")
-    logConsole("[INFO ]Connection type: " + navigator.connection.type)
+    logConsole("[INFO]   Device ready!")
+    logConsole("[INFO]   Connection type: " + navigator.connection.type)
     if (navigator.connection.type !== Connection.NONE) {
       // window.ga.startTrackerWithId('211709234', 30, gaSuccess, gaError)
       refreshToken()
@@ -414,16 +467,25 @@ function onDeviceReady() {
 
           m.getInfo()
             .then(p => {
-              person = p
-              localStorage.setItem("person", JSON.stringify(p))
-              main()
+              person = JSON.parse(localStorage.getItem("person"))
+              if (p.id == person.id) {
+                localStorage.setItem("person", JSON.stringify(p))
+                main()
+                courseController.getLatestGrades()
+              } else {
+                navigator.notification.confirm(
+                  "Het lijkt erop dat je met een ander account bent ingelogd zojuist. Wil je je opgeslagen cijfers behouden en weer verder gaan log dan in met het account waarmee je tijdens de setup hebt ingelogd. \n\nKlopt dit niet? Dan er is er een flink probleem met de communicatie met Magister wat betekend dat je opnieuw het login process zal moeten volgen. Druk dan op \"Uitloggen\"",
+                  openBrowser,
+                  'Verkeerd account',
+                  ['Opnieuw proberen', 'Uitloggen']
+                )
+              }
               // checkForUpdate().then(hasUpdate => {
               //   logConsole("hasUpdate: " + hasUpdate)
               //   if (hasUpdate) {
               //     viewController.toast('<span class="float-left">Nieuwe cijfers beschikbaar </span><a class="float-right vibrate" onclick="syncGrades()">UPDATE</a>', 4000, true)
               //   }
               // })
-              courseController.getLatestGrades()
               //   .then(grades => {
               //     logConsole("Grades: " + JSON.stringify(grades))
               //     logConsole("Latest: " + JSON.stringify(latest))
@@ -441,15 +503,18 @@ function onDeviceReady() {
               //   })
               // viewcontroller.renderCourse(false, false, courseController.current())
             }).catch(err => {
-              if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
-              errorConsole(err)
+              // if (err == "no internet") {
+              viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+              // }
+              person = JSON.parse(localStorage.getItem("person"))
+              main()
             })
         }).catch(err => {
-          if (err == "no internet") {
-            viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
-            person = JSON.parse(localStorage.getItem("person"))
-            main()
-          }
+          // if (err == "no internet") {
+          viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
+          // }
+          person = JSON.parse(localStorage.getItem("person"))
+          main()
         });
       // var BackgroundFetch = window.BackgroundFetch;
 
@@ -497,7 +562,7 @@ function onDeviceReady() {
       //   minimumFetchInterval: 15 // <-- default is 15
       // });
     } else {
-      logConsole("Continuing offline...")
+      logConsole("[INFO]   Continuing offline...")
       viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
       person = JSON.parse(localStorage.getItem("person"))
       main()

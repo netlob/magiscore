@@ -69,7 +69,7 @@ class CourseController {
                         "Authorization": "Bearer " + tokens.access_token
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest.statusText)
+                        // alert(XMLHttpRequest.statusText)
                         if (XMLHttpRequest.readyState == 4) {
                             logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
                         } else if (XMLHttpRequest.readyState == 0) {
