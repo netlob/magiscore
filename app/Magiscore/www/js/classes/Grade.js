@@ -174,7 +174,7 @@ class Grade {
                 .done((res) => {
 
                     this.testDate = parseDate(res.WerkinformatieDatumIngevoerd)
-                    this.description = _.trim(res.WerkInformatieOmschrijving)
+                    this.description = _.trim(res.WerkInformatieOmschrijving || res.KolomOmschrijving)
                     this.weight = Number.parseInt(res.Weging, 10) || 0
 
                     this.type["level"] = res.KolomNiveau

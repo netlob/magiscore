@@ -19,14 +19,14 @@ function refreshToken() {
             "error": function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("error: " + XMLHttpRequest.statusText)
                 if (XMLHttpRequest.readyState == 4) {
-                    logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                    logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
                     alert("first: " + XMLHttpRequest.statusText)
                 } else if (XMLHttpRequest.readyState == 0) {
-                    logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                    logConsole("[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)")
                     alert("second: " + XMLHttpRequest.statusText)
                     reject("no internet")
                 } else {
-                    logConsole("something weird is happening")
+                    logConsole("[ERROR] something weird is happening")
                     alert("third: " + XMLHttpRequest.statusText)
                 }
             },
@@ -43,7 +43,7 @@ function refreshToken() {
         }
 
         $.ajax(settings).done(function (response) {
-            logConsole(typeof response == "object" ? JSON.stringify(response) : response)
+            logConsole("[DEBUG] " + typeof response == "object" ? JSON.stringify(response) : response)
             var tokens = {
                 access_token: response.access_token,
                 refresh_token: response.refresh_token,

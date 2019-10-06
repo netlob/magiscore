@@ -2,6 +2,7 @@ class CourseController {
     constructor(viewcontroller) {
         this.courses = [];
         this.controller = viewcontroller;
+        this.courseIds = []
         this.allGrades = [];
         this.latestGrades = [];
     }
@@ -11,6 +12,7 @@ class CourseController {
             "id": course.id,
             "course": course
         })
+        this.courseIds.push(course.id)
         course.grades.forEach(grade => {
             this.allGrades.push(grade)
         })
@@ -18,7 +20,7 @@ class CourseController {
     }
 
     remove(course) {
-        _.remove(this.courses, function (c) {
+        this.courses = _.remove(this.courses, function (c) {
             return c.id == course.id;
         })
         // this.courses.remove({
@@ -42,7 +44,7 @@ class CourseController {
         // })))
         // var currentCourse = this.courses.find(x => x.end == latestDate)
         // return currentCourse
-        return this.courses.find(x => x.course.current === true) || this.courses[this.courses.length - 1]
+        return /*this.courses.find(x => x.course.current === true) || */ this.courses[this.courses.length - 1]
     }
 
     getCourse(id) {
@@ -51,7 +53,7 @@ class CourseController {
 
     getLatestGrades(open) {
         if (!open) open = false
-        else if (open) $("#overlay").show()
+        else if (open) viewController.overlay("show")
         return new Promise((resolve, reject) => {
             // logConsole("RAW:")
             // logConsole(JSON.stringify(this.raw))
@@ -69,12 +71,12 @@ class CourseController {
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
                         alert(XMLHttpRequest.statusText)
                         if (XMLHttpRequest.readyState == 4) {
-                            logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                            logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
                         } else if (XMLHttpRequest.readyState == 0) {
-                            logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            logConsole("[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)")
                             reject("no internet")
                         } else {
-                            logConsole("something weird is happening")
+                            logConsole("[ERROR] something weird is happening")
                         }
                     },
                     "timeout": 5000

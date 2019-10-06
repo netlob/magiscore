@@ -10,7 +10,7 @@ var all = []
 
 console.log("Loaded login page :)")
 
-alert("ff tijdelijk: HOUD DE APP OPEN TIJDENS HET OPHALEN VAN JE CIJFERS!")
+// alert("ff tijdelijk: HOUD DE APP OPEN TIJDENS HET OPHALEN VAN JE CIJFERS!")
 
 Array.prototype.chunk = function (chunkSize) {
     var R = [];
@@ -83,6 +83,7 @@ function openWifiSettings(b) {
 }
 
 function fillTimeout(remaining) {
+    $("#timeout-wrapper").show()
     $("#timeout-remaining").text(`${remaining} seconden`)
     setInterval(() => {
         remaining--
@@ -191,7 +192,7 @@ function makeRequestChain(val, vals) {
     if (index + 1 != vals.length) {
         return val.fill().then(makeRequestChain(vals[index + 1], vals))
     } else {
-        return logConsole("endofchain")
+        return
     }
 
 }
@@ -231,6 +232,7 @@ function fillAGrade(chunk) {
     }
 }
 async function validateLogin(code, codeVerifier) {
+    toast("Houd de app open", false, true)
     toast("Succesvolle login!", 2000, true)
     logConsole(`Login valideren...`)
     var settings = {
@@ -306,6 +308,7 @@ async function validateLogin(code, codeVerifier) {
                             }), course.getClasses()]);
                             course.grades = grades
                             course.classes = classes
+                            if (course.id == "31089" || course.id == 31089) course.grades = []
                             return course
                         })
 
@@ -332,11 +335,11 @@ async function validateLogin(code, codeVerifier) {
                                         var i = _.findIndex(all_grades, {
                                             id: grade.id
                                         })
-                                        logConsole(i + ' ' + (Number(all_grades.length) - 1))
+                                        // logConsole(i + ' ' + (Number(all_grades.length) - 1))
 
                                         $("#grades-remaining").text((Number(all_grades.length) - 1) - i)
                                         // var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
-                                        var time = ((Number(all_grades.length) - 1) - i) * 0.2
+                                        var time = ((Number(all_grades.length) - 1) - i) * 0.15
                                         var minutes = Math.floor(time / 60)
                                         var seconds = time - minutes * 60;
                                         $("#time-remaining").text(`${Math.round(minutes)}min ${Math.round(seconds)}sec`)

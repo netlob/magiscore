@@ -245,7 +245,7 @@ input.form-control::placeholder {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 99999;
+  z-index: 99998;
 }
 
 #overlay {
@@ -258,7 +258,7 @@ input.form-control::placeholder {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 99999;
+  z-index: 99998;
   cursor: wait;
 }
 

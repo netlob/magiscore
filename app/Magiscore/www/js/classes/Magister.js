@@ -43,14 +43,14 @@ class Magister {
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("error: " + XMLHttpRequest.statusText)
                         if (XMLHttpRequest.readyState == 4) {
-                            logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                            logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
                             alert("first: " + XMLHttpRequest.statusText)
                         } else if (XMLHttpRequest.readyState == 0) {
-                            logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            logConsole("[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)")
                             alert("second: " + XMLHttpRequest.statusText)
                             reject("no internet")
                         } else {
-                            logConsole("something weird is happening")
+                            logConsole("[ERROR] something weird is happening")
                             alert("third: " + XMLHttpRequest.statusText)
                         }
                     },
@@ -93,14 +93,14 @@ class Magister {
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
                         alert("error: " + XMLHttpRequest.statusText)
                         if (XMLHttpRequest.readyState == 4) {
-                            logConsole("HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                            logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
                             alert("first: " + XMLHttpRequest.statusText)
                         } else if (XMLHttpRequest.readyState == 0) {
-                            logConsole("Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            logConsole("[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)")
                             alert("second: " + XMLHttpRequest.statusText)
                             reject("no internet")
                         } else {
-                            logConsole("something weird is happening")
+                            logConsole("[ERROR] something weird is happening")
                             alert("third: " + XMLHttpRequest.statusText)
                         }
                     },
@@ -116,7 +116,7 @@ class Magister {
     setTimeOut() {
         setTimeout(function () {
             this.timedOut = false;
-            logConsole("stopped timeout")
+            logConsole("[INFO] Timeout ended")
         }, 31000);
     }
 }

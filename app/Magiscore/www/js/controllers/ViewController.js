@@ -74,7 +74,7 @@ class ViewController {
 
   renderCourse(courseid, loader, course, lesson) {
     vibrate(15, false)
-    if (loader) $("#overlay").show()
+    if (loader) this.overlay("show")
     if (!courseid && course) viewController.currentCourse = course
     else viewController.currentCourse = courseController.getCourse(courseid)
     if (lesson && viewController.currentCourse.course.classes.findIndex(c => c.description.toLowerCase() == lesson.toLowerCase()) > -1) main(lesson)
@@ -83,18 +83,16 @@ class ViewController {
     $(`#course-${courseid}`).addClass("course-selected")
     $("#current-course-badge").text(this.currentCourse.course.group.description)
     setTimeout(function () {
-      $("#overlay").hide()
+      viewController.overlay("hide")
     }, 110)
   }
 
   renderGrade(gradeid) {
-    logConsole(gradeid)
-    logConsole(courseController.allGrades.length)
     var grade = courseController.allGrades.find(x => x.id == gradeid)
     $("#grade-modal-grade").text(grade.grade)
     $("#grade-modal-weight").text(grade.weight)
     $("#grade-modal-weight2").text(grade.weight)
-    $("#grade-modal-description").text(grade.description)
+    $("#grade-modal-description").text(grade.description == "" ? "<i>Geen beschrijving...</i>" : grade.description)
     $("#grade-modal-counts").text(grade.counts ? "Ja" : "Nee")
     $("#grade-modal-ispta").text(grade.type.isPTA ? "Ja" : "Nee")
     $("#grade-modal-teacher").text(grade.teacher.teacherCode)
@@ -145,8 +143,8 @@ class ViewController {
     this.config = base;
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
     if (config["exclude"]) main(this.currentLesson)
-    if (config["devMode"]) $("#toggle-terminal").show()
-    else $("#toggle-terminal").hide()
+    if (config["devMode"] === true) $("#toggle-terminal").show()
+    if (config["devMode"] === false) $("#toggle-terminal").hide()
     if ("smiley" in config) setProfilePic()
   }
 
@@ -186,16 +184,36 @@ class ViewController {
     );
     if (duration) {
       setTimeout(function () {
+        // $(".snackbar").each((i, obj) => {
+        //   $(obj).animate({
+        //       "bottom": ($(window).height() - $(obj).offset().top - $(obj).height()) - 65
+        //     },
+        //     "fast",
+        //     function () {
+        //       if ($(obj).attr('id') == `#snackbar-${snackId}`) {
         $(`#snackbar-${snackId}`).animate({
             "bottom": "-200px"
           },
-          "slow",
+          "fast",
           function () {
             $(`#snackbar-${snackId}`).remove();
           }
         );
+        //       }
+        //     }
+        //   );
+        // })
+        //   $(`#snackbar-${snackId}`).animate({
+        //       "bottom": "-200px"
+        //     },
+        //     "slow",
+        //     function () {
+        //       $(`#snackbar-${snackId}`).remove();
+        //     }
+        //   );
       }, duration);
     }
+    return snackId
   }
 
   removeToasts() {
@@ -213,6 +231,19 @@ class ViewController {
       StatusBar.backgroundColorByHexString("#ffffff");
       StatusBar.styleDefault();
       $("body").attr("theme", "light")
+    }
+  }
+
+  overlay(state) {
+    if (state == "show") {
+      $("#overlay").show()
+      if (this.config.darkTheme) StatusBar.backgroundColorByHexString("#161618");
+      else StatusBar.backgroundColorByHexString("#7f7f7f");
+    }
+    if (state == "hide") {
+      $("#overlay").hide()
+      if (this.config.darkTheme) StatusBar.backgroundColorByHexString("#2c2d30");
+      else StatusBar.backgroundColorByHexString("#ffffff");
     }
   }
 
@@ -243,7 +274,7 @@ class ViewController {
       "isDesktop": this.config.isDesktop
     });
     this.toast("Thema veranderd naar licht", 2000, false)
-    logConsole("Theme changed to light")
+    logConsole("[INFO] Theme changed to light")
   }
 
   darkTheme() {
@@ -256,7 +287,7 @@ class ViewController {
       "isDesktop": this.config.isDesktop
     });
     this.toast("Thema veranderd naar donker", 2000, false)
-    logConsole("Theme changed to dark")
+    logConsole("[INFO] Theme changed to dark")
   }
 
   savePassed() {
@@ -266,7 +297,7 @@ class ViewController {
         "passed": e
       })
       this.toast("Voldoendegrens veranderd naar " + e, 2000, false)
-      logConsole("Passed changed to " + e)
+      logConsole("[INFO] Passed changed to " + e)
     } else if (e < 1) {
       this.toast("Vul een getal groter dan 1 in", 3000, false)
     } else if (e > 10) {
@@ -302,7 +333,7 @@ class ViewController {
       // if (d < w) {
       length++
       $("#latest-grades").append(`
-          <a class="dropdown-item d-flex align-items-center vibrate" onclick="if(viewController.currentCourse == courseController.current()) { viewController.render('${grade.vak.omschrijving.capitalize()}') } else { viewController.renderCourse(courseController.current().course.id, true, false, '${grade.vak.omschrijving.capitalize()}') }">
+          <a class="dropdown-item d-flex align-items-center vibrate" onclick="if(viewController.currentCourse == courseController.current()) { viewController.render('${grade.vak.omschrijving.capitalize()}') } else { viewController.renderCourse(courseController.current().course.id, true, false, false) }">
             <div class="dropdown-list-image mr-3">
               <div class="rounded-circle">
                 <h3 class="text-center mt-1">${grade.waarde == "10,0" ? '<span class="text-success">10</span>' : (round(grade.waarde) < this.config.passed) ? '<span class="text-danger">' + grade.waarde + '</span>' : grade.waarde}<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important; right: -15px !important;">${grade.weegfactor}x</sup></h3>
@@ -352,7 +383,6 @@ class ViewController {
     // alert(JSON.stringify(this.config))
     $("#passed-input").attr("placeholder", this.config.passed);
     $("#passed-input").val("");
-    logConsole(Object.keys(this.config))
     $("#devMode-checkbox").prop('checked', this.config.devMode);
     $("#refreshAll-checkbox").prop('checked', this.config.refreshOldGrades);
     $("#settings-wrapper").show();
@@ -392,13 +422,13 @@ function setProfilePic(forceRefresh) {
   var profilepicStorage = localStorage.getItem("profilepic") || false,
     profilepic = document.getElementById("imgelem");
   if (viewController.config.smiley && !forceRefresh) {
-    logConsole("profile picture as smiley");
+    logConsole("[INFO] Profile picture as smiley");
     profilepic.setAttribute("src", "./img/smiley.png");
   } else if (profilepicStorage && !forceRefresh) {
-    logConsole("profile picture from localstorage");
+    logConsole("[INFO] Profile picture from localstorage");
     profilepic.setAttribute("src", profilepicStorage);
   } else {
-    logConsole("profile picture from request");
+    logConsole("[INFO] Profile picture from request");
     var xhr = new XMLHttpRequest(),
       blob,
       fileReader = new FileReader();
@@ -413,16 +443,16 @@ function setProfilePic(forceRefresh) {
           // logConsole(result)
           profilepic.setAttribute("src", result);
           try {
-            logConsole("[INFO] Storage of image succes");
+            logConsole("[INFO] Storage of image success");
             localStorage.setItem("profilepic", result);
           } catch (e) {
             errorConsole("[ERROR] Storage failed: " + e);
+            profilepic.setAttribute("src", "./img/smiley.png");
           }
         };
         fileReader.readAsDataURL(blob);
       }
     };
-    logConsole(`https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`)
     xhr.open(
       "GET",
       `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`,
