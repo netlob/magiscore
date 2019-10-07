@@ -1,4 +1,6 @@
 # Magiscore
+Magiscore is an all new way to view your Magister grades. With useful tools like graphs and automatic calculations, you get insides to your grades like never before. 
+Coming to you soon in the google play store and apple appstore
 
 ## Light (standard) mode
 
