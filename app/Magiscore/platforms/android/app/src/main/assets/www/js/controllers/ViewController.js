@@ -265,6 +265,7 @@ class ViewController {
   }
 
   clearExclude() {
+    this.closeSettings()
     var count = this.config.exclude.length
     this.updateConfig({
       'exclude': []
