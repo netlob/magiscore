@@ -33,6 +33,12 @@
         <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="LaunchReview">
+        <param name="android-package" value="uk.co.workingedge.phonegap.plugin.LaunchReview" />
+    </feature>
     <name short="Magiscore">Magiscore - Magister statistiek</name>
     <description>
         Magiscore very nice 10/10.
@@ -44,6 +50,7 @@
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <allow-intent href="mailto:*" />
     <allow-intent href="m6loapp://oauth2redirect/*" />
     <icon density="ldpi" src="res/drawable-ldpi/icon.png" />
     <icon density="mdpi" src="res/drawable-mdpi/icon.png" />

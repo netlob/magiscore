@@ -1,5 +1,7 @@
 class Lesson {
   constructor(name, data, grades, lessoncontroller, course) {
+    // if (!grade.exclude) alert(JSON.stringify(grade))
+    // alert(grades.find(x => (x.exclude == true)))
     this.grades = _.sortBy(grades, 'dateFilledIn');
     this.average = this.getAverage(true, -1)
     this.grades = this.fillGradeAverages()
@@ -77,12 +79,7 @@ class Lesson {
   }
 
   getCompleted() {
-    if (this.data['Completed'] && this.data['Completed'][0]) {
-      var res = round(this.data['Completed'][this.data['Completed'].length - 1]['grade'])
-      return res
-    } else {
-      return "-"
-    }
+    return "-"
   }
 
   // getProgress() {
@@ -138,17 +135,22 @@ class Lesson {
       }
     }
   }
+
   getAverageOnDate(date) {
     var gradesFilledIn = []
     var total = 0
     var overallWeight = 0
+    // alert(this.grades)
     this.grades.forEach(grade => {
-      // logConsole("Date grade: " + grade.dateFilledIn)
-      // logConsole("Date input: " + date)
-      // logConsole("Has been: " + (Number(date.getTime()) <= Number(date.getTime())).toString())
+      // if (grade == undefined) alert(grade)
+      if (!grade.exclude) {
+        // logConsole("Date grade: " + grade.dateFilledIn)
+        // logConsole("Date input: " + date)
+        // logConsole("Has been: " + (Number(date.getTime()) <= Number(date.getTime())).toString())
 
-      if (Number(Date.parse(grade.dateFilledIn)) <= Number(date.getTime())) {
-        gradesFilledIn.push(grade)
+        if (Number(Date.parse(grade.dateFilledIn)) <= Number(date.getTime())) {
+          gradesFilledIn.push(grade)
+        }
       }
     })
 
@@ -232,14 +234,14 @@ class Lesson {
     // console.dir('Weight: '+weight + typeof weight)
     var grades = this.data["Grades"]
     var alles = 0;
-    for (var i = 0; i < grades.length; i++) {
-      var cijfer = grades[i].grade.replace(',', '.')
-      cijfer = Number(cijfer)
-      alles += (cijfer * grades[i].weight);
-    }
     var totaalweging = 0;
     for (var i = 0; i < grades.length; i++) {
-      totaalweging += grades[i].weight;
+      if (!grades[i].exclude) {
+        var cijfer = grades[i].grade.replace(',', '.')
+        cijfer = Number(cijfer)
+        alles += (cijfer * grades[i].weight);
+        totaalweging += grades[i].weight;
+      }
     }
     var res = (((totaalweging + weight) * grade) - alles) / weight;
     res = `<span ${(round(res) > 10) ? 'style="color: #e86458;"' : ''}>${round(res)}</span>`
@@ -299,11 +301,20 @@ class Lesson {
       "days": 0,
       "grades": 0
     }
+    this.grades = _.sortBy(this.grades, 'dateFilledIn');
     this.grades.forEach((grade, index) => {
-      var remaining = this.grades.slice(index - 1);
+      // if (!grade.exclude) {
+      var remaining = this.grades.slice(index);
       var start = new Date(grade.dateFilledIn)
-      if (grade.passed) {
-        var end = remaining.find(x => x.passed === true) ? remaining.find(x => x.passed === true) : start
+      var end = {}
+      if (grade.average != undefined && grade.average.value >= viewController.config.passed) {
+        if (remaining.find(x => (x.average.value <= viewController.config.passed))) {
+          end = remaining.find(x => (x.average.value <= viewController.config.passed))
+        } else {
+          end = this.grades[this.grades.length - 1]
+          // end['dateFilledIn'] = viewController.currentCourse.end
+        }
+        // logConsole(new Date(end.dateFilledIn))
         var days = Math.round((new Date(end.dateFilledIn) - start) / (1000 * 60 * 60 * 24)) + 1
         // logConsole("days: " + days)
         if (days >= passed.days) {
@@ -314,8 +325,13 @@ class Lesson {
             "grades": (this.grades.indexOf(end) - this.grades.indexOf(grade)) + 1
           }
         }
-      } else if (!grade.passed) {
-        var end = remaining.find(x => x.passed === false) ? remaining.find(x => x.passed === false) : start
+      } else if (grade.average.value <= viewController.config.passed) {
+        if (remaining.find(x => (x.average.value >= viewController.config.passed))) {
+          end = remaining.find(x => (x.average.value >= viewController.config.passed))
+        } else {
+          end = this.grades[this.grades.length - 1]
+          // end['dateFilledIn'] = viewController.currentCourse.end
+        }
         var days = Math.round((new Date(end.dateFilledIn) - start) / (1000 * 60 * 60 * 24)) + 1
         // logConsole("days: " + days)
         if (days >= not_passed.days) {
@@ -323,10 +339,11 @@ class Lesson {
             "start": toShortFormat(start),
             "end": toShortFormat(new Date(end.dateFilledIn)),
             "days": days,
-            "grades": (this.grades.indexOf(end) - this.grades.indexOf(grade)) + 1
+            "grades": (this.grades.indexOf(end) - this.grades.indexOf(grade)) + 0
           }
         }
       }
+      // }
     })
     // logConsole("passed: " + JSON.stringify(passed))
     // logConsole("not_passed: " + JSON.stringify(not_passed))
@@ -338,23 +355,32 @@ class Lesson {
 
   fillGradeAverages() {
     return this.grades.map((grade, index) => {
+      // if (!grade.exclude) {
       var average = this.getAverage(false, index + 1)
       grade.average = {
         "value": average,
         "delta": (index > 0) ? (average - this.grades[index - 1].average.value) : 0
       }
       return grade
+      // }
     })
   }
 
   exclude(id, input) {
-    this.grades.find(x => x.id === id).exclude = input.checked ? false : true
-    var currentExclude = this.controller.controller.config["exclude"]
+    var grade = this.grades.find(x => x.id === id).exclude = input.checked ? false : true
+    if (grade != null && grade != undefined && typeof grade == "object") this.grades.find(x => x.id === id).exclude = input.checked ? false : true
+    var currentExclude = viewController.config["exclude"]
     if (currentExclude.find(x => x === id) && !input.checked) currentExclude.remove(id)
     input.checked ? currentExclude.remove(id) : currentExclude.push(id)
-    this.controller.controller.updateConfig({
+    // alert(currentExclude)
+    viewController.updateConfig({
       "exclude": currentExclude
     })
-    this.controller.controller.render(viewController.currentLesson)
+    // alert(grade.class.description.capitalize())
+    input.checked ? logConsole(`[INFO]   Included ${id}`) : logConsole(`[INFO]   Excluded ${id}`)
+    // viewController.renderCourse(false, false, viewController.currentCourse, this.name)
+    // var l = viewController.currentLesson == "general"
+    viewController.currentCourse.course.sortGrades()
+    viewController.renderCourse(viewController.currentCourse.id, false, false, viewController.currentLesson)
   }
 }

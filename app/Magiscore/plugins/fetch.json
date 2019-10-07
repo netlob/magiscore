@@ -54,7 +54,7 @@
       "type": "registry",
       "id": "cordova-plugin-device"
     },
-    "is_top_level": false,
+    "is_top_level": true,
     "variables": {}
   },
   "cordova-plugin-badge": {
@@ -101,6 +101,14 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-statusbar@2.4.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-launch-review": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-launch-review"
     },
     "is_top_level": true,
     "variables": {}

@@ -57,6 +57,12 @@ function onDeviceReady() {
             'Oké'
         );
     }
+    navigator.notification.alert(
+        'Magiscore is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAlle gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoordat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app niet goed werkt. In dat geval kan je voor support een mail sturen naar info@magiscore.nl. Voor de gehele privacyverklaring ga naar https://magiscore.nl/privacy. Door in te loggen ga je akkoord met die verklaring.',
+        openPrivacy,
+        'Magiscore informatie',
+        ['Oké', 'Open verklaring']
+    );
 }
 
 function emptyFuntion() {}
@@ -79,6 +85,12 @@ function openWifiSettings(b) {
     if (b == 1) {
         window.cordova.plugins.settings.open("wifi", emptyFuntion, emptyFuntion)
         localStorage.clear()
+    } else return
+}
+
+function openPrivacy(b) {
+    if (b == 0) {
+        cordova.InAppBrowser.open('https://magiscore.nl/privacy', '_system');
     } else return
 }
 
@@ -300,6 +312,7 @@ async function validateLogin(code, codeVerifier) {
                 addLoader(3)
                 m.getCourses()
                     .then(async (courses) => {
+                        localStorage.setItem("person", JSON.stringify(person));
                         all_courses = courses
                         logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`)
                         addLoader(7)
@@ -310,7 +323,7 @@ async function validateLogin(code, codeVerifier) {
                             }), course.getClasses()]);
                             course.grades = grades
                             course.classes = classes
-                            if (course.id == "31089" || course.id == 31089) course.grades = []
+                            // if (course.id == "31089" || course.id == 31089) course.grades = []
                             return course
                         })
 

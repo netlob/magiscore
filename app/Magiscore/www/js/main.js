@@ -25,6 +25,8 @@ courses.forEach(c => {
 })
 viewController.currentCourse = courseController.current()
 
+var snapper;
+
 //logConsole("Courses" + JSON.stringify(courses))
 // courses[1].grades.splice(0, 100)
 
@@ -35,6 +37,26 @@ viewController.currentCourse = courseController.current()
 //courses.splice(courses.indexOf(courseController.current()))
 
 function main(l) {
+  if ($(window).width() <= 465) {
+    snapper = new Snap({
+      element: document.querySelector('#content-wrapper'),
+      dragger: null,
+      disable: 'right',
+      addBodyClasses: true,
+      hyperextensible: false,
+      resistance: 0,
+      flickThreshold: 0,
+      transitionSpeed: 0.2,
+      easing: 'ease',
+      maxPosition: 238,
+      minPosition: 0,
+      tapToClose: true,
+      touchToDrag: true,
+      slideIntent: 40,
+      minDragDistance: 5,
+      // effect: 'pull'
+    });
+  }
   viewController.setConfig()
   viewController.initTheme()
   //sorted = {}
@@ -272,6 +294,8 @@ async function syncGrades() {
           // logConsole("Not in id list")
           newGrades.push(grade)
           currentCourse.grades.push(grade)
+        } else if (viewController.config.refreshOldGrades) {
+          newGrades.push(grade)
         }
       })
       logConsole("[INFO]   Grades to fill: " + newGrades.length)
@@ -283,13 +307,13 @@ async function syncGrades() {
         // if(newGrades.length > 0) {
         currentCourse.grades = _.unionBy(currentCourse.grades, 'id');
         var snack = viewController.toast(`<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-        style="width: 20%; height: 20px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sync-progress"></div><br><span class="text-center"><span id="sync-synced">0/${newGrades.length}</span> van je nieuwe cijfers gesynced</span>`, false, true)
+        style="width: 20%; height: 20px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sync-progress"></div><br><span class="text-center"><span id="sync-synced">0/${newGrades.length}</span> van je ${viewController.config.refreshOldGrades ? "" : " nieuwe"}cijfers gesynced<br> <i
+        class="far fa-info-circle fa-s display-inline-block mr-3 ml-2 mb-2 mt-3"> Refresh oude cijfers is ingeschakeld, alle cijfers worden gerefreshed</span>`, false, true)
         $(`#snackbar-${snack}`).css("z-index", "100000")
         var percent = 80 / (Number(newGrades.length) - 1)
         for (let grade of newGrades) {
           try {
             grade = await grade.fill()
-            // logConsole(JSON.stringify(grade))
             var i = _.findIndex(currentCourse.grades, {
               id: grade.id
             })
@@ -379,28 +403,6 @@ const ptr = PullToRefresh.init({
     // done()
   }
 });
-
-var snapper;
-if ($(window).width() <= 465) {
-  snapper = new Snap({
-    element: document.querySelector('#content-wrapper'),
-    dragger: null,
-    disable: 'right',
-    addBodyClasses: true,
-    hyperextensible: false,
-    resistance: 0,
-    flickThreshold: 0,
-    transitionSpeed: 0.2,
-    easing: 'ease',
-    maxPosition: 238,
-    minPosition: 0,
-    tapToClose: true,
-    touchToDrag: true,
-    slideIntent: 40,
-    minDragDistance: 5,
-    // effect: 'pull'
-  });
-}
 
 $(function () {
   FastClick.attach(document.body);
@@ -506,6 +508,7 @@ function onDeviceReady() {
               // if (err == "no internet") {
               viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
               // }
+              errorConsole(err)
               person = JSON.parse(localStorage.getItem("person"))
               main()
             })
@@ -513,6 +516,7 @@ function onDeviceReady() {
           // if (err == "no internet") {
           viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
           // }
+          errorConsole(err)
           person = JSON.parse(localStorage.getItem("person"))
           main()
         });

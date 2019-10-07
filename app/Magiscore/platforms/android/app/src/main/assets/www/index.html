@@ -400,8 +400,8 @@
           <hr>
           <h6 class="ml-3 pl-1 font-weight-bold text-primary">Cijfers</h6>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Reset alle uitgeschakelde cijfers <a
-                class="float-right menu-a vibrate" onclick="viewController.updateConfig({'exclude': []})">RESET</a>
+            <li class="list-group-item shadow mb-2">Reset <span id="excluded-count"></span> uitgeschakelde cijfers<a
+                class="float-right menu-a vibrate" onclick="viewController.clearExclude()">RESET</a>
             </li>
             <li class="list-group-item shadow mb-2 d-inline-block">Refresh oude cijfers
               <div class="md-checkbox vibrate d-inline-block float-right" style="font-size:1rem">
@@ -426,6 +426,19 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item shadow mb-2">Uitloggen<a class="float-right menu-a vibrate"
                 onclick="logOut()">UITLOGGEN</a>
+            </li>
+          </ul>
+          <hr>
+          <h6 class="ml-3 pl-1 font-weight-bold text-primary">Feedback</h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item shadow mb-2">E-Mail<a class="float-right menu-a vibrate"
+                href="mailto:info@magiscore.nl?subject=Feedback Magiscore Android" target="_system">E-MAIL</a>
+            </li>
+            <li class="list-group-item shadow mb-2">GitHub<a class="float-right menu-a vibrate"
+                onclick="cordova.InAppBrowser.open('https://github.com/mamorgen/magiscore', '_system');">GITHUB</a>
+            </li>
+            <li class="list-group-item shadow mb-2">Play Store<a class="float-right menu-a vibrate"
+                onclick="viewController.giveFeedback()">REVIEW</a>
             </li>
           </ul>
         </div>
@@ -963,6 +976,7 @@
     window.onerror = function (msg, url, lineNo, columnNo, error) {
       $("#overlay").hide()
       errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
+      if ($("#mobilePersonInfo").text() == "Voornaam Achternaam") openBrowser(1)
       return false;
     }
   </script>

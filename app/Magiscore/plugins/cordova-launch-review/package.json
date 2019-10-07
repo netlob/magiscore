@@ -1,0 +1,63 @@
+{
+  "_from": "cordova-launch-review",
+  "_id": "cordova-launch-review@3.1.1",
+  "_inBundle": false,
+  "_integrity": "sha1-vbv7tTidhf5x2eHO5LmVS0O82jk=",
+  "_location": "/cordova-launch-review",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-launch-review",
+    "name": "cordova-launch-review",
+    "escapedName": "cordova-launch-review",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-launch-review/-/cordova-launch-review-3.1.1.tgz",
+  "_shasum": "bdbbfbb5389d85fe71d9e1cee4b9954b43bcda39",
+  "_spec": "cordova-launch-review",
+  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "author": {
+    "name": "Dave Alden"
+  },
+  "bugs": {
+    "url": "https://github.com/dpa99c/cordova-launch-review/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-launch-review",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "cordova_name": "Launch Review",
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Cordova/Phonegap plugin for iOS and Android to assist in leaving user reviews/ratings in the App Stores.",
+  "homepage": "https://github.com/dpa99c/cordova-launch-review#readme",
+  "issue": "https://github.com/dpa99c/cordova-launch-review/issues",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova",
+    "phonegap",
+    "ios",
+    "android",
+    "review",
+    "rating",
+    "app store"
+  ],
+  "license": "MIT",
+  "name": "cordova-launch-review",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpa99c/cordova-launch-review.git"
+  },
+  "version": "3.1.1"
+}

@@ -20,6 +20,7 @@
     <preference name="ShowSplashScreenSpinner" value="false"/>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <allow-intent href="mailto:*" />
     <platform name="android">
         <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />

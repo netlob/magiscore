@@ -160,11 +160,12 @@ class Grade {
                             fillTimeout(JSON.parse(jqXHR.responseText).SecondsLeft)
                             this._filling = false
                             // logConsole("timedOut")
-                            // setTimeout(function () {
-                            //     this.fill()
-                            //         .then(grade => resolve(grade))
-                            // }, 31000);
-                            reject(429)
+                            setTimeout(function () {
+                                logConsole("[ERROR] Grade fill timeout")
+                                this.fill()
+                                // .then(grade => resolve(grade))
+                            }, 31000);
+                            // reject(429)
 
                         } else {
                             reject(jqXHR.status)

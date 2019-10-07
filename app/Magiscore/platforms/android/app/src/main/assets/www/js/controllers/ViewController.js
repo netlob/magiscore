@@ -98,7 +98,7 @@ class ViewController {
     $("#grade-modal-teacher").text(grade.teacher.teacherCode)
     $("#grade-modal-date").text(toShortFormat(grade.dateFilledIn))
 
-    $("#grade-modal-count").attr("onchange", `lessonController.getLesson(viewController.currentLesson).lesson.exclude('${grade.id}', this)`)
+    $("#grade-modal-count").attr("onchange", `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${grade.id}', this)`)
     $("#grade-modal-count").prop("checked", !grade.exclude)
 
     //                 <td>${grade.teacher.teacherCode}</td>
@@ -142,7 +142,6 @@ class ViewController {
     localStorage.setItem("config", JSON.stringify(base));
     this.config = base;
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
-    if (config["exclude"]) main(this.currentLesson)
     if (config["devMode"] === true) $("#toggle-terminal").show()
     if (config["devMode"] === false) $("#toggle-terminal").hide()
     if ("smiley" in config) setProfilePic()
@@ -171,6 +170,7 @@ class ViewController {
   }
 
   toast(msg, duration, fullWidth) {
+    fullWidth = true
     var snackId = Math.floor((Math.random() * 1000000) + 1)
     // var bottom = 30
     var bottom = $(".snackbar").length < 1 ? 30 : ($(".snackbar").length * 65) + 30
@@ -264,6 +264,16 @@ class ViewController {
     }
   }
 
+  clearExclude() {
+    var count = this.config.exclude.length
+    this.updateConfig({
+      'exclude': []
+    })
+    this.currentCourse.course.sortGrades()
+    this.renderCourse(this.currentCourse.id, false, false, this.currentLesson)
+    this.toast(`Succesvol ${count} cijfers gereset!`, 2000, true)
+  }
+
   lightTheme() {
     StatusBar.overlaysWebView(false);
     StatusBar.backgroundColorByHexString("#ffffff");
@@ -305,6 +315,21 @@ class ViewController {
     } else {
       this.toast("Ongeldige waarde...", 3000, false)
     }
+  }
+
+  giveFeedback() {
+    var appId, platform = device.platform.toLowerCase();
+    switch (platform) {
+      case "ios":
+        appId = "1307145960";
+        break;
+      case "android":
+        appId = "app.netlob.magiscore";
+        break;
+    }
+    LaunchReview.launch(function () {}, function (err) {
+      alert(err)
+    }, appId);
   }
 
   refreshOldGrades() {
@@ -385,6 +410,7 @@ class ViewController {
     $("#passed-input").val("");
     $("#devMode-checkbox").prop('checked', this.config.devMode);
     $("#refreshAll-checkbox").prop('checked', this.config.refreshOldGrades);
+    $("#excluded-count").text(this.config.exclude.length)
     $("#settings-wrapper").show();
     this.settingsOpen = true
   }
@@ -407,10 +433,10 @@ class ViewController {
 function confirmRefreshOldGrades(button) {
   if (button == 1) {
     $("#refreshAll-checkbox").prop("checked", true)
-    this.updateConfig({
+    viewController.updateConfig({
       "refreshOldGrades": true
     })
-    this.toast("Refresh oude cijfers aangezet", 2000, false)
+    viewController.toast("Refresh oude cijfers aangezet", 2000, false)
   } else if (button == 2) {
     $("#refreshAll-checkbox").prop("checked", false)
   }
@@ -1081,7 +1107,7 @@ function setTableData(lesson) {
     if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
       var d = new Date(grade.dateFilledIn)
       table.append(`
-        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${grade.id})">
+        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${grade.id})" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
               <h4 class="text-center mt-2">${grade.grade == "10,0" ? '<span class="text-success">10</span><span class="invisible">,</span>' : (!grade.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${grade.weight < 10 ? grade.weight + 'x<span class="invisible">0</span>' : grade.weight + "x"}</sup></h4>
@@ -1140,8 +1166,8 @@ function generateHTML(lesson) {
   var lesson = lessonController.getLesson(lesson).lesson
   var extraFirst = lesson.getFirst();
   var average = lesson.getAverage(true);
-  var extraSecond = lesson.getSecond();
-  var extraThird = lesson.getThird();
+  var extraSecond = "nee." //lesson.getSecond();
+  var extraThird = "nee." //lesson.getThird();
   var facts = lesson.getDays()
   return `<!-- Page Heading -->
             <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -1172,12 +1198,12 @@ function generateHTML(lesson) {
                       <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                           <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-green">${
-      extraFirst.title
+      ""
       }</div>
                           <div class="row no-gutters align-items-center">
                           <div class="col-auto">
                               <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
-      extraFirst.value
+      ""
       }</div>
                           </div>
                           </div>
@@ -1196,12 +1222,12 @@ function generateHTML(lesson) {
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">${
-    extraSecond.title || "nee."
+    ""
     }</div>
                         <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
-    extraSecond.value || "nee."
+    ""
     }</div>
                         </div>
                         </div>
@@ -1220,10 +1246,10 @@ function generateHTML(lesson) {
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">${
-    extraThird.title || "nee."
+    ""
     }</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">${
-    extraThird.value || "nee."
+    ""
     }</div>
                     </div>
                     <div class="col-auto">

@@ -43,6 +43,12 @@
     },
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-launch-review": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {
