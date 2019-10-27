@@ -126,18 +126,16 @@ class Grade {
 
     }
 
-    // TODO: add ability to fill persons
     /**
      * @returns {Promise<Grade>}
      */
-    fill() {
+    fill(logId) {
+        if (logId) logConsole(`[INFO]  Resuming grade (${this.id})`)
         this._filling = true;
         return new Promise((resolve, reject) => {
             if (this._filled) {
                 resolve(this)
             }
-            //errorConsole(this._magister.token)
-            // logConsole(this._fillUrl)
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -147,33 +145,25 @@ class Grade {
                     "headers": {
                         "Authorization": "Bearer " + this._magister.token
                     },
-                    "error": function (jqXHR, statusCode, error) {
-                        // errorConsole(statusCode)
-                        // errorConsole(error)
-                        // errorConsole("statuss: " + jqXHR.status)
-                        // errorConsole(JSON.stringify(jqXHR))
-                        // reject(error)
+                    "error": (jqXHR) => {
                         this._filling = false
-
                         if (jqXHR.status == 429) {
-                            // errorConsole(JSON.parse(jqXHR.responseText).Message)
-                            fillTimeout(JSON.parse(jqXHR.responseText).SecondsLeft)
+                            fillTimeout(25) //parseInt(JSON.parse(jqXHR.responseText).SecondsLeft) + 2
                             this._filling = false
-                            // logConsole("timedOut")
-                            setTimeout(function () {
-                                logConsole("[ERROR] Grade fill timeout")
-                                this.fill()
-                                // .then(grade => resolve(grade))
-                            }, 31000);
-                            // reject(429)
-
+                            logConsole(`[ERROR] Grade fill timeout (${this.id})`)
+                            setTimeout(() => {
+                                this.fill(true)
+                                    .then(grade => {
+                                        hideTimeout()
+                                        resolve(grade)
+                                    })
+                            }, 25000);
                         } else {
                             reject(jqXHR.status)
                         }
                     }
                 })
                 .done((res) => {
-
                     this.testDate = parseDate(res.WerkinformatieDatumIngevoerd)
                     this.description = _.trim(res.WerkInformatieOmschrijving || res.KolomOmschrijving)
                     this.weight = Number.parseInt(res.Weging, 10) || 0
@@ -182,7 +172,9 @@ class Grade {
                     this.type["description"] = _.trim(res.KolomOmschrijving)
 
                     this._filled = true
+                    if (logId) logConsole(`[INFO]  Grade succesfuly refilled (${this.id})`)
                     resolve(this)
+                    return this
                 })
         })
 

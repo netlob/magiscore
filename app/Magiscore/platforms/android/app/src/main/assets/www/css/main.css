@@ -490,17 +490,18 @@ a.magister-login:before {
   src: url(./magistersymbols-webfont.woff) format("woff");
 }
 
+.sidebar {
+  position: fixed !important;
+  width: 238px !important;
+  display: block !important;
+  z-index: -10 !important;
+  top: 0px !important;
+  overflow-y: scroll !important;
+  max-height: 100vh !important;
+  max-width: 238px !important;
+}
+
 @media only screen and (max-width: 465px) {
-  .sidebar {
-    position: fixed !important;
-    width: 238px !important;
-    display: block !important;
-    z-index: -10 !important;
-    top: 0px !important;
-    overflow-y: scroll !important;
-    max-height: 100vh !important;
-    max-width: 238px !important;
-  }
 
   /* .snapjs-left .sidebar {
     z-index: 10 !important;
@@ -565,6 +566,11 @@ a.magister-login:before {
         width: 100% !important;
         height: 500px !important;
     } */
+
+
+
+
+
   .container,
   .container-fluid {
     padding-left: 7px !important;
@@ -584,9 +590,20 @@ a.magister-login:before {
     width: auto !important;
   }
 
+
+
+
+
+
   /* .nav-item {
         font-size: 30vw !important;
     } */
+
+
+
+
+
+
   .sidebar .nav-item .nav-link span {
     font-size: 0.85rem;
     display: block;

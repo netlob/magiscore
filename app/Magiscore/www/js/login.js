@@ -57,8 +57,8 @@ function onDeviceReady() {
             'Oké'
         );
     }
-    navigator.notification.alert(
-        'Magiscore is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAlle gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoordat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app niet goed werkt. In dat geval kan je voor support een mail sturen naar info@magiscore.nl. Voor de gehele privacyverklaring ga naar https://magiscore.nl/privacy. Door in te loggen ga je akkoord met die verklaring.',
+    navigator.notification.confirm(
+        'Magiscore is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAlle gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoordat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app niet goed werkt. In dat geval kan je voor support een mail sturen naar info@magiscore.nl. Ga voor de gehele privacyverklaring naar https://magiscore.nl/privacy. Door in te loggen ga je akkoord met die én Schoolmasters verklaring.',
         openPrivacy,
         'Magiscore informatie',
         ['Oké', 'Open verklaring']
@@ -89,7 +89,7 @@ function openWifiSettings(b) {
 }
 
 function openPrivacy(b) {
-    if (b == 0) {
+    if (b == 2) {
         cordova.InAppBrowser.open('https://magiscore.nl/privacy', '_system');
     } else return
 }
@@ -102,6 +102,10 @@ function fillTimeout(remaining) {
         $("#timeout-remaining").text(`${remaining} seconden`)
         if (remaining == 0) return
     }, 1000)
+}
+
+function hideTimeout() {
+    $("#timeout-wrapper").hide()
 }
 
 function generateRandomString(length) {

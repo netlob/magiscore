@@ -402,6 +402,7 @@ class ViewController {
   }
 
   openSettings() {
+    $("#buttonSidenavToggle").hide()
     $("#general-wrapper").hide();
     $("#lesson-wrapper").hide();
     $("#currentRender").html('<span onclick="viewController.closeSettings()"><i class="fa fa-arrow-left fa-sm mr-3 vibrate"></i>Instellingen</span>');
@@ -417,6 +418,7 @@ class ViewController {
   }
 
   closeSettings() {
+    $("#buttonSidenavToggle").show()
     this.render("general")
     this.settingsOpen = false
     vibrate(15, false)
@@ -535,7 +537,8 @@ function updateSidebar() {
   for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
       $("body").removeClass("sidenav-open")
-      if ($(window).width() <= 465) snapper.close()
+      /*if ($(window).width() <= 465)*/
+      snapper.close()
       var current = $(".active");
       if (current.length > 0) {
         current[0].className = current[0].className.replace(" active", "");
