@@ -37,26 +37,26 @@ var snapper;
 //courses.splice(courses.indexOf(courseController.current()))
 
 function main(l) {
-  if ($(window).width() <= 465) {
-    snapper = new Snap({
-      element: document.querySelector('#content-wrapper'),
-      dragger: null,
-      disable: 'right',
-      addBodyClasses: true,
-      hyperextensible: false,
-      resistance: 0,
-      flickThreshold: 0,
-      transitionSpeed: 0.2,
-      easing: 'ease',
-      maxPosition: 238,
-      minPosition: 0,
-      tapToClose: true,
-      touchToDrag: true,
-      slideIntent: 40,
-      minDragDistance: 5,
-      // effect: 'pull'
-    });
-  }
+  // if ($(window).width() <= 465) {
+  snapper = new Snap({
+    element: document.querySelector('#content-wrapper'),
+    dragger: null,
+    disable: 'right',
+    addBodyClasses: true,
+    hyperextensible: false,
+    resistance: 0,
+    flickThreshold: 0,
+    transitionSpeed: 0.2,
+    easing: 'ease',
+    maxPosition: 238,
+    minPosition: 0,
+    tapToClose: true,
+    touchToDrag: true,
+    slideIntent: 40,
+    minDragDistance: 5,
+    // effect: 'pull'
+  });
+  // }
   viewController.setConfig()
   viewController.initTheme()
   //sorted = {}
