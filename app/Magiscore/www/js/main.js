@@ -126,10 +126,10 @@ function logOut() {
 }
 
 function confirmLogout(b) {
-  if (b != 0) {
+  if (b == 1) {
     localStorage.clear()
     window.location = './login/index.html'
-  }
+  } else return
 }
 
 function getBase64Image(img) {

@@ -11,10 +11,9 @@
 
   <title>Magiscore</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="css/fonts.css" rel="stylesheet">
-  <!-- <link
+  <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet"> -->
+    rel="stylesheet">
 
   <!-- Light theme -->
   <link href="css/light.css" type="text/css" rel="stylesheet">
@@ -38,6 +37,41 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="apple-touch-icon" href="./img/icons/icon-128x128.png">
   <link rel="apple-touch-icon" sizes="152x152" href="./img/icons/icon-152x152.png">
+  <link href="img/splashscreens/iphone5_splash.png"
+    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/iphone6_splash.png"
+    media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/iphoneplus_splash.png"
+    media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/iphonex_splash.png"
+    media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/ipad_splash.png"
+    media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/ipadpro1_splash.png"
+    media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="img/splashscreens/ipadpro2_splash.png"
+    media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+
+  <!-- <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="/img/splashscreens/iphoneplus_splash.png"> -->
+  <!-- <link rel="apple-touch-startup-image" href="/img/iphoneplus_splash.png"> -->
+  <!-- <link href="/img/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/iphone6_splash.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="/img/splashscreens/iphoneplus_splash.png"> -->
+  <!-- <link rel="apple-touch-startup-image" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" href="/img/splashscreens/iphoneplus_splash.png" /> -->
+  <!-- <link href="/img/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" /> -->
 </head>
 
 <body id="page-top">
@@ -61,7 +95,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link vibrate" onclick="viewController.render('general')">
+        <a class="nav-link" onclick="viewController.render('general')">
           <!-- <i class="fas fa-fw fa-graduation-cap"></i> -->
           <span>Gemiddeld</span></a>
       </li>
@@ -152,9 +186,9 @@
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggleTop" aria-label="Toggle zijkant"></button>
-      </div>
+      <!-- <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle" aria-label="Toggle zijkant"></button>
+      </div> -->
 
     </ul>
     <!-- End of Sidebar -->
@@ -167,17 +201,14 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow" data-snap-ignore="true">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
           <!-- <div style="height: 70px; position: fixed;"></div> -->
           <!-- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 navbar-static-top shadow" style="position: fixed !important; z-index: 100; width: 100vw;">
           <div class="container-fluid"> -->
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button class="btn btn-link d-md-none bg-primary rounded-circle mr-1" onclick="snapper.toggle('left')"
-            aria-label="Toggle zijkant" id="buttonSidenavToggle">
-            <i class="fa fa-bars" style="font-size: 1.1rem !important;"></i>
-          </button>
-          <!-- <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
+          <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none bg-primary rounded-circle mr-3"
+            aria-label="Toggle zijkant">
             <i class="fa fa-bars"></i>
           </button> -->
 
@@ -193,8 +224,7 @@
               </div>
             </form> -->
 
-          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-none d-md-block" id="currentRender">Gemiddeld
-          </h1>
+          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-none d-md-block" id="currentRender">Gemiddeld</h1>
           <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-block d-md-none text-center text-mobile ml-2"
             id="currentRenderMobile">
             Gemiddeld</h1>
@@ -274,48 +304,25 @@
               </div>
             </li> -->
 
-            <li class="nav-item dropdown no-arrow mx-4 no-primary-hover">
-              <a class="nav-link dropdown-toggle background-primary vibrate" id="yearDropdown" role="button"
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1 no-primary-hover">
+              <a class="nav-link dropdown-toggle background-primary" id="messagesDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <h9 class="mobile-clock text-gray-600" id="current-course-badge"></h9>
-                <!-- <i class="fas fa-calendar-alt fa-fw mr-7 d-block d-md-none mobile-clock"></i> -->
-                <!-- <i class="fas fa-calendar-alt fa-fw text-gray-600 d-none d-lg-block"></i> -->
-                <span class="ml-1 mr-2 text-gray-600 d-none d-lg-block">Leerjaren</span>
-                <!-- <span class="badge badge-primary badge-counter ml-7 d-md-block" id="current-course-badge">-</span> -->
+                <i class="fas fa-clock fa-fw d-block d-md-none mobile-clock"></i>
+                <i class="fas fa-clock fa-fw text-gray-600 d-none d-md-block"></i>
+                <span class="ml-1 mr-2 pr-4 text-gray-600 d-none d-md-block">Laatste cijfers</span>
+                <span class="badge badge-primary badge-counter mr-3 d-none d-md-block" id="latest-grades-badge">X</span>
               </a>
+              <!-- Dropdown - Messages -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
                 aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header background-primary">
-                  Kies een schooljaar
-                </h6>
-                <div id="years">
-                  <div class="text-center mt-3 mb-3">Geen schooljaren beschikbaar...</div>
-                </div>
-              </div>
-            </li>
-
-            <li class="nav-item dropdown no-arrow mx-1 no-primary-hover grades-dropdown" id="messagesDrop">
-              <a class="nav-link dropdown-toggle background-primary vibrate" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-clock fa-fw d-block d-md-none mobile-clock"></i>
-                <i class="fas fa-clock fa-fw text-gray-600 d-none d-lg-block"></i>
-                <span class="ml-1 mr-2 pr-4 text-gray-600 d-none d-lg-block">Laatste cijfers</span>
-                <span class="badge badge-primary badge-counter mr-3 d-none d-md-block" id="latest-grades-badge">X</span>
-                <!-- d-none -->
-              </a>
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
-                id="messagesDropdownDrop" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header background-primary">
-                  Laatste cijfers <a class="float-right"><span class="text-white"
-                      style="font-size: 9px !important; font-weight: light !important;"
-                      onclick="courseController.getLatestGrades(true)">Refresh</span><i
-                      class="ml-2 fa fa-sync-alt text-white"></i></a>
+                  Laatste cijfers
                 </h6>
                 <div id="latest-grades">
-                  <div class="text-center mt-3 mb-2" id="latest-grades-empty">Geen recente cijfers...</div>
+                  <div class="text-center mt-3 mb-2" id="latest-grades-empty">Geen cijfers afgelopen week...</div>
                 </div>
-                <a class="dropdown-item text-center medium text-gray-800" href="#"
-                  onclick="viewController.currentAllGrades()" id="latest-grades-all">Alle cijfers</a>
+                <a class="dropdown-item text-center medium text-gray-800" href="#">Alle cijfers</a>
               </div>
             </li>
 
@@ -323,45 +330,39 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow no-primary-hover">
-              <a class="nav-link dropdown-toggle vibrate" href="#" id="userDropdown" role="button"
-                data-toggle="dropdown" aria-label="Uitklappen" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-label="Uitklappen" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-lg-inline text-gray-600 small d-none d-md-block">Voornaam Achternaam</span>
                 <img class="img-profile rounded-circle" id="imgelem" src="" alt="">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div id="mobilePersonInfo" class="dropdown-header d-block d-md-none">Voornaam Achternaam</div>
-                <a class="dropdown-item vibrate" onclick="syncGrades()">
+                <a class="dropdown-item" onclick="syncGrades()">
                   <i class="fas fa-sync fa-sm fa-fw mr-2 text-gray-400"></i>
                   Sync cijfers
                 </a>
-                <!-- <a class="dropdown-item vibrate" data-toggle="modal" data-target="#passedModal">
+                <a class="dropdown-item" data-toggle="modal" data-target="#passedModal">
                   <i class="fas fa-check fa-sm fa-fw mr-2 text-gray-400"></i>
                   Voldoendegrens
-                </a> -->
+                </a>
                 <!-- <a class="dropdown-item" href="#">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
                   </a> -->
                 <div class="dropdown-divider"></div>
-                <!-- <a class="dropdown-item vibrate" data-toggle="theme" onclick="viewController.toggleTheme()">
+                <a class="dropdown-item" data-toggle="theme" onclick="viewController.toggleTheme()">
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
-                </a> -->
-                <a class="dropdown-item vibrate" data-toggle="terminal" onclick="$('#terminal-wrapper').toggle()"
-                  id="toggle-terminal">
-                  <!-- style="display: none;" -->
-                  <i class="fas fa-terminal fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Toggle terminal
                 </a>
-                <a class="dropdown-item vibrate" onclick="viewController.openSettings()">
+                <a class="dropdown-item" onclick="viewController.openSettings()">
                   <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                   Instellingen
                 </a>
-                <!-- <a class="dropdown-item vibrate" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Uitloggen
-                </a> -->
+                </a>
               </div>
             </li>
 
@@ -373,83 +374,9 @@
 
         <div class="mt-4" id="ptr"></div>
 
-        <div class="container-fluid" id="settings-wrapper" style="display: none;" data-snap-ignore="true">
-          <h6 class="ml-1 pl-3 font-weight-bold text-primary">Magiscore</h6>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Thema <a class="float-right menu-a ml-2 vibrate"
-                onclick="viewController.darkTheme()">DONKER</a><a class="float-right menu-a vibrate"
-                onclick="viewController.lightTheme()">LICHT</a>
-            </li>
-            <li class="list-group-item shadow mb-2">Profielfoto <a class="float-right menu-a ml-2 vibrate"
-                onclick="setProfilePic(true)"><i class="far fa-sync-alt fa-sm"></i></a><a
-                class="float-right menu-a ml-2 vibrate"
-                onclick="viewController.updateConfig({'smiley': false})">FOTO</a><a class="float-right menu-a vibrate"
-                onclick="viewController.updateConfig({'smiley': true})">SMILEY</a>
-              <hr class="mt-2 mb-1">
-              <span class="text-gray-500" style="font-size: 11px"><i class="far fa-info-circle fa-s"></i>
-                Is je schoolfoto niet zo goed gelukt? Dan kun je een coole smiley als profielfoto gebruiken! Druk op <i
-                  class="far fa-sync-alt fa-s"></i> om je schoolfoto te refreshen
-              </span>
-            </li>
-            <li class="list-group-item shadow mb-2 d-inline-block">Developer
-              mode</i>
-              <div class="md-checkbox vibrate d-inline-block float-right" style="font-size:1rem">
-                <input id="devMode-checkbox" type="checkbox"
-                  onchange="viewController.updateConfig({'devMode': this.checked})" checked="false">
-                <label for="devMode-checkbox"></label>
-              </div>
-            </li>
-          </ul>
-          <hr>
-          <h6 class="ml-3 pl-1 font-weight-bold text-primary">Cijfers</h6>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Reset <span id="excluded-count"></span> uitgeschakelde cijfers<a
-                class="float-right menu-a vibrate" onclick="viewController.clearExclude()">RESET</a>
-            </li>
-            <li class="list-group-item shadow mb-2 d-inline-block">Refresh oude cijfers
-              <div class="md-checkbox vibrate d-inline-block float-right" style="font-size:1rem">
-                <input id="refreshAll-checkbox" type="checkbox" onchange="viewController.refreshOldGrades(this)">
-                <label for="refreshAll-checkbox"></label>
-              </div>
-            </li>
-            <li class="list-group-item shadow mb-2">
-              <div>Voldoendegrens
-                <a class="float-right menu-a vibrate" onclick="viewController.savePassed()">OPSLAAN</a>
-                <input type="number" class="float-right d-inline-block pl-2 bg-transparent text-primary-blue"
-                  pattern="^\d*\.?\d$" min="1" max="10" placeholder="5.5" title="Getal met max 1 decimaal"
-                  id="passed-input"></div>
-              <hr class="mt-2 mb-1">
-              <span class="text-gray-500" style="font-size: 11px"><i class="far fa-info-circle fa-s"></i>
-                Wil je een kommagetal? Gebruik dan een punt(.) als komma(,) - Bijvoorbeeld 5.5 ipv 5,5
-              </span>
-            </li>
-          </ul>
-          <hr>
-          <h6 class="ml-3 pl-1 font-weight-bold text-primary">Feedback</h6>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Play Store<a class="float-right menu-a vibrate"
-                onclick="viewController.giveFeedback()">REVIEW</a>
-            </li>
-            <li class="list-group-item shadow mb-2">E-Mail<a class="float-right menu-a vibrate"
-                href="mailto:info@magiscore.nl?subject=Feedback Magiscore Android" target="_system">E-MAIL</a>
-            </li>
-            <li class="list-group-item shadow mb-2">GitHub<a class="float-right menu-a vibrate"
-                onclick="cordova.InAppBrowser.open('https://github.com/mamorgen/magiscore', '_system');">GITHUB</a>
-            </li>
-          </ul>
-          <hr>
-          <h6 class="ml-3 pl-1 font-weight-bold text-primary">Account</h6>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Uitloggen<a class="float-right menu-a vibrate"
-                onclick="logOut()">UITLOGGEN</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="container-fluid" id="lesson-wrapper" style="display: none;">
+        <div class="container-fluid" id="lesson-wrapper">
 
         </div>
-
 
         <!-- Begin Page Content -->
         <div class="container-fluid" id="general-wrapper">
@@ -467,7 +394,8 @@
           <div class="row">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card border-left-primary shadow h-100 py-2" data-toggle="tooltip" data-placement="bottom"
+                title="Je gemiddelde cijfer van al je vakken bij elkaar">
                 <!-- <div style="position: absolute; bottom: 1px; right: 1px; color: #d5d5d5">
                   <a class="dropdown-toggle no-arrow" href="#" role="button" id="dropdownFirst" data-toggle="dropdown" aria-label="Pas aan" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-edit fa-sm"></i>
@@ -488,8 +416,9 @@
               </div>
             </div>
 
-            <!-- <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2" data-toggle="tooltip" data-placement="bottom"
+                title="Het gemiddeld % voltooid van al je vakken. (Let op: deze functie werkt mogelijk (nog) niet voor jouw school, en zal binnenkort vervangen worden!)">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -512,9 +441,9 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
 
-            <!-- <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -534,6 +463,7 @@
               </div>
             </div>
 
+            <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -548,22 +478,12 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
 
-          <div class="row">
-            <div class="col-xl-8 col-lg-7" style="display: none;" id="terminal-wrapper" data-snap-ignore="true">
-              <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Terminal</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <pre style="max-height: 500px;" id="terminal" data-snap-ignore="true"></pre>
-                </div>
-              </div>
-            </div>
+          <!-- Content Row -->
 
+          <div class="row">
 
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
@@ -571,16 +491,16 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary" id="general-area-title">Alle cijfers</h6>
-                  <!-- <div class="dropdown no-arrow">
+                  <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" aria-label="Download grafiek"
                       onclick="viewController.downloadGraph()">
                       <i class="fas fa-download fa-sm"></i>
                     </a>
-                  </div> -->
+                  </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body pt-0 pl-1">
-                  <div class="chart-area" id="lineChart-container">
+                <div class="card-body">
+                  <div class="chart-area">
                     <!-- <div class="table-responsive"> -->
                     <canvas id="lineChart"></canvas>
                     <!-- </div> -->
@@ -611,7 +531,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <h6 id="percentageGrades"></h6>
-                  <div class="chart-pie pt-4 pb-2" id="pieChart-container">
+                  <div class="chart-pie pt-4 pb-2">
                     <canvas id="pieChart"></canvas>
                   </div>
                   <div class="text-center small">
@@ -625,41 +545,13 @@
                 </div>
               </div>
             </div>
-
-
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Afgerond behaalde cijfers</h6>
-                  <!--<div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Download grafiek" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div> -->
-                </div>
-                <!-- Card Body -->
-                <div class="card-body pt-0">
-                  <div class="chart-area" id="barChart-container">
-                    <canvas id="barChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           <!-- Content Row -->
           <div class="row">
 
 
-            <!-- <div class="col-lg-4 mb-4">
+            <div class="col-lg-4 mb-4">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Algemene feiten</h6>
@@ -667,7 +559,7 @@
                 <div class="card-body" id="general-facts">
                 </div>
               </div>
-            </div> -->
+            </div>
 
             <div class="col-lg-4 mb-3">
               <div class="card shadow mb-4">
@@ -677,7 +569,6 @@
                 <div class="card-body" id="general-averages">
                   <div class="table-responsive">
                     <table class="table" width="100%" cellspacing="0">
-                      <!--data-snap-ignore="true"-->
                       <thead class="text-primary">
                         <tr>
                           <th>Vak</th>
@@ -698,7 +589,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Alle cijfers</h6>
 
                 </div>
-                <div class="card-body pt-0" id="generalGradesTable">
+                <div class="card-body" id="general-facts">
                 </div>
               </div>
             </div>
@@ -796,11 +687,10 @@
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; <a href="https://github.com/mamorgen/magbot-stat"
-                aria-label="Github pagina van Magiscore" style="color: #858796">Magiscore</a>
-              <!-- - <a
+                aria-label="Github pagina van Magiscore" style="color: #858796">Magiscore</a> - <a
                 href="https://netlob.app" aria-label="Github portfolio van de maker" style="color: #858796">Netlob</a>
               <a href="https://wikipedia.org/wiki/2018" aria-label="2018" style="color: #858796">2018</a>-<a
-                href="https://wikipedia.org/wiki/2019" aria-label="2019" style="color: #858796">2019</a></span>-->
+                href="https://wikipedia.org/wiki/2019" aria-label="2019" style="color: #858796">2019</a></span>
           </div>
         </div>
       </footer>
@@ -809,11 +699,13 @@
     </div>
     <!-- End of Content Wrapper -->
 
-    <div id="overlay" class="vibrate">
+    <div id="overlay">
       <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
+
+    <div id="settings-overlay"></div>
 
   </div>
   <!-- End of Page Wrapper -->
@@ -829,62 +721,76 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Klaar om uit te loggen?</h5>
-          <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
+          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">Klik "Uitloggen" als je zeker weet dat je wilt uitloggen.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary vibrate" type="button" data-dismiss="modal"
-            aria-label="Annuleer">Annuleer</button>
-          <a class="btn btn-primary vibrate" href="#logout" onclick="logOut()" role="button"
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Annuleer">Annuleer</button>
+          <a class="btn btn-primary" href="#logout" onclick="logOut()" role="button"
             aria-label="Uitloggen">Uitloggen</a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="gradeModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Passed Modal-->
+  <div class="modal fade" id="passedModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Cijfer</h5>
-          <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
+          <h5 class="modal-title">Voldoendegrens</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <h2 class="text-left mt-2 ml-4 text-primary menu-a"><span id="grade-modal-grade"></span><sup
-            class="text-gray-800" style="font-size: 10px !important; top: -2em !important;"><span
-              id="grade-modal-weight"></span>x</sup>
-        </h2>
-        <ul class="list-group">
-          <li class="small list-group-item"><b>Weging</b><span class="ml-1 float-right" id="grade-modal-weight2"></span>
-          </li>
-          <li class="small list-group-item"><b>Omschrijving</b><span class="ml-1 float-right"
-              id="grade-modal-description"></span>
-          </li>
-          <li class="small list-group-item"><b>Telt mee</b><span class="ml-1 float-right"
-              id="grade-modal-counts"></span>
-          </li>
-          <li class="small list-group-item"><b>Is PTA</b><span class="ml-1 float-right" id="grade-modal-ispta"></span>
-          </li>
-          <li class="small list-group-item"><b>Ingevuld door</b><span class="ml-1 float-right"
-              id="grade-modal-teacher"></span></li>
-          <li class="small list-group-item"><b>Ingevuld op</b><span class="ml-1 float-right"
-              id="grade-modal-date"></span></li>
-        </ul>
-        <!-- <hr class="mt-1 mb-1 p-0"> -->
-        <div class="md-checkbox vibrate m-4" style="font-size:1rem">
-          <input id="grade-modal-count" type="checkbox">
-          <label for="grade-modal-count">Tel cijfer mee in berekeningen</label>
+        <div class="modal-body">
+          <form oninput="passedOutput.value=passedRange.value" onload="passedRange.valuee=viewController.config.passed">
+            <label for="passedRange">Stel in wat een voldoende is op jouw school. Op de meeste scholen is dit 5.5, en
+              dit is dan ook de standaard instelling. Wil je dit aanpassen kan dat hieronder:</label>
+            <input type="range" class="custom-range" min="0" max="10" step="0.5" id="passedRange"">
+              <output name=" passedOutput" id="passedOutput" for="passedRange"
+              onload="this.value = passedRange.value"></output>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Anuleer">Annuleer</button>
+          <a class="btn btn-primary" href="#logout" onclick="viewController.savePassed()" role="button"
+            data-dismiss="modal" aria-label="Opslaan">Opslaan</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- <div id="settings-wrapper">
-    <div class="settings-close bg-white vibrate" onclick="viewController.closeSettings()">
+  <!-- Beta Warning Modal-->
+  <div class="modal fade" id="betaModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Beta-versie</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Sluit">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Magiscore is momenteel nog in ontwikkeling. Dit betekend dat er errors en fouten kunnen optreden. Gebruik
+            is dan ook op eigen risico en alle rechten zijn voorbehouden.</p>
+          <span class="text-gray">Huidige versie: 0.2</span>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" aria-label="Anuleer"
+            onclick="window.location='https://google.com'">Annuleer</button>
+          <a class="btn btn-primary" href="#" role="button" data-dismiss="modal" aria-label="Akkoord">Akkoord</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="settings-wrapper">
+    <div class="settings-close bg-white" onclick="viewController.closeSettings()">
       <i class="fa fa-times"></i>
+      <!-- <span class="ml-2 text-gray-800 font-weight-bold">Sluiten</span> -->
     </div>
     <div class="settings-body pt-10 pl-3 pr-3 pb-4">
       <div class="row">
@@ -948,76 +854,120 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 
-  <script>
-    if (localStorage.getItem("loginSuccess") != "true") {
-      // alert("loginSuccess = " + localStorage.getItem("loginSucess"))
-      localStorage.clear()
-      window.location = './login/index.html#failedlogin'
-    }
-
-    if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
-        "courses") === null) {
-      localStorage.clear()
-      window.location = './login/index.html#notokens'
-    }
-
-    function logConsole(msg) {
-      if (typeof msg != "string") return
-      if (msg.substring(0, 7) == "[ERROR]") $("#terminal").prepend(`<small class="text-danger">${msg}</small>\n`)
-      else if (msg.substring(0, 7) == "[DEBUG]") $("#terminal").prepend(`<small class="text-warning">${msg}</small>\n`)
-      else if (msg.substring(0, 6) == "[INFO]") $("#terminal").prepend(`<small class="text-info">${msg}</small>\n`)
-      else $("#terminal").prepend(`<small>${msg}</small>\n`)
-    }
-
-    function errorConsole(err) {
-      $("#overlay").hide()
-      $("#terminal").prepend(`<small class="text-danger">${err}</small>\n`)
-    }
-
-    window.onerror = function (msg, url, lineNo, columnNo, error) {
-      $("#overlay").hide()
-      errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
-      if ($("#mobilePersonInfo").text() == "Voornaam Achternaam") openBrowser(1)
-      return false;
-    }
-  </script>
-
-  <!-- Cordova core -->
-  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-
-  <!-- Core dependencies -->
+  <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/deps/sb-admin-2.js"></script>
+
+  <!-- Page level plugins -->
   <script src="vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Page dependencies -->
-  <script src="js/deps/main.js"></script>
-  <script src="js/deps/lodash.js"></script>
+  <!-- Page level custom scripts -->
+  <!-- <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="js/demo/chart-bar-demo.js"></script> -->
+
+  <script src="js/deps/algebra.js"></script>
   <script src="js/deps/imagecache.js"></script>
+  <script src="js/lodash.js"></script>
   <script src="js/deps/chartannotation.js"></script>
+  <script src="js/deps/jspdf.min.js"></script>
+  <script src="js/deps/swipe.min.js"></script>
   <script src="js/deps/pull.js"></script>
   <script src="js/deps/snap.js"></script>
   <script src="js/deps/fastclick.js"></script>
-  <script src="js/deps/crypto-js.min.js"></script>
-
-  <!-- Page scripts and magister classes -->
-  <script src="js/utils.js"></script>
-  <script src="js/classes/Class.js"></script>
-  <script src="js/classes/GradeType.js"></script>
-  <script src="js/classes/Person.js"></script>
-  <script src="js/classes/Course.js"></script>
-  <script src="js/classes/GradePeriod.js"></script>
-  <script src="js/classes/Grade.js"></script>
-  <script src="js/classes/Magister.js"></script>
-  <script src="js/classes/Lesson.js"></script>
-  <script src="js/controllers/ViewController.js"></script>
-  <script src="js/controllers/CourseController.js"></script>
-  <script src="js/controllers/LessonController.js"></script>
-  <script src="js/refresh.js"></script>
+  <script src="js/Lesson.js"></script>
+  <script src="js/ViewController.js"></script>
+  <script src="js/LessonController.js"></script>
+  <!-- <script src="js/push.js"></script> -->
   <script src="js/main.js"></script>
+  <!-- <script>
+    // var width = $(window).width();
+    // if (width < 767 && !document.querySelector('#accordionSidebar').classList.contains('toggled')) {
+    //   document.querySelector('#sidebarToggleTop').click()
+    // }
+    // $(window).resize(function () {
+    //   if ($(this).width() != width && $(this).width() < 767 && !document.querySelector('#accordionSidebar')
+    //     .classList.contains('toggled')) {
+    //     document.querySelector('#sidebarToggleTop').click()
+    //   }
+    // })
+    // $(window).resize(function () {
+    //   if ($(this).width() != width && $(this).width() > 767 && document.querySelector('#accordionSidebar')
+    //     .classList.contains('toggled')) {
+    //     document.querySelector('#sidebarToggleTop').click()
+    //   }
+    // })
+
+      // var registration;
+
+      // window.isUpdateAvailable = new Promise(function(resolve, reject) {
+      //   if ('serviceWorker' in navigator /* && ['localhost', '127'].indexOf(location.hostname) === -1 */) {
+      //     navigator.serviceWorker.register('./service-worker.js', { scope: "/" })
+      //     .then(reg => {
+      //       const subscribeOptions = {
+      //         userVisibleOnly: true,
+      //         applicationServerKey: urlBase64ToUint8Array('BC79U18J9Pn9ddyl7Vme5nYZC3blOTTlZS3qWj2QyMbtgZiMpOwe2tEWJstSsUaoHXbNQRiJ5Wi8cX2D4upxZP4')
+      //       };
+
+      //       reg.pushManager.subscribe(subscribeOptions)
+      //       .then(subscription => {
+      //         var settings = {
+      //           "async": true,
+      //           "crossDomain": true,
+      //           "url": "https://magiscore.nl/api/notifications",
+      //           "method": "GET",
+      //           "headers": {
+      //               "subscription": JSON.stringify(subscription)
+      //           }
+      //         }
+
+      //         $.ajax(settings).done(function (response) {
+      //           console.log(response)
+      //         })
+      //       })
+
+      //       console.log('[ServiceWorker] registration successful with scope: ', reg.scope);
+      //       reg.onupdatefound = () => {
+      //         const installingWorker = reg.installing;
+      //         installingWorker.onstatechange = () => {
+      //           switch (installingWorker.state) {
+      //             case 'installed':
+      //               if (navigator.serviceWorker.controller) {
+      //                 resolve(true);
+      //               } else {
+      //                 resolve(false);
+      //               }
+      //               break;
+      //           }
+      //         };
+      //       };
+      //     })
+      //     // .then(function(pushSubscription) {
+      //     //   console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+      //     //   return pushSubscription;
+      //     // })
+      //     .catch(err => console.error('[ServiceWorker] registration failed: ', err));
+      //   }
+      // });
+
+      // window['isUpdateAvailable']
+      // .then(isAvailable => {
+      //   if (isAvailable) {
+      //     viewController.toast(`Update beschikbaar! <button role="button" style="color: #FFFF00; outline: none !important; background: none !important; border: none !important;" onclick="updateCache()">Update</button>`)
+      //   }
+      // });
+      // if(viewController == undefined) {
+      //   location.reload()
+      // }
+  </script> -->
 </body>
 
 </html>

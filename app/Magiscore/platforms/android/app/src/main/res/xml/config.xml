@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.netlob.magiscore" version="1.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="app.netlob.magiscore" version="1.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
@@ -44,7 +44,7 @@
         Magiscore very nice 10/10.
     </description>
     <author email="sjoerdabolten@gmail.com" href="https://netlob.app">
-        Sj3rd
+        Netlob
     </author>
     <content src="index.html" />
     <access origin="*" />

@@ -98,9 +98,9 @@
             }
         },
         r = {
-            distThreshold: 130,
+            distThreshold: 90,
             distMax: 150,
-            distReload: 100,
+            distReload: 80,
             distIgnore: 0,
             mainElement: "body",
             triggerElement: "body",

@@ -442,6 +442,9 @@ function confirmRefreshOldGrades(button) {
     viewController.toast("Refresh oude cijfers aangezet", 2000, false)
   } else if (button == 2) {
     $("#refreshAll-checkbox").prop("checked", false)
+    viewController.updateConfig({
+      "refreshOldGrades": false
+    })
   }
 }
 

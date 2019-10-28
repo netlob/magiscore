@@ -415,7 +415,7 @@
             <li class="list-group-item shadow mb-2">
               <div>Voldoendegrens
                 <a class="float-right menu-a vibrate" onclick="viewController.savePassed()">OPSLAAN</a>
-                <input type="number" class="float-right d-inline-block pl-2 bg-transparent text-primary-blue"
+                <input type="number" class="float-right mr-1 d-inline-block pl-2 bg-transparent text-primary-blue"
                   pattern="^\d*\.?\d$" min="1" max="10" placeholder="5.5" title="Getal met max 1 decimaal"
                   id="passed-input"></div>
               <hr class="mt-2 mb-1">
@@ -425,23 +425,23 @@
             </li>
           </ul>
           <hr>
-          <h6 class="ml-3 pl-1 font-weight-bold text-primary">Account</h6>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Uitloggen<a class="float-right menu-a vibrate"
-                onclick="logOut()">UITLOGGEN</a>
-            </li>
-          </ul>
-          <hr>
           <h6 class="ml-3 pl-1 font-weight-bold text-primary">Feedback</h6>
           <ul class="list-group list-group-flush">
+            <li class="list-group-item shadow mb-2">Play Store<a class="float-right menu-a vibrate"
+                onclick="viewController.giveFeedback()">REVIEW</a>
+            </li>
             <li class="list-group-item shadow mb-2">E-Mail<a class="float-right menu-a vibrate"
                 href="mailto:info@magiscore.nl?subject=Feedback Magiscore Android" target="_system">E-MAIL</a>
             </li>
             <li class="list-group-item shadow mb-2">GitHub<a class="float-right menu-a vibrate"
                 onclick="cordova.InAppBrowser.open('https://github.com/mamorgen/magiscore', '_system');">GITHUB</a>
             </li>
-            <li class="list-group-item shadow mb-2">Play Store<a class="float-right menu-a vibrate"
-                onclick="viewController.giveFeedback()">REVIEW</a>
+          </ul>
+          <hr>
+          <h6 class="ml-3 pl-1 font-weight-bold text-primary">Account</h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item shadow mb-2">Uitloggen<a class="float-right menu-a vibrate"
+                onclick="logOut()">UITLOGGEN</a>
             </li>
           </ul>
         </div>
@@ -998,7 +998,6 @@
   <script src="js/deps/lodash.js"></script>
   <script src="js/deps/imagecache.js"></script>
   <script src="js/deps/chartannotation.js"></script>
-  <script src="js/deps/jspdf.min.js"></script>
   <script src="js/deps/pull.js"></script>
   <script src="js/deps/snap.js"></script>
   <script src="js/deps/fastclick.js"></script>

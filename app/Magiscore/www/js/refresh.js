@@ -61,7 +61,7 @@ function refreshToken() {
 }
 
 function openBrowser(b) {
-    if (b == 0) {
+    if (b == 2) {
         localStorage.clear()
         window.location = './login/index.html'
     }
