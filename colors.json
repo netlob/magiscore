@@ -2,9 +2,15 @@
     "dark": {
         "background": "#202124",
         "background_card": "#2c2d30",
-        "title": "#EEE",
-        "text": "#A9A9A9",
+        "title": "#eee",
+        "text": "#a9a9a9",
         "subtitle": "#808080"
     },
-    "light": {}
+    "light": {
+        "background": "#f8f9fc",
+        "background_card": "#fff",
+        "title": "#5a5c69",
+        "text": "#858796",
+        "subtitle": "#5a5c69"
+    }
 }
