@@ -19,10 +19,10 @@ enable_smart_app_banner                   : true                                
 
 
 # Information About Yourself
-your_name                                 : Sjoerd Bolten                                
+your_name                                 : netlob                                
 your_link                                 : https://netlob.app                     
-your_city                                 : Hoofddorp                                
-email_address                             : emil.baehr@gmail.com
+your_city                                 : The Netherlands                                
+email_address                             : info@magiscore.nl
 facebook_username                         :                                           
 instagram_username                        : sjoerd.netlob
 twitter_username                          : netlob
@@ -58,21 +58,21 @@ features                                  :
     description                           : Add features (like this one) to your site via the _config.yml file. No HTML/CSS needed.
     fontawesome_icon_name                 : star
 
-  - title                                 : Smart App Banner
-    description                           : Display a smart app banner on iOS devices.
-    fontawesome_icon_name                 : arrow-alt-circle-down
+  # - title                                 : Smart App Banner
+  #   description                           : Display a smart app banner on iOS devices.
+  #   fontawesome_icon_name                 : arrow-alt-circle-down
 
-  - title                                 : Social Links
-    description                           : Easily add social media accounts and contact info in the footer via the _config.yml file. No HTML/CSS needed.
-    fontawesome_icon_name                 : link
+  # - title                                 : Social Links
+  #   description                           : Easily add social media accounts and contact info in the footer via the _config.yml file. No HTML/CSS needed.
+  #   fontawesome_icon_name                 : link
 
-  - title                                 : FontAwesome Support
-    description                           : Pick custom Font Awesome icons for the feature list via the _config.yml file. No HTML/CSS needed.
-    fontawesome_icon_name                 : info-circle
+  # - title                                 : FontAwesome Support
+  #   description                           : Pick custom Font Awesome icons for the feature list via the _config.yml file. No HTML/CSS needed.
+  #   fontawesome_icon_name                 : info-circle
 
-  - title                                 : # New Feature Title
-    description                           : # New Feature Description
-    fontawesome_icon_name                 : # Enter Font Awesome icon name (e.g. star). Find icons on fontawesome.com/icons.
+  # - title                                 : # New Feature Title
+  #   description                           : # New Feature Description
+  #   fontawesome_icon_name                 : # Enter Font Awesome icon name (e.g. star). Find icons on fontawesome.com/icons.
 
 
 
