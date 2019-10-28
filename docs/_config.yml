@@ -11,7 +11,7 @@ presskit_download_link                    : https://github.com/mamorgen/magiscor
 
 app_icon                                  : https://lh3.googleusercontent.com/aCf8h8BVsRjqMsLfXqJCE5Kj771unVP5gBdyq1_CIOAJF959X2yyD1hWvUBBGG3vA9o=s360-rw# assets/appicon.png                      # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
 app_name                                  : Magiscore                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
-app_price                                 : Free                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
+app_price                                 : Gratis                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_description                           : Magister statistiek.
 
 enable_smart_app_banner                   : true                                      # Set to true to show a smart app banner at top of page on mobile devices.
@@ -56,7 +56,7 @@ features                                  :
   
   - title                                 : Gratis
     description                           : Magiscore is gratis en voor iedereen te downloaden via de Play Store
-    fontawesome_icon_name                 : dollar
+    fontawesome_icon_name                 : euro-sign
 
   # - title                                 : Smart App Banner
   #   description                           : Display a smart app banner on iOS devices.
