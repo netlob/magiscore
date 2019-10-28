@@ -100,7 +100,7 @@
         r = {
             distThreshold: 90,
             distMax: 150,
-            distReload: 80,
+            distReload: 85,
             distIgnore: 0,
             mainElement: "body",
             triggerElement: "body",

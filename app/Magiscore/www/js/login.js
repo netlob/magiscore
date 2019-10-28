@@ -94,13 +94,13 @@ function openPrivacy(b) {
     } else return
 }
 
-function fillTimeout(remaining) {
+function fillTimeout(timeremaining) {
     $("#timeout-wrapper").show()
-    $("#timeout-remaining").text(`${remaining} seconden`)
-    setInterval(() => {
-        remaining--
-        $("#timeout-remaining").text(`${remaining} seconden`)
-        if (remaining == 0) return
+    $("#timeout-remaining").text(`${timeremaining} seconden`)
+    var timer = setInterval(() => {
+        timeremaining--
+        $("#timeout-remaining").text(`${timeremaining} seconden`)
+        if (timeremaining <= 0) clearInterval(timer)
     }, 1000)
 }
 

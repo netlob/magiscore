@@ -101,7 +101,8 @@ input {
 }
 
 #passed-input {
-  width: auto !important;
+  width: 40px !important;
+  text-align: right !important;
   margin-top: -.7px !important;
 }
 
