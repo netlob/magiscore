@@ -1,15 +1,15 @@
 ---
 layout: page
-title: What's New
+title: Changelog
 include_in_header: true
 ---
 
 # Changelog
 <br>
 
-### `Latest`
-# **Version 1.0.9**
-#### What's New
+### `Laatste versie`
+# **Versie 1.0.9**
+#### Wat is er nieuw
 *Crash gefixt waardoor sommige gebruikers niet konden inloggen*
 
 - Offline werkend
