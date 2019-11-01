@@ -622,12 +622,11 @@ footer {
 	line-height: 1.5;
 	width: 100%;
 	text-align: center;
-	padding-top: 70px;
-	padding-bottom: 70px;
+	padding-bottom: 10px;
 }
 
 .footerIcons {
-	padding-bottom: 70px;
+	padding-bottom: 20px;
 	display: flex;
 	flex: 0 0 100%;
 	justify-content: center;
@@ -636,7 +635,8 @@ footer {
 .footerLinks {
 	display: flex;
 	text-align: center;
-	padding-bottom: 70px;
+	padding-bottom: 40px;
+	margin-top: 70px;
 }
 
 .footerLinks a {
@@ -645,6 +645,13 @@ footer {
 
 .footerLinks a:last-child {
 	margin-right: 0px;
+}
+
+.iosDownload {
+	color: $footer-text-color;
+	text-decoration: underline;
+	font-size: 0.8em;
+	margin-bottom: 20px;
 }
 
 
@@ -674,12 +681,12 @@ footer {
 		line-height: 1.5;
 		width: 100%;
 		text-align: center;
-		padding-top: 54px;
-		padding-bottom: 61px;
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
 
 	.footerIcons {
-		padding-bottom: 70px;
+		padding-bottom: 20px;
 		display: flex;
 	}
 

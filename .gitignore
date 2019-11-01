@@ -79,3 +79,6 @@ app/platforms/ios
 app/platforms/ios/*
 app/Magiscore/plugins/ios.json
 app/Magiscore/build.json
+
+docs/_site
+docs/.sass-cache
