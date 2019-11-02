@@ -395,6 +395,15 @@ nav>ul li a:active {
 	clip-path: url(#screenMask);
 	margin-left: 26px;
 	margin-top: 23px;
+	// transition: opacity 0.5s linear;
+}
+
+#screenDark {
+	display: none;
+}
+
+#screenLight {
+	display: block;
 }
 
 .videoContainer {

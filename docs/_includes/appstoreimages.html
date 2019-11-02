@@ -1,5 +1,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100 && $(window).width() >= 993) {
+                $('#screenDark').show() //.css('opacity', '1') //.css('visibility', 'visable');
+                $('#screenLight').hide() //.css('opacity', '0') //.css('visibility', 'hidden');
+            } else if ($(this).scrollTop() > 300 && $(window).width() < 993) {
+                $('#screenDark').show() //.css('opacity', '0') //.css('visibility', 'hidden');
+                $('#screenLight').hide() //.css('opacity', '1') //.css('visibility', 'visable');
+            } else {
+                $('#screenDark').hide() //.css('opacity', '0') //.css('visibility', 'hidden');
+                $('#screenLight').show() //.css('opacity', '1') //.css('visibility', 'visable');
+            }
+        });
+    });
+</script>
 {% if site.ios_app_id %}
 
 <!-- <script>

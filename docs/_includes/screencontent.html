@@ -4,7 +4,9 @@
 {% if file.path contains 'assets/screenshot/' and 1 == 2 %}
 <script>
     $(function () {
-        $(".iphoneScreen").attr('src', '{{ site.github.baseurl }}{{ file.path }}');
+        // $(".iphoneScreen").attr('src', '{{ site.github.baseurl }}{{ file.path }}');
+        // $("#screenLight").attr('src', './assets/screenshot/light.jpeg');
+        // $("#screenDark").attr('src', './assets/screenshot/dark.png');
         $(".iphoneScreen").removeClass("hidden");
         console.log("{{ file.path }}");
     });
