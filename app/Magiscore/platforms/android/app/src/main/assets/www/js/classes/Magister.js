@@ -21,6 +21,13 @@ class Magister {
          * @readonly
          */
         this.person = {}
+
+        /**
+         * @type {Object}
+         * @readonly
+         */
+        this.account = {}
+
         this.timedOut = false
     }
 
@@ -70,6 +77,70 @@ class Magister {
                     //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
                     //this.group = res.Persoon.Groep || res.persoon.groep)
                     resolve(this.person)
+                })
+        })
+    }
+
+    /**
+     * @returns {Promise<Object>}
+     */
+    getAccountInfo() {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                    "dataType": "json",
+                    "async": true,
+                    "crossDomain": true,
+                    "url": `https://${this.tenant}/api/sessions/current?noCache=0`,
+                    "method": "GET",
+                    "headers": {
+                        "Authorization": "Bearer " + this.token
+                    },
+                    "error": function (XMLHttpRequest, textStatus, errorThrown) {
+                        if (XMLHttpRequest.readyState == 4) {
+                            logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                        } else if (XMLHttpRequest.readyState == 0) {
+                            logConsole("[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                            reject("no internet")
+                        } else {
+                            logConsole("[ERROR] something weird is happening")
+                        }
+                    },
+                    "timeout": 5000
+                })
+                .done((res) => {
+                    // logConsole(JSON.stringify(res))
+                    // logConsole(`[INFO]  https://${this.tenant}${res.links.account.href}?noCache=0`)
+                    $.ajax({
+                            "dataType": "json",
+                            "async": true,
+                            "crossDomain": true,
+                            "url": `https://${this.tenant}${res.links.account.href}?noCache=0`,
+                            "method": "GET",
+                            "headers": {
+                                "Authorization": "Bearer " + this.token
+                            },
+                            "error": function (XMLHttpRequest, textStatus, errorThrown) {
+                                if (XMLHttpRequest.readyState == 4) {
+                                    logConsole("[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)")
+                                } else if (XMLHttpRequest.readyState == 0) {
+                                    logConsole("[ERROR] " + textStatus)
+                                    logConsole("[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)")
+                                    reject("no internet")
+                                } else {
+                                    logConsole("[ERROR] something weird is happening")
+                                }
+                            },
+                            "timeout": 5000
+                        })
+                        .done((res2) => {
+                            // logConsole(JSON.stringify(res2))
+                            this.account = {
+                                "id": res2.id,
+                                "name": res2.naam,
+                                "uuId": res2.uuid,
+                            }
+                            resolve(this.account)
+                        })
                 })
         })
     }

@@ -111,6 +111,17 @@
         "parents": {
           "/*": []
         }
+      },
+      "*-Info.plist": {
+        "parents": {
+          "UIUserInterfaceStyle": [
+            {
+              "xml": "<string>Light</string>",
+              "count": 1,
+              "id": "config.xml"
+            }
+          ]
+        }
       }
     }
   },

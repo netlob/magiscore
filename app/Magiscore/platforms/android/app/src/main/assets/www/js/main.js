@@ -6,6 +6,7 @@ var courseController = new CourseController(viewController)
 
 var sorted = {},
   person = JSON.parse(localStorage.getItem("person")),
+  account = JSON.parse(localStorage.getItem("account")),
   tokens = JSON.parse(localStorage.getItem("token")),
   courses = JSON.parse(localStorage.getItem("courses")),
   latest = JSON.parse(localStorage.getItem("latest")),
@@ -37,6 +38,7 @@ var snapper;
 //courses.splice(courses.indexOf(courseController.current()))
 
 function main(l) {
+  // alert(person.account.name)
   // if ($(window).width() <= 465) {
   snapper = new Snap({
     element: document.querySelector('#content-wrapper'),
@@ -470,10 +472,24 @@ function onDeviceReady() {
           m.getInfo()
             .then(p => {
               person = JSON.parse(localStorage.getItem("person"))
+              account = JSON.parse(localStorage.getItem("account"))
               if (p.id == person.id) {
                 localStorage.setItem("person", JSON.stringify(p))
                 main()
                 courseController.getLatestGrades()
+                if (account == null || !"name" in account) {
+                  m.getAccountInfo().then(a => {
+                    localStorage.setItem("account", JSON.stringify(a))
+                    if (a.id != account.id && account != null) {
+                      navigator.notification.confirm(
+                        "Er is een probleem met het inloggen waardoor je bent uitgelogd. Log opnieuw in.",
+                        confirmLogout,
+                        'Error',
+                        ['Oké']
+                      )
+                    }
+                  })
+                }
               } else {
                 navigator.notification.confirm(
                   "Het lijkt erop dat je met een ander account bent ingelogd zojuist. Wil je je opgeslagen cijfers behouden en weer verder gaan log dan in met het account waarmee je tijdens de setup hebt ingelogd. \n\nKlopt dit niet? Dan er is er een flink probleem met de communicatie met Magister wat betekend dat je opnieuw het login process zal moeten volgen. Druk dan op \"Uitloggen\"",

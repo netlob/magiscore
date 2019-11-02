@@ -173,9 +173,14 @@
           <div class="container-fluid"> -->
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button class="btn btn-link d-md-none bg-primary rounded-circle mr-1" onclick="snapper.toggle('left')"
+          <button class="btn btn-link d-md-none bg-primary rounded-circle vibrate mt-1" onclick="snapper.toggle('left')"
             aria-label="Toggle zijkant" id="buttonSidenavToggle">
             <i class="fa fa-bars" style="font-size: 1.1rem !important;"></i>
+          </button>
+          <button class="btn btn-link d-md-none bg-primary rounded-circle vibrate mt-1"
+            onclick="viewController.closeSettings()" aria-label="Sluit instellingen" id="buttonSidenavBack"
+            style="display: none;">
+            <i class="fa fa-arrow-left" style="font-size: 1.1rem !important;"></i>
           </button>
           <!-- <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
             <i class="fa fa-bars"></i>
@@ -195,12 +200,11 @@
 
           <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-none d-md-block" id="currentRender">Gemiddeld
           </h1>
-          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-block d-md-none text-center text-mobile ml-2"
-            id="currentRenderMobile">
+          <h1 class="ml-md-2 h3 mb-0 text-gray-800 d-block d-md-none text-mobile ml-2" id="currentRenderMobile">
             Gemiddeld</h1>
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto" id="topbar">
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <!-- <li class="nav-item dropdown no-arrow d-sm-none">
@@ -274,7 +278,7 @@
               </div>
             </li> -->
 
-            <li class="nav-item dropdown no-arrow mx-4 no-primary-hover">
+            <li class="nav-item dropdown no-arrow ml-1 no-primary-hover shadow-l-white">
               <a class="nav-link dropdown-toggle background-primary vibrate" id="yearDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <h9 class="mobile-clock text-gray-600" id="current-course-badge"></h9>
@@ -294,7 +298,7 @@
               </div>
             </li>
 
-            <li class="nav-item dropdown no-arrow mx-1 no-primary-hover grades-dropdown" id="messagesDrop">
+            <li class="nav-item dropdown no-arrow no-primary-hover grades-dropdown" id="messagesDrop">
               <a class="nav-link dropdown-toggle background-primary vibrate" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-clock fa-fw d-block d-md-none mobile-clock"></i>
@@ -380,11 +384,13 @@
                 onclick="viewController.darkTheme()">DONKER</a><a class="float-right menu-a vibrate"
                 onclick="viewController.lightTheme()">LICHT</a>
             </li>
-            <li class="list-group-item shadow mb-2">Profielfoto <a class="float-right menu-a ml-2 vibrate"
-                onclick="setProfilePic(true)"><i class="far fa-sync-alt fa-sm"></i></a><a
-                class="float-right menu-a ml-2 vibrate"
-                onclick="viewController.updateConfig({'smiley': false})">FOTO</a><a class="float-right menu-a vibrate"
-                onclick="viewController.updateConfig({'smiley': true})">SMILEY</a>
+            <li class="list-group-item shadow mb-2">Profielfoto
+              <a class="float-right menu-a ml-2 vibrate" onclick="setProfilePic(true)">
+                <i class="far fa-sync-alt fa-sm"></i>
+              </a>
+              <a class="float-right menu-a ml-2 vibrate"
+                onclick="viewController.updateConfig({'smiley': false})">FOTO</a>
+              <a class="float-right menu-a vibrate" onclick="viewController.updateConfig({'smiley': true})">SMILEY</a>
               <hr class="mt-2 mb-1">
               <span class="text-gray-500" style="font-size: 11px"><i class="far fa-info-circle fa-s"></i>
                 Is je schoolfoto niet zo goed gelukt? Dan kun je een coole smiley als profielfoto gebruiken! Druk op <i
@@ -795,8 +801,8 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; <a href="https://github.com/mamorgen/magbot-stat"
-                aria-label="Github pagina van Magiscore" style="color: #858796">Magiscore</a>
+            <span>Copyright &copy; <a href="https://magiscore.nl" aria-label="Github pagina van Magiscore"
+                style="color: #858796">Magiscore</a>
               <!-- - <a
                 href="https://netlob.app" aria-label="Github portfolio van de maker" style="color: #858796">Netlob</a>
               <a href="https://wikipedia.org/wiki/2018" aria-label="2018" style="color: #858796">2018</a>-<a
@@ -978,7 +984,7 @@
 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
       $("#overlay").hide()
-      errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
+      logConsole(`[ERROR] ${msg} line: ${lineNo}\n url: ${url}`)
       if ($("#mobilePersonInfo").text() == "Voornaam Achternaam") openBrowser(1)
       return false;
     }

@@ -1590,6 +1590,440 @@
                     "filename": "www/service-worker.js"
                 }
             ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2019-11-01 17:19:49",
+            "filesum": 34,
+            "codesum": 16025,
+            "commentsum": 1774,
+            "blanksum": 2981,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "www/.well-known/assetlinks.json"
+                },
+                {
+                    "blank": 16,
+                    "code": 99,
+                    "comment": 0,
+                    "filename": "www/404.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "www/CNAME"
+                },
+                {
+                    "blank": 25,
+                    "code": 153,
+                    "comment": 18,
+                    "filename": "www/coming-soon/custom.html"
+                },
+                {
+                    "blank": 34,
+                    "code": 231,
+                    "comment": 17,
+                    "filename": "www/coming-soon/index.html"
+                },
+                {
+                    "blank": 43,
+                    "code": 198,
+                    "comment": 11,
+                    "filename": "www/css/dark.css"
+                },
+                {
+                    "blank": 13,
+                    "code": 112,
+                    "comment": 42,
+                    "filename": "www/css/fonts.css"
+                },
+                {
+                    "blank": 2321,
+                    "code": 10999,
+                    "comment": 52,
+                    "filename": "www/css/light.css"
+                },
+                {
+                    "filename": "www/css/magistersymbols-webfont.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 115,
+                    "code": 407,
+                    "comment": 121,
+                    "filename": "www/css/main.css"
+                },
+                {
+                    "filename": "www/img/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "www/img/smiley.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 87,
+                    "code": 451,
+                    "comment": 489,
+                    "filename": "www/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 39,
+                    "filename": "www/js/classes/Class.js"
+                },
+                {
+                    "blank": 23,
+                    "code": 140,
+                    "comment": 107,
+                    "filename": "www/js/classes/Course.js"
+                },
+                {
+                    "blank": 19,
+                    "code": 77,
+                    "comment": 87,
+                    "filename": "www/js/classes/Grade.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 28,
+                    "filename": "www/js/classes/GradePeriod.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 55,
+                    "comment": 74,
+                    "filename": "www/js/classes/GradeType.js"
+                },
+                {
+                    "blank": 24,
+                    "code": 316,
+                    "comment": 48,
+                    "filename": "www/js/classes/Lesson.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 81,
+                    "comment": 40,
+                    "filename": "www/js/classes/Magister.js"
+                },
+                {
+                    "blank": 13,
+                    "code": 63,
+                    "comment": 77,
+                    "filename": "www/js/classes/Person.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 72,
+                    "comment": 16,
+                    "filename": "www/js/controllers/CourseController.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "www/js/controllers/LessonController.js"
+                },
+                {
+                    "blank": 81,
+                    "code": 1269,
+                    "comment": 273,
+                    "filename": "www/js/controllers/ViewController.js"
+                },
+                {
+                    "blank": 45,
+                    "code": 391,
+                    "comment": 25,
+                    "filename": "www/js/login.js"
+                },
+                {
+                    "blank": 47,
+                    "code": 363,
+                    "comment": 182,
+                    "filename": "www/js/main.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 153,
+                    "comment": 9,
+                    "filename": "www/js/refresh.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 1,
+                    "filename": "www/js/utils.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "www/LICENSE"
+                },
+                {
+                    "blank": 20,
+                    "code": 130,
+                    "comment": 15,
+                    "filename": "www/login/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "www/manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "www/manifest.webmanifest"
+                },
+                {
+                    "blank": 3,
+                    "code": 5,
+                    "comment": 2,
+                    "filename": "www/README.md"
+                },
+                {
+                    "blank": 11,
+                    "code": 111,
+                    "comment": 1,
+                    "filename": "www/service-worker.js"
+                }
+            ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2019-11-01 17:34:37",
+            "filesum": 34,
+            "codesum": 16025,
+            "commentsum": 1774,
+            "blanksum": 2981,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "www/.well-known/assetlinks.json"
+                },
+                {
+                    "blank": 16,
+                    "code": 99,
+                    "comment": 0,
+                    "filename": "www/404.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "www/CNAME"
+                },
+                {
+                    "blank": 25,
+                    "code": 153,
+                    "comment": 18,
+                    "filename": "www/coming-soon/custom.html"
+                },
+                {
+                    "blank": 34,
+                    "code": 231,
+                    "comment": 17,
+                    "filename": "www/coming-soon/index.html"
+                },
+                {
+                    "blank": 43,
+                    "code": 198,
+                    "comment": 11,
+                    "filename": "www/css/dark.css"
+                },
+                {
+                    "blank": 13,
+                    "code": 112,
+                    "comment": 42,
+                    "filename": "www/css/fonts.css"
+                },
+                {
+                    "blank": 2321,
+                    "code": 10999,
+                    "comment": 52,
+                    "filename": "www/css/light.css"
+                },
+                {
+                    "filename": "www/css/magistersymbols-webfont.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 115,
+                    "code": 407,
+                    "comment": 121,
+                    "filename": "www/css/main.css"
+                },
+                {
+                    "filename": "www/img/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "www/img/smiley.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 87,
+                    "code": 451,
+                    "comment": 489,
+                    "filename": "www/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 39,
+                    "filename": "www/js/classes/Class.js"
+                },
+                {
+                    "blank": 23,
+                    "code": 140,
+                    "comment": 107,
+                    "filename": "www/js/classes/Course.js"
+                },
+                {
+                    "blank": 19,
+                    "code": 77,
+                    "comment": 87,
+                    "filename": "www/js/classes/Grade.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 28,
+                    "filename": "www/js/classes/GradePeriod.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 55,
+                    "comment": 74,
+                    "filename": "www/js/classes/GradeType.js"
+                },
+                {
+                    "blank": 24,
+                    "code": 316,
+                    "comment": 48,
+                    "filename": "www/js/classes/Lesson.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 81,
+                    "comment": 40,
+                    "filename": "www/js/classes/Magister.js"
+                },
+                {
+                    "blank": 13,
+                    "code": 63,
+                    "comment": 77,
+                    "filename": "www/js/classes/Person.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 72,
+                    "comment": 16,
+                    "filename": "www/js/controllers/CourseController.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "www/js/controllers/LessonController.js"
+                },
+                {
+                    "blank": 81,
+                    "code": 1269,
+                    "comment": 273,
+                    "filename": "www/js/controllers/ViewController.js"
+                },
+                {
+                    "blank": 45,
+                    "code": 391,
+                    "comment": 25,
+                    "filename": "www/js/login.js"
+                },
+                {
+                    "blank": 47,
+                    "code": 363,
+                    "comment": 182,
+                    "filename": "www/js/main.js"
+                },
+                {
+                    "blank": 15,
+                    "code": 153,
+                    "comment": 9,
+                    "filename": "www/js/refresh.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 1,
+                    "filename": "www/js/utils.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "www/LICENSE"
+                },
+                {
+                    "blank": 20,
+                    "code": 130,
+                    "comment": 15,
+                    "filename": "www/login/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "www/manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "www/manifest.webmanifest"
+                },
+                {
+                    "blank": 3,
+                    "code": 5,
+                    "comment": 2,
+                    "filename": "www/README.md"
+                },
+                {
+                    "blank": 11,
+                    "code": 111,
+                    "comment": 1,
+                    "filename": "www/service-worker.js"
+                }
+            ]
         }
     ]
 }

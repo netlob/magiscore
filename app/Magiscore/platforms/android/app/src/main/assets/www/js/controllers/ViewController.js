@@ -144,7 +144,11 @@ class ViewController {
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
     if (config["devMode"] === true) $("#toggle-terminal").show()
     if (config["devMode"] === false) $("#toggle-terminal").hide()
-    if ("smiley" in config) setProfilePic()
+    if ("smiley" in config) {
+      setProfilePic()
+      if (this.config.smiley) this.toast("Profielfoto vervangen met een smiley", 2000, false)
+      if (!this.config.smiley) this.toast("Profielfoto veranderd naar originele foto", 2000, false)
+    }
   }
 
   setConfig() {
@@ -184,13 +188,15 @@ class ViewController {
     );
     if (duration) {
       setTimeout(function () {
-        // $(".snackbar").each((i, obj) => {
-        //   $(obj).animate({
-        //       "bottom": ($(window).height() - $(obj).offset().top - $(obj).height()) - 65
-        //     },
-        //     "fast",
-        //     function () {
-        //       if ($(obj).attr('id') == `#snackbar-${snackId}`) {
+        $(".snackbar").each((i, obj) => {
+          if ($(obj).attr("id") != $(`#snackbar-${snackId}`).attr("id")) {
+            $(obj).animate({
+                "bottom": "-=" + ($(`#snackbar-${snackId}`).height() * 2)
+              },
+              "fast",
+              function () {})
+          }
+        })
         $(`#snackbar-${snackId}`).animate({
             "bottom": "-200px"
           },
@@ -199,18 +205,6 @@ class ViewController {
             $(`#snackbar-${snackId}`).remove();
           }
         );
-        //       }
-        //     }
-        //   );
-        // })
-        //   $(`#snackbar-${snackId}`).animate({
-        //       "bottom": "-200px"
-        //     },
-        //     "slow",
-        //     function () {
-        //       $(`#snackbar-${snackId}`).remove();
-        //     }
-        //   );
       }, duration);
     }
     return snackId
@@ -222,6 +216,7 @@ class ViewController {
 
   initTheme() {
     var theme = this.config.darkTheme
+    // var theme = window.matchMedia('(prefers-color-scheme:dark)').matches;
     StatusBar.overlaysWebView(false);
     if (theme) {
       StatusBar.backgroundColorByHexString("#2c2d30");
@@ -276,9 +271,9 @@ class ViewController {
   }
 
   lightTheme() {
-    StatusBar.overlaysWebView(false);
-    StatusBar.backgroundColorByHexString("#ffffff");
-    StatusBar.styleDefault();
+    window.StatusBar.overlaysWebView(false);
+    window.StatusBar.styleDefault();
+    window.StatusBar.backgroundColorByHexString("#ffffff");
     $("body").attr("theme", "light")
     this.updateConfig({
       "darkTheme": false,
@@ -289,9 +284,9 @@ class ViewController {
   }
 
   darkTheme() {
-    StatusBar.overlaysWebView(false);
-    StatusBar.backgroundColorByHexString("#2c2d30");
-    StatusBar.styleLightContent();
+    window.StatusBar.overlaysWebView(false);
+    window.StatusBar.backgroundColorByHexString("#2c2d30");
+    window.StatusBar.styleLightContent();
     $("body").attr("theme", "dark")
     this.updateConfig({
       "darkTheme": true,
@@ -403,10 +398,12 @@ class ViewController {
 
   openSettings() {
     $("#buttonSidenavToggle").hide()
+    $("#buttonSidenavBack").show()
     $("#general-wrapper").hide();
+    $("#topbar").hide();
     $("#lesson-wrapper").hide();
-    $("#currentRender").html('<span onclick="viewController.closeSettings()"><i class="fa fa-arrow-left fa-sm mr-3 vibrate"></i>Instellingen</span>');
-    $("#currentRenderMobile").html('<span onclick="viewController.closeSettings()"><i class="fa fa-arrow-left fa-sm mr-3 vibrate" onclick="viewController.closeSettings()"></i>Instellingen</span>');
+    $("#currentRender").html('<span onclick="viewController.closeSettings()">Instellingen</span>');
+    $("#currentRenderMobile").html('<span onclick="viewController.closeSettings()">Instellingen</span>');
     // alert(JSON.stringify(this.config))
     $("#passed-input").attr("placeholder", this.config.passed);
     $("#passed-input").val("");
@@ -419,6 +416,8 @@ class ViewController {
 
   closeSettings() {
     $("#buttonSidenavToggle").show()
+    $("#buttonSidenavBack").hide()
+    $("#topbar").show();
     this.render("general")
     this.settingsOpen = false
     vibrate(15, false)
@@ -477,6 +476,7 @@ function setProfilePic(forceRefresh) {
           try {
             logConsole("[INFO]   Storage of image success");
             localStorage.setItem("profilepic", result);
+            if (forceRefresh) viewController.toast("Profielfoto ververst", 2000, false)
           } catch (e) {
             errorConsole("[ERROR] Storage failed: " + e);
             profilepic.setAttribute("src", "./img/smiley.png");

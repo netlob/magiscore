@@ -301,9 +301,9 @@ async function validateLogin(code, codeVerifier) {
         var m = new Magister(tenant, response.access_token)
         // logConsole(JSON.stringify(m))
         m.getInfo()
-            .then(async (person) => {
+            .then(async () => {
                 // alert(JSON.stringify(person) + Object.entries(localStorage).length)
-                if (person.isParent) {
+                if (m.person.isParent) {
                     localStorage.clear()
                     navigator.notification.confirm(
                         "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een leerlingaccount en probeer het opnieuw.",
@@ -312,11 +312,12 @@ async function validateLogin(code, codeVerifier) {
                         ['Opnieuw inloggen', 'Annuleer']
                     )
                 }
-                logConsole(`Succesvol leerlingid (${person.id}) opgehaald!`)
+                logConsole(`Succesvol leerlingid (${m.person.id}) opgehaald!`)
+                // m.getAccountInfo().then(() => logConsole(`Succesvol accountinfo (${m.account.id}) opgehaald!`), localStorage.setItem("account", JSON.stringify(m.account)))
                 addLoader(3)
                 m.getCourses()
                     .then(async (courses) => {
-                        localStorage.setItem("person", JSON.stringify(person));
+                        localStorage.setItem("person", JSON.stringify(m.person));
                         all_courses = courses
                         logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`)
                         addLoader(7)
