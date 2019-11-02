@@ -8,6 +8,15 @@ include_in_header: true
 <br>
 
 ### `Laatste versie`
+# **Versie 1.1.4.2.0**
+#### Wat is er nieuw
+- Crash gefixt zodra je via Magister alle apps had uitgelogd
+- UI updates aan o.a. de naam van het vak die een aantal knoppen opzij duwde als het vak een erg lange naam had
+
+- Bug gefixt waarbij gebruikers niet konden inloggen
+En veel bug fixes... :)
+
+
 # **Versie 1.0.9**
 #### Wat is er nieuw
 *Crash gefixt waardoor sommige gebruikers niet konden inloggen*
