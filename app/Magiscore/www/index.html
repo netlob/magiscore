@@ -963,17 +963,17 @@
   </div> -->
 
   <script>
-    // if (localStorage.getItem("loginSuccess") != "true") {
-    //   // alert("loginSuccess = " + localStorage.getItem("loginSucess"))
-    //   localStorage.clear()
-    //   window.location = './login/index.html#failedlogin'
-    // }
+    if (localStorage.getItem("loginSuccess") != "true") {
+      // alert("loginSuccess = " + localStorage.getItem("loginSucess"))
+      localStorage.clear()
+      window.location = './login/index.html#failedlogin'
+    }
 
-    // if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
-    //     "courses") === null) {
-    //   localStorage.clear()
-    //   window.location = './login/index.html#notokens'
-    // }
+    if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
+        "courses") === null) {
+      localStorage.clear()
+      window.location = './login/index.html#notokens'
+    }
 
     function logConsole(msg) {
       if (typeof msg != "string") return
