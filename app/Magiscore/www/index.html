@@ -16,6 +16,9 @@
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet"> -->
 
+  <!-- Bootstrap tour -->
+  <!-- <link href="css/bootstrap-tour-standalone.min.css" type="text/css" rel="stylesheet"> -->
+
   <!-- Light theme -->
   <link href="css/light.css" type="text/css" rel="stylesheet">
 
@@ -438,6 +441,9 @@
             </li>
             <li class="list-group-item shadow mb-2">E-Mail<a class="float-right menu-a vibrate"
                 href="mailto:info@magiscore.nl?subject=Feedback Magiscore Android" target="_system">E-MAIL</a>
+            </li>
+            <li class="list-group-item shadow mb-2">Discord<a class="float-right menu-a vibrate"
+                onclick="cordova.InAppBrowser.open('https://discord.gg/9ASpSmf', '_system');">DISCORD</a>
             </li>
             <li class="list-group-item shadow mb-2">GitHub<a class="float-right menu-a vibrate"
                 onclick="cordova.InAppBrowser.open('https://github.com/mamorgen/magiscore', '_system');">GITHUB</a>
@@ -957,17 +963,17 @@
   </div> -->
 
   <script>
-    if (localStorage.getItem("loginSuccess") != "true") {
-      // alert("loginSuccess = " + localStorage.getItem("loginSucess"))
-      localStorage.clear()
-      window.location = './login/index.html#failedlogin'
-    }
+    // if (localStorage.getItem("loginSuccess") != "true") {
+    //   // alert("loginSuccess = " + localStorage.getItem("loginSucess"))
+    //   localStorage.clear()
+    //   window.location = './login/index.html#failedlogin'
+    // }
 
-    if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
-        "courses") === null) {
-      localStorage.clear()
-      window.location = './login/index.html#notokens'
-    }
+    // if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
+    //     "courses") === null) {
+    //   localStorage.clear()
+    //   window.location = './login/index.html#notokens'
+    // }
 
     function logConsole(msg) {
       if (typeof msg != "string") return
@@ -1008,6 +1014,8 @@
   <script src="js/deps/snap.js"></script>
   <script src="js/deps/fastclick.js"></script>
   <script src="js/deps/crypto-js.min.js"></script>
+  <!-- <script src="js/deps/bootstrap-tour-standalone.min.js"></script> -->
+  <!-- <script src="js/deps/bootstrap-tour.min.js"></script> -->
 
   <!-- Page scripts and magister classes -->
   <script src="js/utils.js"></script>
@@ -1023,6 +1031,7 @@
   <script src="js/controllers/CourseController.js"></script>
   <script src="js/controllers/LessonController.js"></script>
   <script src="js/refresh.js"></script>
+  <!-- <script src="js/tour.js"></script> -->
   <script src="js/main.js"></script>
 </body>
 
