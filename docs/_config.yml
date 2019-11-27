@@ -1,5 +1,5 @@
 #page title
-page_title                                : Magiscore - Magister statistiek                                          # Automatically populates with app name if not set and if iOS app ID is set. Otherwise enter manually.
+page_title                                : Magiscore - Cijfer statistiek                                          # Automatically populates with app name if not set and if iOS app ID is set. Otherwise enter manually.
 
 # App Info
 ios_app_id                                :                                 # Required. Enter iOS app ID to automatically populate name, price and icons (e.g. 718043190).
@@ -12,7 +12,7 @@ presskit_download_link                    : https://github.com/mamorgen/magiscor
 app_icon                                  : assets/appicon.png                      # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
 app_name                                  : Magiscore                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_price                                 : Gratis                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
-app_description                           : Magister statistiek.
+app_description                           : Cijfer statistiek.
 
 enable_smart_app_banner                   : true                                      # Set to true to show a smart app banner at top of page on mobile devices.
 
@@ -46,7 +46,7 @@ features                                  :
   #   description                           : Preview app video on the iPhone device simply by placing your video files in the videos folder.
   #   fontawesome_icon_name                 : play-circle
 
-  - title                                 : Sync met magister
+  - title                                 : Synchroniseer
     description                           : In minder dan een seconde kun je checken of je nieuwe cijfers hebt, en heb je deze, dan zullen ze direct worden toegevoegd aan de statistieken en berekeningen
     fontawesome_icon_name                 : sync
 
