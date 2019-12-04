@@ -58,7 +58,7 @@ function onDeviceReady() {
         );
     }
     navigator.notification.confirm(
-        'Magiscore is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAlle gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoordat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app niet goed werkt. In dat geval kan je voor support een mail sturen naar info@magiscore.nl. Ga voor de gehele privacyverklaring naar https://magiscore.nl/privacy. Door in te loggen ga je akkoord met die én Schoolmasters verklaring.',
+        'Magiscore is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAlle gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoordat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app niet goed werkt. In dat geval kan je voor support een mail sturen naar info@magiscore.nl. Ga voor de gehele privacyverklaring naar https://magiscore.nl/privacy, en voor de gebruiksvoorwaarden (EULA) naar https://magiscore.nl/terms. Door in te loggen ga je akkoord met die twee én Schoolmaster\'s verklaring.',
         openPrivacy,
         'Magiscore informatie',
         ['Oké', 'Open verklaring']
@@ -375,6 +375,7 @@ async function validateLogin(code, codeVerifier) {
                                         }
                                     } catch (err) {
                                         errorConsole(err)
+                                        continue
                                     }
                                 }
                                 // var chunkedGrades = all_grades.chunk(6)

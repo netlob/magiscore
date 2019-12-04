@@ -348,14 +348,13 @@ async function syncGrades() {
               var extra = result.map(x => {
                 return `
                   <br>
-                  <b>${newGrades.filter(y => x == y.class.description).length}</b> cijfers voor ${x}
+                  <span class="grade-small"><b>${newGrades.filter(y => x == y.class.description).length}</b> cijfers voor ${x.trim()}</span>
                 `
               })
-              extra[0] = extra[0].replace("<br>", "")
               viewController.toast(`
-                <h4 class="mb-0">${newGrades.length} nieuwe cijfers gesycned!</h4>
+                <b class="mb-0">${newGrades.length} nieuwe cijfers gesycned!</b>
                 ${extra}
-              `, 6000, false)
+              `, 7000, false, true)
               // courseController.remove(currentCourse)
               // courseController.add(currentCourse)
               var coursesStorage = JSON.parse(localStorage.getItem("courses"))
