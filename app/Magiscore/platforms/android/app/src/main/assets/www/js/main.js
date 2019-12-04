@@ -302,7 +302,7 @@ async function syncGrades() {
       })
       logConsole("[INFO]   Grades to fill: " + newGrades.length)
       if (newGrades.length == 0) {
-        viewController.toast("Geen nieuwe cijfers gevonden...", 2000, false)
+        viewController.toast("Geen nieuwe cijfers gevonden...", 3000, false)
         viewController.overlay("hide")
         resolve(newGrades)
       } else {
@@ -335,7 +335,27 @@ async function syncGrades() {
                   $(`#snackbar-${snack}`).remove();
                 }
               );
-              viewController.toast(`${newGrades.length} nieuwe cijfers gesycned!`, 2000, false)
+              // var result = [...new Set(newGrades.map(x => x.class.description))]
+              const result = [];
+              const map = new Map();
+              for (const item of newGrades) {
+                if (!map.has(item.class.description)) {
+                  map.set(item.class.description, true);
+                  result.push(item.class.description);
+                }
+              }
+
+              var extra = result.map(x => {
+                return `
+                  <br>
+                  <b>${newGrades.filter(y => x == y.class.description).length}</b> cijfers voor ${x}
+                `
+              })
+              extra[0] = extra[0].replace("<br>", "")
+              viewController.toast(`
+                <h4 class="mb-0">${newGrades.length} nieuwe cijfers gesycned!</h4>
+                ${extra}
+              `, 6000, false)
               // courseController.remove(currentCourse)
               // courseController.add(currentCourse)
               var coursesStorage = JSON.parse(localStorage.getItem("courses"))
@@ -343,6 +363,14 @@ async function syncGrades() {
                 id: currentCourse.id
               })
               currentCourse._magister = undefined
+              courseController.allGrades = []
+              courseController.courses.forEach(course => {
+                course.course.grades.forEach(grade => {
+                  courseController.allGrades.push(grade)
+                  logConsole("[INFO]   " + grade.grade)
+                })
+              })
+              _.sortBy(courseController.allGrades, 'dateFilledIn')
               coursesStorage[i] = currentCourse
               localStorage.setItem("courses", JSON.stringify(coursesStorage))
               logConsole("[INFO]   Saved new graden in courses")

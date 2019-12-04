@@ -37,10 +37,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="Description" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
   <meta name="Tags" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
-  <link rel="icon" sizes="192x192" href="./img/icons/icon-128x128.png">
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="apple-touch-icon" href="./img/icons/icon-128x128.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="./img/icons/icon-152x152.png">
 </head>
 
 <body id="page-top">
@@ -710,7 +706,8 @@
                   <h6 class="m-0 font-weight-bold text-primary">Alle cijfers</h6>
 
                 </div>
-                <div class="card-body pt-0" id="generalGradesTable">
+                <div class="card-body pt-0">
+                  <div class="p-0" id="generalGradesTable"></div>
                 </div>
               </div>
             </div>
@@ -1017,7 +1014,7 @@
   <!-- <script src="js/deps/bootstrap-tour-standalone.min.js"></script> -->
   <!-- <script src="js/deps/bootstrap-tour.min.js"></script> -->
 
-  <!-- Page scripts and magister classes -->
+  <!-- Page scripts and classes -->
   <script src="js/utils.js"></script>
   <script src="js/classes/Class.js"></script>
   <script src="js/classes/GradeType.js"></script>
@@ -1033,6 +1030,15 @@
   <script src="js/refresh.js"></script>
   <!-- <script src="js/tour.js"></script> -->
   <script src="js/main.js"></script>
+
+  <!-- <script>
+    jQuery.ajaxPrefilter(function (options) {
+      if (options.crossDomain) {
+        options.url = 'http://78.47.72.123:420/' + options.url;
+        logConsole(options.url)
+      }
+    });
+  </script> -->
 </body>
 
 </html>

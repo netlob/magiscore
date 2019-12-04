@@ -1102,7 +1102,7 @@ function setTableData(lesson) {
     table = $("#cijfersTable");
     grades = lesson.grades;
   }
-  _.sortBy(grades, 'dateFilledIn')
+  _.sortBy(grades, ['dateFilledIn', 'description', 'weight'])
   table.empty()
   if (grades.length == 0) {
     table.empty().append(`<h6 class="percentageGrades text-center">${lesson = "general" ? "Je hebt nog geen cijfers dit jaar" : "Geen cijfers voor dit vak"}...</h6>`)

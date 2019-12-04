@@ -42,7 +42,7 @@ class Magister {
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}/api/account?noCache=0`,
+                    "url": `https://${this.tenant}/api/account?nocache=${Date.parse(new Date())}`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
@@ -90,7 +90,7 @@ class Magister {
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}/api/sessions/current?noCache=0`,
+                    "url": `https://${this.tenant}/api/sessions/current?nocache=${Date.parse(new Date())}`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token
@@ -114,7 +114,7 @@ class Magister {
                             "dataType": "json",
                             "async": true,
                             "crossDomain": true,
-                            "url": `https://${this.tenant}${res.links.account.href}?noCache=0`,
+                            "url": `https://${this.tenant}${res.links.account.href}?nocache=${Date.parse(new Date())}`,
                             "method": "GET",
                             "headers": {
                                 "Authorization": "Bearer " + this.token
@@ -156,7 +156,7 @@ class Magister {
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
-                    "url": `https://${this.tenant}/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false`,
+                    "url": `https://${this.tenant}/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(new Date())}`,
                     "method": "GET",
                     "headers": {
                         "Authorization": "Bearer " + this.token

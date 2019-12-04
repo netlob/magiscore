@@ -77,7 +77,7 @@ function openBrowser(b) {
     var challenge = base64URL(generateCodeChallenge(verifier));
     var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&acr_values=tenant:${school}`
     account == null ? url += `&prompt=select_account` : url += `&prompt=login&login_hint=${account.name}`
-    popup = window.cordova.InAppBrowser.open(url, '_blank', 'location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,closebuttoncolor=#eeeeee');
+    popup = window.cordova.InAppBrowser.open(url, '_blank', 'location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,closebuttoncolor=#eeeeee,zoom=no');
     popup.insertCSS({
         code: "#username_options > a { display: none !important }"
     })

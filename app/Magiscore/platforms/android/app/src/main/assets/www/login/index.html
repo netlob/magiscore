@@ -91,7 +91,7 @@
               <hr class="mb-0">
               <span class="text-gray-500 mt-0" style="font-size: 12px"><i
                   class="far fa-info-circle fa-s display-inline-block mr-1 ml-2 mb-2 mt-3"></i>
-                Je cijfers worden nu opgehaald bij Magister. Dit duurt ongeveer een halve minuut per leerjaar. <br>
+                Je cijfers worden nu opgehaald. Dit duurt ongeveer een halve minuut per leerjaar. <br>
                 Belangrijk is dat je de app open houd en je telefoon aan. Je scherm zal niet uit gaan tijdens het
                 ophalen van je cijfers.
               </span>
@@ -121,8 +121,13 @@
   </div>
 
   <script>
-    function logConsole(err) {
-      $("#loader pre").prepend(`<small class="text-info">${err}</small>\n`)
+    function logConsole(msg) {
+      if (typeof msg != "string") return
+      if (msg.substring(0, 7) == "[ERROR]") $("#loader pre").prepend(`<small class="text-danger">${msg}</small>\n`)
+      else if (msg.substring(0, 7) == "[DEBUG]") $("#loader pre").prepend(
+        `<small class="text-warning">${msg}</small>\n`)
+      else if (msg.substring(0, 6) == "[INFO]") $("#loader pre").prepend(`<small class="text-info">${msg}</small>\n`)
+      else $("#loader pre").prepend(`<small>${msg}</small>\n`)
     }
 
     function errorConsole(err) {

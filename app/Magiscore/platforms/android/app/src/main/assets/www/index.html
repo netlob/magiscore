@@ -16,6 +16,9 @@
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet"> -->
 
+  <!-- Bootstrap tour -->
+  <!-- <link href="css/bootstrap-tour-standalone.min.css" type="text/css" rel="stylesheet"> -->
+
   <!-- Light theme -->
   <link href="css/light.css" type="text/css" rel="stylesheet">
 
@@ -34,10 +37,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="Description" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
   <meta name="Tags" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
-  <link rel="icon" sizes="192x192" href="./img/icons/icon-128x128.png">
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="apple-touch-icon" href="./img/icons/icon-128x128.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="./img/icons/icon-152x152.png">
 </head>
 
 <body id="page-top">
@@ -439,6 +438,9 @@
             <li class="list-group-item shadow mb-2">E-Mail<a class="float-right menu-a vibrate"
                 href="mailto:info@magiscore.nl?subject=Feedback Magiscore Android" target="_system">E-MAIL</a>
             </li>
+            <li class="list-group-item shadow mb-2">Discord<a class="float-right menu-a vibrate"
+                onclick="cordova.InAppBrowser.open('https://discord.gg/rhWWrAw', '_system');">DISCORD</a>
+            </li>
             <li class="list-group-item shadow mb-2">GitHub<a class="float-right menu-a vibrate"
                 onclick="cordova.InAppBrowser.open('https://github.com/mamorgen/magiscore', '_system');">GITHUB</a>
             </li>
@@ -704,7 +706,8 @@
                   <h6 class="m-0 font-weight-bold text-primary">Alle cijfers</h6>
 
                 </div>
-                <div class="card-body pt-0" id="generalGradesTable">
+                <div class="card-body pt-0">
+                  <div class="p-0" id="generalGradesTable"></div>
                 </div>
               </div>
             </div>
@@ -1008,8 +1011,10 @@
   <script src="js/deps/snap.js"></script>
   <script src="js/deps/fastclick.js"></script>
   <script src="js/deps/crypto-js.min.js"></script>
+  <!-- <script src="js/deps/bootstrap-tour-standalone.min.js"></script> -->
+  <!-- <script src="js/deps/bootstrap-tour.min.js"></script> -->
 
-  <!-- Page scripts and magister classes -->
+  <!-- Page scripts and classes -->
   <script src="js/utils.js"></script>
   <script src="js/classes/Class.js"></script>
   <script src="js/classes/GradeType.js"></script>
@@ -1023,7 +1028,17 @@
   <script src="js/controllers/CourseController.js"></script>
   <script src="js/controllers/LessonController.js"></script>
   <script src="js/refresh.js"></script>
+  <!-- <script src="js/tour.js"></script> -->
   <script src="js/main.js"></script>
+
+  <!-- <script>
+    jQuery.ajaxPrefilter(function (options) {
+      if (options.crossDomain) {
+        options.url = 'http://78.47.72.123:420/' + options.url;
+        logConsole(options.url)
+      }
+    });
+  </script> -->
 </body>
 
 </html>

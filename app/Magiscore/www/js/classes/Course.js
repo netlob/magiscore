@@ -111,7 +111,7 @@ class Course {
     getClasses() {
         return new Promise((resolve, reject) => {
             // logConsole("person id " + this._magister.person.id)
-            const url = `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/vakken`
+            const url = `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/vakken?nocache=${Date.parse(new Date())}`
             $.ajax({
                     "dataType": "json",
                     "async": true,
@@ -155,8 +155,8 @@ class Course {
             var date = this.current() ? formatDate(new Date()) : this.raw.Einde
             const urlPrefix = `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/cijfers`
             const url = latest ?
-                `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0` :
-                `${urlPrefix}/cijferoverzichtvooraanmelding?actievePerioden=false&alleenBerekendeKolommen=false&alleenPTAKolommen=false&peildatum=${date}`
+                `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/cijfers/laatste?top=50&skip=0&nocache=${Date.parse(new Date())}` :
+                `${urlPrefix}/cijferoverzichtvooraanmelding?actievePerioden=false&alleenBerekendeKolommen=false&alleenPTAKolommen=false&peildatum=${date}&nocache=${Date.parse(new Date())}`
             // logConsole("URL: " + url)
 
 

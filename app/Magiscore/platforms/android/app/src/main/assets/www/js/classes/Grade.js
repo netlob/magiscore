@@ -148,7 +148,8 @@ class Grade {
                     "error": (jqXHR) => {
                         this._filling = false
                         if (jqXHR.status == 429) {
-                            fillTimeout(25) //parseInt(JSON.parse(jqXHR.responseText).SecondsLeft) + 2
+                            var secs = jqXHR.responseText.isJSON() && JSON.parse(jqXHR.responseText).SecondsLeft > 0 ? parseInt(JSON.parse(jqXHR.responseText).SecondsLeft) + 2 : 30000
+                            fillTimeout(secs) //parseInt(JSON.parse(jqXHR.responseText).SecondsLeft) + 2
                             this._filling = false
                             logConsole(`[ERROR] Grade fill timeout (${this.id})`)
                             setTimeout(() => {
@@ -157,7 +158,7 @@ class Grade {
                                         hideTimeout()
                                         resolve(grade)
                                     })
-                            }, 25000);
+                            }, secs);
                         } else {
                             reject(jqXHR.status)
                         }
@@ -179,4 +180,15 @@ class Grade {
         })
 
     }
+}
+/**
+ * @private
+ */
+String.prototype.isJSON = function (str) {
+    try {
+        JSON.parse(this)
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
