@@ -17,7 +17,7 @@ This EULA agreement governs your acquisition and use of our <span class="app_nam
 
 Please read this EULA agreement carefully before completing the installation process and using the <span class="app_name">Magiscore</span> software. It provides a license to use the <span class="app_name">Magiscore</span> software and contains warranty information and liability disclaimers.
 
-If you register for a free trial of the <span class="app_name">Magiscore</span> software, this EULA agreement will also govern that trial. By clicking "accept" or installing and/or using the <span class="app_name">Magiscore</span> software, you are confirming your acceptance of the Software and agreeing to become bound by the terms of this EULA agreement.
+By clicking "accept" or installing and/or using the <span class="app_name">Magiscore</span> software, you are confirming your acceptance of the Software and agreeing to become bound by the terms of this EULA agreement.
 
 If you are entering into this EULA agreement on behalf of a company or other legal entity, you represent that you have the authority to bind such entity and its affiliates to these terms and conditions. If you do not have such authority or if you do not agree with the terms and conditions of this EULA agreement, do not install or use the Software, and you must not accept this EULA agreement.
 
@@ -51,4 +51,7 @@ It will also terminate immediately if you fail to comply with any term of this E
 
 ### Governing Law
 
-This EULA agreement, and any dispute arising out of or in connection with this EULA agreement, shall be governed by and construed in accordance with the laws of <span class="country">af</span>.
+This EULA agreement, and any dispute arising out of or in connection with this EULA agreement, shall be governed by and construed in accordance with the laws of <span class="country">NL</span>.
+
+### Other EULA's
+By using this software you agree to <a href="https://magister.nl/gebruiksvoorwaarden" target="_blank">Magister's terms of use</a>.
