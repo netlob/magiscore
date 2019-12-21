@@ -130,20 +130,22 @@ class Grade {
      * @returns {Promise<Grade>}
      */
     fill(logId) {
-        if (logId) logConsole(`[INFO]  Resuming grade (${this.id})`)
+        if (logId) logConsole(`[INFO]  Resuming grade            (${this.id})`)
         this._filling = true;
         return new Promise((resolve, reject) => {
             if (this._filled) {
                 resolve(this)
             }
             $.ajax({
+                    "cache": false,
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
                     "url": this._fillUrl,
                     "method": "GET",
                     "headers": {
-                        "Authorization": "Bearer " + this._magister.token
+                        "Authorization": "Bearer " + this._magister.token,
+                        "noCache": (new Date()).getTime()
                     },
                     "error": (jqXHR) => {
                         this._filling = false
@@ -165,17 +167,21 @@ class Grade {
                     }
                 })
                 .done((res) => {
-                    this.testDate = parseDate(res.WerkinformatieDatumIngevoerd)
-                    this.description = _.trim(res.WerkInformatieOmschrijving || res.KolomOmschrijving)
-                    this.weight = Number.parseInt(res.Weging, 10) || 0
+                    try {
+                        this.testDate = parseDate(res.WerkinformatieDatumIngevoerd)
+                        this.description = _.trim(res.WerkInformatieOmschrijving || res.KolomOmschrijving)
+                        this.weight = Number.parseInt(res.Weging, 10) || 0
 
-                    this.type["level"] = res.KolomNiveau
-                    this.type["description"] = _.trim(res.KolomOmschrijving)
+                        this.type["level"] = res.KolomNiveau
+                        this.type["description"] = _.trim(res.KolomOmschrijving)
 
-                    this._filled = true
-                    if (logId) logConsole(`[INFO]  Grade succesfuly refilled (${this.id})`)
-                    resolve(this)
-                    return this
+                        this._filled = true
+                        if (logId) logConsole(`[INFO]  Grade succesfuly refilled (${this.id})`)
+                        resolve(this)
+                        return this
+                    } catch (e) {
+                        reject(e)
+                    }
                 })
         })
 

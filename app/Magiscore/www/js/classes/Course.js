@@ -113,13 +113,15 @@ class Course {
             // logConsole("person id " + this._magister.person.id)
             const url = `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/vakken?nocache=${Date.parse(new Date())}`
             $.ajax({
+                    "cache": false,
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
                     "url": url,
                     "method": "GET",
                     "headers": {
-                        "Authorization": "Bearer " + this._magister.token
+                        "Authorization": "Bearer " + this._magister.token,
+                        "noCache": (new Date()).getTime()
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
                         if (XMLHttpRequest.readyState == 4) {
@@ -161,13 +163,15 @@ class Course {
 
 
             $.ajax({
+                    "cache": false,
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
                     "url": url,
                     "method": "GET",
                     "headers": {
-                        "Authorization": "Bearer " + this._magister.token
+                        "Authorization": "Bearer " + this._magister.token,
+                        "noCache": (new Date()).getTime()
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
                         // alert("error: " + XMLHttpRequest.statusText)
@@ -188,7 +192,10 @@ class Course {
                 .done((res) => {
                     var grades = res.Items || res.items
                     grades = _.reject(grades, raw => raw.CijferId === 0)
-                    grades = grades.map(raw => {
+                    grades = grades.filter(raw => {
+                        if (raw.CijferKolom && raw.CijferKolom.Id > 0 && raw.CijferKolom.KolomNaam && raw.CijferKolom.KolomNummer) return true
+                        else return false
+                    }).map(raw => {
                         const grade = new Grade(this._magister, raw, this.id)
                         grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${_.get(raw, 'CijferKolom.Id')}`
                         raw = grade

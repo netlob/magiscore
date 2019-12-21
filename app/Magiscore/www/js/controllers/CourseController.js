@@ -60,13 +60,15 @@ class CourseController {
             const url = `https://${school}/api/personen/${person.id}/cijfers/laatste?top=50&skip=0`
             // logConsole(url)
             $.ajax({
+                    "cache": false,
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
                     "url": url,
                     "method": "GET",
                     "headers": {
-                        "Authorization": "Bearer " + tokens.access_token
+                        "Authorization": "Bearer " + tokens.access_token,
+                        "noCache": (new Date()).getTime()
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
                         // alert(XMLHttpRequest.statusText)
@@ -87,6 +89,7 @@ class CourseController {
                     // grades = _.reject(grades, raw => raw.CijferId === 0)
                     this.latestGrades = grades
                     viewController.setLatestGrades(this.latestGrades, open)
+                    viewController.overlay("hide")
                     resolve(this.latestGrades)
                 })
         })
