@@ -39,13 +39,15 @@ class Magister {
             // logConsole(`https://${this.tenant}/api/account?noCache=0`)
             // logConsole("Bearer " + this.token)
             $.ajax({
+                    "cache": false,
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
                     "url": `https://${this.tenant}/api/account?nocache=${Date.parse(new Date())}`,
                     "method": "GET",
                     "headers": {
-                        "Authorization": "Bearer " + this.token
+                        "Authorization": "Bearer " + this.token,
+                        "noCache": (new Date()).getTime()
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
                         // alert("error: " + XMLHttpRequest.statusText)
@@ -87,13 +89,15 @@ class Magister {
     getAccountInfo() {
         return new Promise((resolve, reject) => {
             $.ajax({
+                    "cache": false,
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
                     "url": `https://${this.tenant}/api/sessions/current?nocache=${Date.parse(new Date())}`,
                     "method": "GET",
                     "headers": {
-                        "Authorization": "Bearer " + this.token
+                        "Authorization": "Bearer " + this.token,
+                        "noCache": (new Date()).getTime()
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
                         if (XMLHttpRequest.readyState == 4) {
@@ -111,13 +115,15 @@ class Magister {
                     // logConsole(JSON.stringify(res))
                     // logConsole(`[INFO]  https://${this.tenant}${res.links.account.href}?noCache=0`)
                     $.ajax({
+                            "cache": false,
                             "dataType": "json",
                             "async": true,
                             "crossDomain": true,
                             "url": `https://${this.tenant}${res.links.account.href}?nocache=${Date.parse(new Date())}`,
                             "method": "GET",
                             "headers": {
-                                "Authorization": "Bearer " + this.token
+                                "Authorization": "Bearer " + this.token,
+                                "noCache": (new Date()).getTime()
                             },
                             "error": function (XMLHttpRequest, textStatus, errorThrown) {
                                 if (XMLHttpRequest.readyState == 4) {
@@ -153,13 +159,15 @@ class Magister {
             if (this.person.id == undefined) reject("Person.id is undefined!")
             //logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
             $.ajax({
+                    "cache": false,
                     "dataType": "json",
                     "async": true,
                     "crossDomain": true,
                     "url": `https://${this.tenant}/api/personen/${this.person.id}/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(new Date())}`,
                     "method": "GET",
                     "headers": {
-                        "Authorization": "Bearer " + this.token
+                        "Authorization": "Bearer " + this.token,
+                        "noCache": (new Date()).getTime()
                     },
                     "error": function (XMLHttpRequest, textStatus, errorThrown) {
                         // alert("error: " + XMLHttpRequest.statusText)

@@ -486,6 +486,9 @@ function vibrate(time, strong) {
 // }
 
 function onDeviceReady() {
+  $.ajaxSetup({
+    cache: false
+  })
   if (localStorage.getItem("tokens") != null) {
     logConsole("[INFO]   Device ready!")
     logConsole("[INFO]   Connection type: " + navigator.connection.type)

@@ -35,7 +35,9 @@ function getLoginInfo() {
 }
 
 function onDeviceReady() {
-
+    $.ajaxSetup({
+        cache: false
+    })
     StatusBar.overlaysWebView(false);
     StatusBar.backgroundColorByHexString("#0096db");
     StatusBar.styleLightContent();
@@ -339,33 +341,38 @@ async function validateLogin(code, codeVerifier) {
                                 var years = values.length
                                 all = []
                                 values.forEach(value => {
-                                    totalGrades += value.grades.length
                                     value.grades.forEach(grade => {
                                         all.push(grade)
                                     })
                                 })
-                                all_grades = all
-                                logConsole(`Totaal ${totalGrades} cijfers!`)
+                                all_grades = [...all] //[...all, ...all]
+                                logConsole(`Totaal ${all_grades.length} cijfers!`)
                                 var remaining = Math.round(((years + 1) * 0.5) * 10) / 10
                                 $("#time-remaining").text(`${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`)
-                                $("#grades-remaining").text(totalGrades)
+                                $("#grades-remaining").text(all_grades.length)
+                                var filled = 0
                                 for (let grade of all_grades) {
                                     try {
                                         grade = await grade.fill()
-                                        var i = _.findIndex(all_grades, {
-                                            id: grade.id
-                                        })
+                                        logConsole(grade._filled)
+                                        filled++
+                                        // var i = _.findIndex(all_grades, {
+                                        //     id: grade.id
+                                        // })
+                                        var i = ((Number(all_grades.length) - 1) - filled)
                                         // logConsole(i + ' ' + (Number(all_grades.length) - 1))
 
-                                        $("#grades-remaining").text((Number(all_grades.length) - 1) - i)
+                                        // $("#grades-remaining").text(filled)
+                                        $("#grades-remaining").text(i)
                                         // var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
-                                        var time = ((Number(all_grades.length) - 1) - i) * 0.15
+                                        var time = i * 0.14
                                         var minutes = Math.floor(time / 60)
                                         var seconds = time - minutes * 60;
                                         $("#time-remaining").text(`${Math.round(minutes)}min ${Math.round(seconds)}sec`)
-                                        addLoader((100 - ((((Number(all_grades.length) - 1) - i) / all_grades.length) * 100)), true)
+                                        addLoader((100 - ((i / all_grades.length) * 100)), true)
 
-                                        if (i == (Number(all_grades.length) - 1)) {
+                                        // if (i == (Number(all_grades.length) - 1)) {
+                                        if (all_grades.every(g => g._filled == true)) {
                                             // alert("Done :)")
                                             window.plugins.insomnia.allowSleepAgain()
                                             // all_courses[4].grades = []
@@ -374,7 +381,7 @@ async function validateLogin(code, codeVerifier) {
                                             window.location = '../index.html'
                                         }
                                     } catch (err) {
-                                        errorConsole(err)
+                                        // errorConsole(err)
                                         continue
                                     }
                                 }
@@ -433,6 +440,7 @@ $(document).ready(function () {
             source: function (request, response) {
                 $("#schools-table").html(`<br><center><i class="ml-2 far fa-lg display fa-spinner-third fa-spin"></i></center>`)
                 $.ajax({
+                    cache: false,
                     beforeSend: function (request) {
                         request.setRequestHeader("Accept", "application/json;odata=verbose;charset=utf-8");
                     },

@@ -17,6 +17,12 @@ class ViewController {
     } else {
       this.renderLesson(lesson);
     }
+    if (snapper.state().state == "left") snapper.close()
+    $('#accordionSidebar .nav-item').each(function () {
+      $(this).removeClass("active")
+      logConsole($(this).text().trim() + lesson.trim())
+      if ($(this).text().trim() == lesson.trim() || (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld")) $(this).addClass("active")
+    })
   }
 
   renderGeneral() {
@@ -535,20 +541,20 @@ function updateSidebar() {
       courseController.current().course.group.description ? "(" + courseController.current().course.group.description + ")" : ""
     }`
   );
-  var header = document.getElementById("accordionSidebar");
-  var btns = header.getElementsByClassName("nav-item");
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function () {
-      $("body").removeClass("sidenav-open")
-      /*if ($(window).width() <= 465)*/
-      snapper.close()
-      var current = $(".active");
-      if (current.length > 0) {
-        current[0].className = current[0].className.replace(" active", "");
-      }
-      this.className += " active";
-    });
-  }
+  // var header = document.getElementById("accordionSidebar");
+  // var btns = header.getElementsByClassName("nav-item");
+  // for (var i = 0; i < btns.length; i++) {
+  //   btns[i].addEventListener("click", function () {
+  //     $("body").removeClass("sidenav-open")
+  //     /*if ($(window).width() <= 465)*/
+  //     snapper.close()
+  //     var current = $(".active");
+  //     if (current.length > 0) {
+  //       current[0].className = current[0].className.replace(" active", "");
+  //     }
+  //     this.className += " active";
+  //   });
+  // }
 }
 
 function setChartData(config, lesson, everything) {
@@ -1146,7 +1152,7 @@ function setAverages() {
     var average = lesson.lesson.getAverage()
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
       $('#averagesTable').append(
-        `<tr>
+        `<tr onclick="viewController.render('${lesson.name}')">
           <td>${lesson.name}</td>
           <td>${Math.round(average * 100) / 100}</td>
          </tr>`)
