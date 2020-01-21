@@ -228,8 +228,19 @@ class Lesson {
     }
     grade = Number(grade);
     weight = Number(weight);
-    // console.dir('Grade: '+grade + typeof grade)
-    // console.dir('Weight: '+weight + typeof weight)
+    if (weight > 420 || weight < 0 || grade < 0 || grade > 420) {
+      navigator.notification.alert(
+        "Voer een weging tussen 0 en 420.",
+        () => {
+          weight > 420 || weight < 0
+            ? $("#getGrade-weight").val("")
+            : $("#getGrade-grade").val("");
+        },
+        "Ongeldige waarde",
+        "Oké"
+      );
+      return 0;
+    }
     var grades = this.data["Grades"];
     var alles = 0;
     var totaalweging = 0;
@@ -258,7 +269,19 @@ class Lesson {
     }
     grade = parseFloat(grade.replace(",", "."));
     weight = parseFloat(weight.replace(",", "."));
-
+    if (weight > 420 || weight < 0 || grade < 0 || grade > 420) {
+      navigator.notification.alert(
+        "Voer een weging tussen 0 en 420.",
+        () => {
+          weight > 420 || weight < 0
+            ? $("#newGrade-weight").val("")
+            : $("#newGrade-grade").val("");
+        },
+        "Ongeldige waarde",
+        "Oké"
+      );
+      return 0;
+    }
     if (this.getAverage() == "-") {
       return "Niet mogelijk voor dit vak";
     }

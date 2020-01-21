@@ -34,20 +34,20 @@ function getLoginInfo() {
 }
 
 function onDeviceReady() {
-  $.ajaxSetup({
-    cache: false
-  });
+  $.ajaxSetup({ cache: false });
   StatusBar.overlaysWebView(false);
   StatusBar.backgroundColorByHexString("#0096db");
   StatusBar.styleLightContent();
-  // alert(navigator.connection.type)
-  // alert(Object.entries(localStorage) + window.location.hash)
+  // alert(navigator.connection.type) alert(Object.entries(localStorage) +
+  // window.location.hash)
   if (
     window.location.hash == "#notokens" &&
     Object.entries(localStorage).length > 0
   ) {
     navigator.notification.alert(
-      "Het lijkt erop dat je (per ongeluk) bent uitgelogd. Dit kan bijvoorbeeld gebeuren door een software update van je telefoon. Log opnieuw in om Magiscore weer te gebruiken.",
+      "Het lijkt erop dat je (per ongeluk) bent uitgelogd. Dit kan bijvoorbeeld gebeure" +
+        "n door een software update van je telefoon. Log opnieuw in om Magiscore weer te " +
+        "gebruiken.",
       emptyFuntion,
       "Uitgelogd",
       "Oké"
@@ -55,14 +55,22 @@ function onDeviceReady() {
   }
   if (window.location.hash == "#failedlogin") {
     navigator.notification.alert(
-      "Het inloggen vorige keer is niet goed gelukt. Dit kan bijvoorbeeld zijn omdat je de app had afgesloten of omdat je internetverbinding weg was gevallen.\nTip: houd de app open tijdens het inloggen/cijfers ophalen",
+      "Het inloggen vorige keer is niet goed gelukt. Dit kan bijvoorbeeld zijn omdat je" +
+        " de app had afgesloten of omdat je internetverbinding weg was gevallen.\nTip: ho" +
+        "ud de app open tijdens het inloggen/cijfers ophalen",
       emptyFuntion,
       "Login mislukt",
       "Oké"
     );
   }
   navigator.notification.confirm(
-    "Magiscore is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAlle gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoordat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app niet goed werkt. In dat geval kan je voor support een mail sturen naar info@magiscore.nl. Ga voor de gehele privacyverklaring naar https://magiscore.nl/privacy, en voor de gebruiksvoorwaarden (EULA) naar https://magiscore.nl/terms. Door in te loggen ga je akkoord met die twee én Schoolmaster's verklaring.",
+    "Magiscore is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAl" +
+      "le gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoo" +
+      "rdat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app" +
+      " niet goed werkt. In dat geval kan je voor support een mail sturen naar info@mag" +
+      "iscore.nl. Ga voor de gehele privacyverklaring naar https://magiscore.nl/privacy" +
+      ", en voor de gebruiksvoorwaarden (EULA) naar https://magiscore.nl/terms. Door in" +
+      " te loggen ga je akkoord met die twee én Schoolmaster's verklaring.",
     openPrivacy,
     "Magiscore informatie",
     ["Oké", "Open verklaring"]
@@ -78,7 +86,8 @@ function retryLogin() {
 
 function onOffline() {
   navigator.notification.confirm(
-    "Het lijkt erop dat je geen internetverbinding hebt...\nOm in te loggen is een actieve internetverbinding vereist.",
+    "Het lijkt erop dat je geen internetverbinding hebt...\nOm in te loggen is een ac" +
+      "tieve internetverbinding vereist.",
     openWifiSettings,
     "Geen internet",
     ["Open instellingen", "Annuleer"]
@@ -176,7 +185,8 @@ function openLoginWindow(school) {
   popup = cordova.InAppBrowser.open(
     url,
     "_blank",
-    "location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,closebuttoncolor=#eeeeee,zoom=no"
+    "location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,close" +
+      "buttoncolor=#eeeeee,zoom=no"
   );
   popup.addEventListener("loaderror", customScheme);
 }
@@ -238,44 +248,6 @@ function makeRequestChain(val, vals) {
   }
 }
 
-function fillAGrade(chunk) {
-  // logConsole("starting new fill: " + (chunk.gradeIndex < chunk.array.length))
-  if (chunk.gradeIndex < chunk.array.length) {
-    var currentGrade = chunk.array[chunk.gradeIndex];
-    currentGrade
-      .fill()
-      .then(value => {
-        // logConsole("filledAGrade")
-        chunk.gradeIndex += 1;
-        totalGrades -= 1;
-        $("#grades-remaining").text(totalGrades);
-        //logConsole(fillAGrade)
-        fillAGrade(chunk);
-
-        var remaining =
-          Math.round(((totalGrades / 150) * 20 * 10) / 60) / 10 + 1;
-        $("#time-remaining").text(`${remaining} minuten`);
-        $("#grades-remaining").text(totalGrades);
-        addLoader(100 - (totalGrades / all.length) * 100, true);
-
-        if (totalGrades == 0) {
-          // alert("Done :)")
-          window.plugins.insomnia.allowSleepAgain();
-          // all_courses[4].grades = []
-          localStorage.setItem("courses", JSON.stringify(all_courses));
-          localStorage.setItem("loginSuccess", "true");
-          window.location = "../index.html";
-        }
-      })
-      .catch(err => {
-        if (err == 429) {
-          setTimeout(function() {
-            fillAGrade(chunk);
-          }, 21000);
-        }
-      });
-  }
-}
 async function validateLogin(code, codeVerifier) {
   toast("Houd de app open", false, true);
   toast("Succesvolle login!", 2000, true);
@@ -283,7 +255,8 @@ async function validateLogin(code, codeVerifier) {
   var settings = {
     error: function(jqXHR, textStatus, errorThrown) {
       toast(
-        "Er kon geen verbinden met Magister gemaakt worden... Probeer het over een tijdje weer",
+        "Er kon geen verbinden met Magister gemaakt worden... Probeer het over een tijdje" +
+          " weer",
         false
       );
       return;
@@ -339,14 +312,17 @@ async function validateLogin(code, codeVerifier) {
           if (m.person.isParent) {
             localStorage.clear();
             navigator.notification.confirm(
-              "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een leerlingaccount en probeer het opnieuw.",
+              "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een " +
+                "leerlingaccount en probeer het opnieuw.",
               retryLogin,
               "Ouder account",
               ["Opnieuw inloggen", "Annuleer"]
             );
           }
           logConsole(`Succesvol leerlingid (${m.person.id}) opgehaald!`);
-          // m.getAccountInfo().then(() => logConsole(`Succesvol accountinfo (${m.account.id}) opgehaald!`), localStorage.setItem("account", JSON.stringify(m.account)))
+          // m.getAccountInfo().then(() => logConsole(`Succesvol accountinfo
+          // (${m.account.id}) opgehaald!`), localStorage.setItem("account",
+          // JSON.stringify(m.account)))
           addLoader(3);
           m.getCourses()
             .then(async courses => {
@@ -356,10 +332,7 @@ async function validateLogin(code, codeVerifier) {
               addLoader(7);
               const requests = await courses.map(async course => {
                 const [grades, classes] = await Promise.all([
-                  course.getGrades({
-                    fillGrades: false,
-                    latest: false
-                  }),
+                  course.getGrades({ fillGrades: false, latest: false }),
                   course.getClasses()
                 ]);
                 course.grades = grades;
@@ -392,12 +365,9 @@ async function validateLogin(code, codeVerifier) {
                       grade = await grade.fill();
                       logConsole(grade._filled);
                       filled++;
-                      // var i = _.findIndex(all_grades, {
-                      //     id: grade.id
-                      // })
+                      // var i = _.findIndex(all_grades, {     id: grade.id })
                       var i = Number(all_grades.length) - 1 - filled;
                       // logConsole(i + ' ' + (Number(all_grades.length) - 1))
-
                       // $("#grades-remaining").text(filled)
                       $("#grades-remaining").text(i);
                       // var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
@@ -426,10 +396,6 @@ async function validateLogin(code, codeVerifier) {
                       continue;
                     }
                   }
-                  // var chunkedGrades = all_grades.chunk(6)
-                  // chunkedGrades.forEach(element => {
-                  //     fillAGrade(element)
-                  // });
                 })
                 .catch(err => errorConsole(err));
             })
@@ -512,7 +478,8 @@ $(document).ready(function() {
           },
           error: function(data) {
             toast(
-              "Er kon geen verbinding met Magister gemaakt worden... Tip: check je internetverbinding",
+              "Er kon geen verbinding met Magister gemaakt worden... Tip: check je internetverb" +
+                "inding",
               false,
               true
             );

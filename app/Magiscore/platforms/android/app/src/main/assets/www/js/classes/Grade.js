@@ -152,7 +152,6 @@ class Grade {
         },
         error: jqXHR => {
           this._filling = false;
-          logConsole(`[ERROR] STIJN (${this.id}) (${jqXHR.responseText})`);
           if (jqXHR.status == 429) {
             var secs =
               jqXHR.responseText.isJSON() &&

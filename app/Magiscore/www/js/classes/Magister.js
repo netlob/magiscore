@@ -54,20 +54,13 @@ class Magister {
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           // alert("error: " + XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
-            logConsole(
-              "[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)"
-            );
-            // alert("first: " + XMLHttpRequest.statusText)
+            logConsole(`[ERROR] HTTP error (${textStatus})`);
           } else if (XMLHttpRequest.readyState == 0) {
-            logConsole(
-              "[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)"
-            );
-            // alert("second: " + XMLHttpRequest.statusText)
-            reject("no internet");
+            logConsole(`[ERROR] Network error (${textStatus})`);
           } else {
             logConsole("[ERROR] something weird is happening");
-            // alert("third: " + XMLHttpRequest.statusText)
           }
+          reject("no internet");
         },
         timeout: 5000
       }).done(res => {
@@ -109,17 +102,13 @@ class Magister {
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           if (XMLHttpRequest.readyState == 4) {
-            logConsole(
-              "[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)"
-            );
+            logConsole(`[ERROR] HTTP error (${textStatus})`);
           } else if (XMLHttpRequest.readyState == 0) {
-            logConsole(
-              "[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)"
-            );
-            reject("no internet");
+            logConsole(`[ERROR] Network error (${textStatus})`);
           } else {
             logConsole("[ERROR] something weird is happening");
           }
+          reject("no internet");
         },
         timeout: 5000
       }).done(res => {
@@ -140,18 +129,13 @@ class Magister {
           },
           error: function(XMLHttpRequest, textStatus, errorThrown) {
             if (XMLHttpRequest.readyState == 4) {
-              logConsole(
-                "[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)"
-              );
+              logConsole(`[ERROR] HTTP error (${textStatus})`);
             } else if (XMLHttpRequest.readyState == 0) {
-              logConsole("[ERROR] " + textStatus);
-              logConsole(
-                "[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)"
-              );
-              reject("no internet");
+              logConsole(`[ERROR] Network error (${textStatus})`);
             } else {
               logConsole("[ERROR] something weird is happening");
             }
+            reject("no internet");
           },
           timeout: 5000
         }).done(res2 => {
@@ -190,20 +174,13 @@ class Magister {
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           // alert("error: " + XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
-            logConsole(
-              "[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)"
-            );
-            // alert("first: " + XMLHttpRequest.statusText)
+            logConsole(`[ERROR] HTTP error (${textStatus})`);
           } else if (XMLHttpRequest.readyState == 0) {
-            logConsole(
-              "[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)"
-            );
-            // alert("second: " + XMLHttpRequest.statusText)
-            reject("no internet");
+            logConsole(`[ERROR] Network error (${textStatus})`);
           } else {
             logConsole("[ERROR] something weird is happening");
-            // alert("third: " + XMLHttpRequest.statusText)
           }
+          reject("no internet");
         },
         timeout: 5000
       }).done(res => {

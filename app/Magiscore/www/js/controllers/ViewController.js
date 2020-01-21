@@ -20,11 +20,6 @@ class ViewController {
     if (snapper.state().state == "left") snapper.close();
     $("#accordionSidebar .nav-item").each(function() {
       $(this).removeClass("active");
-      logConsole(
-        $(this)
-          .text()
-          .trim() + lesson.trim()
-      );
       if (
         $(this)
           .text()
@@ -43,6 +38,12 @@ class ViewController {
     $("#settings-wrapper").hide();
     $("#currentRender").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
     $("#currentRenderMobile").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
+    $("#currentRender").html(
+      `<span onclick="snapper.toggle('left')">Gemiddeld</span>`
+    );
+    $("#currentRenderMobile").html(
+      `<span onclick="snapper.toggle('left')">Gemiddeld</span>`
+    );
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
     }
@@ -83,8 +84,12 @@ class ViewController {
     $("#general-wrapper").hide();
     $("#settings-wrapper").hide();
     // $("#lesson-wrapper").show();
-    $("#currentRender").html(lesson);
-    $("#currentRenderMobile").html(lesson);
+    $("#currentRender").html(
+      `<span onclick="snapper.toggle('left')">${lesson}</span>`
+    );
+    $("#currentRenderMobile").html(
+      `<span onclick="snapper.toggle('left')">${lesson}</span>`
+    );
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
     }

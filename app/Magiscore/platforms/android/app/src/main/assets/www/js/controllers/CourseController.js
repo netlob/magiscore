@@ -74,17 +74,13 @@ class CourseController {
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           // alert(XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
-            logConsole(
-              "[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)"
-            );
+            logConsole(`[ERROR] HTTP error (${textStatus})`);
           } else if (XMLHttpRequest.readyState == 0) {
-            logConsole(
-              "[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)"
-            );
-            reject("no internet");
+            logConsole(`[ERROR] Network error (${textStatus})`);
           } else {
             logConsole("[ERROR] something weird is happening");
           }
+          reject("no internet");
         },
         timeout: 5000
       }).done(res => {
@@ -92,6 +88,20 @@ class CourseController {
         // alert(JSON.stringify(grades))
         // grades = _.reject(grades, raw => raw.CijferId === 0)
         this.latestGrades = grades;
+        var popup = false;
+        this.latestGrades.forEach(grade => {
+          if (
+            JSON.stringify(this.allGrades).indexOf(grade.kolomId) < 0 &&
+            popup == false
+          ) {
+            popup = true;
+            viewController.toast(
+              '<span class="float-left">Nieuwe cijfer(s) beschikbaar </span><a class="float-right vibrate text-warning" onclick="syncGrades()">UPDATE</a>',
+              false,
+              true
+            );
+          }
+        });
         viewController.setLatestGrades(this.latestGrades, open);
         viewController.overlay("hide");
         resolve(this.latestGrades);

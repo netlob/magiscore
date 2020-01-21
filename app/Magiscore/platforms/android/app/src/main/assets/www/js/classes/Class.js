@@ -7,6 +7,7 @@ class Class {
    */
   constructor(magister, raw, grade) {
     if (raw == undefined) logConsole("Undefined -> " + JSON.stringify(grade));
+
     /**
      * @type {String}
      * @readonly

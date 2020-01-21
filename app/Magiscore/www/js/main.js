@@ -118,7 +118,7 @@ function main(l) {
 
 function logOut() {
   navigator.notification.confirm(
-    'Klik op "Uitloggen" als je zeker weet dat je wilt uitloggen. \n\nTip: er wordt momenteel gewerkt aan support voor meerdere accounts',
+    'Klik op "Uitloggen" als je zeker weet dat je wilt uitloggen. \nPS. er wordt momenteel gewerkt aan support voor meerdere accounts',
     confirmLogout,
     "Weet je het zeker?",
     ["Ja", "Nee"]
@@ -152,81 +152,9 @@ function round(num) {
   return parseFloat(Math.round(num * 100) / 100).toFixed(2);
 }
 
-function fillAGrade(chunk) {
-  if (chunk.gradeIndex < chunk.array.length) {
-    var currentGrade = chunk.array[chunk.gradeIndex];
-    currentGrade
-      .fill()
-      .then(value => {
-        // logConsole("filledAGrade")
-        chunk.gradeIndex += 1;
-        chunk.totalGrades -= 1;
-        //logConsole(fillAGrade)
-        fillAGrade(chunk);
-
-        if (chunk.totalGrades == 0) {
-          localStorage.setItem("courses", JSON.stringify(courses));
-          //window.location = '../index.html'
-          main();
-        }
-      })
-      .catch(err => {
-        if (err == 429) {
-          setTimeout(function() {
-            fillAGrade(chunk);
-          }, 21000);
-        } else if (err == "no internet") {
-          viewController.toast(
-            "Er kon geen verbinding met Magister gemaakt worden...",
-            4000,
-            true
-          );
-        } else {
-          errorConsole(err);
-        }
-      });
-  }
-}
-
-function checkForUpdate() {
-  return new Promise((resolve, reject) => {
-    m.getCourses().then(syncCourses => {
-      syncCourses.forEach(course => {
-        if (!courses.find(x => x.id == course.id)) {
-          resolve(true);
-        }
-      });
-      //var currentCourse = courseController.current()
-      courses.forEach(currentCourse => {
-        var newCourse = Course.create();
-        Object.keys(currentCourse).forEach(key => {
-          newCourse[key] = currentCourse[key];
-        });
-        currentCourse = newCourse;
-
-        currentCourse.getGrades().then(currentGrades => {
-          // logConsole("got grades")
-          var allGradeIds = currentCourse.grades.map(x => {
-            return x.id;
-          });
-          // logConsole(allGradeIds.length)
-          currentGrades.forEach(grade => {
-            if (!allGradeIds.includes(grade.id)) {
-              resolve(true);
-              //logConsole("Not in id list")
-            }
-          });
-          if (courses.indexOf(currentCourse) == courses.length - 1) {
-            resolve(false);
-          }
-        });
-      });
-    });
-  });
-}
-
 async function syncGrades() {
   return new Promise((resolve, reject) => {
+    $("div:contains('Nieuwe cijfer(s) beschikbaar')").remove();
     if (m == null || m == undefined) {
       if (navigator.connection.type !== Connection.NONE) {
         refreshToken()
@@ -440,14 +368,6 @@ async function syncGrades() {
             }
           }
         }
-        // }
-        // if (newGrades.length > 0) {
-        //   var chunk = {}
-        //   chunk.array = newGrades
-        //   chunk.gradeIndex = 0
-        //   chunk.totalGrades = newGrades.length
-        //   fillAGrade(chunk)
-        // }
       })
       .catch(err => {
         if (err == "no internet") {

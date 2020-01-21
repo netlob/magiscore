@@ -51,14 +51,9 @@ class Course {
      */
     this.group = {
       id: raw.Groep.Id || raw.group.id,
-      // description: raw.Groep.Omschrijving,
-      // code: raw.Groep.code,
-      // description() {
-      //     const group = raw.Groep.Omschrijving
-      //     return group //  != undefined ?
-      //     //group.split(' ').find(w => /\d/.test(w)) || group :
-      //     //undefined
-      // }
+      // description: raw.Groep.Omschrijving, code: raw.Groep.code, description() {
+      //  const group = raw.Groep.Omschrijving     return group //  != undefined ?
+      // //group.split(' ').find(w => /\d/.test(w)) || group :     //undefined }
       description:
         group == undefined
           ? undefined
@@ -128,17 +123,13 @@ class Course {
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           if (XMLHttpRequest.readyState == 4) {
-            logConsole(
-              "[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)"
-            );
+            logConsole(`[ERROR] HTTP error (${textStatus})`);
           } else if (XMLHttpRequest.readyState == 0) {
-            logConsole(
-              "[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)"
-            );
-            reject("no internet");
+            logConsole(`[ERROR] Network error (${textStatus})`);
           } else {
             logConsole("[ERROR] something weird is happening");
           }
+          reject("no internet");
         },
         timeout: 5000
       }).done(res => {
@@ -155,8 +146,7 @@ class Course {
    */
   getGrades({ fillGrades = false, latest = false } = {}) {
     return new Promise((resolve, reject) => {
-      // logConsole("RAW:")
-      // logConsole(JSON.stringify(this.raw))
+      // logConsole("RAW:") logConsole(JSON.stringify(this.raw))
       var date = this.current() ? formatDate(new Date()) : this.raw.Einde;
       const urlPrefix = `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/cijfers`;
       const url = latest
@@ -182,20 +172,13 @@ class Course {
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           // alert("error: " + XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
-            logConsole(
-              "[ERROR] HTTP error (can be checked by XMLHttpRequest.status and XMLHttpRequest.statusText)"
-            );
-            // alert("first: " + XMLHttpRequest.statusText)
+            logConsole(`[ERROR] HTTP error (${textStatus})`);
           } else if (XMLHttpRequest.readyState == 0) {
-            logConsole(
-              "[ERROR] Network error (i.e. connection refused, access denied due to CORS, etc.)"
-            );
-            // alert("second: " + XMLHttpRequest.statusText)
-            reject("no internet");
+            logConsole(`[ERROR] Network error (${textStatus})`);
           } else {
             logConsole("[ERROR] something weird is happening");
-            // alert("third: " + XMLHttpRequest.statusText)
           }
+          reject("no internet");
         },
         timeout: 5000
       }).done(res => {
@@ -222,29 +205,15 @@ class Course {
             return grade;
           });
         resolve(grades);
-        //logConsole(JSON.stringify(grades[0]))
-        // grades.forEach(grade => {
-        //     grade._filled = false;
-        //     grade._filling = false;
-        //     while (!grade._filled) {
-        //         if (!grade._filling && !this._magister.timedOut) {
-        //             grade.fill()
-        //         }
-        //     }
-
-        // });
-
-        // const promises = grades.map(raw => {
-        //     const grade = new Grade(this._magister, raw, this.id)
-        //     //grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${raw._fillUrl}`
-        //     grade._fillUrl = raw._fillUrl
-        //     logConsole(JSON.stringify(grade))
-        //     //errorConsole(grade._fillUrl)
-        //     return fillGrades ? grade.fill() : grade
-        // })
-        // Promise.all(promises).then(grades => {
-        //     resolve(grades)
-        // })
+        // logConsole(JSON.stringify(grades[0])) grades.forEach(grade => {
+        // grade._filled = false;     grade._filling = false;     while (!grade._filled)
+        // {         if (!grade._filling && !this._magister.timedOut) {
+        // grade.fill()         }     } }); const promises = grades.map(raw => {
+        // const grade = new Grade(this._magister, raw, this.id)     //grade._fillUrl =
+        // `${urlPrefix}/extracijferkolominfo/${raw._fillUrl}`     grade._fillUrl =
+        // raw._fillUrl     logConsole(JSON.stringify(grade))
+        // //errorConsole(grade._fillUrl)     return fillGrades ? grade.fill() : grade
+        // }) Promise.all(promises).then(grades => {     resolve(grades) })
       });
     });
   }
@@ -276,7 +245,8 @@ class Course {
           round(grade.grade) > 0 &&
           round(grade.grade) < 11
         ) {
-          // if (viewController.config.exclude.includes(grade.id)) alert(JSON.stringify(grade))
+          // if (viewController.config.exclude.includes(grade.id))
+          // alert(JSON.stringify(grade))
           grade.exclude = viewController.config.exclude.includes(grade.id);
           //lessonController.allGrades.push(grade)
           sorted[vak]["Grades"].push(grade);
