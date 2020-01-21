@@ -1,171 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<head>
+    <title>Magiscore - Login</title>
+    <link
+      href="../vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#0096db" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Magiscore" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="Description"
+      content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen"
+    />
+    <meta
+      name="Tags"
+      content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen"
+    />
+    <link href="../css/main.css" rel="stylesheet" />
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <link href="../css/light.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
 
-  <title>Magiscore - Login</title>
-  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-  <meta name="theme-color" content="#0096db">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Magiscore">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="Description" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
-  <meta name="Tags" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
-  <link href="../css/main.css" rel="stylesheet">
+    <style>
+      body {
+        background-color: #0096db !important;
+        background-image: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 20px,
+          rgba(255, 255, 255, 0.05) 20px,
+          rgba(255, 255, 255, 0.05) 40px
+        );
+      }
 
-  <link href="../css/light.css" rel="stylesheet">
-  <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+      * {
+        user-select: none !important;
+      }
+    </style>
+  </head>
 
-  <style>
-    body {
-      background-color: #0096db !important;
-      background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, .05) 20px, rgba(255, 255, 255, .05) 40px);
-    }
-
-    * {
-      user-select: none !important;
-    }
-  </style>
-</head>
-
-<body class="bg-gradient-primary" style="overflow: hidden !important">
-
-  <div class="container-login" id="login" style="display: block">
-    <div class="row justify-content-center">
-      <div class="col-xl-10 col-md-9">
-        <div class="card o-hidden border-0 shadow-lg my-3">
-          <div class="card-body p-0">
-            <div class="p-3">
-              <div class="text-center mt-3">
-                <h1 class="h4 text-gray-900 mb-4">Login</h1>
-              </div>
-              <div class="user" onsubmit="return">
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="login-school" aria-describedby="school"
-                    placeholder="School">
-                  <ul class="list-group list-group-flush" id="schools-table">
-                  </ul>
-                  <!-- <table class="schools-table"
+  <body class="bg-gradient-primary" style="overflow: hidden !important">
+    <div class="container-login" id="login" style="display: block">
+      <div class="row justify-content-center">
+        <div class="col-xl-10 col-md-9">
+          <div class="card o-hidden border-0 shadow-lg my-3">
+            <div class="card-body p-0">
+              <div class="p-3">
+                <div class="text-center mt-3">
+                  <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                </div>
+                <div class="user" onsubmit="return">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control form-control-user"
+                      id="login-school"
+                      aria-describedby="school"
+                      placeholder="School"
+                    />
+                    <ul
+                      class="list-group list-group-flush"
+                      id="schools-table"
+                    ></ul>
+                    <!-- <table class="schools-table"
                     style="max-height: 190px !important; overflow-y: scroll !important; display: table; width: 100%">
                     <tbody id="schools-table" class="mh-50">
                     </tbody>
                   </table> -->
+                  </div>
+                  <span class="text-gray-500" style="font-size: 12px"
+                    ><i
+                      class="far fa-info-circle fa-s display-inline-block mr-1 ml-2 mb-2 mt-3"
+                    ></i>
+                    Vul en kies een school in om door te gaan
+                  </span>
                 </div>
-                <span class="text-gray-500" style="font-size: 12px"><i
-                    class="far fa-info-circle fa-s display-inline-block mr-1 ml-2 mb-2 mt-3"></i>
-                  Vul en kies een school in om door te gaan
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-login" id="loader" style="display: none">
+      <div class="row justify-content-center">
+        <div class="col-xl-10 col-md-9">
+          <div class="card o-hidden border-0 shadow-lg my-3">
+            <div class="card-body p-0">
+              <div class="p-3">
+                <div class="text-center mt-3">
+                  <h1 class="h4 text-gray-900 mb-4">Cijfers ophalen</h1>
+                </div>
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated"
+                  role="progressbar"
+                  style="width: 0%; height: 20px;"
+                  aria-valuenow="0"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+                <br />
+                <h6>Tijd resterend: <span id="time-remaining">~</span></h6>
+                <h6>Cijfers resterend: <span id="grades-remaining">~</span></h6>
+                <h6 id="timeout-wrapper" style="display: none;">
+                  Doorgaan in: <span id="timeout-remaining">~</span>
+                </h6>
+                <hr class="mb-0" />
+                <span class="text-gray-500 mt-0" style="font-size: 12px"
+                  ><i
+                    class="far fa-info-circle fa-s display-inline-block mr-1 ml-2 mb-2 mt-3"
+                  ></i>
+                  Je cijfers worden nu opgehaald. Dit duurt ongeveer een halve
+                  minuut per leerjaar. <br />
+                  Belangrijk is dat je de app open houd en je telefoon aan. Je
+                  scherm zal niet uit gaan tijdens het ophalen van je cijfers.
                 </span>
+                <hr />
+                <a style="color: #0096db !important;" id="showMore"
+                  >Console<i class="ml-2 fa fa-sm fa-chevron-down"></i
+                ></a>
+                <pre
+                  class="overflow-auto"
+                  style="user-select: all !important; display: none;"
+                ></pre>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container-login" id="loader" style="display: none">
-    <div class="row justify-content-center">
-      <div class="col-xl-10 col-md-9">
-        <div class="card o-hidden border-0 shadow-lg my-3">
-          <div class="card-body p-0">
-            <div class="p-3">
-              <div class="text-center mt-3">
-                <h1 class="h4 text-gray-900 mb-4">Cijfers ophalen</h1>
-              </div>
-              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                style="width: 0%; height: 20px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-              <br>
-              <h6>Tijd resterend: <span id="time-remaining">~</span></h6>
-              <h6>Cijfers resterend: <span id="grades-remaining">~</span></h6>
-              <h6 id="timeout-wrapper" style="display: none;">Doorgaan in: <span id="timeout-remaining">~</span></h6>
-              <hr class="mb-0">
-              <span class="text-gray-500 mt-0" style="font-size: 12px"><i
-                  class="far fa-info-circle fa-s display-inline-block mr-1 ml-2 mb-2 mt-3"></i>
-                Je cijfers worden nu opgehaald. Dit duurt ongeveer een halve minuut per leerjaar. <br>
-                Belangrijk is dat je de app open houd en je telefoon aan. Je scherm zal niet uit gaan tijdens het
-                ophalen van je cijfers.
-              </span>
-              <hr>
-              <a style="color: #0096db !important;" id="showMore">Console<i
-                  class="ml-2 fa fa-sm fa-chevron-down"></i></a>
-              <pre class="overflow-auto" style="user-select: all !important; display: none;"></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- <div
+    <!-- <div
     style="font-size: 250px; color: white; position: fixed; bottom: 0px; margin: 0px !important; width: 100vw; text-align: center !important">
     <i class="fa fa-chart-line"></i>
   </div> -->
 
-  <!-- <a onclick="//login({}, true)" class="btn btn-demo"
+    <!-- <a onclick="//login({}, true)" class="btn btn-demo"
     style="position: absolute; bottom: 30px; right: 40px; color: yellow !important">Demo login</a> -->
 
-  <div id="overlay">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
+    <div id="overlay">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
-  </div>
 
-  <script>
-    function logConsole(msg) {
-      if (typeof msg != "string") return
-      if (msg.substring(0, 7) == "[ERROR]") $("#loader pre").prepend(`<small class="text-danger">${msg}</small>\n`)
-      else if (msg.substring(0, 7) == "[DEBUG]") $("#loader pre").prepend(
-        `<small class="text-warning">${msg}</small>\n`)
-      else if (msg.substring(0, 6) == "[INFO]") $("#loader pre").prepend(`<small class="text-info">${msg}</small>\n`)
-      else $("#loader pre").prepend(`<small class="text-info">[INFO]  ${msg}</small>\n`)
+    <script>
+      function logConsole(msg) {
+        if (typeof msg != "string") return;
+        if (msg.substring(0, 7) == "[ERROR]")
+          $("#loader pre").prepend(
+            `<small class="text-danger">${msg}</small>\n`
+          );
+        else if (msg.substring(0, 7) == "[DEBUG]")
+          $("#loader pre").prepend(
+            `<small class="text-warning">${msg}</small>\n`
+          );
+        else if (msg.substring(0, 6) == "[INFO]")
+          $("#loader pre").prepend(`<small class="text-info">${msg}</small>\n`);
+        else
+          $("#loader pre").prepend(
+            `<small class="text-info">[INFO]  ${msg}</small>\n`
+          );
+      }
 
-    }
+      function errorConsole(err) {
+        $("#loader pre").prepend(`<small class="text-danger">${err}</small>\n`);
+      }
 
-    function errorConsole(err) {
-      $("#loader pre").prepend(`<small class="text-danger">${err}</small>\n`)
-    }
+      window.onerror = function(msg, url, lineNo, columnNo, error) {
+        errorConsole(`${msg} line: ${lineNo}\n url: ${url}`);
+        return false;
+      };
+    </script>
 
-    window.onerror = function (msg, url, lineNo, columnNo, error) {
-      errorConsole(`${msg} line: ${lineNo}\n url: ${url}`)
-      return false;
-    }
-  </script>
+    <!-- Cordova core -->
+    <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
 
-  <!-- Cordova core -->
-  <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+    <!-- Core dependencies -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+    <script src="../js/deps/jquery-ui.js"></script>
+    <script src="../js/deps/crypto-js.min.js"></script>
+    <script src="../js/deps/lodash.js"></script>
 
-  <!-- Core dependencies -->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="../vendor/chart.js/Chart.min.js"></script>
-  <script src="../js/deps/jquery-ui.js"></script>
-  <script src="../js/deps/crypto-js.min.js"></script>
-  <script src="../js/deps/lodash.js"></script>
+    <!-- Page level scripts-->
+    <script src="../js/login.js"></script>
 
-  <!-- Page level scripts-->
-  <script src="../js/login.js"></script>
-
-  <!-- Magister classes -->
-  <script src="../js/utils.js"></script>
-  <script src="../js/classes/Class.js"></script>
-  <script src="../js/classes/GradeType.js"></script>
-  <script src="../js/classes/Person.js"></script>
-  <script src="../js/classes/Course.js"></script>
-  <script src="../js/classes/GradePeriod.js"></script>
-  <script src="../js/classes/Grade.js"></script>
-  <script src="../js/classes/Magister.js"></script>
-  <script src="../js/classes/Lesson.js"></script>
-</body>
-
+    <!-- Magister classes -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/classes/Class.js"></script>
+    <script src="../js/classes/GradeType.js"></script>
+    <script src="../js/classes/Person.js"></script>
+    <script src="../js/classes/Course.js"></script>
+    <script src="../js/classes/GradePeriod.js"></script>
+    <script src="../js/classes/Grade.js"></script>
+    <script src="../js/classes/Magister.js"></script>
+    <script src="../js/classes/Lesson.js"></script>
+  </body>
 </html>

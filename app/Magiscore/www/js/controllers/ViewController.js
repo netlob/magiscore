@@ -6,9 +6,9 @@ class ViewController {
     this.pieChart = false;
     this.barChart = false;
     this.config = {};
-    this.currentCourse = {}
-    this.currentLesson = {}
-    this.settingsOpen = false
+    this.currentCourse = {};
+    this.currentLesson = {};
+    this.settingsOpen = false;
   }
 
   render(lesson) {
@@ -17,40 +17,61 @@ class ViewController {
     } else {
       this.renderLesson(lesson);
     }
-    if (snapper.state().state == "left") snapper.close()
-    $('#accordionSidebar .nav-item').each(function () {
-      $(this).removeClass("active")
-      logConsole($(this).text().trim() + lesson.trim())
-      if ($(this).text().trim() == lesson.trim() || (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld")) $(this).addClass("active")
-    })
+    if (snapper.state().state == "left") snapper.close();
+    $("#accordionSidebar .nav-item").each(function() {
+      $(this).removeClass("active");
+      logConsole(
+        $(this)
+          .text()
+          .trim() + lesson.trim()
+      );
+      if (
+        $(this)
+          .text()
+          .trim() == lesson.trim() ||
+        (lesson.trim() == "general" &&
+          $(this)
+            .text()
+            .trim() == "Gemiddeld")
+      )
+        $(this).addClass("active");
+    });
   }
 
   renderGeneral() {
     $("#lesson-wrapper").empty();
     $("#settings-wrapper").hide();
-    $("#currentRender").html(`Gemiddeld`) // (${this.currentCourse.course.group.description})`);
-    $("#currentRenderMobile").html(`Gemiddeld`) // (${this.currentCourse.course.group.description})`);
+    $("#currentRender").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
+    $("#currentRenderMobile").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
     }
-    $("#lineChart-container").empty().append(`<canvas id="lineChart""></canvas>`)
-    $("#lineChart2-container").empty().append(`<canvas id="lineChart2""></canvas>`)
-    $("#pieChart-container").empty().append(`<canvas id="pieChart""></canvas>`)
-    $("#barChart-container").empty().append(`<canvas id="barChart""></canvas>`)
+    $("#lineChart-container")
+      .empty()
+      .append(`<canvas id="lineChart""></canvas>`);
+    $("#lineChart2-container")
+      .empty()
+      .append(`<canvas id="lineChart2""></canvas>`);
+    $("#pieChart-container")
+      .empty()
+      .append(`<canvas id="pieChart""></canvas>`);
+    $("#barChart-container")
+      .empty()
+      .append(`<canvas id="barChart""></canvas>`);
     // $("#general-area-title").text(
     //   `Alle cijfers van ${course.type.description}`
     // );
     setChartData(this.config, "general", true);
-    setTableData("general")
-    setAverages()
+    setTableData("general");
+    setAverages();
     this.currentLesson = "general";
     this.initTheme();
-    $('*[data-toggle="tooltip"]').tooltip()
+    $('*[data-toggle="tooltip"]').tooltip();
     $("#general-wrapper").show();
     // window.ga.trackView('general')
-    $(".vibrate").on("click", function () {
-      vibrate(15, false)
-    })
+    $(".vibrate").on("click", function() {
+      vibrate(15, false);
+    });
   }
 
   renderLesson(lesson) {
@@ -71,41 +92,60 @@ class ViewController {
     setTableData(lesson);
     this.currentLesson = lesson;
     this.initTheme();
-    $('*[data-toggle="tooltip"]').tooltip()
+    $('*[data-toggle="tooltip"]').tooltip();
     $("#lesson-wrapper").show();
-    $(".vibrate").on("click", function () {
-      vibrate(15, false)
-    })
+    $(".vibrate").on("click", function() {
+      vibrate(15, false);
+    });
   }
 
   renderCourse(courseid, loader, course, lesson) {
-    vibrate(15, false)
-    if (loader) this.overlay("show")
-    if (!courseid && course) viewController.currentCourse = course
-    else viewController.currentCourse = courseController.getCourse(courseid)
-    if (lesson && viewController.currentCourse.course.classes.findIndex(c => c.description.toLowerCase() == lesson.toLowerCase()) > -1) main(lesson)
-    else main()
-    $("#years").children().removeClass("course-selected")
-    $(`#course-${courseid}`).addClass("course-selected")
-    $("#current-course-badge").text(this.currentCourse.course.group.description)
-    setTimeout(function () {
-      viewController.overlay("hide")
-    }, 110)
+    vibrate(15, false);
+    if (loader) this.overlay("show");
+    if (!courseid && course) viewController.currentCourse = course;
+    else viewController.currentCourse = courseController.getCourse(courseid);
+    if (
+      lesson &&
+      viewController.currentCourse.course.classes.findIndex(
+        c => c.description.toLowerCase() == lesson.toLowerCase()
+      ) > -1
+    )
+      main(lesson);
+    else main();
+    $("#years")
+      .children()
+      .removeClass("course-selected");
+    $(`#course-${courseid}`).addClass("course-selected");
+    $("#current-course-badge").text(
+      this.currentCourse.course.group.description
+    );
+    setTimeout(function() {
+      viewController.overlay("hide");
+    }, 110);
   }
 
   renderGrade(gradeid) {
-    var grade = courseController.allGrades.find(x => x.id == gradeid)
-    $("#grade-modal-grade").text(grade.grade)
-    $("#grade-modal-weight").text(grade.weight)
-    $("#grade-modal-weight2").text(grade.weight)
-    $("#grade-modal-description").text(grade.description == "" ? "<i>Geen beschrijving...</i>" : grade.description)
-    $("#grade-modal-counts").text(grade.counts ? "Ja" : "Nee")
-    $("#grade-modal-ispta").text(grade.type.isPTA ? "Ja" : "Nee")
-    $("#grade-modal-teacher").text(grade.teacher.teacherCode)
-    $("#grade-modal-date").text(toShortFormat(grade.dateFilledIn))
+    var grade = courseController.allGrades.find(x => x.id == gradeid);
+    $("#grade-modal-grade").text(grade.grade);
+    $("#grade-modal-weight").text(grade.weight);
+    $("#grade-modal-weight2").text(grade.weight);
+    $("#grade-modal-description").text(
+      grade.description == ""
+        ? "<i>Geen beschrijving...</i>"
+        : grade.description
+    );
+    $("#grade-modal-counts").text(grade.counts ? "Ja" : "Nee");
+    $("#grade-modal-ispta").text(grade.type.isPTA ? "Ja" : "Nee");
+    $("#grade-modal-teacher").text(grade.teacher.teacherCode);
+    $("#grade-modal-date").text(toShortFormat(grade.dateFilledIn));
 
-    $("#grade-modal-count").attr("onchange", `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${grade.id}', this)`)
-    $("#grade-modal-count").prop("checked", !grade.exclude)
+    $("#grade-modal-count").attr(
+      "onchange",
+      `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${
+        grade.id
+      }', this)`
+    );
+    $("#grade-modal-count").prop("checked", !grade.exclude);
 
     //                 <td>${grade.teacher.teacherCode}</td>
     //                 <td>${toShortFormat(grade.dateFilledIn)}</td>
@@ -148,12 +188,14 @@ class ViewController {
     localStorage.setItem("config", JSON.stringify(base));
     this.config = base;
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
-    if (config["devMode"] === true) $("#toggle-terminal").show()
-    if (config["devMode"] === false) $("#toggle-terminal").hide()
+    if (config["devMode"] === true) $("#toggle-terminal").show();
+    if (config["devMode"] === false) $("#toggle-terminal").hide();
     if ("smiley" in config) {
-      setProfilePic()
-      if (this.config.smiley) this.toast("Profielfoto vervangen met een smiley", 2000, false)
-      if (!this.config.smiley) this.toast("Profielfoto veranderd naar originele foto", 2000, false)
+      setProfilePic();
+      if (this.config.smiley)
+        this.toast("Profielfoto vervangen met een smiley", 2000, false);
+      if (!this.config.smiley)
+        this.toast("Profielfoto veranderd naar originele foto", 2000, false);
     }
   }
 
@@ -161,59 +203,74 @@ class ViewController {
     var config = localStorage.getItem("config") || false;
     if (!config) {
       config = {
-        "isDesktop": false,
-        "tention": 0.3,
-        "passed": 5.5,
-        "darkTheme": false,
-        "smiley": false,
-        "refreshOldGrades": false,
-        "includeGradesInAverageChart": false,
-        "devMode": false,
-        "exclude": []
-      }
+        isDesktop: false,
+        tention: 0.3,
+        passed: 5.5,
+        darkTheme: false,
+        smiley: false,
+        refreshOldGrades: false,
+        includeGradesInAverageChart: false,
+        devMode: false,
+        exclude: []
+      };
       localStorage.setItem("config", JSON.stringify(config));
-      config = JSON.stringify(config)
+      config = JSON.stringify(config);
     }
-    config = JSON.parse(config)
+    config = JSON.parse(config);
     config["isDesktop"] = $(window).width() > 600 ? true : false;
     this.config = config;
   }
 
   toast(msg, duration, fullWidth, hardBottom) {
-    fullWidth = true
-    var snackId = Math.floor((Math.random() * 1000000) + 1)
+    fullWidth = true;
+    var snackId = Math.floor(Math.random() * 1000000 + 1);
     // var bottom = 30
-    var bottom = hardBottom ? 30 : $(".snackbar").length < 1 ? 30 : ($(".snackbar").length * 65) + 30
-    $("body").append(`<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""}">${msg}</div>`);
-    $(`#snackbar-${snackId}`).css("margin-left", -($(`#snackbar-${snackId}`).width() / 2 + 16))
+    var bottom = hardBottom
+      ? 30
+      : $(".snackbar").length < 1
+      ? 30
+      : $(".snackbar").length * 65 + 30;
+    $("body").append(
+      `<div id="snackbar-${snackId}" class="snackbar${
+        fullWidth ? " w-90" : ""
+      }">${msg}</div>`
+    );
+    $(`#snackbar-${snackId}`).css(
+      "margin-left",
+      -($(`#snackbar-${snackId}`).width() / 2 + 16)
+    );
     $(`#snackbar-${snackId}`).css("display", "block");
-    $(`#snackbar-${snackId}`).animate({
-        "bottom": `${bottom}px`
+    $(`#snackbar-${snackId}`).animate(
+      {
+        bottom: `${bottom}px`
       },
       "slow"
     );
     if (duration) {
-      setTimeout(function () {
+      setTimeout(function() {
         $(".snackbar").each((i, obj) => {
           if ($(obj).attr("id") != $(`#snackbar-${snackId}`).attr("id")) {
-            $(obj).animate({
-                "bottom": "-=" + ($(`#snackbar-${snackId}`).height() * 2)
+            $(obj).animate(
+              {
+                bottom: "-=" + $(`#snackbar-${snackId}`).height() * 2
               },
               "fast",
-              function () {})
+              function() {}
+            );
           }
-        })
-        $(`#snackbar-${snackId}`).animate({
-            "bottom": "-200px"
+        });
+        $(`#snackbar-${snackId}`).animate(
+          {
+            bottom: "-200px"
           },
           "fast",
-          function () {
+          function() {
             $(`#snackbar-${snackId}`).remove();
           }
         );
       }, duration);
     }
-    return snackId
+    return snackId;
   }
 
   removeToasts() {
@@ -221,106 +278,109 @@ class ViewController {
   }
 
   initTheme() {
-    var theme = this.config.darkTheme
+    var theme = this.config.darkTheme;
     // var theme = window.matchMedia('(prefers-color-scheme:dark)').matches;
     StatusBar.overlaysWebView(false);
     if (theme) {
       StatusBar.backgroundColorByHexString("#2c2d30");
       StatusBar.styleLightContent();
-      $("body").attr("theme", "dark")
+      $("body").attr("theme", "dark");
     } else {
       StatusBar.backgroundColorByHexString("#ffffff");
       StatusBar.styleDefault();
-      $("body").attr("theme", "light")
+      $("body").attr("theme", "light");
     }
   }
 
   overlay(state) {
     if (state == "show") {
-      $("#overlay").show()
-      if (this.config.darkTheme) StatusBar.backgroundColorByHexString("#161618");
+      $("#overlay").show();
+      if (this.config.darkTheme)
+        StatusBar.backgroundColorByHexString("#161618");
       else StatusBar.backgroundColorByHexString("#7f7f7f");
     }
     if (state == "hide") {
-      $("#overlay").hide()
-      if (this.config.darkTheme) StatusBar.backgroundColorByHexString("#2c2d30");
+      $("#overlay").hide();
+      if (this.config.darkTheme)
+        StatusBar.backgroundColorByHexString("#2c2d30");
       else StatusBar.backgroundColorByHexString("#ffffff");
     }
   }
 
   toggleTheme() {
-    var theme = this.config.darkTheme
+    var theme = this.config.darkTheme;
     if (!theme) {
-      $("body").attr("theme", "dark")
+      $("body").attr("theme", "dark");
       this.updateConfig({
-        "darkTheme": true,
-        "isDesktop": this.config.isDesktop
+        darkTheme: true,
+        isDesktop: this.config.isDesktop
       });
     } else {
-      $("body").attr("theme", "light")
+      $("body").attr("theme", "light");
       this.updateConfig({
-        "darkTheme": false,
-        "isDesktop": this.config.isDesktop
+        darkTheme: false,
+        isDesktop: this.config.isDesktop
       });
     }
   }
 
   clearExclude() {
-    this.closeSettings()
-    var count = this.config.exclude.length
+    this.closeSettings();
+    var count = this.config.exclude.length;
     this.updateConfig({
-      'exclude': []
-    })
-    this.currentCourse.course.sortGrades()
-    this.renderCourse(this.currentCourse.id, false, false, this.currentLesson)
-    this.toast(`Succesvol ${count} cijfers gereset!`, 2000, true)
+      exclude: []
+    });
+    this.currentCourse.course.sortGrades();
+    this.renderCourse(this.currentCourse.id, false, false, this.currentLesson);
+    this.toast(`Succesvol ${count} cijfers gereset!`, 2000, true);
   }
 
   lightTheme() {
     window.StatusBar.overlaysWebView(false);
     window.StatusBar.styleDefault();
     window.StatusBar.backgroundColorByHexString("#ffffff");
-    $("body").attr("theme", "light")
+    $("body").attr("theme", "light");
     this.updateConfig({
-      "darkTheme": false,
-      "isDesktop": this.config.isDesktop
+      darkTheme: false,
+      isDesktop: this.config.isDesktop
     });
-    this.toast("Thema veranderd naar licht", 2000, false)
-    logConsole("[INFO]   Theme changed to light")
+    this.toast("Thema veranderd naar licht", 2000, false);
+    logConsole("[INFO]   Theme changed to light");
   }
 
   darkTheme() {
     window.StatusBar.overlaysWebView(false);
     window.StatusBar.backgroundColorByHexString("#2c2d30");
     window.StatusBar.styleLightContent();
-    $("body").attr("theme", "dark")
+    $("body").attr("theme", "dark");
     this.updateConfig({
-      "darkTheme": true,
-      "isDesktop": this.config.isDesktop
+      darkTheme: true,
+      isDesktop: this.config.isDesktop
     });
-    this.toast("Thema veranderd naar donker", 2000, false)
-    logConsole("[INFO]   Theme changed to dark")
+    this.toast("Thema veranderd naar donker", 2000, false);
+    logConsole("[INFO]   Theme changed to dark");
   }
 
   savePassed() {
-    var e = parseFloat($("#passed-input").val())
+    var e = parseFloat($("#passed-input").val());
     if (e <= 10 && e >= 1) {
       this.updateConfig({
-        "passed": e
-      })
-      this.toast("Voldoendegrens veranderd naar " + e, 2000, false)
-      logConsole("[INFO]   Passed changed to " + e)
+        passed: e
+      });
+      this.toast("Voldoendegrens veranderd naar " + e, 2000, false);
+      logConsole("[INFO]   Passed changed to " + e);
     } else if (e < 1) {
-      this.toast("Vul een getal groter dan 1 in", 3000, false)
+      this.toast("Vul een getal groter dan 1 in", 3000, false);
     } else if (e > 10) {
-      this.toast("Vul een getal kleiner dan 10 in", 3000, false)
+      this.toast("Vul een getal kleiner dan 10 in", 3000, false);
     } else {
-      this.toast("Ongeldige waarde...", 3000, false)
+      this.toast("Ongeldige waarde...", 3000, false);
     }
   }
 
   giveFeedback() {
-    var appId, platform = device.platform.toLowerCase();
+    var appId,
+      platform = device.platform.toLowerCase();
     switch (platform) {
       case "ios":
         appId = "1307145960";
@@ -329,132 +389,188 @@ class ViewController {
         appId = "app.netlob.magiscore";
         break;
     }
-    LaunchReview.launch(function () {}, function (err) {
-      alert(err)
-    }, appId);
+    LaunchReview.launch(
+      function() {},
+      function(err) {
+        alert(err);
+      },
+      appId
+    );
   }
 
   refreshOldGrades() {
-    var e = $("#refreshAll-checkbox").prop("checked")
+    var e = $("#refreshAll-checkbox").prop("checked");
     if (e) {
       navigator.notification.confirm(
         "Als je deze functie aanzet zullen alle wegingen en beschrijvingen van oude cijfers ververst worden. Deze functie staat standaard uit omdat dit bijna nooit meer achteraf veranderd.\nHierdoor wordt de tijd voor een refresh een stuk korter en wordt er minder (mobiele) data verbruikt.\n\nJe kan deze functie tijdelijk aanzetten om alles te updaten nadat een docent een cijfer een andere weging heeft gegeven.\nLet op: de refreshtijd zal aanzienlijk langer worden!",
         confirmRefreshOldGrades,
-        'Weet je het zeker?',
-        ['Ja', 'Nee']
-      )
+        "Weet je het zeker?",
+        ["Ja", "Nee"]
+      );
     } else {
       this.updateConfig({
-        "refreshOldGrades": false
-      })
-      this.toast("Refresh oude cijfers uitgezet", 2000, false)
+        refreshOldGrades: false
+      });
+      this.toast("Refresh oude cijfers uitgezet", 2000, false);
     }
   }
 
   setLatestGrades(grades, open) {
-    var slgrades = grades.slice(0, 5)
-    $('#latest-grades').find('*').not('#latest-grades-empty').remove();
+    var slgrades = grades.slice(0, 5);
+    $("#latest-grades")
+      .find("*")
+      .not("#latest-grades-empty")
+      .remove();
     slgrades.forEach(grade => {
-      var d = new Date(grade.ingevoerdOp)
+      var d = new Date(grade.ingevoerdOp);
       // var w = new Date().getDate() - 7;
       // if (d < w) {
-      length++
+      length++;
       $("#latest-grades").append(`
           <a class="dropdown-item d-flex align-items-center vibrate" onclick="if(viewController.currentCourse == courseController.current()) { viewController.render('${grade.vak.omschrijving.capitalize()}') } else { viewController.renderCourse(courseController.current().course.id, true, false, false) }">
             <div class="dropdown-list-image mr-3">
               <div class="rounded-circle">
-                <h3 class="text-center mt-1">${grade.waarde == "10,0" ? '<span class="text-success">10</span>' : (round(grade.waarde) < this.config.passed) ? '<span class="text-danger">' + grade.waarde + '</span>' : grade.waarde}<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important; right: -15px !important;">${grade.weegfactor}x</sup></h3>
+                <h3 class="text-center mt-1">${
+                  grade.waarde == "10,0"
+                    ? '<span class="text-success">10</span>'
+                    : round(grade.waarde) < this.config.passed
+                    ? '<span class="text-danger">' + grade.waarde + "</span>"
+                    : grade.waarde
+                }<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important; right: -15px !important;">${
+        grade.weegfactor
+      }x</sup></h3>
               </div>
               <!-- <div class="status-indicator bg-success"></div> -->
             </div>
             <div class="ml-2">
-              <span class="text-truncate font-weight-bold text-capitalize">${grade.vak.omschrijving}</span><span
-                class="latest-grades-date">${d.getDate()}/${d.getMonth() + 1}</span></br>
-              <div class="small text-gray-600 text-truncate">${grade.omschrijving}</div>
+              <span class="text-truncate font-weight-bold text-capitalize">${
+                grade.vak.omschrijving
+              }</span><span
+                class="latest-grades-date">${d.getDate()}/${d.getMonth() +
+        1}</span></br>
+              <div class="small text-gray-600 text-truncate">${
+                grade.omschrijving
+              }</div>
             </div>
           </a>
-        `)
+        `);
       // }
-    })
-    if (grades.length > 5) $("#latest-grades-all").text(`Alle cijfers (${grades.length} nieuwe cijfers!)`)
-    if (length == 0) $("#latest-grades-empty").show()
-    else $("#latest-grades-empty").hide()
-    $("#latest-grades-badge").text(length)
+    });
+    if (grades.length > 5)
+      $("#latest-grades-all").text(
+        `Alle cijfers (${grades.length} nieuwe cijfers!)`
+      );
+    if (length == 0) $("#latest-grades-empty").show();
+    else $("#latest-grades-empty").hide();
+    $("#latest-grades-badge").text(length);
     if (open) {
-      $("#messagesDropdownDrop").addClass('show')
-      $("#messagesDrop").addClass('show')
-      $("#messagesDrop").addClass('open')
-      $("#overlay").hide()
+      $("#messagesDropdownDrop").addClass("show");
+      $("#messagesDrop").addClass("show");
+      $("#messagesDrop").addClass("open");
+      $("#overlay").hide();
     }
   }
 
   setCourses() {
-    $("#years").empty()
+    $("#years").empty();
     // logConsole(courseController.courses.length)
     courseController.courses.forEach(course => {
-      var sexyDate = `${new Date(course.course.start).getFullYear().toString().substring(2)}/${new Date(course.course.end).getFullYear().toString().substring(2)}`
+      var sexyDate = `${new Date(course.course.start)
+        .getFullYear()
+        .toString()
+        .substring(2)}/${new Date(course.course.end)
+        .getFullYear()
+        .toString()
+        .substring(2)}`;
       // var sexyDate = course.raw.Start
-      $("#years").append(`<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id}', true, false, false)" id="course-${course.course.id}">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0 ? "(" + course.course.curricula.toString() + ")" : ""}</a>`)
-    })
-    $("#years").children().removeClass("course-selected")
-    $(`#course-${this.currentCourse.course.id}`).addClass("course-selected")
-    $("#current-course-badge").text(this.currentCourse.course.group.description)
+      $("#years").append(
+        `<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${
+          course.course.id
+        }', true, false, false)" id="course-${
+          course.course.id
+        }">${sexyDate} - ${course.course.group.description} ${
+          course.course.curricula.length > 0
+            ? "(" + course.course.curricula.toString() + ")"
+            : ""
+        }</a>`
+      );
+    });
+    $("#years")
+      .children()
+      .removeClass("course-selected");
+    $(`#course-${this.currentCourse.course.id}`).addClass("course-selected");
+    $("#current-course-badge").text(
+      this.currentCourse.course.group.description
+    );
     // $(`#course-${this.currentCourse.course.id}`).addClass("course-selected")
   }
 
   openSettings() {
-    $("#buttonSidenavToggle").hide()
-    $("#buttonSidenavBack").show()
+    $("#buttonSidenavToggle").hide();
+    $("#buttonSidenavBack").show();
     $("#general-wrapper").hide();
     $("#topbar").hide();
     $("#lesson-wrapper").hide();
-    $("#currentRender").html('<span onclick="viewController.closeSettings()">Instellingen</span>');
-    $("#currentRenderMobile").html('<span onclick="viewController.closeSettings()">Instellingen</span>');
+    $("#currentRender").html(
+      '<span onclick="viewController.closeSettings()">Instellingen</span>'
+    );
+    $("#currentRenderMobile").html(
+      '<span onclick="viewController.closeSettings()">Instellingen</span>'
+    );
     // alert(JSON.stringify(this.config))
     $("#passed-input").attr("placeholder", this.config.passed);
     $("#passed-input").val("");
-    $("#devMode-checkbox").prop('checked', this.config.devMode);
-    $("#refreshAll-checkbox").prop('checked', this.config.refreshOldGrades);
-    $("#excluded-count").text(this.config.exclude.length)
+    $("#devMode-checkbox").prop("checked", this.config.devMode);
+    $("#refreshAll-checkbox").prop("checked", this.config.refreshOldGrades);
+    $("#excluded-count").text(this.config.exclude.length);
     $("#settings-wrapper").show();
-    this.settingsOpen = true
+    this.settingsOpen = true;
   }
 
   closeSettings() {
-    $("#buttonSidenavToggle").show()
-    $("#buttonSidenavBack").hide()
+    $("#buttonSidenavToggle").show();
+    $("#buttonSidenavBack").hide();
     $("#topbar").show();
-    this.render("general")
-    this.settingsOpen = false
-    vibrate(15, false)
+    this.render("general");
+    this.settingsOpen = false;
+    vibrate(15, false);
     // this.render(this.currentLesson.name)
   }
 
   currentAllGrades() {
-    if (this.currentCourse != courseController.current()) this.renderCourse(courseController.current().course.id, false, false, "general")
-    $('html, body').animate({
-      scrollTop: $("#generalGradesTable").offset().top - 55
-    }, 1000)
+    if (this.currentCourse != courseController.current())
+      this.renderCourse(
+        courseController.current().course.id,
+        false,
+        false,
+        "general"
+      );
+    $("html, body").animate(
+      {
+        scrollTop: $("#generalGradesTable").offset().top - 55
+      },
+      1000
+    );
   }
 }
 
 function confirmRefreshOldGrades(button) {
   if (button == 1) {
-    $("#refreshAll-checkbox").prop("checked", true)
+    $("#refreshAll-checkbox").prop("checked", true);
     viewController.updateConfig({
-      "refreshOldGrades": true
-    })
-    viewController.toast("Refresh oude cijfers aangezet", 2000, false)
+      refreshOldGrades: true
+    });
+    viewController.toast("Refresh oude cijfers aangezet", 2000, false);
   } else if (button == 2) {
-    $("#refreshAll-checkbox").prop("checked", false)
+    $("#refreshAll-checkbox").prop("checked", false);
     viewController.updateConfig({
-      "refreshOldGrades": false
-    })
+      refreshOldGrades: false
+    });
   }
 }
 
 function setProfilePic(forceRefresh) {
-  if (!forceRefresh) forceRefresh = false
+  if (!forceRefresh) forceRefresh = false;
   // alert(viewController.config.smiley)
   var profilepicStorage = localStorage.getItem("profilepic") || false,
     profilepic = document.getElementById("imgelem");
@@ -470,19 +586,20 @@ function setProfilePic(forceRefresh) {
       blob,
       fileReader = new FileReader();
     xhr.responseType = "blob";
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
         blob = new Blob([xhr.response], {
           type: "image/png"
         });
-        fileReader.onload = function (evt) {
+        fileReader.onload = function(evt) {
           var result = evt.target.result;
           // logConsole(result)
           profilepic.setAttribute("src", result);
           try {
             logConsole("[INFO]   Storage of image success");
             localStorage.setItem("profilepic", result);
-            if (forceRefresh) viewController.toast("Profielfoto ververst", 2000, false)
+            if (forceRefresh)
+              viewController.toast("Profielfoto ververst", 2000, false);
           } catch (e) {
             errorConsole("[ERROR] Storage failed: " + e);
             profilepic.setAttribute("src", "./img/smiley.png");
@@ -504,41 +621,45 @@ function setProfilePic(forceRefresh) {
 function updateSidebar() {
   if (lessonController.lessons.length > 0) {
     $("#subjectsNav").empty();
-    _.sortBy(lessonController.lessons, ['name']);
+    _.sortBy(lessonController.lessons, ["name"]);
     lessonController.lessons.forEach(lesson =>
       $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
             <a class="nav-link" onclick="viewController.render('${
-      lesson.name
-      }')">
+              lesson.name
+            }')">
                 <span>${lesson.name.capitalize()}</span>
             </a>
         </li>
     `)
-    )
+    );
   } else {
     $("#subjectsNav").html(`
       <li class="text-center mt-4">
             <span class="text-gray-300">Geen cijfers dit jaar...</span>
-      </li>`)
+      </li>`);
   }
 
   if (viewController.config.devMode) {
-    $("#toggle-terminal").show()
+    $("#toggle-terminal").show();
   } else {
-    $("#toggle-terminal").hide()
+    $("#toggle-terminal").hide();
   }
 
-  setProfilePic()
+  setProfilePic();
 
   $("#userDropdown > span").text(
     `${person.firstName} ${person.lastName} ${
-    courseController.current().course.group.description ? "(" + courseController.current().course.group.description + ")" : ""
+      courseController.current().course.group.description
+        ? "(" + courseController.current().course.group.description + ")"
+        : ""
     }`
   );
   $("#mobilePersonInfo").text(
     `${person.firstName} ${person.lastName} ${
-      courseController.current().course.group.description ? "(" + courseController.current().course.group.description + ")" : ""
+      courseController.current().course.group.description
+        ? "(" + courseController.current().course.group.description + ")"
+        : ""
     }`
   );
   // var header = document.getElementById("accordionSidebar");
@@ -592,7 +713,7 @@ function setChartData(config, lesson, everything) {
           }
         });
       }
-    })
+    });
   } else {
     lessonController.getLesson(lesson).lesson.grades.forEach(grade => {
       if (!grade.exclude) {
@@ -613,7 +734,7 @@ function setChartData(config, lesson, everything) {
     });
   }
 
-  data.sort(function (a, b) {
+  data.sort(function(a, b) {
     return new Date(b.t) - new Date(a.t);
   });
 
@@ -625,34 +746,34 @@ function setChartData(config, lesson, everything) {
     wegingen.push(value.w);
     switch (Math.round(value.y)) {
       case 1:
-        afgerond[0]++
+        afgerond[0]++;
         break;
       case 2:
-        afgerond[1]++
+        afgerond[1]++;
         break;
       case 3:
-        afgerond[2]++
+        afgerond[2]++;
         break;
       case 4:
-        afgerond[3]++
+        afgerond[3]++;
         break;
       case 5:
-        afgerond[4]++
+        afgerond[4]++;
         break;
       case 6:
-        afgerond[5]++
+        afgerond[5]++;
         break;
       case 7:
-        afgerond[6]++
+        afgerond[6]++;
         break;
       case 8:
-        afgerond[7]++
+        afgerond[7]++;
         break;
       case 9:
-        afgerond[8]++
+        afgerond[8]++;
         break;
       case 10:
-        afgerond[9]++
+        afgerond[9]++;
         break;
     }
   });
@@ -662,7 +783,10 @@ function setChartData(config, lesson, everything) {
   wegingen.reverse();
   gemiddeldes.reverse();
 
-  if (cijfers.length == 1) datums.push(datums[0]), cijfers.push(cijfers[0]), gemiddeldes.push(gemiddeldes[0])
+  if (cijfers.length == 1)
+    datums.push(datums[0]),
+      cijfers.push(cijfers[0]),
+      gemiddeldes.push(gemiddeldes[0]);
 
   // if (viewController.lineChart != false) viewController.lineChart.destroy();
   var ctx = document.getElementById("lineChart").getContext("2d");
@@ -671,7 +795,8 @@ function setChartData(config, lesson, everything) {
     data: {
       labels: datums,
       // labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
-      datasets: [{
+      datasets: [
+        {
           label: "Cijfer",
           lineTension: config.tention,
           backgroundColor: "rgba(0, 150, 219, 0.06)",
@@ -685,7 +810,7 @@ function setChartData(config, lesson, everything) {
           pointHitRadius: 30,
           pointBorderWidth: 2,
           borderWidth: config.isDesktop ? 3 : 1.5,
-          data: cijfers,
+          data: cijfers
           // pointRadius: 1
         } //,
         // {
@@ -723,46 +848,50 @@ function setChartData(config, lesson, everything) {
         }
       },
       scales: {
-        xAxes: [{
-          time: {
-            unit: "month",
-            displayFormats: {
-              quarter: "ll"
-            }
-          },
-          gridLines: {
-            display: false,
-            drawBorder: false
-          },
-          ticks: {
-            maxTicksLimit: 4,
-            autoSkip: true,
-            maxRotation: 0,
-            minRotation: 0
-          },
-          // type: 'time',
-          distribution: "linear",
-          display: config.isDesktop
-        }],
-        yAxes: [{
-          ticks: {
-            maxTicksLimit: 1,
-            padding: 5,
-            beginAtZero: false,
-            stepSize: 1,
-            steps: 1,
-            max: 10,
-            min: 1,
-            display: true //config.isDesktop
+        xAxes: [
+          {
+            time: {
+              unit: "month",
+              displayFormats: {
+                quarter: "ll"
+              }
+            },
+            gridLines: {
+              display: false,
+              drawBorder: false
+            },
+            ticks: {
+              maxTicksLimit: 4,
+              autoSkip: true,
+              maxRotation: 0,
+              minRotation: 0
+            },
+            // type: 'time',
+            distribution: "linear",
+            display: config.isDesktop
           }
-          // gridLines: {
-          //     color: "rgb(234, 236, 244)",
-          //     zeroLineColor: "rgb(234, 236, 244)",
-          //     drawBorder: false,
-          //     borderDash: [2],
-          //     zeroLineBorderDash: [2]
-          // }
-        }]
+        ],
+        yAxes: [
+          {
+            ticks: {
+              maxTicksLimit: 1,
+              padding: 5,
+              beginAtZero: false,
+              stepSize: 1,
+              steps: 1,
+              max: 10,
+              min: 1,
+              display: true //config.isDesktop
+            }
+            // gridLines: {
+            //     color: "rgb(234, 236, 244)",
+            //     zeroLineColor: "rgb(234, 236, 244)",
+            //     drawBorder: false,
+            //     borderDash: [2],
+            //     zeroLineBorderDash: [2]
+            // }
+          }
+        ]
       },
       legend: {
         display: false
@@ -784,18 +913,20 @@ function setChartData(config, lesson, everything) {
         caretPadding: 4
       },
       annotation: {
-        annotations: [{
-          type: "line",
-          mode: "horizontal",
-          scaleID: "y-axis-0",
-          value: config.passed,
-          borderColor: "rgb(232, 100, 88)",
-          borderWidth: 1,
-          label: {
-            enabled: false,
-            content: "Onvoldoende"
+        annotations: [
+          {
+            type: "line",
+            mode: "horizontal",
+            scaleID: "y-axis-0",
+            value: config.passed,
+            borderColor: "rgb(232, 100, 88)",
+            borderWidth: 1,
+            label: {
+              enabled: false,
+              content: "Onvoldoende"
+            }
           }
-        }]
+        ]
       }
     }
   });
@@ -806,13 +937,21 @@ function setChartData(config, lesson, everything) {
     type: "doughnut",
     data: {
       labels: ["Voldoendes", "Onvoldoendes"],
-      datasets: [{
-        data: [vol, onvol],
-        backgroundColor: ["rgba(0, 150, 219, 0.2)", "rgba(232, 100, 88, 0.2)"],
-        hoverBackgroundColor: ["rgba(0, 150, 219, 0.4)", "rgba(232, 100, 88, 0.4)"],
-        hoverBorderColor: ["#0096db", "#e86458"],
-        borderColor: ["#0096db", "#e86458"], //config.darkTheme ? "#2c2d30" : "#fff"
-      }]
+      datasets: [
+        {
+          data: [vol, onvol],
+          backgroundColor: [
+            "rgba(0, 150, 219, 0.2)",
+            "rgba(232, 100, 88, 0.2)"
+          ],
+          hoverBackgroundColor: [
+            "rgba(0, 150, 219, 0.4)",
+            "rgba(232, 100, 88, 0.4)"
+          ],
+          hoverBorderColor: ["#0096db", "#e86458"],
+          borderColor: ["#0096db", "#e86458"] //config.darkTheme ? "#2c2d30" : "#fff"
+        }
+      ]
     },
     options: {
       maintainAspectRatio: false,
@@ -849,7 +988,8 @@ function setChartData(config, lesson, everything) {
   // if (viewController.lineChart2 != false) viewController.lineChart2.update();
   if (lesson != "general") {
     var ctx = document.getElementById("lineChart2").getContext("2d");
-    var data = [{
+    var data = [
+      {
         label: "Gemiddelde",
         lineTension: config.tention,
         backgroundColor: "rgba(0, 150, 219, 0.06)",
@@ -863,7 +1003,7 @@ function setChartData(config, lesson, everything) {
         pointHitRadius: 30,
         pointBorderWidth: 2,
         borderWidth: config.isDesktop ? 3 : 1.5,
-        data: gemiddeldes,
+        data: gemiddeldes
         // pointRadius: 1
       } //,
       // {
@@ -883,7 +1023,7 @@ function setChartData(config, lesson, everything) {
       //   data: wegingen,
       //   pointRadius: 0
       // }
-    ]
+    ];
     // if (config.includeGradesInAverageChart) {
     if (true) {
       data.push({
@@ -900,9 +1040,9 @@ function setChartData(config, lesson, everything) {
         pointHitRadius: 30,
         pointBorderWidth: 2,
         borderWidth: config.isDesktop ? 3 : 1.5,
-        data: cijfers,
+        data: cijfers
         // pointRadius: 1
-      })
+      });
     }
     viewController.lineChart2 = new Chart(ctx, {
       type: "line",
@@ -927,54 +1067,58 @@ function setChartData(config, lesson, everything) {
           }
         },
         scales: {
-          xAxes: [{
-            time: {
-              unit: "month",
-              displayFormats: {
-                quarter: "ll"
-              }
-            },
-            gridLines: {
-              display: false,
-              drawBorder: false
-            },
-            ticks: {
-              maxTicksLimit: 4,
-              autoSkip: true,
-              maxRotation: 0,
-              minRotation: 0
-            },
-            // type: 'time',
-            distribution: "linear",
-            display: config.isDesktop
-          }],
-          yAxes: [{
-            ticks: {
-              maxTicksLimit: 1,
-              padding: 5,
-              beginAtZero: false,
-              stepSize: 1,
-              steps: 1,
-              max: 10,
-              min: 1,
-              display: true //config.isDesktop
+          xAxes: [
+            {
+              time: {
+                unit: "month",
+                displayFormats: {
+                  quarter: "ll"
+                }
+              },
+              gridLines: {
+                display: false,
+                drawBorder: false
+              },
+              ticks: {
+                maxTicksLimit: 4,
+                autoSkip: true,
+                maxRotation: 0,
+                minRotation: 0
+              },
+              // type: 'time',
+              distribution: "linear",
+              display: config.isDesktop
             }
-            // gridLines: {
-            //     color: "rgb(234, 236, 244)",
-            //     zeroLineColor: "rgb(234, 236, 244)",
-            //     drawBorder: false,
-            //     borderDash: [2],
-            //     zeroLineBorderDash: [2]
-            // }
-          }]
+          ],
+          yAxes: [
+            {
+              ticks: {
+                maxTicksLimit: 1,
+                padding: 5,
+                beginAtZero: false,
+                stepSize: 1,
+                steps: 1,
+                max: 10,
+                min: 1,
+                display: true //config.isDesktop
+              }
+              // gridLines: {
+              //     color: "rgb(234, 236, 244)",
+              //     zeroLineColor: "rgb(234, 236, 244)",
+              //     drawBorder: false,
+              //     borderDash: [2],
+              //     zeroLineBorderDash: [2]
+              // }
+            }
+          ]
         },
         legend: {
           display: true,
-          position: 'bottom',
+          position: "bottom",
           labels: {
             fontSize: 15,
             boxWidth: 50
-          },
+          }
           // onClick: navigator.vibrate(15, false)
         },
         tooltips: {
@@ -994,18 +1138,20 @@ function setChartData(config, lesson, everything) {
           caretPadding: 4
         },
         annotation: {
-          annotations: [{
-            type: "line",
-            mode: "horizontal",
-            scaleID: "y-axis-0",
-            value: config.passed,
-            borderColor: "rgb(232, 100, 88)",
-            borderWidth: 1,
-            label: {
-              enabled: false,
-              content: "Onvoldoende"
+          annotations: [
+            {
+              type: "line",
+              mode: "horizontal",
+              scaleID: "y-axis-0",
+              value: config.passed,
+              borderColor: "rgb(232, 100, 88)",
+              borderWidth: 1,
+              label: {
+                enabled: false,
+                content: "Onvoldoende"
+              }
             }
-          }]
+          ]
         }
       }
     });
@@ -1016,24 +1162,52 @@ function setChartData(config, lesson, everything) {
     type: "bar",
     data: {
       labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      datasets: [{
-        label: "Afgerond behaalde cijfers",
-        data: afgerond,
-        fill: false,
-        backgroundColor: ["rgba(255,0,0,0.2)", "rgba(255,35,0,0.2)", "rgba(255,87,0,0.2)", "rgba(255,140,0,0.2)", "rgba(255,193,0,0.2)", "rgba(255,246,0,0.2)", "rgba(212,255,0,0.2)", "rgba(159,255,0,0.2)", "rgba(106,255,0,0.2)", "rgba(53,255,0,0.2)", "rgba(0,255,0,0.2)"],
-        borderColor: ["rgba(255,0,0,1)", "rgba(255,35,0,1)", "rgba(255,87,0,1)", "rgba(255,140,0,1)", "rgba(255,193,0,1)", "rgba(255,246,0,1)", "rgba(212,255,0,1)", "rgba(159,255,0,1)", "rgba(106,255,0,1)", "rgba(53,255,0,1)", "rgba(0,255,0,1)"],
-        borderWidth: 1
-      }]
+      datasets: [
+        {
+          label: "Afgerond behaalde cijfers",
+          data: afgerond,
+          fill: false,
+          backgroundColor: [
+            "rgba(255,0,0,0.2)",
+            "rgba(255,35,0,0.2)",
+            "rgba(255,87,0,0.2)",
+            "rgba(255,140,0,0.2)",
+            "rgba(255,193,0,0.2)",
+            "rgba(255,246,0,0.2)",
+            "rgba(212,255,0,0.2)",
+            "rgba(159,255,0,0.2)",
+            "rgba(106,255,0,0.2)",
+            "rgba(53,255,0,0.2)",
+            "rgba(0,255,0,0.2)"
+          ],
+          borderColor: [
+            "rgba(255,0,0,1)",
+            "rgba(255,35,0,1)",
+            "rgba(255,87,0,1)",
+            "rgba(255,140,0,1)",
+            "rgba(255,193,0,1)",
+            "rgba(255,246,0,1)",
+            "rgba(212,255,0,1)",
+            "rgba(159,255,0,1)",
+            "rgba(106,255,0,1)",
+            "rgba(53,255,0,1)",
+            "rgba(0,255,0,1)"
+          ],
+          borderWidth: 1
+        }
+      ]
     },
     options: {
       scales: {
-        yAxes: [{
-          ticks: {
-            maxTicksLimit: 10,
-            beginAtZero: true,
-            steps: 1
+        yAxes: [
+          {
+            ticks: {
+              maxTicksLimit: 10,
+              beginAtZero: true,
+              steps: 1
+            }
           }
-        }]
+        ]
       },
       maintainAspectRatio: false,
       responsive: true,
@@ -1050,7 +1224,7 @@ function setChartData(config, lesson, everything) {
         }
       },
       legend: {
-        display: false,
+        display: false
       },
       tooltips: {
         backgroundColor: "#0096db",
@@ -1067,14 +1241,12 @@ function setChartData(config, lesson, everything) {
         intersect: true,
         mode: "index",
         caretPadding: 4
-      },
+      }
     }
   });
 }
 
-function setAllGrades() {
-
-}
+function setAllGrades() {}
 
 function toShortFormat(d) {
   d = new Date(d);
@@ -1101,41 +1273,70 @@ function toShortFormat(d) {
 function setTableData(lesson) {
   var lesson, table, grades;
   if (lesson == "general") {
-    grades = viewController.currentCourse.course.grades
+    grades = viewController.currentCourse.course.grades;
     table = $("#generalGradesTable");
   } else {
-    lesson = lessonController.getLesson(lesson).lesson
+    lesson = lessonController.getLesson(lesson).lesson;
     table = $("#cijfersTable");
     grades = lesson.grades;
   }
-  _.sortBy(grades, ['dateFilledIn', 'description', 'weight'])
-  table.empty()
+  _.sortBy(grades, ["dateFilledIn", "description", "weight"]);
+  table.empty();
   if (grades.length == 0) {
-    table.empty().append(`<h6 class="percentageGrades text-center">${lesson = "general" ? "Je hebt nog geen cijfers dit jaar" : "Geen cijfers voor dit vak"}...</h6>`)
-    return
+    table
+      .empty()
+      .append(
+        `<h6 class="percentageGrades text-center">${(lesson = "general"
+          ? "Je hebt nog geen cijfers dit jaar"
+          : "Geen cijfers voor dit vak")}...</h6>`
+      );
+    return;
   }
   // $("#dataTable").show()
-  grades.reverse()
+  grades.reverse();
   grades.forEach((grade, index) => {
-    if (grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11) {
-      var d = new Date(grade.dateFilledIn)
+    if (
+      grade.type._type == 1 &&
+      round(grade.grade) > 0 &&
+      round(grade.grade) < 11
+    ) {
+      var d = new Date(grade.dateFilledIn);
       table.append(`
-        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${grade.id})" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
+        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
+          grade.id
+        })" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
-              <h4 class="text-center mt-2">${grade.grade == "10,0" ? '<span class="text-success">10</span><span class="invisible">,</span>' : (!grade.passed) ? '<span class="text-danger">' + grade.grade + '</span>' : grade.grade}<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${grade.weight < 10 ? grade.weight + 'x<span class="invisible">0</span>' : grade.weight + "x"}</sup></h4>
+              <h4 class="text-center mt-2">${
+                grade.grade == "10,0"
+                  ? '<span class="text-success">10</span><span class="invisible">,</span>'
+                  : !grade.passed
+                  ? '<span class="text-danger">' + grade.grade + "</span>"
+                  : grade.grade
+              }<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${
+        grade.weight < 10
+          ? grade.weight + 'x<span class="invisible">0</span>'
+          : grade.weight + "x"
+      }</sup></h4>
             </div>
             <!-- <div class="status-indicator bg-success"></div> -->
           </div>
           <div class="ml-1" style="padding-top: -6px">
-            <span class="text-truncate font-weight-bold text-gray-800 small grade-small text-capitalize">${lesson = "general" ? grade.class.description : grade.description}</span>
+            <span class="text-truncate font-weight-bold text-gray-800 small grade-small text-capitalize">${(lesson = "general"
+              ? grade.class.description
+              : grade.description)}</span>
             <span
-              class="grades-table-date small grade-small float-right text-gray-600">${d.getDate()}-${d.getMonth() + 1}-${d.getFullYear()}</span>
-            <div class="small grade-small text-gray-600">${grade.description == "" ? "<i>Geen beschrijving...</i>" : grade.description}</div>
+              class="grades-table-date small grade-small float-right text-gray-600">${d.getDate()}-${d.getMonth() +
+        1}-${d.getFullYear()}</span>
+            <div class="small grade-small text-gray-600">${
+              grade.description == ""
+                ? "<i>Geen beschrijving...</i>"
+                : grade.description
+            }</div>
           </div>
         </a>
-        ${index != grades.length-1 ? '<hr class="m-0 p-0">' : ''}
-      `)
+        ${index != grades.length - 1 ? '<hr class="m-0 p-0">' : ""}
+      `);
     }
   });
   // $('#dataTable').DataTable();
@@ -1145,23 +1346,26 @@ function setAverages() {
   var totcompleted = 0,
     totcomclass = 0,
     totgem = 0,
-    totgemclass = 0
-  $('#general-progress').empty()
-  $('#averagesTable').empty()
+    totgemclass = 0;
+  $("#general-progress").empty();
+  $("#averagesTable").empty();
   lessonController.lessons.forEach(lesson => {
-    var average = lesson.lesson.getAverage()
+    var average = lesson.lesson.getAverage();
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
-      $('#averagesTable').append(
+      $("#averagesTable").append(
         `<tr onclick="viewController.render('${lesson.name}')">
           <td>${lesson.name}</td>
           <td>${Math.round(average * 100) / 100}</td>
-         </tr>`)
-      totgem = totgem + parseFloat(average)
-      totgemclass++
+         </tr>`
+      );
+      totgem = totgem + parseFloat(average);
+      totgemclass++;
     }
-  })
-  var totgem = totgem / totgemclass
-  $('#general-average').text(`${round(totgem) == "NaN" ? "Geen cijfers..." : round(totgem)}`)
+  });
+  var totgem = totgem / totgemclass;
+  $("#general-average").text(
+    `${round(totgem) == "NaN" ? "Geen cijfers..." : round(totgem)}`
+  );
 }
 
 function generateProgressHTML(lesson) {
@@ -1176,12 +1380,12 @@ function generateProgressHTML(lesson) {
 }
 
 function generateHTML(lesson) {
-  var lesson = lessonController.getLesson(lesson).lesson
+  var lesson = lessonController.getLesson(lesson).lesson;
   var extraFirst = lesson.getFirst();
   var average = lesson.getAverage(true);
-  var extraSecond = "nee." //lesson.getSecond();
-  var extraThird = "nee." //lesson.getThird();
-  var facts = lesson.getDays()
+  var extraSecond = "nee."; //lesson.getSecond();
+  var extraThird = "nee."; //lesson.getThird();
+  var facts = lesson.getDays();
   return `<!-- Page Heading -->
             <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">${lesson.name.capitalize()}</h1>
@@ -1210,14 +1414,10 @@ function generateHTML(lesson) {
                   <div class="card-body">
                       <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
-                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-green">${
-      ""
-      }</div>
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-green">${""}</div>
                           <div class="row no-gutters align-items-center">
                           <div class="col-auto">
-                              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
-      ""
-      }</div>
+                              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${""}</div>
                           </div>
                           </div>
                       </div>
@@ -1234,14 +1434,10 @@ function generateHTML(lesson) {
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">${
-    ""
-    }</div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">${""}</div>
                         <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${
-    ""
-    }</div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${""}</div>
                         </div>
                         </div>
                     </div>
@@ -1258,12 +1454,8 @@ function generateHTML(lesson) {
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">${
-    ""
-    }</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">${
-    ""
-    }</div>
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">${""}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">${""}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-grin-beam-sweat fa-2x text-gray-300"></i>
@@ -1279,7 +1471,9 @@ function generateHTML(lesson) {
                   <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">Gemiddelde van ${lesson.name}</h6>
+                      <h6 class="m-0 font-weight-bold text-primary">Gemiddelde van ${
+                        lesson.name
+                      }</h6>
                       <!--<div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Uitschuiven" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -1312,7 +1506,9 @@ function generateHTML(lesson) {
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="newGrade-weight" min="0" placeholder="Weging">
                                 </div>
-                            <a onclick="lessonController.getLesson('${lesson.name}').lesson.getNewAverage()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                            <a onclick="lessonController.getLesson('${
+                              lesson.name
+                            }').lesson.getNewAverage()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                             </form>
                             <div class="showCalculatedGrade">
                                 <h1 id="newGrade-newGrade"><i class="fas fa-chart-line fa-sm text-primary"></i></h1>
@@ -1334,7 +1530,9 @@ function generateHTML(lesson) {
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="getGrade-weight" min="0" placeholder="Weging">
                                 </div>
-                                <a onclick="lessonController.getLesson('${lesson.name}').lesson.needToGet()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                                <a onclick="lessonController.getLesson('${
+                                  lesson.name
+                                }').lesson.needToGet()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                             </form>
                             <div class="showCalculatedGrade">
                               <h1 id="getGrade-newGrade"><i class="fas fa-chart-line fa-sm text-primary"></i></h1>
@@ -1353,7 +1551,9 @@ function generateHTML(lesson) {
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson.name}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${
+                      lesson.name
+                    }</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body pt-0 chart-card">
@@ -1432,19 +1632,44 @@ function generateHTML(lesson) {
               <div class="col-lg-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Feiten voor ${lesson.name}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Feiten voor ${
+                      lesson.name
+                    }</h6>
                   </div>
                   <div class="card-body pt-0">
                     <p class="font-weight-bold mb-0 pb-0">Meeste cijfers achter elkaar</p>
-                    <span class="mb-0 pb-0 mt-0 pt-0">${facts['passed']['days']} ${facts['passed']['days'] == 1 ? 'dag voldoende' : 'dagen voldoendes achter elkaar'}<br>
-                    <span class="small grade-small mt-0 pt-0">${facts['passed']['start']} tot ${facts['passed']['end']} (${facts['passed']['grades']} ${facts['not_passed']['grades'] == 1 ? 'cijfer' : 'cijfers'})</span></span>
+                    <span class="mb-0 pb-0 mt-0 pt-0">${
+                      facts["passed"]["days"]
+                    } ${
+    facts["passed"]["days"] == 1
+      ? "dag voldoende"
+      : "dagen voldoendes achter elkaar"
+  }<br>
+                    <span class="small grade-small mt-0 pt-0">${
+                      facts["passed"]["start"]
+                    } tot ${facts["passed"]["end"]} (${
+    facts["passed"]["grades"]
+  } ${facts["not_passed"]["grades"] == 1 ? "cijfer" : "cijfers"})</span></span>
                     <br>
-                    <span class="mb-0 pb-0">${facts['not_passed']['days']} ${facts['not_passed']['days'] == 1 ? 'dag onvoldoende' : 'dagen onvoldoendes achter elkaar'}<br>
-                    <span class="small grade-small mt-0 pt-0">${facts['not_passed']['start']} tot ${facts['not_passed']['end']} (${facts['not_passed']['grades']} ${facts['not_passed']['grades'] == 1 ? 'cijfer' : 'cijfers'})</span></span>
-                    ${(lesson.lastYearGroup == undefined || lesson.lastYearAverage == undefined) ? '' : `
+                    <span class="mb-0 pb-0">${facts["not_passed"]["days"]} ${
+    facts["not_passed"]["days"] == 1
+      ? "dag onvoldoende"
+      : "dagen onvoldoendes achter elkaar"
+  }<br>
+                    <span class="small grade-small mt-0 pt-0">${
+                      facts["not_passed"]["start"]
+                    } tot ${facts["not_passed"]["end"]} (${
+    facts["not_passed"]["grades"]
+  } ${facts["not_passed"]["grades"] == 1 ? "cijfer" : "cijfers"})</span></span>
+                    ${
+                      lesson.lastYearGroup == undefined ||
+                      lesson.lastYearAverage == undefined
+                        ? ""
+                        : `
                     <hr>
                     <p class="font-weight-bold mb-0 pb-0">Gemiddelde vorig jaar voor dit vak</p>
-                    In klas ${lesson.lastYearGroup.description} stond je een ${lesson.lastYearAverage} voor dit vak`}
+                    In klas ${lesson.lastYearGroup.description} stond je een ${lesson.lastYearAverage} voor dit vak`
+                    }
                   </div>
                 </div>
               </div>
@@ -1453,7 +1678,9 @@ function generateHTML(lesson) {
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson.name}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${
+                      lesson.name
+                    }</h6>
                     </div>
                     <div class="card-body pt-0">
                       <div id="cijfersTable">

@@ -1,9 +1,9 @@
 {
-  "name": "helloworld",
-  "displayName": "HelloCordova",
+  "name": "magiscore",
+  "displayName": "Magiscore",
   "version": "1.0.0",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
-  "main": "index.js",
+  "description": "Magiscore is an all new way to view your grades. With useful tools like graphs and automatic calculations, you get insides to your grades like never before. Check it out on the Google Play Store.",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

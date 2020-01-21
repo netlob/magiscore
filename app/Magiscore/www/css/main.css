@@ -100,7 +100,7 @@ input {
   vertical-align: top;
 }
 
-#subjectsNav>.nav-item>.nav-link {
+#subjectsNav > .nav-item > .nav-link {
   font-size: 1rem !important;
   word-break: break-all !important;
 }
@@ -108,15 +108,15 @@ input {
 #passed-input {
   width: 40px !important;
   text-align: right !important;
-  margin-top: -.7px !important;
+  margin-top: -0.7px !important;
 }
 
 .text-mobile {
   font-size: 1rem !important;
 }
 
-.navbar-nav>.nav-item:hover,
-#subjectsNav>.nav-item:hover {
+.navbar-nav > .nav-item:hover,
+#subjectsNav > .nav-item:hover {
   /* background-color: rgb(21, 84, 45) !important; */
   background-color: rgb(0, 120, 175);
   /* box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .7); */
@@ -148,13 +148,13 @@ input {
 
 .rounded-circle,
 .rounded-circle:hover,
-.topbar>button.bg-primary:hover,
+.topbar > button.bg-primary:hover,
 .topbar #sidebarToggleTop:hover {
   background-color: transparent !important;
   color: #0096db !important;
 }
 
-#wrapper>.sidebar {
+#wrapper > .sidebar {
   transition: 200ms !important;
 }
 
@@ -166,7 +166,7 @@ input {
   background-color: rgba(0, 120, 175, 0.1) !important;
 }
 
-.rounded-circle>.fa {
+.rounded-circle > .fa {
   color: #0096db !important;
   font-size: 23px !important;
 }
@@ -297,7 +297,7 @@ input.form-control::placeholder {
   cursor: pointer;
 }
 
-#content>nav>form>div>input {
+#content > nav > form > div > input {
   height: 38px !important;
 }
 
@@ -305,7 +305,7 @@ input.form-control::placeholder {
   touch-action: pan-y;
 }
 
-#content-wrapper>table.gestures {
+#content-wrapper > table.gestures {
   touch-action: none !important;
 }
 
@@ -320,7 +320,7 @@ input.form-control::placeholder {
   padding-bottom: 10px !important;
 }
 
-#overlay>.spinner-border {
+#overlay > .spinner-border {
   position: fixed;
   top: 45vh;
   left: 45vw;
@@ -443,10 +443,10 @@ select:-webkit-autofill:focus {
   padding: 10rem 10rem 5rem 10rem !important;
 } */
 
-#settings-wrapper>input[type='range']::-webkit-slider-runnable-track,
-#settings-wrapper>input[type="range"]::-moz-range-track,
-#settings-wrapper>input[type="range"]::-ms-fill-lower,
-#settings-wrapper>input[type="range"]::-ms-fill-upper {
+#settings-wrapper > input[type="range"]::-webkit-slider-runnable-track,
+#settings-wrapper > input[type="range"]::-moz-range-track,
+#settings-wrapper > input[type="range"]::-ms-fill-lower,
+#settings-wrapper > input[type="range"]::-ms-fill-upper {
   background-color: #0096db !important;
 }
 
@@ -457,7 +457,7 @@ select:-webkit-autofill:focus {
   max-height: 120px !important;
 }
 
-.schools-table>tr {
+.schools-table > tr {
   margin: 0 !important;
   width: 100% !important;
 }
@@ -508,7 +508,6 @@ a.magister-login:before {
 }
 
 @media only screen and (max-width: 465px) {
-
   /* .snapjs-left .sidebar {
     z-index: 10 !important;
   } */
@@ -527,8 +526,6 @@ a.magister-login:before {
     margin-top: 33px !important;
     vertical-align: top !important;
   }
-
-
 }
 
 .sidenav-open .sidebar {
@@ -536,7 +533,6 @@ a.magister-login:before {
   overflow-y: scroll !important;
   -webkit-overflow-scrolling: touch !important;
 }
-
 
 .sidenav-open #content-wrapper {
   /* z-index: -20 !important; */
@@ -560,7 +556,6 @@ a.magister-login:before {
 } */
 
 @media (max-width: 767px) {
-
   /* .card {
         width: 100vw !important;
         margin: 0px !important;
@@ -572,10 +567,6 @@ a.magister-login:before {
         width: 100% !important;
         height: 500px !important;
     } */
-
-
-
-
 
   .container,
   .container-fluid {
@@ -596,19 +587,9 @@ a.magister-login:before {
     width: auto !important;
   }
 
-
-
-
-
-
   /* .nav-item {
         font-size: 30vw !important;
     } */
-
-
-
-
-
 
   .sidebar .nav-item .nav-link span {
     font-size: 0.85rem;
