@@ -12,7 +12,7 @@ console.log("Loaded login page :)");
 
 // alert("ff tijdelijk: HOUD DE APP OPEN TIJDENS HET OPHALEN VAN JE CIJFERS!")
 
-Array.prototype.chunk = function(chunkSize) {
+Array.prototype.chunk = function (chunkSize) {
   var R = [];
   for (var i = 0; i < this.length; i += chunkSize) {
     var chunkArr = this.slice(i, i + chunkSize);
@@ -46,8 +46,8 @@ function onDeviceReady() {
   ) {
     navigator.notification.alert(
       "Het lijkt erop dat je (per ongeluk) bent uitgelogd. Dit kan bijvoorbeeld gebeure" +
-        "n door een software update van je telefoon. Log opnieuw in om Magiscore weer te " +
-        "gebruiken.",
+      "n door een software update van je telefoon. Log opnieuw in om Magiscore weer te " +
+      "gebruiken.",
       emptyFuntion,
       "Uitgelogd",
       "Oké"
@@ -56,8 +56,8 @@ function onDeviceReady() {
   if (window.location.hash == "#failedlogin") {
     navigator.notification.alert(
       "Het inloggen vorige keer is niet goed gelukt. Dit kan bijvoorbeeld zijn omdat je" +
-        " de app had afgesloten of omdat je internetverbinding weg was gevallen.\nTip: ho" +
-        "ud de app open tijdens het inloggen/cijfers ophalen",
+      " de app had afgesloten of omdat je internetverbinding weg was gevallen.\nTip: ho" +
+      "ud de app open tijdens het inloggen/cijfers ophalen",
       emptyFuntion,
       "Login mislukt",
       "Oké"
@@ -65,19 +65,19 @@ function onDeviceReady() {
   }
   navigator.notification.confirm(
     "Magiscore is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAl" +
-      "le gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoo" +
-      "rdat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app" +
-      " niet goed werkt. In dat geval kan je voor support een mail sturen naar info@mag" +
-      "iscore.nl. Ga voor de gehele privacyverklaring naar https://magiscore.nl/privacy" +
-      ", en voor de gebruiksvoorwaarden (EULA) naar https://magiscore.nl/terms. Door in" +
-      " te loggen ga je akkoord met die twee én Schoolmaster's verklaring.",
+    "le gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoo" +
+    "rdat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app" +
+    " niet goed werkt. In dat geval kan je voor support een mail sturen naar info@mag" +
+    "iscore.nl. Ga voor de gehele privacyverklaring naar https://magiscore.nl/privacy" +
+    ", en voor de gebruiksvoorwaarden (EULA) naar https://magiscore.nl/terms. Door in" +
+    " te loggen ga je akkoord met die twee én Schoolmaster's verklaring.",
     openPrivacy,
     "Magiscore informatie",
     ["Oké", "Open verklaring"]
   );
 }
 
-function emptyFuntion() {}
+function emptyFuntion() { }
 
 function retryLogin() {
   localStorage.clear();
@@ -87,7 +87,7 @@ function retryLogin() {
 function onOffline() {
   navigator.notification.confirm(
     "Het lijkt erop dat je geen internetverbinding hebt...\nOm in te loggen is een ac" +
-      "tieve internetverbinding vereist.",
+    "tieve internetverbinding vereist.",
     openWifiSettings,
     "Geen internet",
     ["Open instellingen", "Annuleer"]
@@ -175,18 +175,18 @@ function openLoginWindow(school) {
   if (cordova === undefined) return;
   verifier = base64URL(generateCodeVerifier());
   logConsole(`School ${tenant}`);
-  //$("#login-school").val(verifier);
 
   var nonce = generateRandomBase64(32);
   var state = generateRandomState(16);
 
   var challenge = base64URL(generateCodeChallenge(verifier));
   var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&acr_values=tenant:${school}&prompt=select_account`;
+
   popup = cordova.InAppBrowser.open(
     url,
     "_blank",
     "location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,close" +
-      "buttoncolor=#eeeeee,zoom=no"
+    "buttoncolor=#eeeeee,zoom=no"
   );
   popup.addEventListener("loaderror", customScheme);
 }
@@ -210,7 +210,7 @@ function toast(msg, duration, fullWidth) {
   var bottom = $(".snackbar").length < 1 ? 30 : $(".snackbar").length * 65 + 30;
   $("body").append(
     `<div id="snackbar-${snackId}" class="snackbar${
-      fullWidth ? " w-90" : ""
+    fullWidth ? " w-90" : ""
     }">${msg}</div>`
   );
   $(`#snackbar-${snackId}`).css(
@@ -225,13 +225,13 @@ function toast(msg, duration, fullWidth) {
     "slow"
   );
   if (duration) {
-    setTimeout(function() {
+    setTimeout(function () {
       $(`#snackbar-${snackId}`).animate(
         {
           bottom: "-200px"
         },
         "slow",
-        function() {
+        function () {
           $(`#snackbar-${snackId}`).remove();
         }
       );
@@ -253,10 +253,11 @@ async function validateLogin(code, codeVerifier) {
   toast("Succesvolle login!", 2000, true);
   logConsole(`Login valideren...`);
   var settings = {
-    error: function(jqXHR, textStatus, errorThrown) {
+    error: function (jqXHR, textStatus, errorThrown) {
+      errorConsole(errorThrown.toString())
       toast(
         "Er kon geen verbinden met Magister gemaakt worden... Probeer het over een tijdje" +
-          " weer",
+        " weer",
         false
       );
       return;
@@ -313,7 +314,7 @@ async function validateLogin(code, codeVerifier) {
             localStorage.clear();
             navigator.notification.confirm(
               "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een " +
-                "leerlingaccount en probeer het opnieuw.",
+              "leerlingaccount en probeer het opnieuw.",
               retryLogin,
               "Ouder account",
               ["Opnieuw inloggen", "Annuleer"]
@@ -352,21 +353,33 @@ async function validateLogin(code, codeVerifier) {
                       all.push(grade);
                     });
                   });
-                  all_grades = [...all]; //[...all, ...all]
+                  all_grades = [...all.filter(grade => grade.id > 0)]; //[...all, ...all]
                   logConsole(`Totaal ${all_grades.length} cijfers!`);
                   var remaining = Math.round((years + 1) * 0.5 * 10) / 10;
                   $("#time-remaining").text(
                     `${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`
                   );
                   $("#grades-remaining").text(all_grades.length);
-                  var filled = 0;
+                  // var filled = 0;
                   for (let grade of all_grades) {
                     try {
-                      grade = await grade.fill();
-                      logConsole(grade._filled);
-                      filled++;
+                      let index = _.findIndex(all_grades, {
+                        id: grade.id
+                      });
+                      try {
+                        all_grades[index] = await grade.fill()
+                      } catch (error) {
+                        errorConsole(`[ERROR] !skipping grade (${grade.id}) ${error.toString()}`);
+                        _.remove(all_grades, (g) => {
+                          g.id == grade.id
+                        });
+                        continue;
+                      };
+                      if (!grade._filled) logConsole("[INFO]  (" + grade.id + ") " + grade._filled);
+                      // filled++;
                       // var i = _.findIndex(all_grades, {     id: grade.id })
-                      var i = Number(all_grades.length) - 1 - filled;
+                      var i = Number(all_grades.length) - 1 - index;
+                      all_grades[index]._filled = true;
                       // logConsole(i + ' ' + (Number(all_grades.length) - 1))
                       // $("#grades-remaining").text(filled)
                       $("#grades-remaining").text(i);
@@ -379,20 +392,25 @@ async function validateLogin(code, codeVerifier) {
                       );
                       addLoader(100 - (i / all_grades.length) * 100, true);
 
+                      // if (_.findIndex(all_grades, {
+                      //   id: grade.id
+                      // }) == Math.round((all_grades.length / 3) * 2)) {
+                      //   toast(
+                      //     `Loopt het vast? <a onclick="verderGaanLogin()">Druk dan hier</a>. Alleen klikken als hij echt is vastgelopen!`,
+                      //     false,
+                      //     true
+                      //   );
+                      // }
+
                       // if (i == (Number(all_grades.length) - 1)) {
                       if (all_grades.every(g => g._filled == true)) {
-                        // alert("Done :)")
-                        window.plugins.insomnia.allowSleepAgain();
-                        // all_courses[4].grades = []
-                        localStorage.setItem(
-                          "courses",
-                          JSON.stringify(all_courses)
-                        );
-                        localStorage.setItem("loginSuccess", "true");
-                        window.location = "../index.html";
+                        verderGaanLogin();
                       }
                     } catch (err) {
-                      // errorConsole(err)
+                      errorConsole(`[ERROR] skipping grade (${grade.id}) ${err.toString()}`);
+                      _.remove(all_grades, (g) => {
+                        g.id == grade.id
+                      });
                       continue;
                     }
                   }
@@ -413,6 +431,18 @@ async function validateLogin(code, codeVerifier) {
   // window.location = '../index.html';
 }
 
+function verderGaanLogin() {
+  // alert("Done :)")
+  window.plugins.insomnia.allowSleepAgain();
+  // all_courses[4].grades = []
+  localStorage.setItem(
+    "courses",
+    JSON.stringify(all_courses)
+  );
+  localStorage.setItem("loginSuccess", "true");
+  window.location = "../index.html";
+}
+
 function handleOpenURL(url) {
   var code = url.split("code=")[1].split("&")[0];
   validateLogin(code, verifier);
@@ -428,22 +458,22 @@ function addLoader(val, set) {
 document.addEventListener("deviceready", onDeviceReady, false);
 document.addEventListener("offline", onOffline, false);
 
-$(document).ready(function() {
-  $(function() {
-    $.ui.autocomplete.prototype._renderMenu = function(ul, items) {
+$(document).ready(function () {
+  $(function () {
+    $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
       var self = this;
       $("#schools-table").empty();
-      $.each(items, function(index, item) {
+      $.each(items, function (index, item) {
         self._renderItemData(ul, $("#schools-table"), item);
       });
     };
-    $.ui.autocomplete.prototype._renderItemData = function(ul, table, item) {
+    $.ui.autocomplete.prototype._renderItemData = function (ul, table, item) {
       return this._renderItem($("#schools-table"), item).data(
         "ui-autocomplete-item",
         item
       );
     };
-    $.ui.autocomplete.prototype._renderItem = function(table, item) {
+    $.ui.autocomplete.prototype._renderItem = function (table, item) {
       return $(`<li class="list-group-item"></li>`)
         .append(
           `<div onclick="openLoginWindow('${item.Url}')" class="small"><span class="font-weight-bold">${item.Name}</span><br>${item.Url}</div>`
@@ -452,13 +482,13 @@ $(document).ready(function() {
     };
     $("#login-school").autocomplete({
       minLength: 3,
-      source: function(request, response) {
+      source: function (request, response) {
         $("#schools-table").html(
           `<br><center><i class="ml-2 far fa-lg display fa-spinner-third fa-spin"></i></center>`
         );
         $.ajax({
           cache: false,
-          beforeSend: function(request) {
+          beforeSend: function (request) {
             request.setRequestHeader(
               "Accept",
               "application/json;odata=verbose;charset=utf-8"
@@ -466,7 +496,7 @@ $(document).ready(function() {
           },
           url: "https://mijn.magister.net/api/schools?filter=" + request.term,
           dataType: "json",
-          success: function(data) {
+          success: function (data) {
             if (data.length > 0) (lastSchools = data), response(data);
             else if (data.length == 0 && lastSchools.length != 0)
               response(lastSchools);
@@ -476,10 +506,13 @@ $(document).ready(function() {
               );
             $(".snackbar").remove();
           },
-          error: function(data) {
+          error: function (jqXHR, error, errorThrown) {
+            errorConsole(error.toString())
+            errorConsole(errorThrown.toString())
+            errorConsole(jqXHR.responseText)
             toast(
               "Er kon geen verbinding met Magister gemaakt worden... Tip: check je internetverb" +
-                "inding",
+              "inding",
               false,
               true
             );
@@ -487,8 +520,8 @@ $(document).ready(function() {
         });
       }
     });
-    $("#showMore").click(function() {
-      $("pre").slideToggle(250, function() {
+    $("#showMore").click(function () {
+      $("pre").slideToggle(250, function () {
         $("#showMore > i").toggleClass("fa-chevron-down");
         $("#showMore > i").toggleClass("fa-chevron-up");
       });

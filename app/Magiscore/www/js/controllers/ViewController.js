@@ -18,7 +18,6 @@ class ViewController {
       this.renderLesson(lesson);
     }
     if (snapper.state().state == "left") snapper.close();
-    $("#accordionSidebar .nav-item").each(function() {
     $("#accordionSidebar .nav-item").each(function () {
       $(this).removeClass("active");
       if (
@@ -285,6 +284,10 @@ class ViewController {
 
   initTheme() {
     var theme = this.config.darkTheme;
+    var darkThemeDevice = false;
+    try {
+      darkThemeDevice = cordova.plugins.ThemeDetection.isDarkModeEnabled();
+    } catch (e) { }
     // var theme = window.matchMedia('(prefers-color-scheme:dark)').matches;
     var darkThemeDevice = false;
     try {
