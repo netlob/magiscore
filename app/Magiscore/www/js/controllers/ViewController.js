@@ -289,8 +289,12 @@ class ViewController {
       darkThemeDevice = cordova.plugins.ThemeDetection.isDarkModeEnabled();
     } catch (e) { }
     // var theme = window.matchMedia('(prefers-color-scheme:dark)').matches;
+    var darkThemeDevice = false;
+    try {
+      if (cordova.plugins.ThemeDetection.isAvailable()) darkThemeDevice = cordova.plugins.ThemeDetection.isDarkModeEnabled().value
+    } catch (e) { }
     StatusBar.overlaysWebView(false);
-    if (theme || cordova.plugins.ThemeDetection.isDarkModeEnabled()) {
+    if (theme || darkThemeDevice) {
       StatusBar.backgroundColorByHexString("#2c2d30");
       StatusBar.styleLightContent();
       $("body").attr("theme", "dark");
