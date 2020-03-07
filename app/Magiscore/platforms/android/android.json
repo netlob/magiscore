@@ -55,6 +55,10 @@
             {
               "xml": "<feature name=\"LaunchReview\"><param name=\"android-package\" value=\"uk.co.workingedge.phonegap.plugin.LaunchReview\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -174,6 +178,9 @@
     },
     "cordova-launch-review": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {},
@@ -283,6 +290,14 @@
       "clobbers": [
         "LaunchReview"
       ]
+    },
+    {
+      "id": "cordova-plugin-app-version.AppVersionPlugin",
+      "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+      "pluginId": "cordova-plugin-app-version",
+      "clobbers": [
+        "cordova.getAppVersion"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -300,6 +315,7 @@
     "cordova-plugin-inappbrowser": "3.1.1-dev",
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-device": "2.0.3",
-    "cordova-launch-review": "3.1.1"
+    "cordova-launch-review": "3.1.1",
+    "cordova-plugin-app-version": "0.1.9"
   }
 }

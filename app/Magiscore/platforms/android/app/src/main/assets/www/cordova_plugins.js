@@ -105,6 +105,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "LaunchReview"
       ]
+    },
+    {
+      "id": "cordova-plugin-app-version.AppVersionPlugin",
+      "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+      "pluginId": "cordova-plugin-app-version",
+      "clobbers": [
+        "cordova.getAppVersion"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -122,6 +130,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-inappbrowser": "3.1.1-dev",
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-device": "2.0.3",
-    "cordova-launch-review": "3.1.1"
+    "cordova-launch-review": "3.1.1",
+    "cordova-plugin-app-version": "0.1.9"
   };
 });

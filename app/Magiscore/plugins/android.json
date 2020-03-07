@@ -49,6 +49,9 @@
     },
     "cordova-launch-review": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {

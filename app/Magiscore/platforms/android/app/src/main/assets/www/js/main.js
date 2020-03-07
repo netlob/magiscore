@@ -246,12 +246,16 @@ async function syncGrades() {
           return x.id;
         });
         currentGrades.forEach(grade => {
-          if (!allGradeIds.includes(grade.id)) {
+          if (viewController.config.refreshOldGrades || currentCourse.grades.find(a => a.id == grade.id).grade != grade.grade) {
+            var i = _.findIndex(currentCourse.grades, {
+              id: grade.id
+            });
+            newGrades.push(grade);
+            currentCourse.grades.splice(i, 1);
+          } else if (!allGradeIds.includes(grade.id)) {
             // logConsole("Not in id list")
             newGrades.push(grade);
             currentCourse.grades.push(grade);
-          } else if (viewController.config.refreshOldGrades) {
-            newGrades.push(grade);
           }
         });
         logConsole("[INFO]   Grades to fill: " + newGrades.length);
@@ -265,10 +269,10 @@ async function syncGrades() {
           var snack = viewController.toast(
             `<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
         style="width: 20%; height: 20px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sync-progress"></div><br><span class="text-center"><span id="sync-synced">0/${
-          newGrades.length
-        }</span> van je ${
-              viewController.config.refreshOldGrades ? "" : " nieuwe"
-            }cijfers gesynced<br> <i
+            newGrades.length
+            }</span> van je ${
+            viewController.config.refreshOldGrades ? "" : " nieuwe"
+            } cijfers gesynced<br> <i
         class="far fa-info-circle fa-s display-inline-block mr-3 ml-2 mb-2 mt-3"> Refresh oude cijfers is ingeschakeld, alle cijfers worden gerefreshed</span>`,
             false,
             true
@@ -291,12 +295,11 @@ async function syncGrades() {
                 .css("width", val + "%")
                 .attr("aria-valuenow", val);
               if (i == Number(newGrades.length) - 1) {
-                $(`#snackbar-${snack}`).animate(
-                  {
-                    bottom: "-200px"
-                  },
+                $(`#snackbar-${snack}`).animate({
+                  bottom: "-200px"
+                },
                   "fast",
-                  function() {
+                  function () {
                     $(`#snackbar-${snack}`).remove();
                   }
                 );
@@ -314,8 +317,8 @@ async function syncGrades() {
                   return `
                   <br>
                   <span class="grade-small"><b>${
-                    newGrades.filter(y => x == y.class.description).length
-                  }</b> cijfers voor ${x.trim()}</span>
+                    newGrades.filter(y => x == y.class.description).length / 2
+                    }</b> cijfers voor ${x.trim()}</span>
                 `;
                 });
                 viewController.toast(
@@ -394,11 +397,11 @@ async function syncGrades() {
   });
 }
 
-function fillTimeout() {}
+function fillTimeout() { }
 
 const ptr = PullToRefresh.init({
   mainElement: "#ptr",
-  shouldPullToRefresh: function() {
+  shouldPullToRefresh: function () {
     return (
       $(window).scrollTop() == 0 &&
       $(".sidebar").css("z-index") < 0 &&
@@ -406,7 +409,7 @@ const ptr = PullToRefresh.init({
       viewController.settingsOpen == false
     );
   },
-  onRefresh: function(done) {
+  onRefresh: function (done) {
     vibrate(15, true);
     syncGrades()
       .then(d => done())
@@ -415,15 +418,15 @@ const ptr = PullToRefresh.init({
   }
 });
 
-$(function() {
+$(function () {
   FastClick.attach(document.body);
 });
 
-String.prototype.capitalize = function(poep) {
+String.prototype.capitalize = function (poep) {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-Array.prototype.remove = function() {
+Array.prototype.remove = function () {
   var what,
     a = arguments,
     L = a.length,
@@ -437,7 +440,7 @@ Array.prototype.remove = function() {
   return this;
 };
 
-$(".container-fluid").click(function() {
+$(".container-fluid").click(function () {
   if (!$("body").hasClass("sidenav-open") && $(window).width() < 767) {
     $("#sidebarToggleTop").click();
   }

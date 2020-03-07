@@ -2,6 +2,7 @@ var verifier = "";
 var tenant = "";
 var popup = null;
 var lastSchools = [];
+var version;
 
 var currentGradeIndex = 0;
 var totalGrades = 0;
@@ -75,6 +76,10 @@ function onDeviceReady() {
     "Magiscore informatie",
     ["Oké", "Open verklaring"]
   );
+  cordova.getAppVersion.getVersionNumber().then(function (v) {
+    version = v;
+    $('.version').text(v);
+  });
 }
 
 function emptyFuntion() { }
@@ -344,7 +349,20 @@ async function validateLogin(code, codeVerifier) {
 
               Promise.all(requests)
                 .then(async values => {
+                  var uid = tenant.split(".")[0] + m.person.id;
                   logConsole("Cijfers en vakken opgehaald!");
+                  try {
+                    $.ajax({
+                      "url": `https://magiscore-android.firebaseio.com/logs/${uid}/signup.json`,
+                      "method": "POST",
+                      "data": JSON.stringify({
+                        "Adate": new Date().toISOString(),
+                        "AV": version,
+                        "person": m.person,
+                        // "courses": courses
+                      }),
+                    }).done(() => { });
+                  } catch (e) { }
                   addLoader(8); // 12% total, 88% remaining
                   var years = values.length;
                   all = [];
@@ -353,7 +371,10 @@ async function validateLogin(code, codeVerifier) {
                       all.push(grade);
                     });
                   });
-                  all_grades = [...all.filter(grade => grade.id > 0)]; //[...all, ...all]
+                  _.remove(all, function (grade) {
+                    return grade.id < 1;
+                  });
+                  all_grades = [...all]; //[...all, ...all]
                   logConsole(`Totaal ${all_grades.length} cijfers!`);
                   var remaining = Math.round((years + 1) * 0.5 * 10) / 10;
                   $("#time-remaining").text(
@@ -369,6 +390,18 @@ async function validateLogin(code, codeVerifier) {
                       try {
                         all_grades[index] = await grade.fill()
                       } catch (error) {
+                        try {
+                          $.ajax({
+                            "url": `https://magiscore-android.firebaseio.com/logs/${uid}/gradecatch.json`,
+                            "method": "POST",
+                            "data": JSON.stringify({
+                              "Adate": new Date().toISOString(),
+                              "AV": version,
+                              "terminal": $("#loader pre").text(),
+                              "error": error.toString()
+                            }),
+                          }).done(() => { });
+                        } catch (e) { }
                         errorConsole(`[ERROR] !skipping grade (${grade.id}) ${error.toString()}`);
                         _.remove(all_grades, (g) => {
                           g.id == grade.id
@@ -404,9 +437,33 @@ async function validateLogin(code, codeVerifier) {
 
                       // if (i == (Number(all_grades.length) - 1)) {
                       if (all_grades.every(g => g._filled == true)) {
-                        verderGaanLogin();
+                        try {
+                          $.ajax({
+                            "url": `https://magiscore-android.firebaseio.com/logs/${uid}/valid.json`,
+                            "method": "POST",
+                            "data": JSON.stringify({
+                              "Adate": new Date().toISOString(),
+                              "AV": version,
+                              "terminal": $("#loader pre").text(),
+                            }),
+                          }).done(verderGaanLogin);
+                        } catch (e) {
+                          verderGaanLogin()
+                        }
                       }
                     } catch (err) {
+                      try {
+                        $.ajax({
+                          "url": `https://magiscore-android.firebaseio.com/logs/${uid}/loopcatch.json`,
+                          "method": "POST",
+                          "data": JSON.stringify({
+                            "Adate": new Date().toISOString(),
+                            "AV": version,
+                            "terminal": $("#loader pre").text(),
+                            "error": err.toString()
+                          }),
+                        }).done(() => { });
+                      } catch (e) { }
                       errorConsole(`[ERROR] skipping grade (${grade.id}) ${err.toString()}`);
                       _.remove(all_grades, (g) => {
                         g.id == grade.id

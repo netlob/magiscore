@@ -284,6 +284,10 @@ class ViewController {
 
   initTheme() {
     var theme = this.config.darkTheme;
+    var darkThemeDevice = false;
+    try {
+      darkThemeDevice = cordova.plugins.ThemeDetection.isDarkModeEnabled();
+    } catch (e) { }
     // var theme = window.matchMedia('(prefers-color-scheme:dark)').matches;
     var darkThemeDevice = false;
     try {

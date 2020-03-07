@@ -20,6 +20,7 @@
     "cordova-open-native-settings": "1.5.2",
     "cordova-play-services-version-adapter": "1.0.2",
     "cordova-plugin-analytics": "2.0.0",
+    "cordova-plugin-app-version": "^0.1.9",
     "cordova-plugin-customurlscheme": "^4.4.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-dialogs": "^2.0.2",
@@ -53,7 +54,8 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
-      "cordova-launch-review": {}
+      "cordova-launch-review": {},
+      "cordova-plugin-app-version": {}
     },
     "platforms": [
       "android",

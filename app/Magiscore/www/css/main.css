@@ -40,6 +40,10 @@ html {
   min-height: 100vh !important;
 }
 
+.version::before {
+  content: "V";
+}
+
 body {
   background-color: #fff !important;
   overflow-x: hidden !important;
