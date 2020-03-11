@@ -246,7 +246,8 @@ async function syncGrades() {
           return x.id;
         });
         currentGrades.forEach(grade => {
-          if (viewController.config.refreshOldGrades || currentCourse.grades.find(a => a.id == grade.id).grade != grade.grade) {
+          // logConsole("yeet" + JSON.stringify(grade.type))
+          if (viewController.config.refreshOldGrades || (currentCourse.grades.find(a => a.id == grade.id) && currentCourse.grades.find(a => a.id == grade.id).grade != grade.grade)) {
             var i = _.findIndex(currentCourse.grades, {
               id: grade.id
             });
@@ -317,7 +318,7 @@ async function syncGrades() {
                   return `
                   <br>
                   <span class="grade-small"><b>${
-                    newGrades.filter(y => x == y.class.description).length / 2
+                    newGrades.filter(y => x == y.class.description && y.type._type == 1).length
                     }</b> cijfers voor ${x.trim()}</span>
                 `;
                 });
