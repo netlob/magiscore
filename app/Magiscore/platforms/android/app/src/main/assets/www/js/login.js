@@ -1,13 +1,14 @@
-var verifier = "";
-var tenant = "";
-var popup = null;
-var lastSchools = [];
-var version;
+let verifier = "";
+let tenant = "";
+let popup = null;
+let lastSchools = [];
+let version;
+let schools = [];
 
-var currentGradeIndex = 0;
-var totalGrades = 0;
-var all_courses = [];
-var all = [];
+let currentGradeIndex = 0;
+let totalGrades = 0;
+let all_courses = [];
+let all = [];
 
 console.log("Loaded login page :)");
 
@@ -80,6 +81,8 @@ function onDeviceReady() {
     version = v;
     $('.version').text(v);
   });
+
+  fetch('https://magiscore-android.firebaseio.com/api/schools.json').then(res => res.json()).then(data => schools = data)
 }
 
 function emptyFuntion() { }
@@ -538,43 +541,44 @@ $(document).ready(function () {
         .appendTo($("#schools-table"));
     };
     $("#login-school").autocomplete({
-      minLength: 3,
+      minLength: 2,
       source: function (request, response) {
         $("#schools-table").html(
           `<br><center><i class="ml-2 far fa-lg display fa-spinner-third fa-spin"></i></center>`
         );
-        $.ajax({
-          cache: false,
-          beforeSend: function (request) {
-            request.setRequestHeader(
-              "Accept",
-              "application/json;odata=verbose;charset=utf-8"
-            );
-          },
-          url: "https://mijn.magister.net/api/schools?filter=" + request.term,
-          dataType: "json",
-          success: function (data) {
-            if (data.length > 0) (lastSchools = data), response(data);
-            else if (data.length == 0 && lastSchools.length != 0)
-              response(lastSchools);
-            else
-              $("#schools-table").html(
-                `<br><center>Geen scholen gevonden :(</center>`
-              );
-            $(".snackbar").remove();
-          },
-          error: function (jqXHR, error, errorThrown) {
-            errorConsole(error.toString())
-            errorConsole(errorThrown.toString())
-            errorConsole(jqXHR.responseText)
-            toast(
-              "Er kon geen verbinding met Magister gemaakt worden... Tip: check je internetverb" +
-              "inding",
-              false,
-              true
-            );
-          }
-        });
+        // $.ajax({
+        //   cache: false,
+        //   beforeSend: function (request) {
+        //     request.setRequestHeader(
+        //       "Accept",
+        //       "application/json;odata=verbose;charset=utf-8"
+        //     );
+        //   },
+        //   url: "https://mijn.magister.net/api/schools?filter=" + request.term,
+        //   dataType: "json",
+        //   success: function (data) {
+        let data = schools.filter(a => JSON.stringify(a).toLowerCase().indexOf(request.term.toLowerCase()) > -1);
+        if (data.length > 0) (lastSchools = data), response(data);
+        else if (data.length == 0 && lastSchools.length != 0)
+          response(lastSchools);
+        else
+          $("#schools-table").html(
+            `<br><center>Geen scholen gevonden :(</center>`
+          );
+        $(".snackbar").remove();
+        //   },
+        //   error: function (jqXHR, error, errorThrown) {
+        //     errorConsole(error.toString())
+        //     errorConsole(errorThrown.toString())
+        //     errorConsole(jqXHR.responseText)
+        //     toast(
+        //       "Er kon geen verbinding met Magister gemaakt worden... Tip: check je internetverb" +
+        //       "inding",
+        //       false,
+        //       true
+        //     );
+        //   }
+        // });
       }
     });
     $("#showMore").click(function () {
