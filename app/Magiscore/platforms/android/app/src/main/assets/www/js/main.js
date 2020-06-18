@@ -621,6 +621,7 @@ function onDeviceReady() {
   } else {
     window.location = "./login/index.html";
   }
+  ads.initialize();
 }
 
 // function onOffline() {

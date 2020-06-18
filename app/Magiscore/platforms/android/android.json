@@ -59,6 +59,10 @@
             {
               "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"AdMob\"><param name=\"android-package\" value=\"admob.plugin.AdMob\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -106,6 +110,14 @@
             },
             {
               "xml": "<service android:enabled=\"true\" android:exported=\"false\" android:name=\"com.google.android.gms.analytics.CampaignTrackingService\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"ca-app-pub-3425399211312777~1930230742\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT\" android:value=\"true\" />",
               "count": 1
             }
           ]
@@ -180,6 +192,11 @@
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-admob-plus": {
+      "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
+      "PLAY_SERVICES_VERSION": "11.0.4",
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
@@ -298,6 +315,14 @@
       "clobbers": [
         "cordova.getAppVersion"
       ]
+    },
+    {
+      "id": "cordova-admob-plus.AdMob",
+      "file": "plugins/cordova-admob-plus/www/admob.js",
+      "pluginId": "cordova-admob-plus",
+      "clobbers": [
+        "admob"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -316,6 +341,7 @@
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-device": "2.0.3",
     "cordova-launch-review": "3.1.1",
-    "cordova-plugin-app-version": "0.1.9"
+    "cordova-plugin-app-version": "0.1.9",
+    "cordova-admob-plus": "0.0.0"
   }
 }

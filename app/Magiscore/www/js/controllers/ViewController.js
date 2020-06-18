@@ -31,6 +31,10 @@ class ViewController {
       )
         $(this).addClass("active");
     });
+    const show = (Math.random() * 100) > 75 // 80% chance ad
+    if (show) {
+      ads.showInter();
+    }
   }
 
   renderGeneral() {

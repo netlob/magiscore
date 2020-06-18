@@ -52,6 +52,11 @@
     },
     "cordova-plugin-app-version": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-admob-plus": {
+      "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
+      "PLAY_SERVICES_VERSION": "11.0.4",
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {

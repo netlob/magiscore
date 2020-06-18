@@ -120,5 +120,59 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-admob-free": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-admob-free"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ADMOB_APP_ID": "ca-app-pub-3425399211312777~1930230742"
+    }
+  },
+  "cordova-promise-polyfill": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-promise-polyfill@~0.0.2"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-admob-sdk": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-admob-sdk@~0.24.1"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-androidx": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-androidx"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-admob-plus": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-admob-plus"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
+      "PLAY_SERVICES_VERSION": "11.0.4",
+      "APP_ID_IOS": "test"
+    }
+  },
+  "cordova-plugin-add-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-add-swift-support@^2.0.2"
+    },
+    "is_top_level": false,
+    "variables": {}
   }
 }
