@@ -7,8 +7,8 @@
   "_phantomChildren": {},
   "_requested": {
     "type": "git",
-    "raw": "https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
-    "rawSpec": "https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
+    "raw": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
+    "rawSpec": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
     "saveSpec": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
     "fetchSpec": "https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
     "gitCommittish": null
@@ -18,7 +18,7 @@
     "/"
   ],
   "_resolved": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git#f83de3ac8ff1bd9ce48652091e8d183c6dcb9e06",
-  "_spec": "https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
+  "_spec": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
   "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Eddy Verbruggen",

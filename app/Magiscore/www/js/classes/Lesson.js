@@ -17,7 +17,7 @@ class Lesson {
     this.lastYearGroup = undefined;
   }
 
-  render() {}
+  render() { }
 
   getFirst() {
     var keys = Object.keys(this.data);

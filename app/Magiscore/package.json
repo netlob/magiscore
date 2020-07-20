@@ -15,7 +15,7 @@
   "dependencies": {
     "cordova-android": "^8.0.0",
     "cordova-annotated-plugin-android": "1.0.4",
-    "cordova-ios": "^5.0.1",
+    "cordova-ios": "^5.1.1",
     "cordova-launch-review": "^3.1.1",
     "cordova-open-native-settings": "1.5.2",
     "cordova-play-services-version-adapter": "1.0.2",
@@ -39,15 +39,11 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-plugin-customurlscheme": {
-        "URL_SCHEME": "m6loapp",
-        "ANDROID_SCHEME": " ",
-        "ANDROID_HOST": " ",
-        "ANDROID_PATHPREFIX": "/"
+        "URL_SCHEME": "m6loapp"
       },
       "cordova-plugin-vibration": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-dialogs": {},
-      "cordova-plugin-network-information": {},
       "cordova-open-native-settings": {},
       "cordova-plugin-insomnia": {},
       "cordova-plugin-taptic-engine": {},
@@ -55,7 +51,16 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-launch-review": {},
+<<<<<<< Updated upstream
       "cordova-plugin-app-version": {}
+=======
+      "cordova-plugin-app-version": {},
+      "cordova-admob-plus": {
+        "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
+        "APP_ID_IOS": "ca-app-pub-3425399211312777~6114349267"
+      },
+      "cordova-plugin-network-information": {}
+>>>>>>> Stashed changes
     },
     "platforms": [
       "android",

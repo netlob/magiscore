@@ -5,10 +5,12 @@ class ViewController {
     this.lineChart2 = false;
     this.pieChart = false;
     this.barChart = false;
+    this.generalBarChart = false;
     this.config = {};
     this.currentCourse = {};
     this.currentLesson = {};
     this.settingsOpen = false;
+    this.iddinkInterval;
   }
 
   render(lesson) {
@@ -59,6 +61,9 @@ class ViewController {
     $("#barChart-container")
       .empty()
       .append(`<canvas id="barChart""></canvas>`);
+    $("#barChart-container-general")
+      .empty()
+      .append(`<canvas id="generalBarChart"></canvas>`);
     // $("#general-area-title").text(
     //   `Alle cijfers van ${course.type.description}`
     // );
@@ -293,6 +298,7 @@ class ViewController {
     try {
       if (cordova.plugins.ThemeDetection.isAvailable()) darkThemeDevice = cordova.plugins.ThemeDetection.isDarkModeEnabled().value
     } catch (e) { }
+    // if (cordova.platformId == 'android') {
     StatusBar.overlaysWebView(false);
     if (theme || darkThemeDevice) {
       StatusBar.backgroundColorByHexString("#2c2d30");
@@ -303,9 +309,11 @@ class ViewController {
       StatusBar.styleDefault();
       $("body").attr("theme", "light");
     }
+    // }
   }
 
   overlay(state) {
+    // if (cordova.platformId == 'android') {
     if (state == "show") {
       $("#overlay").show();
       if (this.config.darkTheme)
@@ -318,6 +326,7 @@ class ViewController {
         StatusBar.backgroundColorByHexString("#2c2d30");
       else StatusBar.backgroundColorByHexString("#ffffff");
     }
+    // }
   }
 
   toggleTheme() {
@@ -349,9 +358,11 @@ class ViewController {
   }
 
   lightTheme() {
+    // if (cordova.platformId == 'android') {
     window.StatusBar.overlaysWebView(false);
     window.StatusBar.styleDefault();
     window.StatusBar.backgroundColorByHexString("#ffffff");
+    // }
     $("body").attr("theme", "light");
     this.updateConfig({
       darkTheme: false,
@@ -362,9 +373,11 @@ class ViewController {
   }
 
   darkTheme() {
+    // if (cordova.platformId == 'android') {
     window.StatusBar.overlaysWebView(false);
     window.StatusBar.backgroundColorByHexString("#2c2d30");
     window.StatusBar.styleLightContent();
+    // }
     $("body").attr("theme", "dark");
     this.updateConfig({
       darkTheme: true,
@@ -538,6 +551,21 @@ class ViewController {
     $("#excluded-count").text(this.config.exclude.length);
     $("#settings-wrapper").show();
     this.settingsOpen = true;
+    this.iddinkInterval = setInterval(() => {
+      const date_since = new Date("27 nov 2019");
+      const date_now = new Date();
+
+      let seconds = Math.floor((date_since - (date_now)) / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+
+      hours = hours - (days * 24);
+      minutes = minutes - (days * 24 * 60) - (hours * 60);
+      seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
+
+      $("#kutiddink").text(`${Math.abs(days)} dagen, ${hours} uren, ${minutes} en ${seconds} seconden`);
+    }, 1000);
   }
 
   closeSettings() {
@@ -547,6 +575,7 @@ class ViewController {
     this.render("general");
     this.settingsOpen = false;
     vibrate(15, false);
+    clearInterval(this.iddinkInterval);
     // this.render(this.currentLesson.name)
   }
 
@@ -696,6 +725,7 @@ function setChartData(config, lesson, everything) {
   this.lineChart = "";
   this.lineChart2 = "";
   this.pieChart = "";
+  this.generalBarChart = "";
   this.barChart = "";
   var data = [];
   var datums = [];
@@ -846,6 +876,7 @@ function setChartData(config, lesson, everything) {
       ]
     },
     options: {
+      defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
       maintainAspectRatio: false,
       responsive: true,
       layout: {
@@ -967,6 +998,7 @@ function setChartData(config, lesson, everything) {
       ]
     },
     options: {
+      defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
       maintainAspectRatio: false,
       tooltips: {
         backgroundColor: "rgba(0, 150, 219, 1)",
@@ -1065,6 +1097,7 @@ function setChartData(config, lesson, everything) {
         datasets: data
       },
       options: {
+        defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
         maintainAspectRatio: false,
         responsive: true,
         layout: {
@@ -1168,6 +1201,116 @@ function setChartData(config, lesson, everything) {
         }
       }
     });
+  } else {
+    let vakken = []
+    let vaknamen = []
+    let bgcolors = []
+    let bcolors = []
+
+    lessonController.lessons.forEach(lesson => {
+      let grademap = lesson.lesson.grades.map(grade => {
+        if (!grade.exclude) {
+          var gradegrade = grade.grade.replace(",", ".");
+          gradegrade = parseFloat(gradegrade.replace(",", "."));
+          return [isNaN(gradegrade), grade]
+        }
+      });
+      grademap = grademap.filter(a => a[0] == false);
+      if (lesson.lesson.grades.length > 0 && grademap.length > 0) {
+        const abb = grademap[0][1].class.abbreviation;
+        var avg = lesson.lesson.getAverage(true);
+        if (!isNaN(avg) && avg > 1) {
+          vaknamen.push(abb);
+          vakken.push(avg);
+          bgcolors.push(avg > config.passed ? "rgba(0,255,0,0.2)" : "rgba(255,0,0,0.2)");
+          bcolors.push(avg > config.passed ? "rgba(0,255,0,1)" : "rgba(255,0,0,1)");
+        }
+      }
+    });
+    viewController.generalBarChart = new Chart(document.getElementById("generalBarChart"), {
+      type: "bar",
+      data: {
+        labels: vaknamen,
+        datasets: [
+          {
+            label: "Gemiddelde",
+            data: vakken,
+            fill: false,
+            backgroundColor: bgcolors,
+            borderColor: bcolors,
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                maxTicksLimit: 10,
+                beginAtZero: true,
+                steps: 1
+              }
+            }
+          ]
+        },
+        maintainAspectRatio: false,
+        responsive: true,
+        layout: {
+          padding: {
+            //   left: 10,
+            //   right: 25,
+            //   top: 25,
+            //   bottom: 0
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+          },
+        },
+        legend: {
+          display: false
+        },
+        tooltips: {
+          backgroundColor: "#0096db",
+          // bodyFontColor: "#858796",
+          titleMarginBottom: 2,
+          // titleFontColor: "#6e707e",
+          titleFontSize: 12,
+          bodyFontSize: 12,
+          borderColor: "rgba(0, 150, 219, 1)",
+          borderWidth: 1,
+          xPadding: 8,
+          yPadding: 8,
+          displayColors: false,
+          intersect: true,
+          mode: "index",
+          caretPadding: 4,
+          enabled: false
+        },
+        animation: {
+          duration: 0,
+          onComplete: function () {
+            var chartInstance = this.chart,
+              ctx = chartInstance.ctx;
+
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function (dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function (bar, index) {
+                var data = Math.round(parseFloat(dataset.data[index]) * 10) / 10;
+                ctx.fillStyle = "#6e707e";
+                ctx.fillText(data, bar._model.x, bar._model.y + 15);
+              });
+            });
+          }
+        },
+      }
+    });
   }
 
   // $("#barChart-container").empty().append(`<canvas id="barChart""></canvas>`)
@@ -1211,6 +1354,7 @@ function setChartData(config, lesson, everything) {
       ]
     },
     options: {
+      defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
       scales: {
         yAxes: [
           {

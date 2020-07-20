@@ -1,28 +1,32 @@
 {
-  "_from": "cordova-plugin-customurlscheme",
+  "_args": [
+    [
+      "cordova-plugin-customurlscheme@4.4.0",
+      "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore"
+    ]
+  ],
+  "_from": "cordova-plugin-customurlscheme@4.4.0",
   "_id": "cordova-plugin-customurlscheme@4.4.0",
   "_inBundle": false,
   "_integrity": "sha512-7VPJnNfvfZQSU1IdhJX7BpDgvC7bEe+Kfg9Cj8guSoZDcTi378qQFb6VOwthT8hwGXx2bZzWf0qnTZdRlLQy+Q==",
   "_location": "/cordova-plugin-customurlscheme",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-customurlscheme",
+    "raw": "cordova-plugin-customurlscheme@4.4.0",
     "name": "cordova-plugin-customurlscheme",
     "escapedName": "cordova-plugin-customurlscheme",
-    "rawSpec": "",
+    "rawSpec": "4.4.0",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "4.4.0"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-customurlscheme/-/cordova-plugin-customurlscheme-4.4.0.tgz",
-  "_shasum": "34ae9e655a4e9e9fbb4cfdca1ffe0b8cc2640952",
-  "_spec": "cordova-plugin-customurlscheme",
-  "_where": "C:\\Users\\Admin\\Desktop\\Magiscore cordova\\Magiscore",
+  "_spec": "4.4.0",
+  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Eddy Verbruggen",
     "email": "eddyverbruggen@gmail.com",
@@ -31,7 +35,6 @@
   "bugs": {
     "url": "https://github.com/EddyVerbruggen/Custom-URL-scheme/issues"
   },
-  "bundleDependencies": false,
   "cordova": {
     "id": "cordova-plugin-customurlscheme",
     "platforms": [
@@ -41,7 +44,6 @@
       "windows"
     ]
   },
-  "deprecated": false,
   "description": "Launch your app by using this URL:  mycoolapp://, you can add a path and even pass params like this: mycoolerapp://somepath?foo=bar",
   "engines": [
     {

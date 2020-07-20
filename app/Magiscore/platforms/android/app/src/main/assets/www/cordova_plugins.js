@@ -33,23 +33,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-network-information.network",
-      "file": "plugins/cordova-plugin-network-information/www/network.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "navigator.connection",
-        "navigator.network.connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.Connection",
-      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "Connection"
-      ]
-    },
-    {
       "id": "cordova-open-native-settings.Settings",
       "file": "plugins/cordova-open-native-settings/www/settings.js",
       "pluginId": "cordova-open-native-settings",
@@ -113,6 +96,34 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "cordova.getAppVersion"
       ]
+<<<<<<< Updated upstream
+=======
+    },
+    {
+      "id": "cordova-admob-plus.AdMob",
+      "file": "plugins/cordova-admob-plus/www/admob.js",
+      "pluginId": "cordova-admob-plus",
+      "clobbers": [
+        "admob"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.network",
+      "file": "plugins/cordova-plugin-network-information/www/network.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "navigator.connection",
+        "navigator.network.connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.Connection",
+      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "Connection"
+      ]
+>>>>>>> Stashed changes
     }
   ];
   module.exports.metadata = {
@@ -121,7 +132,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-dialogs": "2.0.2",
-    "cordova-plugin-network-information": "2.0.2",
     "cordova-open-native-settings": "1.5.2",
     "cordova-plugin-insomnia": "4.3.0",
     "cordova-plugin-taptic-engine": "2.1.0",
@@ -131,6 +141,12 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-device": "2.0.3",
     "cordova-launch-review": "3.1.1",
+<<<<<<< Updated upstream
     "cordova-plugin-app-version": "0.1.9"
+=======
+    "cordova-plugin-app-version": "0.1.9",
+    "cordova-admob-plus": "0.0.0",
+    "cordova-plugin-network-information": "2.0.2"
+>>>>>>> Stashed changes
   };
 });

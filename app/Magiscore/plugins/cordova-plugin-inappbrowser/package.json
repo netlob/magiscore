@@ -7,8 +7,8 @@
   "_phantomChildren": {},
   "_requested": {
     "type": "git",
-    "raw": "https://github.com/Netlob/cordova-plugin-inappbrowser.git",
-    "rawSpec": "https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+    "raw": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+    "rawSpec": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
     "saveSpec": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
     "fetchSpec": "https://github.com/Netlob/cordova-plugin-inappbrowser.git",
     "gitCommittish": null
@@ -18,7 +18,7 @@
     "/"
   ],
   "_resolved": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git#0147b9b019660da32292a9c481e250d5f52cd508",
-  "_spec": "https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+  "_spec": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
   "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Apache Software Foundation"

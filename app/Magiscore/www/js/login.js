@@ -37,11 +37,9 @@ function getLoginInfo() {
 
 function onDeviceReady() {
   $.ajaxSetup({ cache: false });
-  StatusBar.overlaysWebView(false);
-  StatusBar.backgroundColorByHexString("#0096db");
-  StatusBar.styleLightContent();
-  // alert(navigator.connection.type) alert(Object.entries(localStorage) +
-  // window.location.hash)
+  window.StatusBar.overlaysWebView(false);
+  window.StatusBar.backgroundColorByHexString("#0096db");
+  window.StatusBar.styleLightContent();
   if (
     window.location.hash == "#notokens" &&
     Object.entries(localStorage).length > 0
@@ -286,6 +284,9 @@ async function validateLogin(code, codeVerifier) {
 
   $.ajax(settings)
     .done(async response => {
+      if ((typeof response) == "string") {
+        response = JSON.parse(response);
+      }
       window.plugins.insomnia.keepAwake();
       $("#login").hide();
       $("#loader").show();

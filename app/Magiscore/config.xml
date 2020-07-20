@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
+<<<<<<< Updated upstream
 <widget id="app.netlob.magiscore" version="1.2.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+=======
+<widget id="app.netlob.magiscore" version="1.2.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+>>>>>>> Stashed changes
     <name short="Magiscore">Magiscore - Magister statistiek</name>
     <description>
         Magiscore very nice 10/10.
@@ -19,7 +23,7 @@
     <allow-intent href="https://*/*" />
     <allow-intent href="mailto:*" />
     <platform name="android">
-        <!-- <allow-intent href="m6loapp://oauth2redirect/*" /> -->
+        <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
         <preference name="Orientation" value="portrait" />
         <icon src="res/drawable-ldpi/icon.png" density="ldpi" />
@@ -37,8 +41,13 @@
     </platform>
     <platform name="ios">
         <preference name="Orientation" value="portrait" />
+<<<<<<< Updated upstream
          <preference name="DisallowOverscroll" value="true" />
         <!-- <allow-intent href="m6loapp://oauth2redirect/*" /> -->
+=======
+        <preference name="DisallowOverscroll" value="true" />
+        <allow-intent href="m6loapp://oauth2redirect/*" />
+>>>>>>> Stashed changes
         <icon src="res/ios/icon-60@3x.png" width="180" height="180" />
         <splash src="res/ios/Default-736h.png" width="1242" height="2208"/>
         <edit-config file="*-Info.plist" mode="merge" target="UIUserInterfaceStyle">
