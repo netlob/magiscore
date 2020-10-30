@@ -37,12 +37,9 @@ function getLoginInfo() {
 
 function onDeviceReady() {
   $.ajaxSetup({ cache: false });
-  // cordova.StatusBar.overlaysWebView(false);
-  // alert("Yeet7");
-  // cordova.StatusBar.backgroundColorByHexString("#0096db");
-  // alert("Yeet8");
-  // cordova.StatusBar.styleLightContent();
-  // alert("Yeet9");
+  window.StatusBar.overlaysWebView(false);
+  window.StatusBar.backgroundColorByHexString("#0096db");
+  window.StatusBar.styleLightContent();
   if (
     window.location.hash == "#notokens" &&
     Object.entries(localStorage).length > 0
@@ -504,7 +501,7 @@ function verderGaanLogin() {
     JSON.stringify(all_courses)
   );
   localStorage.setItem("loginSuccess", "true");
-  window.location = "../index.html";
+  window.location = "./index.html";
 }
 
 function handleOpenURL(url) {

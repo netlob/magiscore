@@ -198,8 +198,8 @@ class ViewController {
     localStorage.setItem("config", JSON.stringify(base));
     this.config = base;
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
-    if (config["devMode"] === true) $("#toggle-terminal").show();
-    if (config["devMode"] === false) $("#toggle-terminal").hide();
+    if (config["devMode"] === true) $(".toggle-terminal").show();
+    if (config["devMode"] === false) $(".toggle-terminal").hide();
     if ("smiley" in config) {
       setProfilePic();
       if (this.config.smiley)
@@ -562,7 +562,7 @@ class ViewController {
 
       hours = hours - (days * 24);
       minutes = minutes - (days * 24 * 60) - (hours * 60);
-      seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
+      seconds = 60-(seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60));
 
       $("#kutiddink").text(`${Math.abs(days)} dagen, ${hours} uren, ${minutes} en ${seconds} seconden`);
     }, 1000);
@@ -683,9 +683,9 @@ function updateSidebar() {
   }
 
   if (viewController.config.devMode) {
-    $("#toggle-terminal").show();
+    $(".toggle-terminal").show();
   } else {
-    $("#toggle-terminal").hide();
+    $(".toggle-terminal").hide();
   }
 
   setProfilePic();

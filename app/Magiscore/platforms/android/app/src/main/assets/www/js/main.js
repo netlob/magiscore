@@ -14,7 +14,8 @@ var sorted = {},
   m = null;
 
 courseController.clear();
-
+// courses = courses.splice(0,5)
+// localStorage.setItem("courses", JSON.stringify(courses));
 courses.forEach(c => {
   var newCourse = Course.create();
   Object.keys(c).forEach(key => {
@@ -110,7 +111,7 @@ function main(l) {
   // }
   // $('#betaModal').modal({show:true})
   // } else {
-  //window.location = './login/index.html'
+  //window.location = './login.html'
   // alert(window.location)
 
   // }
@@ -128,7 +129,7 @@ function logOut() {
 function confirmLogout(b) {
   if (b == 1) {
     localStorage.clear();
-    window.location = "./login/index.html";
+    window.location = "./login.html";
   } else return;
 }
 
@@ -153,7 +154,7 @@ function round(num) {
 }
 
 async function syncGrades() {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     $("div:contains('Nieuwe cijfer(s) beschikbaar')").remove();
     if (m == null || m == undefined) {
       if (navigator.connection.type !== Connection.NONE) {
@@ -263,7 +264,7 @@ async function syncGrades() {
         if (newGrades.length == 0) {
           viewController.toast("Geen nieuwe cijfers gevonden...", 3000, false);
           viewController.overlay("hide");
-          resolve(newGrades);
+          resolve(await checkNewCourses(newGrades));
         } else {
           // if(newGrades.length > 0) {
           currentCourse.grades = _.unionBy(currentCourse.grades, "id");
@@ -273,8 +274,8 @@ async function syncGrades() {
             newGrades.length
             }</span> van je ${
             viewController.config.refreshOldGrades ? "" : " nieuwe"
-            } cijfers gesynced<br> <i
-        class="far fa-info-circle fa-s display-inline-block mr-3 ml-2 mb-2 mt-3"> Refresh oude cijfers is ingeschakeld, alle cijfers worden gerefreshed</span>`,
+            } cijfers gesynced<br><!-- <i
+        class="far fa-info-circle fa-s display-inline-block mr-3 ml-2 mb-2 mt-3"> Refresh oude cijfers is ingeschakeld, alle cijfers worden gerefreshed --></span>`,
             false,
             true
           );
@@ -344,17 +345,16 @@ async function syncGrades() {
                 courseController.courses.forEach(course => {
                   course.course.grades.forEach(grade => {
                     courseController.allGrades.push(grade);
-                    logConsole("[INFO]   " + grade.grade);
                   });
                 });
                 _.sortBy(courseController.allGrades, "dateFilledIn");
                 coursesStorage[i] = currentCourse;
                 localStorage.setItem("courses", JSON.stringify(coursesStorage));
-                logConsole("[INFO]   Saved new graden in courses");
+                logConsole("[INFO]   Saved new grades in courses");
                 // courseController.save()
                 main(viewController.currentLesson);
                 viewController.overlay("hide");
-                resolve(newGrades);
+                resolve(checkNewCourses(newGrades));
               }
             } catch (err) {
               if (err == "no internet") {
@@ -387,7 +387,7 @@ async function syncGrades() {
         errorConsole(err);
         errorConsole("[ERROR] Error while syncing grades");
       });
-    logConsole("[INFO]   Requested grades");
+    // logConsole("[INFO]   Requested grades");
     // });
     // }).catch(err => {
     //   if (err == "no internet") viewController.toast("Er kon geen verbinding met Magister gemaakt worden...", 4000, true)
@@ -396,6 +396,33 @@ async function syncGrades() {
     // })
     // })
   });
+}
+
+
+async function checkNewCourses(newGrades) {
+  let courses = await m.getCourses();
+  courses = courses.filter(course => !courseController.courseIds.includes(course.id))
+  if(courses.length == 1) {
+    let course = courses[0];
+    let storageCourses = JSON.parse(localStorage.getItem("courses"))
+    course._magister = undefined;
+    storageCourses.push(course);
+    localStorage.setItem("courses", JSON.stringify(storageCourses));
+
+    var newCourse = Course.create();
+    Object.keys(course).forEach(key => {
+      newCourse[key] = course[key];
+    });
+    courseController.add(newCourse);
+
+    newGrades = await syncGrades();
+    window.location = "./index.html";
+  } else if(courses.length > 1) {
+    alert("Het lijkt erop alsof je meerdere schooljaren aan cijfers mist in de app. Om dit op te lossen moet je opnieuw inloggen.");
+    confirmLogout(1);
+  } else {
+    return newGrades;
+  }
 }
 
 function fillTimeout() { }
@@ -619,8 +646,9 @@ function onDeviceReady() {
       main();
     }
   } else {
-    window.location = "./login/index.html";
+    window.location = "./login.html";
   }
+  ads.initialize();
 }
 
 // function onOffline() {

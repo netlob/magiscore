@@ -1,0 +1,11 @@
+{
+    "android": {
+        "release": {
+            "keystore": "./platforms/android/app/build/outputs/apk/magiscore.keystore",
+            "storePassword": "MagBot123",
+            "alias": "magiscore",
+            "password": "MagBot123",
+            "keystoreType": ""
+        }
+    }
+}

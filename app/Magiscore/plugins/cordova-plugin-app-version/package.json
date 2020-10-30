@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-plugin-app-version",
+  "_from": "cordova-plugin-app-version@^0.1.9",
   "_id": "cordova-plugin-app-version@0.1.9",
   "_inBundle": false,
   "_integrity": "sha1-nbBgeGMzenEEiTAuX1CpBPFEm9s=",
   "_location": "/cordova-plugin-app-version",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-app-version",
+    "raw": "cordova-plugin-app-version@^0.1.9",
     "name": "cordova-plugin-app-version",
     "escapedName": "cordova-plugin-app-version",
-    "rawSpec": "",
+    "rawSpec": "^0.1.9",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^0.1.9"
   },
   "_requiredBy": [
     "#USER",
@@ -21,7 +21,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz",
   "_shasum": "9db0607863337a710489302e5f50a904f1449bdb",
-  "_spec": "cordova-plugin-app-version",
+  "_spec": "cordova-plugin-app-version@^0.1.9",
   "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "whiteoctober"

@@ -2,16 +2,14 @@
     "extension": "linecount",
     "version": "0.1.7",
     "workspace": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
-    "linecount": [
-        {
+    "linecount": [{
             "version": "0.1.7",
             "counttime": "2019-10-01 20:30:36",
             "filesum": 153,
             "codesum": 20166,
             "commentsum": 1683,
             "blanksum": 2939,
-            "filelist": [
-                {
+            "filelist": [{
                     "blank": 0,
                     "code": 5,
                     "comment": 0,
@@ -1007,7 +1005,7 @@
                     "blank": 20,
                     "code": 123,
                     "comment": 10,
-                    "filename": "www/login/index.html"
+                    "filename": "www/login.html"
                 },
                 {
                     "blank": 0,
@@ -1042,8 +1040,7 @@
             "codesum": 16760,
             "commentsum": 1683,
             "blanksum": 2939,
-            "filelist": [
-                {
+            "filelist": [{
                     "blank": 0,
                     "code": 5,
                     "comment": 0,
@@ -1563,7 +1560,7 @@
                     "blank": 20,
                     "code": 123,
                     "comment": 10,
-                    "filename": "www/login/index.html"
+                    "filename": "www/login.html"
                 },
                 {
                     "blank": 0,
@@ -1598,8 +1595,7 @@
             "codesum": 16025,
             "commentsum": 1774,
             "blanksum": 2981,
-            "filelist": [
-                {
+            "filelist": [{
                     "blank": 0,
                     "code": 5,
                     "comment": 0,
@@ -1780,7 +1776,7 @@
                     "blank": 20,
                     "code": 130,
                     "comment": 15,
-                    "filename": "www/login/index.html"
+                    "filename": "www/login.html"
                 },
                 {
                     "blank": 0,
@@ -1815,8 +1811,7 @@
             "codesum": 16025,
             "commentsum": 1774,
             "blanksum": 2981,
-            "filelist": [
-                {
+            "filelist": [{
                     "blank": 0,
                     "code": 5,
                     "comment": 0,
@@ -1997,7 +1992,7 @@
                     "blank": 20,
                     "code": 130,
                     "comment": 15,
-                    "filename": "www/login/index.html"
+                    "filename": "www/login.html"
                 },
                 {
                     "blank": 0,

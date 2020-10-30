@@ -121,7 +121,7 @@ class Lesson {
                 for (let i = 0; i < grades.length; i++) {
                   averageTotal += grades[i];
                 }
-                average = averageTotal / grades.length;
+                average = averageTotal / grades.filter(grade => !grade.exclude).length;
               }
             }
           }
@@ -303,7 +303,7 @@ class Lesson {
             const grade = grades[i];
             average += grade;
           }
-          newGrade = average / grades.length;
+          newGrade = average / grades.filter(grade => !grade.exclude).length;
         }
       }
     });

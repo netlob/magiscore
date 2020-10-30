@@ -198,8 +198,8 @@ class ViewController {
     localStorage.setItem("config", JSON.stringify(base));
     this.config = base;
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
-    if (config["devMode"] === true) $("#toggle-terminal").show();
-    if (config["devMode"] === false) $("#toggle-terminal").hide();
+    if (config["devMode"] === true) $(".toggle-terminal").show();
+    if (config["devMode"] === false) $(".toggle-terminal").hide();
     if ("smiley" in config) {
       setProfilePic();
       if (this.config.smiley)
@@ -298,36 +298,35 @@ class ViewController {
     try {
       if (cordova.plugins.ThemeDetection.isAvailable()) darkThemeDevice = cordova.plugins.ThemeDetection.isDarkModeEnabled().value
     } catch (e) { }
-    if (cordova.platformId == 'android') {
-      StatusBar.overlaysWebView(false);
-      if (theme || darkThemeDevice) {
-        StatusBar.backgroundColorByHexString("#2c2d30");
-        StatusBar.styleLightContent();
-        $("body").attr("theme", "dark");
-      } else {
-        StatusBar.backgroundColorByHexString("#ffffff");
-        StatusBar.styleDefault();
-        $("body").attr("theme", "light");
-      }
+    // if (cordova.platformId == 'android') {
+    StatusBar.overlaysWebView(false);
+    if (theme || darkThemeDevice) {
+      StatusBar.backgroundColorByHexString("#2c2d30");
+      StatusBar.styleLightContent();
+      $("body").attr("theme", "dark");
+    } else {
+      StatusBar.backgroundColorByHexString("#ffffff");
+      StatusBar.styleDefault();
+      $("body").attr("theme", "light");
     }
+    // }
   }
 
   overlay(state) {
-    if (cordova.platformId == 'android') {
-
-      if (state == "show") {
-        $("#overlay").show();
-        if (this.config.darkTheme)
-          StatusBar.backgroundColorByHexString("#161618");
-        else StatusBar.backgroundColorByHexString("#7f7f7f");
-      }
-      if (state == "hide") {
-        $("#overlay").hide();
-        if (this.config.darkTheme)
-          StatusBar.backgroundColorByHexString("#2c2d30");
-        else StatusBar.backgroundColorByHexString("#ffffff");
-      }
+    // if (cordova.platformId == 'android') {
+    if (state == "show") {
+      $("#overlay").show();
+      if (this.config.darkTheme)
+        StatusBar.backgroundColorByHexString("#161618");
+      else StatusBar.backgroundColorByHexString("#7f7f7f");
     }
+    if (state == "hide") {
+      $("#overlay").hide();
+      if (this.config.darkTheme)
+        StatusBar.backgroundColorByHexString("#2c2d30");
+      else StatusBar.backgroundColorByHexString("#ffffff");
+    }
+    // }
   }
 
   toggleTheme() {
@@ -359,11 +358,11 @@ class ViewController {
   }
 
   lightTheme() {
-    if (cordova.platformId == 'android') {
-      window.StatusBar.overlaysWebView(false);
-      window.StatusBar.styleDefault();
-      window.StatusBar.backgroundColorByHexString("#ffffff");
-    }
+    // if (cordova.platformId == 'android') {
+    window.StatusBar.overlaysWebView(false);
+    window.StatusBar.styleDefault();
+    window.StatusBar.backgroundColorByHexString("#ffffff");
+    // }
     $("body").attr("theme", "light");
     this.updateConfig({
       darkTheme: false,
@@ -374,11 +373,11 @@ class ViewController {
   }
 
   darkTheme() {
-    if (cordova.platformId == 'android') {
-      window.StatusBar.overlaysWebView(false);
-      window.StatusBar.backgroundColorByHexString("#2c2d30");
-      window.StatusBar.styleLightContent();
-    }
+    // if (cordova.platformId == 'android') {
+    window.StatusBar.overlaysWebView(false);
+    window.StatusBar.backgroundColorByHexString("#2c2d30");
+    window.StatusBar.styleLightContent();
+    // }
     $("body").attr("theme", "dark");
     this.updateConfig({
       darkTheme: true,
@@ -563,7 +562,7 @@ class ViewController {
 
       hours = hours - (days * 24);
       minutes = minutes - (days * 24 * 60) - (hours * 60);
-      seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
+      seconds = 60-(seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60));
 
       $("#kutiddink").text(`${Math.abs(days)} dagen, ${hours} uren, ${minutes} en ${seconds} seconden`);
     }, 1000);
@@ -684,9 +683,9 @@ function updateSidebar() {
   }
 
   if (viewController.config.devMode) {
-    $("#toggle-terminal").show();
+    $(".toggle-terminal").show();
   } else {
-    $("#toggle-terminal").hide();
+    $(".toggle-terminal").hide();
   }
 
   setProfilePic();

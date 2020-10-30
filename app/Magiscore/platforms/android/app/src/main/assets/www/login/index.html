@@ -16,10 +16,10 @@
       rel="stylesheet"
       type="text/css"
     />
-    <!-- <link
+    <link
       href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
       rel="stylesheet"
-    /> -->
+    />
     <meta name="theme-color" content="#0096db" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
@@ -111,7 +111,7 @@
         </div>
       </div>
     </div>
-    <div class="container-login" id="loader" style="display: none;">
+    <div class="container-login" id="loader" style="display: block;">
       <div class="row justify-content-center">
         <div class="col-xl-10 col-md-9">
           <div class="card o-hidden border-0 shadow-lg my-3">
@@ -214,6 +214,7 @@
 
     <!-- Cordova core -->
     <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
     <!-- Core dependencies -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -225,7 +226,7 @@
     <script src="../js/deps/lodash.js"></script>
 
     <!-- Page level scripts-->
-    <script src="../js/login.js"></script>
+    <script src="../js/login.js" defer></script>
 
     <!-- Magister classes -->
     <script src="../js/utils.js"></script>

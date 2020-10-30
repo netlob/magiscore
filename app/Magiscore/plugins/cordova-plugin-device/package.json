@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-plugin-device",
+  "_from": "cordova-plugin-device@^2.0.3",
   "_id": "cordova-plugin-device@2.0.3",
   "_inBundle": false,
   "_integrity": "sha512-Jb3V72btxf3XHpkPQsGdyc8N6tVBYn1vsxSFj43fIz9vonJDUThYPCJJHqk6PX6N4dJw6I4FjxkpfCR4LDYMlw==",
   "_location": "/cordova-plugin-device",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-device",
+    "raw": "cordova-plugin-device@^2.0.3",
     "name": "cordova-plugin-device",
     "escapedName": "cordova-plugin-device",
-    "rawSpec": "",
+    "rawSpec": "^2.0.3",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^2.0.3"
   },
   "_requiredBy": [
     "#USER",
@@ -21,7 +21,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-device/-/cordova-plugin-device-2.0.3.tgz",
   "_shasum": "c2b41b7efd0455dd097f89356d85bfdd5dadeb0f",
-  "_spec": "cordova-plugin-device",
+  "_spec": "cordova-plugin-device@^2.0.3",
   "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Apache Software Foundation"

@@ -157,7 +157,7 @@ www/js/main.js, code is 283, comment is 141, blank is 48.
 www/js/refresh.js, code is 45, comment is 8, blank is 4.
 www/js/utils.js, code is 13, comment is 1, blank is 1.
 www/LICENSE, code is 17, comment is 0, blank is 4.
-www/login/index.html, code is 123, comment is 10, blank is 20.
+www/login.html, code is 123, comment is 10, blank is 20.
 www/manifest.json, code is 11, comment is 0, blank is 0.
 www/manifest.webmanifest, code is 54, comment is 0, blank is 0.
 www/README.md, code is 5, comment is 2, blank is 3.
@@ -252,7 +252,7 @@ www/js/main.js, code is 283, comment is 141, blank is 48.
 www/js/refresh.js, code is 45, comment is 8, blank is 4.
 www/js/utils.js, code is 13, comment is 1, blank is 1.
 www/LICENSE, code is 17, comment is 0, blank is 4.
-www/login/index.html, code is 123, comment is 10, blank is 20.
+www/login.html, code is 123, comment is 10, blank is 20.
 www/manifest.json, code is 11, comment is 0, blank is 0.
 www/manifest.webmanifest, code is 54, comment is 0, blank is 0.
 www/README.md, code is 5, comment is 2, blank is 3.
@@ -298,7 +298,7 @@ www/js/main.js, code is 363, comment is 182, blank is 47.
 www/js/refresh.js, code is 153, comment is 9, blank is 15.
 www/js/utils.js, code is 13, comment is 1, blank is 1.
 www/LICENSE, code is 17, comment is 0, blank is 4.
-www/login/index.html, code is 130, comment is 15, blank is 20.
+www/login.html, code is 130, comment is 15, blank is 20.
 www/manifest.json, code is 11, comment is 0, blank is 0.
 www/manifest.webmanifest, code is 54, comment is 0, blank is 0.
 www/README.md, code is 5, comment is 2, blank is 3.
@@ -344,7 +344,7 @@ www/js/main.js, code is 363, comment is 182, blank is 47.
 www/js/refresh.js, code is 153, comment is 9, blank is 15.
 www/js/utils.js, code is 13, comment is 1, blank is 1.
 www/LICENSE, code is 17, comment is 0, blank is 4.
-www/login/index.html, code is 130, comment is 15, blank is 20.
+www/login.html, code is 130, comment is 15, blank is 20.
 www/manifest.json, code is 11, comment is 0, blank is 0.
 www/manifest.webmanifest, code is 54, comment is 0, blank is 0.
 www/README.md, code is 5, comment is 2, blank is 3.

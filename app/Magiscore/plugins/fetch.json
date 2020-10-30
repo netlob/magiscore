@@ -14,7 +14,10 @@
     },
     "is_top_level": true,
     "variables": {
-      "URL_SCHEME": "m6loapp"
+      "URL_SCHEME": "m6loapp",
+      "ANDROID_SCHEME": " ",
+      "ANDROID_HOST": " ",
+      "ANDROID_PATHPREFIX": "/"
     }
   },
   "cordova-plugin-vibration": {
@@ -39,22 +42,6 @@
       "id": "cordova-plugin-dialogs@^2.0.2"
     },
     "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-device": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-device"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-badge": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-badge@>=0.8.5"
-    },
-    "is_top_level": false,
     "variables": {}
   },
   "cordova-open-native-settings": {
@@ -97,10 +84,18 @@
     "is_top_level": true,
     "variables": {}
   },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device@^2.0.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
   "cordova-launch-review": {
     "source": {
       "type": "registry",
-      "id": "cordova-launch-review"
+      "id": "cordova-launch-review@^3.1.1"
     },
     "is_top_level": true,
     "variables": {}
@@ -112,37 +107,11 @@
     },
     "is_top_level": true,
     "variables": {}
-<<<<<<< Updated upstream
-=======
-  },
-  "cordova-promise-polyfill": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-promise-polyfill@~0.0.2"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
-  "cordova-admob-sdk": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-admob-sdk@~0.24.1"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
-  "cordova-plugin-androidx": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-androidx"
-    },
-    "is_top_level": true,
-    "variables": {}
   },
   "cordova-admob-plus": {
     "source": {
       "type": "registry",
-      "id": "cordova-admob-plus@^0.36.0"
+      "id": "cordova-admob-plus@^0.39.0"
     },
     "is_top_level": true,
     "variables": {
@@ -150,21 +119,12 @@
       "APP_ID_IOS": "ca-app-pub-3425399211312777~6114349267"
     }
   },
-  "cordova-plugin-add-swift-support": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-add-swift-support@^2.0.2"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
   "cordova-plugin-network-information": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-network-information"
+      "id": "cordova-plugin-network-information@^2.0.2"
     },
     "is_top_level": true,
     "variables": {}
->>>>>>> Stashed changes
   }
 }

@@ -501,7 +501,7 @@ function verderGaanLogin() {
     JSON.stringify(all_courses)
   );
   localStorage.setItem("loginSuccess", "true");
-  window.location = "../index.html";
+  window.location = "./index.html";
 }
 
 function handleOpenURL(url) {

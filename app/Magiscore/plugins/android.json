@@ -7,7 +7,18 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
+    "cordova-admob-plus": {
+      "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
+      "PLAY_SERVICES_VERSION": "19.0.1",
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-launch-review": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-open-native-settings": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-app-version": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-customurlscheme": {
@@ -17,58 +28,36 @@
       "ANDROID_PATHPREFIX": "/",
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-splashscreen": {
+    "cordova-plugin-device": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-open-native-settings": {
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-insomnia": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-taptic-engine": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-inappbrowser": {
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-device": {
+    "cordova-plugin-taptic-engine": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-launch-review": {
+    "cordova-plugin-vibration": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-app-version": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-<<<<<<< Updated upstream
-=======
-    },
-    "cordova-admob-plus": {
-      "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
-      "APP_ID_IOS": "ca-app-pub-3425399211312777~6114349267",
-      "PLAY_SERVICES_VERSION": "11.0.4",
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "app.netlob.magiscore"
->>>>>>> Stashed changes
     }
   },
-  "dependent_plugins": {
-    "cordova-play-services-version-adapter": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-annotated-plugin-android": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    }
-  }
+  "dependent_plugins": {}
 }

@@ -64,7 +64,7 @@ function refreshToken() {
 function openBrowser(b) {
   if (b == 2) {
     localStorage.clear();
-    window.location = "./login/index.html";
+    window.location = "./login.html";
   }
   // viewController.overlay("show")
   school = /(.+:\/\/)?([^\/]+)(\/.*)*/i.exec(school)[2];

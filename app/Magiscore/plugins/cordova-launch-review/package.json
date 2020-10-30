@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-launch-review",
+  "_from": "cordova-launch-review@^3.1.1",
   "_id": "cordova-launch-review@3.1.1",
   "_inBundle": false,
   "_integrity": "sha1-vbv7tTidhf5x2eHO5LmVS0O82jk=",
   "_location": "/cordova-launch-review",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-launch-review",
+    "raw": "cordova-launch-review@^3.1.1",
     "name": "cordova-launch-review",
     "escapedName": "cordova-launch-review",
-    "rawSpec": "",
+    "rawSpec": "^3.1.1",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^3.1.1"
   },
   "_requiredBy": [
     "#USER",
@@ -21,7 +21,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-launch-review/-/cordova-launch-review-3.1.1.tgz",
   "_shasum": "bdbbfbb5389d85fe71d9e1cee4b9954b43bcda39",
-  "_spec": "cordova-launch-review",
+  "_spec": "cordova-launch-review@^3.1.1",
   "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Dave Alden"

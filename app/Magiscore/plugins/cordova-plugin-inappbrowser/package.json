@@ -14,8 +14,8 @@
     "gitCommittish": null
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
   "_resolved": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git#0147b9b019660da32292a9c481e250d5f52cd508",
   "_spec": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",

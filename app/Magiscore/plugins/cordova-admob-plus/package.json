@@ -1,0 +1,94 @@
+{
+  "_from": "cordova-admob-plus",
+  "_id": "cordova-admob-plus@0.39.0",
+  "_inBundle": false,
+  "_integrity": "sha512-bEjBkNpFD+RIzqF/AlUgt9vpj+OXlme9kRFgWBnSZqXRl79ieGHonx7FdUkf1/jIKTbH9HCmFD/5UdsHZ9Y0Ag==",
+  "_location": "/cordova-admob-plus",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-admob-plus",
+    "name": "cordova-admob-plus",
+    "escapedName": "cordova-admob-plus",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-admob-plus/-/cordova-admob-plus-0.39.0.tgz",
+  "_shasum": "2993a63bf25623ea7766a961a7b4ef0e6b2d8900",
+  "_spec": "cordova-admob-plus",
+  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "author": {
+    "name": "Ratson"
+  },
+  "bugs": {
+    "url": "https://github.com/admob-plus/admob-plus/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-admob-plus",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Trustable Google AdMob Cordova Plugin",
+  "devDependencies": {
+    "@admob-plus/core": "^0.9.2",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-typescript": "^6.0.0",
+    "@types/cordova": "^0.0.34",
+    "cordova": "10.0.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.26.11"
+  },
+  "eslintConfig": {
+    "extends": [
+      "concise-esnext"
+    ]
+  },
+  "files": [
+    "*.ts",
+    "*.md",
+    "*.xml",
+    "src",
+    "ts",
+    "www"
+  ],
+  "gitHead": "4a51476b1925286e5b37c4e1e2e4b65b4e0471cb",
+  "homepage": "https://admob-plus.github.io",
+  "keywords": [
+    "cordova",
+    "plugin",
+    "admob",
+    "plus",
+    "ecosystem:cordova",
+    "cordova-plugin-admob",
+    "cordova-admob",
+    "cordova-android",
+    "cordova-ios",
+    "google",
+    "suite",
+    "admob-free",
+    "admobpro"
+  ],
+  "license": "MIT",
+  "main": "www/admob.js",
+  "name": "cordova-admob-plus",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/admob-plus/admob-plus.git"
+  },
+  "scripts": {
+    "prepare": "rollup -c"
+  },
+  "typings": "www/admob.d.ts",
+  "version": "0.39.0"
+}

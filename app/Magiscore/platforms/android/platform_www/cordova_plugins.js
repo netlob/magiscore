@@ -1,6 +1,38 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
   module.exports = [
     {
+      "id": "cordova-admob-plus.AdMob",
+      "file": "plugins/cordova-admob-plus/www/admob.js",
+      "pluginId": "cordova-admob-plus",
+      "clobbers": [
+        "admob"
+      ]
+    },
+    {
+      "id": "cordova-launch-review.LaunchReview",
+      "file": "plugins/cordova-launch-review/www/launchreview.js",
+      "pluginId": "cordova-launch-review",
+      "clobbers": [
+        "LaunchReview"
+      ]
+    },
+    {
+      "id": "cordova-open-native-settings.Settings",
+      "file": "plugins/cordova-open-native-settings/www/settings.js",
+      "pluginId": "cordova-open-native-settings",
+      "clobbers": [
+        "cordova.plugins.settings"
+      ]
+    },
+    {
+      "id": "cordova-plugin-app-version.AppVersionPlugin",
+      "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+      "pluginId": "cordova-plugin-app-version",
+      "clobbers": [
+        "cordova.getAppVersion"
+      ]
+    },
+    {
       "id": "cordova-plugin-customurlscheme.LaunchMyApp",
       "file": "plugins/cordova-plugin-customurlscheme/www/android/LaunchMyApp.js",
       "pluginId": "cordova-plugin-customurlscheme",
@@ -9,11 +41,11 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-splashscreen.SplashScreen",
-      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-      "pluginId": "cordova-plugin-splashscreen",
+      "id": "cordova-plugin-device.device",
+      "file": "plugins/cordova-plugin-device/www/device.js",
+      "pluginId": "cordova-plugin-device",
       "clobbers": [
-        "navigator.splashscreen"
+        "device"
       ]
     },
     {
@@ -33,11 +65,12 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-open-native-settings.Settings",
-      "file": "plugins/cordova-open-native-settings/www/settings.js",
-      "pluginId": "cordova-open-native-settings",
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
       "clobbers": [
-        "cordova.plugins.settings"
+        "cordova.InAppBrowser.open",
+        "window.open"
       ]
     },
     {
@@ -49,20 +82,11 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-taptic-engine.TapticEngine",
-      "file": "plugins/cordova-plugin-taptic-engine/www/TapticEngine.js",
-      "pluginId": "cordova-plugin-taptic-engine",
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
       "clobbers": [
-        "TapticEngine"
-      ]
-    },
-    {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
+        "navigator.splashscreen"
       ]
     },
     {
@@ -74,37 +98,11 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-device.device",
-      "file": "plugins/cordova-plugin-device/www/device.js",
-      "pluginId": "cordova-plugin-device",
+      "id": "cordova-plugin-taptic-engine.TapticEngine",
+      "file": "plugins/cordova-plugin-taptic-engine/www/TapticEngine.js",
+      "pluginId": "cordova-plugin-taptic-engine",
       "clobbers": [
-        "device"
-      ]
-    },
-    {
-      "id": "cordova-launch-review.LaunchReview",
-      "file": "plugins/cordova-launch-review/www/launchreview.js",
-      "pluginId": "cordova-launch-review",
-      "clobbers": [
-        "LaunchReview"
-      ]
-    },
-    {
-      "id": "cordova-plugin-app-version.AppVersionPlugin",
-      "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
-      "pluginId": "cordova-plugin-app-version",
-      "clobbers": [
-        "cordova.getAppVersion"
-      ]
-<<<<<<< Updated upstream
-=======
-    },
-    {
-      "id": "cordova-admob-plus.AdMob",
-      "file": "plugins/cordova-admob-plus/www/admob.js",
-      "pluginId": "cordova-admob-plus",
-      "clobbers": [
-        "admob"
+        "TapticEngine"
       ]
     },
     {
@@ -123,30 +121,23 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "Connection"
       ]
->>>>>>> Stashed changes
     }
   ];
   module.exports.metadata = {
-    "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-customurlscheme": "4.4.0",
-    "cordova-plugin-vibration": "3.1.1",
-    "cordova-plugin-splashscreen": "5.0.3",
-    "cordova-plugin-dialogs": "2.0.2",
-    "cordova-open-native-settings": "1.5.2",
-    "cordova-plugin-insomnia": "4.3.0",
-    "cordova-plugin-taptic-engine": "2.1.0",
-    "cordova-play-services-version-adapter": "1.0.2",
-    "cordova-annotated-plugin-android": "1.0.4",
-    "cordova-plugin-inappbrowser": "3.1.1-dev",
-    "cordova-plugin-statusbar": "2.4.3",
-    "cordova-plugin-device": "2.0.3",
-    "cordova-launch-review": "3.1.1",
-<<<<<<< Updated upstream
-    "cordova-plugin-app-version": "0.1.9"
-=======
-    "cordova-plugin-app-version": "0.1.9",
     "cordova-admob-plus": "0.0.0",
+    "cordova-launch-review": "3.1.1",
+    "cordova-open-native-settings": "1.5.2",
+    "cordova-plugin-app-version": "0.1.9",
+    "cordova-plugin-customurlscheme": "4.4.0",
+    "cordova-plugin-device": "2.0.3",
+    "cordova-plugin-dialogs": "2.0.2",
+    "cordova-plugin-inappbrowser": "3.1.1-dev",
+    "cordova-plugin-insomnia": "4.3.0",
+    "cordova-plugin-splashscreen": "5.0.3",
+    "cordova-plugin-statusbar": "2.4.3",
+    "cordova-plugin-taptic-engine": "2.1.0",
+    "cordova-plugin-vibration": "3.1.1",
+    "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-network-information": "2.0.2"
->>>>>>> Stashed changes
   };
 });
