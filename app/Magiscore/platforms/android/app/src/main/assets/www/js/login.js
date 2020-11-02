@@ -36,6 +36,7 @@ function getLoginInfo() {
 }
 
 function onDeviceReady() {
+  ads.initialize();
   $.ajaxSetup({ cache: false });
   window.StatusBar.overlaysWebView(false);
   window.StatusBar.backgroundColorByHexString("#0096db");
