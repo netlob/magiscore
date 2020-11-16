@@ -1,9 +1,10 @@
 let verifier = "";
 let tenant = "";
 let popup = null;
-let lastSchools = [];
+var tokens;
+// let lastSchools = [];
 let version;
-let schools = [];
+// let schools = [];
 
 let currentGradeIndex = 0;
 let totalGrades = 0;
@@ -27,13 +28,13 @@ Array.prototype.chunk = function (chunkSize) {
   return R;
 };
 
-function getLoginInfo() {
-  return {
-    username: $("#login-username").val(),
-    password: $("#login-password").val(),
-    school: schools[$("#login-school").val()]
-  };
-}
+// function getLoginInfo() {
+//   return {
+//     username: $("#login-username").val(),
+//     password: $("#login-password").val(),
+//     school: schools[$("#login-school").val()]
+//   };
+// }
 
 function onDeviceReady() {
   ads.initialize();
@@ -81,7 +82,15 @@ function onDeviceReady() {
     $('.version').text(v);
   });
 
-  fetch('https://magiscore-android.firebaseio.com/api/schools.json').then(res => res.json()).then(data => schools = data)
+  if (window.cordova.platformId === "ios") {
+    $('#ios-text').show();
+    $('#android-text').hide();
+  } else {
+    $('#ios-text').hide();
+    $('#android-text').show();
+  }
+
+  // fetch('https://magiscore-android.firebaseio.com/api/schools.json').then(res => res.json()).then(data => schools = data)
 }
 
 function emptyFuntion() { }
@@ -176,18 +185,18 @@ function base64URL(string) {
     .replace(/\//g, "_");
 }
 
-function openLoginWindow(school) {
-  school = /(.+:\/\/)?([^\/]+)(\/.*)*/i.exec(school)[2];
-  tenant = school;
+function openLoginWindow() {
+  // school = /(.+:\/\/)?([^\/]+)(\/.*)*/i.exec(school)[2];
+  // tenant = school;
   if (cordova === undefined) return;
   verifier = base64URL(generateCodeVerifier());
-  logConsole(`School ${tenant}`);
+  // logConsole(`School ${tenant}`);
 
   var nonce = generateRandomBase64(32);
   var state = generateRandomState(16);
 
   var challenge = base64URL(generateCodeChallenge(verifier));
-  var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&acr_values=tenant:${school}&prompt=select_account`;
+  var url = `https://accounts.magister.net/connect/authorize?client_id=M6LOAPP&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&scope=openid%20profile%20offline_access%20magister.mobile%20magister.ecs&response_type=code%20id_token&state=${state}&nonce=${nonce}&code_challenge=${challenge}&code_challenge_method=S256&prompt=select_account`;
 
   popup = cordova.InAppBrowser.open(
     url,
@@ -216,8 +225,7 @@ function toast(msg, duration, fullWidth) {
   var snackId = Math.floor(Math.random() * 1000000 + 1);
   var bottom = $(".snackbar").length < 1 ? 30 : $(".snackbar").length * 65 + 30;
   $("body").append(
-    `<div id="snackbar-${snackId}" class="snackbar${
-    fullWidth ? " w-90" : ""
+    `<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""
     }">${msg}</div>`
   );
   $(`#snackbar-${snackId}`).css(
@@ -293,12 +301,13 @@ async function validateLogin(code, codeVerifier) {
       $("#loader").show();
       logConsole(`Succesvol oauth tokens binnengehaald!`);
       addLoader(3);
-      var tokens = {
+      tokens = {
         access_token: response.access_token,
         refresh_token: response.refresh_token,
         id_token: response.id_token
       };
       localStorage.setItem("tokens", JSON.stringify(tokens));
+      tenant = JSON.parse(atob(tokens.access_token.split(".")[1]))["urn:magister:claims:iam:tenant"];
       localStorage.setItem("school", tenant);
       var config = {
         isDesktop: false,
@@ -522,67 +531,67 @@ document.addEventListener("offline", onOffline, false);
 
 $(document).ready(function () {
   $(function () {
-    $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
-      var self = this;
-      $("#schools-table").empty();
-      $.each(items, function (index, item) {
-        self._renderItemData(ul, $("#schools-table"), item);
-      });
-    };
-    $.ui.autocomplete.prototype._renderItemData = function (ul, table, item) {
-      return this._renderItem($("#schools-table"), item).data(
-        "ui-autocomplete-item",
-        item
-      );
-    };
-    $.ui.autocomplete.prototype._renderItem = function (table, item) {
-      return $(`<li class="list-group-item"></li>`)
-        .append(
-          `<div onclick="openLoginWindow('${item.Url}')" class="small"><span class="font-weight-bold">${item.Name}</span><br>${item.Url}</div>`
-        )
-        .appendTo($("#schools-table"));
-    };
-    $("#login-school").autocomplete({
-      minLength: 2,
-      source: function (request, response) {
-        $("#schools-table").html(
-          `<br><center><i class="ml-2 far fa-lg display fa-spinner-third fa-spin"></i></center>`
-        );
-        // $.ajax({
-        //   cache: false,
-        //   beforeSend: function (request) {
-        //     request.setRequestHeader(
-        //       "Accept",
-        //       "application/json;odata=verbose;charset=utf-8"
-        //     );
-        //   },
-        //   url: "https://mijn.magister.net/api/schools?filter=" + request.term,
-        //   dataType: "json",
-        //   success: function (data) {
-        let data = schools.filter(a => JSON.stringify(a).toLowerCase().indexOf(request.term.toLowerCase()) > -1);
-        if (data.length > 0) (lastSchools = data), response(data);
-        else if (data.length == 0 && lastSchools.length != 0)
-          response(lastSchools);
-        else
-          $("#schools-table").html(
-            `<br><center>Geen scholen gevonden :(</center>`
-          );
-        $(".snackbar").remove();
-        //   },
-        //   error: function (jqXHR, error, errorThrown) {
-        //     errorConsole(error.toString())
-        //     errorConsole(errorThrown.toString())
-        //     errorConsole(jqXHR.responseText)
-        //     toast(
-        //       "Er kon geen verbinding met Magister gemaakt worden... Tip: check je internetverb" +
-        //       "inding",
-        //       false,
-        //       true
-        //     );
-        //   }
-        // });
-      }
-    });
+    //     $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
+    //       var self = this;
+    //       $("#schools-table").empty();
+    //       $.each(items, function (index, item) {
+    //         self._renderItemData(ul, $("#schools-table"), item);
+    //       });
+    //     };
+    //     $.ui.autocomplete.prototype._renderItemData = function (ul, table, item) {
+    //       return this._renderItem($("#schools-table"), item).data(
+    //         "ui-autocomplete-item",
+    //         item
+    //       );
+    //     };
+    //     $.ui.autocomplete.prototype._renderItem = function (table, item) {
+    //       return $(`<li class="list-group-item"></li>`)
+    //         .append(
+    //           `<div onclick="openLoginWindow('${item.Url}')" class="small"><span class="font-weight-bold">${item.Name}</span><br>${item.Url}</div>`
+    //         )
+    //         .appendTo($("#schools-table"));
+    //     };
+    //     $("#login-school").autocomplete({
+    //       minLength: 2,
+    //       source: function (request, response) {
+    //         $("#schools-table").html(
+    //           `<br><center><i class="ml-2 far fa-lg display fa-spinner-third fa-spin"></i></center>`
+    //         );
+    //         // $.ajax({
+    //         //   cache: false,
+    //         //   beforeSend: function (request) {
+    //         //     request.setRequestHeader(
+    //         //       "Accept",
+    //         //       "application/json;odata=verbose;charset=utf-8"
+    //         //     );
+    //         //   },
+    //         //   url: "https://mijn.magister.net/api/schools?filter=" + request.term,
+    //         //   dataType: "json",
+    //         //   success: function (data) {
+    //         let data = schools.filter(a => JSON.stringify(a).toLowerCase().indexOf(request.term.toLowerCase()) > -1);
+    //         if (data.length > 0) (lastSchools = data), response(data);
+    //         else if (data.length == 0 && lastSchools.length != 0)
+    //           response(lastSchools);
+    //         else
+    //           $("#schools-table").html(
+    //             `<br><center>Geen scholen gevonden :(</center>`
+    //           );
+    //         $(".snackbar").remove();
+    //         //   },
+    //         //   error: function (jqXHR, error, errorThrown) {
+    //         //     errorConsole(error.toString())
+    //         //     errorConsole(errorThrown.toString())
+    //         //     errorConsole(jqXHR.responseText)
+    //         //     toast(
+    //         //       "Er kon geen verbinding met Magister gemaakt worden... Tip: check je internetverb" +
+    //         //       "inding",
+    //         //       false,
+    //         //       true
+    //         //     );
+    //         //   }
+    //         // });
+    //       }
+    //     });
     $("#showMore").click(function () {
       $("pre").slideToggle(250, function () {
         $("#showMore > i").toggleClass("fa-chevron-down");

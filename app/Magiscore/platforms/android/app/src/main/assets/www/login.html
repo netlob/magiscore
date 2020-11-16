@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
     <title>Magiscore - Login</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
     <meta name="theme-color" content="#0096db" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -26,9 +28,9 @@
     <style>
         body {
             background-color: #0096db !important;
-            background-image: repeating-linear-gradient( 45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.05) 20px, rgba(255, 255, 255, 0.05) 40px);
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.05) 20px, rgba(255, 255, 255, 0.05) 40px);
         }
-        
+
         * {
             user-select: none !important;
         }
@@ -53,20 +55,33 @@
                                 <h1 class="h4 text-gray-900 mb-4">Login</h1>
                             </div>
                             <div class="user" onsubmit="return">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="login-school" aria-describedby="school" placeholder="School" />
                                     <ul class="list-group list-group-flush" id="schools-table"></ul>
-                                    <!-- <table class="schools-table"
-                    style="max-height: 190px !important; overflow-y: scroll !important; display: table; width: 100%">
-                    <tbody id="schools-table" class="mh-50">
-                    </tbody>
-                  </table> -->
                                 </div>
                                 <span class="text-gray-500" style="font-size: 12px;"><i
                       class="far fa-info-circle fa-s display-inline-block mr-1 ml-2 mb-2 mt-3"
                     ></i>
                     Vul en kies een school in om door te gaan
-                  </span>
+                  </span> -->
+                                <div id="ios-text">
+                                    Om in te loggen zal er een popup geopend worden van Magister, zodra je bent ingelogd
+                                    geeft je telefoon
+                                    een popup of je de pagina wilt openen in Magister, het is belangrijk dat je dit
+                                    weigert (mocht je per ongeluk toch op "Open" drukken, ga dan zo snel mogelijk terug
+                                    naar Magiscore).
+
+                                    <img class="img-fluid mt-2" src="./img/ios-popup.png" alt="ios popup plaatje" />
+                                </div>
+                                <div id="android-text">
+                                    Om in te loggen zal een popup geopend worden van Magister. Dit is de officiele
+                                    Magister login website, wat betekent dat Magiscore <u>nooit</u> toegang zal krijgen
+                                    tot je wachtwoord (niet eens je gebruikersnaam).
+                                </div>
+                                <hr>
+                                <a href="#" onclick="openLoginWindow()"
+                                    class="btn btn-primary btn-user btn-block bg-gradiant-primary">Login via
+                                    Magister</a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +105,9 @@
                             <div class="text-center mt-3">
                                 <h1 class="h4 text-gray-900 mb-4">Cijfers ophalen</h1>
                             </div>
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%; height: 20px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                style="width: 0%; height: 20px;" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                             <br />
                             <h6>Tijd resterend: <span id="time-remaining">~</span></h6>
                             <h6>Cijfers resterend: <span id="grades-remaining">~</span></h6>
@@ -99,16 +116,15 @@
                             </h6>
                             <hr class="mb-0" />
                             <span class="text-gray-500 mt-0" style="font-size: 12px;"><i
-                    class="far fa-info-circle fa-s display-inline-block mr-1 ml-2 mb-2 mt-3"
-                  ></i>
-                  Je cijfers worden nu opgehaald. Dit duurt ongeveer een halve
-                  minuut per leerjaar. <br />
-                  Belangrijk is dat je de app open houd en je telefoon aan. Je
-                  scherm zal niet uit gaan tijdens het ophalen van je cijfers.
-                </span>
+                                    class="far fa-info-circle fa-s display-inline-block mr-1 ml-2 mb-2 mt-3"></i>
+                                Je cijfers worden nu opgehaald. Dit duurt ongeveer een halve
+                                minuut per leerjaar. <br />
+                                Belangrijk is dat je de app open houd en je telefoon aan. Je
+                                scherm zal niet uit gaan tijdens het ophalen van je cijfers.
+                            </span>
                             <hr />
-                            <a style="color: #0096db !important;" id="showMore">Console<i class="ml-2 fa fa-sm fa-chevron-down"></i
-                ></a>
+                            <a style="color: #0096db !important;" id="showMore">Console<i
+                                    class="ml-2 fa fa-sm fa-chevron-down"></i></a>
                             <pre class="overflow-auto" style="user-select: all !important; display: none;"></pre>
                         </div>
                     </div>
@@ -154,7 +170,7 @@
             $("#loader pre").prepend(`<small class="text-danger">${err}</small>\n`);
         }
 
-        window.onerror = function(msg, url, lineNo, columnNo, error) {
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
             errorConsole(`${msg} line: ${lineNo}\n url: ${url}`);
             return false;
         };
