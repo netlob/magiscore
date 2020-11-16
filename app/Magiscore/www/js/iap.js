@@ -53,6 +53,8 @@ function refreshProductUI(product) {
             ads.hideBanner();
         }
     }
+
+    logConsole(JSON.stringify(product))
 }
 
 function purchaseNonConsumable1() {
