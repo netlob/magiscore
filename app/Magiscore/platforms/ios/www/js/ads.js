@@ -1,7 +1,10 @@
 let adChances = { "banner": 100, "inter": 0 }
+let initialized = false;
 
 const ads = {
     initialize() {
+        // if (initialized == true) return;
+        // initialized = true;
         this.receivedEvent('deviceready')
 
         fetch("https://magiscore-android.firebaseio.com/api/ads.json").then(res => res.json()).then(res => {
@@ -31,10 +34,18 @@ const ads = {
     },
 
     showBanner() {
-        // admob.banner.show({ id: { android: "ca-app-pub-3425399211312777/4106282964", ios: "ca-app-pub-3425399211312777/4609695903" } }).catch(e => this.receivedEvent(e.toString()));
+        // admob.banner.show({
+        //         id: {
+        //             android: "ca-app-pub-3425399211312777/4106282964",
+        //             ios: "ca-app-pub-3425399211312777/4609695903"
+        //         },
+        //         position: "bottom",
+        //     })
+        //     .catch(e => this.receivedEvent(e.toString()));
         admob.banner.show({
             id: {
-                android: "ca-app-pub-3940256099942544/6300978111", ios: "ca-app-pub-3940256099942544/2934735716"
+                // android: "ca-app-pub-3425399211312777/4106282964", ios: "ca-app-pub-3425399211312777/4609695903"
+                android: "ca-app-pub-3425399211312777/4106282964", ios: "test"
             },
             position: "bottom"
         }).catch(e => this.receivedEvent(e.toString()));
@@ -43,19 +54,20 @@ const ads = {
 
     loadInter() {
         logConsole(`[INFO]   Received Ad Load Inter`);
-        // admob.interstitial.load({
-        //     id: {
-        //         android: 'ca-app-pub-3425399211312777/6833546322',
-        //         ios: 'ca-app-pub-3425399211312777/7035165802',
-        //     },
-        // })
-        admob.interstitial
-            .load({
-                id: {
-                    android: 'test',
-                    ios: 'test',
-                }
-            })
+        admob.interstitial.load({
+            id: {
+                android: 'ca-app-pub-3425399211312777/6833546322',
+                ios: 'ca-app-pub-3425399211312777/7035165802',
+            },
+        })
+            // admob.interstitial
+            //     .load({
+            //         id: {
+            //             android: 'test',
+            //             ios: 'test',
+            //         }
+
+            //     })
             .then(() => {
                 logConsole(`[INFO]   Loaded Ad Inter`);
             })

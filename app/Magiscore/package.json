@@ -58,7 +58,8 @@
                 "APP_ID_IOS": "ca-app-pub-3425399211312777~6114349267",
                 "PLAY_SERVICES_VERSION": "19.0.1"
             },
-            "cordova-plugin-network-information": {}
+            "cordova-plugin-network-information": {},
+            "cordova-plugin-add-swift-support": {}
         },
         "platforms": [
             "android",

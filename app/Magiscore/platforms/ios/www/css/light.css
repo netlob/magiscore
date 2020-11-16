@@ -650,6 +650,7 @@ pre code {
   margin-right: auto;
   margin-left: auto;
   max-width: 720px;
+  height: 100vh;
 }
 
 .row {
