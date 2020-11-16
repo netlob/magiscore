@@ -267,6 +267,7 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
     implementation "com.google.android.gms:play-services-ads:19.0.1"
+    implementation "com.android.billingclient:billing:3.0.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 

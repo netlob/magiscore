@@ -1,0 +1,85 @@
+{
+  "_from": "cordova-plugin-purchase",
+  "_id": "cordova-plugin-purchase@10.3.0",
+  "_inBundle": false,
+  "_integrity": "sha512-3+smkLGVZipad3PjwtFd5BnMgfsR4prpoXGV/piJbFJYhv85ugYSoA65TF6EMwBUOR2ulV1hzcOYMaP9rDazxA==",
+  "_location": "/cordova-plugin-purchase",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-purchase",
+    "name": "cordova-plugin-purchase",
+    "escapedName": "cordova-plugin-purchase",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-purchase/-/cordova-plugin-purchase-10.3.0.tgz",
+  "_shasum": "282dc524773238db16a4c5d0c99de9d7496f683b",
+  "_spec": "cordova-plugin-purchase",
+  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "author": {
+    "name": "Jean-Christophe Hoelt",
+    "email": "hoelt@fovea.cc"
+  },
+  "bugs": {
+    "url": "https://github.com/j3k0/cordova-plugin-purchase/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-purchase",
+    "platforms": [
+      "android",
+      "ios",
+      "wp8"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Purchase plugin for iOS, Android, Windows (AppStore, Play, UWP)",
+  "devDependencies": {
+    "acorn": "^6.3.0",
+    "babel-eslint": "^10.0.3",
+    "coveralls": "^3.0.6",
+    "eslint": "^5.16.0",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.14.3",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.10.2",
+    "mocha": "^6.2.0",
+    "preprocessor": "^1.4.0",
+    "uglify-js": "^3.6.0"
+  },
+  "homepage": "https://github.com/j3k0/cordova-plugin-purchase",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows",
+    "cordova",
+    "phonegap",
+    "purchase",
+    "storekit",
+    "ios",
+    "android",
+    "play",
+    "appstore"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-purchase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j3k0/cordova-plugin-purchase.git"
+  },
+  "scripts": {
+    "coverage": "make test-js-coverage",
+    "test": "make test-js"
+  },
+  "types": "./src/js/index.d.ts",
+  "version": "10.3.0"
+}

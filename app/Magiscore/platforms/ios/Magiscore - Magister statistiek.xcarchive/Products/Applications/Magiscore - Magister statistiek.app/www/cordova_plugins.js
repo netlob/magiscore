@@ -121,6 +121,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "Connection"
       ]
+    },
+    {
+      "id": "cordova-plugin-purchase.InAppPurchase",
+      "file": "plugins/cordova-plugin-purchase/www/store-ios.js",
+      "pluginId": "cordova-plugin-purchase",
+      "clobbers": [
+        "store"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -139,6 +147,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-app-version": "0.1.9",
     "cordova-admob-plus": "0.0.0",
     "cordova-plugin-network-information": "2.0.2",
-    "cordova-plugin-add-swift-support": "2.0.2"
+    "cordova-plugin-add-swift-support": "2.0.2",
+    "cordova-plugin-purchase": "10.3.0"
   };
 });

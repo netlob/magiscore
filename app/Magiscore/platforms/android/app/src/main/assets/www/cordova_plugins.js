@@ -121,6 +121,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "Connection"
       ]
+    },
+    {
+      "id": "cordova-plugin-purchase.InAppBillingPlugin",
+      "file": "plugins/cordova-plugin-purchase/www/store-android.js",
+      "pluginId": "cordova-plugin-purchase",
+      "clobbers": [
+        "store"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -139,6 +147,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-network-information": "2.0.2",
-    "cordova-plugin-add-swift-support": "2.0.2"
+    "cordova-plugin-add-swift-support": "2.0.2",
+    "cordova-plugin-purchase": "10.3.0"
   };
 });

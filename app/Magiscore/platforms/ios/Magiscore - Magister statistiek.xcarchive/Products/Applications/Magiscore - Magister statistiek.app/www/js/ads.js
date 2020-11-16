@@ -1,11 +1,14 @@
 let adChances = { "banner": 100, "inter": 0 }
 let initialized = false;
+let bannerShown = false;
 
 const ads = {
-    initialize() {
-        // if (initialized == true) return;
-        // initialized = true;
+    initialize(hasAdFree) {
+        if (initialized === true) return;
+        initialized = true;
         this.receivedEvent('deviceready')
+
+        if (hasAdFree) return;
 
         fetch("https://magiscore-android.firebaseio.com/api/ads.json").then(res => res.json()).then(res => {
             this.receivedEvent(JSON.stringify(res))
@@ -44,12 +47,17 @@ const ads = {
         //     .catch(e => this.receivedEvent(e.toString()));
         admob.banner.show({
             id: {
-                // android: "ca-app-pub-3425399211312777/4106282964", ios: "ca-app-pub-3425399211312777/4609695903"
-                android: "ca-app-pub-3425399211312777/4106282964", ios: "test"
+                android: "ca-app-pub-3425399211312777/4106282964", ios: "ca-app-pub-3425399211312777/4609695903"
             },
             position: "bottom"
         }).catch(e => this.receivedEvent(e.toString()));
+        bannerShown = true;
         // admob.banner.show({ id: "test" }).catch(receivedEvent).catch(e => this.receivedEvent(e.toString()));
+    },
+
+    hideBanner() {
+        const bannerID = window.cordova.platformId === "ios" ? "ca-app-pub-3425399211312777/4609695903" : "ca-app-pub-3425399211312777/4106282964";
+        admob.banner.hide(bannerID).catch(e => this.receivedEvent(e.toString()));
     },
 
     loadInter() {
