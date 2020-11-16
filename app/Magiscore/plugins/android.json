@@ -60,6 +60,9 @@
     },
     "cordova-plugin-add-swift-support": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-purchase": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {}

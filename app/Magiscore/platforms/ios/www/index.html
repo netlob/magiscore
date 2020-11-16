@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
   <title>Magiscore</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="css/fonts.css" rel="stylesheet">
@@ -351,10 +351,19 @@
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
                 </a> -->
-                <a class="dropdown-item vibrate toggle-terminal" data-toggle="terminal" onclick="$('#terminal-wrapper').toggle()">
+                <a class="dropdown-item vibrate toggle-terminal" data-toggle="terminal"
+                  onclick="$('#terminal-wrapper').toggle()">
                   <!-- style="display: none;" -->
                   <i class="fas fa-terminal fa-sm fa-fw mr-2 text-gray-400"></i>
                   Toggle terminal
+                </a>
+                <a class="dropdown-item vibrate" onclick="purchaseNonConsumable1()" id="verwijder-ads">
+                  <i class="fas fa-ban fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Verwijder advertenties
+                </a>
+                <a class="dropdown-item vibrate" onclick="restorePurchases1()" id="herstel-aankopen">
+                  <i class="fas fa-download fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Herstel aankopen
                 </a>
                 <a class="dropdown-item vibrate" onclick="viewController.openSettings()">
                   <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -376,12 +385,19 @@
         <div class="mt-4" id="ptr"></div>
 
         <div class="container-fluid" id="settings-wrapper" style="display: none;" data-snap-ignore="true">
+          <div id="nonconsumable1-purchase"></div>
           <h3 class="ml-1 pl-3 font-weight-bold text-primary">Download Spotistats</h3>
-          <p class="ml-1 pl-3 text-primary">Wil jij elk moment van het jaar weten welke artiesten en liedjes je het meeste luisterd, zien hoeveel uur Spotify je luisterd, op welke tijdstippen je luisterd en nog veel meer uitgebreide info? Download dan nu Spotistats voor iOS en Android!</p>
+          <p class="ml-1 pl-3 text-primary">Wil jij elk moment van het jaar weten welke artiesten en liedjes je het
+            meeste luistert, zien hoeveel uur Spotify je luisterd, op welke tijdstippen je luisterd en nog veel meer
+            uitgebreide info? Download dan nu Spotistats voor iOS en Android!</p>
           <div class="ml-1 pl-3 mb-4" style="margin-bottom: -20px;">
-              <a class="playStoreLink" href="https://play.google.com/store/apps/details?id=dev.netlob.spotistats&referrer=utm_source%3Dmagiscore"><img class="playStore" src="https://spotistats.app/assets/playstore.png" height="40"></a>
-              
-              <a class="appStoreLink" href="https://apps.apple.com/app/apple-store/id1526912392?pt=121772327&ct=magiscore&mt=8"><img class="appStore" src="https://spotistats.app/assets/appstore.png" height="40"></a>
+            <a class="playStoreLink"
+              href="https://play.google.com/store/apps/details?id=dev.netlob.spotistats&referrer=utm_source%3Dmagiscore"><img
+                class="playStore" src="https://spotistats.app/assets/playstore.png" height="40" alt="Play Store"></a>§
+
+            <a class="appStoreLink"
+              href="https://apps.apple.com/app/apple-store/id1526912392?pt=121772327&ct=magiscore&mt=8"><img
+                class="appStore" src="https://spotistats.app/assets/appstore.png" height="40" alt="App Store"></a>
           </div>
 
           <h6 class="ml-1 pl-3 font-weight-bold text-primary">Magiscore</h6>
@@ -472,7 +488,8 @@
             voor de gebruiksvoorwaarden (EULA) naar <a class="menu-a vibrate"
               onclick="cordova.InAppBrowser.open('https://magiscore.nl/terms', '_system');">https://magiscore.nl/terms</a>.
             <p class="mt-2 toggle-terminal">
-              Deze app zou al <span id="kutiddink"></span> offline moeten zijn, tenzij ik een paar duizend euro per jaar ga betalen aan Magister :(
+              Deze app zou al <span id="kutiddink"></span> offline moeten zijn, tenzij ik een paar duizend euro per jaar
+              ga betalen aan Magister :(
             </p>
           </div>
         </div>
@@ -1053,6 +1070,7 @@
   <script src="js/controllers/LessonController.js"></script>
   <script src="js/refresh.js"></script>
   <script src="js/ads.js"></script>
+  <script src="js/iap.js"></script>
   <!-- <script src="js/tour.js"></script> -->
   <script src="js/main.js"></script>
 

@@ -76,4 +76,7 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
     <preference name="Orientation" value="portrait" />
+    <feature name="InAppBillingPlugin">
+        <param name="android-package" value="cc.fovea.PurchasePlugin" />
+    </feature>
 </widget>

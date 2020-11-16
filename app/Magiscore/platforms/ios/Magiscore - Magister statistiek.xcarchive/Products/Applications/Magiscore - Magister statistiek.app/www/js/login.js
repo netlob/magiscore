@@ -88,7 +88,6 @@ function onDeviceReady() {
   } else {
     $('#ios-text').hide();
     $('#android-text').show();
-
   }
 
   // fetch('https://magiscore-android.firebaseio.com/api/schools.json').then(res => res.json()).then(data => schools = data)

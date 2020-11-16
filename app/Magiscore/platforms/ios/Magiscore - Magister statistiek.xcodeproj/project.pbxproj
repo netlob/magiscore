@@ -46,6 +46,10 @@
 		F525E23C58E54779A0F94C07 /* AMSRewardVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1E9B1281CF4BABBE8C506D /* AMSRewardVideo.swift */; };
 		F6095A4664D74A4D9537FF04 /* UIWindow+DismissNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7ED60C41C348349C212C72 /* UIWindow+DismissNotification.m */; };
 		FCDD662081924325BCBC5294 /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D43C640CC0E94BE5B6B53D8C /* CDVReachability.m */; };
+		25AFA0BCC486490397C057E3 /* InAppPurchase.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA9830F8D9949E085CA5468 /* InAppPurchase.m */; };
+		C3966AA9BAF1488081463963 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8B413B7DA4CFAA70F4615 /* SKProduct+LocalizedPrice.m */; };
+		05874BD2E76B44BEA4F4E0D8 /* SKProductDiscount+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9184F1165740188506AD27 /* SKProductDiscount+LocalizedPrice.m */; };
+		29ADBF4F00614F3DB9238859 /* FileUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E656267D7425403595CCE54C /* FileUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +152,14 @@
 		F5F5399E30D24FAAA11689B3 /* AMSInterstitial.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = AMSInterstitial.swift; path = "cordova-admob-plus/AMSInterstitial.swift"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Magiscore - Magister statistiek/config.xml"; sourceTree = "<group>"; };
 		FD7EA57E30524AD19E9BBC94 /* CDVDevice.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; };
+		BCA9830F8D9949E085CA5468 /* InAppPurchase.m */ = {isa = PBXFileReference; name = "InAppPurchase.m"; path = "cordova-plugin-purchase/InAppPurchase.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		2DD8B413B7DA4CFAA70F4615 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; name = "SKProduct+LocalizedPrice.m"; path = "cordova-plugin-purchase/SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		7F9184F1165740188506AD27 /* SKProductDiscount+LocalizedPrice.m */ = {isa = PBXFileReference; name = "SKProductDiscount+LocalizedPrice.m"; path = "cordova-plugin-purchase/SKProductDiscount+LocalizedPrice.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		E656267D7425403595CCE54C /* FileUtility.m */ = {isa = PBXFileReference; name = "FileUtility.m"; path = "cordova-plugin-purchase/FileUtility.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		B0D1C91D227B4414BC9A19A6 /* InAppPurchase.h */ = {isa = PBXFileReference; name = "InAppPurchase.h"; path = "cordova-plugin-purchase/InAppPurchase.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		7893AA4344D046BA8DE17F20 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; name = "SKProduct+LocalizedPrice.h"; path = "cordova-plugin-purchase/SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E0B652A26F694D31B12CBE81 /* SKProductDiscount+LocalizedPrice.h */ = {isa = PBXFileReference; name = "SKProductDiscount+LocalizedPrice.h"; path = "cordova-plugin-purchase/SKProductDiscount+LocalizedPrice.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		C66D79DA7B1D4B6CAE9AC803 /* FileUtility.h */ = {isa = PBXFileReference; name = "FileUtility.h"; path = "cordova-plugin-purchase/FileUtility.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +323,14 @@
 				D43C640CC0E94BE5B6B53D8C /* CDVReachability.m */,
 				1800523F2B784745A470CB87 /* CDVConnection.h */,
 				CB975531000E4133AFA2E547 /* CDVReachability.h */,
+				BCA9830F8D9949E085CA5468 /* InAppPurchase.m */,
+				2DD8B413B7DA4CFAA70F4615 /* SKProduct+LocalizedPrice.m */,
+				7F9184F1165740188506AD27 /* SKProductDiscount+LocalizedPrice.m */,
+				E656267D7425403595CCE54C /* FileUtility.m */,
+				B0D1C91D227B4414BC9A19A6 /* InAppPurchase.h */,
+				7893AA4344D046BA8DE17F20 /* SKProduct+LocalizedPrice.h */,
+				E0B652A26F694D31B12CBE81 /* SKProductDiscount+LocalizedPrice.h */,
+				C66D79DA7B1D4B6CAE9AC803 /* FileUtility.h */,
 			);
 			name = Plugins;
 			path = "Magiscore - Magister statistiek/Plugins";
@@ -546,6 +566,10 @@
 				F525E23C58E54779A0F94C07 /* AMSRewardVideo.swift in Sources */,
 				DE22E6AAC06342948F53E526 /* CDVConnection.m in Sources */,
 				FCDD662081924325BCBC5294 /* CDVReachability.m in Sources */,
+				25AFA0BCC486490397C057E3 /* InAppPurchase.m in Sources */,
+				C3966AA9BAF1488081463963 /* SKProduct+LocalizedPrice.m in Sources */,
+				05874BD2E76B44BEA4F4E0D8 /* SKProductDiscount+LocalizedPrice.m in Sources */,
+				29ADBF4F00614F3DB9238859 /* FileUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

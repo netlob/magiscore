@@ -270,10 +270,8 @@ async function syncGrades() {
           currentCourse.grades = _.unionBy(currentCourse.grades, "id");
           var snack = viewController.toast(
             `<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-        style="width: 20%; height: 20px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sync-progress"></div><br><span class="text-center"><span id="sync-synced">0/${
-            newGrades.length
-            }</span> van je ${
-            viewController.config.refreshOldGrades ? "" : " nieuwe"
+        style="width: 20%; height: 20px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sync-progress"></div><br><span class="text-center"><span id="sync-synced">0/${newGrades.length
+            }</span> van je ${viewController.config.refreshOldGrades ? "" : " nieuwe"
             } cijfers gesynced<br><!-- <i
         class="far fa-info-circle fa-s display-inline-block mr-3 ml-2 mb-2 mt-3"> Refresh oude cijfers is ingeschakeld, alle cijfers worden gerefreshed --></span>`,
             false,
@@ -318,8 +316,7 @@ async function syncGrades() {
                 var extra = result.map(x => {
                   return `
                   <br>
-                  <span class="grade-small"><b>${
-                    newGrades.filter(y => x == y.class.description && y.type._type == 1).length
+                  <span class="grade-small"><b>${newGrades.filter(y => x == y.class.description && y.type._type == 1).length
                     }</b> cijfers voor ${x.trim()}</span>
                 `;
                 });
@@ -402,7 +399,7 @@ async function syncGrades() {
 async function checkNewCourses(newGrades) {
   let courses = await m.getCourses();
   courses = courses.filter(course => !courseController.courseIds.includes(course.id))
-  if(courses.length == 1) {
+  if (courses.length == 1) {
     let course = courses[0];
     let storageCourses = JSON.parse(localStorage.getItem("courses"))
     course._magister = undefined;
@@ -417,7 +414,7 @@ async function checkNewCourses(newGrades) {
 
     newGrades = await syncGrades();
     window.location = "./index.html";
-  } else if(courses.length > 1) {
+  } else if (courses.length > 1) {
     alert("Het lijkt erop alsof je meerdere schooljaren aan cijfers mist in de app. Om dit op te lossen moet je opnieuw inloggen.");
     confirmLogout(1);
   } else {
@@ -648,7 +645,7 @@ function onDeviceReady() {
   } else {
     window.location = "./login.html";
   }
-  ads.initialize();
+  // ads.initialize();
 }
 
 // function onOffline() {
