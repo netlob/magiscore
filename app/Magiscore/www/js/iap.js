@@ -40,7 +40,7 @@ function refreshLockedUI() {
 function refreshProductUI(product) {
     console.log("refreshProductUI", product)
 
-    $("#herstel-aankopen").hide();
+    $("#herstel-aankopen").show();
     $("#verwijder-ads").show();
 
     ads.initialize(product.owned);

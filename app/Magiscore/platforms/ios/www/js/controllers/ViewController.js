@@ -151,8 +151,7 @@ class ViewController {
 
     $("#grade-modal-count").attr(
       "onchange",
-      `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${
-      grade.id
+      `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${grade.id
       }', this)`
     );
     $("#grade-modal-count").prop("checked", !grade.exclude);
@@ -241,8 +240,7 @@ class ViewController {
         ? 30
         : $(".snackbar").length * 65 + 30;
     $("body").append(
-      `<div id="snackbar-${snackId}" class="snackbar${
-      fullWidth ? " w-90" : ""
+      `<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""
       }">${msg}</div>`
     );
     $(`#snackbar-${snackId}`).css(
@@ -409,7 +407,7 @@ class ViewController {
       platform = device.platform.toLowerCase();
     switch (platform) {
       case "ios":
-        appId = "1307145960";
+        appId = "1529746917";
         break;
       case "android":
         appId = "app.netlob.magiscore";
@@ -456,26 +454,22 @@ class ViewController {
           <a class="dropdown-item d-flex align-items-center vibrate" onclick="if(viewController.currentCourse == courseController.current()) { viewController.render('${grade.vak.omschrijving.capitalize()}') } else { viewController.renderCourse(courseController.current().course.id, true, false, false) }">
             <div class="dropdown-list-image mr-3">
               <div class="rounded-circle">
-                <h3 class="text-center mt-1">${
-        grade.waarde == "10,0"
+                <h3 class="text-center mt-1">${grade.waarde == "10,0"
           ? '<span class="text-success">10</span>'
           : round(grade.waarde) < this.config.passed
             ? '<span class="text-danger">' + grade.waarde + "</span>"
             : grade.waarde
-        }<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important; right: -15px !important;">${
-        grade.weegfactor
+        }<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important; right: -15px !important;">${grade.weegfactor
         }x</sup></h3>
               </div>
               <!-- <div class="status-indicator bg-success"></div> -->
             </div>
             <div class="ml-2">
-              <span class="text-truncate font-weight-bold text-capitalize">${
-        grade.vak.omschrijving
+              <span class="text-truncate font-weight-bold text-capitalize">${grade.vak.omschrijving
         }</span><span
                 class="latest-grades-date">${d.getDate()}/${d.getMonth() +
         1}</span></br>
-              <div class="small text-gray-600 text-truncate">${
-        grade.omschrijving
+              <div class="small text-gray-600 text-truncate">${grade.omschrijving
         }</div>
             </div>
           </a>
@@ -510,12 +504,9 @@ class ViewController {
           .substring(2)}`;
       // var sexyDate = course.raw.Start
       $("#years").append(
-        `<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${
-        course.course.id
-        }', true, false, false)" id="course-${
-        course.course.id
-        }">${sexyDate} - ${course.course.group.description} ${
-        course.course.curricula.length > 0
+        `<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id
+        }', true, false, false)" id="course-${course.course.id
+        }">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0
           ? "(" + course.course.curricula.toString() + ")"
           : ""
         }</a>`
@@ -562,7 +553,7 @@ class ViewController {
 
       hours = hours - (days * 24);
       minutes = minutes - (days * 24 * 60) - (hours * 60);
-      seconds = 60-(seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60));
+      seconds = 60 - (seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60));
 
       $("#kutiddink").text(`${Math.abs(days)} dagen, ${hours} uren, ${minutes} en ${seconds} seconden`);
     }, 1000);
@@ -667,8 +658,7 @@ function updateSidebar() {
     lessonController.lessons.forEach(lesson =>
       $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
-            <a class="nav-link" onclick="viewController.render('${
-        lesson.name
+            <a class="nav-link" onclick="viewController.render('${lesson.name
         }')">
                 <span>${lesson.name.capitalize()}</span>
             </a>
@@ -691,15 +681,13 @@ function updateSidebar() {
   setProfilePic();
 
   $("#userDropdown > span").text(
-    `${person.firstName} ${person.lastName} ${
-    courseController.current().course.group.description
+    `${person.firstName} ${person.lastName} ${courseController.current().course.group.description
       ? "(" + courseController.current().course.group.description + ")"
       : ""
     }`
   );
   $("#mobilePersonInfo").text(
-    `${person.firstName} ${person.lastName} ${
-    courseController.current().course.group.description
+    `${person.firstName} ${person.lastName} ${courseController.current().course.group.description
       ? "(" + courseController.current().course.group.description + ")"
       : ""
     }`
@@ -1459,19 +1447,16 @@ function setTableData(lesson) {
     ) {
       var d = new Date(grade.dateFilledIn);
       table.append(`
-        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
-        grade.id
+        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${grade.id
         })" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
-              <h4 class="text-center mt-2">${
-        grade.grade == "10,0"
+              <h4 class="text-center mt-2">${grade.grade == "10,0"
           ? '<span class="text-success">10</span><span class="invisible">,</span>'
           : !grade.passed
             ? '<span class="text-danger">' + grade.grade + "</span>"
             : grade.grade
-        }<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${
-        grade.weight < 10
+        }<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${grade.weight < 10
           ? grade.weight + 'x<span class="invisible">0</span>'
           : grade.weight + "x"
         }</sup></h4>
@@ -1485,8 +1470,7 @@ function setTableData(lesson) {
             <span
               class="grades-table-date small grade-small float-right text-gray-600">${d.getDate()}-${d.getMonth() +
         1}-${d.getFullYear()}</span>
-            <div class="small grade-small text-gray-600">${
-        grade.description == ""
+            <div class="small grade-small text-gray-600">${grade.description == ""
           ? "<i>Geen beschrijving...</i>"
           : grade.description
         }</div>
@@ -1628,8 +1612,7 @@ function generateHTML(lesson) {
                   <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">Gemiddelde van ${
-    lesson.name
+                      <h6 class="m-0 font-weight-bold text-primary">Gemiddelde van ${lesson.name
     }</h6>
                       <!--<div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Uitschuiven" aria-haspopup="true" aria-expanded="false">
@@ -1663,8 +1646,7 @@ function generateHTML(lesson) {
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="newGrade-weight" min="0" placeholder="Weging">
                                 </div>
-                            <a onclick="lessonController.getLesson('${
-    lesson.name
+                            <a onclick="lessonController.getLesson('${lesson.name
     }').lesson.getNewAverage()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                             </form>
                             <div class="showCalculatedGrade">
@@ -1687,8 +1669,7 @@ function generateHTML(lesson) {
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="getGrade-weight" min="0" placeholder="Weging">
                                 </div>
-                                <a onclick="lessonController.getLesson('${
-    lesson.name
+                                <a onclick="lessonController.getLesson('${lesson.name
     }').lesson.needToGet()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                             </form>
                             <div class="showCalculatedGrade">
@@ -1708,8 +1689,7 @@ function generateHTML(lesson) {
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${
-    lesson.name
+                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson.name
     }</h6>
                 </div>
                 <!-- Card Body -->
@@ -1789,37 +1769,28 @@ function generateHTML(lesson) {
               <div class="col-lg-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Feiten voor ${
-    lesson.name
+                    <h6 class="m-0 font-weight-bold text-primary">Feiten voor ${lesson.name
     }</h6>
                   </div>
                   <div class="card-body pt-0">
                     <p class="font-weight-bold mb-0 pb-0">Meeste cijfers achter elkaar</p>
-                    <span class="mb-0 pb-0 mt-0 pt-0">${
-    facts["passed"]["days"]
-    } ${
-    facts["passed"]["days"] == 1
+                    <span class="mb-0 pb-0 mt-0 pt-0">${facts["passed"]["days"]
+    } ${facts["passed"]["days"] == 1
       ? "dag voldoende"
       : "dagen voldoendes achter elkaar"
     }<br>
-                    <span class="small grade-small mt-0 pt-0">${
-    facts["passed"]["start"]
-    } tot ${facts["passed"]["end"]} (${
-    facts["passed"]["grades"]
+                    <span class="small grade-small mt-0 pt-0">${facts["passed"]["start"]
+    } tot ${facts["passed"]["end"]} (${facts["passed"]["grades"]
     } ${facts["not_passed"]["grades"] == 1 ? "cijfer" : "cijfers"})</span></span>
                     <br>
-                    <span class="mb-0 pb-0">${facts["not_passed"]["days"]} ${
-    facts["not_passed"]["days"] == 1
+                    <span class="mb-0 pb-0">${facts["not_passed"]["days"]} ${facts["not_passed"]["days"] == 1
       ? "dag onvoldoende"
       : "dagen onvoldoendes achter elkaar"
     }<br>
-                    <span class="small grade-small mt-0 pt-0">${
-    facts["not_passed"]["start"]
-    } tot ${facts["not_passed"]["end"]} (${
-    facts["not_passed"]["grades"]
+                    <span class="small grade-small mt-0 pt-0">${facts["not_passed"]["start"]
+    } tot ${facts["not_passed"]["end"]} (${facts["not_passed"]["grades"]
     } ${facts["not_passed"]["grades"] == 1 ? "cijfer" : "cijfers"})</span></span>
-                    ${
-    lesson.lastYearGroup == undefined ||
+                    ${lesson.lastYearGroup == undefined ||
       lesson.lastYearAverage == undefined
       ? ""
       : `
@@ -1835,8 +1806,7 @@ function generateHTML(lesson) {
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${
-    lesson.name
+                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson.name
     }</h6>
                     </div>
                     <div class="card-body pt-0">

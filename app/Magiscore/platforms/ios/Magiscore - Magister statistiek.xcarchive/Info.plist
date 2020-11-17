@@ -14,9 +14,9 @@
 		<key>CFBundleIdentifier</key>
 		<string>app.netlob.magiscore</string>
 		<key>CFBundleShortVersionString</key>
-		<string>1.4.2</string>
+		<string>1.4.3</string>
 		<key>CFBundleVersion</key>
-		<string>1.4.2</string>
+		<string>1.4.3</string>
 		<key>SigningIdentity</key>
 		<string>Apple Development: Sjoerd Bolten (HQJSHYB7AQ)</string>
 		<key>Team</key>
@@ -25,7 +25,7 @@
 	<key>ArchiveVersion</key>
 	<integer>2</integer>
 	<key>CreationDate</key>
-	<date>2020-11-16T21:47:40Z</date>
+	<date>2020-11-17T00:56:17Z</date>
 	<key>Name</key>
 	<string>Magiscore - Magister statistiek</string>
 	<key>SchemeName</key>

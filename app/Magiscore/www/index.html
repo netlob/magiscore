@@ -172,13 +172,12 @@
           <div class="container-fluid"> -->
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button class="btn btn-link d-md-none bg-primary rounded-circle vibrate mt-1" onclick="snapper.toggle('left')"
+          <button class="btn btn-link bg-primary rounded-circle vibrate mt-1" onclick="snapper.toggle('left')"
             aria-label="Toggle zijkant" id="buttonSidenavToggle">
             <i class="fa fa-bars" style="font-size: 1.1rem !important;"></i>
           </button>
-          <button class="btn btn-link d-md-none bg-primary rounded-circle vibrate mt-1"
-            onclick="viewController.closeSettings()" aria-label="Sluit instellingen" id="buttonSidenavBack"
-            style="display: none;">
+          <button class="btn btn-link bg-primary rounded-circle vibrate mt-1" onclick="viewController.closeSettings()"
+            aria-label="Sluit instellingen" id="buttonSidenavBack" style="display: none;">
             <i class="fa fa-arrow-left" style="font-size: 1.1rem !important;"></i>
           </button>
           <!-- <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
@@ -300,10 +299,10 @@
             <li class="nav-item dropdown no-arrow no-primary-hover grades-dropdown" id="messagesDrop">
               <a class="nav-link dropdown-toggle background-primary vibrate" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-clock fa-fw d-block d-md-none mobile-clock"></i>
-                <i class="fas fa-clock fa-fw text-gray-600 d-none d-lg-block"></i>
+                <i class="fas fa-clock fa-fw d-block mobile-clock"></i>
+                <!-- <i class="fas fa-clock fa-fw text-gray-600 d-none d-lg-block"></i> -->
                 <span class="ml-1 mr-2 pr-4 text-gray-600 d-none d-lg-block">Laatste cijfers</span>
-                <span class="badge badge-primary badge-counter mr-3 d-none d-md-block" id="latest-grades-badge">X</span>
+                <span class="badge badge-primary badge-counter mr-3 d-none" id="latest-grades-badge">X</span>
                 <!-- d-none -->
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
@@ -393,7 +392,7 @@
           <div class="ml-1 pl-3 mb-4" style="margin-bottom: -20px;">
             <a class="playStoreLink"
               href="https://play.google.com/store/apps/details?id=dev.netlob.spotistats&referrer=utm_source%3Dmagiscore"><img
-                class="playStore" src="https://spotistats.app/assets/playstore.png" height="40" alt="Play Store"></a>§
+                class="playStore" src="https://spotistats.app/assets/playstore.png" height="40" alt="Play Store"></a>
 
             <a class="appStoreLink"
               href="https://apps.apple.com/app/apple-store/id1526912392?pt=121772327&ct=magiscore&mt=8"><img
@@ -428,7 +427,7 @@
               </div>
             </li>
           </ul>
-          <hr>
+          <br>
           <h6 class="ml-3 pl-1 font-weight-bold text-primary">Cijfers</h6>
           <ul class="list-group list-group-flush">
             <li class="list-group-item shadow mb-2">Reset <span id="excluded-count"></span> uitgeschakelde cijfers<a
@@ -452,30 +451,33 @@
               </span>
             </li>
           </ul>
-          <hr>
+          <br>
           <h6 class="ml-3 pl-1 font-weight-bold text-primary">Feedback</h6>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Play Store<a class="float-right menu-a vibrate"
+            <li class="list-group-item shadow mb-2">App/Play Store<a class="float-right menu-a vibrate"
                 onclick="viewController.giveFeedback()">REVIEW</a>
             </li>
+            <li class="list-group-item shadow mb-2">Tikkie<a class="float-right menu-a vibrate"
+                onclick="cordova.InAppBrowser.open('https://bunq.me/magbot', '_system');">TIKKIE</a>
+            </li>
             <li class="list-group-item shadow mb-2">E-Mail<a class="float-right menu-a vibrate"
-                href="mailto:info@magiscore.nl?subject=Feedback Magiscore Android" target="_system">E-MAIL</a>
+                href="mailto:info@magiscore.nl?subject=Feedback Magiscore" target="_system">E-MAIL</a>
             </li>
             <li class="list-group-item shadow mb-2">Discord<a class="float-right menu-a vibrate"
-                onclick="cordova.InAppBrowser.open('https://discord.gg/rhWWrAw', '_system');">DISCORD</a>
+                onclick="cordova.InAppBrowser.open('https://discord.gg/uZ7whYj', '_system');">DISCORD</a>
             </li>
-            <!-- <li class="list-group-item shadow mb-2">GitHub<a class="float-right menu-a vibrate"
+            <li class="list-group-item shadow mb-2">GitHub<a class="float-right menu-a vibrate"
                 onclick="cordova.InAppBrowser.open('https://github.com/netlob/magiscore', '_system');">GITHUB</a>
-            </li> -->
+            </li>
           </ul>
-          <hr>
+          <br>
           <h6 class="ml-3 pl-1 font-weight-bold text-primary">Account</h6>
           <ul class="list-group list-group-flush">
             <li class="list-group-item shadow mb-2">Uitloggen<a class="float-right menu-a vibrate"
                 onclick="logOut()">UITLOGGEN</a>
             </li>
           </ul>
-          <hr>
+          <br>
           <div class="grade-small ml-3 pl-1 mr-3 pr-1">Magiscore is een privé-iniatief en maakt geen deel uit van
             Schoolmaster
             BV.<br>Alle
@@ -847,8 +849,8 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; <a href="https://magiscore.nl" aria-label="Github pagina van Magiscore"
-                style="color: #858796">Magiscore</a>
+            <span>Copyright &copy; <a href="https://netlob.dev" aria-label="mn portfolio site"
+                style="color: #858796">Sjoerd Bolten</a>
               <!-- - <a
                 href="https://netlob.dev" aria-label="Github portfolio van de maker" style="color: #858796">Netlob</a>
               <a href="https://wikipedia.org/wiki/2018" aria-label="2018" style="color: #858796">2018</a>-<a
