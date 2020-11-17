@@ -645,7 +645,46 @@ function onDeviceReady() {
   } else {
     window.location = "./login.html";
   }
-  // ads.initialize();
+  showIosMelding()
+}
+
+async function showIosMelding() {
+  const show = await fetch("https://magiscore-android.firebaseio.com/api/ios_available.json").then(res => res.json());
+
+  if (
+    show != false &&
+    new Date().toDateString() < new Date(1608076800000).toDateString() &&
+    localStorage.getItem("iosMessageDismissed") != true &&
+    localStorage.getItem("iosMessageDismissed") != "true" &&
+    window.cordova.platformId !== "ios"
+  ) {
+    $("#general-wrapper").prepend(`
+    <div class="row" id="ios-message">
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Mededeling &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+                <div class="mb-0 font-weight-bold text-gray-800">Magiscore is nu ook beschikbaar voor iOS/iPhone gebruikers! Check hem nu in de App Store :)</div>
+              </div>
+            </div>
+            <div style="position: absolute;top: 9px;right: 13px;">
+              <a onclick="sluitIosMelding()" style="color:#1cc88a !important;">
+                <i class="far fa-times"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `);
+  }
+}
+
+function sluitIosMelding() {
+  localStorage.setItem("iosMessageDismissed", true);
+  $("#ios-message").hide();
 }
 
 // function onOffline() {

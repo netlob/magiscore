@@ -6456,9 +6456,8 @@ a.badge-dark.focus {
 }
 
 .list-group-flush .list-group-item {
-  border-right: 0;
-  border-left: 0;
-  border-radius: 0;
+  border: none;
+  border-radius: 0.35rem;
 }
 
 .list-group-flush .list-group-item:last-child {

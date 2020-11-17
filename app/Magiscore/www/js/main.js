@@ -645,8 +645,14 @@ function onDeviceReady() {
   } else {
     window.location = "./login.html";
   }
+  showIosMelding()
+}
+
+async function showIosMelding() {
+  const show = await fetch("https://magiscore-android.firebaseio.com/api/ios_available.json").then(res => res.json());
 
   if (
+    show != false &&
     new Date().toDateString() < new Date(1608076800000).toDateString() &&
     localStorage.getItem("iosMessageDismissed") != true &&
     localStorage.getItem("iosMessageDismissed") != "true" &&
