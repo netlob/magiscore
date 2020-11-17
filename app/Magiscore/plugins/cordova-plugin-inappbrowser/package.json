@@ -1,14 +1,14 @@
 {
   "_from": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
-  "_id": "cordova-plugin-inappbrowser@3.1.1-dev",
+  "_id": "cordova-plugin-inappbrowser@4.0.1-dev",
   "_inBundle": false,
   "_integrity": "",
   "_location": "/cordova-plugin-inappbrowser",
   "_phantomChildren": {},
   "_requested": {
     "type": "git",
-    "raw": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
-    "rawSpec": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+    "raw": "https://github.com/Netlob/cordova-plugin-inappbrowser",
+    "rawSpec": "https://github.com/Netlob/cordova-plugin-inappbrowser",
     "saveSpec": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
     "fetchSpec": "https://github.com/Netlob/cordova-plugin-inappbrowser.git",
     "gitCommittish": null
@@ -17,8 +17,8 @@
     "#DEV:/",
     "#USER"
   ],
-  "_resolved": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git#0147b9b019660da32292a9c481e250d5f52cd508",
-  "_spec": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
+  "_resolved": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git#b807b7d6ae77c57a652eefcbffb58a9479fa9c0e",
+  "_spec": "https://github.com/Netlob/cordova-plugin-inappbrowser",
   "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Apache Software Foundation"
@@ -40,13 +40,7 @@
   "deprecated": false,
   "description": "Cordova InAppBrowser Plugin",
   "devDependencies": {
-    "eslint": "^4.0.0",
-    "eslint-config-semistandard": "^11.0.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-node": "^5.0.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "@cordova/eslint-config": "^3.0.0"
   },
   "engines": {
     "cordovaDependencies": {
@@ -54,6 +48,10 @@
         "cordova": ">=3.1.0"
       },
       "4.0.0": {
+        "cordova": ">=3.1.0",
+        "cordova-ios": ">=4.0.0"
+      },
+      "5.0.0": {
         "cordova": ">100"
       }
     }
@@ -79,9 +77,9 @@
     "url": "git+https://github.com/apache/cordova-plugin-inappbrowser.git"
   },
   "scripts": {
-    "eslint": "node node_modules/eslint/bin/eslint www && node node_modules/eslint/bin/eslint src && node node_modules/eslint/bin/eslint tests",
-    "test": "npm run eslint"
+    "lint": "eslint .",
+    "test": "npm run lint"
   },
   "types": "./types/index.d.ts",
-  "version": "3.1.1-dev"
+  "version": "4.0.1-dev"
 }

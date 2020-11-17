@@ -63,6 +63,9 @@
     },
     "cordova-plugin-purchase": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {}

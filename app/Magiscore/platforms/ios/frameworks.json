@@ -2,5 +2,6 @@
     "AudioToolbox.framework": 3,
     "StoreKit.framework": 2,
     "SystemConfiguration.framework": 1,
-    "CoreTelephony.framework": 1
+    "CoreTelephony.framework": 1,
+    "WebKit.framework": 1
 }

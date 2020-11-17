@@ -641,9 +641,13 @@ function setProfilePic(forceRefresh) {
         fileReader.readAsDataURL(blob);
       }
     };
+    let url = `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`;
+    if (window.cordova.platformId === "ios") {
+      url = 'https://cors.netlob.dev/' + url;
+    }
     xhr.open(
       "GET",
-      `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`,
+      url,
       true
     );
     xhr.setRequestHeader("Authorization", `Bearer ${tokens.access_token}`);

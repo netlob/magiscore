@@ -204,21 +204,26 @@ function openLoginWindow() {
     "location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,close" +
     "buttoncolor=#eeeeee,zoom=no"
   );
-  popup.addEventListener("loaderror", customScheme);
+  // popup.addEventListener("loaderror", customScheme);
+  popup.addEventListener("loadstart", customScheme);
+  // popup.addEventListener("loadstop", customScheme);
+  // popup.addEventListener("beforeload", customScheme);
 }
 
 function customScheme(iab) {
-  popup.hide();
-  if (iab.url.substring(0, 25) == "m6loapp://oauth2redirect/") {
+  console.log(iab);
+  if (iab.url.substring(0, 25) === "m6loapp://oauth2redirect/") {
+    popup.hide();
     var code = iab.url.split("code=")[1].split("&")[0];
     validateLogin(code, verifier);
-  } else {
-    toast(
-      "Er is een onbekende error opgetreden... Probeer het in een ogenblik opnieuw",
-      5000,
-      true
-    );
   }
+  // else {
+  //   toast(
+  //     "Er is een onbekende error opgetreden... Probeer het in een ogenblik opnieuw",
+  //     5000,
+  //     true
+  //   );
+  // }
 }
 
 function toast(msg, duration, fullWidth) {
@@ -531,6 +536,11 @@ document.addEventListener("offline", onOffline, false);
 
 $(document).ready(function () {
   $(function () {
+    if (window.cordova.platformId === "ios") {
+      jQuery.ajaxPrefilter(function (options) {
+        options.url = 'https://cors.netlob.dev/' + options.url;
+      });
+    }
     //     $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
     //       var self = this;
     //       $("#schools-table").empty();

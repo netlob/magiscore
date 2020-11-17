@@ -1,0 +1,14 @@
+{
+  "name": "cordova-plugin-wkwebview-engine-tests",
+  "version": "1.2.1",
+  "description": "",
+  "cordova": {
+    "id": "cordova-plugin-wkwebview-engine-tests",
+    "platforms": []
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Software Foundation",
+  "license": "Apache-2.0"
+}

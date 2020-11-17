@@ -73,6 +73,9 @@
         <param name="ios-package" value="InAppPurchase" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="CDVWKWebViewEngine">
+        <param name="ios-package" value="CDVWKWebViewEngine" />
+    </feature>
     <name short="Magiscore">Magiscore - Magister statistiek</name>
     <description>
         Magiscore very nice 10/10.
@@ -107,6 +110,7 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <preference name="BackgroundColor" value="0xff0096db" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
