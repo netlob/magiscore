@@ -87,10 +87,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"Insomnia\"><param name=\"android-package\" value=\"nl.xservices.plugins.Insomnia\" /></feature>",
               "count": 1
             },
@@ -112,6 +108,10 @@
             },
             {
               "xml": "<feature name=\"InAppBillingPlugin\"><param name=\"android-package\" value=\"cc.fovea.PurchasePlugin\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
               "count": 1
             }
           ]
@@ -147,9 +147,6 @@
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
     "cordova-plugin-insomnia": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
@@ -178,6 +175,9 @@
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
@@ -248,15 +248,6 @@
       ]
     },
     {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
-      ]
-    },
-    {
       "id": "cordova-plugin-insomnia.Insomnia",
       "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
       "pluginId": "cordova-plugin-insomnia",
@@ -312,6 +303,14 @@
       "clobbers": [
         "store"
       ]
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -322,7 +321,6 @@
     "cordova-plugin-customurlscheme": "4.4.0",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-dialogs": "2.0.2",
-    "cordova-plugin-inappbrowser": "3.1.1-dev",
     "cordova-plugin-insomnia": "4.3.0",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-statusbar": "2.4.3",
@@ -332,6 +330,7 @@
     "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-add-swift-support": "2.0.2",
     "cordova-plugin-purchase": "10.3.0",
-    "cordova-plugin-wkwebview-engine": "1.2.1"
+    "cordova-plugin-wkwebview-engine": "1.2.1",
+    "cordova-plugin-inappbrowser": "4.0.1-dev"
   }
 }

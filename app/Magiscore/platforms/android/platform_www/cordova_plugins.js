@@ -65,15 +65,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
-      ]
-    },
-    {
       "id": "cordova-plugin-insomnia.Insomnia",
       "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
       "pluginId": "cordova-plugin-insomnia",
@@ -129,6 +120,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "store"
       ]
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -139,7 +138,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-customurlscheme": "4.4.0",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-dialogs": "2.0.2",
-    "cordova-plugin-inappbrowser": "3.1.1-dev",
     "cordova-plugin-insomnia": "4.3.0",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-statusbar": "2.4.3",
@@ -149,6 +147,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-add-swift-support": "2.0.2",
     "cordova-plugin-purchase": "10.3.0",
-    "cordova-plugin-wkwebview-engine": "1.2.1"
+    "cordova-plugin-wkwebview-engine": "1.2.1",
+    "cordova-plugin-inappbrowser": "4.0.1-dev"
   };
 });

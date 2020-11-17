@@ -34,9 +34,6 @@
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
     "cordova-plugin-insomnia": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
@@ -65,6 +62,9 @@
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
