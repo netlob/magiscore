@@ -20,13 +20,13 @@ function refreshToken() {
         client_id: "M6LOAPP",
         grant_type: "refresh_token"
       },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
         if (XMLHttpRequest.status == 400 || XMLHttpRequest.status == "400") {
           try {
-            var response = JSON.parse(XMLHttpRequest.responseText);
-            if (response.error == "invalid_grant") {
-              openBrowser(1);
-            }
+            // var response = JSON.parse(XMLHttpRequest.responseText);
+            // if (response.error == "invalid_grant") {
+            openBrowser(1);
+            // }
           } catch (err) {
             logConsole("[ERROR] " + err);
           }
@@ -44,7 +44,7 @@ function refreshToken() {
       timeout: 5000
     };
 
-    $.ajax(settings).done(function(response) {
+    $.ajax(settings).done(function (response) {
       logConsole(
         "[DEBUG] " + typeof response == "object"
           ? JSON.stringify(response)
@@ -88,15 +88,22 @@ function openBrowser(b) {
   popup.insertCSS({
     code: "#username_options > a { display: none !important }"
   });
-  popup.addEventListener("loaderror", customScheme);
+  // popup.addEventListener("loaderror", customScheme);
+  popup.addEventListener("loadstart", customScheme);
+  popup.addEventListener("exit", exitPopup);
+}
+
+function exitPopup(iab) {
+  viewController.overlay("hide");
+  onDeviceReady();
 }
 
 function customScheme(iab) {
-  popup.close();
   if (iab.url.substring(0, 25) == "m6loapp://oauth2redirect/") {
     var code = iab.url.split("code=")[1].split("&")[0];
+    popup.hide();
     var settings = {
-      error: function(jqXHR, textStatus, errorThrown) {
+      error: function (jqXHR, textStatus, errorThrown) {
         toast(
           "Er kon geen verbinden met Magister gemaakt worden... Probeer het over een tijdje weer",
           false
@@ -131,6 +138,7 @@ function customScheme(iab) {
           };
           localStorage.setItem("tokens", JSON.stringify(tokens));
           // localStorage.setItem("tokens", JSON.stringify(tokens))
+          logConsole(JSON.stringify(tokens));
           viewController.overlay("hide");
           onDeviceReady();
         } else {
@@ -143,13 +151,14 @@ function customScheme(iab) {
         }
       });
     });
-  } else {
-    viewController.toast(
-      "Er is een onbekende error opgetreden... Probeer het in een ogenblik opnieuw",
-      5000,
-      true
-    );
   }
+  //  else {
+  //   viewController.toast(
+  //     "Er is een onbekende error opgetreden... Probeer het in een ogenblik opnieuw",
+  //     5000,
+  //     true
+  //   );
+  // }
 }
 
 function generateRandomString(length) {

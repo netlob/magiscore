@@ -538,7 +538,9 @@ $(document).ready(function () {
   $(function () {
     if (window.cordova.platformId === "ios") {
       jQuery.ajaxPrefilter(function (options) {
-        options.url = 'https://cors.netlob.dev/' + options.url;
+        if (options.url.substr(0, 24) !== 'https://cors.netlob.dev/') {
+          options.url = 'https://cors.netlob.dev/' + options.url;
+        }
       });
     }
     //     $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
