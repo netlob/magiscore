@@ -32,7 +32,8 @@
         "cordova-plugin-taptic-engine": "^2.1.0",
         "cordova-plugin-vibration": "^3.1.1",
         "fast-glob": "^3.2.4",
-        "read-chunk": "^3.2.0"
+        "read-chunk": "^3.2.0",
+        "unorm": "^1.6.0"
     },
     "devDependencies": {
         "cordova-admob-plus": "^0.39.0",

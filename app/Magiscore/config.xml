@@ -47,7 +47,21 @@
         <edit-config file="*-Info.plist" mode="merge" target="UIUserInterfaceStyle">
             <string>Light</string>
         </edit-config>
+        <feature name="CDVWKWebViewEngine">
+            <param name="ios-package" value="CDVWKWebViewEngine" />
+        </feature>
+        <preference name="WKWebViewOnly" value="true" />
+        <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+        <preference name="AllowBackForwardNavigationGestures" value="false" />
+        <preference name="Allow3DTouchLinkPreview" value="false" />
     </platform>
+    <feature name="CDVWKWebViewEngine">
+        <param name="ios-package" value="CDVWKWebViewEngine" />
+    </feature>
+    <preference name="WKWebViewOnly" value="true" />
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <preference name="AllowBackForwardNavigationGestures" value="false" />
+    <preference name="Allow3DTouchLinkPreview" value="false" />
     <config-file parent="UIUserInterfaceStyle" platform="ios" target="*-Info.plist">
         <string>Light</string>
     </config-file>
