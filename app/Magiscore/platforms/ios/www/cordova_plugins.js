@@ -144,6 +144,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "cordova.InAppBrowser.open"
       ]
+    },
+    {
+      "id": "cordova-plugin-consent.Consent",
+      "file": "plugins/cordova-plugin-consent/www/consent.js",
+      "pluginId": "cordova-plugin-consent",
+      "clobbers": [
+        "consent"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -164,6 +172,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-add-swift-support": "2.0.2",
     "cordova-plugin-purchase": "10.3.0",
     "cordova-plugin-wkwebview-engine": "1.2.1",
-    "cordova-plugin-inappbrowser": "4.0.1-dev"
+    "cordova-plugin-inappbrowser": "4.0.1-dev",
+    "cordova-plugin-consent": "0.0.0"
   };
 });

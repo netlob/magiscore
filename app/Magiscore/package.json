@@ -37,6 +37,7 @@
     },
     "devDependencies": {
         "cordova-admob-plus": "^0.39.0",
+        "cordova-plugin-consent": "^0.17.5",
         "cordova-plugin-inappbrowser": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
         "cordova-plugin-insomnia": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
         "cordova-plugin-purchase": "^10.3.0",
@@ -70,7 +71,10 @@
                 "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoK0WRS/g8oCrohtd0tumI1kWmlJGK7dqBZnc4dkxJeT8N+r/osxFIKFSQQwi4bNCxCVT0aeAY30KoWAazMoShJ3xgdwbkQLp5IF30ge0ljJIRycomh8IIlWFyJ/axZOJBn84tScK4Dvb6dXCecrQWbfRVFhtOmTWdgHhIhrLTa655JwWgd6eijMIWgGrY3EiCHmUXPWWALm+dK71DJmDfV90DdOUHO8vt713QbvitmrBim2dMVELVtxwLc+DP9ASog73KKqlM04o0j2TCE9vVyT3P87IJFBvwZQHY1We6FcVSuNVxtT/KAtNPbAFKR7M1ExPV4jCmZlTGq5NJAtQEQIDAQAB"
             },
             "cordova-plugin-wkwebview-engine": {},
-            "cordova-plugin-inappbrowser": {}
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-consent": {
+                "CONSENT_SDK_VERSION": "+"
+            }
         },
         "platforms": [
             "android",

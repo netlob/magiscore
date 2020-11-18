@@ -45,19 +45,72 @@ const ads = {
         //         position: "bottom",
         //     })
         //     .catch(e => this.receivedEvent(e.toString()));
-        admob.banner.show({
-            id: {
-                android: "ca-app-pub-3425399211312777/4106282964", ios: "ca-app-pub-3425399211312777/4609695903"
-            },
-            position: "bottom"
-        }).catch(e => this.receivedEvent(e.toString()));
-        bannerShown = true;
         // admob.banner.show({ id: "test" }).catch(receivedEvent).catch(e => this.receivedEvent(e.toString()));
+
+        // const testDeviceId = '942c011c037db3ec6f3ac1b9779be499'
+        console.log('show consent form')
+        this.checkConsent()
+            .then(async (consentStatus) => {
+                console.log('consentStatus', consentStatus)
+                if (consentStatus === 'PERSONALIZED' && adFree != true) {
+                    admob.banner.show({
+                        id: {
+                            android: "ca-app-pub-3425399211312777/4106282964", ios: "ca-app-pub-3425399211312777/4609695903"
+                        },
+                        // testDevices: [testDeviceId],
+                        position: "bottom"
+                    }).catch(e => this.receivedEvent(e.toString()));
+                    bannerShown = true;
+                } else if (adFree != true) {
+                    admob.banner.show({
+                        id: {
+                            android: "ca-app-pub-3425399211312777/4106282964", ios: "ca-app-pub-3425399211312777/4609695903"
+                        },
+                        // testDevices: [testDeviceId],
+                        npa: '1',
+                        position: "bottom"
+                    }).catch(e => this.receivedEvent(e.toString()));
+                }
+            })
+            .catch(console.error)
     },
 
     hideBanner() {
         const bannerID = window.cordova.platformId === "ios" ? "ca-app-pub-3425399211312777/4609695903" : "ca-app-pub-3425399211312777/4106282964";
         admob.banner.hide(bannerID).catch(e => this.receivedEvent(e.toString()));
+    },
+
+    async checkConsent(testDeviceId) {
+        const publisherIds = ['pub-3425399211312777']
+
+        // await consent.addTestDevice(testDeviceId)
+        // await consent.setDebugGeography('NL');
+        const npa = await consent.checkConsent(publisherIds);
+        console.log("consent: ", npa);
+
+        // const ok = await consent.isRequestLocationInEeaOrUnknown()
+        // if (!ok) {
+        //     alert('please update testDeviceId from logcat')
+        // }
+
+        if (npa === "UNKNOWN" && adFree === false) {
+            const form = new consent.Form({
+                privacyUrl: 'https://policies.google.com/privacy',
+                adFree: true,
+                nonPersonalizedAds: true,
+                personalizedAds: true,
+            })
+            await form.load()
+            const result = await form.show()
+
+            if (result.userPrefersAdFree) {
+                purchaseNonConsumable1();
+            }
+
+            return result.consentStatus;
+        } else {
+            return npa;
+        }
     },
 
     loadInter() {

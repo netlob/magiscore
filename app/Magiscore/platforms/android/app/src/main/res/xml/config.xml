@@ -80,4 +80,7 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
+    <feature name="Consent">
+        <param name="android-package" value="cordova.plugin.consent.Consent" />
+    </feature>
 </widget>

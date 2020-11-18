@@ -152,5 +152,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-consent": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-consent"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

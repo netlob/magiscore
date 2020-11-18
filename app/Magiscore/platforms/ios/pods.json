@@ -16,6 +16,12 @@
             "name": "Google-Mobile-Ads-SDK",
             "spec": "~> 7.66",
             "count": 1
+        },
+        "PersonalizedAdConsent": {
+            "name": "PersonalizedAdConsent",
+            "type": "podspec",
+            "spec": "~> 1.0.5",
+            "count": 1
         }
     }
 }

@@ -113,6 +113,10 @@
             {
               "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Consent\"><param name=\"android-package\" value=\"cordova.plugin.consent.Consent\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -178,6 +182,10 @@
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-consent": {
+      "CONSENT_SDK_VERSION": "+",
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
@@ -311,6 +319,14 @@
       "clobbers": [
         "cordova.InAppBrowser.open"
       ]
+    },
+    {
+      "id": "cordova-plugin-consent.Consent",
+      "file": "plugins/cordova-plugin-consent/www/consent.js",
+      "pluginId": "cordova-plugin-consent",
+      "clobbers": [
+        "consent"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -331,6 +347,7 @@
     "cordova-plugin-add-swift-support": "2.0.2",
     "cordova-plugin-purchase": "10.3.0",
     "cordova-plugin-wkwebview-engine": "1.2.1",
-    "cordova-plugin-inappbrowser": "4.0.1-dev"
+    "cordova-plugin-inappbrowser": "4.0.1-dev",
+    "cordova-plugin-consent": "0.0.0"
   }
 }

@@ -37,6 +37,7 @@
 		78571671D3874D72ADC39450 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A5494E844F742FCAE90F6E3 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		825ECD7ABD5C4B37AE44D290 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E23DF13F7B4C15829C0B14 /* CoreTelephony.framework */; };
 		8FBD03D37DA94626911DEB15 /* CDVVibration.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C304DC266242B7A8CFC6EE /* CDVVibration.m */; };
+		94151815DC324D22BC381163 /* AMSConsent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B54678257D4595BA5F9AE1 /* AMSConsent.swift */; };
 		A23C8EB90B744AA7879CF4DF /* AMSAdBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A452C9201415E8CF85AC4 /* AMSAdBase.swift */; };
 		B0E6EE36833A4942B2813C8B /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 532C9352519049C198D7CD90 /* CDVViewController+SplashScreen.m */; };
 		B619B74517FE47BABFF458D4 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2F54EBF4B482FA767CCBD /* CDVDevice.m */; };
@@ -137,6 +138,7 @@
 		93A5D7CD759D4873B12F143D /* Insomnia.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = Insomnia.m; path = "cordova-plugin-insomnia/Insomnia.m"; sourceTree = "<group>"; };
 		971A452C9201415E8CF85AC4 /* AMSAdBase.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = AMSAdBase.swift; path = "cordova-admob-plus/AMSAdBase.swift"; sourceTree = "<group>"; };
 		99B2F54EBF4B482FA767CCBD /* CDVDevice.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVDevice.m; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; };
+		99B54678257D4595BA5F9AE1 /* AMSConsent.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = AMSConsent.swift; path = "cordova-plugin-consent/AMSConsent.swift"; sourceTree = "<group>"; };
 		AB8C1F747A654E6CADC44039 /* CDVSplashScreen.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; };
 		B0D1C91D227B4414BC9A19A6 /* InAppPurchase.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = InAppPurchase.h; path = "cordova-plugin-purchase/InAppPurchase.h"; sourceTree = "<group>"; };
 		B2214177B1064D30AD82267A /* CDVWKProcessPoolFactory.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKProcessPoolFactory.m; path = "cordova-plugin-wkwebview-engine/CDVWKProcessPoolFactory.m"; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		C71DEACB23314CAB91358256 /* CDVWKInAppBrowserUIDelegate.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVWKInAppBrowserUIDelegate.m; path = "cordova-plugin-inappbrowser/CDVWKInAppBrowserUIDelegate.m"; sourceTree = "<group>"; };
 		CB975531000E4133AFA2E547 /* CDVReachability.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVReachability.h; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; };
 		CDF6A021433B46C386B279EC /* Pods-Magiscore - Magister statistiek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Magiscore - Magister statistiek.release.xcconfig"; path = "Target Support Files/Pods-Magiscore - Magister statistiek/Pods-Magiscore - Magister statistiek.release.xcconfig"; sourceTree = "<group>"; };
+		CEB933FC06C84448B513294A /* AMSConsent-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "AMSConsent-Bridging-Header.h"; path = "cordova-plugin-consent/AMSConsent-Bridging-Header.h"; sourceTree = "<group>"; };
 		D022A4DC43FE42ED8DE944A4 /* TapticEngine.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = TapticEngine.m; path = "cordova-plugin-taptic-engine/TapticEngine.m"; sourceTree = "<group>"; };
 		D43C640CC0E94BE5B6B53D8C /* CDVReachability.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVReachability.m; path = "cordova-plugin-network-information/CDVReachability.m"; sourceTree = "<group>"; };
 		D8A04E6714B9BA0FECD26100 /* Pods_Magiscore___Magister_statistiek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_Magiscore___Magister_statistiek.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -340,6 +343,8 @@
 				E3F37ADD10144CDA8964C531 /* CDVInAppBrowserNavigationController.h */,
 				8A88C5FF6FDC4EB58276B651 /* CDVWKInAppBrowser.h */,
 				671FD2315EE546349C7CD40A /* CDVWKInAppBrowserUIDelegate.h */,
+				99B54678257D4595BA5F9AE1 /* AMSConsent.swift */,
+				CEB933FC06C84448B513294A /* AMSConsent-Bridging-Header.h */,
 			);
 			name = Plugins;
 			path = "Magiscore - Magister statistiek/Plugins";
@@ -524,12 +529,14 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Magiscore - Magister statistiek/Pods-Magiscore - Magister statistiek-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PersonalizedAdConsent/PersonalizedAdConsent.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PersonalizedAdConsent.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -579,6 +586,7 @@
 				4A6DF533EB6148C0BE357E88 /* CDVInAppBrowserNavigationController.m in Sources */,
 				491E4581012A4BDB9CBE9D49 /* CDVWKInAppBrowser.m in Sources */,
 				0EE5708285444675B1B2228F /* CDVWKInAppBrowserUIDelegate.m in Sources */,
+				94151815DC324D22BC381163 /* AMSConsent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +622,7 @@
 				INFOPLIST_FILE = "Magiscore - Magister statistiek/Magiscore - Magister statistiek-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				MARKETING_VERSION = 1.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = app.netlob.magiscore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
@@ -644,6 +653,7 @@
 				INFOPLIST_FILE = "Magiscore - Magister statistiek/Magiscore - Magister statistiek-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				MARKETING_VERSION = 1.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = app.netlob.magiscore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";

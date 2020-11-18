@@ -66,6 +66,10 @@
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-consent": {
+      "CONSENT_SDK_VERSION": "+",
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {}

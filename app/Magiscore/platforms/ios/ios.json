@@ -115,6 +115,10 @@
             {
               "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVWKInAppBrowser\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Consent\"><param name=\"ios-package\" value=\"AMSConsent\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -176,6 +180,9 @@
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
     "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-consent": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
@@ -325,6 +332,14 @@
       "clobbers": [
         "cordova.InAppBrowser.open"
       ]
+    },
+    {
+      "id": "cordova-plugin-consent.Consent",
+      "file": "plugins/cordova-plugin-consent/www/consent.js",
+      "pluginId": "cordova-plugin-consent",
+      "clobbers": [
+        "consent"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -345,6 +360,7 @@
     "cordova-plugin-add-swift-support": "2.0.2",
     "cordova-plugin-purchase": "10.3.0",
     "cordova-plugin-wkwebview-engine": "1.2.1",
-    "cordova-plugin-inappbrowser": "4.0.1-dev"
+    "cordova-plugin-inappbrowser": "4.0.1-dev",
+    "cordova-plugin-consent": "0.0.0"
   }
 }

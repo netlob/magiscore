@@ -2,6 +2,7 @@ document.addEventListener('deviceready', initStore);
 document.addEventListener('deviceready', refreshLockedUI);
 
 let purchasing = false;
+let adFree = undefined;
 
 function initStore() {
 
@@ -45,13 +46,15 @@ function refreshProductUI(product) {
 
     ads.initialize(product.owned);
 
+    adFree = product.owned;
+
     if (product.owned) {
         $("#herstel-aankopen").show();
         $("#verwijder-ads").hide();
 
-        if (bannerShown) {
-            ads.hideBanner();
-        }
+        // if (bannerShown) {
+        ads.hideBanner();
+        // }
     }
 
     logConsole(JSON.stringify(product))

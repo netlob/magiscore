@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.6</string>
+	<string>1.4.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>1.4.7</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-3425399211312777~6114349267</string>
 	<key>LSRequiresIPhoneOS</key>

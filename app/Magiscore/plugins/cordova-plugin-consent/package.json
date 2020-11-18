@@ -1,0 +1,75 @@
+{
+  "_from": "cordova-plugin-consent",
+  "_id": "cordova-plugin-consent@0.17.5",
+  "_inBundle": false,
+  "_integrity": "sha512-hqap03YiJJNunsf7+SNkoQE2PN8L3m3gZTUAGZedfWQ1Ny7kz5KVmh9tpBXXdzdY5X2uFVxDXtYQ5dkckRXzlw==",
+  "_location": "/cordova-plugin-consent",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-consent",
+    "name": "cordova-plugin-consent",
+    "escapedName": "cordova-plugin-consent",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-consent/-/cordova-plugin-consent-0.17.5.tgz",
+  "_shasum": "4514ef072ed4af5636a87523046567046e841ef3",
+  "_spec": "cordova-plugin-consent",
+  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "author": {
+    "name": "Ratson"
+  },
+  "bugs": {
+    "url": "https://github.com/admob-plus/admob-plus/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-consent",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Google Consent SDK Cordova Plugin",
+  "devDependencies": {
+    "@types/cordova": "^0.0.34",
+    "@types/node": "^14.10.1",
+    "rollup": "^2.26.11",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "concise-esnext"
+    ]
+  },
+  "gitHead": "2134ed7cddbade78e8282b4dbf022dba2758ad1b",
+  "homepage": "https://github.com/admob-plus/admob-plus#readme",
+  "keywords": [
+    "cordova",
+    "plugin",
+    "google",
+    "consent",
+    "ecosystem:cordova"
+  ],
+  "license": "MIT",
+  "main": "www/consent.js",
+  "name": "cordova-plugin-consent",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/admob-plus/admob-plus.git"
+  },
+  "scripts": {
+    "prepare": "rollup -c"
+  },
+  "typings": "www/consent.d.ts",
+  "version": "0.17.5"
+}
