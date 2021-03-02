@@ -24,7 +24,7 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-add-swift-support/-/cordova-plugin-add-swift-support-2.0.2.tgz",
   "_shasum": "bfa848356f35edc0898403eb510fe407adb40e9f",
   "_spec": "cordova-plugin-add-swift-support",
-  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "_where": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Alexis Kofman",
     "email": "alexis.kofman@gmail.com",

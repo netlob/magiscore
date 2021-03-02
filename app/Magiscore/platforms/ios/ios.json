@@ -184,6 +184,12 @@
     },
     "cordova-plugin-consent": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
   "dependent_plugins": {},
@@ -361,6 +367,8 @@
     "cordova-plugin-purchase": "10.3.0",
     "cordova-plugin-wkwebview-engine": "1.2.1",
     "cordova-plugin-inappbrowser": "4.0.1-dev",
-    "cordova-plugin-consent": "0.0.0"
+    "cordova-plugin-consent": "0.0.0",
+    "cordova-plugin-androidx": "3.0.0",
+    "cordova-plugin-androidx-adapter": "1.1.3"
   }
 }

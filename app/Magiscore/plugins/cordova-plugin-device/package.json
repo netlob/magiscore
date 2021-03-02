@@ -22,7 +22,7 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-device/-/cordova-plugin-device-2.0.3.tgz",
   "_shasum": "c2b41b7efd0455dd097f89356d85bfdd5dadeb0f",
   "_spec": "cordova-plugin-device@^2.0.3",
-  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "_where": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Apache Software Foundation"
   },

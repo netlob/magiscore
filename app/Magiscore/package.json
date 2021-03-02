@@ -37,6 +37,8 @@
     },
     "devDependencies": {
         "cordova-admob-plus": "^0.39.0",
+        "cordova-plugin-androidx": "^3.0.0",
+        "cordova-plugin-androidx-adapter": "^1.1.3",
         "cordova-plugin-consent": "^0.17.5",
         "cordova-plugin-inappbrowser": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
         "cordova-plugin-insomnia": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
@@ -74,7 +76,9 @@
             "cordova-plugin-inappbrowser": {},
             "cordova-plugin-consent": {
                 "CONSENT_SDK_VERSION": "+"
-            }
+            },
+            "cordova-plugin-androidx": {},
+            "cordova-plugin-androidx-adapter": {}
         },
         "platforms": [
             "android",

@@ -22,7 +22,7 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-purchase/-/cordova-plugin-purchase-10.3.0.tgz",
   "_shasum": "282dc524773238db16a4c5d0c99de9d7496f683b",
   "_spec": "cordova-plugin-purchase",
-  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "_where": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Jean-Christophe Hoelt",
     "email": "hoelt@fovea.cc"

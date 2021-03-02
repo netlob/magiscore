@@ -22,7 +22,7 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.4.3.tgz",
   "_shasum": "cc557aef66c27484e0f7f045004040d03321f82d",
   "_spec": "cordova-plugin-statusbar@^2.4.3",
-  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "_where": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Apache Software Foundation"
   },

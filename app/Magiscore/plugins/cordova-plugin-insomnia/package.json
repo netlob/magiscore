@@ -19,7 +19,7 @@
   ],
   "_resolved": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git#f83de3ac8ff1bd9ce48652091e8d183c6dcb9e06",
   "_spec": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
-  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "_where": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Eddy Verbruggen",
     "email": "eddyverbruggen@gmail.com",

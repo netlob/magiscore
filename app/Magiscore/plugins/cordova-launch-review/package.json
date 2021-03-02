@@ -22,7 +22,7 @@
   "_resolved": "https://registry.npmjs.org/cordova-launch-review/-/cordova-launch-review-3.1.1.tgz",
   "_shasum": "bdbbfbb5389d85fe71d9e1cee4b9954b43bcda39",
   "_spec": "cordova-launch-review@^3.1.1",
-  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "_where": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Dave Alden"
   },

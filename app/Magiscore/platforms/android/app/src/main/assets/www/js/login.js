@@ -204,21 +204,25 @@ function openLoginWindow() {
     "location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,close" +
     "buttoncolor=#eeeeee,zoom=no"
   );
-  popup.addEventListener("loaderror", customScheme);
+  // popup.addEventListener("loaderror", customScheme);
+  popup.addEventListener("loadstart", customScheme);
+  // popup.addEventListener("loadstop", customScheme);
+  // popup.addEventListener("beforeload", customScheme);
 }
 
 function customScheme(iab) {
-  popup.hide();
-  if (iab.url.substring(0, 25) == "m6loapp://oauth2redirect/") {
+  if (iab.url.startsWith("m6loapp://oauth2redirect/") || iab.url.startsWith("http://m6loapp://oauth2redirect/") || iab.url.startsWith("https://m6loapp://oauth2redirect/")) {
+    popup.hide();
     var code = iab.url.split("code=")[1].split("&")[0];
     validateLogin(code, verifier);
-  } else {
-    toast(
-      "Er is een onbekende error opgetreden... Probeer het in een ogenblik opnieuw",
-      5000,
-      true
-    );
   }
+  // else {
+  //   toast(
+  //     "Er is een onbekende error opgetreden... Probeer het in een ogenblik opnieuw",
+  //     5000,
+  //     true
+  //   );
+  // }
 }
 
 function toast(msg, duration, fullWidth) {
@@ -307,7 +311,9 @@ async function validateLogin(code, codeVerifier) {
         id_token: response.id_token
       };
       localStorage.setItem("tokens", JSON.stringify(tokens));
-      tenant = JSON.parse(atob(tokens.access_token.split(".")[1]))["urn:magister:claims:iam:tenant"];
+
+      const res = await fetch("https://cors.sjoerd.dev/https://magister.net/.well-known/host-meta.json", { headers:  new Headers({ Authorization: `Bearer ${tokens.access_token}`}) }).then(res => res.json());
+      tenant = JSON.stringify(res).match(/(?!(w+)\.)\w*(?:\w+\.)+\w+/)[0];
       localStorage.setItem("school", tenant);
       var config = {
         isDesktop: false,
@@ -531,6 +537,13 @@ document.addEventListener("offline", onOffline, false);
 
 $(document).ready(function () {
   $(function () {
+    if (window.cordova.platformId === "ios") {
+      jQuery.ajaxPrefilter(function (options) {
+        if (options.url.substr(0, 24) !== 'https://cors.netlob.dev/') {
+          options.url = 'https://cors.netlob.dev/' + options.url;
+        }
+      });
+    }
     //     $.ui.autocomplete.prototype._renderMenu = function (ul, items) {
     //       var self = this;
     //       $("#schools-table").empty();

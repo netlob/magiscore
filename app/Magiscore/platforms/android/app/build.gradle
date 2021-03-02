@@ -170,6 +170,8 @@ android {
         if (cdvMinSdkVersion != null) {
             minSdkVersion cdvMinSdkVersion
         }
+
+        multiDexEnabled true
     }
 
     lintOptions {

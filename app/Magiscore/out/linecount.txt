@@ -3,7 +3,7 @@ EXTENSION NAME : linecount
 EXTENSION VERSION : 0.1.7
 -------------------------------------------------------------------------------
 count time : 2019-10-01 20:30:36
-count workspace : /Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore
+count workspace : /Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore
 total files : 153
 total code lines : 20166
 total comment lines : 1683
@@ -168,7 +168,7 @@ EXTENSION NAME : linecount
 EXTENSION VERSION : 0.1.7
 -------------------------------------------------------------------------------
 count time : 2019-10-01 20:31:26
-count workspace : /Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore
+count workspace : /Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore
 total files : 83
 total code lines : 16760
 total comment lines : 1683
@@ -263,7 +263,7 @@ EXTENSION NAME : linecount
 EXTENSION VERSION : 0.1.7
 -------------------------------------------------------------------------------
 count time : 2019-11-01 17:19:49
-count workspace : /Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore
+count workspace : /Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore
 total files : 34
 total code lines : 16025
 total comment lines : 1774
@@ -309,7 +309,7 @@ EXTENSION NAME : linecount
 EXTENSION VERSION : 0.1.7
 -------------------------------------------------------------------------------
 count time : 2019-11-01 17:34:37
-count workspace : /Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore
+count workspace : /Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore
 total files : 34
 total code lines : 16025
 total comment lines : 1774

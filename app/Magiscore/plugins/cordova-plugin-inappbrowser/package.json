@@ -19,7 +19,7 @@
   ],
   "_resolved": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git#b807b7d6ae77c57a652eefcbffb58a9479fa9c0e",
   "_spec": "https://github.com/Netlob/cordova-plugin-inappbrowser",
-  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "_where": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Apache Software Foundation"
   },

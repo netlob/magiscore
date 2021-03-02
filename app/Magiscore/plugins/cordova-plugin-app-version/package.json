@@ -22,7 +22,7 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz",
   "_shasum": "9db0607863337a710489302e5f50a904f1449bdb",
   "_spec": "cordova-plugin-app-version@^0.1.9",
-  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "_where": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "whiteoctober"
   },

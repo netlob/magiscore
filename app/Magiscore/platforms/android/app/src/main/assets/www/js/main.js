@@ -500,6 +500,13 @@ function onDeviceReady() {
   $.ajaxSetup({
     cache: false
   });
+  if (window.cordova.platformId === "ios") {
+    jQuery.ajaxPrefilter(function (options) {
+      if (options.url.substr(0, 24) !== 'https://cors.netlob.dev/') {
+        options.url = 'https://cors.netlob.dev/' + options.url;
+      }
+    });
+  }
   if (localStorage.getItem("tokens") != null) {
     logConsole("[INFO]   Device ready!");
     logConsole("[INFO]   Connection type: " + navigator.connection.type);

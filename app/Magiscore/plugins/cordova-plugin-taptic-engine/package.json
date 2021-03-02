@@ -22,7 +22,7 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-taptic-engine/-/cordova-plugin-taptic-engine-2.1.0.tgz",
   "_shasum": "3d38b03a7a32f4905dc377fd6a2ec5e086d003f7",
   "_spec": "cordova-plugin-taptic-engine",
-  "_where": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
+  "_where": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
   "author": {
     "name": "Eddy Verbruggen",
     "email": "eddyverbruggen@gmail.com",

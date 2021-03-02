@@ -10,7 +10,7 @@
           "UIUserInterfaceStyle": [
             {
               "xml": "<string>Light</string>",
-              "count": 115
+              "count": 143
             }
           ]
         }
@@ -187,6 +187,12 @@
     "cordova-plugin-consent": {
       "CONSENT_SDK_VERSION": "+",
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {},
@@ -348,6 +354,8 @@
     "cordova-plugin-purchase": "10.3.0",
     "cordova-plugin-wkwebview-engine": "1.2.1",
     "cordova-plugin-inappbrowser": "4.0.1-dev",
-    "cordova-plugin-consent": "0.0.0"
+    "cordova-plugin-consent": "0.0.0",
+    "cordova-plugin-androidx": "3.0.0",
+    "cordova-plugin-androidx-adapter": "1.1.3"
   }
 }

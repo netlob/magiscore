@@ -70,6 +70,12 @@
     "cordova-plugin-consent": {
       "CONSENT_SDK_VERSION": "+",
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {}

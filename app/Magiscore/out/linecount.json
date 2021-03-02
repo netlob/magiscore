@@ -1,2024 +1,2029 @@
 {
-    "extension": "linecount",
-    "version": "0.1.7",
-    "workspace": "/Users/Sjoerd/Documents/Projects/magbot-stat/app/Magiscore",
-    "linecount": [{
-            "version": "0.1.7",
-            "counttime": "2019-10-01 20:30:36",
-            "filesum": 153,
-            "codesum": 20166,
-            "commentsum": 1683,
-            "blanksum": 2939,
-            "filelist": [{
-                    "blank": 0,
-                    "code": 5,
-                    "comment": 0,
-                    "filename": "www/.well-known/assetlinks.json"
-                },
-                {
-                    "blank": 16,
-                    "code": 99,
-                    "comment": 0,
-                    "filename": "www/404.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 1,
-                    "comment": 0,
-                    "filename": "www/CNAME"
-                },
-                {
-                    "blank": 25,
-                    "code": 153,
-                    "comment": 18,
-                    "filename": "www/coming-soon/custom.html"
-                },
-                {
-                    "blank": 34,
-                    "code": 231,
-                    "comment": 17,
-                    "filename": "www/coming-soon/index.html"
-                },
-                {
-                    "blank": 43,
-                    "code": 198,
-                    "comment": 11,
-                    "filename": "www/css/dark.css"
-                },
-                {
-                    "blank": 13,
-                    "code": 112,
-                    "comment": 42,
-                    "filename": "www/css/fonts.css"
-                },
-                {
-                    "blank": 2321,
-                    "code": 10999,
-                    "comment": 52,
-                    "filename": "www/css/light.css"
-                },
-                {
-                    "filename": "www/css/magistersymbols-webfont.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 95,
-                    "code": 391,
-                    "comment": 117,
-                    "filename": "www/css/main.css"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-200.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 238,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-200.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-200.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-200.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-200.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-200italic.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 242,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-200italic.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-200italic.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-200italic.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-200italic.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-300.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 239,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-300.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-300.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-300.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-300.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-300italic.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 244,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-300italic.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-300italic.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-300italic.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-300italic.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-600.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 240,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-600.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-600.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-600.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-600.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-600italic.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 248,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-600italic.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-600italic.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-600italic.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-600italic.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-700.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 241,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-700.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-700.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-700.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-700.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-700italic.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 246,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-700italic.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-700italic.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-700italic.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-700italic.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-800.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 242,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-800.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-800.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-800.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-800.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-800italic.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 249,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-800italic.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-800italic.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-800italic.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-800italic.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-900.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 244,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-900.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-900.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-900.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-900.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-900italic.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 245,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-900italic.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-900italic.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-900italic.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-900italic.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-italic.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 247,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-italic.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-italic.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-italic.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-italic.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-regular.eot",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 0,
-                    "code": 241,
-                    "comment": 0,
-                    "filename": "www/fonts/nunito-v11-latin-regular.svg"
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-regular.ttf",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-regular.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/fonts/nunito-v11-latin-regular.woff2",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/1.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/2.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/3.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/app-store-icon.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/banner-bg.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/curved-bg.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/curved-bgg.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/download-section-bg.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/google-play-icon.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/google-play-icon.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/icon-1.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/icon-2.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/icon-3.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/iphone.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/left-arrow.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/phone-image-old.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/phone-image.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/quotes-1.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/quotes-2.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/right-arrow.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/smartphone-1-old.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/smartphone-1.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/smartphone-2-old.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/smartphone-2.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/favicon.ico",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-128x128.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-144x144.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-152x152.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-192x192.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-384x384.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-512x512.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-72x72.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-96x96.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/ipad_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/ipadpro1_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/ipadpro2_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/ipadpro3_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphone5_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphone6_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphoneplus_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphonex_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphonexr_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphonexsmax_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/new_iphoneplus_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/old_iphoneplus_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/stock-profile-picture.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 87,
-                    "code": 417,
-                    "comment": 477,
-                    "filename": "www/index.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 13,
-                    "comment": 39,
-                    "filename": "www/js/classes/Class.js"
-                },
-                {
-                    "blank": 22,
-                    "code": 148,
-                    "comment": 102,
-                    "filename": "www/js/classes/Course.js"
-                },
-                {
-                    "blank": 21,
-                    "code": 73,
-                    "comment": 100,
-                    "filename": "www/js/classes/Grade.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 9,
-                    "comment": 28,
-                    "filename": "www/js/classes/GradePeriod.js"
-                },
-                {
-                    "blank": 5,
-                    "code": 55,
-                    "comment": 74,
-                    "filename": "www/js/classes/GradeType.js"
-                },
-                {
-                    "blank": 23,
-                    "code": 306,
-                    "comment": 33,
-                    "filename": "www/js/classes/Lesson.js"
-                },
-                {
-                    "blank": 3,
-                    "code": 89,
-                    "comment": 32,
-                    "filename": "www/js/classes/Magister.js"
-                },
-                {
-                    "blank": 13,
-                    "code": 63,
-                    "comment": 77,
-                    "filename": "www/js/classes/Person.js"
-                },
-                {
-                    "blank": 6,
-                    "code": 69,
-                    "comment": 11,
-                    "filename": "www/js/controllers/CourseController.js"
-                },
-                {
-                    "blank": 5,
-                    "code": 26,
-                    "comment": 0,
-                    "filename": "www/js/controllers/LessonController.js"
-                },
-                {
-                    "blank": 71,
-                    "code": 1210,
-                    "comment": 261,
-                    "filename": "www/js/controllers/ViewController.js"
-                },
-                {
-                    "blank": 2,
-                    "code": 110,
-                    "comment": 6,
-                    "filename": "www/js/demo/chart-area-demo.js"
-                },
-                {
-                    "blank": 2,
-                    "code": 103,
-                    "comment": 6,
-                    "filename": "www/js/demo/chart-bar-demo.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 32,
-                    "comment": 2,
-                    "filename": "www/js/demo/chart-pie-demo.js"
-                },
-                {
-                    "blank": 0,
-                    "code": 3,
-                    "comment": 1,
-                    "filename": "www/js/demo/datatables-demo.js"
-                },
-                {
-                    "blank": 39,
-                    "code": 1183,
-                    "comment": 14,
-                    "filename": "www/js/login.js"
-                },
-                {
-                    "blank": 48,
-                    "code": 283,
-                    "comment": 141,
-                    "filename": "www/js/main.js"
-                },
-                {
-                    "blank": 4,
-                    "code": 45,
-                    "comment": 8,
-                    "filename": "www/js/refresh.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 13,
-                    "comment": 1,
-                    "filename": "www/js/utils.js"
-                },
-                {
-                    "blank": 4,
-                    "code": 17,
-                    "comment": 0,
-                    "filename": "www/LICENSE"
-                },
-                {
-                    "blank": 20,
-                    "code": 123,
-                    "comment": 10,
-                    "filename": "www/login.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 11,
-                    "comment": 0,
-                    "filename": "www/manifest.json"
-                },
-                {
-                    "blank": 0,
-                    "code": 54,
-                    "comment": 0,
-                    "filename": "www/manifest.webmanifest"
-                },
-                {
-                    "blank": 3,
-                    "code": 5,
-                    "comment": 2,
-                    "filename": "www/README.md"
-                },
-                {
-                    "blank": 11,
-                    "code": 111,
-                    "comment": 1,
-                    "filename": "www/service-worker.js"
-                }
-            ]
+  "extension": "linecount",
+  "version": "0.1.7",
+  "workspace": "/Users/sjoerdbolten/Documents/Projects/magbot-stat/app/Magiscore",
+  "linecount": [
+    {
+      "version": "0.1.7",
+      "counttime": "2019-10-01 20:30:36",
+      "filesum": 153,
+      "codesum": 20166,
+      "commentsum": 1683,
+      "blanksum": 2939,
+      "filelist": [
+        {
+          "blank": 0,
+          "code": 5,
+          "comment": 0,
+          "filename": "www/.well-known/assetlinks.json"
         },
         {
-            "version": "0.1.7",
-            "counttime": "2019-10-01 20:31:26",
-            "filesum": 83,
-            "codesum": 16760,
-            "commentsum": 1683,
-            "blanksum": 2939,
-            "filelist": [{
-                    "blank": 0,
-                    "code": 5,
-                    "comment": 0,
-                    "filename": "www/.well-known/assetlinks.json"
-                },
-                {
-                    "blank": 16,
-                    "code": 99,
-                    "comment": 0,
-                    "filename": "www/404.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 1,
-                    "comment": 0,
-                    "filename": "www/CNAME"
-                },
-                {
-                    "blank": 25,
-                    "code": 153,
-                    "comment": 18,
-                    "filename": "www/coming-soon/custom.html"
-                },
-                {
-                    "blank": 34,
-                    "code": 231,
-                    "comment": 17,
-                    "filename": "www/coming-soon/index.html"
-                },
-                {
-                    "blank": 43,
-                    "code": 198,
-                    "comment": 11,
-                    "filename": "www/css/dark.css"
-                },
-                {
-                    "blank": 13,
-                    "code": 112,
-                    "comment": 42,
-                    "filename": "www/css/fonts.css"
-                },
-                {
-                    "blank": 2321,
-                    "code": 10999,
-                    "comment": 52,
-                    "filename": "www/css/light.css"
-                },
-                {
-                    "filename": "www/css/magistersymbols-webfont.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 95,
-                    "code": 391,
-                    "comment": 117,
-                    "filename": "www/css/main.css"
-                },
-                {
-                    "filename": "www/img/coming-soon/1.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/2.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/3.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/app-store-icon.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/banner-bg.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/curved-bg.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/curved-bgg.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/download-section-bg.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/google-play-icon.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/google-play-icon.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/icon-1.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/icon-2.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/icon-3.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/iphone.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/left-arrow.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/phone-image-old.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/phone-image.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/quotes-1.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/quotes-2.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/right-arrow.jpg",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/smartphone-1-old.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/smartphone-1.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/smartphone-2-old.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/coming-soon/smartphone-2.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/favicon.ico",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-128x128.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-144x144.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-152x152.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-192x192.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-384x384.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-512x512.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-72x72.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/icons/icon-96x96.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/ipad_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/ipadpro1_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/ipadpro2_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/ipadpro3_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphone5_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphone6_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphoneplus_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphonex_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphonexr_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/iphonexsmax_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/new_iphoneplus_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/splashscreens/old_iphoneplus_splash.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/stock-profile-picture.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 87,
-                    "code": 417,
-                    "comment": 477,
-                    "filename": "www/index.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 13,
-                    "comment": 39,
-                    "filename": "www/js/classes/Class.js"
-                },
-                {
-                    "blank": 22,
-                    "code": 148,
-                    "comment": 102,
-                    "filename": "www/js/classes/Course.js"
-                },
-                {
-                    "blank": 21,
-                    "code": 73,
-                    "comment": 100,
-                    "filename": "www/js/classes/Grade.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 9,
-                    "comment": 28,
-                    "filename": "www/js/classes/GradePeriod.js"
-                },
-                {
-                    "blank": 5,
-                    "code": 55,
-                    "comment": 74,
-                    "filename": "www/js/classes/GradeType.js"
-                },
-                {
-                    "blank": 23,
-                    "code": 306,
-                    "comment": 33,
-                    "filename": "www/js/classes/Lesson.js"
-                },
-                {
-                    "blank": 3,
-                    "code": 89,
-                    "comment": 32,
-                    "filename": "www/js/classes/Magister.js"
-                },
-                {
-                    "blank": 13,
-                    "code": 63,
-                    "comment": 77,
-                    "filename": "www/js/classes/Person.js"
-                },
-                {
-                    "blank": 6,
-                    "code": 69,
-                    "comment": 11,
-                    "filename": "www/js/controllers/CourseController.js"
-                },
-                {
-                    "blank": 5,
-                    "code": 26,
-                    "comment": 0,
-                    "filename": "www/js/controllers/LessonController.js"
-                },
-                {
-                    "blank": 71,
-                    "code": 1210,
-                    "comment": 261,
-                    "filename": "www/js/controllers/ViewController.js"
-                },
-                {
-                    "blank": 2,
-                    "code": 110,
-                    "comment": 6,
-                    "filename": "www/js/demo/chart-area-demo.js"
-                },
-                {
-                    "blank": 2,
-                    "code": 103,
-                    "comment": 6,
-                    "filename": "www/js/demo/chart-bar-demo.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 32,
-                    "comment": 2,
-                    "filename": "www/js/demo/chart-pie-demo.js"
-                },
-                {
-                    "blank": 0,
-                    "code": 3,
-                    "comment": 1,
-                    "filename": "www/js/demo/datatables-demo.js"
-                },
-                {
-                    "blank": 39,
-                    "code": 1183,
-                    "comment": 14,
-                    "filename": "www/js/login.js"
-                },
-                {
-                    "blank": 48,
-                    "code": 283,
-                    "comment": 141,
-                    "filename": "www/js/main.js"
-                },
-                {
-                    "blank": 4,
-                    "code": 45,
-                    "comment": 8,
-                    "filename": "www/js/refresh.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 13,
-                    "comment": 1,
-                    "filename": "www/js/utils.js"
-                },
-                {
-                    "blank": 4,
-                    "code": 17,
-                    "comment": 0,
-                    "filename": "www/LICENSE"
-                },
-                {
-                    "blank": 20,
-                    "code": 123,
-                    "comment": 10,
-                    "filename": "www/login.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 11,
-                    "comment": 0,
-                    "filename": "www/manifest.json"
-                },
-                {
-                    "blank": 0,
-                    "code": 54,
-                    "comment": 0,
-                    "filename": "www/manifest.webmanifest"
-                },
-                {
-                    "blank": 3,
-                    "code": 5,
-                    "comment": 2,
-                    "filename": "www/README.md"
-                },
-                {
-                    "blank": 11,
-                    "code": 111,
-                    "comment": 1,
-                    "filename": "www/service-worker.js"
-                }
-            ]
+          "blank": 16,
+          "code": 99,
+          "comment": 0,
+          "filename": "www/404.html"
         },
         {
-            "version": "0.1.7",
-            "counttime": "2019-11-01 17:19:49",
-            "filesum": 34,
-            "codesum": 16025,
-            "commentsum": 1774,
-            "blanksum": 2981,
-            "filelist": [{
-                    "blank": 0,
-                    "code": 5,
-                    "comment": 0,
-                    "filename": "www/.well-known/assetlinks.json"
-                },
-                {
-                    "blank": 16,
-                    "code": 99,
-                    "comment": 0,
-                    "filename": "www/404.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 1,
-                    "comment": 0,
-                    "filename": "www/CNAME"
-                },
-                {
-                    "blank": 25,
-                    "code": 153,
-                    "comment": 18,
-                    "filename": "www/coming-soon/custom.html"
-                },
-                {
-                    "blank": 34,
-                    "code": 231,
-                    "comment": 17,
-                    "filename": "www/coming-soon/index.html"
-                },
-                {
-                    "blank": 43,
-                    "code": 198,
-                    "comment": 11,
-                    "filename": "www/css/dark.css"
-                },
-                {
-                    "blank": 13,
-                    "code": 112,
-                    "comment": 42,
-                    "filename": "www/css/fonts.css"
-                },
-                {
-                    "blank": 2321,
-                    "code": 10999,
-                    "comment": 52,
-                    "filename": "www/css/light.css"
-                },
-                {
-                    "filename": "www/css/magistersymbols-webfont.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 115,
-                    "code": 407,
-                    "comment": 121,
-                    "filename": "www/css/main.css"
-                },
-                {
-                    "filename": "www/img/favicon.ico",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/smiley.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 87,
-                    "code": 451,
-                    "comment": 489,
-                    "filename": "www/index.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 13,
-                    "comment": 39,
-                    "filename": "www/js/classes/Class.js"
-                },
-                {
-                    "blank": 23,
-                    "code": 140,
-                    "comment": 107,
-                    "filename": "www/js/classes/Course.js"
-                },
-                {
-                    "blank": 19,
-                    "code": 77,
-                    "comment": 87,
-                    "filename": "www/js/classes/Grade.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 9,
-                    "comment": 28,
-                    "filename": "www/js/classes/GradePeriod.js"
-                },
-                {
-                    "blank": 5,
-                    "code": 55,
-                    "comment": 74,
-                    "filename": "www/js/classes/GradeType.js"
-                },
-                {
-                    "blank": 24,
-                    "code": 316,
-                    "comment": 48,
-                    "filename": "www/js/classes/Lesson.js"
-                },
-                {
-                    "blank": 3,
-                    "code": 81,
-                    "comment": 40,
-                    "filename": "www/js/classes/Magister.js"
-                },
-                {
-                    "blank": 13,
-                    "code": 63,
-                    "comment": 77,
-                    "filename": "www/js/classes/Person.js"
-                },
-                {
-                    "blank": 7,
-                    "code": 72,
-                    "comment": 16,
-                    "filename": "www/js/controllers/CourseController.js"
-                },
-                {
-                    "blank": 5,
-                    "code": 26,
-                    "comment": 0,
-                    "filename": "www/js/controllers/LessonController.js"
-                },
-                {
-                    "blank": 81,
-                    "code": 1269,
-                    "comment": 273,
-                    "filename": "www/js/controllers/ViewController.js"
-                },
-                {
-                    "blank": 45,
-                    "code": 391,
-                    "comment": 25,
-                    "filename": "www/js/login.js"
-                },
-                {
-                    "blank": 47,
-                    "code": 363,
-                    "comment": 182,
-                    "filename": "www/js/main.js"
-                },
-                {
-                    "blank": 15,
-                    "code": 153,
-                    "comment": 9,
-                    "filename": "www/js/refresh.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 13,
-                    "comment": 1,
-                    "filename": "www/js/utils.js"
-                },
-                {
-                    "blank": 4,
-                    "code": 17,
-                    "comment": 0,
-                    "filename": "www/LICENSE"
-                },
-                {
-                    "blank": 20,
-                    "code": 130,
-                    "comment": 15,
-                    "filename": "www/login.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 11,
-                    "comment": 0,
-                    "filename": "www/manifest.json"
-                },
-                {
-                    "blank": 0,
-                    "code": 54,
-                    "comment": 0,
-                    "filename": "www/manifest.webmanifest"
-                },
-                {
-                    "blank": 3,
-                    "code": 5,
-                    "comment": 2,
-                    "filename": "www/README.md"
-                },
-                {
-                    "blank": 11,
-                    "code": 111,
-                    "comment": 1,
-                    "filename": "www/service-worker.js"
-                }
-            ]
+          "blank": 0,
+          "code": 1,
+          "comment": 0,
+          "filename": "www/CNAME"
         },
         {
-            "version": "0.1.7",
-            "counttime": "2019-11-01 17:34:37",
-            "filesum": 34,
-            "codesum": 16025,
-            "commentsum": 1774,
-            "blanksum": 2981,
-            "filelist": [{
-                    "blank": 0,
-                    "code": 5,
-                    "comment": 0,
-                    "filename": "www/.well-known/assetlinks.json"
-                },
-                {
-                    "blank": 16,
-                    "code": 99,
-                    "comment": 0,
-                    "filename": "www/404.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 1,
-                    "comment": 0,
-                    "filename": "www/CNAME"
-                },
-                {
-                    "blank": 25,
-                    "code": 153,
-                    "comment": 18,
-                    "filename": "www/coming-soon/custom.html"
-                },
-                {
-                    "blank": 34,
-                    "code": 231,
-                    "comment": 17,
-                    "filename": "www/coming-soon/index.html"
-                },
-                {
-                    "blank": 43,
-                    "code": 198,
-                    "comment": 11,
-                    "filename": "www/css/dark.css"
-                },
-                {
-                    "blank": 13,
-                    "code": 112,
-                    "comment": 42,
-                    "filename": "www/css/fonts.css"
-                },
-                {
-                    "blank": 2321,
-                    "code": 10999,
-                    "comment": 52,
-                    "filename": "www/css/light.css"
-                },
-                {
-                    "filename": "www/css/magistersymbols-webfont.woff",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 115,
-                    "code": 407,
-                    "comment": 121,
-                    "filename": "www/css/main.css"
-                },
-                {
-                    "filename": "www/img/favicon.ico",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "filename": "www/img/smiley.png",
-                    "isbinaryfile": true,
-                    "blank": 0,
-                    "code": 0,
-                    "comment": 0
-                },
-                {
-                    "blank": 87,
-                    "code": 451,
-                    "comment": 489,
-                    "filename": "www/index.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 13,
-                    "comment": 39,
-                    "filename": "www/js/classes/Class.js"
-                },
-                {
-                    "blank": 23,
-                    "code": 140,
-                    "comment": 107,
-                    "filename": "www/js/classes/Course.js"
-                },
-                {
-                    "blank": 19,
-                    "code": 77,
-                    "comment": 87,
-                    "filename": "www/js/classes/Grade.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 9,
-                    "comment": 28,
-                    "filename": "www/js/classes/GradePeriod.js"
-                },
-                {
-                    "blank": 5,
-                    "code": 55,
-                    "comment": 74,
-                    "filename": "www/js/classes/GradeType.js"
-                },
-                {
-                    "blank": 24,
-                    "code": 316,
-                    "comment": 48,
-                    "filename": "www/js/classes/Lesson.js"
-                },
-                {
-                    "blank": 3,
-                    "code": 81,
-                    "comment": 40,
-                    "filename": "www/js/classes/Magister.js"
-                },
-                {
-                    "blank": 13,
-                    "code": 63,
-                    "comment": 77,
-                    "filename": "www/js/classes/Person.js"
-                },
-                {
-                    "blank": 7,
-                    "code": 72,
-                    "comment": 16,
-                    "filename": "www/js/controllers/CourseController.js"
-                },
-                {
-                    "blank": 5,
-                    "code": 26,
-                    "comment": 0,
-                    "filename": "www/js/controllers/LessonController.js"
-                },
-                {
-                    "blank": 81,
-                    "code": 1269,
-                    "comment": 273,
-                    "filename": "www/js/controllers/ViewController.js"
-                },
-                {
-                    "blank": 45,
-                    "code": 391,
-                    "comment": 25,
-                    "filename": "www/js/login.js"
-                },
-                {
-                    "blank": 47,
-                    "code": 363,
-                    "comment": 182,
-                    "filename": "www/js/main.js"
-                },
-                {
-                    "blank": 15,
-                    "code": 153,
-                    "comment": 9,
-                    "filename": "www/js/refresh.js"
-                },
-                {
-                    "blank": 1,
-                    "code": 13,
-                    "comment": 1,
-                    "filename": "www/js/utils.js"
-                },
-                {
-                    "blank": 4,
-                    "code": 17,
-                    "comment": 0,
-                    "filename": "www/LICENSE"
-                },
-                {
-                    "blank": 20,
-                    "code": 130,
-                    "comment": 15,
-                    "filename": "www/login.html"
-                },
-                {
-                    "blank": 0,
-                    "code": 11,
-                    "comment": 0,
-                    "filename": "www/manifest.json"
-                },
-                {
-                    "blank": 0,
-                    "code": 54,
-                    "comment": 0,
-                    "filename": "www/manifest.webmanifest"
-                },
-                {
-                    "blank": 3,
-                    "code": 5,
-                    "comment": 2,
-                    "filename": "www/README.md"
-                },
-                {
-                    "blank": 11,
-                    "code": 111,
-                    "comment": 1,
-                    "filename": "www/service-worker.js"
-                }
-            ]
+          "blank": 25,
+          "code": 153,
+          "comment": 18,
+          "filename": "www/coming-soon/custom.html"
+        },
+        {
+          "blank": 34,
+          "code": 231,
+          "comment": 17,
+          "filename": "www/coming-soon/index.html"
+        },
+        {
+          "blank": 43,
+          "code": 198,
+          "comment": 11,
+          "filename": "www/css/dark.css"
+        },
+        {
+          "blank": 13,
+          "code": 112,
+          "comment": 42,
+          "filename": "www/css/fonts.css"
+        },
+        {
+          "blank": 2321,
+          "code": 10999,
+          "comment": 52,
+          "filename": "www/css/light.css"
+        },
+        {
+          "filename": "www/css/magistersymbols-webfont.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 95,
+          "code": 391,
+          "comment": 117,
+          "filename": "www/css/main.css"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-200.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 238,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-200.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-200.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-200.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-200.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-200italic.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 242,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-200italic.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-200italic.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-200italic.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-200italic.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-300.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 239,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-300.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-300.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-300.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-300.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-300italic.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 244,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-300italic.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-300italic.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-300italic.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-300italic.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-600.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 240,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-600.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-600.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-600.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-600.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-600italic.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 248,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-600italic.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-600italic.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-600italic.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-600italic.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-700.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 241,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-700.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-700.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-700.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-700.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-700italic.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 246,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-700italic.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-700italic.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-700italic.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-700italic.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-800.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 242,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-800.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-800.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-800.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-800.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-800italic.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 249,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-800italic.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-800italic.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-800italic.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-800italic.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-900.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 244,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-900.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-900.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-900.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-900.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-900italic.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 245,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-900italic.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-900italic.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-900italic.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-900italic.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-italic.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 247,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-italic.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-italic.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-italic.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-italic.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-regular.eot",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 0,
+          "code": 241,
+          "comment": 0,
+          "filename": "www/fonts/nunito-v11-latin-regular.svg"
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-regular.ttf",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-regular.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/fonts/nunito-v11-latin-regular.woff2",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/1.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/2.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/3.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/app-store-icon.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/banner-bg.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/curved-bg.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/curved-bgg.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/download-section-bg.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/google-play-icon.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/google-play-icon.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/icon-1.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/icon-2.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/icon-3.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/iphone.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/left-arrow.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/phone-image-old.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/phone-image.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/quotes-1.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/quotes-2.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/right-arrow.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/smartphone-1-old.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/smartphone-1.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/smartphone-2-old.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/smartphone-2.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/favicon.ico",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-128x128.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-144x144.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-152x152.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-192x192.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-384x384.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-512x512.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-72x72.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-96x96.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/ipad_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/ipadpro1_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/ipadpro2_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/ipadpro3_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphone5_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphone6_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphoneplus_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphonex_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphonexr_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphonexsmax_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/new_iphoneplus_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/old_iphoneplus_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/stock-profile-picture.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 87,
+          "code": 417,
+          "comment": 477,
+          "filename": "www/index.html"
+        },
+        {
+          "blank": 0,
+          "code": 13,
+          "comment": 39,
+          "filename": "www/js/classes/Class.js"
+        },
+        {
+          "blank": 22,
+          "code": 148,
+          "comment": 102,
+          "filename": "www/js/classes/Course.js"
+        },
+        {
+          "blank": 21,
+          "code": 73,
+          "comment": 100,
+          "filename": "www/js/classes/Grade.js"
+        },
+        {
+          "blank": 1,
+          "code": 9,
+          "comment": 28,
+          "filename": "www/js/classes/GradePeriod.js"
+        },
+        {
+          "blank": 5,
+          "code": 55,
+          "comment": 74,
+          "filename": "www/js/classes/GradeType.js"
+        },
+        {
+          "blank": 23,
+          "code": 306,
+          "comment": 33,
+          "filename": "www/js/classes/Lesson.js"
+        },
+        {
+          "blank": 3,
+          "code": 89,
+          "comment": 32,
+          "filename": "www/js/classes/Magister.js"
+        },
+        {
+          "blank": 13,
+          "code": 63,
+          "comment": 77,
+          "filename": "www/js/classes/Person.js"
+        },
+        {
+          "blank": 6,
+          "code": 69,
+          "comment": 11,
+          "filename": "www/js/controllers/CourseController.js"
+        },
+        {
+          "blank": 5,
+          "code": 26,
+          "comment": 0,
+          "filename": "www/js/controllers/LessonController.js"
+        },
+        {
+          "blank": 71,
+          "code": 1210,
+          "comment": 261,
+          "filename": "www/js/controllers/ViewController.js"
+        },
+        {
+          "blank": 2,
+          "code": 110,
+          "comment": 6,
+          "filename": "www/js/demo/chart-area-demo.js"
+        },
+        {
+          "blank": 2,
+          "code": 103,
+          "comment": 6,
+          "filename": "www/js/demo/chart-bar-demo.js"
+        },
+        {
+          "blank": 1,
+          "code": 32,
+          "comment": 2,
+          "filename": "www/js/demo/chart-pie-demo.js"
+        },
+        {
+          "blank": 0,
+          "code": 3,
+          "comment": 1,
+          "filename": "www/js/demo/datatables-demo.js"
+        },
+        {
+          "blank": 39,
+          "code": 1183,
+          "comment": 14,
+          "filename": "www/js/login.js"
+        },
+        {
+          "blank": 48,
+          "code": 283,
+          "comment": 141,
+          "filename": "www/js/main.js"
+        },
+        {
+          "blank": 4,
+          "code": 45,
+          "comment": 8,
+          "filename": "www/js/refresh.js"
+        },
+        {
+          "blank": 1,
+          "code": 13,
+          "comment": 1,
+          "filename": "www/js/utils.js"
+        },
+        {
+          "blank": 4,
+          "code": 17,
+          "comment": 0,
+          "filename": "www/LICENSE"
+        },
+        {
+          "blank": 20,
+          "code": 123,
+          "comment": 10,
+          "filename": "www/login.html"
+        },
+        {
+          "blank": 0,
+          "code": 11,
+          "comment": 0,
+          "filename": "www/manifest.json"
+        },
+        {
+          "blank": 0,
+          "code": 54,
+          "comment": 0,
+          "filename": "www/manifest.webmanifest"
+        },
+        {
+          "blank": 3,
+          "code": 5,
+          "comment": 2,
+          "filename": "www/README.md"
+        },
+        {
+          "blank": 11,
+          "code": 111,
+          "comment": 1,
+          "filename": "www/service-worker.js"
         }
-    ]
+      ]
+    },
+    {
+      "version": "0.1.7",
+      "counttime": "2019-10-01 20:31:26",
+      "filesum": 83,
+      "codesum": 16760,
+      "commentsum": 1683,
+      "blanksum": 2939,
+      "filelist": [
+        {
+          "blank": 0,
+          "code": 5,
+          "comment": 0,
+          "filename": "www/.well-known/assetlinks.json"
+        },
+        {
+          "blank": 16,
+          "code": 99,
+          "comment": 0,
+          "filename": "www/404.html"
+        },
+        {
+          "blank": 0,
+          "code": 1,
+          "comment": 0,
+          "filename": "www/CNAME"
+        },
+        {
+          "blank": 25,
+          "code": 153,
+          "comment": 18,
+          "filename": "www/coming-soon/custom.html"
+        },
+        {
+          "blank": 34,
+          "code": 231,
+          "comment": 17,
+          "filename": "www/coming-soon/index.html"
+        },
+        {
+          "blank": 43,
+          "code": 198,
+          "comment": 11,
+          "filename": "www/css/dark.css"
+        },
+        {
+          "blank": 13,
+          "code": 112,
+          "comment": 42,
+          "filename": "www/css/fonts.css"
+        },
+        {
+          "blank": 2321,
+          "code": 10999,
+          "comment": 52,
+          "filename": "www/css/light.css"
+        },
+        {
+          "filename": "www/css/magistersymbols-webfont.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 95,
+          "code": 391,
+          "comment": 117,
+          "filename": "www/css/main.css"
+        },
+        {
+          "filename": "www/img/coming-soon/1.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/2.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/3.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/app-store-icon.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/banner-bg.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/curved-bg.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/curved-bgg.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/download-section-bg.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/google-play-icon.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/google-play-icon.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/icon-1.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/icon-2.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/icon-3.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/iphone.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/left-arrow.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/phone-image-old.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/phone-image.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/quotes-1.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/quotes-2.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/right-arrow.jpg",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/smartphone-1-old.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/smartphone-1.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/smartphone-2-old.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/coming-soon/smartphone-2.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/favicon.ico",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-128x128.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-144x144.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-152x152.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-192x192.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-384x384.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-512x512.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-72x72.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/icons/icon-96x96.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/ipad_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/ipadpro1_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/ipadpro2_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/ipadpro3_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphone5_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphone6_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphoneplus_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphonex_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphonexr_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/iphonexsmax_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/new_iphoneplus_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/splashscreens/old_iphoneplus_splash.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/stock-profile-picture.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 87,
+          "code": 417,
+          "comment": 477,
+          "filename": "www/index.html"
+        },
+        {
+          "blank": 0,
+          "code": 13,
+          "comment": 39,
+          "filename": "www/js/classes/Class.js"
+        },
+        {
+          "blank": 22,
+          "code": 148,
+          "comment": 102,
+          "filename": "www/js/classes/Course.js"
+        },
+        {
+          "blank": 21,
+          "code": 73,
+          "comment": 100,
+          "filename": "www/js/classes/Grade.js"
+        },
+        {
+          "blank": 1,
+          "code": 9,
+          "comment": 28,
+          "filename": "www/js/classes/GradePeriod.js"
+        },
+        {
+          "blank": 5,
+          "code": 55,
+          "comment": 74,
+          "filename": "www/js/classes/GradeType.js"
+        },
+        {
+          "blank": 23,
+          "code": 306,
+          "comment": 33,
+          "filename": "www/js/classes/Lesson.js"
+        },
+        {
+          "blank": 3,
+          "code": 89,
+          "comment": 32,
+          "filename": "www/js/classes/Magister.js"
+        },
+        {
+          "blank": 13,
+          "code": 63,
+          "comment": 77,
+          "filename": "www/js/classes/Person.js"
+        },
+        {
+          "blank": 6,
+          "code": 69,
+          "comment": 11,
+          "filename": "www/js/controllers/CourseController.js"
+        },
+        {
+          "blank": 5,
+          "code": 26,
+          "comment": 0,
+          "filename": "www/js/controllers/LessonController.js"
+        },
+        {
+          "blank": 71,
+          "code": 1210,
+          "comment": 261,
+          "filename": "www/js/controllers/ViewController.js"
+        },
+        {
+          "blank": 2,
+          "code": 110,
+          "comment": 6,
+          "filename": "www/js/demo/chart-area-demo.js"
+        },
+        {
+          "blank": 2,
+          "code": 103,
+          "comment": 6,
+          "filename": "www/js/demo/chart-bar-demo.js"
+        },
+        {
+          "blank": 1,
+          "code": 32,
+          "comment": 2,
+          "filename": "www/js/demo/chart-pie-demo.js"
+        },
+        {
+          "blank": 0,
+          "code": 3,
+          "comment": 1,
+          "filename": "www/js/demo/datatables-demo.js"
+        },
+        {
+          "blank": 39,
+          "code": 1183,
+          "comment": 14,
+          "filename": "www/js/login.js"
+        },
+        {
+          "blank": 48,
+          "code": 283,
+          "comment": 141,
+          "filename": "www/js/main.js"
+        },
+        {
+          "blank": 4,
+          "code": 45,
+          "comment": 8,
+          "filename": "www/js/refresh.js"
+        },
+        {
+          "blank": 1,
+          "code": 13,
+          "comment": 1,
+          "filename": "www/js/utils.js"
+        },
+        {
+          "blank": 4,
+          "code": 17,
+          "comment": 0,
+          "filename": "www/LICENSE"
+        },
+        {
+          "blank": 20,
+          "code": 123,
+          "comment": 10,
+          "filename": "www/login.html"
+        },
+        {
+          "blank": 0,
+          "code": 11,
+          "comment": 0,
+          "filename": "www/manifest.json"
+        },
+        {
+          "blank": 0,
+          "code": 54,
+          "comment": 0,
+          "filename": "www/manifest.webmanifest"
+        },
+        {
+          "blank": 3,
+          "code": 5,
+          "comment": 2,
+          "filename": "www/README.md"
+        },
+        {
+          "blank": 11,
+          "code": 111,
+          "comment": 1,
+          "filename": "www/service-worker.js"
+        }
+      ]
+    },
+    {
+      "version": "0.1.7",
+      "counttime": "2019-11-01 17:19:49",
+      "filesum": 34,
+      "codesum": 16025,
+      "commentsum": 1774,
+      "blanksum": 2981,
+      "filelist": [
+        {
+          "blank": 0,
+          "code": 5,
+          "comment": 0,
+          "filename": "www/.well-known/assetlinks.json"
+        },
+        {
+          "blank": 16,
+          "code": 99,
+          "comment": 0,
+          "filename": "www/404.html"
+        },
+        {
+          "blank": 0,
+          "code": 1,
+          "comment": 0,
+          "filename": "www/CNAME"
+        },
+        {
+          "blank": 25,
+          "code": 153,
+          "comment": 18,
+          "filename": "www/coming-soon/custom.html"
+        },
+        {
+          "blank": 34,
+          "code": 231,
+          "comment": 17,
+          "filename": "www/coming-soon/index.html"
+        },
+        {
+          "blank": 43,
+          "code": 198,
+          "comment": 11,
+          "filename": "www/css/dark.css"
+        },
+        {
+          "blank": 13,
+          "code": 112,
+          "comment": 42,
+          "filename": "www/css/fonts.css"
+        },
+        {
+          "blank": 2321,
+          "code": 10999,
+          "comment": 52,
+          "filename": "www/css/light.css"
+        },
+        {
+          "filename": "www/css/magistersymbols-webfont.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 115,
+          "code": 407,
+          "comment": 121,
+          "filename": "www/css/main.css"
+        },
+        {
+          "filename": "www/img/favicon.ico",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/smiley.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 87,
+          "code": 451,
+          "comment": 489,
+          "filename": "www/index.html"
+        },
+        {
+          "blank": 0,
+          "code": 13,
+          "comment": 39,
+          "filename": "www/js/classes/Class.js"
+        },
+        {
+          "blank": 23,
+          "code": 140,
+          "comment": 107,
+          "filename": "www/js/classes/Course.js"
+        },
+        {
+          "blank": 19,
+          "code": 77,
+          "comment": 87,
+          "filename": "www/js/classes/Grade.js"
+        },
+        {
+          "blank": 1,
+          "code": 9,
+          "comment": 28,
+          "filename": "www/js/classes/GradePeriod.js"
+        },
+        {
+          "blank": 5,
+          "code": 55,
+          "comment": 74,
+          "filename": "www/js/classes/GradeType.js"
+        },
+        {
+          "blank": 24,
+          "code": 316,
+          "comment": 48,
+          "filename": "www/js/classes/Lesson.js"
+        },
+        {
+          "blank": 3,
+          "code": 81,
+          "comment": 40,
+          "filename": "www/js/classes/Magister.js"
+        },
+        {
+          "blank": 13,
+          "code": 63,
+          "comment": 77,
+          "filename": "www/js/classes/Person.js"
+        },
+        {
+          "blank": 7,
+          "code": 72,
+          "comment": 16,
+          "filename": "www/js/controllers/CourseController.js"
+        },
+        {
+          "blank": 5,
+          "code": 26,
+          "comment": 0,
+          "filename": "www/js/controllers/LessonController.js"
+        },
+        {
+          "blank": 81,
+          "code": 1269,
+          "comment": 273,
+          "filename": "www/js/controllers/ViewController.js"
+        },
+        {
+          "blank": 45,
+          "code": 391,
+          "comment": 25,
+          "filename": "www/js/login.js"
+        },
+        {
+          "blank": 47,
+          "code": 363,
+          "comment": 182,
+          "filename": "www/js/main.js"
+        },
+        {
+          "blank": 15,
+          "code": 153,
+          "comment": 9,
+          "filename": "www/js/refresh.js"
+        },
+        {
+          "blank": 1,
+          "code": 13,
+          "comment": 1,
+          "filename": "www/js/utils.js"
+        },
+        {
+          "blank": 4,
+          "code": 17,
+          "comment": 0,
+          "filename": "www/LICENSE"
+        },
+        {
+          "blank": 20,
+          "code": 130,
+          "comment": 15,
+          "filename": "www/login.html"
+        },
+        {
+          "blank": 0,
+          "code": 11,
+          "comment": 0,
+          "filename": "www/manifest.json"
+        },
+        {
+          "blank": 0,
+          "code": 54,
+          "comment": 0,
+          "filename": "www/manifest.webmanifest"
+        },
+        {
+          "blank": 3,
+          "code": 5,
+          "comment": 2,
+          "filename": "www/README.md"
+        },
+        {
+          "blank": 11,
+          "code": 111,
+          "comment": 1,
+          "filename": "www/service-worker.js"
+        }
+      ]
+    },
+    {
+      "version": "0.1.7",
+      "counttime": "2019-11-01 17:34:37",
+      "filesum": 34,
+      "codesum": 16025,
+      "commentsum": 1774,
+      "blanksum": 2981,
+      "filelist": [
+        {
+          "blank": 0,
+          "code": 5,
+          "comment": 0,
+          "filename": "www/.well-known/assetlinks.json"
+        },
+        {
+          "blank": 16,
+          "code": 99,
+          "comment": 0,
+          "filename": "www/404.html"
+        },
+        {
+          "blank": 0,
+          "code": 1,
+          "comment": 0,
+          "filename": "www/CNAME"
+        },
+        {
+          "blank": 25,
+          "code": 153,
+          "comment": 18,
+          "filename": "www/coming-soon/custom.html"
+        },
+        {
+          "blank": 34,
+          "code": 231,
+          "comment": 17,
+          "filename": "www/coming-soon/index.html"
+        },
+        {
+          "blank": 43,
+          "code": 198,
+          "comment": 11,
+          "filename": "www/css/dark.css"
+        },
+        {
+          "blank": 13,
+          "code": 112,
+          "comment": 42,
+          "filename": "www/css/fonts.css"
+        },
+        {
+          "blank": 2321,
+          "code": 10999,
+          "comment": 52,
+          "filename": "www/css/light.css"
+        },
+        {
+          "filename": "www/css/magistersymbols-webfont.woff",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 115,
+          "code": 407,
+          "comment": 121,
+          "filename": "www/css/main.css"
+        },
+        {
+          "filename": "www/img/favicon.ico",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "filename": "www/img/smiley.png",
+          "isbinaryfile": true,
+          "blank": 0,
+          "code": 0,
+          "comment": 0
+        },
+        {
+          "blank": 87,
+          "code": 451,
+          "comment": 489,
+          "filename": "www/index.html"
+        },
+        {
+          "blank": 0,
+          "code": 13,
+          "comment": 39,
+          "filename": "www/js/classes/Class.js"
+        },
+        {
+          "blank": 23,
+          "code": 140,
+          "comment": 107,
+          "filename": "www/js/classes/Course.js"
+        },
+        {
+          "blank": 19,
+          "code": 77,
+          "comment": 87,
+          "filename": "www/js/classes/Grade.js"
+        },
+        {
+          "blank": 1,
+          "code": 9,
+          "comment": 28,
+          "filename": "www/js/classes/GradePeriod.js"
+        },
+        {
+          "blank": 5,
+          "code": 55,
+          "comment": 74,
+          "filename": "www/js/classes/GradeType.js"
+        },
+        {
+          "blank": 24,
+          "code": 316,
+          "comment": 48,
+          "filename": "www/js/classes/Lesson.js"
+        },
+        {
+          "blank": 3,
+          "code": 81,
+          "comment": 40,
+          "filename": "www/js/classes/Magister.js"
+        },
+        {
+          "blank": 13,
+          "code": 63,
+          "comment": 77,
+          "filename": "www/js/classes/Person.js"
+        },
+        {
+          "blank": 7,
+          "code": 72,
+          "comment": 16,
+          "filename": "www/js/controllers/CourseController.js"
+        },
+        {
+          "blank": 5,
+          "code": 26,
+          "comment": 0,
+          "filename": "www/js/controllers/LessonController.js"
+        },
+        {
+          "blank": 81,
+          "code": 1269,
+          "comment": 273,
+          "filename": "www/js/controllers/ViewController.js"
+        },
+        {
+          "blank": 45,
+          "code": 391,
+          "comment": 25,
+          "filename": "www/js/login.js"
+        },
+        {
+          "blank": 47,
+          "code": 363,
+          "comment": 182,
+          "filename": "www/js/main.js"
+        },
+        {
+          "blank": 15,
+          "code": 153,
+          "comment": 9,
+          "filename": "www/js/refresh.js"
+        },
+        {
+          "blank": 1,
+          "code": 13,
+          "comment": 1,
+          "filename": "www/js/utils.js"
+        },
+        {
+          "blank": 4,
+          "code": 17,
+          "comment": 0,
+          "filename": "www/LICENSE"
+        },
+        {
+          "blank": 20,
+          "code": 130,
+          "comment": 15,
+          "filename": "www/login.html"
+        },
+        {
+          "blank": 0,
+          "code": 11,
+          "comment": 0,
+          "filename": "www/manifest.json"
+        },
+        {
+          "blank": 0,
+          "code": 54,
+          "comment": 0,
+          "filename": "www/manifest.webmanifest"
+        },
+        {
+          "blank": 3,
+          "code": 5,
+          "comment": 2,
+          "filename": "www/README.md"
+        },
+        {
+          "blank": 11,
+          "code": 111,
+          "comment": 1,
+          "filename": "www/service-worker.js"
+        }
+      ]
+    }
+  ]
 }
