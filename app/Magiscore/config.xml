@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.netlob.magiscore" version="1.4.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name short="Magiscore">Magiscore - Magister statistiek</name>
+<widget id="app.netlob.magiscore" version="1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name short="Gemairo">Gemairo - Magister statistiek</name>
     <description>
-        Magiscore very nice 10/10.
+        Shi daggoetje geswiped
     </description>
     <author email="sjoerdabolten@gmail.com" href="https://netlob.dev">
         Netlob

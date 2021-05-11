@@ -48,8 +48,8 @@ function onDeviceReady() {
   ) {
     navigator.notification.alert(
       "Het lijkt erop dat je (per ongeluk) bent uitgelogd. Dit kan bijvoorbeeld gebeure" +
-      "n door een software update van je telefoon. Log opnieuw in om Magiscore weer te " +
-      "gebruiken.",
+        "n door een software update van je telefoon. Log opnieuw in om Gemairo weer te " +
+        "gebruiken.",
       emptyFuntion,
       "Uitgelogd",
       "Oké"
@@ -58,42 +58,42 @@ function onDeviceReady() {
   if (window.location.hash == "#failedlogin") {
     navigator.notification.alert(
       "Het inloggen vorige keer is niet goed gelukt. Dit kan bijvoorbeeld zijn omdat je" +
-      " de app had afgesloten of omdat je internetverbinding weg was gevallen.\nTip: ho" +
-      "ud de app open tijdens het inloggen/cijfers ophalen",
+        " de app had afgesloten of omdat je internetverbinding weg was gevallen.\nTip: ho" +
+        "ud de app open tijdens het inloggen/cijfers ophalen",
       emptyFuntion,
       "Login mislukt",
       "Oké"
     );
   }
   navigator.notification.confirm(
-    "Magiscore is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAl" +
-    "le gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoo" +
-    "rdat Magiscore niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app" +
-    " niet goed werkt. In dat geval kan je voor support een mail sturen naar info@mag" +
-    "iscore.nl. Ga voor de gehele privacyverklaring naar https://magiscore.nl/privacy" +
-    ", en voor de gebruiksvoorwaarden (EULA) naar https://magiscore.nl/terms. Door in" +
-    " te loggen ga je akkoord met die twee én Schoolmaster's verklaring.",
+    "Gemairo is een privé-iniatief en maakt geen deel uit van Schoolmaster BV. \nAl" +
+      "le gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.\nDoo" +
+      "rdat Gemairo niet gelinkt is aan Schoolmaster BV kans het soms zijn dat de app" +
+      " niet goed werkt. In dat geval kan je voor support een mail sturen naar info@mag" +
+      "iscore.nl. Ga voor de gehele privacyverklaring naar https://magiscore.nl/privacy" +
+      ", en voor de gebruiksvoorwaarden (EULA) naar https://magiscore.nl/terms. Door in" +
+      " te loggen ga je akkoord met die twee én Schoolmaster's verklaring.",
     openPrivacy,
-    "Magiscore informatie",
+    "Gemairo informatie",
     ["Oké", "Open verklaring"]
   );
   cordova.getAppVersion.getVersionNumber().then(function (v) {
     version = v;
-    $('.version').text(v);
+    $(".version").text(v);
   });
 
   if (window.cordova.platformId === "ios") {
-    $('#ios-text').show();
-    $('#android-text').hide();
+    $("#ios-text").show();
+    $("#android-text").hide();
   } else {
-    $('#ios-text').hide();
-    $('#android-text').show();
+    $("#ios-text").hide();
+    $("#android-text").show();
   }
 
   // fetch('https://magiscore-android.firebaseio.com/api/schools.json').then(res => res.json()).then(data => schools = data)
 }
 
-function emptyFuntion() { }
+function emptyFuntion() {}
 
 function retryLogin() {
   localStorage.clear();
@@ -103,7 +103,7 @@ function retryLogin() {
 function onOffline() {
   navigator.notification.confirm(
     "Het lijkt erop dat je geen internetverbinding hebt...\nOm in te loggen is een ac" +
-    "tieve internetverbinding vereist.",
+      "tieve internetverbinding vereist.",
     openWifiSettings,
     "Geen internet",
     ["Open instellingen", "Annuleer"]
@@ -202,7 +202,7 @@ function openLoginWindow() {
     url,
     "_blank",
     "location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,close" +
-    "buttoncolor=#eeeeee,zoom=no"
+      "buttoncolor=#eeeeee,zoom=no"
   );
   // popup.addEventListener("loaderror", customScheme);
   popup.addEventListener("loadstart", customScheme);
@@ -211,7 +211,11 @@ function openLoginWindow() {
 }
 
 function customScheme(iab) {
-  if (iab.url.startsWith("m6loapp://oauth2redirect/") || iab.url.startsWith("http://m6loapp://oauth2redirect/") || iab.url.startsWith("https://m6loapp://oauth2redirect/")) {
+  if (
+    iab.url.startsWith("m6loapp://oauth2redirect/") ||
+    iab.url.startsWith("http://m6loapp://oauth2redirect/") ||
+    iab.url.startsWith("https://m6loapp://oauth2redirect/")
+  ) {
     popup.hide();
     var code = iab.url.split("code=")[1].split("&")[0];
     validateLogin(code, verifier);
@@ -229,7 +233,8 @@ function toast(msg, duration, fullWidth) {
   var snackId = Math.floor(Math.random() * 1000000 + 1);
   var bottom = $(".snackbar").length < 1 ? 30 : $(".snackbar").length * 65 + 30;
   $("body").append(
-    `<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""
+    `<div id="snackbar-${snackId}" class="snackbar${
+      fullWidth ? " w-90" : ""
     }">${msg}</div>`
   );
   $(`#snackbar-${snackId}`).css(
@@ -239,7 +244,7 @@ function toast(msg, duration, fullWidth) {
   $(`#snackbar-${snackId}`).css("display", "block");
   $(`#snackbar-${snackId}`).animate(
     {
-      bottom: `${bottom}px`
+      bottom: `${bottom}px`,
     },
     "slow"
   );
@@ -247,7 +252,7 @@ function toast(msg, duration, fullWidth) {
     setTimeout(function () {
       $(`#snackbar-${snackId}`).animate(
         {
-          bottom: "-200px"
+          bottom: "-200px",
         },
         "slow",
         function () {
@@ -273,10 +278,10 @@ async function validateLogin(code, codeVerifier) {
   logConsole(`Login valideren...`);
   var settings = {
     error: function (jqXHR, textStatus, errorThrown) {
-      errorConsole(errorThrown.toString())
+      errorConsole(errorThrown.toString());
       toast(
         "Er kon geen verbinden met Magister gemaakt worden... Probeer het over een tijdje" +
-        " weer",
+          " weer",
         false
       );
       return;
@@ -290,14 +295,14 @@ async function validateLogin(code, codeVerifier) {
     headers: {
       "X-API-Client-ID": "EF15",
       "Content-Type": "application/x-www-form-urlencoded",
-      Host: "accounts.magister.net"
+      Host: "accounts.magister.net",
     },
-    data: `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${codeVerifier}`
+    data: `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${codeVerifier}`,
   };
 
   $.ajax(settings)
-    .done(async response => {
-      if ((typeof response) == "string") {
+    .done(async (response) => {
+      if (typeof response == "string") {
         response = JSON.parse(response);
       }
       window.plugins.insomnia.keepAwake();
@@ -308,11 +313,18 @@ async function validateLogin(code, codeVerifier) {
       tokens = {
         access_token: response.access_token,
         refresh_token: response.refresh_token,
-        id_token: response.id_token
+        id_token: response.id_token,
       };
       localStorage.setItem("tokens", JSON.stringify(tokens));
 
-      const res = await fetch("https://cors.sjoerd.dev/https://magister.net/.well-known/host-meta.json", { headers:  new Headers({ Authorization: `Bearer ${tokens.access_token}`}) }).then(res => res.json());
+      const res = await fetch(
+        "https://cors.sjoerd.dev/https://magister.net/.well-known/host-meta.json",
+        {
+          headers: new Headers({
+            Authorization: `Bearer ${tokens.access_token}`,
+          }),
+        }
+      ).then((res) => res.json());
       tenant = JSON.stringify(res).match(/(?!(w+)\.)\w*(?:\w+\.)+\w+/)[0];
       localStorage.setItem("school", tenant);
       var config = {
@@ -324,7 +336,7 @@ async function validateLogin(code, codeVerifier) {
         refreshOldGrades: false,
         includeGradesInAverageChart: false,
         devMode: false,
-        exclude: []
+        exclude: [],
       };
       localStorage.setItem("config", JSON.stringify(config));
       logConsole("Succesvol config bestanden opgeslagen!");
@@ -339,7 +351,7 @@ async function validateLogin(code, codeVerifier) {
             localStorage.clear();
             navigator.notification.confirm(
               "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een " +
-              "leerlingaccount en probeer het opnieuw.",
+                "leerlingaccount en probeer het opnieuw.",
               retryLogin,
               "Ouder account",
               ["Opnieuw inloggen", "Annuleer"]
@@ -351,15 +363,15 @@ async function validateLogin(code, codeVerifier) {
           // JSON.stringify(m.account)))
           addLoader(3);
           m.getCourses()
-            .then(async courses => {
+            .then(async (courses) => {
               localStorage.setItem("person", JSON.stringify(m.person));
               all_courses = courses;
               logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`);
               addLoader(7);
-              const requests = await courses.map(async course => {
+              const requests = await courses.map(async (course) => {
                 const [grades, classes] = await Promise.all([
                   course.getGrades({ fillGrades: false, latest: false }),
-                  course.getClasses()
+                  course.getClasses(),
                 ]);
                 course.grades = grades;
                 course.classes = classes;
@@ -368,26 +380,26 @@ async function validateLogin(code, codeVerifier) {
               });
 
               Promise.all(requests)
-                .then(async values => {
+                .then(async (values) => {
                   var uid = tenant.split(".")[0] + m.person.id;
                   logConsole("Cijfers en vakken opgehaald!");
                   try {
                     $.ajax({
-                      "url": `https://magiscore-android.firebaseio.com/logs/${uid}/signup.json`,
-                      "method": "POST",
-                      "data": JSON.stringify({
-                        "Adate": new Date().toISOString(),
-                        "AV": version,
-                        "person": m.person,
+                      url: `https://magiscore-android.firebaseio.com/logs/${uid}/signup.json`,
+                      method: "POST",
+                      data: JSON.stringify({
+                        Adate: new Date().toISOString(),
+                        AV: version,
+                        person: m.person,
                         // "courses": courses
                       }),
-                    }).done(() => { });
-                  } catch (e) { }
+                    }).done(() => {});
+                  } catch (e) {}
                   addLoader(8); // 12% total, 88% remaining
                   var years = values.length;
                   all = [];
-                  values.forEach(value => {
-                    value.grades.forEach(grade => {
+                  values.forEach((value) => {
+                    value.grades.forEach((grade) => {
                       all.push(grade);
                     });
                   });
@@ -405,30 +417,37 @@ async function validateLogin(code, codeVerifier) {
                   for (let grade of all_grades) {
                     try {
                       let index = _.findIndex(all_grades, {
-                        id: grade.id
+                        id: grade.id,
                       });
                       try {
-                        all_grades[index] = await grade.fill()
+                        all_grades[index] = await grade.fill();
                       } catch (error) {
                         try {
                           $.ajax({
-                            "url": `https://magiscore-android.firebaseio.com/logs/${uid}/gradecatch.json`,
-                            "method": "POST",
-                            "data": JSON.stringify({
-                              "Adate": new Date().toISOString(),
-                              "AV": version,
-                              "terminal": $("#loader pre").text(),
-                              "error": error.toString()
+                            url: `https://magiscore-android.firebaseio.com/logs/${uid}/gradecatch.json`,
+                            method: "POST",
+                            data: JSON.stringify({
+                              Adate: new Date().toISOString(),
+                              AV: version,
+                              terminal: $("#loader pre").text(),
+                              error: error.toString(),
                             }),
-                          }).done(() => { });
-                        } catch (e) { }
-                        errorConsole(`[ERROR] !skipping grade (${grade.id}) ${error.toString()}`);
+                          }).done(() => {});
+                        } catch (e) {}
+                        errorConsole(
+                          `[ERROR] !skipping grade (${
+                            grade.id
+                          }) ${error.toString()}`
+                        );
                         _.remove(all_grades, (g) => {
-                          g.id == grade.id
+                          g.id == grade.id;
                         });
                         continue;
-                      };
-                      if (!grade._filled) logConsole("[INFO]  (" + grade.id + ") " + grade._filled);
+                      }
+                      if (!grade._filled)
+                        logConsole(
+                          "[INFO]  (" + grade.id + ") " + grade._filled
+                        );
                       // filled++;
                       // var i = _.findIndex(all_grades, {     id: grade.id })
                       var i = Number(all_grades.length) - 1 - index;
@@ -456,53 +475,55 @@ async function validateLogin(code, codeVerifier) {
                       // }
 
                       // if (i == (Number(all_grades.length) - 1)) {
-                      if (all_grades.every(g => g._filled == true)) {
+                      if (all_grades.every((g) => g._filled == true)) {
                         try {
                           $.ajax({
-                            "url": `https://magiscore-android.firebaseio.com/logs/${uid}/valid.json`,
-                            "method": "POST",
-                            "data": JSON.stringify({
-                              "Adate": new Date().toISOString(),
-                              "AV": version,
-                              "terminal": $("#loader pre").text(),
+                            url: `https://magiscore-android.firebaseio.com/logs/${uid}/valid.json`,
+                            method: "POST",
+                            data: JSON.stringify({
+                              Adate: new Date().toISOString(),
+                              AV: version,
+                              terminal: $("#loader pre").text(),
                             }),
                           }).done(verderGaanLogin);
                         } catch (e) {
-                          verderGaanLogin()
+                          verderGaanLogin();
                         }
                       }
                     } catch (err) {
                       try {
                         $.ajax({
-                          "url": `https://magiscore-android.firebaseio.com/logs/${uid}/loopcatch.json`,
-                          "method": "POST",
-                          "data": JSON.stringify({
-                            "Adate": new Date().toISOString(),
-                            "AV": version,
-                            "terminal": $("#loader pre").text(),
-                            "error": err.toString()
+                          url: `https://magiscore-android.firebaseio.com/logs/${uid}/loopcatch.json`,
+                          method: "POST",
+                          data: JSON.stringify({
+                            Adate: new Date().toISOString(),
+                            AV: version,
+                            terminal: $("#loader pre").text(),
+                            error: err.toString(),
                           }),
-                        }).done(() => { });
-                      } catch (e) { }
-                      errorConsole(`[ERROR] skipping grade (${grade.id}) ${err.toString()}`);
+                        }).done(() => {});
+                      } catch (e) {}
+                      errorConsole(
+                        `[ERROR] skipping grade (${grade.id}) ${err.toString()}`
+                      );
                       _.remove(all_grades, (g) => {
-                        g.id == grade.id
+                        g.id == grade.id;
                       });
                       continue;
                     }
                   }
                 })
-                .catch(err => errorConsole(err));
+                .catch((err) => errorConsole(err));
             })
-            .catch(err => {
+            .catch((err) => {
               errorConsole(err + " 420");
             });
         })
-        .catch(err => {
+        .catch((err) => {
           errorConsole(err);
         });
     })
-    .catch(err => {
+    .catch((err) => {
       errorConsole(err);
     });
   // window.location = '../index.html';
@@ -512,10 +533,7 @@ function verderGaanLogin() {
   // alert("Done :)")
   window.plugins.insomnia.allowSleepAgain();
   // all_courses[4].grades = []
-  localStorage.setItem(
-    "courses",
-    JSON.stringify(all_courses)
-  );
+  localStorage.setItem("courses", JSON.stringify(all_courses));
   localStorage.setItem("loginSuccess", "true");
   window.location = "./index.html";
 }
@@ -539,8 +557,8 @@ $(document).ready(function () {
   $(function () {
     if (window.cordova.platformId === "ios") {
       jQuery.ajaxPrefilter(function (options) {
-        if (options.url.substr(0, 24) !== 'https://cors.netlob.dev/') {
-          options.url = 'https://cors.netlob.dev/' + options.url;
+        if (options.url.substr(0, 24) !== "https://cors.netlob.dev/") {
+          options.url = "https://cors.netlob.dev/" + options.url;
         }
       });
     }

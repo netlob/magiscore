@@ -7,66 +7,70 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    "cordova-admob-plus": {
+      "APP_ID_IOS": "ca-app-pub-3425399211312777~6114349267",
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-launch-review": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-open-native-settings": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-consent": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-customurlscheme": {
       "URL_SCHEME": "m6loapp",
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-open-native-settings": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-insomnia": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-taptic-engine": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-launch-review": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-app-version": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-add-swift-support": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-purchase": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-    },
-    "cordova-plugin-wkwebview-engine": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-consent": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    "cordova-plugin-insomnia": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-androidx": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-androidx-adapter": {
-      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    "cordova-plugin-purchase": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-taptic-engine": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {}

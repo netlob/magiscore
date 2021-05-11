@@ -99,7 +99,7 @@ function exitPopup(iab) {
 }
 
 function customScheme(iab) {
-  if (iab.url.substring(0, 25) == "m6loapp://oauth2redirect/") {
+  if (iab.url.startsWith("m6loapp://oauth2redirect/") || iab.url.startsWith("http://m6loapp://oauth2redirect/") || iab.url.startsWith("https://m6loapp://oauth2redirect/")) {
     var code = iab.url.split("code=")[1].split("&")[0];
     popup.hide();
     var settings = {
