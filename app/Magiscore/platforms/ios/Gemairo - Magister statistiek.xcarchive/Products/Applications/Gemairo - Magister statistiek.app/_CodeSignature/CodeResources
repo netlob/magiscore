@@ -6,15 +6,15 @@
 	<dict>
 		<key>AppIcon60x60@2x.png</key>
 		<data>
-		wgBa9HxhA9u1/vfePpggKbyiJgs=
+		GO67tFXUoH3uSLdksHkw6d5SW18=
 		</data>
 		<key>AppIcon76x76@2x~ipad.png</key>
 		<data>
-		Zgbic0r+l7fTYHN8o4X9bChV0Zs=
+		D4YQ55s11TxJLdixor62P30BM/g=
 		</data>
 		<key>Assets.car</key>
 		<data>
-		txlx+mEW/vCt1l1jmeRIDsjmAPg=
+		MPpoiiWUp87x4cR6NWAI0XlTsDg=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-13.0+.nib</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>Frameworks/FBLPromises.framework/FBLPromises</key>
 		<data>
-		XEzwPzvfvLcjE0KXmwnzXhHCNVs=
+		fu6chbTjei3NduPuYepUVL0/ZEM=
 		</data>
 		<key>Frameworks/FBLPromises.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/GoogleUtilities.framework/GoogleUtilities</key>
 		<data>
-		K7gxjWQePAqu4ZTPR5fVMKmIaI0=
+		WTSKxxrH9mGt7oF1SjOh9AZ42uw=
 		</data>
 		<key>Frameworks/GoogleUtilities.framework/Info.plist</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent</key>
 		<data>
-		mLjfiLUIsJQq4tCzejZ6/O3Fz+g=
+		riQCnQOE7weK7t0jjuNBlFPxJIw=
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/Info.plist</key>
 		<data>
@@ -86,51 +86,51 @@
 		</data>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		N6zZCzXk86l2kSXxeP2H2RKRoRk=
+		GjkyUFh8PT4ywjJqh8BY/FHyQ/U=
 		</data>
 		<key>Frameworks/libswiftCoreFoundation.dylib</key>
 		<data>
-		PsmCO6XvRNnLO3fJAqdDJwWv3es=
+		e4J9w3HA3i5IwQ42C86dqAoKw9w=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		efvDzwgE3lftfurwzuZFdZ7NeHM=
+		D6YzE+Ho8q+T3v1mjuEjcqEyDAo=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		FjzkVXFwn13h/j2kGsUW559o82o=
+		n48Rs7i+kGdDf2GB9VbCRLAdIvc=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		ac+Kxj/ZKdk9Tqoh53G4iw3V4AA=
+		qeoZJb5RSaJSemmHnrSk3nfkLcQ=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		XfvlXUDskS4bQIrSZ9k8bVUWW2c=
+		0Ci4Id6/u0NMzRQUGYP8AEZ/Zgs=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		kgqxazFY2NJg0orOku//AhrOJtQ=
+		MzQRJ2J2mhmz23NS3lv0eMjd6bs=
 		</data>
 		<key>Frameworks/libswiftMetal.dylib</key>
 		<data>
-		4KFzQGTLCSTD+82Y+KjxjAxOe6E=
+		E+XgdW/x5CSgpgck59gAvH4rBzc=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		IjEOgo9oh5xoN47X+y8sW7smwDE=
+		5R5+vt2PhhIYVKzxv8EGaE8Jog0=
 		</data>
 		<key>Frameworks/libswiftQuartzCore.dylib</key>
 		<data>
-		bB7/eSJIBWJd+qO5t4FKer4qths=
+		UPn4I4YGohKpI5jylihsZvoRebk=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		GaL/0bFFCGx51Spewz1Zsbf2TZk=
+		o+2eMUbexes2sA5l0VuVNav9X3A=
 		</data>
 		<key>Frameworks/libswiftos.dylib</key>
 		<data>
-		2uMvpyLwm2v39R6LssqyppIfznM=
+		GtvbfWSyXulODQE3khoR5r6hdTk=
 		</data>
 		<key>Frameworks/nanopb.framework/Info.plist</key>
 		<data>
@@ -142,7 +142,7 @@
 		</data>
 		<key>Frameworks/nanopb.framework/nanopb</key>
 		<data>
-		9vDrxrovD5X9kU/Z4q5/ZKrxVtc=
+		rJ/0Z0K6aPqIr9EmEmY4EamdgY8=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -158,7 +158,7 @@
 		</data>
 		<key>config.xml</key>
 		<data>
-		CODcz79BvNsUcaZtniKBZJ+SrXw=
+		i7ZQfup9aco9TX7HIBLUOblNGXU=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -198,7 +198,7 @@
 		</data>
 		<key>www/css/dark.css</key>
 		<data>
-		+N9x4biy8ZEYi/71ZpYoi22h2SI=
+		Jh3X4IS6Of+8iYeS0YdfoRaQa9M=
 		</data>
 		<key>www/css/fonts.css</key>
 		<data>
@@ -206,11 +206,11 @@
 		</data>
 		<key>www/css/light.css</key>
 		<data>
-		39Qnc5vHHlBG3iKSNjJ3LgbshUY=
+		A9z3ntRxDrE48QxRZSbFF5Fh6hQ=
 		</data>
 		<key>www/css/main.css</key>
 		<data>
-		U7m0m/0GxYHz3HzkDGrDziHPNws=
+		DlG8oXWFTXTOE+lAf0sDa/zdQDI=
 		</data>
 		<key>www/fonts/nunito-v11-latin-200.woff2</key>
 		<data>
@@ -278,7 +278,7 @@
 		</data>
 		<key>www/index.html</key>
 		<data>
-		OoJ3nDwZOvh7zRm1YqGVJA6l99c=
+		7DdfRZLRShHIAE3RtmdA/LUY2GI=
 		</data>
 		<key>www/js/ads.js</key>
 		<data>
@@ -326,7 +326,7 @@
 		</data>
 		<key>www/js/controllers/ViewController.js</key>
 		<data>
-		2zndAV9W8u/zuodf1gdKrBw9Ioo=
+		3owo6SgAYNZL0WzGY0VbdH55qHY=
 		</data>
 		<key>www/js/deps/chartannotation.js</key>
 		<data>
@@ -374,11 +374,11 @@
 		</data>
 		<key>www/js/login.js</key>
 		<data>
-		HAaZr2cpRcXsSqimMNxr1NENVqw=
+		rDkXXRX6Wyisov/zgc3BilOY4CE=
 		</data>
 		<key>www/js/main.js</key>
 		<data>
-		QXFno3j/EZq7Q6mjT1dOcm2Dy1s=
+		giUwdmisPzBh/OtUqQeZnthBLJ0=
 		</data>
 		<key>www/js/refresh.js</key>
 		<data>
@@ -390,11 +390,11 @@
 		</data>
 		<key>www/login.html</key>
 		<data>
-		LzUyyzY4FGVq1jOOw5qNcpEZ/jI=
+		isEQJex/n5e7WmEJ+9KZxPH07v8=
 		</data>
 		<key>www/login/index.html</key>
 		<data>
-		PbNVOIJMm8oVuruoju9+yeK8yGo=
+		g1vs7T1dwX0nes+m6V9pu42JeB8=
 		</data>
 		<key>www/plugins/cordova-admob-plus/www/admob.js</key>
 		<data>
@@ -519,21 +519,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Id0ONkc2ui29Lqd0gfRO/AsW7ypmLxHx13irLXe6VdU=
+			DAj0EPRm1DMN5Ocz9+60hpkx8aBCVfm3So2RJmbJGSM=
 			</data>
 		</dict>
 		<key>AppIcon76x76@2x~ipad.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			c+HUz8SVQS7qHBMe7/+lyZ6PdWyOlgo0rTCeQRTyaK8=
+			jUoEmnv1GaVoI+5w+VQrddTZIZVqJSq4DT0apeEky18=
 			</data>
 		</dict>
 		<key>Assets.car</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Eh07Sp+wF+5QDU/6yCu8xgahXxrHCKKB+/wxzzwSUNA=
+			MShxa/WJXmfdOw6QM5LR2/G2VVzg5uF63Qd9DtizLws=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-13.0+.nib</key>
@@ -582,7 +582,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qyT6KQMcf8sJx2PqGy8mqZ/AqVg0K1fi2SdRHG86Yao=
+			cqIDD3grI3gKtA1vbr1LFPAxMGGRv8tln73IbIwCr3w=
 			</data>
 		</dict>
 		<key>Frameworks/FBLPromises.framework/Info.plist</key>
@@ -603,7 +603,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jerrhgNUkRGATgO3dNia6FnF31UJoJiqF3SdEX0IJuk=
+			val/XHDfqsuYgfkJRpsrEj/tER/0QOcNel29VlGCM0c=
 			</data>
 		</dict>
 		<key>Frameworks/GoogleUtilities.framework/Info.plist</key>
@@ -631,7 +631,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MNS5tXPlZOW9rwn/oQ/WcvYompTTqntFBlft85hcRUY=
+			1flrQWqo+3x+/AaaD78spcY/8JGFAeL0rCI8un6xcgk=
 			</data>
 		</dict>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/Info.plist</key>
@@ -659,84 +659,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7xBwQn9R4X6bSjPDUGcJ8vPpKnc1swVyYWBQS5APdfA=
+			uvPcwUmVBMJmtTRB3J5biFbIAbENGiXtyYc8vE8s0kE=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreFoundation.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			EpyLL1e4Y/vMfBarXLUwDfDkMfXS4Kgr+ejYTdvgtV8=
+			L/vxX3pMZNO5TcHHK5v4ESPcQRQbLKgCdniXfWKSvnw=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			akf9h6LyPUghGg8godI7wFB5xFGlIfOhIa0rYGfaPsE=
+			We2XJbGdsF5P2ZCzAgjSN/aAu4uX12/IlVo79mxfkws=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iaQmEKrSoEojqixCQlw9Tr/c807QHYTJxSAInfT9isw=
+			8rWyUtzq/tvgj1/mvISH2j5TaPOtwL9+Jsut4NmdiDI=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RnG4COA7kBJe7hrwvntlfQMqaAR3KTPOOXg6Azx2mgo=
+			HS3GQVEFpyJk3hzG0pCCDVtVTvDBV36pD732tAAVVsQ=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8cwC49e2oWcj4SnWV4emVxkY3oyXJhcuKzXfrtTCSX0=
+			3Rkx/ArlI65vC4v+IFR6R+qmWyExNv89uEQ/LVl4ddY=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qUik4YNdV6cPgXuIIAOCL9zsrE/87HqQl2QhApY7LPc=
+			FBU/zx+8zH384myZwF5dOw3QZkad/dc8XE1GWj6k1j0=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftMetal.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kRLXqqV9x+AfxbQ/pdgGfUJeWCxDd2RMNP28MFw387A=
+			eqijo2bngrSYNtpmXVoFtRQEty8qV9tbOjy7Ocjo4+k=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HzoGUSfBBC1hOM1BfzTMvU8N5iDu8w2cl/kDIKUn9vw=
+			k8GWKTY0bVBsfxTyld45agj9BN2tn8gx7tMhYjuWgHY=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftQuartzCore.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Y7TpxpP4YxWxZJ2jKQ1bx0bZ6PxDcsbMrgx24K4Xql8=
+			rH5MzFDWmDTEIx7G7YvGVktRjczX5Dmqa3izMc2dgE8=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pSeESJJhl3X2mhduZ747jAP95ZV/UWxYh1g0FBnzkrg=
+			VTBfsmW1E00niwk/X0qLHnpBsQGdfGnY5XCIW1KuU/E=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftos.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jPmeQL7Kv35WzX9k2nudo6GyWkClp0AJ5VbVjBptpkM=
+			WnPP2kEV8zBroyQ/XYHY0E/Zu57v0dFe8cqcmaPw4og=
 			</data>
 		</dict>
 		<key>Frameworks/nanopb.framework/Info.plist</key>
@@ -757,7 +757,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Q2YoVyRtTGTAi1W9C8mOcw3rBgddQCSn7BsYEonthsg=
+			SoDJVzJosVMCNKhrS2Kz+jZY3PKQiHppTf+zqKZWIUM=
 			</data>
 		</dict>
 		<key>MainViewController.nib</key>
@@ -771,7 +771,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			6ce6SlsVjD8W/WsTtdSVrpwrm1BkcRzL4hjR3twzOYk=
+			66YQU3RXqL9up+U4CQqGjmLegNti1spJbOsaJP2lHNo=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
@@ -841,7 +841,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			waJwDg+UCASGcdmNToXhvxt1VLII9ktpB3ofvbOxivU=
+			66etmnz351rHJFxDW0hhi8vTChYy323nAJqcQUbNV+4=
 			</data>
 		</dict>
 		<key>www/css/fonts.css</key>
@@ -855,14 +855,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uY6MhWHFkZVVJxorrgQYInczMpClVihx0JT1KaKSQAs=
+			WkSNVZfqI3DmDj+Zj4dfHFRDs+INmoa+L2gas3bijPs=
 			</data>
 		</dict>
 		<key>www/css/main.css</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cbEF2p6adKJUCf0Qff5JVTkUlY8wA15KAtduJ0HmWmQ=
+			1Js0J9M7q6ZOV9mqK4xgRrd4E6Ba7Yy4/AWlZIEelKU=
 			</data>
 		</dict>
 		<key>www/fonts/nunito-v11-latin-200.woff2</key>
@@ -981,7 +981,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FpKYDFBif21TZ4giLDkeB7aWbl8aTA/xtNaZdOUdI7A=
+			4M4XI8inTdZLb/cDJUFVVcVEQS4Od/kQHv4zfUlChAE=
 			</data>
 		</dict>
 		<key>www/js/ads.js</key>
@@ -1065,7 +1065,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			K9ZIKlgUHNQh3T2YNfVJgLx6NK4G4enXIlP0FM2vsgU=
+			jHijM90/8LAhCRNsyyi7PN5KmnOMikgka1i8O1UG7Z0=
 			</data>
 		</dict>
 		<key>www/js/deps/chartannotation.js</key>
@@ -1149,14 +1149,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			NVdgD2p6VF2oDoRne1R1YvL/ZRY1WT2P2ZcaFsJrDZ4=
+			CWxpRxcPGDOezOLxxv4BPIorUO+lAz1Fg55la8WWJS0=
 			</data>
 		</dict>
 		<key>www/js/main.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pJYg99jLRv5D7ySM0RXZvnIfRr5xTF8EfJnZuEaIflU=
+			NxUxzs6n16uTyDnp/9yzzRdqPz4+nhrL5vj43630Oko=
 			</data>
 		</dict>
 		<key>www/js/refresh.js</key>
@@ -1177,14 +1177,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CLxnhb1voLVW+5UEAmlZO2hiqWtaxR5uF40SDpVki6s=
+			w4xDbLRyKjbjcRJNiq0J6zXoJs7271WfOMKVFVak7lA=
 			</data>
 		</dict>
 		<key>www/login/index.html</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KptziLfM4+NbcvP4+sVC1n4I9nYYK88z3rBN1hbZm94=
+			X4VT8UI8gunJKtR8CGSaLda+wPYzDWNWNyiaSKCXEZ0=
 			</data>
 		</dict>
 		<key>www/plugins/cordova-admob-plus/www/admob.js</key>

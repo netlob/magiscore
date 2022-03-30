@@ -666,34 +666,31 @@ function onDeviceReady() {
   } else {
     window.location = "./login.html";
   }
-  showIosMelding();
+  showMeldingen();
 }
 
-async function showIosMelding() {
-  const show = await fetch(
-    "https://magiscore-android.firebaseio.com/api/ios_available.json"
+async function showMeldingen() {
+  const meldingen = await fetch(
+    "https://magiscore-android.firebaseio.com/api/announcements.json"
   ).then((res) => res.json());
+  meldingen.forEach((melding) => showMelding(melding));
+}
 
-  if (
-    show != false &&
-    new Date().toDateString() < new Date(1608076800000).toDateString() &&
-    localStorage.getItem("iosMessageDismissed") != true &&
-    localStorage.getItem("iosMessageDismissed") != "true" &&
-    window.cordova.platformId !== "ios"
-  ) {
+async function showMelding({ title, body, id }) {
+  if (localStorage.getItem(id) != true && localStorage.getItem(id) != "true") {
     $("#general-wrapper").prepend(`
-    <div class="row" id="ios-message">
+    <div class="row" id="${id}">
       <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Mededeling &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
-                <div class="mb-0 font-weight-bold text-gray-800">Magiscore is nu ook beschikbaar voor iOS/iPhone gebruikers! Check hem nu in de App Store :)</div>
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">${title}</div>
+                <div class="mb-0 font-weight-bold text-gray-800">${body}</div>
               </div>
             </div>
             <div style="position: absolute;top: 9px;right: 13px;">
-              <a onclick="sluitIosMelding()" style="color:#1cc88a !important;">
+              <a onclick="sluitMelding('${id}')" style="color:#1cc88a !important;">
                 <i class="far fa-times"></i>
               </a>
             </div>
@@ -705,9 +702,9 @@ async function showIosMelding() {
   }
 }
 
-function sluitIosMelding() {
-  localStorage.setItem("iosMessageDismissed", true);
-  $("#ios-message").hide();
+function sluitMelding(id) {
+  localStorage.setItem(id, true);
+  $(`#${id}`).hide();
 }
 
 // function onOffline() {

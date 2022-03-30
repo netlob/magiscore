@@ -40,7 +40,7 @@ function onDeviceReady() {
   ads.initialize();
   $.ajaxSetup({ cache: false });
   window.StatusBar.overlaysWebView(false);
-  window.StatusBar.backgroundColorByHexString("#0096db");
+  window.StatusBar.backgroundColorByHexString("var(--primary)");
   window.StatusBar.styleLightContent();
   if (
     window.location.hash == "#notokens" &&

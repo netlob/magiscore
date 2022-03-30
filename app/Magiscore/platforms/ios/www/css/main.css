@@ -50,7 +50,7 @@ body {
 }
 
 .menu-a {
-  color: #0096db !important;
+  color: var(--primary) !important;
 }
 
 .menu-a:active {
@@ -122,7 +122,7 @@ input {
 .navbar-nav > .nav-item:hover,
 #subjectsNav > .nav-item:hover {
   /* background-color: rgb(21, 84, 45) !important; */
-  background-color: rgb(0, 120, 175);
+  background-color: rgb(69, 61, 189);
   /* box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .7); */
 
   /* filter: brightness(70%); */
@@ -142,7 +142,7 @@ input {
 
 .active {
   /* background-color: rgb(21, 84, 45) !important; */
-  background-color: rgb(0, 120, 175) !important;
+  background-color: rgb(69, 61, 189) !important;
 }
 
 .sidebar-divider {
@@ -155,7 +155,7 @@ input {
 .topbar > button.bg-primary:hover,
 .topbar #sidebarToggleTop:hover {
   background-color: transparent !important;
-  color: #0096db !important;
+  color: var(--primary) !important;
 }
 
 #wrapper > .sidebar {
@@ -171,7 +171,7 @@ input {
 }
 
 .rounded-circle > .fa {
-  color: #0096db !important;
+  color: var(--primary) !important;
   font-size: 23px !important;
 }
 
@@ -397,7 +397,7 @@ select:-webkit-autofill:focus {
 
 #latest-grades a:hover,
 #latest-grades a:focus {
-  color: #0096db !important;
+  color: var(--primary) !important;
 }
 
 .grades-table-date {
@@ -432,7 +432,7 @@ select:-webkit-autofill:focus {
 #settings-wrapper>.settings-close {
   font-size: 2.6rem;
   font-weight: lighter !important;
-  color: #0096db !important;
+  color: var(--primary) !important;
   position: absolute;
   top: 2.8rem;
   right: 10rem;
@@ -451,7 +451,7 @@ select:-webkit-autofill:focus {
 #settings-wrapper > input[type="range"]::-moz-range-track,
 #settings-wrapper > input[type="range"]::-ms-fill-lower,
 #settings-wrapper > input[type="range"]::-ms-fill-upper {
-  background-color: #0096db !important;
+  background-color: var(--primary) !important;
 }
 
 .schools-table {
@@ -467,8 +467,8 @@ select:-webkit-autofill:focus {
 }
 
 a.magister-login {
-  /* color: #0096db !important; */
-  /* background-color: #0096db !important; */
+  /* color: var(--primary) !important; */
+  /* background-color: var(--primary) !important; */
   margin: 0px 1rem 0px 1rem !important;
   padding: 10px 10px !important;
   font-size: 1.2rem !important;

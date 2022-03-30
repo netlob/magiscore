@@ -64,20 +64,20 @@
         <string>Light</string>
     </config-file>
     <allow-intent href="m6loapp://oauth2redirect/*" />
-    <icon density="ldpi" src="res/drawable-ldpi/icon.png" />
-    <icon density="mdpi" src="res/drawable-mdpi/icon.png" />
-    <icon density="hdpi" src="res/drawable-hdpi/icon.png" />
-    <icon density="xhdpi" src="res/drawable-xhdpi/icon.png" />
-    <icon density="xxhdpi" src="res/drawable-xxhdpi/icon.png" />
-    <icon density="xxxhdpi" src="res/drawable-xxxhdpi/icon.png" />
-    <splash density="port-ldpi" src="res/drawable-ldpi/screen.png" />
-    <splash density="port-mdpi" src="res/drawable-mdpi/screen.png" />
-    <splash density="port-hdpi" src="res/drawable-hdpi/screen.png" />
-    <splash density="port-xhdpi" src="res/drawable-xhdpi/screen.png" />
-    <splash density="port-xxhdpi" src="res/drawable-xxhdpi/screen.png" />
-    <splash density="port-xxxhdpi" src="res/drawable-xxxhdpi/screen.png" />
+    <icon density="ldpi" src="res/new/res/icon/android/ldpi.png" />
+    <icon density="mdpi" src="res/new/res/icon/android/mdpi.png" />
+    <icon density="hdpi" src="res/new/res/icon/android/hdpi.png" />
+    <icon density="xhdpi" src="res/new/res/icon/android/xhdpi.png" />
+    <icon density="xxhdpi" src="res/new/res/icon/android/xxhdpi.png" />
+    <icon density="xxxhdpi" src="res/new/res/icon/android/xxxhdpi.png" />
+    <splash density="port-ldpi" src="res/new/res/screen/android/splash-port-ldpi.png" />
+    <splash density="port-mdpi" src="res/new/res/screen/android/splash-port-mdpi.png" />
+    <splash density="port-hdpi" src="res/new/res/screen/android/splash-port-hdpi.png" />
+    <splash density="port-xhdpi" src="res/new/res/screen/android/splash-port-xhdpi.png" />
+    <splash density="port-xxhdpi" src="res/new/res/screen/android/splash-port-xxhdpi.png" />
+    <splash density="port-xxxhdpi" src="res/new/res/screen/android/splash-port-xxxhdpi.png" />
     <preference name="loglevel" value="DEBUG" />
-    <preference name="BackgroundColor" value="0xff0096db" />
+    <preference name="BackgroundColor" value="0xff4f46e5" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="WKWebViewOnly" value="true" />

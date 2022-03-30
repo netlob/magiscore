@@ -93,6 +93,24 @@
     <edit-config file="*-Info.plist" mode="merge" target="UIUserInterfaceStyle">
         <string>Light</string>
     </edit-config>
+    <icon height="180" src="res/new/res/icon/ios/icon-60@3x.png" width="180" />
+    <icon height="60" src="res/new/res/icon/ios/icon-60.png" width="60" />
+    <icon height="120" src="res/new/res/icon/ios/icon-60@2x.png" width="120" />
+    <icon height="76" src="res/new/res/icon/ios/icon-76.png" width="76" />
+    <icon height="152" src="res/new/res/icon/ios/icon-76@2x.png" width="152" />
+    <icon height="40" src="res/new/res/icon/ios/icon-40.png" width="40" />
+    <icon height="80" src="res/new/res/icon/ios/icon-40@2x.png" width="80" />
+    <icon height="57" src="res/new/res/icon/ios/icon.png" width="57" />
+    <icon height="114" src="res/new/res/icon/ios/icon@2x.png" width="114" />
+    <icon height="72" src="res/new/res/icon/ios/icon-72.png" width="72" />
+    <icon height="144" src="res/new/res/icon/ios/icon-72@2x.png" width="144" />
+    <icon height="167" src="res/new/res/icon/ios/icon-167.png" width="167" />
+    <icon height="29" src="res/new/res/icon/ios/icon-small.png" width="29" />
+    <icon height="58" src="res/new/res/icon/ios/icon-small@2x.png" width="58" />
+    <icon height="87" src="res/new/res/icon/ios/icon-small@3x.png" width="87" />
+    <icon height="50" src="res/new/res/icon/ios/icon-50.png" width="50" />
+    <icon height="100" src="res/new/res/icon/ios/icon-50@2x.png" width="100" />
+    <icon height="1024" src="res/new/res/icon/ios/icon-1024.png" width="1024" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="true" />
@@ -108,7 +126,7 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
-    <preference name="BackgroundColor" value="0xff0096db" />
+    <preference name="BackgroundColor" value="0xff4f46e5" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="android-targetSdkVersion" value="29" />
