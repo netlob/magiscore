@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="app.netlob.magiscore" version="1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name short="Gemairo">Gemairo - Magister statistiek</name>
+    <name short="Gemairo">Gemairo - Stats voor Magister</name>
     <description>
         Shi daggoetje geswiped
     </description>
@@ -18,12 +18,12 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="mailto:*" />
-    <preference name="android-targetSdkVersion" value="29" />
+    <preference name="android-targetSdkVersion" value="30" />
     <platform name="android">
         <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
         <preference name="Orientation" value="portrait" />
-        <preference name="android-targetSdkVersion" value="29" />
+        <preference name="android-targetSdkVersion" value="30" />
         <icon src="res/new/res/icon/android/ldpi.png" density="ldpi" />
         <icon src="res/new/res/icon/android/mdpi.png" density="mdpi" />
         <icon src="res/new/res/icon/android/hdpi.png" density="hdpi" />

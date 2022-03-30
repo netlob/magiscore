@@ -24,7 +24,7 @@
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3425399211312777~1930230742" />
         <meta-data android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT" android:value="true" />
     </application>
-    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="29" />
+    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="30" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.android.vending.BILLING" />

@@ -48,7 +48,7 @@
     <feature name="Consent">
         <param name="android-package" value="cordova.plugin.consent.Consent" />
     </feature>
-    <name short="Gemairo">Gemairo - Magister statistiek</name>
+    <name short="Gemairo">Gemairo - Stats voor Magister</name>
     <description>
         Shi daggoetje geswiped
     </description>
@@ -86,5 +86,5 @@
     <preference name="Allow3DTouchLinkPreview" value="false" />
     <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
     <preference name="Orientation" value="portrait" />
-    <preference name="android-targetSdkVersion" value="29" />
+    <preference name="android-targetSdkVersion" value="30" />
 </widget>
