@@ -23,13 +23,8 @@ class ViewController {
     $("#accordionSidebar .nav-item").each(function () {
       $(this).removeClass("active");
       if (
-        $(this)
-          .text()
-          .trim() == lesson.trim() ||
-        (lesson.trim() == "general" &&
-          $(this)
-            .text()
-            .trim() == "Gemiddeld")
+        $(this).text().trim() == lesson.trim() ||
+        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld")
       )
         $(this).addClass("active");
     });
@@ -55,12 +50,8 @@ class ViewController {
     $("#lineChart2-container")
       .empty()
       .append(`<canvas id="lineChart2""></canvas>`);
-    $("#pieChart-container")
-      .empty()
-      .append(`<canvas id="pieChart""></canvas>`);
-    $("#barChart-container")
-      .empty()
-      .append(`<canvas id="barChart""></canvas>`);
+    $("#pieChart-container").empty().append(`<canvas id="pieChart""></canvas>`);
+    $("#barChart-container").empty().append(`<canvas id="barChart""></canvas>`);
     $("#barChart-container-general")
       .empty()
       .append(`<canvas id="generalBarChart"></canvas>`);
@@ -83,9 +74,7 @@ class ViewController {
   renderLesson(lesson) {
     // this.setConfig()
     var html = generateHTML(lesson);
-    $("#lesson-wrapper")
-      .empty()
-      .html(html);
+    $("#lesson-wrapper").empty().html(html);
     $("#general-wrapper").hide();
     $("#settings-wrapper").hide();
     // $("#lesson-wrapper").show();
@@ -117,14 +106,12 @@ class ViewController {
     if (
       lesson &&
       viewController.currentCourse.course.classes.findIndex(
-        c => c.description.toLowerCase() == lesson.toLowerCase()
+        (c) => c.description.toLowerCase() == lesson.toLowerCase()
       ) > -1
     )
       main(lesson);
     else main();
-    $("#years")
-      .children()
-      .removeClass("course-selected");
+    $("#years").children().removeClass("course-selected");
     $(`#course-${courseid}`).addClass("course-selected");
     $("#current-course-badge").text(
       this.currentCourse.course.group.description
@@ -135,7 +122,7 @@ class ViewController {
   }
 
   renderGrade(gradeid) {
-    var grade = courseController.allGrades.find(x => x.id == gradeid);
+    var grade = courseController.allGrades.find((x) => x.id == gradeid);
     $("#grade-modal-grade").text(grade.grade);
     $("#grade-modal-weight").text(grade.weight);
     $("#grade-modal-weight2").text(grade.weight);
@@ -151,7 +138,8 @@ class ViewController {
 
     $("#grade-modal-count").attr(
       "onchange",
-      `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${grade.id
+      `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${
+        grade.id
       }', this)`
     );
     $("#grade-modal-count").prop("checked", !grade.exclude);
@@ -220,7 +208,7 @@ class ViewController {
         refreshOldGrades: false,
         includeGradesInAverageChart: false,
         devMode: false,
-        exclude: []
+        exclude: [],
       };
       localStorage.setItem("config", JSON.stringify(config));
       config = JSON.stringify(config);
@@ -237,10 +225,11 @@ class ViewController {
     var bottom = hardBottom
       ? 30
       : $(".snackbar").length < 1
-        ? 30
-        : $(".snackbar").length * 65 + 30;
+      ? 30
+      : $(".snackbar").length * 65 + 30;
     $("body").append(
-      `<div id="snackbar-${snackId}" class="snackbar${fullWidth ? " w-90" : ""
+      `<div id="snackbar-${snackId}" class="snackbar${
+        fullWidth ? " w-90" : ""
       }">${msg}</div>`
     );
     $(`#snackbar-${snackId}`).css(
@@ -250,7 +239,7 @@ class ViewController {
     $(`#snackbar-${snackId}`).css("display", "block");
     $(`#snackbar-${snackId}`).animate(
       {
-        bottom: `${bottom}px`
+        bottom: `${bottom}px`,
       },
       "slow"
     );
@@ -260,16 +249,16 @@ class ViewController {
           if ($(obj).attr("id") != $(`#snackbar-${snackId}`).attr("id")) {
             $(obj).animate(
               {
-                bottom: "-=" + $(`#snackbar-${snackId}`).height() * 2
+                bottom: "-=" + $(`#snackbar-${snackId}`).height() * 2,
               },
               "fast",
-              function () { }
+              function () {}
             );
           }
         });
         $(`#snackbar-${snackId}`).animate(
           {
-            bottom: "-200px"
+            bottom: "-200px",
           },
           "fast",
           function () {
@@ -290,12 +279,14 @@ class ViewController {
     var darkThemeDevice = false;
     try {
       darkThemeDevice = cordova.plugins.ThemeDetection.isDarkModeEnabled();
-    } catch (e) { }
+    } catch (e) {}
     // var theme = window.matchMedia('(prefers-color-scheme:dark)').matches;
     var darkThemeDevice = false;
     try {
-      if (cordova.plugins.ThemeDetection.isAvailable()) darkThemeDevice = cordova.plugins.ThemeDetection.isDarkModeEnabled().value
-    } catch (e) { }
+      if (cordova.plugins.ThemeDetection.isAvailable())
+        darkThemeDevice =
+          cordova.plugins.ThemeDetection.isDarkModeEnabled().value;
+    } catch (e) {}
     // if (cordova.platformId == 'android') {
     StatusBar.overlaysWebView(false);
     if (theme || darkThemeDevice) {
@@ -333,13 +324,13 @@ class ViewController {
       $("body").attr("theme", "dark");
       this.updateConfig({
         darkTheme: true,
-        isDesktop: this.config.isDesktop
+        isDesktop: this.config.isDesktop,
       });
     } else {
       $("body").attr("theme", "light");
       this.updateConfig({
         darkTheme: false,
-        isDesktop: this.config.isDesktop
+        isDesktop: this.config.isDesktop,
       });
     }
   }
@@ -348,7 +339,7 @@ class ViewController {
     this.closeSettings();
     var count = this.config.exclude.length;
     this.updateConfig({
-      exclude: []
+      exclude: [],
     });
     this.currentCourse.course.sortGrades();
     this.renderCourse(this.currentCourse.id, false, false, this.currentLesson);
@@ -364,7 +355,7 @@ class ViewController {
     $("body").attr("theme", "light");
     this.updateConfig({
       darkTheme: false,
-      isDesktop: this.config.isDesktop
+      isDesktop: this.config.isDesktop,
     });
     this.toast("Thema veranderd naar licht", 2000, false);
     logConsole("[INFO]   Theme changed to light");
@@ -379,7 +370,7 @@ class ViewController {
     $("body").attr("theme", "dark");
     this.updateConfig({
       darkTheme: true,
-      isDesktop: this.config.isDesktop
+      isDesktop: this.config.isDesktop,
     });
     this.toast("Thema veranderd naar donker", 2000, false);
     logConsole("[INFO]   Theme changed to dark");
@@ -389,7 +380,7 @@ class ViewController {
     var e = parseFloat($("#passed-input").val());
     if (e <= 10 && e >= 1) {
       this.updateConfig({
-        passed: e
+        passed: e,
       });
       this.toast("Voldoendegrens veranderd naar " + e, 2000, false);
       logConsole("[INFO]   Passed changed to " + e);
@@ -414,7 +405,7 @@ class ViewController {
         break;
     }
     LaunchReview.launch(
-      function () { },
+      function () {},
       function (err) {
         alert(err);
       },
@@ -433,7 +424,7 @@ class ViewController {
       );
     } else {
       this.updateConfig({
-        refreshOldGrades: false
+        refreshOldGrades: false,
       });
       this.toast("Refresh oude cijfers uitgezet", 2000, false);
     }
@@ -441,11 +432,8 @@ class ViewController {
 
   setLatestGrades(grades, open) {
     var slgrades = grades.slice(0, 5);
-    $("#latest-grades")
-      .find("*")
-      .not("#latest-grades-empty")
-      .remove();
-    slgrades.forEach(grade => {
+    $("#latest-grades").find("*").not("#latest-grades-empty").remove();
+    slgrades.forEach((grade) => {
       var d = new Date(grade.ingevoerdOp);
       // var w = new Date().getDate() - 7;
       // if (d < w) {
@@ -454,23 +442,28 @@ class ViewController {
           <a class="dropdown-item d-flex align-items-center vibrate" onclick="if(viewController.currentCourse == courseController.current()) { viewController.render('${grade.vak.omschrijving.capitalize()}') } else { viewController.renderCourse(courseController.current().course.id, true, false, false) }">
             <div class="dropdown-list-image mr-3">
               <div class="rounded-circle">
-                <h3 class="text-center mt-1">${grade.waarde == "10,0"
-          ? '<span class="text-success">10</span>'
-          : round(grade.waarde) < this.config.passed
-            ? '<span class="text-danger">' + grade.waarde + "</span>"
-            : grade.waarde
-        }<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important; right: -15px !important;">${grade.weegfactor
-        }x</sup></h3>
+                <h3 class="text-center mt-1">${
+                  grade.waarde == "10,0"
+                    ? '<span class="text-success">10</span>'
+                    : round(grade.waarde) < this.config.passed
+                    ? '<span class="text-danger">' + grade.waarde + "</span>"
+                    : grade.waarde
+                }<sup style="font-size: 10px !important; position: absolute !important; line-height: 1.2 !important; top: 0px !important; right: -15px !important;">${
+        grade.weegfactor
+      }x</sup></h3>
               </div>
               <!-- <div class="status-indicator bg-success"></div> -->
             </div>
             <div class="ml-2">
-              <span class="text-truncate font-weight-bold text-capitalize">${grade.vak.omschrijving
-        }</span><span
-                class="latest-grades-date">${d.getDate()}/${d.getMonth() +
-        1}</span></br>
-              <div class="small text-gray-600 text-truncate">${grade.omschrijving
-        }</div>
+              <span class="text-truncate font-weight-bold text-capitalize">${
+                grade.vak.omschrijving
+              }</span><span
+                class="latest-grades-date">${d.getDate()}/${
+        d.getMonth() + 1
+      }</span></br>
+              <div class="small text-gray-600 text-truncate">${
+                grade.omschrijving
+              }</div>
             </div>
           </a>
         `);
@@ -494,27 +487,28 @@ class ViewController {
   setCourses() {
     $("#years").empty();
     // logConsole(courseController.courses.length)
-    courseController.courses.forEach(course => {
+    courseController.courses.forEach((course) => {
       var sexyDate = `${new Date(course.course.start)
         .getFullYear()
         .toString()
         .substring(2)}/${new Date(course.course.end)
-          .getFullYear()
-          .toString()
-          .substring(2)}`;
+        .getFullYear()
+        .toString()
+        .substring(2)}`;
       // var sexyDate = course.raw.Start
       $("#years").append(
-        `<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${course.course.id
-        }', true, false, false)" id="course-${course.course.id
-        }">${sexyDate} - ${course.course.group.description} ${course.course.curricula.length > 0
-          ? "(" + course.course.curricula.toString() + ")"
-          : ""
+        `<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${
+          course.course.id
+        }', true, false, false)" id="course-${
+          course.course.id
+        }">${sexyDate} - ${course.course.group.description} ${
+          course.course.curricula.length > 0
+            ? "(" + course.course.curricula.toString() + ")"
+            : ""
         }</a>`
       );
     });
-    $("#years")
-      .children()
-      .removeClass("course-selected");
+    $("#years").children().removeClass("course-selected");
     $(`#course-${this.currentCourse.course.id}`).addClass("course-selected");
     $("#current-course-badge").text(
       this.currentCourse.course.group.description
@@ -546,16 +540,21 @@ class ViewController {
       const date_since = new Date("27 nov 2019");
       const date_now = new Date();
 
-      let seconds = Math.floor((date_since - (date_now)) / 1000);
+      let seconds = Math.floor((date_since - date_now) / 1000);
       let minutes = Math.floor(seconds / 60);
       let hours = Math.floor(minutes / 60);
       const days = Math.floor(hours / 24);
 
-      hours = hours - (days * 24);
-      minutes = minutes - (days * 24 * 60) - (hours * 60);
-      seconds = 60 - (seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60));
+      hours = hours - days * 24;
+      minutes = minutes - days * 24 * 60 - hours * 60;
+      seconds =
+        60 - (seconds - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60);
 
-      $("#kutiddink").text(`${Math.abs(days)} dagen, ${hours} uren, ${minutes} en ${seconds} seconden`);
+      $("#kutiddink").text(
+        `${Math.abs(
+          days
+        )} dagen, ${hours} uren, ${minutes} en ${seconds} seconden`
+      );
     }, 1000);
   }
 
@@ -580,7 +579,7 @@ class ViewController {
       );
     $("html, body").animate(
       {
-        scrollTop: $("#generalGradesTable").offset().top - 55
+        scrollTop: $("#generalGradesTable").offset().top - 55,
       },
       1000
     );
@@ -591,13 +590,13 @@ function confirmRefreshOldGrades(button) {
   if (button == 1) {
     $("#refreshAll-checkbox").prop("checked", true);
     viewController.updateConfig({
-      refreshOldGrades: true
+      refreshOldGrades: true,
     });
     viewController.toast("Refresh oude cijfers aangezet", 2000, false);
   } else if (button == 2) {
     $("#refreshAll-checkbox").prop("checked", false);
     viewController.updateConfig({
-      refreshOldGrades: false
+      refreshOldGrades: false,
     });
   }
 }
@@ -622,7 +621,7 @@ function setProfilePic(forceRefresh) {
     xhr.onreadystatechange = function () {
       if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
         blob = new Blob([xhr.response], {
-          type: "image/png"
+          type: "image/png",
         });
         fileReader.onload = function (evt) {
           var result = evt.target.result;
@@ -643,13 +642,9 @@ function setProfilePic(forceRefresh) {
     };
     let url = `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`;
     if (window.cordova.platformId === "ios") {
-      url = 'https://cors.netlob.dev/' + url;
+      url = "https://cors.sjoerd.dev/" + url;
     }
-    xhr.open(
-      "GET",
-      url,
-      true
-    );
+    xhr.open("GET", url, true);
     xhr.setRequestHeader("Authorization", `Bearer ${tokens.access_token}`);
     xhr.send();
   }
@@ -659,11 +654,12 @@ function updateSidebar() {
   if (lessonController.lessons.length > 0) {
     $("#subjectsNav").empty();
     _.sortBy(lessonController.lessons, ["name"]);
-    lessonController.lessons.forEach(lesson =>
+    lessonController.lessons.forEach((lesson) =>
       $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
-            <a class="nav-link" onclick="viewController.render('${lesson.name
-        }')">
+            <a class="nav-link" onclick="viewController.render('${
+              lesson.name
+            }')">
                 <span>${lesson.name.capitalize()}</span>
             </a>
         </li>
@@ -685,15 +681,17 @@ function updateSidebar() {
   setProfilePic();
 
   $("#userDropdown > span").text(
-    `${person.firstName} ${person.lastName} ${courseController.current().course.group.description
-      ? "(" + courseController.current().course.group.description + ")"
-      : ""
+    `${person.firstName} ${person.lastName} ${
+      courseController.current().course.group.description
+        ? "(" + courseController.current().course.group.description + ")"
+        : ""
     }`
   );
   $("#mobilePersonInfo").text(
-    `${person.firstName} ${person.lastName} ${courseController.current().course.group.description
-      ? "(" + courseController.current().course.group.description + ")"
-      : ""
+    `${person.firstName} ${person.lastName} ${
+      courseController.current().course.group.description
+        ? "(" + courseController.current().course.group.description + ")"
+        : ""
     }`
   );
   // var header = document.getElementById("accordionSidebar");
@@ -728,16 +726,16 @@ function setChartData(config, lesson, everything) {
   var vol = 0;
   var onvol = 0;
   if (lesson == "general") {
-    lessonController.lessons.forEach(lesson => {
+    lessonController.lessons.forEach((lesson) => {
       if (lesson.lesson.grades.length > 0) {
-        lesson.lesson.grades.forEach(grade => {
+        lesson.lesson.grades.forEach((grade) => {
           if (!grade.exclude) {
             var gradegrade = grade.grade.replace(",", ".");
             data.push({
               t: new Date(grade.dateFilledIn),
               y: gradegrade,
               a: grade.average,
-              w: grade.weight
+              w: grade.weight,
             });
             gradegrade = parseFloat(gradegrade.replace(",", "."));
             if (grade.passed) {
@@ -750,14 +748,14 @@ function setChartData(config, lesson, everything) {
       }
     });
   } else {
-    lessonController.getLesson(lesson).lesson.grades.forEach(grade => {
+    lessonController.getLesson(lesson).lesson.grades.forEach((grade) => {
       if (!grade.exclude) {
         var gradegrade = grade.grade.replace(",", ".");
         data.push({
           t: new Date(grade.dateFilledIn),
           y: gradegrade,
           a: grade.average,
-          w: grade.weight
+          w: grade.weight,
         });
         gradegrade = parseFloat(gradegrade.replace(",", "."));
         if (gradegrade >= 5.5) {
@@ -773,7 +771,7 @@ function setChartData(config, lesson, everything) {
     return new Date(b.t) - new Date(a.t);
   });
 
-  data.forEach(value => {
+  data.forEach((value) => {
     //   datums.push(`${value.t.getMonth()+1}/${value.t.getFullYear().toString().substr(-2)}`)
     datums.push(toShortFormat(value.t));
     cijfers.push(value.y);
@@ -845,9 +843,9 @@ function setChartData(config, lesson, everything) {
           pointHitRadius: 30,
           pointBorderWidth: 2,
           borderWidth: config.isDesktop ? 3 : 1.5,
-          data: cijfers
+          data: cijfers,
           // pointRadius: 1
-        } //,
+        }, //,
         // {
         //   label: "Weging",
         //   lineTension: config.tention,
@@ -865,10 +863,11 @@ function setChartData(config, lesson, everything) {
         //   data: wegingen,
         //   pointRadius: 0
         // }
-      ]
+      ],
     },
     options: {
-      defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      defaultFontFamily:
+        '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
       maintainAspectRatio: false,
       responsive: true,
       layout: {
@@ -880,8 +879,8 @@ function setChartData(config, lesson, everything) {
           left: 0,
           right: 0,
           top: 0,
-          bottom: 0
-        }
+          bottom: 0,
+        },
       },
       scales: {
         xAxes: [
@@ -889,23 +888,23 @@ function setChartData(config, lesson, everything) {
             time: {
               unit: "month",
               displayFormats: {
-                quarter: "ll"
-              }
+                quarter: "ll",
+              },
             },
             gridLines: {
               display: false,
-              drawBorder: false
+              drawBorder: false,
             },
             ticks: {
               maxTicksLimit: 4,
               autoSkip: true,
               maxRotation: 0,
-              minRotation: 0
+              minRotation: 0,
             },
             // type: 'time',
             distribution: "linear",
-            display: config.isDesktop
-          }
+            display: config.isDesktop,
+          },
         ],
         yAxes: [
           {
@@ -917,8 +916,8 @@ function setChartData(config, lesson, everything) {
               steps: 1,
               max: 10,
               min: 1,
-              display: true //config.isDesktop
-            }
+              display: true, //config.isDesktop
+            },
             // gridLines: {
             //     color: "rgb(234, 236, 244)",
             //     zeroLineColor: "rgb(234, 236, 244)",
@@ -926,11 +925,11 @@ function setChartData(config, lesson, everything) {
             //     borderDash: [2],
             //     zeroLineBorderDash: [2]
             // }
-          }
-        ]
+          },
+        ],
       },
       legend: {
-        display: false
+        display: false,
       },
       tooltips: {
         backgroundColor: "#0096db",
@@ -946,7 +945,7 @@ function setChartData(config, lesson, everything) {
         displayColors: false,
         intersect: true,
         mode: "index",
-        caretPadding: 4
+        caretPadding: 4,
       },
       annotation: {
         annotations: [
@@ -959,12 +958,12 @@ function setChartData(config, lesson, everything) {
             borderWidth: 1,
             label: {
               enabled: false,
-              content: "Onvoldoende"
-            }
-          }
-        ]
-      }
-    }
+              content: "Onvoldoende",
+            },
+          },
+        ],
+      },
+    },
   });
 
   // if (viewController.pieChart != false) viewController.pieChart.destroy();
@@ -978,19 +977,20 @@ function setChartData(config, lesson, everything) {
           data: [vol, onvol],
           backgroundColor: [
             "rgba(0, 150, 219, 0.2)",
-            "rgba(232, 100, 88, 0.2)"
+            "rgba(232, 100, 88, 0.2)",
           ],
           hoverBackgroundColor: [
             "rgba(0, 150, 219, 0.4)",
-            "rgba(232, 100, 88, 0.4)"
+            "rgba(232, 100, 88, 0.4)",
           ],
           hoverBorderColor: ["#0096db", "#e86458"],
-          borderColor: ["#0096db", "#e86458"] //config.darkTheme ? "#2c2d30" : "#fff"
-        }
-      ]
+          borderColor: ["#0096db", "#e86458"], //config.darkTheme ? "#2c2d30" : "#fff"
+        },
+      ],
     },
     options: {
-      defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      defaultFontFamily:
+        '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
       maintainAspectRatio: false,
       tooltips: {
         backgroundColor: "rgba(0, 150, 219, 1)",
@@ -1004,13 +1004,13 @@ function setChartData(config, lesson, everything) {
         displayColors: false,
         intersect: false,
         mode: "index",
-        caretPadding: 4
+        caretPadding: 4,
       },
       legend: {
-        display: false
+        display: false,
       },
-      cutoutPercentage: 80
-    }
+      cutoutPercentage: 80,
+    },
   });
 
   if (vol + onvol > 0) {
@@ -1040,9 +1040,9 @@ function setChartData(config, lesson, everything) {
         pointHitRadius: 30,
         pointBorderWidth: 2,
         borderWidth: config.isDesktop ? 3 : 1.5,
-        data: gemiddeldes
+        data: gemiddeldes,
         // pointRadius: 1
-      } //,
+      }, //,
       // {
       //   label: "Weging",
       //   lineTension: config.tention,
@@ -1077,7 +1077,7 @@ function setChartData(config, lesson, everything) {
         pointHitRadius: 30,
         pointBorderWidth: 2,
         borderWidth: config.isDesktop ? 3 : 1.5,
-        data: cijfers
+        data: cijfers,
         // pointRadius: 1
       });
     }
@@ -1086,10 +1086,11 @@ function setChartData(config, lesson, everything) {
       data: {
         labels: datums,
         // labels: ["Sep", "Okt", "Nov", "Dec", "Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul"],
-        datasets: data
+        datasets: data,
       },
       options: {
-        defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+        defaultFontFamily:
+          '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
         maintainAspectRatio: false,
         responsive: true,
         layout: {
@@ -1101,8 +1102,8 @@ function setChartData(config, lesson, everything) {
             left: 0,
             right: 0,
             top: 0,
-            bottom: 0
-          }
+            bottom: 0,
+          },
         },
         scales: {
           xAxes: [
@@ -1110,23 +1111,23 @@ function setChartData(config, lesson, everything) {
               time: {
                 unit: "month",
                 displayFormats: {
-                  quarter: "ll"
-                }
+                  quarter: "ll",
+                },
               },
               gridLines: {
                 display: false,
-                drawBorder: false
+                drawBorder: false,
               },
               ticks: {
                 maxTicksLimit: 4,
                 autoSkip: true,
                 maxRotation: 0,
-                minRotation: 0
+                minRotation: 0,
               },
               // type: 'time',
               distribution: "linear",
-              display: config.isDesktop
-            }
+              display: config.isDesktop,
+            },
           ],
           yAxes: [
             {
@@ -1138,8 +1139,8 @@ function setChartData(config, lesson, everything) {
                 steps: 1,
                 max: 10,
                 min: 1,
-                display: true //config.isDesktop
-              }
+                display: true, //config.isDesktop
+              },
               // gridLines: {
               //     color: "rgb(234, 236, 244)",
               //     zeroLineColor: "rgb(234, 236, 244)",
@@ -1147,16 +1148,16 @@ function setChartData(config, lesson, everything) {
               //     borderDash: [2],
               //     zeroLineBorderDash: [2]
               // }
-            }
-          ]
+            },
+          ],
         },
         legend: {
           display: true,
           position: "bottom",
           labels: {
             fontSize: 15,
-            boxWidth: 50
-          }
+            boxWidth: 50,
+          },
           // onClick: navigator.vibrate(15, false)
         },
         tooltips: {
@@ -1173,7 +1174,7 @@ function setChartData(config, lesson, everything) {
           displayColors: false,
           intersect: true,
           mode: "index",
-          caretPadding: 4
+          caretPadding: 4,
         },
         annotation: {
           annotations: [
@@ -1186,123 +1187,136 @@ function setChartData(config, lesson, everything) {
               borderWidth: 1,
               label: {
                 enabled: false,
-                content: "Onvoldoende"
-              }
-            }
-          ]
-        }
-      }
+                content: "Onvoldoende",
+              },
+            },
+          ],
+        },
+      },
     });
   } else {
-    let vakken = []
-    let vaknamen = []
-    let bgcolors = []
-    let bcolors = []
+    let vakken = [];
+    let vaknamen = [];
+    let bgcolors = [];
+    let bcolors = [];
 
-    lessonController.lessons.forEach(lesson => {
-      let grademap = lesson.lesson.grades.map(grade => {
+    lessonController.lessons.forEach((lesson) => {
+      let grademap = lesson.lesson.grades.map((grade) => {
         if (!grade.exclude) {
           var gradegrade = grade.grade.replace(",", ".");
           gradegrade = parseFloat(gradegrade.replace(",", "."));
-          return [isNaN(gradegrade), grade]
+          return [isNaN(gradegrade), grade];
         }
       });
-      grademap = grademap.filter(a => a[0] == false);
+      grademap = grademap.filter((a) => a[0] == false);
       if (lesson.lesson.grades.length > 0 && grademap.length > 0) {
         const abb = grademap[0][1].class.abbreviation;
         var avg = lesson.lesson.getAverage(true);
         if (!isNaN(avg) && avg > 1) {
           vaknamen.push(abb);
           vakken.push(avg);
-          bgcolors.push(avg > config.passed ? "rgba(0,255,0,0.2)" : "rgba(255,0,0,0.2)");
-          bcolors.push(avg > config.passed ? "rgba(0,255,0,1)" : "rgba(255,0,0,1)");
+          bgcolors.push(
+            avg > config.passed ? "rgba(0,255,0,0.2)" : "rgba(255,0,0,0.2)"
+          );
+          bcolors.push(
+            avg > config.passed ? "rgba(0,255,0,1)" : "rgba(255,0,0,1)"
+          );
         }
       }
     });
-    viewController.generalBarChart = new Chart(document.getElementById("generalBarChart"), {
-      type: "bar",
-      data: {
-        labels: vaknamen,
-        datasets: [
-          {
-            label: "Gemiddelde",
-            data: vakken,
-            fill: false,
-            backgroundColor: bgcolors,
-            borderColor: bcolors,
-            borderWidth: 1
-          }
-        ]
-      },
-      options: {
-        defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-        scales: {
-          yAxes: [
+    viewController.generalBarChart = new Chart(
+      document.getElementById("generalBarChart"),
+      {
+        type: "bar",
+        data: {
+          labels: vaknamen,
+          datasets: [
             {
-              ticks: {
-                maxTicksLimit: 10,
-                beginAtZero: true,
-                steps: 1
-              }
-            }
-          ]
+              label: "Gemiddelde",
+              data: vakken,
+              fill: false,
+              backgroundColor: bgcolors,
+              borderColor: bcolors,
+              borderWidth: 1,
+            },
+          ],
         },
-        maintainAspectRatio: false,
-        responsive: true,
-        layout: {
-          padding: {
-            //   left: 10,
-            //   right: 25,
-            //   top: 25,
-            //   bottom: 0
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0
+        options: {
+          defaultFontFamily:
+            '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  maxTicksLimit: 10,
+                  beginAtZero: true,
+                  steps: 1,
+                },
+              },
+            ],
+          },
+          maintainAspectRatio: false,
+          responsive: true,
+          layout: {
+            padding: {
+              //   left: 10,
+              //   right: 25,
+              //   top: 25,
+              //   bottom: 0
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            },
+          },
+          legend: {
+            display: false,
+          },
+          tooltips: {
+            backgroundColor: "#0096db",
+            // bodyFontColor: "#858796",
+            titleMarginBottom: 2,
+            // titleFontColor: "#6e707e",
+            titleFontSize: 12,
+            bodyFontSize: 12,
+            borderColor: "rgba(0, 150, 219, 1)",
+            borderWidth: 1,
+            xPadding: 8,
+            yPadding: 8,
+            displayColors: false,
+            intersect: true,
+            mode: "index",
+            caretPadding: 4,
+            enabled: false,
+          },
+          animation: {
+            duration: 0,
+            onComplete: function () {
+              var chartInstance = this.chart,
+                ctx = chartInstance.ctx;
+
+              ctx.font = Chart.helpers.fontString(
+                Chart.defaults.global.defaultFontSize,
+                Chart.defaults.global.defaultFontStyle,
+                Chart.defaults.global.defaultFontFamily
+              );
+              ctx.textAlign = "center";
+              ctx.textBaseline = "bottom";
+
+              this.data.datasets.forEach(function (dataset, i) {
+                var meta = chartInstance.controller.getDatasetMeta(i);
+                meta.data.forEach(function (bar, index) {
+                  var data =
+                    Math.round(parseFloat(dataset.data[index]) * 10) / 10;
+                  ctx.fillStyle = "#6e707e";
+                  ctx.fillText(data, bar._model.x, bar._model.y + 15);
+                });
+              });
+            },
           },
         },
-        legend: {
-          display: false
-        },
-        tooltips: {
-          backgroundColor: "#0096db",
-          // bodyFontColor: "#858796",
-          titleMarginBottom: 2,
-          // titleFontColor: "#6e707e",
-          titleFontSize: 12,
-          bodyFontSize: 12,
-          borderColor: "rgba(0, 150, 219, 1)",
-          borderWidth: 1,
-          xPadding: 8,
-          yPadding: 8,
-          displayColors: false,
-          intersect: true,
-          mode: "index",
-          caretPadding: 4,
-          enabled: false
-        },
-        animation: {
-          duration: 0,
-          onComplete: function () {
-            var chartInstance = this.chart,
-              ctx = chartInstance.ctx;
-
-            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'bottom';
-
-            this.data.datasets.forEach(function (dataset, i) {
-              var meta = chartInstance.controller.getDatasetMeta(i);
-              meta.data.forEach(function (bar, index) {
-                var data = Math.round(parseFloat(dataset.data[index]) * 10) / 10;
-                ctx.fillStyle = "#6e707e";
-                ctx.fillText(data, bar._model.x, bar._model.y + 15);
-              });
-            });
-          }
-        },
       }
-    });
+    );
   }
 
   // $("#barChart-container").empty().append(`<canvas id="barChart""></canvas>`)
@@ -1326,7 +1340,7 @@ function setChartData(config, lesson, everything) {
             "rgba(159,255,0,0.2)",
             "rgba(106,255,0,0.2)",
             "rgba(53,255,0,0.2)",
-            "rgba(0,255,0,0.2)"
+            "rgba(0,255,0,0.2)",
           ],
           borderColor: [
             "rgba(255,0,0,1)",
@@ -1339,24 +1353,25 @@ function setChartData(config, lesson, everything) {
             "rgba(159,255,0,1)",
             "rgba(106,255,0,1)",
             "rgba(53,255,0,1)",
-            "rgba(0,255,0,1)"
+            "rgba(0,255,0,1)",
           ],
-          borderWidth: 1
-        }
-      ]
+          borderWidth: 1,
+        },
+      ],
     },
     options: {
-      defaultFontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      defaultFontFamily:
+        '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
       scales: {
         yAxes: [
           {
             ticks: {
               maxTicksLimit: 10,
               beginAtZero: true,
-              steps: 1
-            }
-          }
-        ]
+              steps: 1,
+            },
+          },
+        ],
       },
       maintainAspectRatio: false,
       responsive: true,
@@ -1369,11 +1384,11 @@ function setChartData(config, lesson, everything) {
           left: 0,
           right: 0,
           top: 0,
-          bottom: 0
-        }
+          bottom: 0,
+        },
       },
       legend: {
-        display: false
+        display: false,
       },
       tooltips: {
         backgroundColor: "#0096db",
@@ -1389,13 +1404,13 @@ function setChartData(config, lesson, everything) {
         displayColors: false,
         intersect: true,
         mode: "index",
-        caretPadding: 4
-      }
-    }
+        caretPadding: 4,
+      },
+    },
   });
 }
 
-function setAllGrades() { }
+function setAllGrades() {}
 
 function toShortFormat(d) {
   d = new Date(d);
@@ -1411,7 +1426,7 @@ function toShortFormat(d) {
     "Sep",
     "Okt",
     "Nov",
-    "Dec"
+    "Dec",
   ];
   var day = d.getDate();
   var month_index = d.getMonth();
@@ -1451,33 +1466,37 @@ function setTableData(lesson) {
     ) {
       var d = new Date(grade.dateFilledIn);
       table.append(`
-        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${grade.id
+        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
+          grade.id
         })" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
-              <h4 class="text-center mt-2">${grade.grade == "10,0"
-          ? '<span class="text-success">10</span><span class="invisible">,</span>'
-          : !grade.passed
-            ? '<span class="text-danger">' + grade.grade + "</span>"
-            : grade.grade
-        }<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${grade.weight < 10
+              <h4 class="text-center mt-2">${
+                grade.grade == "10,0"
+                  ? '<span class="text-success">10</span><span class="invisible">,</span>'
+                  : !grade.passed
+                  ? '<span class="text-danger">' + grade.grade + "</span>"
+                  : grade.grade
+              }<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${
+        grade.weight < 10
           ? grade.weight + 'x<span class="invisible">0</span>'
           : grade.weight + "x"
-        }</sup></h4>
+      }</sup></h4>
             </div>
             <!-- <div class="status-indicator bg-success"></div> -->
           </div>
           <div class="ml-1" style="padding-top: -6px">
-            <span class="text-truncate font-weight-bold text-gray-800 small grade-small text-capitalize">${(lesson = "general"
-          ? grade.class.description
-          : grade.description)}</span>
+            <span class="text-truncate font-weight-bold text-gray-800 small grade-small text-capitalize">${(lesson =
+              "general" ? grade.class.description : grade.description)}</span>
             <span
-              class="grades-table-date small grade-small float-right text-gray-600">${d.getDate()}-${d.getMonth() +
-        1}-${d.getFullYear()}</span>
-            <div class="small grade-small text-gray-600">${grade.description == ""
-          ? "<i>Geen beschrijving...</i>"
-          : grade.description
-        }</div>
+              class="grades-table-date small grade-small float-right text-gray-600">${d.getDate()}-${
+        d.getMonth() + 1
+      }-${d.getFullYear()}</span>
+            <div class="small grade-small text-gray-600">${
+              grade.description == ""
+                ? "<i>Geen beschrijving...</i>"
+                : grade.description
+            }</div>
           </div>
         </a>
         ${index != grades.length - 1 ? '<hr class="m-0 p-0">' : ""}
@@ -1494,7 +1513,7 @@ function setAverages() {
     totgemclass = 0;
   $("#general-progress").empty();
   $("#averagesTable").empty();
-  lessonController.lessons.forEach(lesson => {
+  lessonController.lessons.forEach((lesson) => {
     var average = lesson.lesson.getAverage();
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
       $("#averagesTable").append(
@@ -1616,8 +1635,9 @@ function generateHTML(lesson) {
                   <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">Gemiddelde van ${lesson.name
-    }</h6>
+                      <h6 class="m-0 font-weight-bold text-primary">Gemiddelde van ${
+                        lesson.name
+                      }</h6>
                       <!--<div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-label="Uitschuiven" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -1650,8 +1670,9 @@ function generateHTML(lesson) {
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="newGrade-weight" min="0" placeholder="Weging">
                                 </div>
-                            <a onclick="lessonController.getLesson('${lesson.name
-    }').lesson.getNewAverage()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                            <a onclick="lessonController.getLesson('${
+                              lesson.name
+                            }').lesson.getNewAverage()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                             </form>
                             <div class="showCalculatedGrade">
                                 <h1 id="newGrade-newGrade"><i class="fas fa-chart-line fa-sm text-primary"></i></h1>
@@ -1673,8 +1694,9 @@ function generateHTML(lesson) {
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="getGrade-weight" min="0" placeholder="Weging">
                                 </div>
-                                <a onclick="lessonController.getLesson('${lesson.name
-    }').lesson.needToGet()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
+                                <a onclick="lessonController.getLesson('${
+                                  lesson.name
+                                }').lesson.needToGet()" class="btn btn-primary btn-user btn-block bg-gradiant-primary">Bereken</a>
                             </form>
                             <div class="showCalculatedGrade">
                               <h1 id="getGrade-newGrade"><i class="fas fa-chart-line fa-sm text-primary"></i></h1>
@@ -1693,8 +1715,9 @@ function generateHTML(lesson) {
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson.name
-    }</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${
+                      lesson.name
+                    }</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body pt-0 chart-card">
@@ -1773,35 +1796,44 @@ function generateHTML(lesson) {
               <div class="col-lg-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Feiten voor ${lesson.name
-    }</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Feiten voor ${
+                      lesson.name
+                    }</h6>
                   </div>
                   <div class="card-body pt-0">
                     <p class="font-weight-bold mb-0 pb-0">Meeste cijfers achter elkaar</p>
-                    <span class="mb-0 pb-0 mt-0 pt-0">${facts["passed"]["days"]
-    } ${facts["passed"]["days"] == 1
+                    <span class="mb-0 pb-0 mt-0 pt-0">${
+                      facts["passed"]["days"]
+                    } ${
+    facts["passed"]["days"] == 1
       ? "dag voldoende"
       : "dagen voldoendes achter elkaar"
-    }<br>
-                    <span class="small grade-small mt-0 pt-0">${facts["passed"]["start"]
-    } tot ${facts["passed"]["end"]} (${facts["passed"]["grades"]
-    } ${facts["not_passed"]["grades"] == 1 ? "cijfer" : "cijfers"})</span></span>
+  }<br>
+                    <span class="small grade-small mt-0 pt-0">${
+                      facts["passed"]["start"]
+                    } tot ${facts["passed"]["end"]} (${
+    facts["passed"]["grades"]
+  } ${facts["not_passed"]["grades"] == 1 ? "cijfer" : "cijfers"})</span></span>
                     <br>
-                    <span class="mb-0 pb-0">${facts["not_passed"]["days"]} ${facts["not_passed"]["days"] == 1
+                    <span class="mb-0 pb-0">${facts["not_passed"]["days"]} ${
+    facts["not_passed"]["days"] == 1
       ? "dag onvoldoende"
       : "dagen onvoldoendes achter elkaar"
-    }<br>
-                    <span class="small grade-small mt-0 pt-0">${facts["not_passed"]["start"]
-    } tot ${facts["not_passed"]["end"]} (${facts["not_passed"]["grades"]
-    } ${facts["not_passed"]["grades"] == 1 ? "cijfer" : "cijfers"})</span></span>
-                    ${lesson.lastYearGroup == undefined ||
-      lesson.lastYearAverage == undefined
-      ? ""
-      : `
+  }<br>
+                    <span class="small grade-small mt-0 pt-0">${
+                      facts["not_passed"]["start"]
+                    } tot ${facts["not_passed"]["end"]} (${
+    facts["not_passed"]["grades"]
+  } ${facts["not_passed"]["grades"] == 1 ? "cijfer" : "cijfers"})</span></span>
+                    ${
+                      lesson.lastYearGroup == undefined ||
+                      lesson.lastYearAverage == undefined
+                        ? ""
+                        : `
                     <hr>
                     <p class="font-weight-bold mb-0 pb-0">Gemiddelde vorig jaar voor dit vak</p>
                     In klas ${lesson.lastYearGroup.description} stond je een ${lesson.lastYearAverage} voor dit vak`
-    }
+                    }
                   </div>
                 </div>
               </div>
@@ -1810,8 +1842,9 @@ function generateHTML(lesson) {
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${lesson.name
-    }</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Cijfers voor ${
+                      lesson.name
+                    }</h6>
                     </div>
                     <div class="card-body pt-0">
                       <div id="cijfersTable">

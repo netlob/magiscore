@@ -16,9 +16,9 @@ var sorted = {},
 courseController.clear();
 // courses = courses.splice(0,5)
 // localStorage.setItem("courses", JSON.stringify(courses));
-courses.forEach(c => {
+courses.forEach((c) => {
   var newCourse = Course.create();
-  Object.keys(c).forEach(key => {
+  Object.keys(c).forEach((key) => {
     newCourse[key] = c[key];
   });
   c = newCourse;
@@ -55,7 +55,7 @@ function main(l) {
     tapToClose: true,
     touchToDrag: true,
     slideIntent: 40,
-    minDragDistance: 5
+    minDragDistance: 5,
     // effect: 'pull'
   });
   // }
@@ -159,16 +159,16 @@ async function syncGrades() {
     if (m == null || m == undefined) {
       if (navigator.connection.type !== Connection.NONE) {
         refreshToken()
-          .then(refreshTokens => {
+          .then((refreshTokens) => {
             tokens = refreshTokens;
             m = new Magister(school, tokens.access_token);
             m.getInfo()
-              .then(p => {
+              .then((p) => {
                 person = p;
                 localStorage.setItem("person", JSON.stringify(p));
                 courseController.getLatestGrades();
               })
-              .catch(err => {
+              .catch((err) => {
                 if (err == "no internet")
                   viewController.toast(
                     "Er kon geen verbinding met Magister gemaakt worden...",
@@ -181,7 +181,7 @@ async function syncGrades() {
                 return;
               });
           })
-          .catch(err => {
+          .catch((err) => {
             if (err == "no internet") {
               viewController.toast(
                 "Er kon geen verbinding met Magister gemaakt worden...",
@@ -219,7 +219,7 @@ async function syncGrades() {
     // courses.forEach(currentCourse => {
     var newCourse = Course.create();
     // alert(Object.keys(currentCourse.course))
-    Object.keys(currentCourse.course).forEach(key => {
+    Object.keys(currentCourse.course).forEach((key) => {
       newCourse[key] = currentCourse.course[key];
     });
     currentCourse = newCourse;
@@ -239,18 +239,23 @@ async function syncGrades() {
     }
     currentCourse
       .getGrades()
-      .then(async currentGrades => {
+      .then(async (currentGrades) => {
         // alert(currentGrades)
         // alert(JSON.stringify(currentGrades))
         // if(currentCourse.id == "31089" || currentCourse.id == 31089) currentCourse.grades = []
-        var allGradeIds = currentCourse.grades.map(x => {
+        var allGradeIds = currentCourse.grades.map((x) => {
           return x.id;
         });
-        currentGrades.forEach(grade => {
+        currentGrades.forEach((grade) => {
           // logConsole("yeet" + JSON.stringify(grade.type))
-          if (viewController.config.refreshOldGrades || (currentCourse.grades.find(a => a.id == grade.id) && currentCourse.grades.find(a => a.id == grade.id).grade != grade.grade)) {
+          if (
+            viewController.config.refreshOldGrades ||
+            (currentCourse.grades.find((a) => a.id == grade.id) &&
+              currentCourse.grades.find((a) => a.id == grade.id).grade !=
+                grade.grade)
+          ) {
             var i = _.findIndex(currentCourse.grades, {
-              id: grade.id
+              id: grade.id,
             });
             newGrades.push(grade);
             currentCourse.grades.splice(i, 1);
@@ -270,8 +275,10 @@ async function syncGrades() {
           currentCourse.grades = _.unionBy(currentCourse.grades, "id");
           var snack = viewController.toast(
             `<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-        style="width: 20%; height: 20px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sync-progress"></div><br><span class="text-center"><span id="sync-synced">0/${newGrades.length
-            }</span> van je ${viewController.config.refreshOldGrades ? "" : " nieuwe"
+        style="width: 20%; height: 20px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="sync-progress"></div><br><span class="text-center"><span id="sync-synced">0/${
+          newGrades.length
+        }</span> van je ${
+              viewController.config.refreshOldGrades ? "" : " nieuwe"
             } cijfers gesynced<br><!-- <i
         class="far fa-info-circle fa-s display-inline-block mr-3 ml-2 mb-2 mt-3"> Refresh oude cijfers is ingeschakeld, alle cijfers worden gerefreshed --></span>`,
             false,
@@ -283,11 +290,11 @@ async function syncGrades() {
             try {
               grade = await grade.fill();
               var i = _.findIndex(currentCourse.grades, {
-                id: grade.id
+                id: grade.id,
               });
               currentCourse.grades[i] = grade;
               i = _.findIndex(newGrades, {
-                id: grade.id
+                id: grade.id,
               });
               $(`#sync-synced`).text(`${i}/${Number(newGrades.length) - 1}`);
               var val = Number(percent * i) + 20;
@@ -295,9 +302,10 @@ async function syncGrades() {
                 .css("width", val + "%")
                 .attr("aria-valuenow", val);
               if (i == Number(newGrades.length) - 1) {
-                $(`#snackbar-${snack}`).animate({
-                  bottom: "-200px"
-                },
+                $(`#snackbar-${snack}`).animate(
+                  {
+                    bottom: "-200px",
+                  },
                   "fast",
                   function () {
                     $(`#snackbar-${snack}`).remove();
@@ -313,11 +321,14 @@ async function syncGrades() {
                   }
                 }
 
-                var extra = result.map(x => {
+                var extra = result.map((x) => {
                   return `
                   <br>
-                  <span class="grade-small"><b>${newGrades.filter(y => x == y.class.description && y.type._type == 1).length
-                    }</b> cijfers voor ${x.trim()}</span>
+                  <span class="grade-small"><b>${
+                    newGrades.filter(
+                      (y) => x == y.class.description && y.type._type == 1
+                    ).length
+                  }</b> cijfers voor ${x.trim()}</span>
                 `;
                 });
                 viewController.toast(
@@ -335,12 +346,12 @@ async function syncGrades() {
                   localStorage.getItem("courses")
                 );
                 var i = _.findIndex(coursesStorage, {
-                  id: currentCourse.id
+                  id: currentCourse.id,
                 });
                 currentCourse._magister = undefined;
                 courseController.allGrades = [];
-                courseController.courses.forEach(course => {
-                  course.course.grades.forEach(grade => {
+                courseController.courses.forEach((course) => {
+                  course.course.grades.forEach((grade) => {
                     courseController.allGrades.push(grade);
                   });
                 });
@@ -370,7 +381,7 @@ async function syncGrades() {
           }
         }
       })
-      .catch(err => {
+      .catch((err) => {
         if (err == "no internet") {
           viewController.toast(
             "Er kon geen verbinding met Magister gemaakt worden...",
@@ -395,19 +406,20 @@ async function syncGrades() {
   });
 }
 
-
 async function checkNewCourses(newGrades) {
   let courses = await m.getCourses();
-  courses = courses.filter(course => !courseController.courseIds.includes(course.id))
+  courses = courses.filter(
+    (course) => !courseController.courseIds.includes(course.id)
+  );
   if (courses.length == 1) {
     let course = courses[0];
-    let storageCourses = JSON.parse(localStorage.getItem("courses"))
+    let storageCourses = JSON.parse(localStorage.getItem("courses"));
     course._magister = undefined;
     storageCourses.push(course);
     localStorage.setItem("courses", JSON.stringify(storageCourses));
 
     var newCourse = Course.create();
-    Object.keys(course).forEach(key => {
+    Object.keys(course).forEach((key) => {
       newCourse[key] = course[key];
     });
     courseController.add(newCourse);
@@ -415,14 +427,16 @@ async function checkNewCourses(newGrades) {
     newGrades = await syncGrades();
     window.location = "./index.html";
   } else if (courses.length > 1) {
-    alert("Het lijkt erop alsof je meerdere schooljaren aan cijfers mist in de app. Om dit op te lossen moet je opnieuw inloggen.");
+    alert(
+      "Het lijkt erop alsof je meerdere schooljaren aan cijfers mist in de app. Om dit op te lossen moet je opnieuw inloggen."
+    );
     confirmLogout(1);
   } else {
     return newGrades;
   }
 }
 
-function fillTimeout() { }
+function fillTimeout() {}
 
 const ptr = PullToRefresh.init({
   mainElement: "#ptr",
@@ -437,10 +451,10 @@ const ptr = PullToRefresh.init({
   onRefresh: function (done) {
     vibrate(15, true);
     syncGrades()
-      .then(d => done())
-      .catch(e => done());
+      .then((d) => done())
+      .catch((e) => done());
     // done()
-  }
+  },
 });
 
 $(function () {
@@ -498,12 +512,12 @@ function vibrate(time, strong) {
 
 function onDeviceReady() {
   $.ajaxSetup({
-    cache: false
+    cache: false,
   });
   if (window.cordova.platformId === "ios") {
     jQuery.ajaxPrefilter(function (options) {
-      if (options.url.substr(0, 24) !== 'https://cors.netlob.dev/') {
-        options.url = 'https://cors.netlob.dev/' + options.url;
+      if (options.url.substr(0, 24) !== "https://cors.sjoerd.dev/") {
+        options.url = "https://cors.sjoerd.dev/" + options.url;
       }
     });
   }
@@ -513,12 +527,12 @@ function onDeviceReady() {
     if (navigator.connection.type !== Connection.NONE) {
       // window.ga.startTrackerWithId('211709234', 30, gaSuccess, gaError)
       refreshToken()
-        .then(refreshTokens => {
+        .then((refreshTokens) => {
           tokens = refreshTokens;
           m = new Magister(school, tokens.access_token);
 
           m.getInfo()
-            .then(p => {
+            .then((p) => {
               person = JSON.parse(localStorage.getItem("person"));
               account = JSON.parse(localStorage.getItem("account"));
               if (p.id == person.id) {
@@ -526,7 +540,7 @@ function onDeviceReady() {
                 main();
                 courseController.getLatestGrades();
                 if (account == null || !"name" in account) {
-                  m.getAccountInfo().then(a => {
+                  m.getAccountInfo().then((a) => {
                     localStorage.setItem("account", JSON.stringify(a));
                     if (a.id != account.id && account != null) {
                       navigator.notification.confirm(
@@ -569,7 +583,7 @@ function onDeviceReady() {
               //   })
               // viewcontroller.renderCourse(false, false, courseController.current())
             })
-            .catch(err => {
+            .catch((err) => {
               // if (err == "no internet") {
               viewController.toast(
                 "Er kon geen verbinding met Magister gemaakt worden...",
@@ -582,7 +596,7 @@ function onDeviceReady() {
               main();
             });
         })
-        .catch(err => {
+        .catch((err) => {
           // if (err == "no internet") {
           viewController.toast(
             "Er kon geen verbinding met Magister gemaakt worden...",
@@ -652,11 +666,13 @@ function onDeviceReady() {
   } else {
     window.location = "./login.html";
   }
-  showIosMelding()
+  showIosMelding();
 }
 
 async function showIosMelding() {
-  const show = await fetch("https://magiscore-android.firebaseio.com/api/ios_available.json").then(res => res.json());
+  const show = await fetch(
+    "https://magiscore-android.firebaseio.com/api/ios_available.json"
+  ).then((res) => res.json());
 
   if (
     show != false &&

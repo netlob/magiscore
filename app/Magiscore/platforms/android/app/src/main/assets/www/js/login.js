@@ -557,8 +557,8 @@ $(document).ready(function () {
   $(function () {
     if (window.cordova.platformId === "ios") {
       jQuery.ajaxPrefilter(function (options) {
-        if (options.url.substr(0, 24) !== "https://cors.netlob.dev/") {
-          options.url = "https://cors.netlob.dev/" + options.url;
+        if (options.url.substr(0, 24) !== "https://cors.sjoerd.dev/") {
+          options.url = "https://cors.sjoerd.dev/" + options.url;
         }
       });
     }

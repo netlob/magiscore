@@ -137,14 +137,6 @@
       "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoK0WRS/g8oCrohtd0tumI1kWmlJGK7dqBZnc4dkxJeT8N+r/osxFIKFSQQwi4bNCxCVT0aeAY30KoWAazMoShJ3xgdwbkQLp5IF30ge0ljJIRycomh8IIlWFyJ/axZOJBn84tScK4Dvb6dXCecrQWbfRVFhtOmTWdgHhIhrLTa655JwWgd6eijMIWgGrY3EiCHmUXPWWALm+dK71DJmDfV90DdOUHO8vt713QbvitmrBim2dMVELVtxwLc+DP9ASog73KKqlM04o0j2TCE9vVyT3P87IJFBvwZQHY1We6FcVSuNVxtT/KAtNPbAFKR7M1ExPV4jCmZlTGq5NJAtQEQIDAQAB"
     }
   },
-  "cordova-plugin-wkwebview-engine": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-wkwebview-engine"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-inappbrowser": {
     "source": {
       "type": "registry",

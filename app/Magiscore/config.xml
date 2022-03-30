@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.netlob.magiscore" version="1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="app.netlob.magiscore" version="1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name short="Gemairo">Gemairo - Magister statistiek</name>
     <description>
         Shi daggoetje geswiped
     </description>
-    <author email="sjoerdabolten@gmail.com" href="https://netlob.dev">
-        Netlob
+    <author email="sjoerdabolten@gmail.com" href="https://sjoerd.dev">
+        Sjoerd Bolten
     </author>
     <content src="index.html" />
     <!-- <icon src="www/img/icons/icon-128x128.png" width="128" height="128" platform="android"/> -->
