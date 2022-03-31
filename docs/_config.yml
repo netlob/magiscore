@@ -10,7 +10,7 @@ presskit_download_link:
   https://github.com/netlob/magiscore # Enter a link to downloadable file or (e.g. public Dropbox link to a .zip file).
   # Or upload your press kit file to assets and set path accordingly (e.g. "assets/your_press_kit.zip").
 
-app_icon: assets/https://cdn.discordapp.com/attachments/830562126560231464/959193878391578635/gemairo_logo_new_copy.webp # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
+app_icon: https://cdn.discordapp.com/attachments/830562126560231464/959193878391578635/gemairo_logo_new_copy.webp # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
 app_name: Gemairo # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_price: Gratis # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_description: Check allemaal coole dingen over je cijfers enzo
