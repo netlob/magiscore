@@ -26,7 +26,7 @@
   --gray-dark: #5a5c69;
   /* --primary: #4e73df; */
   /* --primary: #156a36; */
-  --primary: #0096db;
+  --primary: #4f46e5;
   --secondary: #858796;
   --success: #1cc88a;
   --info: #36b9cc;
@@ -2937,8 +2937,8 @@ fieldset:disabled a.btn {
   color: #fff;
   /* background-color: #156a36; */
   /* border-color: #156a36; */
-  background-color: #0096db;
-  border-color: #0096db;
+  background-color: #4f46e5;
+  border-color: #4f46e5;
 }
 
 .btn-primary:hover {
@@ -2968,8 +2968,8 @@ fieldset:disabled a.btn {
   color: #fff;
   /* background-color: #156a36; */
   /* border-color: #156a36; */
-  background-color: #0096db;
-  border-color: #0096db;
+  background-color: #4f46e5;
+  border-color: #4f46e5;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -3262,16 +3262,16 @@ fieldset:disabled a.btn {
 .btn-outline-primary {
   /* color: #156a36; */
   /* border-color: #156a36; */
-  color: #0096db;
-  border-color: #0096db;
+  color: #4f46e5;
+  border-color: #4f46e5;
 }
 
 .btn-outline-primary:hover {
   color: #fff;
   /* background-color: #156a36; */
   /* border-color: #156a36; */
-  background-color: #0096db;
-  border-color: #0096db;
+  background-color: #4f46e5;
+  border-color: #4f46e5;
 }
 
 .btn-outline-primary:focus,
@@ -4581,7 +4581,7 @@ input[type="button"].btn-block {
   width: 1rem;
   height: 1rem;
   margin-top: -0.25rem;
-  background-color: #0096db;
+  background-color: #4f46e5;
   border: 0;
   poep: 1rem;
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -4616,7 +4616,7 @@ input[type="button"].btn-block {
 .custom-range::-moz-range-thumb {
   width: 1rem;
   height: 1rem;
-  background-color: #0096db;
+  background-color: #4f46e5;
   border: 0;
   poep: 1rem;
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -4654,7 +4654,7 @@ input[type="button"].btn-block {
   margin-top: 0;
   margin-right: 0.2rem;
   margin-left: 0.2rem;
-  background-color: #0096db;
+  background-color: #4f46e5;
   border: 0;
   poep: 1rem;
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -5768,14 +5768,14 @@ a.badge:focus {
 .badge-primary {
   color: #fff;
   /* background-color: #156a36; */
-  background-color: #0096db;
+  background-color: #4f46e5;
 }
 
 a.badge-primary:hover,
 a.badge-primary:focus {
   color: #fff;
   /* background-color: #156a36; */
-  background-color: #0096db;
+  background-color: #4f46e5;
 }
 
 a.badge-primary:focus,
@@ -6116,7 +6116,7 @@ a.badge-dark.focus {
   text-align: center;
   white-space: nowrap;
   /* background-color: #4e73df; */
-  background-color: #0096db;
+  background-color: #4f46e5;
   -webkit-transition: width 0.6s ease;
   transition: width 0.6s ease;
 }
@@ -7465,7 +7465,7 @@ a.close.disabled {
 
 .bg-primary {
   /* background-color: #156a36 !important; */
-  background-color: #0096db !important;
+  background-color: #4f46e5 !important;
 }
 
 a.bg-primary:hover,
@@ -7473,7 +7473,7 @@ a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
   /* background-color: #156a36 !important; */
-  background-color: #0096db !important;
+  background-color: #4f46e5 !important;
 }
 
 .bg-secondary {
@@ -11826,7 +11826,7 @@ a:focus {
 
 .bg-gradient-primary {
   /* background-color: #156a36; #4e73df; */
-  background-color: #0096db;
+  background-color: #4f46e5;
   /* #4e73df; */
   /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #4e73df), to(#224abe));
   background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%); */
@@ -12136,8 +12136,8 @@ a:focus {
 }
 
 .topbar .dropdown-list .dropdown-header {
-  background-color: #0096db;
-  border: 1px solid #0096db;
+  background-color: #4f46e5;
+  border: 1px solid #4f46e5;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   color: #fff;
@@ -13333,7 +13333,7 @@ body.sidebar-toggled footer.sticky-footer {
   font-size: inherit;
 }
 .md-checkbox input[type="checkbox"]:checked + label:before {
-  background: #0096db;
+  background: #4f46e5;
   border: none;
 }
 .md-checkbox input[type="checkbox"]:checked + label:after {

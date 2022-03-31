@@ -28,7 +28,7 @@ body {
 }
 
 body {
-  background-color: #0096db !important;
+  background-color: #4f46e5 !important;
 }
 
 span::selection,
@@ -123,7 +123,7 @@ input {
 .topbar>button.bg-primary:hover,
 .topbar #sidebarToggleTop:hover {
   background-color: transparent !important;
-  color: #0096db !important;
+  color: #4f46e5 !important;
 }
 
 #wrapper>.sidebar {
@@ -139,7 +139,7 @@ input {
 }
 
 .rounded-circle>.fa {
-  color: #0096db !important;
+  color: #4f46e5 !important;
   font-size: 23px !important;
 }
 
@@ -364,7 +364,7 @@ select:-webkit-autofill:focus {
 
 #latest-grades a:hover,
 #latest-grades a:focus {
-  color: #0096db !important;
+  color: #4f46e5 !important;
 }
 
 #settings-wrapper {
@@ -383,7 +383,7 @@ select:-webkit-autofill:focus {
 #settings-wrapper>.settings-close {
   font-size: 2.6rem;
   font-weight: lighter !important;
-  color: #0096db !important;
+  color: #4f46e5 !important;
   position: absolute;
   top: 2.8rem;
   right: 10rem;
@@ -409,11 +409,11 @@ select:-webkit-autofill:focus {
 #settings-wrapper>input[type="range"]::-moz-range-track,
 #settings-wrapper>input[type="range"]::-ms-fill-lower,
 #settings-wrapper>input[type="range"]::-ms-fill-upper {
-  background-color: #0096db !important;
+  background-color: #4f46e5 !important;
 }
 
 a.magister-login {
-  background-color: #0096db !important;
+  background-color: #4f46e5 !important;
   margin: 0px 1rem 0px 1rem !important;
   padding: 10px 10px !important;
   font-size: 24px !important;

@@ -1,5 +1,5 @@
 #page title
-page_title                                : Magiscore - Magister Cijfer statistiek                                          # Automatically populates with app name if not set and if iOS app ID is set. Otherwise enter manually.
+page_title                                : Gemairo - Stats voor Magister                                          # Automatically populates with app name if not set and if iOS app ID is set. Otherwise enter manually.
 
 # App Info
 ios_app_id                                : 1529746917                                # Required. Enter iOS app ID to automatically populate name, price and icons (e.g. 718043190).
@@ -10,21 +10,21 @@ presskit_download_link                    : https://github.com/netlob/magiscore 
                                                                                       # Or upload your press kit file to assets and set path accordingly (e.g. "assets/your_press_kit.zip").
 
 app_icon                                  : assets/appicon.png                      # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
-app_name                                  : Magiscore                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
+app_name                                  : Gemairo                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
 app_price                                 : Gratis                                          # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
-app_description                           : Magister cijfer statistiek.
+app_description                           : Check allemaal coole dingen over je cijfers enzo
 
 enable_smart_app_banner                   : true                                      # Set to true to show a smart app banner at top of page on mobile devices.
 
 
 
 # Information About Yourself
-your_name                                 : netlob                                
-your_link                                 : https://netlob.dev                     
+your_name                                 : Sjoerd Bolten                        
+your_link                                 : https://sjoerd.dev                     
 your_city                                 : The Netherlands                                
 email_address                             : info@magiscore.nl
 facebook_username                         :                                           
-instagram_username                        : sjoerd.netlob
+instagram_username                        : sjoerdbolten
 twitter_username                          : netlob
 github_username                           : netlob
 youtube_username                          : netlob

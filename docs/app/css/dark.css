@@ -166,7 +166,7 @@ body[theme="dark"] .error:before {
 }
 
 body[theme="dark"] .active {
-  background-color: #0096db !important;
+  background-color: #4f46e5 !important;
 }
 
 body[theme="dark"] .form-control,
