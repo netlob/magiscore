@@ -113,7 +113,7 @@ class Lesson {
             // console.dir(_grade)
             processed++;
             if (!_grade.exclude) {
-              for (let i = 0; i < _grade.weight; i++) {
+              for (let i = 0; i < _grade.weight * 10; i+=0.1) {
                 grades.push(Number(round(_grade.grade)));
               }
               if (processed == all.length) {
@@ -121,7 +121,7 @@ class Lesson {
                 for (let i = 0; i < grades.length; i++) {
                   averageTotal += grades[i];
                 }
-                average = averageTotal / grades.filter(grade => !grade.exclude).length;
+                average = averageTotal / grades.filter(grade => !grade.exclude).length * 10;
               }
             }
           }
