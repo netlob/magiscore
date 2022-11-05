@@ -35,7 +35,7 @@ class CourseController {
   }
 
   save() {
-    localStorage.setItem("courses", JSON.stringify(this.courses));
+    setObject("courses", JSON.stringify(this.courses), getActiveAccount());
   }
 
   current() {

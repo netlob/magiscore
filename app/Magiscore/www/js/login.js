@@ -5,7 +5,7 @@ var tokens;
 // let lastSchools = [];
 let version;
 // let schools = [];
-
+const newaccountindex = localStorage.length;
 let currentGradeIndex = 0;
 let totalGrades = 0;
 let all_courses = [];
@@ -96,7 +96,7 @@ function onDeviceReady() {
 function emptyFuntion() {}
 
 function retryLogin() {
-  localStorage.clear();
+  clearObject(newaccountindex);
   window.location = "./index.html";
 }
 
@@ -113,7 +113,7 @@ function onOffline() {
 function openWifiSettings(b) {
   if (b == 1) {
     window.cordova.plugins.settings.open("wifi", emptyFuntion, emptyFuntion);
-    localStorage.clear();
+    clearObject(newaccountindex);
   } else return;
 }
 
@@ -315,7 +315,7 @@ async function validateLogin(code, codeVerifier) {
         refresh_token: response.refresh_token,
         id_token: response.id_token,
       };
-      localStorage.setItem("tokens", JSON.stringify(tokens));
+      setObject("tokens", JSON.stringify(tokens), newaccountindex);
 
       const res = await fetch(
         "https://cors.sjoerd.dev/https://magister.net/.well-known/host-meta.json",
@@ -326,7 +326,7 @@ async function validateLogin(code, codeVerifier) {
         }
       ).then((res) => res.json());
       tenant = JSON.stringify(res).match(/(?!(w+)\.)\w*(?:\w+\.)+\w+/)[0];
-      localStorage.setItem("school", tenant);
+      setObject("school", tenant, newaccountindex);
       var config = {
         isDesktop: false,
         tention: 0.3,
@@ -337,8 +337,9 @@ async function validateLogin(code, codeVerifier) {
         includeGradesInAverageChart: false,
         devMode: false,
         exclude: [],
+        currentviewed: true
       };
-      localStorage.setItem("config", JSON.stringify(config));
+      setObject("config", JSON.stringify(config), newaccountindex);
       logConsole("Succesvol config bestanden opgeslagen!");
       addLoader(1);
 
@@ -346,9 +347,18 @@ async function validateLogin(code, codeVerifier) {
       // logConsole(JSON.stringify(m))
       m.getInfo()
         .then(async () => {
+          for (key of Object.keys(localStorage)) {
+            if (key == newaccountindex) {continue;}
+            var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({}))
+            if (JSON.parse(account['person']).id == m.person.id && account['school'] == tenant) {
+              toast("Account bestaat al!", 2000, true);
+              retryLogin()
+              return;
+            }
+          }
           // alert(JSON.stringify(person) + Object.entries(localStorage).length)
           if (m.person.isParent) {
-            localStorage.clear();
+            clearObject(newaccountindex);
             navigator.notification.confirm(
               "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een " +
                 "leerlingaccount en probeer het opnieuw.",
@@ -359,12 +369,12 @@ async function validateLogin(code, codeVerifier) {
           }
           logConsole(`Succesvol leerlingid (${m.person.id}) opgehaald!`);
           // m.getAccountInfo().then(() => logConsole(`Succesvol accountinfo
-          // (${m.account.id}) opgehaald!`), localStorage.setItem("account",
+          // (${m.account.id}) opgehaald!`), setObject("account",
           // JSON.stringify(m.account)))
           addLoader(3);
           m.getCourses()
             .then(async (courses) => {
-              localStorage.setItem("person", JSON.stringify(m.person));
+              setObject("person", JSON.stringify(m.person), newaccountindex);
               all_courses = courses;
               logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`);
               addLoader(7);
@@ -533,8 +543,9 @@ function verderGaanLogin() {
   // alert("Done :)")
   window.plugins.insomnia.allowSleepAgain();
   // all_courses[4].grades = []
-  localStorage.setItem("courses", JSON.stringify(all_courses));
-  localStorage.setItem("loginSuccess", "true");
+  setObject("courses", JSON.stringify(all_courses), newaccountindex);
+  setObject("loginSuccess", "true", newaccountindex);
+  changeActiveAccount(newaccountindex);
   window.location = "./index.html";
 }
 

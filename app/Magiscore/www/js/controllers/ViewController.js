@@ -176,13 +176,13 @@ class ViewController {
   }
 
   updateConfig(config, theme) {
-    var base = JSON.parse(localStorage.getItem("config"));
+    var base = JSON.parse(getObject("config", getActiveAccount()));
     for (var key in config) {
       // if (key == 'includeGradesInAverageChart' && base['includeGradesInAverageChart'] == true) config[key] == false
       base[key] = config[key];
     }
     localStorage.removeItem("config");
-    localStorage.setItem("config", JSON.stringify(base));
+    setObject("config", JSON.stringify(base), getActiveAccount());
     this.config = base;
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
     if (config["devMode"] === true) $(".toggle-terminal").show();
@@ -197,7 +197,7 @@ class ViewController {
   }
 
   setConfig() {
-    var config = localStorage.getItem("config") || false;
+    var config = getObject("config", getActiveAccount()) || false;
     if (!config) {
       config = {
         isDesktop: false,
@@ -210,7 +210,7 @@ class ViewController {
         devMode: false,
         exclude: [],
       };
-      localStorage.setItem("config", JSON.stringify(config));
+      setObject("config", JSON.stringify(config), getActiveAccount());
       config = JSON.stringify(config);
     }
     config = JSON.parse(config);
@@ -497,7 +497,7 @@ class ViewController {
         .substring(2)}`;
       // var sexyDate = course.raw.Start
       $("#years").append(
-        `<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${
+        `<a class="d-flex justify-content-between align-items-center pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${
           course.course.id
         }', true, false, false)" id="course-${
           course.course.id
@@ -505,7 +505,7 @@ class ViewController {
           course.course.curricula.length > 0
             ? "(" + course.course.curricula.toString() + ")"
             : ""
-        }</a>`
+        } <span class="badge badge-primary badge-pill">${course.course.grades.length}</span></a>`
       );
     });
     $("#years").children().removeClass("course-selected");
@@ -604,7 +604,7 @@ function confirmRefreshOldGrades(button) {
 function setProfilePic(forceRefresh) {
   if (!forceRefresh) forceRefresh = false;
   // alert(viewController.config.smiley)
-  var profilepicStorage = localStorage.getItem("profilepic") || false,
+  var profilepicStorage = getObject("profilepic", getActiveAccount()) || false,
     profilepic = document.getElementById("imgelem");
   if (viewController.config.smiley && !forceRefresh) {
     logConsole("[INFO]   Profile picture as smiley");
@@ -629,7 +629,7 @@ function setProfilePic(forceRefresh) {
           profilepic.setAttribute("src", result);
           try {
             logConsole("[INFO]   Storage of image success");
-            localStorage.setItem("profilepic", result);
+            setObject("profilepic", result, getActiveAccount());
             if (forceRefresh)
               viewController.toast("Profielfoto ververst", 2000, false);
           } catch (e) {
@@ -694,6 +694,17 @@ function updateSidebar() {
         : ""
     }`
   );
+  $('#useraccountslist').html(``);
+  $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
+  for (key of Object.keys(localStorage)) {
+    var persondata = JSON.parse(getObject("person", key));
+    var profilepic = getObject("profilepic", key);
+    var config = JSON.parse(getObject("config", key));
+    $(`<a class="dropdown-item vibrate" onclick="changeActiveAccount(${key}); window.location.reload();">
+      <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
+      ${persondata.firstName} ${persondata.lastName}
+    </a>`).prependTo("#useraccountslist");
+  }
   // var header = document.getElementById("accordionSidebar");
   // var btns = header.getElementsByClassName("nav-item");
   // for (var i = 0; i < btns.length; i++) {

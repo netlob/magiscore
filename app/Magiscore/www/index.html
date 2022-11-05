@@ -346,6 +346,9 @@
                     Settings
                   </a> -->
                 <div class="dropdown-divider"></div>
+                <div class="list-group list-group-flus" id="useraccountslist">
+                </div>
+                <div class="dropdown-divider"></div>
                 <!-- <a class="dropdown-item vibrate" data-toggle="theme" onclick="viewController.toggleTheme()">
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
@@ -470,7 +473,7 @@
           <br>
           <h6 class="ml-3 pl-1 font-weight-bold text-primary">Account</h6>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Uitloggen<a class="float-right menu-a vibrate"
+            <li class="list-group-item shadow mb-2">Log het geopende account uit<a class="float-right menu-a vibrate"
                 onclick="logOut()">UITLOGGEN</a>
             </li>
           </ul>
@@ -1002,16 +1005,40 @@
   </div> -->
 
   <script defer>
-    if (localStorage.getItem("loginSuccess") != "true") {
-      // alert("loginSuccess = " + localStorage.getItem("loginSucess"))
-      localStorage.clear()
+    if (getObject("loginSuccess", getActiveAccount()) != "true") {
+      // alert("loginSuccess = " + getObject("loginSucess"))
+      clearObject(getActiveAccount())
       window.location = './login.html#failedlogin'
     }
 
-    if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
-      "courses") === null) {
-      localStorage.clear()
+    if (getObject("tokens", getActiveAccount()) === null && getObject("school", getActiveAccount()) === null && getObject(
+      "courses", getActiveAccount()) === null) {
+      clearObject(getActiveAccount())
       window.location = './login.html#notokens'
+    }
+
+    function setObject(key,value,index) {
+      var json = JSON.parse(localStorage.getItem(index) ?? JSON.stringify({}))
+      json[key] = value;
+      localStorage.setItem(index, JSON.stringify(json));
+    }
+
+    function getObject(key,index) {
+      if (!JSON.parse(localStorage.getItem(index)).hasOwnProperty(key)) { return null }
+      return (JSON.parse(localStorage.getItem(index)))[key] 
+    }
+
+    function clearObject(index) {
+      localStorage.removeItem(index);
+    }
+
+    function getActiveAccount() {
+      for (key of Object.keys(localStorage)) {
+        var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({"config": "{\"currentviewed\": \"false\"}"}))
+        if (JSON.parse(account['config']).currentviewed == true) {
+            return key
+        }
+      }
     }
 
     function logConsole(msg) {

@@ -5,17 +5,17 @@ var lessonController = new LessonController(viewController);
 var courseController = new CourseController(viewController);
 
 var sorted = {},
-  person = JSON.parse(localStorage.getItem("person")),
-  account = JSON.parse(localStorage.getItem("account")),
-  tokens = JSON.parse(localStorage.getItem("token")),
-  courses = JSON.parse(localStorage.getItem("courses")),
-  latest = JSON.parse(localStorage.getItem("latest")),
-  school = localStorage.getItem("school"),
+  person = JSON.parse(getObject("person", getActiveAccount())),
+  account = JSON.parse(getObject("account", getActiveAccount())),
+  tokens = JSON.parse(getObject("tokens", getActiveAccount())),
+  courses = JSON.parse(getObject("courses", getActiveAccount())),
+  latest = JSON.parse(getObject("latest", getActiveAccount())),
+  school = getObject("school", getActiveAccount()),
   m = null;
 
 courseController.clear();
 // courses = courses.splice(0,5)
-// localStorage.setItem("courses", JSON.stringify(courses));
+// setObject("courses", JSON.stringify(courses));
 courses.forEach((c) => {
   var newCourse = Course.create();
   Object.keys(c).forEach((key) => {
@@ -32,7 +32,7 @@ var snapper;
 //logConsole("Courses" + JSON.stringify(courses))
 // courses[1].grades.splice(0, 100)
 
-// localStorage.setItem("courses", JSON.stringify(courses))
+// setObject("courses", JSON.stringify(courses))
 // logConsole("removed grades")
 
 //courses.splice(courses.indexOf(courseController.current()))
@@ -119,7 +119,7 @@ function main(l) {
 
 function logOut() {
   navigator.notification.confirm(
-    'Klik op "Uitloggen" als je zeker weet dat je wilt uitloggen. \nPS. er wordt momenteel gewerkt aan support voor meerdere accounts',
+    'Klik op "Uitloggen" als je zeker weet dat je wilt uitloggen.',
     confirmLogout,
     "Weet je het zeker?",
     ["Ja", "Nee"]
@@ -128,8 +128,14 @@ function logOut() {
 
 function confirmLogout(b) {
   if (b == 1) {
-    localStorage.clear();
-    window.location = "./login.html";
+    if (localStorage.length > 1) {
+      clearObject(getActiveAccount());
+      changeActiveAccount(Object.keys(localStorage)[0]);
+      window.location = "./index.html";
+    } else {
+      clearObject(getActiveAccount());
+      window.location = "./login.html";
+    }
   } else return;
 }
 
@@ -165,7 +171,7 @@ async function syncGrades() {
             m.getInfo()
               .then((p) => {
                 person = p;
-                localStorage.setItem("person", JSON.stringify(p));
+                setObject("person", JSON.stringify(p), getActiveAccount());
                 courseController.getLatestGrades();
               })
               .catch((err) => {
@@ -343,7 +349,7 @@ async function syncGrades() {
                 // courseController.remove(currentCourse)
                 // courseController.add(currentCourse)
                 var coursesStorage = JSON.parse(
-                  localStorage.getItem("courses")
+                  getObject("courses", getActiveAccount())
                 );
                 var i = _.findIndex(coursesStorage, {
                   id: currentCourse.id,
@@ -357,7 +363,7 @@ async function syncGrades() {
                 });
                 _.sortBy(courseController.allGrades, "dateFilledIn");
                 coursesStorage[i] = currentCourse;
-                localStorage.setItem("courses", JSON.stringify(coursesStorage));
+                setObject("courses", JSON.stringify(coursesStorage), getActiveAccount());
                 logConsole("[INFO]   Saved new grades in courses");
                 // courseController.save()
                 main(viewController.currentLesson);
@@ -413,10 +419,10 @@ async function checkNewCourses(newGrades) {
   );
   if (courses.length == 1) {
     let course = courses[0];
-    let storageCourses = JSON.parse(localStorage.getItem("courses"));
+    let storageCourses = JSON.parse(getObject("courses", getActiveAccount()));
     course._magister = undefined;
     storageCourses.push(course);
-    localStorage.setItem("courses", JSON.stringify(storageCourses));
+    setObject("courses", JSON.stringify(storageCourses), getActiveAccount());
 
     var newCourse = Course.create();
     Object.keys(course).forEach((key) => {
@@ -521,7 +527,7 @@ function onDeviceReady() {
       }
     });
   }
-  if (localStorage.getItem("tokens") != null) {
+  if (getObject("tokens", getActiveAccount()) != null) {
     logConsole("[INFO]   Device ready!");
     logConsole("[INFO]   Connection type: " + navigator.connection.type);
     if (navigator.connection.type !== Connection.NONE) {
@@ -533,15 +539,15 @@ function onDeviceReady() {
 
           m.getInfo()
             .then((p) => {
-              person = JSON.parse(localStorage.getItem("person"));
-              account = JSON.parse(localStorage.getItem("account"));
+              person = JSON.parse(getObject("person", getActiveAccount()));
+              account = JSON.parse(getObject("account", getActiveAccount()));
               if (p.id == person.id) {
-                localStorage.setItem("person", JSON.stringify(p));
+                setObject("person", JSON.stringify(p), getActiveAccount());
                 main();
                 courseController.getLatestGrades();
                 if (account == null || !"name" in account) {
                   m.getAccountInfo().then((a) => {
-                    localStorage.setItem("account", JSON.stringify(a));
+                    setObject("account", JSON.stringify(a), getActiveAccount());
                     if (a.id != account.id && account != null) {
                       navigator.notification.confirm(
                         "Er is een probleem met het inloggen waardoor je bent uitgelogd. Log opnieuw in.",
@@ -571,7 +577,7 @@ function onDeviceReady() {
               //     logConsole("Latest: " + JSON.stringify(latest))
               //     logConsole("Got latest grades!")
               //     // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
-              //     localStorage.setItem("latest", JSON.stringify(grades))
+              //     setObject("latest", JSON.stringify(grades))
               //     logConsole(JSON.stringify(latest))
               //     for (let grade in grades) {
               //       if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
@@ -592,7 +598,7 @@ function onDeviceReady() {
               );
               // }
               errorConsole(err);
-              person = JSON.parse(localStorage.getItem("person"));
+              person = JSON.parse(getObject("person", getActiveAccount()));
               main();
             });
         })
@@ -605,7 +611,7 @@ function onDeviceReady() {
           );
           // }
           errorConsole(err);
-          person = JSON.parse(localStorage.getItem("person"));
+          person = JSON.parse(getObject("person", getActiveAccount()));
           main();
         });
       // var BackgroundFetch = window.BackgroundFetch;
@@ -660,7 +666,7 @@ function onDeviceReady() {
         4000,
         true
       );
-      person = JSON.parse(localStorage.getItem("person"));
+      person = JSON.parse(getObject("person", getActiveAccount()));
       main();
     }
   } else {
@@ -677,7 +683,7 @@ async function showMeldingen() {
 }
 
 async function showMelding({ title, body, id }) {
-  if (localStorage.getItem(id) != true && localStorage.getItem(id) != "true") {
+  if (getObject(id, getActiveAccount()) != true && getObject(id, getActiveAccount()) != "true") {
     $("#general-wrapper").prepend(`
     <div class="row" id="${id}">
       <div class="col-xl-3 col-md-6 mb-4">
@@ -703,7 +709,7 @@ async function showMelding({ title, body, id }) {
 }
 
 function sluitMelding(id) {
-  localStorage.setItem(id, true);
+  setObject(id, true, getActiveAccount());
   $(`#${id}`).hide();
 }
 

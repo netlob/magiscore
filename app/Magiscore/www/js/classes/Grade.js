@@ -179,7 +179,7 @@ class Grade {
           this.description = _.trim(
             res.WerkInformatieOmschrijving || res.KolomOmschrijving
           );
-          this.weight = Number.parseInt(res.Weging, 10) || 0;
+          this.weight = (Math.round(Number.parseFloat(res.Weging, 10) * 10) / 10) || 0;
 
           this.type["level"] = res.KolomNiveau;
           this.type["description"] = _.trim(res.KolomOmschrijving);
