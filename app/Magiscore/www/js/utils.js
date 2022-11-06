@@ -21,8 +21,12 @@ function setObject(key,value,index) {
 }
 
 function getObject(key,index) {
-    if (!JSON.parse(localStorage.getItem(index)).hasOwnProperty(key)) { return null }
-    return (JSON.parse(localStorage.getItem(index)))[key] 
+    try {
+        if (!JSON.parse(localStorage.getItem(index)).hasOwnProperty(key)) { return null }
+        return (JSON.parse(localStorage.getItem(index)))[key] 
+    } catch (e) {
+        return null;
+    }
 }
 
 function clearObject(index) {
