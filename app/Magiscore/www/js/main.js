@@ -1,5 +1,7 @@
 // If you want comments. Go fuck yourself
 
+if (localStorage.getItem('courses')) { MoveToNewStorage(); }
+
 var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
 var courseController = new CourseController(viewController);
@@ -36,6 +38,28 @@ var snapper;
 // logConsole("removed grades")
 
 //courses.splice(courses.indexOf(courseController.current()))
+
+function reloaddata() {
+  sorted = {},
+  person = JSON.parse(getObject("person", getActiveAccount())),
+  account = JSON.parse(getObject("account", getActiveAccount())),
+  tokens = JSON.parse(getObject("tokens", getActiveAccount())),
+  courses = JSON.parse(getObject("courses", getActiveAccount())),
+  latest = JSON.parse(getObject("latest", getActiveAccount())),
+  school = getObject("school", getActiveAccount()),
+  m = null;
+
+courseController.clear();
+courses.forEach((c) => {
+  var newCourse = Course.create();
+  Object.keys(c).forEach((key) => {
+    newCourse[key] = c[key];
+  });
+  c = newCourse;
+  courseController.add(c);
+});
+viewController.currentCourse = courseController.current();
+}
 
 function main(l) {
   // alert(person.account.name)
@@ -515,6 +539,21 @@ function vibrate(time, strong) {
 //   logConsole("Ga error")
 //   logConsole(poep)
 // }
+
+function MoveToNewStorage() {
+  var newaccountStorage = {};
+  for (key of Object.keys(localStorage)) {
+    if (key == "config") {
+      parseddata = JSON.parse(localStorage[key]);
+      parseddata.currentviewed = true;
+      localStorage[key] = JSON.stringify(parseddata);
+    }
+    newaccountStorage[key] = localStorage[key];
+  }
+  localStorage.clear();
+  localStorage.setItem(0, JSON.stringify(newaccountStorage));
+  window.location = './index.html';
+}
 
 function onDeviceReady() {
   $.ajaxSetup({

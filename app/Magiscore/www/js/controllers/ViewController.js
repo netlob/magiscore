@@ -161,6 +161,14 @@ class ViewController {
     // logConsole(courseController.allGrades)
   }
 
+  switchuser(userkey) {
+    viewController.overlay("show");
+    changeActiveAccount(userkey);
+    reloaddata(); 
+    main("general");
+    viewController.overlay("hide");
+  }
+
   downloadGraph() {
     var newCanvas = document.querySelector("#lineChart");
     var newCanvasImg = newCanvas.toDataURL("image/png", 1.0);
@@ -193,6 +201,17 @@ class ViewController {
         this.toast("Profielfoto vervangen met een smiley", 2000, false);
       if (!this.config.smiley)
         this.toast("Profielfoto veranderd naar originele foto", 2000, false);
+    }
+    $('#useraccountslist').html(``);
+    $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
+    for (key of Object.keys(localStorage)) {
+      var persondata = JSON.parse(getObject("person", key));
+      var profilepic = getObject("profilepic", key);
+      var config = JSON.parse(getObject("config", key));
+      $(`<a class="dropdown-item vibrate" onclick="viewController.switchuser(${key});">
+        <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
+        ${persondata.firstName} ${persondata.lastName}
+      </a>`).prependTo("#useraccountslist");
     }
   }
 
@@ -700,7 +719,7 @@ function updateSidebar() {
     var persondata = JSON.parse(getObject("person", key));
     var profilepic = getObject("profilepic", key);
     var config = JSON.parse(getObject("config", key));
-    $(`<a class="dropdown-item vibrate" onclick="changeActiveAccount(${key}); window.location.reload();">
+    $(`<a class="dropdown-item vibrate" onclick="viewController.switchuser(${key});">
       <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
       ${persondata.firstName} ${persondata.lastName}
     </a>`).prependTo("#useraccountslist");
