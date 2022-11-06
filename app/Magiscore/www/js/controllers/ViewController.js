@@ -166,6 +166,7 @@ class ViewController {
     changeActiveAccount(userkey);
     reloaddata(); 
     main("general");
+    courseController.getLatestGrades();
     viewController.overlay("hide");
   }
 
@@ -524,9 +525,10 @@ class ViewController {
           course.course.curricula.length > 0
             ? "(" + course.course.curricula.toString() + ")"
             : ""
-        } <span class="badge badge-primary badge-pill">${course.course.grades.length}</span></a>`
+        } <span class="badge badge-primary badge-pill">${course.course.grades.filter((grade) => grade.type._type == 1).length}</span></a>`
       );
     });
+    $("#totalgrades").text(courseController.courses.map(course => course.course.grades.filter((grade) => grade.type._type == 1).length).reduce((partialSum, a) => partialSum + a, 0));
     $("#years").children().removeClass("course-selected");
     $(`#course-${this.currentCourse.course.id}`).addClass("course-selected");
     $("#current-course-badge").text(
