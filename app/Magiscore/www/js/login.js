@@ -5,7 +5,7 @@ var tokens;
 // let lastSchools = [];
 let version;
 // let schools = [];
-const newaccountindex = localStorage.length;
+const newaccountindex = Math.max(...Object.keys(localStorage).map(function (x) { return parseInt(x, 10); })) + 1;
 let currentGradeIndex = 0;
 let totalGrades = 0;
 let all_courses = [];
