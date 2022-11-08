@@ -19,6 +19,7 @@
     <allow-intent href="https://*/*" />
     <allow-intent href="mailto:*" />
     <preference name="android-targetSdkVersion" value="30" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
     <platform name="android">
         <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />

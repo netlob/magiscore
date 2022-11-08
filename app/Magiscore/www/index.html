@@ -388,10 +388,10 @@
 
         <div class="container-fluid" id="settings-wrapper" style="display: none;" data-snap-ignore="true">
           <div id="nonconsumable1-purchase"></div>
-          <h3 class="ml-1 pl-3 font-weight-bold text-primary">Download Spotistats</h3>
+          <h3 class="ml-1 pl-3 font-weight-bold text-primary">Download Stats.fm</h3>
           <p class="ml-1 pl-3 text-primary">Wil jij elk moment van het jaar weten welke artiesten en liedjes je het
             meeste luisterd, zien hoeveel uur Spotify je luisterd, op welke tijdstippen je luisterd en nog veel meer
-            uitgebreide info? Download dan nu Spotistats voor iOS en Android! (sorry voor de ad maar doe ff downloaden enz)</p>
+            uitgebreide info? Download dan nu Stats.fm voor iOS en Android! (sorry voor de ad maar doe ff downloaden enz)</p>
           <div class="ml-1 pl-3 mb-4" style="margin-bottom: -20px;">
             <a class="playStoreLink"
               href="https://play.google.com/store/apps/details?id=dev.netlob.spotistats&referrer=utm_source%3Dmagiscore"><img
@@ -1018,32 +1018,32 @@
     }
 
     function setObject(key,value,index) {
-      var json = JSON.parse(localStorage.getItem(index) ?? JSON.stringify({}))
-      json[key] = value;
-      localStorage.setItem(index, JSON.stringify(json));
+    var json = JSON.parse(localStorage.getItem(index) ?? JSON.stringify({}))
+    json[key] = value;
+    localStorage.setItem(index, JSON.stringify(json));
     }
 
-    function getObject(key,index) {
-      try {
+function getObject(key,index) {
+    try {
         if (!JSON.parse(localStorage.getItem(index)).hasOwnProperty(key)) { return null }
         return (JSON.parse(localStorage.getItem(index)))[key] 
-      } catch (e) {
+    } catch (e) {
         return null;
-      }
     }
+}
 
-    function clearObject(index) {
-      localStorage.removeItem(index);
-    }
+function clearObject(index) {
+    localStorage.removeItem(index);
+}
 
-    function getActiveAccount() {
-      for (key of Object.keys(localStorage)) {
+function getActiveAccount() {
+    for (key of Object.keys(localStorage)) {
         var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({"config": "{\"currentviewed\": \"false\"}"}))
         if (JSON.parse(account['config']).currentviewed == true) {
             return key
         }
-      }
     }
+}
 
     function logConsole(msg) {
       if (typeof msg != "string") return
@@ -1087,6 +1087,7 @@
 
   <!-- Page scripts and classes -->
   <script src="js/utils.js"></script>
+  <script src="js/filesystem.js"></script>
   <script src="js/classes/Class.js"></script>
   <script src="js/classes/GradeType.js"></script>
   <script src="js/classes/Person.js"></script>

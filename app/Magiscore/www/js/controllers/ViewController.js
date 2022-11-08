@@ -161,8 +161,31 @@ class ViewController {
     // logConsole(courseController.allGrades)
   }
 
-  switchuser(userkey) {
+  async switchuser(userkey) {
+    var activeaccount = await getActiveAccount();
+    if (activeaccount == userkey) {return;}
     viewController.overlay("show");
+    //save smaller version of account
+    var smallaccount = [];
+    for await (key of Object.keys(localStorage)) {
+    var userdata = Object.entries(JSON.parse(localStorage.getItem(key)));
+    if (key != userkey) {smallaccount.push({ [key]: JSON.stringify(Object.fromEntries(userdata.filter((val) => val[0] != 'courses')))});}
+    }
+    //Move current active to Filesystem
+    var allfiles = await listFiles();
+    var file = (await allfiles.filter((file) => file.name == `${activeaccount}.json`).length == 0) ? await CreateNewFile(activeaccount) : (await allfiles.filter((file) => file.name == `${activeaccount}.json`))[0];
+    await WriteFile(localStorage.getItem(activeaccount), file);
+    //Clear localstorage
+    localStorage.clear();
+    //Copy new active account from filesystem to localstorage
+    var allfiles = await listFiles();
+    var file = (await allfiles.filter((file) => file.name == `${userkey}.json`))[0];
+    //Add smaller version of accounts to localstorage
+    for await (let name of smallaccount) {
+      localStorage.setItem(Object.entries(name)[0][0], Object.entries(name)[0][1]);
+    }
+    localStorage.setItem(userkey, await readFile(file));
+    //Refresh
     changeActiveAccount(userkey);
     reloaddata(); 
     main("general");
@@ -205,11 +228,12 @@ class ViewController {
     }
     $('#useraccountslist').html(``);
     $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
+    var activeaccount = parseInt(getActiveAccount());
     for (key of Object.keys(localStorage)) {
       var persondata = JSON.parse(getObject("person", key));
       var profilepic = getObject("profilepic", key);
       var config = JSON.parse(getObject("config", key));
-      $(`<a class="dropdown-item vibrate" onclick="viewController.switchuser(${key});">
+      $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
         <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
         ${persondata.firstName} ${persondata.lastName}
       </a>`).prependTo("#useraccountslist");
@@ -717,11 +741,12 @@ function updateSidebar() {
   );
   $('#useraccountslist').html(``);
   $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
+  var activeaccount = parseInt(getActiveAccount());
   for (key of Object.keys(localStorage)) {
     var persondata = JSON.parse(getObject("person", key));
     var profilepic = getObject("profilepic", key);
     var config = JSON.parse(getObject("config", key));
-    $(`<a class="dropdown-item vibrate" onclick="viewController.switchuser(${key});">
+    $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
       <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
       ${persondata.firstName} ${persondata.lastName}
     </a>`).prependTo("#useraccountslist");

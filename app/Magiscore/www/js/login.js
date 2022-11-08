@@ -539,14 +539,23 @@ async function validateLogin(code, codeVerifier) {
   // window.location = '../index.html';
 }
 
-function verderGaanLogin() {
+async function verderGaanLogin() {
   // alert("Done :)")
   window.plugins.insomnia.allowSleepAgain();
   // all_courses[4].grades = []
-  setObject("courses", JSON.stringify(all_courses), newaccountindex);
+
   setObject("loginSuccess", "true", newaccountindex);
-  changeActiveAccount(newaccountindex);
-  window.location = "./index.html";
+  if (localStorage.length == 1) {
+    setObject("courses", JSON.stringify(all_courses), newaccountindex);
+  }
+  
+  var allfiles = await listFiles();
+  var file = (await allfiles.filter((file) => file.name == `${newaccountindex}.json`).length == 0) ? await CreateNewFile(newaccountindex) : (await allfiles.filter((file) => file.name == `${newaccountindex}.json`))[0];
+  var newaccount = JSON.parse(localStorage.getItem(newaccountindex));
+  newaccount.courses = JSON.stringify(all_courses);
+  await WriteFile(JSON.stringify(newaccount), file);
+
+  window.location.replace("./index.html");
 }
 
 function handleOpenURL(url) {

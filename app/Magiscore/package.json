@@ -25,6 +25,7 @@
         "cordova-plugin-customurlscheme": "^4.4.0",
         "cordova-plugin-device": "^2.0.3",
         "cordova-plugin-dialogs": "^2.0.2",
+        "cordova-plugin-file": "^6.0.2",
         "cordova-plugin-network-information": "^2.0.2",
         "cordova-plugin-splashscreen": "^5.0.3",
         "cordova-plugin-statusbar": "^2.4.3",

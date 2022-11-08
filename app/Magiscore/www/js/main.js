@@ -59,6 +59,8 @@ courses.forEach((c) => {
   courseController.add(c);
 });
 viewController.currentCourse = courseController.current();
+m = new Magister(school, tokens.access_token);
+m.getInfo();
 }
 
 function main(l) {
@@ -150,11 +152,11 @@ function logOut() {
   );
 }
 
-function confirmLogout(b) {
+async function confirmLogout(b) {
   if (b == 1) {
     if (localStorage.length > 1) {
       clearObject(getActiveAccount());
-      changeActiveAccount(Object.keys(localStorage)[0]);
+      await viewController.switchuser(Object.keys(localStorage)[0]);
       window.location = "./index.html";
     } else {
       clearObject(getActiveAccount());
