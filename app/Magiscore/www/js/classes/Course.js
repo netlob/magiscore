@@ -118,7 +118,7 @@ class Course {
         url: url,
         method: "GET",
         headers: {
-          Authorization: "Bearer " + this._magister.token,
+          Authorization: "Bearer " + tokens.access_token,
           noCache: new Date().getTime()
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -166,7 +166,7 @@ class Course {
         url: url,
         method: "GET",
         headers: {
-          Authorization: "Bearer " + this._magister.token,
+          Authorization: "Bearer " + tokens.access_token,
           noCache: new Date().getTime()
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {

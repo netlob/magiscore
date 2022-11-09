@@ -544,6 +544,9 @@ async function verderGaanLogin() {
   window.plugins.insomnia.allowSleepAgain();
   // all_courses[4].grades = []
 
+  //filter courses for unused big stuff
+  all_courses.forEach(jaar => jaar.grades.forEach(grade => { delete grade._magister.token; ['_fillUrl'].forEach(rem => delete grade[rem])}))
+  
   setObject("loginSuccess", "true", newaccountindex);
   if (localStorage.length == 1) {
     setObject("courses", JSON.stringify(all_courses), newaccountindex);

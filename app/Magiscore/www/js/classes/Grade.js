@@ -144,10 +144,10 @@ class Grade {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: this._fillUrl,
+        url: `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.courseId}/cijfers/extracijferkolominfo/${this.type.id}`,
         method: "GET",
         headers: {
-          Authorization: "Bearer " + this._magister.token,
+          Authorization: "Bearer " + tokens.access_token,
           noCache: new Date().getTime()
         },
         error: jqXHR => {
