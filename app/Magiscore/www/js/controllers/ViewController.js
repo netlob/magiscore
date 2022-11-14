@@ -162,6 +162,7 @@ class ViewController {
   }
 
   async switchuser(userkey) {
+    return new Promise(async (resolve, reject) => {
     try {
       var activeaccount = await getActiveAccount();
       if (activeaccount == userkey) { return; }
@@ -188,15 +189,16 @@ class ViewController {
       localStorage.setItem(userkey, await readFile(file));
       //Refresh
       changeActiveAccount(userkey);
-      refreshToken();
       reloaddata();
-      main("general");
       courseController.getLatestGrades();
       viewController.overlay("hide");
+      resolve();
     } catch (e) {
       //error
+      reject(e)
       viewController.overlay("hide");
     }
+  });
   }
 
   downloadGraph() {

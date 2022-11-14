@@ -59,8 +59,7 @@ courses.forEach((c) => {
   courseController.add(c);
 });
 viewController.currentCourse = courseController.current();
-m = new Magister(school, tokens.access_token);
-m.getInfo();
+onDeviceReady();
 }
 
 function main(l) {
@@ -156,8 +155,12 @@ async function confirmLogout(b) {
   if (b == 1) {
     if (localStorage.length > 1) {
       clearObject(getActiveAccount());
+      var allfiles = await listFiles()
+      var file = (await allfiles.filter((file) => file.name == `${getActiveAccount()}.json`))[0];
       await viewController.switchuser(Object.keys(localStorage)[0]);
-      window.location = "./index.html";
+      viewController.closeSettings()
+      await RemoveFile(file);
+      //window.location = "./index.html";
     } else {
       clearObject(getActiveAccount());
       window.location = "./login.html";
