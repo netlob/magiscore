@@ -137,6 +137,47 @@ class Lesson {
     }
   }
 
+  getAveragePTA(rounded, ignore) {
+    if (this.grades) {
+      if (this.grades.length > 0) {
+        var average = 0;
+        var all = this.grades;
+        var grades = [];
+        var processed = 0;
+        if (ignore > 0) all = all.slice(0, ignore);
+        all.forEach(_grade => {
+          // console.log(_grade.type.isPTA)
+          if (
+            Number(round(_grade.grade)) > 0 &&
+            Number(round(_grade.grade)) < 10.1
+          ) {
+            // console.dir(_grade)
+            processed++;
+            if (!_grade.exclude && _grade.type.isPTA) {
+              for (let i = 0; i < _grade.weight; i++) {
+                grades.push(Number(round(_grade.grade)));
+              }
+            }
+            if (processed == all.length) {
+              var averageTotal = 0;
+              for (let i = 0; i < grades.length; i++) {
+                averageTotal += grades[i];
+              }
+              average = averageTotal / grades.filter(grade => !grade.exclude).length;
+            }
+          }
+        });
+        if (rounded) {
+          return round(average);
+        } else {
+          return average;
+        }
+      } else {
+        return "-";
+      }
+    }
+  }
+
   getAverageOnDate(date) {
     var gradesFilledIn = [];
     var total = 0;

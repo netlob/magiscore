@@ -5,6 +5,7 @@ if (localStorage.getItem('courses')) { MoveToNewStorage(); }
 var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
 var courseController = new CourseController(viewController);
+var allowedSubjects = []; //Voor het persoonlijke gemiddelde
 
 var sorted = {},
   person = JSON.parse(getObject("person", getActiveAccount())),
@@ -90,6 +91,7 @@ function main(l) {
   lessonController.clear();
   lessonController.allGrades = [];
   lessonController.lessons = [];
+  allowedSubjects = []
   var sorted = viewController.currentCourse.course.sortGrades();
   // viewController.currentCourse.course.grades.forEach(grade => {
   //   var vak = grade.class.description.capitalize()
@@ -552,6 +554,11 @@ function MoveToNewStorage() {
       parseddata = JSON.parse(localStorage[key]);
       parseddata.currentviewed = true;
       localStorage[key] = JSON.stringify(parseddata);
+    }
+    if (key == "courses") {
+      courses = JSON.parse(localStorage[key]);
+      courses.forEach(jaar => jaar.grades.forEach(grade => { delete grade._magister.token; ['_fillUrl'].forEach(rem => delete grade[rem])}))
+      localStorage[key] = JSON.stringify(courses);
     }
     newaccountStorage[key] = localStorage[key];
   }

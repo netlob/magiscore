@@ -20,17 +20,18 @@
     <allow-intent href="mailto:*" />
     <preference name="android-targetSdkVersion" value="30" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <preference name="iosPersistentFileLocation" value="Library" />
     <platform name="android">
         <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
         <preference name="Orientation" value="portrait" />
         <preference name="android-targetSdkVersion" value="30" />
-        <icon src="res/new/res/icon/android/ldpi.png" density="ldpi" />
-        <icon src="res/new/res/icon/android/mdpi.png" density="mdpi" />
-        <icon src="res/new/res/icon/android/hdpi.png" density="hdpi" />
-        <icon src="res/new/res/icon/android/xhdpi.png" density="xhdpi" />
-        <icon src="res/new/res/icon/android/xxhdpi.png" density="xxhdpi" />
-        <icon src="res/new/res/icon/android/xxxhdpi.png" density="xxxhdpi" />
+        <icon background="res/new/res/icon/android/mdpi-back.png" density="mdpi" foreground="res/new/res/icon/android/mdpi-front.png" src="res/new/res/icon/android/mdpi.png"/>
+        <icon background="res/new/res/icon/android/hdpi-back.png" density="hdpi" foreground="res/new/res/icon/android/hdpi-front.png" src="res/new/res/icon/android/hdpi.png"/>
+        <icon background="res/new/res/icon/android/xhdpi-back.png" density="xhdpi" foreground="res/new/res/icon/android/xhdpi-front.png" src="res/new/res/icon/android/xhdpi.png"/>
+        <icon background="res/new/res/icon/android/xxhdpi-back.png" density="xxhdpi" foreground="res/new/res/icon/android/xxhdpi-front.png" src="res/new/res/icon/android/xxhdpi.png"/>
+        <icon background="res/new/res/icon/android/xxxhdpi-back.png" density="xxxhdpi" foreground="res/new/res/icon/android/xxxhdpi-front.png" src="res/new/res/icon/android/xxxhdpi.png"/>
+        <icon density="ldpi" src="res/new/res/icon/android/ldpi.png" />
         <splash src="res/new/res/screen/android/splash-port-ldpi.png" density="port-ldpi" />
         <splash src="res/new/res/screen/android/splash-port-mdpi.png" density="port-mdpi" />
         <splash src="res/new/res/screen/android/splash-port-hdpi.png" density="port-hdpi" />

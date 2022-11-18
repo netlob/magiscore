@@ -14,8 +14,23 @@ class ViewController {
   }
 
   render(lesson) {
+    $('#gradefilterbutton').hide();
+    if (lesson != "generalAllowed") {allowedSubjects = []}
     if (lesson == "general") {
-      this.renderGeneral();
+      this.renderGeneral(false);
+      $('#gradefilterbutton').show();
+    } else if (lesson == "generalPTA") {
+      this.renderGeneral("generalPTA");
+    } else if (lesson == "generalAllowed") {
+      $('#gradefilterbutton').show();
+      if (allowedSubjects.length == lessonController.lessons || allowedSubjects.length == 0) {
+        this.renderGeneral(false);
+      } else if (allowedSubjects.length == 1) {
+        lesson = allowedSubjects[0]
+        this.renderLesson(lesson);
+      } else {
+        this.renderGeneral("generalAllowed");
+      }
     } else {
       this.renderLesson(lesson);
     }
@@ -24,22 +39,23 @@ class ViewController {
       $(this).removeClass("active");
       if (
         $(this).text().trim() == lesson.trim() ||
-        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld")
+        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld" || lesson.trim() == "generalPTA" && $(this).text().trim() == "Gemiddeld (PTA)"
+        || lesson.trim() == "generalAllowed" && $(this).text().trim() == "Gemiddeld")
       )
         $(this).addClass("active");
     });
   }
 
-  renderGeneral() {
+  renderGeneral(Special) {
     $("#lesson-wrapper").empty();
     $("#settings-wrapper").hide();
     $("#currentRender").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
     $("#currentRenderMobile").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
     $("#currentRender").html(
-      `<span onclick="snapper.toggle('left')">Gemiddeld</span>`
+      `<span onclick="snapper.toggle('left')">${Special == "generalPTA" ? "Gemiddeld (PTA)" : "Gemiddeld"}</span>`
     );
     $("#currentRenderMobile").html(
-      `<span onclick="snapper.toggle('left')">Gemiddeld</span>`
+      `<span onclick="snapper.toggle('left')">${Special == "generalPTA" ? "Gemiddeld (PTA)" : "Gemiddeld"}</span>`
     );
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
@@ -54,14 +70,14 @@ class ViewController {
     $("#barChart-container").empty().append(`<canvas id="barChart""></canvas>`);
     $("#barChart-container-general")
       .empty()
-      .append(`<canvas id="generalBarChart"></canvas>`);
+      .append(`<canvas style="pointer-events: none;" id="generalBarChart"></canvas>`);
     // $("#general-area-title").text(
     //   `Alle cijfers van ${course.type.description}`
     // );
-    setChartData(this.config, "general", true);
-    setTableData("general");
-    setAverages();
-    this.currentLesson = "general";
+    setChartData(this.config, Special == false ? "general" : Special, true);
+    setTableData(Special == false ? "general" : Special);
+    setAverages(Special);
+    this.currentLesson = Special == false ? "general" : Special;
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip();
     $("#general-wrapper").show();
@@ -704,10 +720,27 @@ function setProfilePic(forceRefresh) {
 }
 
 function updateSidebar() {
+  $('#ScreensNav').html(`<li class="nav-item active"><a class="nav-link vibrate" onclick="viewController.render('general')"><span>Gemiddeld</span></a></li>`)
   if (lessonController.lessons.length > 0) {
+    if (lessonController.lessons.filter((lessons) => lessons.lesson.grades.filter((grade) => grade.type.isPTA == true).length > 0).length > 0 && lessonController.lessons.filter((lessons) => lessons.lesson.grades.filter((grade) => grade.type.isPTA == false).length > 0).length > 0) {
+      //PTA's mixed with normal grades detected, so this must be a year before the final year.
+      $('#ScreensNav').html(`
+      <li class="nav-item active">
+      <a class="nav-link vibrate" onclick="viewController.render('general')">
+        <span>Gemiddeld</span>
+      </a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link vibrate" onclick="viewController.render('generalPTA')">
+      <span>Gemiddeld (PTA)</span>
+    </a>
+  </li>
+      `)
+    }
     $("#subjectsNav").empty();
+    $("#vakkenModalTable").empty();
     _.sortBy(lessonController.lessons, ["name"]);
-    lessonController.lessons.forEach((lesson) =>
+    lessonController.lessons.forEach((lesson) => {
       $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
             <a class="nav-link" onclick="viewController.render('${
@@ -717,7 +750,20 @@ function updateSidebar() {
             </a>
         </li>
     `)
+      //Render table
+      $("#vakkenModalTable").append(`
+      <tr>
+       <td>
+         <div class="md-checkbox vibrate m-1" style="font-size:1rem">
+            <input id="${lesson.name.replaceAll(" ", "") + "_Select"}" ${allowedSubjects.includes(lesson.name) ? "checked" : ""} type="checkbox">
+            <label style="display: inline-block;margin: 0;width: calc(100% - 20px);" for="${lesson.name.replaceAll(" ", "") + "_Select"}">${lesson.name}</label>
+          </div>
+        </td>
+      </tr>
+      `)
+    }
     );
+
   } else {
     $("#subjectsNav").html(`
       <li class="text-center mt-4">
@@ -790,10 +836,13 @@ function setChartData(config, lesson, everything) {
   var afgerond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   var vol = 0;
   var onvol = 0;
-  if (lesson == "general") {
+  var parentLesson = lesson;
+  if (lesson == "general" || lesson == "generalAllowed" || lesson == "generalPTA") {
     lessonController.lessons.forEach((lesson) => {
+      if (parentLesson == "generalAllowed" && !allowedSubjects.includes(lesson.name)) {return;}
       if (lesson.lesson.grades.length > 0) {
         lesson.lesson.grades.forEach((grade) => {
+          if (parentLesson == "generalPTA" && !grade.type.isPTA) {return;}
           if (!grade.exclude) {
             var gradegrade = grade.grade.replace(",", ".");
             data.push({
@@ -1088,7 +1137,7 @@ function setChartData(config, lesson, everything) {
   }
 
   // if (viewController.lineChart2 != false) viewController.lineChart2.update();
-  if (lesson != "general") {
+  if (lesson != "general" && lesson != "generalPTA" && lesson != "generalAllowed") {
     var ctx = document.getElementById("lineChart2").getContext("2d");
     var data = [
       {
@@ -1266,14 +1315,15 @@ function setChartData(config, lesson, everything) {
     let bcolors = [];
 
     lessonController.lessons.forEach((lesson) => {
+      if (parentLesson == "generalAllowed" && !allowedSubjects.includes(lesson.name)) {return;}
       let grademap = lesson.lesson.grades.map((grade) => {
         if (!grade.exclude) {
           var gradegrade = grade.grade.replace(",", ".");
           gradegrade = parseFloat(gradegrade.replace(",", "."));
           return [isNaN(gradegrade), grade];
         }
-      });
-      grademap = grademap.filter((a) => a[0] == false);
+      }).filter((grade) => typeof grade != 'undefined');
+      grademap = (parentLesson == "generalPTA") ? grademap.filter((a) => a[1].type.isPTA == true && a[0] == false) : grademap.filter((a) => a[0] == false);
       if (lesson.lesson.grades.length > 0 && grademap.length > 0) {
         const abb = grademap[0][1].class.abbreviation;
         var avg = lesson.lesson.getAverage(true);
@@ -1504,6 +1554,12 @@ function setTableData(lesson) {
   if (lesson == "general") {
     grades = viewController.currentCourse.course.grades;
     table = $("#generalGradesTable");
+  } else if (lesson == "generalAllowed") {
+    grades = viewController.currentCourse.course.grades.filter((grade) => allowedSubjects.includes(grade.class.description.capitalize()));
+    table = $("#generalGradesTable");
+  } else if (lesson == "generalPTA") {
+    grades = viewController.currentCourse.course.grades.filter((grade) => grade.type.isPTA == true)
+    table = $("#generalGradesTable");
   } else {
     lesson = lessonController.getLesson(lesson).lesson;
     table = $("#cijfersTable");
@@ -1571,7 +1627,7 @@ function setTableData(lesson) {
   // $('#dataTable').DataTable();
 }
 
-function setAverages() {
+function setAverages(Special) {
   var totcompleted = 0,
     totcomclass = 0,
     totgem = 0,
@@ -1579,7 +1635,9 @@ function setAverages() {
   $("#general-progress").empty();
   $("#averagesTable").empty();
   lessonController.lessons.forEach((lesson) => {
-    var average = lesson.lesson.getAverage();
+    if (Special == "generalPTA" && lesson.lesson.grades.filter((grade) => grade.type.isPTA == true).length == 0) {return;}
+    if (Special == "generalAllowed" && !allowedSubjects.includes(lesson.name)) {return;}
+    var average = Special == "generalPTA" ? lesson.lesson.getAveragePTA() : lesson.lesson.getAverage();
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
       $("#averagesTable").append(
         `<tr onclick="viewController.render('${lesson.name}')">

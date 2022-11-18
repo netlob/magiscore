@@ -59,12 +59,15 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link vibrate" onclick="viewController.render('general')">
-          <!-- <i class="fas fa-fw fa-graduation-cap"></i> -->
-          <span>Gemiddeld</span></a>
-      </li>
-
+      <div id="ScreensNav">
+        <li class="nav-item active">
+          <a class="nav-link vibrate" onclick="viewController.render('general')">
+            <!-- <i class="fas fa-fw fa-graduation-cap"></i> -->
+            <span>Gemiddeld</span>
+          </a>
+        </li>
+      </div>
+      
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -294,6 +297,12 @@
                   <div class="text-center mt-3 mb-3">Geen schooljaren beschikbaar...</div>
                 </div>
               </div>
+            </li>
+
+            <li id="gradefilterbutton" class="nav-item dropdown no-arrow no-primary-hover show">
+              <a data-toggle="modal" data-target="#vakkenModal" class="nav-link background-primary vibrate ">
+                <i class="fas fa-filter fa-fw d-block mobile-clock"></i>
+              </a>
             </li>
 
             <li class="nav-item dropdown no-arrow no-primary-hover grades-dropdown" id="messagesDrop">
@@ -726,7 +735,7 @@
                 </div>
                 <div class="card-body pt-0" id="general-averages">
                   <div class="chart-bar chart-container barChart-container-general">
-                    <canvas id="generalBarChart"></canvas>
+                    <canvas style="pointer-events: none;" id="generalBarChart"></canvas>
                   </div>
                   <div class="table-responsive">
                     <table class="table" width="100%" cellspacing="0">
@@ -935,8 +944,47 @@
       </div>
     </div>
   </div>
-
-  <!-- <div id="settings-wrapper">
+  
+  <div class="modal fade" id="vakkenModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Selecteer je vakken</h5>
+          <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 0rem 1rem;">
+          <div class="table-responsive">
+            <table class="table" width="100%" cellspacing="0">
+              <!--data-snap-ignore="true"-->
+              <thead class="text-primary">
+                <tr>
+                  <th style="display: none;">Vaknaam</th>
+                </tr>
+              </thead>
+              <tbody id="vakkenModalTable">
+                <tr>
+                  <td>
+                    <div class="md-checkbox vibrate m-1" style="font-size:1rem">
+                      <input id="grade-modal-count" type="checkbox">
+                      <label for="grade-modal-count">VakNaam</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary vibrate" data-dismiss="modal">Sluiten</button>
+              <button type="button" onClick="allowedSubjects = Array.from(document.getElementById('vakkenModalTable').children).map((ch) => { if (ch.children[0].children[0].children[0].checked) return ch.children[0].children[0].children[1].innerText}).filter((ent) => typeof ent != 'undefined'); viewController.render('generalAllowed');" data-dismiss="modal" class="btn btn-primary vibrate">Bereken</button>
+            </div>
+            </div>
+            </div>
+            </div>
+            
+            <!-- <div id="settings-wrapper">
     <div class="settings-close bg-white vibrate" onclick="viewController.closeSettings()">
       <i class="fa fa-times"></i>
     </div>
