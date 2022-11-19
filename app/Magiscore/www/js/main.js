@@ -6,6 +6,7 @@ var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
 var courseController = new CourseController(viewController);
 var allowedSubjects = []; //Voor het persoonlijke gemiddelde
+var idletime;
 
 var sorted = {},
   person = JSON.parse(getObject("person", getActiveAccount())),
@@ -156,10 +157,16 @@ function logOut() {
 async function confirmLogout(b) {
   if (b == 1) {
     if (localStorage.length > 1) {
-      clearObject(getActiveAccount());
+      var active = getActiveAccount(); 
+      clearObject(active);
       var allfiles = await listFiles()
-      var file = (await allfiles.filter((file) => file.name == `${getActiveAccount()}.json`))[0];
-      await viewController.switchuser(Object.keys(localStorage)[0]);
+      var file = (await allfiles.filter((file) => file.name == `${active}.json`))[0];
+      var newaccountfile = (await allfiles.filter((file) => file.name == `${Object.keys(localStorage)[0]}.json`))[0];
+      localStorage.setItem(Object.keys(localStorage)[0], await readFile(newaccountfile));
+      changeActiveAccount(Object.keys(localStorage)[0]);
+      reloaddata();
+      courseController.getLatestGrades();
+      viewController.overlay("hide");
       viewController.closeSettings()
       await RemoveFile(file);
       //window.location = "./index.html";
@@ -198,6 +205,7 @@ async function syncGrades() {
         refreshToken()
           .then((refreshTokens) => {
             tokens = refreshTokens;
+            setObject("tokens", JSON.stringify(tokens), getActiveAccount());
             m = new Magister(school, tokens.access_token);
             m.getInfo()
               .then((p) => {
@@ -394,6 +402,13 @@ async function syncGrades() {
                 });
                 _.sortBy(courseController.allGrades, "dateFilledIn");
                 coursesStorage[i] = currentCourse;
+
+                coursesStorage.forEach(jaar => jaar.grades.forEach(grade => { 
+                  ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
+                  ['id', 'number'].forEach(rem => delete grade.class[rem]);
+                  ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
+                }))
+                
                 setObject("courses", JSON.stringify(coursesStorage), getActiveAccount());
                 logConsole("[INFO]   Saved new grades in courses");
                 // courseController.save()
@@ -557,7 +572,11 @@ function MoveToNewStorage() {
     }
     if (key == "courses") {
       courses = JSON.parse(localStorage[key]);
-      courses.forEach(jaar => jaar.grades.forEach(grade => { delete grade._magister.token; ['_fillUrl'].forEach(rem => delete grade[rem])}))
+      courses.forEach(jaar => jaar.grades.forEach(grade => { 
+        ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
+        ['id', 'number'].forEach(rem => delete grade.class[rem]);
+        ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
+      }))
       localStorage[key] = JSON.stringify(courses);
     }
     newaccountStorage[key] = localStorage[key];
@@ -587,7 +606,7 @@ function onDeviceReady() {
         .then((refreshTokens) => {
           tokens = refreshTokens;
           m = new Magister(school, tokens.access_token);
-
+          setObject("tokens", JSON.stringify(tokens), getActiveAccount());
           m.getInfo()
             .then((p) => {
               person = JSON.parse(getObject("person", getActiveAccount()));
@@ -774,7 +793,22 @@ function sluitMelding(id) {
 //   // viewController.toast("Je bent weer online!", false, false)
 // }
 
+function onResume() {
+  if (idletime != null && Math.abs(new Date() - new Date(idletime)) > (30 * 60000)) {
+    refreshToken().then((refreshTokens) => {
+      tokens = refreshTokens;
+      setObject("tokens", JSON.stringify(tokens), getActiveAccount());})
+  }
+  idletime = null;
+}
+
+function onPause() {
+ idletime = new Date();
+}
+
 document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("pause", onPause, false);
+document.addEventListener("resume", onResume, false);
 // document.addEventListener("offline", onOffline, false);
 // document.addEventListener("online", onDeviceReady, false);
 // document.addEventListener("online", onDeviceReady, false);

@@ -86,7 +86,7 @@ function CreateNewFile (id) {
         document.addEventListener("deviceready", function() { 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
             
-            fs.root.getFile(`${id}.json`, { create: true, exclusive: false }, function (fe) {resolve(fe)}, fail)
+            if (typeof id != 'undefined') fs.root.getFile(`${id}.json`, { create: true, exclusive: false }, function (fe) {resolve(fe)}, fail)
 
         }, fail)
 

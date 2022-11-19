@@ -307,6 +307,7 @@ async function validateLogin(code, codeVerifier) {
       }
       window.plugins.insomnia.keepAwake();
       $("#login").hide();
+      $('#terugknop').hide();
       $("#loader").show();
       logConsole(`Succesvol oauth tokens binnengehaald!`);
       addLoader(3);
@@ -545,7 +546,11 @@ async function verderGaanLogin() {
   // all_courses[4].grades = []
 
   //filter courses for unused big stuff
-  all_courses.forEach(jaar => jaar.grades.forEach(grade => { delete grade._magister.token; ['_fillUrl'].forEach(rem => delete grade[rem])}))
+  all_courses.forEach(jaar => jaar.grades.forEach(grade => { 
+    ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
+    ['id', 'number'].forEach(rem => delete grade.class[rem]);
+    ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
+  }))
   
   setObject("loginSuccess", "true", newaccountindex);
   if (localStorage.length == 1) {
@@ -559,6 +564,10 @@ async function verderGaanLogin() {
   await WriteFile(JSON.stringify(newaccount), file);
 
   window.location.replace("./index.html");
+}
+
+if (history.length != 0 && localStorage.length != 0) {
+  $('#terugknop').show();
 }
 
 function handleOpenURL(url) {
