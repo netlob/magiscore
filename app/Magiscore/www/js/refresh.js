@@ -56,6 +56,7 @@ function refreshToken() {
         id_token: response.id_token
       };
       setObject("tokens", JSON.stringify(tokens), getActiveAccount());
+      if (typeof m != 'undefined' && m != null) m.token = tokens.access_token;
       resolve(tokens);
     });
   });
