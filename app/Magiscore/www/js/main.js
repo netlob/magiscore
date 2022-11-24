@@ -749,7 +749,7 @@ async function showMeldingen() {
   const meldingen = await fetch(
     "https://magiscore-android.firebaseio.com/api/announcements.json"
   ).then((res) => res.json());
-  meldingen.forEach((melding) => showMelding(melding));
+  if (meldingen != null) meldingen.forEach((melding) => showMelding(melding));
 }
 
 async function showMelding({ title, body, id }) {

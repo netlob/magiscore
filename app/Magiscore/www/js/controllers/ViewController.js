@@ -206,7 +206,6 @@ class ViewController {
       //Refresh
       changeActiveAccount(userkey);
       reloaddata();
-      courseController.getLatestGrades();
       viewController.overlay("hide");
       resolve();
     } catch (e) {
