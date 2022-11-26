@@ -1,5 +1,5 @@
-# Magiscore
-Magiscore is an all new way to view your grades. With useful tools like graphs and automatic calculations, you get insides to your grades like never before. 
+# Gemairo (Formerly Magiscore)
+Gemairo is an all new way to view your grades. With useful tools like graphs and automatic calculations, you get insides to your grades like never before. 
 Available in the App Store and Play Store.
 [![AppStore][appstore-image]][appstore-url]
 [![PlayStore][playstore-image]][playstore-url]
