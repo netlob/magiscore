@@ -1542,10 +1542,7 @@ function toShortFormat(d) {
     "Nov",
     "Dec",
   ];
-  var day = d.getDate();
-  var month_index = d.getMonth();
-  var year = d.getFullYear();
-  return "" + day + " " + month_names[month_index] + " " + year;
+  return `${d.getHours()}:${("0" + d.getMinutes()).slice(-2)}, ${d.getDate()} ${month_names[d.getMonth()]} ${d.getFullYear()}`; //7:05, 21 Jul 2020'
 }
 
 function setTableData(lesson) {
