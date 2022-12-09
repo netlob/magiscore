@@ -337,7 +337,11 @@ async function syncGrades() {
               var i = _.findIndex(currentCourse.grades, {
                 id: grade.id,
               });
-              currentCourse.grades[i] = grade;
+              if (viewController.config.refreshOldGrades) {
+                courseController.current().course.grades.push(grade);
+              } else {
+                currentCourse.grades[i] = grade
+              }
               i = _.findIndex(newGrades, {
                 id: grade.id,
               });
@@ -401,8 +405,7 @@ async function syncGrades() {
                   });
                 });
                 _.sortBy(courseController.allGrades, "dateFilledIn");
-                coursesStorage[i] = currentCourse;
-
+                coursesStorage[i] = courseController.current().course;
                 coursesStorage.forEach(jaar => jaar.grades.forEach(grade => { 
                   ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
                   ['id', 'number'].forEach(rem => delete grade.class[rem]);
@@ -782,6 +785,14 @@ function sluitMelding(id) {
   setObject(id, true, getActiveAccount());
   $(`#${id}`).hide();
 }
+
+$(window).on('hashchange', function() {
+  if (window.location.hash == "#settings") {
+    viewController.openSettings();
+  } else {
+    viewController.closeSettings();
+  }
+});
 
 // function onOffline() {
 //   main()

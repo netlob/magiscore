@@ -150,7 +150,7 @@ class ViewController {
     $("#grade-modal-counts").text(grade.counts ? "Ja" : "Nee");
     $("#grade-modal-ispta").text(grade.type.isPTA ? "Ja" : "Nee");
     $("#grade-modal-teacher").text(grade.teacher.teacherCode);
-    $("#grade-modal-date").text(toShortFormat(grade.dateFilledIn));
+    $("#grade-modal-date").text(`${new Date(grade.dateFilledIn).getHours()}:${("0" + new Date(grade.dateFilledIn).getMinutes()).slice(-2)}, ${toShortFormat(grade.dateFilledIn)}`);
 
     $("#grade-modal-count").attr(
       "onchange",
@@ -487,7 +487,7 @@ class ViewController {
         "Als je deze functie aanzet zullen alle wegingen en beschrijvingen van oude cijfers ververst worden. Deze functie staat standaard uit omdat dit bijna nooit meer achteraf veranderd.\nHierdoor wordt de tijd voor een refresh een stuk korter en wordt er minder (mobiele) data verbruikt.\n\nJe kan deze functie tijdelijk aanzetten om alles te updaten nadat een docent een cijfer een andere weging heeft gegeven.\nLet op: de refreshtijd zal aanzienlijk langer worden!",
         confirmRefreshOldGrades,
         "Weet je het zeker?",
-        ["Ja", "Nee"]
+        ["Ja", "Nee", "Eenmalig"]
       );
     } else {
       this.updateConfig({
@@ -627,6 +627,7 @@ class ViewController {
   }
 
   closeSettings() {
+    window.location.hash = '';
     $("#buttonSidenavToggle").show();
     $("#buttonSidenavBack").hide();
     $("#topbar").show();
@@ -654,7 +655,7 @@ class ViewController {
   }
 }
 
-function confirmRefreshOldGrades(button) {
+async function confirmRefreshOldGrades(button) {
   if (button == 1) {
     $("#refreshAll-checkbox").prop("checked", true);
     viewController.updateConfig({
@@ -666,6 +667,11 @@ function confirmRefreshOldGrades(button) {
     viewController.updateConfig({
       refreshOldGrades: false,
     });
+  } else if (button == 3) {
+    viewController.closeSettings();
+    viewController.config.refreshOldGrades = true;
+    await syncGrades();
+    viewController.config.refreshOldGrades = false;
   }
 }
 
@@ -1542,7 +1548,7 @@ function toShortFormat(d) {
     "Nov",
     "Dec",
   ];
-  return `${d.getHours()}:${("0" + d.getMinutes()).slice(-2)}, ${d.getDate()} ${month_names[d.getMonth()]} ${d.getFullYear()}`; //7:05, 21 Jul 2020'
+  return `${d.getDate()} ${month_names[d.getMonth()]} ${d.getFullYear()}`; //7:05, 21 Jul 2020'
 }
 
 function setTableData(lesson) {
