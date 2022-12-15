@@ -112,58 +112,17 @@ class Lesson {
           ) {
             // console.dir(_grade)
             processed++;
-            if (!_grade.exclude) {
+            if (!_grade.exclude && !filtereddisabled.includes(_grade)) {
               for (let i = 0; i < _grade.weight; i++) {
                 grades.push(Number(round(_grade.grade)));
               }
-              if (processed == all.length) {
+              if (processed >= all.filter((grade) => !grade.exclude && !filtereddisabled.includes(grade)).length) {
                 var averageTotal = 0;
                 for (let i = 0; i < grades.length; i++) {
                   averageTotal += grades[i];
                 }
-                average = averageTotal / grades.filter(grade => !grade.exclude).length;
+                average = averageTotal / grades.filter(grade => !grade.exclude && !filtereddisabled.includes(grade)).length;
               }
-            }
-          }
-        });
-        if (rounded) {
-          return round(average);
-        } else {
-          return average;
-        }
-      } else {
-        return "-";
-      }
-    }
-  }
-
-  getAveragePTA(rounded, ignore) {
-    if (this.grades) {
-      if (this.grades.length > 0) {
-        var average = 0;
-        var all = this.grades;
-        var grades = [];
-        var processed = 0;
-        if (ignore > 0) all = all.slice(0, ignore);
-        all.forEach(_grade => {
-          // console.log(_grade.type.isPTA)
-          if (
-            Number(round(_grade.grade)) > 0 &&
-            Number(round(_grade.grade)) < 10.1
-          ) {
-            // console.dir(_grade)
-            processed++;
-            if (!_grade.exclude && _grade.type.isPTA) {
-              for (let i = 0; i < _grade.weight; i++) {
-                grades.push(Number(round(_grade.grade)));
-              }
-            }
-            if (processed == all.length) {
-              var averageTotal = 0;
-              for (let i = 0; i < grades.length; i++) {
-                averageTotal += grades[i];
-              }
-              average = averageTotal / grades.filter(grade => !grade.exclude).length;
             }
           }
         });
@@ -185,7 +144,7 @@ class Lesson {
     // alert(this.grades)
     this.grades.forEach(grade => {
       // if (grade == undefined) alert(grade)
-      if (!grade.exclude) {
+      if (!grade.exclude && !filtereddisabled.includes(grade)) {
         // logConsole("Date grade: " + grade.dateFilledIn)
         // logConsole("Date input: " + date)
         // logConsole("Has been: " + (Number(date.getTime()) <= Number(date.getTime())).toString())
@@ -200,7 +159,7 @@ class Lesson {
       // console.log(_grade.type.isPTA)
       if (Number(round(grade.grade)) > 0 && Number(round(grade.grade)) < 10.1) {
         // console.dir(_grade)
-        if (!grade.exclude) {
+        if (!grade.exclude && !filtereddisabled.includes(grade)) {
           total += Number(round(grade.grade)) * parseFloat(grade.weight);
           overallWeight += parseFloat(grade.weight);
         }
@@ -334,7 +293,7 @@ class Lesson {
     }
     this.grades.forEach(_grade => {
       processed++;
-      if (!_grade.exclude) {
+      if (!_grade.exclude && !filtereddisabled.includes(_grade)) {
         for (let i = 0; i < _grade.weight; i++) {
           grades.push(parseFloat(_grade.grade.replace(",", ".")));
         }
@@ -344,7 +303,7 @@ class Lesson {
             const grade = grades[i];
             average += grade;
           }
-          newGrade = average / grades.filter(grade => !grade.exclude).length;
+          newGrade = average / grades.filter(grade => !grade.exclude && !filtereddisabled.includes(grade)).length;
         }
       }
     });

@@ -14,23 +14,8 @@ class ViewController {
   }
 
   render(lesson) {
-    $('#gradefilterbutton').hide();
-    if (lesson != "generalAllowed") {allowedSubjects = []}
     if (lesson == "general") {
       this.renderGeneral(false);
-      $('#gradefilterbutton').show();
-    } else if (lesson == "generalPTA") {
-      this.renderGeneral("generalPTA");
-    } else if (lesson == "generalAllowed") {
-      $('#gradefilterbutton').show();
-      if (allowedSubjects.length == lessonController.lessons || allowedSubjects.length == 0) {
-        this.renderGeneral(false);
-      } else if (allowedSubjects.length == 1) {
-        lesson = allowedSubjects[0]
-        this.renderLesson(lesson);
-      } else {
-        this.renderGeneral("generalAllowed");
-      }
     } else {
       this.renderLesson(lesson);
     }
@@ -39,23 +24,23 @@ class ViewController {
       $(this).removeClass("active");
       if (
         $(this).text().trim() == lesson.trim() ||
-        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld" || lesson.trim() == "generalPTA" && $(this).text().trim() == "Gemiddeld (PTA)"
-        || lesson.trim() == "generalAllowed" && $(this).text().trim() == "Gemiddeld")
+        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld" && !courseController.allGrades.filter((grade) => !grade.type.isPTA).every((grade) => filtereddisabled.includes(grade))) || 
+        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld (PTA)" && courseController.allGrades.filter((grade) => !grade.type.isPTA).every((grade) => filtereddisabled.includes(grade)))
       )
         $(this).addClass("active");
     });
   }
 
-  renderGeneral(Special) {
+  renderGeneral() {
     $("#lesson-wrapper").empty();
     $("#settings-wrapper").hide();
     $("#currentRender").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
     $("#currentRenderMobile").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
     $("#currentRender").html(
-      `<span onclick="snapper.toggle('left')">${Special == "generalPTA" ? "Gemiddeld (PTA)" : "Gemiddeld"}</span>`
+      `<span onclick="snapper.toggle('left')">Gemiddeld</span>`
     );
     $("#currentRenderMobile").html(
-      `<span onclick="snapper.toggle('left')">${Special == "generalPTA" ? "Gemiddeld (PTA)" : "Gemiddeld"}</span>`
+      `<span onclick="snapper.toggle('left')">Gemiddeld</span>`
     );
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
@@ -74,10 +59,10 @@ class ViewController {
     // $("#general-area-title").text(
     //   `Alle cijfers van ${course.type.description}`
     // );
-    setChartData(this.config, Special == false ? "general" : Special, true);
-    setTableData(Special == false ? "general" : Special);
-    setAverages(Special);
-    this.currentLesson = Special == false ? "general" : Special;
+    setChartData(this.config, "general", true);
+    setTableData("general");
+    setAverages();
+    this.currentLesson = "general";
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip();
     $("#general-wrapper").show();
@@ -151,14 +136,14 @@ class ViewController {
     $("#grade-modal-ispta").text(grade.type.isPTA ? "Ja" : "Nee");
     $("#grade-modal-teacher").text(grade.teacher.teacherCode);
     $("#grade-modal-date").text(`${new Date(grade.dateFilledIn).getHours()}:${("0" + new Date(grade.dateFilledIn).getMinutes()).slice(-2)}, ${toShortFormat(grade.dateFilledIn)}`);
-
+    (Object(grade).hasOwnProperty('CijferPeriode')) ? $("#grade-modal-period").text(grade.CijferPeriode.name).parent().show() : $("#grade-modal-period").parent().hide();
     $("#grade-modal-count").attr(
       "onchange",
       `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${
         grade.id
       }', this)`
     );
-    $("#grade-modal-count").prop("checked", !grade.exclude);
+    $("#grade-modal-count").prop("checked", !grade.exclude || !filtereddisabled.includes(grade));
 
     //                 <td>${grade.teacher.teacherCode}</td>
     //                 <td>${toShortFormat(grade.dateFilledIn)}</td>
@@ -171,6 +156,32 @@ class ViewController {
   }
 
   updateNav() {
+    $("#periodeModalTable").empty();
+    _.sortBy(lessonController.lessons, ["name"]);
+    var gevondenperiodes = Array.from(new Set(courseController.courses[courseController.courses.findIndex((course) => course == viewController.currentCourse)].course.grades
+      .filter((grade) => grade.type._type == 1 && grade.CijferPeriode)
+      .map((grade) => grade.CijferPeriode)
+      .map(({ name }) => name)));
+      gevondenperiodes.forEach(cijferPeriode => {
+      $("#periodeModalTable").append(`
+      <label class="buttoncheckbox btn btn-primary">
+        <input checked id="${cijferPeriode}_SelectP" type="checkbox" autocomplete="off">${cijferPeriode}
+      </label>
+      `)
+    });
+    if (gevondenperiodes.length == 0) {
+      $("#periodeModalTable").append(`<div id="noperiodsfound" class="text-center mt-3 mb-3">Probeer de cijfers te herladen, om periodes te vinden.</div>`)
+    }
+    $("#vakkenModalTable").empty();
+    lessonController.lessons.forEach((lesson) => {
+      //Render table
+      $("#vakkenModalTable").append(`  
+      <label class="buttoncheckbox btn btn-primary">
+        <input checked id="${lesson.name.replaceAll(" ", "")}_SelectP" type="checkbox" autocomplete="off">${lesson.name}
+      </label>
+      `)
+    }
+    );
     updateSidebar();
     this.setCourses();
     // this.setLatestGrades(courseController.latestGrades);
@@ -631,11 +642,31 @@ class ViewController {
     $("#buttonSidenavToggle").show();
     $("#buttonSidenavBack").hide();
     $("#topbar").show();
+    $('#search-wrapper').hide()
     this.render("general");
     this.settingsOpen = false;
     vibrate(15, false);
     clearInterval(this.iddinkInterval);
     // this.render(this.currentLesson.name)
+  }
+
+  openZoeken() {
+    $("#buttonSidenavToggle").hide();
+    $("#buttonSidenavBack").show();
+    $("#general-wrapper").hide();
+    $("#topbar").hide();
+    $("#lesson-wrapper").hide();
+    $('#search-wrapper').show()
+    $("#currentRender").html(
+      '<span onclick="viewController.closeSettings()">Zoeken</span>'
+    );
+    $("#currentRenderMobile").html(
+      '<span onclick="viewController.closeSettings()">Zoeken</span>'
+    );
+  }
+
+  closeZoeken() {
+    this.closeSettings();
   }
 
   currentAllGrades() {
@@ -736,39 +767,25 @@ function updateSidebar() {
       </a>
     </li>
     <li class="nav-item">
-    <a class="nav-link vibrate" onclick="viewController.render('generalPTA')">
+    <a class="nav-link vibrate" onclick="var oldfilter = [];filtereddisabled.forEach((grade) => oldfilter.push(grade));courseController.allGrades.filter((grade) => !grade.type.isPTA).forEach((grade) => filtereddisabled.push(grade));viewController.render(viewController.currentLesson);filtereddisabled = oldfilter;">
       <span>Gemiddeld (PTA)</span>
     </a>
   </li>
       `)
     }
     $("#subjectsNav").empty();
-    $("#vakkenModalTable").empty();
-    _.sortBy(lessonController.lessons, ["name"]);
     lessonController.lessons.forEach((lesson) => {
+      var isEnabled = (document.getElementById('vakkenModalTable').children.length == lessonController.lessons.length) ? !lessonController.lessons.filter((lesson) => lesson.lesson.grades.every(r=> filtereddisabled.includes(r))).map((lesson) => lesson.name).includes(lesson.name.capitalize()) : true
       $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
-            <a class="nav-link" onclick="viewController.render('${
+            <a class="nav-link" ${isEnabled ? '' : 'style="display: flex;flex-wrap: nowrap;justify-content: space-between;align-items: center;opacity: .5;pointer-events: none;"'} onclick="viewController.render('${
               lesson.name
             }')">
                 <span>${lesson.name.capitalize()}</span>
+                ${isEnabled ? '' : '<i class="fas fa-filter fa-fw ml-2"></i>'}
             </a>
         </li>
-    `)
-      //Render table
-      $("#vakkenModalTable").append(`
-      <tr>
-       <td>
-         <div class="md-checkbox vibrate m-1" style="font-size:1rem">
-            <input id="${lesson.name.replaceAll(" ", "") + "_Select"}" ${allowedSubjects.includes(lesson.name) ? "checked" : ""} type="checkbox">
-            <label style="display: inline-block;margin: 0;width: calc(100% - 20px);" for="${lesson.name.replaceAll(" ", "") + "_Select"}">${lesson.name}</label>
-          </div>
-        </td>
-      </tr>
-      `)
-    }
-    );
-
+    `)})
   } else {
     $("#subjectsNav").html(`
       <li class="text-center mt-4">
@@ -841,14 +858,11 @@ function setChartData(config, lesson, everything) {
   var afgerond = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   var vol = 0;
   var onvol = 0;
-  var parentLesson = lesson;
-  if (lesson == "general" || lesson == "generalAllowed" || lesson == "generalPTA") {
+  if (lesson == "general") {
     lessonController.lessons.forEach((lesson) => {
-      if (parentLesson == "generalAllowed" && !allowedSubjects.includes(lesson.name)) {return;}
       if (lesson.lesson.grades.length > 0) {
         lesson.lesson.grades.forEach((grade) => {
-          if (parentLesson == "generalPTA" && !grade.type.isPTA) {return;}
-          if (!grade.exclude) {
+          if (!grade.exclude && !filtereddisabled.includes(grade)) {
             var gradegrade = grade.grade.replace(",", ".");
             data.push({
               t: new Date(grade.dateFilledIn),
@@ -868,7 +882,7 @@ function setChartData(config, lesson, everything) {
     });
   } else {
     lessonController.getLesson(lesson).lesson.grades.forEach((grade) => {
-      if (!grade.exclude) {
+      if (!grade.exclude && !filtereddisabled.includes(grade)) {
         var gradegrade = grade.grade.replace(",", ".");
         data.push({
           t: new Date(grade.dateFilledIn),
@@ -1142,7 +1156,7 @@ function setChartData(config, lesson, everything) {
   }
 
   // if (viewController.lineChart2 != false) viewController.lineChart2.update();
-  if (lesson != "general" && lesson != "generalPTA" && lesson != "generalAllowed") {
+  if (lesson != "general") {
     var ctx = document.getElementById("lineChart2").getContext("2d");
     var data = [
       {
@@ -1320,15 +1334,14 @@ function setChartData(config, lesson, everything) {
     let bcolors = [];
 
     lessonController.lessons.forEach((lesson) => {
-      if (parentLesson == "generalAllowed" && !allowedSubjects.includes(lesson.name)) {return;}
       let grademap = lesson.lesson.grades.map((grade) => {
-        if (!grade.exclude) {
+        if (!grade.exclude && !filtereddisabled.includes(grade)) {
           var gradegrade = grade.grade.replace(",", ".");
           gradegrade = parseFloat(gradegrade.replace(",", "."));
           return [isNaN(gradegrade), grade];
         }
       }).filter((grade) => typeof grade != 'undefined');
-      grademap = (parentLesson == "generalPTA") ? grademap.filter((a) => a[1].type.isPTA == true && a[0] == false) : grademap.filter((a) => a[0] == false);
+      grademap = grademap.filter((a) => a[0] == false);
       if (lesson.lesson.grades.length > 0 && grademap.length > 0) {
         const abb = grademap[0][1].class.abbreviation;
         var avg = lesson.lesson.getAverage(true);
@@ -1556,18 +1569,12 @@ function setTableData(lesson) {
   if (lesson == "general") {
     grades = viewController.currentCourse.course.grades;
     table = $("#generalGradesTable");
-  } else if (lesson == "generalAllowed") {
-    grades = viewController.currentCourse.course.grades.filter((grade) => allowedSubjects.includes(grade.class.description.capitalize()));
-    table = $("#generalGradesTable");
-  } else if (lesson == "generalPTA") {
-    grades = viewController.currentCourse.course.grades.filter((grade) => grade.type.isPTA == true)
-    table = $("#generalGradesTable");
   } else {
     lesson = lessonController.getLesson(lesson).lesson;
     table = $("#cijfersTable");
     grades = lesson.grades;
   }
-  _.sortBy(grades, ["dateFilledIn", "description", "weight"]);
+  grades = _.sortBy(grades, ["dateFilledIn", "description", "weight"]);
   table.empty();
   if (grades.length == 0) {
     table
@@ -1585,13 +1592,14 @@ function setTableData(lesson) {
     if (
       grade.type._type == 1 &&
       round(grade.grade) > 0 &&
-      round(grade.grade) < 11
+      round(grade.grade) < 11 && 
+      !filtereddisabled.includes(grade)
     ) {
       var d = new Date(grade.dateFilledIn);
       table.append(`
         <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
           grade.id
-        })" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
+        })" ${(grade.exclude) ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
               <h4 class="text-center mt-2">${
@@ -1629,7 +1637,7 @@ function setTableData(lesson) {
   // $('#dataTable').DataTable();
 }
 
-function setAverages(Special) {
+function setAverages() {
   var totcompleted = 0,
     totcomclass = 0,
     totgem = 0,
@@ -1637,9 +1645,8 @@ function setAverages(Special) {
   $("#general-progress").empty();
   $("#averagesTable").empty();
   lessonController.lessons.forEach((lesson) => {
-    if (Special == "generalPTA" && lesson.lesson.grades.filter((grade) => grade.type.isPTA == true).length == 0) {return;}
-    if (Special == "generalAllowed" && !allowedSubjects.includes(lesson.name)) {return;}
-    var average = Special == "generalPTA" ? lesson.lesson.getAveragePTA() : lesson.lesson.getAverage();
+    if (lessonController.lessons.filter((lesson) => lesson.lesson.grades.every(r=> filtereddisabled.includes(r))).map((lesson) => lesson.name).includes(lesson.name.capitalize())) {return;}
+    var average = lesson.lesson.getAverage();
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
       $("#averagesTable").append(
         `<tr onclick="viewController.render('${lesson.name}')">

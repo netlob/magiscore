@@ -544,7 +544,7 @@ async function verderGaanLogin() {
   // alert("Done :)")
   window.plugins.insomnia.allowSleepAgain();
   // all_courses[4].grades = []
-
+  
   //filter courses for unused big stuff
   all_courses.forEach(jaar => jaar.grades.forEach(grade => { 
     ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);

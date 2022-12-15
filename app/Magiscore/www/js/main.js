@@ -5,7 +5,7 @@ if (localStorage.getItem('courses')) { MoveToNewStorage(); }
 var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
 var courseController = new CourseController(viewController);
-var allowedSubjects = []; //Voor het persoonlijke gemiddelde
+var filtereddisabled = [];
 var idletime;
 
 var sorted = {},
@@ -92,7 +92,8 @@ function main(l) {
   lessonController.clear();
   lessonController.allGrades = [];
   lessonController.lessons = [];
-  allowedSubjects = []
+  filtereddisabled = [];
+  document.getElementById('gradefilterbutton').children[0].children[0].classList.remove("activefilter");
   var sorted = viewController.currentCourse.course.sortGrades();
   // viewController.currentCourse.course.grades.forEach(grade => {
   //   var vak = grade.class.description.capitalize()
@@ -259,7 +260,7 @@ async function syncGrades() {
     //     logConsole("addedCourse")
     //   }
     // })
-    var currentCourse = courseController.current();
+    var currentCourse = viewController.currentCourse;
     var newGrades = [];
     // courses.forEach(currentCourse => {
     var newCourse = Course.create();
@@ -338,7 +339,7 @@ async function syncGrades() {
                 id: grade.id,
               });
               if (viewController.config.refreshOldGrades) {
-                courseController.current().course.grades.push(grade);
+                viewController.currentCourse.course.grades.push(grade);
               } else {
                 currentCourse.grades[i] = grade
               }
@@ -405,7 +406,7 @@ async function syncGrades() {
                   });
                 });
                 _.sortBy(courseController.allGrades, "dateFilledIn");
-                coursesStorage[i] = courseController.current().course;
+                coursesStorage[i] = viewController.currentCourse.course;
                 coursesStorage.forEach(jaar => jaar.grades.forEach(grade => { 
                   ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
                   ['id', 'number'].forEach(rem => delete grade.class[rem]);
@@ -564,6 +565,88 @@ function vibrate(time, strong) {
 //   logConsole("Ga error")
 //   logConsole(poep)
 // }
+
+
+// filtereddisabled = [];
+
+// courseController.allGrades.filter((grade) => !grade.type.isPTA).forEach((grade) => filtereddisabled.push(grade))
+
+
+
+function generateFilter() {
+  filtereddisabled = [];
+
+  courseController.allGrades.filter((grade) => !Array.from(document.getElementById('vakkenModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
+    .filter((ent) => typeof ent != 'undefined')
+    .includes(grade.class.description.capitalize()) && grade.type._type == 1)
+    .forEach((grade) => filtereddisabled.push(grade));
+
+  if (document.getElementById('periodeModalTable').children[0].id != 'noperiodsfound') courseController.allGrades.filter((grade) => ('CijferPeriode' in grade) && !Array.from(document.getElementById('periodeModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
+    .filter((ent) => typeof ent != 'undefined')
+    .includes(grade?.CijferPeriode?.name) && grade.type._type == 1)
+    .forEach((grade) => filtereddisabled.push(grade));
+
+  document.getElementById('gradefilterbutton').children[0].children[0].classList.add("activefilter");
+
+  viewController.render(viewController.currentLesson);
+  updateSidebar();
+}
+
+function generateSearch(Zoekopdracht) {
+  var zoektable = $("#zoekGradesTable")
+  zoektable.empty();
+  var searched = courseController.allGrades.filter((grade) => Object.entries(grade).map((grade) => {if (grade[0].includes('grade') || grade[0].includes('description')) {return grade[1] } else if (grade[0].includes('teacher')) {return grade[1].teacherCode} else if (grade[0].includes('class')) {return grade[1].description}}).filter((grade) => typeof grade != 'undefined').filter((string) => string != null && string.toString().toLowerCase()
+  .includes(Zoekopdracht.toString().toLowerCase())).length > 0);
+  searched.forEach((grade, index) => {
+    if (
+      grade.type._type == 1 &&
+      round(grade.grade) > 0 &&
+      round(grade.grade) < 11 &&
+      !filtereddisabled.includes(grade)
+    ) {
+      var d = new Date(grade.dateFilledIn);
+      zoektable.append(`
+        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
+          grade.id
+        })" ${(grade.exclude) ? 'style="opacity:0.5 !important;"' : ""}>
+          <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
+            <div class="rounded-circle">
+              <h4 class="text-center mt-2">${
+                grade.grade == "10,0"
+                  ? '<span class="text-success">10</span><span class="invisible">,</span>'
+                  : !grade.passed
+                  ? '<span class="text-danger">' + grade.grade + "</span>"
+                  : grade.grade
+              }<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${
+        grade.weight < 10
+          ? grade.weight + 'x<span class="invisible">0</span>'
+          : grade.weight + "x"
+      }</sup></h4>
+            </div>
+            <!-- <div class="status-indicator bg-success"></div> -->
+          </div>
+          <div class="ml-1" style="padding-top: -6px">
+            <span class="text-truncate font-weight-bold text-gray-800 small grade-small text-capitalize">${(lesson =
+              "general" ? grade.class.description : grade.description)}</span>
+            <span
+              class="grades-table-date small grade-small float-right text-gray-600">${d.getDate()}-${
+        d.getMonth() + 1
+      }-${d.getFullYear()}</span>
+            <div class="small grade-small text-gray-600">${
+              grade.description == ""
+                ? "<i>Geen beschrijving...</i>"
+                : grade.description
+            }</div>
+          </div>
+        </a>
+        ${index != searched.length - 1 ? '<hr class="m-0 p-0">' : ""}
+      `);
+    }
+  })
+  if (searched.length == 0) {
+    zoektable.append(`<div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>`)
+  }
+}
 
 function MoveToNewStorage() {
   var newaccountStorage = {};
@@ -789,6 +872,8 @@ function sluitMelding(id) {
 $(window).on('hashchange', function() {
   if (window.location.hash == "#settings") {
     viewController.openSettings();
+  } else if (window.location.hash == "#search") {
+    viewController.openZoeken()
   } else {
     viewController.closeSettings();
   }

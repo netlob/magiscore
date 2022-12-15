@@ -89,6 +89,12 @@ class Grade {
     this.assignmentId = toString(raw.CijferKolomIdEloOpdracht);
 
     /**
+     * @type {GradePeriod2}
+     * @readonly
+     */
+     this.CijferPeriode = new GradePeriod2(magister, raw.CijferPeriode);
+
+    /**
      * @type {Person}
      * @readonly
      */

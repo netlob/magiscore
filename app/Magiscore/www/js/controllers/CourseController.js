@@ -89,9 +89,10 @@ class CourseController {
         // grades = _.reject(grades, raw => raw.CijferId === 0)
         this.latestGrades = grades;
         var popup = false;
-        this.latestGrades.forEach(grade => {
+        //Dit betekent dat het geen popup zal tonen voor letter cijfers, maar jammer genoeg slaat 'this.allgrades' dat niet op
+        this.latestGrades.filter((grade) => isNaN(parseInt(grade.waarde))).forEach(grade => {
           if (
-            JSON.stringify(this.allGrades).indexOf(grade.kolomId) < 0 &&
+            !this.allGrades.map((grade) => parseInt(grade.type.id)).includes(grade.kolomId) &&
             popup == false
           ) {
             popup = true;

@@ -639,3 +639,36 @@ a.magister-login:before {
 .course-selected {
   background-color: #eaecf4 !important;
 }
+
+.buttoncheckbox > input{
+display: none;
+}
+
+.buttoncheckbox {
+  border: var(--primary) 2px solid;
+  padding: 5px;
+}
+
+.buttoncheckbox:has(>input:not(:checked)) {
+  background-color: var(--white)!important;
+  outline: var(--primary) 2px solid!important;
+  color: black!important;
+}
+
+#periodeModalTable {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 0px 5px;
+}
+
+#periodeModalTable > label {
+  margin: 2px;
+  padding: 7px;
+}
+
+.activefilter {
+  color: var(--primary);
+}

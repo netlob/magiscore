@@ -376,6 +376,10 @@
                   <i class="fas fa-download fa-sm fa-fw mr-2 text-gray-400"></i>
                   Herstel aankopen
                 </a>
+                <a class="dropdown-item vibrate" href="#search">
+                  <i class="fas fa-search fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Zoek cijfers
+                </a>
                 <a class="dropdown-item vibrate" href="#settings">
                   <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                   Instellingen
@@ -509,6 +513,34 @@
 
         </div>
 
+
+        <div class="container-fluid" style="display: none;" id="search-wrapper">
+
+          <div class="row">
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary" id="general-area-title">Zoeken</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="input-group mb-3" style="flex-wrap: nowrap;">
+                    <input style="width: 100%;" type="text" class="form-control" placeholder="Zoek voor getallen, namen en omschrijvingen" id="zoekBalk" aria-label="Zoeken" aria-describedby="ZoekBalk">
+                    <button onClick="generateSearch(document.getElementById('zoekBalk').value)" class="btn" style="color: black!important;">
+                      <i data-toggle="modal" data-target="#zoekModal" class="fas fa-search fa-sm fa-fw text-gray-400"></i>
+                    </button>
+                  </div>
+                  <hr class="m-0 p-0">
+                  <div class="p-0" id="zoekGradesTable">
+                    <div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        </div>
 
         <!-- Begin Page Content -->
         <div class="container-fluid" id="general-wrapper">
@@ -931,6 +963,8 @@
           </li>
           <li class="small list-group-item"><b>Is PTA</b><span class="ml-1 float-right" id="grade-modal-ispta"></span>
           </li>
+          <li class="small list-group-item"><b>Periode</b><span class="ml-1 float-right"
+            id="grade-modal-period"></span></li>
           <li class="small list-group-item"><b>Ingevuld door</b><span class="ml-1 float-right"
               id="grade-modal-teacher"></span></li>
           <li class="small list-group-item"><b>Ingevuld op</b><span class="ml-1 float-right"
@@ -947,23 +981,40 @@
   
   <div class="modal fade" id="vakkenModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="/*max-height: calc(100vh - 20px);*/">
         <div class="modal-header">
-          <h5 class="modal-title">Selecteer je vakken</h5>
+          <h5 class="modal-title">Filter cijfers</h5>
           <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body" style="padding: 0rem 1rem;">
+        <div class="modal-body" style="padding: 0rem 1rem;overflow: auto;">
           <div class="table-responsive">
+            <div class="table-responsive">
+              <table class="table" width="100%" cellspacing="0">
+                <!--data-snap-ignore="true"-->
+                <thead class="text-primary">
+                  <tr>
+                    <th style="display: block;">Periodes</th>
+                  </tr>
+                </thead>
+                <tbody id="periodeModalTable">
+
+                  </tbody>
+              </table>
+              </div>
             <table class="table" width="100%" cellspacing="0">
               <!--data-snap-ignore="true"-->
               <thead class="text-primary">
                 <tr>
-                  <th style="display: none;">Vaknaam</th>
+                  <th style="display: block;display: flex;justify-content: space-between;align-items: baseline;">Vakken
+                    <button onClick="Array.from(document.getElementById('vakkenModalTable').children).forEach((ch) => { ch.children[0].checked = !ch.children[0].checked })" class="btn btn-secondary">
+                      <i class="fas fa-random"></i>
+                    </button>
+                  </th>
                 </tr>
               </thead>
-              <tbody id="vakkenModalTable">
+              <tbody id="vakkenModalTable" style="display: flex;flex-wrap: wrap;flex-direction: column;margin: 5px;">
                 <tr>
                   <td>
                     <div class="md-checkbox vibrate m-1" style="font-size:1rem">
@@ -977,13 +1028,14 @@
             </div>
             </div>
             <div class="modal-footer">
+              <button type="button" onClick="filtereddisabled = [];document.getElementById('gradefilterbutton').children[0].children[0].classList.remove('activefilter');viewController.render(viewController.currentLesson);viewController.updateNav();" class="btn btn-secondary vibrate" data-dismiss="modal">Reset</button>
               <button type="button" class="btn btn-secondary vibrate" data-dismiss="modal">Sluiten</button>
-              <button type="button" onClick="allowedSubjects = Array.from(document.getElementById('vakkenModalTable').children).map((ch) => { if (ch.children[0].children[0].children[0].checked) return ch.children[0].children[0].children[1].innerText}).filter((ent) => typeof ent != 'undefined'); viewController.render('generalAllowed');" data-dismiss="modal" class="btn btn-primary vibrate">Bereken</button>
+              <button type="button" onClick="generateFilter();" data-dismiss="modal" class="btn btn-primary vibrate">Bereken</button>
             </div>
             </div>
             </div>
             </div>
-            
+
             <!-- <div id="settings-wrapper">
     <div class="settings-close bg-white vibrate" onclick="viewController.closeSettings()">
       <i class="fa fa-times"></i>
@@ -1141,6 +1193,7 @@ function getActiveAccount() {
   <script src="js/classes/Person.js"></script>
   <script src="js/classes/Course.js"></script>
   <script src="js/classes/GradePeriod.js"></script>
+  <script src="js/classes/GradePeriod2.js"></script>
   <script src="js/classes/Grade.js"></script>
   <script src="js/classes/Magister.js"></script>
   <script src="js/classes/Lesson.js"></script>
