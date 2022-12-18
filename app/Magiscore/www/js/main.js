@@ -200,7 +200,7 @@ function round(num) {
 
 async function syncGrades() {
   return new Promise(async (resolve, reject) => {
-    $("div:contains('Nieuwe cijfer(s) beschikbaar')").remove();
+    $("div:contains('Nieuwe cijfer(s) beschikbaar'):first-child").remove();
     if (m == null || m == undefined) {
       if (navigator.connection.type !== Connection.NONE) {
         refreshToken()
@@ -643,7 +643,7 @@ function generateSearch(Zoekopdracht) {
       `);
     }
   })
-  if (searched.length == 0) {
+  if (searched.filter((grade) => grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11 && !filtereddisabled.includes(grade)).length == 0) {
     zoektable.append(`<div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>`)
   }
 }

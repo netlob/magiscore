@@ -338,7 +338,7 @@ class ViewController {
       : $(".snackbar").length < 1
       ? 30
       : $(".snackbar").length * 65 + 30;
-    $("body").append(
+    $("#snackbarContainer").append(
       `<div id="snackbar-${snackId}" class="snackbar${
         fullWidth ? " w-90" : ""
       }">${msg}</div>`
@@ -358,6 +358,12 @@ class ViewController {
       setTimeout(function () {
         $(".snackbar").each((i, obj) => {
           if ($(obj).attr("id") != $(`#snackbar-${snackId}`).attr("id")) {
+            var snackbar = document.getElementById(`snackbar-${snackId}`)
+            snackbar.classList.add('reverseanimation')
+            snackbar.style.animation = 'none';
+            setTimeout(function() {
+              snackbar.style.animation = '';
+            }, 10);
             $(obj).animate(
               {
                 bottom: "-=" + $(`#snackbar-${snackId}`).height() * 2,
