@@ -138,10 +138,11 @@ class Grade {
   /**
    * @returns {Promise<Grade>}
    */
-  fill(logId) {
+  fill(logId, childindex = -1) {
     if (logId) logConsole(`[INFO]  Resuming grade            (${this.id})`);
     this._filling = true;
     return new Promise((resolve, reject) => {
+      var personid = (childindex >= 0 && this._magister.person.isParent) ? this._magister.person.children[childindex].Id : this._magister.person.id
       if (this._filled) {
         resolve(this);
       }
@@ -150,7 +151,7 @@ class Grade {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.courseId}/cijfers/extracijferkolominfo/${this.type.id}`,
+        url: `https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.courseId}/cijfers/extracijferkolominfo/${this.type.id}`,
         method: "GET",
         headers: {
           Authorization: "Bearer " + tokens.access_token,

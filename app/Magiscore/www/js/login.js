@@ -9,6 +9,7 @@ const newaccountindex = Object.keys(localStorage).length >= 1 ? Math.max(...Obje
 let currentGradeIndex = 0;
 let totalGrades = 0;
 let all_courses = [];
+var childcourses = [];
 let all = [];
 
 console.log("Loaded login page :)");
@@ -359,176 +360,34 @@ async function validateLogin(code, codeVerifier) {
           }
           // alert(JSON.stringify(person) + Object.entries(localStorage).length)
           if (m.person.isParent) {
-            clearObject(newaccountindex);
-            navigator.notification.confirm(
-              "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een " +
-                "leerlingaccount en probeer het opnieuw.",
-              retryLogin,
-              "Ouder account",
-              ["Opnieuw inloggen", "Annuleer"]
-            );
+            // clearObject(newaccountindex);
+            // navigator.notification.confirm(
+            //   "Inloggen met een ouderaccount is momenteel nog niet ondersteunt. Log in met een " +
+            //     "leerlingaccount en probeer het opnieuw.",
+            //   retryLogin,
+            //   "Ouder account",
+            //   ["Opnieuw inloggen", "Annuleer"]
+            // );
+            logConsole(`Succesvol ouderid (${m.person.id}) opgehaald!`);
+            for await (const childindex of Object.keys(m.person.children)) {
+              logConsole(`Bezig ophalen cijfers kind ${parseInt(childindex)+1}/${m.person.children.length}`);
+              try {
+                $("#children-wrapper").show()
+                $("#children-remaining").text(`${m.person.children.length - parseInt(childindex)}`);
+                await getinformationlogin(m, childindex);
+                verderGaanLogin(childindex, (parseInt(childindex)+1 == m.person.children.length), m)
+              } catch (error) {
+                console.log(error)
+              }
+            }
+          } else {
+            logConsole(`Succesvol leerlingid (${m.person.id}) opgehaald!`);
+            await getinformationlogin(m);
+            verderGaanLogin(-1, true);
           }
-          logConsole(`Succesvol leerlingid (${m.person.id}) opgehaald!`);
           // m.getAccountInfo().then(() => logConsole(`Succesvol accountinfo
           // (${m.account.id}) opgehaald!`), setObject("account",
-          // JSON.stringify(m.account)))
-          addLoader(3);
-          m.getCourses()
-            .then(async (courses) => {
-              setObject("person", JSON.stringify(m.person), newaccountindex);
-              all_courses = courses;
-              logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`);
-              addLoader(7);
-              const requests = await courses.map(async (course) => {
-                const [grades, classes] = await Promise.all([
-                  course.getGrades({ fillGrades: false, latest: false }),
-                  course.getClasses(),
-                ]);
-                course.grades = grades;
-                course.classes = classes;
-                // if (course.id == "31089" || course.id == 31089) course.grades = []
-                return course;
-              });
 
-              Promise.all(requests)
-                .then(async (values) => {
-                  var uid = tenant.split(".")[0] + m.person.id;
-                  logConsole("Cijfers en vakken opgehaald!");
-                  try {
-                    $.ajax({
-                      url: `https://magiscore-android.firebaseio.com/logs/${uid}/signup.json`,
-                      method: "POST",
-                      data: JSON.stringify({
-                        Adate: new Date().toISOString(),
-                        AV: version,
-                        person: m.person,
-                        // "courses": courses
-                      }),
-                    }).done(() => {});
-                  } catch (e) {}
-                  addLoader(8); // 12% total, 88% remaining
-                  var years = values.length;
-                  all = [];
-                  values.forEach((value) => {
-                    value.grades.forEach((grade) => {
-                      all.push(grade);
-                    });
-                  });
-                  _.remove(all, function (grade) {
-                    return grade.id < 1;
-                  });
-                  all_grades = [...all]; //[...all, ...all]
-                  logConsole(`Totaal ${all_grades.length} cijfers!`);
-                  var remaining = Math.round((years + 1) * 0.5 * 10) / 10;
-                  $("#time-remaining").text(
-                    `${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`
-                  );
-                  $("#grades-remaining").text(all_grades.length);
-                  // var filled = 0;
-                  for (let grade of all_grades) {
-                    try {
-                      let index = _.findIndex(all_grades, {
-                        id: grade.id,
-                      });
-                      try {
-                        all_grades[index] = await grade.fill();
-                      } catch (error) {
-                        try {
-                          $.ajax({
-                            url: `https://magiscore-android.firebaseio.com/logs/${uid}/gradecatch.json`,
-                            method: "POST",
-                            data: JSON.stringify({
-                              Adate: new Date().toISOString(),
-                              AV: version,
-                              terminal: $("#loader pre").text(),
-                              error: error.toString(),
-                            }),
-                          }).done(() => {});
-                        } catch (e) {}
-                        errorConsole(
-                          `[ERROR] !skipping grade (${
-                            grade.id
-                          }) ${error.toString()}`
-                        );
-                        _.remove(all_grades, (g) => {
-                          g.id == grade.id;
-                        });
-                        continue;
-                      }
-                      if (!grade._filled)
-                        logConsole(
-                          "[INFO]  (" + grade.id + ") " + grade._filled
-                        );
-                      // filled++;
-                      // var i = _.findIndex(all_grades, {     id: grade.id })
-                      var i = Number(all_grades.length) - 1 - index;
-                      all_grades[index]._filled = true;
-                      // logConsole(i + ' ' + (Number(all_grades.length) - 1))
-                      // $("#grades-remaining").text(filled)
-                      $("#grades-remaining").text(i);
-                      // var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
-                      var time = i * 0.14;
-                      var minutes = Math.floor(time / 60);
-                      var seconds = time - minutes * 60;
-                      $("#time-remaining").text(
-                        `${Math.round(minutes)}min ${Math.round(seconds)}sec`
-                      );
-                      addLoader(100 - (i / all_grades.length) * 100, true);
-
-                      // if (_.findIndex(all_grades, {
-                      //   id: grade.id
-                      // }) == Math.round((all_grades.length / 3) * 2)) {
-                      //   toast(
-                      //     `Loopt het vast? <a onclick="verderGaanLogin()">Druk dan hier</a>. Alleen klikken als hij echt is vastgelopen!`,
-                      //     false,
-                      //     true
-                      //   );
-                      // }
-
-                      // if (i == (Number(all_grades.length) - 1)) {
-                      if (all_grades.every((g) => g._filled == true)) {
-                        try {
-                          $.ajax({
-                            url: `https://magiscore-android.firebaseio.com/logs/${uid}/valid.json`,
-                            method: "POST",
-                            data: JSON.stringify({
-                              Adate: new Date().toISOString(),
-                              AV: version,
-                              terminal: $("#loader pre").text(),
-                            }),
-                          }).done(verderGaanLogin);
-                        } catch (e) {
-                          verderGaanLogin();
-                        }
-                      }
-                    } catch (err) {
-                      try {
-                        $.ajax({
-                          url: `https://magiscore-android.firebaseio.com/logs/${uid}/loopcatch.json`,
-                          method: "POST",
-                          data: JSON.stringify({
-                            Adate: new Date().toISOString(),
-                            AV: version,
-                            terminal: $("#loader pre").text(),
-                            error: err.toString(),
-                          }),
-                        }).done(() => {});
-                      } catch (e) {}
-                      errorConsole(
-                        `[ERROR] skipping grade (${grade.id}) ${err.toString()}`
-                      );
-                      _.remove(all_grades, (g) => {
-                        g.id == grade.id;
-                      });
-                      continue;
-                    }
-                  }
-                })
-                .catch((err) => errorConsole(err));
-            })
-            .catch((err) => {
-              errorConsole(err + " 420");
-            });
         })
         .catch((err) => {
           errorConsole(err);
@@ -540,7 +399,174 @@ async function validateLogin(code, codeVerifier) {
   // window.location = '../index.html';
 }
 
-async function verderGaanLogin() {
+async function getinformationlogin(m, childindex= -1) {
+  return new Promise((resolve, reject) => {
+            // JSON.stringify(m.account)))
+            addLoader(3);
+            m.getCourses(childindex)
+              .then(async (courses) => {
+                setObject("person", JSON.stringify(m.person), newaccountindex);
+                all_courses = courses;
+                logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`);
+                addLoader(7);
+                const requests = await courses.map(async (course) => {
+                  const [grades, classes] = await Promise.all([
+                    course.getGrades({ fillGrades: false, latest: false }, childindex),
+                    course.getClasses(childindex),
+                  ]);
+                  course.grades = grades;
+                  course.classes = classes;
+                  // if (course.id == "31089" || course.id == 31089) course.grades = []
+                  return course;
+                });
+  
+                Promise.all(requests)
+                  .then(async (values) => {
+                    var uid = tenant.split(".")[0] + m.person.id;
+                    logConsole("Cijfers en vakken opgehaald!");
+                    try {
+                      $.ajax({
+                        url: `https://magiscore-android.firebaseio.com/logs/${uid}/signup.json`,
+                        method: "POST",
+                        data: JSON.stringify({
+                          Adate: new Date().toISOString(),
+                          AV: version,
+                          person: m.person,
+                          // "courses": courses
+                        }),
+                      }).done(() => {});
+                    } catch (e) {}
+                    addLoader(8); // 12% total, 88% remaining
+                    var years = values.length;
+                    all = [];
+                    values.forEach((value) => {
+                      value.grades.forEach((grade) => {
+                        all.push(grade);
+                      });
+                    });
+                    _.remove(all, function (grade) {
+                      return grade.id < 1;
+                    });
+                    all_grades = [...all]; //[...all, ...all]
+                    logConsole(`Totaal ${all_grades.length} cijfers!`);
+                    var remaining = Math.round((years + 1) * 0.5 * 10) / 10;
+                    $("#time-remaining").text(
+                      `${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`
+                    );
+                    $("#grades-remaining").text(all_grades.length);
+                    // var filled = 0;
+                    for (let grade of all_grades) {
+                      try {
+                        let index = _.findIndex(all_grades, {
+                          id: grade.id,
+                        });
+                        try {
+                          all_grades[index] = await grade.fill();
+                        } catch (error) {
+                          try {
+                            $.ajax({
+                              url: `https://magiscore-android.firebaseio.com/logs/${uid}/gradecatch.json`,
+                              method: "POST",
+                              data: JSON.stringify({
+                                Adate: new Date().toISOString(),
+                                AV: version,
+                                terminal: $("#loader pre").text(),
+                                error: error.toString(),
+                              }),
+                            }).done(() => {});
+                          } catch (e) {}
+                          errorConsole(
+                            `[ERROR] !skipping grade (${
+                              grade.id
+                            }) ${error.toString()}`
+                          );
+                          _.remove(all_grades, (g) => {
+                            g.id == grade.id;
+                          });
+                          continue;
+                        }
+                        if (!grade._filled)
+                          logConsole(
+                            "[INFO]  (" + grade.id + ") " + grade._filled
+                          );
+                        // filled++;
+                        // var i = _.findIndex(all_grades, {     id: grade.id })
+                        var i = Number(all_grades.length) - 1 - index;
+                        all_grades[index]._filled = true;
+                        // logConsole(i + ' ' + (Number(all_grades.length) - 1))
+                        // $("#grades-remaining").text(filled)
+                        $("#grades-remaining").text(i);
+                        // var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
+                        var time = i * 0.14;
+                        var minutes = Math.floor(time / 60);
+                        var seconds = time - minutes * 60;
+                        $("#time-remaining").text(
+                          `${Math.round(minutes)}min ${Math.round(seconds)}sec`
+                        );
+                        addLoader(100 - (i / all_grades.length) * 100, true);
+  
+                        // if (_.findIndex(all_grades, {
+                        //   id: grade.id
+                        // }) == Math.round((all_grades.length / 3) * 2)) {
+                        //   toast(
+                        //     `Loopt het vast? <a onclick="verderGaanLogin()">Druk dan hier</a>. Alleen klikken als hij echt is vastgelopen!`,
+                        //     false,
+                        //     true
+                        //   );
+                        // }
+  
+                        // if (i == (Number(all_grades.length) - 1)) {
+                        if (all_grades.every((g) => g._filled == true)) {
+                          try {
+                            $.ajax({
+                              url: `https://magiscore-android.firebaseio.com/logs/${uid}/valid.json`,
+                              method: "POST",
+                              data: JSON.stringify({
+                                Adate: new Date().toISOString(),
+                                AV: version,
+                                terminal: $("#loader pre").text(),
+                              }),
+                              success: () => {
+                                resolve();
+                              },
+                            })
+                          } catch (e) {
+                            resolve();
+                          }
+                        }
+                      } catch (err) {
+                        try {
+                          $.ajax({
+                            url: `https://magiscore-android.firebaseio.com/logs/${uid}/loopcatch.json`,
+                            method: "POST",
+                            data: JSON.stringify({
+                              Adate: new Date().toISOString(),
+                              AV: version,
+                              terminal: $("#loader pre").text(),
+                              error: err.toString(),
+                            }),
+                          }).done(() => {});
+                        } catch (e) {}
+                        errorConsole(
+                          `[ERROR] skipping grade (${grade.id}) ${err.toString()}`
+                        );
+                        _.remove(all_grades, (g) => {
+                          g.id == grade.id;
+                        });
+                        continue;
+                      }
+                    }
+                  })
+                  .catch((err) => errorConsole(err));
+              })
+              .catch((err) => {
+                console.log(err)
+                errorConsole(err + " 420");
+                reject(err)
+              });
+})}
+
+async function verderGaanLogin(childindex = -1, last = false, m) {
   // alert("Done :)")
   window.plugins.insomnia.allowSleepAgain();
   // all_courses[4].grades = []
@@ -557,13 +583,31 @@ async function verderGaanLogin() {
     setObject("courses", JSON.stringify(all_courses), newaccountindex);
   }
   
+  if (childindex >= 0) {
+    childcourses.push({
+      id: m.person.children[childindex].Id,
+      courses: all_courses
+    });
+    var newaccount = JSON.parse(localStorage.getItem(newaccountindex));
+    var config = JSON.parse(newaccount.config)
+    config.childActiveViewed = childindex;
+    setObject("config", JSON.stringify(config), newaccountindex);
+    if (last) setObject("childcourses", JSON.stringify(childcourses), newaccountindex);
+  }
+
   var allfiles = await listFiles();
   var file = (await allfiles.filter((file) => file.name == `${newaccountindex}.json`).length == 0) ? await CreateNewFile(newaccountindex) : (await allfiles.filter((file) => file.name == `${newaccountindex}.json`))[0];
   var newaccount = JSON.parse(localStorage.getItem(newaccountindex));
   newaccount.courses = JSON.stringify(all_courses);
+  if (childcourses.length > 0) newaccount.childcourses = JSON.stringify(childcourses);
   await WriteFile(JSON.stringify(newaccount), file);
 
-  window.location.replace("./index.html");
+  if (last) {
+    activelocalstorage = JSON.parse(localStorage.getItem(newaccountindex));
+    delete activelocalstorage.childcourses;
+    localStorage.setItem(newaccountindex, JSON.stringify(activelocalstorage));
+    window.location.replace("./index.html");
+  };
 }
 
 if (history.length != 0 && localStorage.length != 0) {

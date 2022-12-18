@@ -166,7 +166,7 @@ async function confirmLogout(b) {
       localStorage.setItem(Object.keys(localStorage)[0], await readFile(newaccountfile));
       changeActiveAccount(Object.keys(localStorage)[0]);
       reloaddata();
-      courseController.getLatestGrades();
+      courseController.getLatestGrades(false, getActiveChildAccount());
       viewController.overlay("hide");
       viewController.closeSettings()
       await RemoveFile(file);
@@ -212,7 +212,7 @@ async function syncGrades() {
               .then((p) => {
                 person = p;
                 setObject("person", JSON.stringify(p), getActiveAccount());
-                courseController.getLatestGrades();
+                courseController.getLatestGrades(false, getActiveChildAccount());
               })
               .catch((err) => {
                 if (err == "no internet")
@@ -700,7 +700,7 @@ function onDeviceReady() {
               if (p.id == person.id) {
                 setObject("person", JSON.stringify(p), getActiveAccount());
                 main();
-                courseController.getLatestGrades();
+                courseController.getLatestGrades(false, getActiveChildAccount());
                 if (account == null || !"name" in account) {
                   m.getAccountInfo().then((a) => {
                     setObject("account", JSON.stringify(a), getActiveAccount());

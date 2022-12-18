@@ -42,7 +42,11 @@ function getActiveAccount() {
     }
 }
 
-function changeActiveAccount(to) {
+function getActiveChildAccount() {
+    return JSON.parse(getObject('config', parseInt(getActiveAccount()))).childActiveViewed
+}
+
+function changeActiveAccount(to, childindex = -1) {
     for (key of Object.keys(localStorage)) {
         var obj = JSON.parse(getObject("config", key));
         if (key == to) {
@@ -51,6 +55,14 @@ function changeActiveAccount(to) {
         } else {
           obj.currentviewed = false;
           setObject("config",JSON.stringify(obj),key);
+        }
+        if (childindex >= 0) {
+            var activeaccountindex = Object.entries(localStorage).filter((account) => JSON.parse(JSON.parse(account[1]).config).currentviewed == true)[0][0];
+            var obj = JSON.parse(getObject("config", activeaccountindex));
+            if (key == to) {
+              obj.childActiveViewed = childindex;
+              setObject("config",JSON.stringify(obj), activeaccountindex);
+            }
         }
     }
 }

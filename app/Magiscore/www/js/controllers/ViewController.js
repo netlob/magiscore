@@ -188,11 +188,11 @@ class ViewController {
     // logConsole(courseController.allGrades)
   }
 
-  async switchuser(userkey) {
+  async switchuser(userkey, childindex = -1) {
     return new Promise(async (resolve, reject) => {
     try {
       var activeaccount = await getActiveAccount();
-      if (activeaccount == userkey) { return; }
+      if (activeaccount == userkey && childindex == -1) { return; }
       viewController.overlay("show");
       //save smaller version of account
       var smallaccount = [];
@@ -203,7 +203,19 @@ class ViewController {
       //Move current active to Filesystem
       var allfiles = await listFiles();
       var file = (await allfiles.filter((file) => file.name == `${activeaccount}.json`).length == 0) ? await CreateNewFile(activeaccount) : (await allfiles.filter((file) => file.name == `${activeaccount}.json`))[0];
-      await WriteFile(localStorage.getItem(activeaccount), file);
+      
+      if (JSON.parse(getObject('person', getActiveAccount())).isParent == true) {
+        //Merge lastest child grades into the full array in the filesystem
+        var parsedactivelocalstorage = JSON.parse(localStorage.getItem(activeaccount));
+        var parsedactivestorage = await JSON.parse(await readFile(file));
+        var latestchildcourses = JSON.parse(parsedactivestorage.childcourses);
+        latestchildcourses[parseInt(getActiveChildAccount())].courses = JSON.parse(parsedactivelocalstorage.courses);
+        parsedactivestorage.childcourses = JSON.stringify(latestchildcourses);
+        parsedactivelocalstorage.childcourses = parsedactivestorage.childcourses;
+        await WriteFile(JSON.stringify(parsedactivelocalstorage), file);
+      } else {
+        await WriteFile(localStorage.getItem(activeaccount), file);
+      }
       //Clear localstorage
       localStorage.clear();
       //Copy new active account from filesystem to localstorage
@@ -213,9 +225,18 @@ class ViewController {
       for await (let name of smallaccount) {
         localStorage.setItem(Object.entries(name)[0][0], Object.entries(name)[0][1]);
       }
-      localStorage.setItem(userkey, await readFile(file));
+      if (childindex >= 0) {
+        var active = JSON.parse(await readFile(file));
+        var activechildcourses = JSON.parse(active.childcourses);
+        active.courses = JSON.stringify(activechildcourses[childindex].courses);
+        delete active.childcourses;
+        localStorage.setItem(userkey, JSON.stringify(active));
+        setProfilePic(true, childindex, true)
+      } else {
+        localStorage.setItem(userkey, await readFile(file));
+      }
       //Refresh
-      changeActiveAccount(userkey);
+      changeActiveAccount(userkey, childindex);
       reloaddata();
       viewController.overlay("hide");
       resolve();
@@ -254,7 +275,7 @@ class ViewController {
     if (config["devMode"] === true) $(".toggle-terminal").show();
     if (config["devMode"] === false) $(".toggle-terminal").hide();
     if ("smiley" in config) {
-      setProfilePic();
+      setProfilePic(false, getActiveChildAccount());
       if (this.config.smiley)
         this.toast("Profielfoto vervangen met een smiley", 2000, false);
       if (!this.config.smiley)
@@ -263,14 +284,26 @@ class ViewController {
     $('#useraccountslist').html(``);
     $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
     var activeaccount = parseInt(getActiveAccount());
-    for (key of Object.keys(localStorage)) {
+    for (const key of Object.keys(localStorage)) {
       var persondata = JSON.parse(getObject("person", key));
-      var profilepic = getObject("profilepic", key);
-      var config = JSON.parse(getObject("config", key));
-      $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
-        <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
-        ${persondata.firstName} ${persondata.lastName}
-      </a>`).prependTo("#useraccountslist");
+      if (persondata.isParent) {
+        // persondata.children.filter((child) => child.childchildActiveViewed == true)
+        for (const childindex of Object.keys(persondata.children)) {
+          var profilepic = getObject("profilepic", key);
+          var config = JSON.parse(getObject("config", key));
+          $(`<a class="dropdown-item vibrate ${(childindex == getActiveChildAccount()) ? 'disabled' : ''}" onclick="viewController.switchuser(${key}, ${childindex});">
+          <i class="fas fa-child fa-sm fa-fw mr-2 text-gray-400"></i>
+            ${persondata.children[childindex].Roepnaam} ${persondata.children[childindex].Achternaam}
+          </a>`).prependTo("#useraccountslist");
+        }
+      } else {
+        var profilepic = getObject("profilepic", key);
+        var config = JSON.parse(getObject("config", key));
+        $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
+          <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
+          ${(Object(persondata).hasOwnProperty('firstName')) ? persondata.firstName + ' ' : ''}${persondata.lastName}
+        </a>`).prependTo("#useraccountslist");
+      }
     }
   }
 
@@ -647,6 +680,7 @@ class ViewController {
     this.settingsOpen = false;
     vibrate(15, false);
     clearInterval(this.iddinkInterval);
+    document.getElementById('content').removeAttribute('data-snap-ignore');
     // this.render(this.currentLesson.name)
   }
 
@@ -663,6 +697,7 @@ class ViewController {
     $("#currentRenderMobile").html(
       '<span onclick="viewController.closeSettings()">Zoeken</span>'
     );
+    document.getElementById('content').setAttribute('data-snap-ignore', true);
   }
 
   closeZoeken() {
@@ -706,8 +741,7 @@ async function confirmRefreshOldGrades(button) {
   }
 }
 
-function setProfilePic(forceRefresh) {
-  if (!forceRefresh) forceRefresh = false;
+function setProfilePic(forceRefresh = false, childindex, notoast = false) {
   // alert(viewController.config.smiley)
   var profilepicStorage = getObject("profilepic", getActiveAccount()) || false,
     profilepic = document.getElementById("imgelem");
@@ -735,7 +769,7 @@ function setProfilePic(forceRefresh) {
           try {
             logConsole("[INFO]   Storage of image success");
             setObject("profilepic", result, getActiveAccount());
-            if (forceRefresh)
+            if (forceRefresh && !notoast)
               viewController.toast("Profielfoto ververst", 2000, false);
           } catch (e) {
             errorConsole("[ERROR] Storage failed: " + e);
@@ -745,7 +779,8 @@ function setProfilePic(forceRefresh) {
         fileReader.readAsDataURL(blob);
       }
     };
-    let url = `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`;
+    var personid = (childindex >= 0 && person.isParent) ? person.children[childindex].Id : person.id
+    let url = `https://${school}/api/personen/${personid}/foto?width=640&height=640&crop=no`;
     if (window.cordova.platformId === "ios") {
       url = "https://cors.sjoerd.dev/" + url;
     }
@@ -767,7 +802,7 @@ function updateSidebar() {
       </a>
     </li>
     <li class="nav-item">
-    <a class="nav-link vibrate" onclick="var oldfilter = [];filtereddisabled.forEach((grade) => oldfilter.push(grade));courseController.allGrades.filter((grade) => !grade.type.isPTA).forEach((grade) => filtereddisabled.push(grade));viewController.render(viewController.currentLesson);filtereddisabled = oldfilter;">
+    <a class="nav-link vibrate" onclick="var oldfilter = [];filtereddisabled.forEach((grade) => oldfilter.push(grade));courseController.allGrades.filter((grade) => !grade.type.isPTA).forEach((grade) => filtereddisabled.push(grade));viewController.render('general');filtereddisabled = oldfilter;">
       <span>Gemiddeld (PTA)</span>
     </a>
   </li>
@@ -799,17 +834,17 @@ function updateSidebar() {
     $(".toggle-terminal").hide();
   }
 
-  setProfilePic();
+  setProfilePic(false, getActiveChildAccount());
 
   $("#userDropdown > span").text(
-    `${person.firstName} ${person.lastName} ${
+    `${(typeof person.firstName != 'undefined') ? person.firstName + ' ' : ''}${person.lastName} ${
       courseController.current().course.group.description
         ? "(" + courseController.current().course.group.description + ")"
         : ""
     }`
   );
   $("#mobilePersonInfo").text(
-    `${person.firstName} ${person.lastName} ${
+    `${(typeof person.firstName != 'undefined') ? person.firstName + ' ' : ''}${person.lastName} ${
       courseController.current().course.group.description
         ? "(" + courseController.current().course.group.description + ")"
         : ""
@@ -818,14 +853,26 @@ function updateSidebar() {
   $('#useraccountslist').html(``);
   $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
   var activeaccount = parseInt(getActiveAccount());
-  for (key of Object.keys(localStorage)) {
+  for (const key of Object.keys(localStorage)) {
     var persondata = JSON.parse(getObject("person", key));
-    var profilepic = getObject("profilepic", key);
-    var config = JSON.parse(getObject("config", key));
-    $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
-      <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
-      ${persondata.firstName} ${persondata.lastName}
-    </a>`).prependTo("#useraccountslist");
+    if (persondata.isParent) {
+      // persondata.children.filter((child) => child.activeviewed == true)
+      for (const childindex of Object.keys(persondata.children)) {
+        var profilepic = getObject("profilepic", key);
+        var config = JSON.parse(getObject("config", key));
+        $(`<a class="dropdown-item vibrate ${(childindex == getActiveChildAccount()) ? 'disabled' : ''}" onclick="viewController.switchuser(${key}, ${childindex});">
+          <i class="fas fa-child fa-sm fa-fw mr-2 text-gray-400"></i>
+          ${persondata.children[childindex].Roepnaam} ${persondata.children[childindex].Achternaam}
+        </a>`).prependTo("#useraccountslist");
+      }
+    } else {
+      var profilepic = getObject("profilepic", key);
+      var config = JSON.parse(getObject("config", key));
+      $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
+        <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
+        ${(Object(persondata).hasOwnProperty('firstName')) ? persondata.firstName + ' ' : ''}${persondata.lastName}
+      </a>`).prependTo("#useraccountslist");
+    }
   }
   // var header = document.getElementById("accordionSidebar");
   // var btns = header.getElementsByClassName("nav-item");

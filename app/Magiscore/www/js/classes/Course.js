@@ -104,11 +104,12 @@ class Course {
   /**
    * @returns {Promise<Object[]>}
    */
-  getClasses() {
+  getClasses(childindex = -1) {
     return new Promise((resolve, reject) => {
       // logConsole("person id " + this._magister.person.id)
+      var personid = (childindex >= 0 && this._magister.person.isParent) ? this._magister.person.children[childindex].Id : this._magister.person.id
       const url = `https://${this._magister.tenant}/api/personen/${
-        this._magister.person.id
+        personid
       }/aanmeldingen/${this.id}/vakken?nocache=${Date.parse(new Date())}`;
       $.ajax({
         cache: false,
@@ -144,11 +145,12 @@ class Course {
    *  @param {boolean} [options.latest=false]
    * @returns {Promise<Grade[]>}
    */
-  getGrades({ fillGrades = false, latest = false } = {}) {
+  getGrades({ fillGrades = false, latest = false } = {}, childindex = -1) {
     return new Promise((resolve, reject) => {
       // logConsole("RAW:") logConsole(JSON.stringify(this.raw))
       var date = this.current() ? formatDate(new Date()) : this.raw.Einde;
-      const urlPrefix = `https://${this._magister.tenant}/api/personen/${this._magister.person.id}/aanmeldingen/${this.id}/cijfers`;
+      var personid = (childindex >= 0 && this._magister.person.isParent) ? this._magister.person.children[childindex].Id : this._magister.person.id
+      const urlPrefix = `https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.id}/cijfers`;
       const url = latest
         ? `https://${this._magister.tenant}/api/personen/${
             this._magister.person.id

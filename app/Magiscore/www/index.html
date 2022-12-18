@@ -319,7 +319,7 @@
                 <h6 class="dropdown-header background-primary">
                   Laatste cijfers <a class="float-right"><span class="text-white"
                       style="font-size: 9px !important; font-weight: light !important;"
-                      onclick="courseController.getLatestGrades(true)">Refresh</span><i
+                      onclick="courseController.getLatestGrades(true, getActiveChildAccount())">Refresh</span><i
                       class="ml-2 fa fa-sync-alt text-white"></i></a>
                 </h6>
                 <div id="latest-grades">
@@ -514,7 +514,7 @@
         </div>
 
 
-        <div class="container-fluid" style="display: none;" id="search-wrapper">
+        <div class="container-fluid" style="display: none;" id="search-wrapper" data-snap-ignore="true">
 
           <div class="row">
             <div class="col-xl-8 col-lg-7">

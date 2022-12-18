@@ -52,13 +52,13 @@ class CourseController {
     return this.courses.find(x => x.id === id);
   }
 
-  getLatestGrades(open) {
-    if (!open) open = false;
-    else if (open) viewController.overlay("show");
+  getLatestGrades(open = false, childindex = -1) {
+    if (open) viewController.overlay("show");
     return new Promise((resolve, reject) => {
       // logConsole("RAW:")
       // logConsole(JSON.stringify(this.raw))
-      const url = `https://${school}/api/personen/${person.id}/cijfers/laatste?top=50&skip=0`;
+      var personid = (childindex >= 0 && person.isParent) ? person.children[childindex].Id : person.id
+      const url = `https://${school}/api/personen/${personid}/cijfers/laatste?top=50&skip=0`;
       // logConsole(url)
       $.ajax({
         cache: false,
@@ -89,10 +89,9 @@ class CourseController {
         // grades = _.reject(grades, raw => raw.CijferId === 0)
         this.latestGrades = grades;
         var popup = false;
-        //Dit betekent dat het geen popup zal tonen voor letter cijfers, maar jammer genoeg slaat 'this.allgrades' dat niet op
-        this.latestGrades.filter((grade) => isNaN(parseInt(grade.waarde))).forEach(grade => {
+        this.latestGrades.forEach(grade => {
           if (
-            !this.allGrades.map((grade) => parseInt(grade.type.id)).includes(grade.kolomId) &&
+            (this.allGrades.filter((foundgrade) => foundgrade.type.id == grade.kolomId).length == 0) &&
             popup == false
           ) {
             popup = true;
