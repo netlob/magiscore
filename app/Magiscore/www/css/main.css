@@ -695,7 +695,13 @@ display: none;
     text-align: center;
     border-radius: 16px;
     padding: 12px 16px;
-    box-shadow: var(--primary) 0 0 10px;
+    box-shadow: var(--primary) 0 0 10px,
+      0px 4.4px 2.1px rgba(0, 0, 0, 0.022),
+      0px 10.6px 5px rgba(0, 0, 0, 0.032),
+      0px 20px 9.4px rgba(0, 0, 0, 0.04),
+      0px 35.7px 16.8px rgba(0, 0, 0, 0.048),
+      0px 66.8px 31.3px rgba(0, 0, 0, 0.058),
+      0px 160px 75px rgba(0, 0, 0, 0.08);
     position: relative!important;
     left: unset!important;
     bottom: unset!important;
