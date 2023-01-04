@@ -352,7 +352,8 @@ async function validateLogin(code, codeVerifier) {
           for (key of Object.keys(localStorage)) {
             if (key == newaccountindex) {continue;}
             var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({}))
-            if (JSON.parse(account['person']).id == m.person.id && account['school'] == tenant) {
+            if ('person' in account && JSON.parse(account['person']).id == m.person.id && account['school'] == tenant) {
+              console.log('Account bestaat al!')
               toast("Account bestaat al!", 2000, true);
               retryLogin()
               return;
