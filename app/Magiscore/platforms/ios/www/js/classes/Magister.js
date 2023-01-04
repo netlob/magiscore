@@ -49,9 +49,9 @@ class Magister {
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.token,
-          noCache: new Date().getTime()
+          noCache: new Date().getTime(),
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
           // alert("error: " + XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
@@ -62,22 +62,72 @@ class Magister {
           }
           reject("no internet");
         },
-        timeout: 5000
-      }).done(res => {
-        this.person.isParent = res.Groep[0].Privileges.some(
-          x =>
-            x.Naam.toLowerCase() === "kinderen" &&
-            x.AccessType.some(a => a.toLowerCase() === "read")
-        );
-        var res = res.Persoon || res.persoon;
-        this.person.id = res.Id || res.id;
-        this.person.firstName = res.Roepnaam || res.roepnaam;
-        this.person.lastName = res.Achternaam || res.achternaam;
-        this.namePrefix = res.Tussenvoegsel || res.tussenvoegsel;
-        //this.fullName = res.Persoon.Naam || res.persoon.naam
-        //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
-        //this.group = res.Persoon.Groep || res.persoon.groep)
-        resolve(this.person);
+        timeout: 5000,
+        success: async (data) => {
+          console.log("data");
+          console.log(data);
+          console.log("data");
+
+          var res = data;
+
+          console.log("res");
+          console.log(res);
+          console.log("res");
+          this.person.isParent = res.Groep[0].Privileges.some(
+            (x) =>
+              x.Naam.toLowerCase() === "kinderen" &&
+              x.AccessType.some((a) => a.toLowerCase() === "read")
+          );
+          var res = res.Persoon || res.persoon;
+          this.person.id = res.Id || res.id;
+          this.person.firstName = res.Roepnaam || res.roepnaam;
+          this.person.lastName = res.Achternaam || res.achternaam;
+          this.namePrefix = res.Tussenvoegsel || res.tussenvoegsel;
+          if (this.person.isParent) {
+            this.person.children = await this.getChildren();
+          }
+          //this.fullName = res.Persoon.Naam || res.persoon.naam
+          //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
+          //this.group = res.Persoon.Groep || res.persoon.groep)
+          resolve(this.person);
+        },
+      });
+    });
+  }
+
+  /**
+   * @returns {Promise<Object[]>}
+   */
+  getChildren() {
+    return new Promise((resolve, reject) => {
+      if (this.person.id == undefined) reject("Person.id is undefined!");
+      //logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
+      $.ajax({
+        cache: false,
+        dataType: "json",
+        async: true,
+        crossDomain: true,
+        url: `https://${this.tenant}/api/personen/${this.person.id}/kinderen?openData=%27%27`,
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + this.token,
+          noCache: new Date().getTime(),
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          // alert("error: " + XMLHttpRequest.statusText)
+          if (XMLHttpRequest.readyState == 4) {
+            logConsole(`[ERROR] HTTP error (${textStatus})`);
+          } else if (XMLHttpRequest.readyState == 0) {
+            logConsole(`[ERROR] Network error (${textStatus})`);
+          } else {
+            logConsole("[ERROR] something weird is happening");
+          }
+          reject("no internet");
+        },
+        timeout: 5000,
+      }).done((res) => {
+        var res = res.items || res.Items;
+        resolve(res);
       });
     });
   }
@@ -98,9 +148,9 @@ class Magister {
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.token,
-          noCache: new Date().getTime()
+          noCache: new Date().getTime(),
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
           } else if (XMLHttpRequest.readyState == 0) {
@@ -110,8 +160,8 @@ class Magister {
           }
           reject("no internet");
         },
-        timeout: 5000
-      }).done(res => {
+        timeout: 5000,
+      }).done((res) => {
         // logConsole(JSON.stringify(res))
         // logConsole(`[INFO]  https://${this.tenant}${res.links.account.href}?noCache=0`)
         $.ajax({
@@ -125,9 +175,9 @@ class Magister {
           method: "GET",
           headers: {
             Authorization: "Bearer " + this.token,
-            noCache: new Date().getTime()
+            noCache: new Date().getTime(),
           },
-          error: function(XMLHttpRequest, textStatus, errorThrown) {
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
             if (XMLHttpRequest.readyState == 4) {
               logConsole(`[ERROR] HTTP error (${textStatus})`);
             } else if (XMLHttpRequest.readyState == 0) {
@@ -137,13 +187,13 @@ class Magister {
             }
             reject("no internet");
           },
-          timeout: 5000
-        }).done(res2 => {
+          timeout: 5000,
+        }).done((res2) => {
           // logConsole(JSON.stringify(res2))
           this.account = {
             id: res2.id,
             name: res2.naam,
-            uuId: res2.uuid
+            uuId: res2.uuid,
           };
           resolve(this.account);
         });
@@ -154,24 +204,30 @@ class Magister {
   /**
    * @returns {Promise<Course[]>}
    */
-  getCourses() {
+  getCourses(childindex = -1) {
     return new Promise((resolve, reject) => {
       if (this.person.id == undefined) reject("Person.id is undefined!");
+      var personid =
+        childindex >= 0 && this.person.isParent
+          ? this.person.children[childindex].Id
+          : this.person.id;
       //logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
       $.ajax({
         cache: false,
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/personen/${
-          this.person.id
-        }/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(new Date())}`,
+        url: `https://${
+          this.tenant
+        }/api/personen/${personid}/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(
+          new Date()
+        )}`,
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.token,
-          noCache: new Date().getTime()
+          noCache: new Date().getTime(),
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
           // alert("error: " + XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
@@ -182,12 +238,12 @@ class Magister {
           }
           reject("no internet");
         },
-        timeout: 5000
-      }).done(res => {
+        timeout: 5000,
+      }).done((res) => {
         var res = res.items || res.Items;
         resolve(
           _.sortBy(
-            res.map(c => new Course(this, c)),
+            res.map((c) => new Course(this, c)),
             "start"
           )
         );
@@ -196,7 +252,7 @@ class Magister {
   }
 
   setTimeOut() {
-    setTimeout(function() {
+    setTimeout(function () {
       this.timedOut = false;
       logConsole("[INFO]   Timeout ended");
     }, 31000);

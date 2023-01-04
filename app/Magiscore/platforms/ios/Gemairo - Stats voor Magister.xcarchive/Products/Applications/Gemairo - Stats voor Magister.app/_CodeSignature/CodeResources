@@ -14,7 +14,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		MPpoiiWUp87x4cR6NWAI0XlTsDg=
+		ln8B/p9kcvlZjDoMpHN6s319MPY=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-13.0+.nib</key>
 		<data>
@@ -42,39 +42,59 @@
 		</data>
 		<key>Frameworks/FBLPromises.framework/FBLPromises</key>
 		<data>
-		2MGvYmWd4WxwrH+HlSHV09Kvqz0=
+		JySqbFtnp8bx/9+/j4Zrup6TczI=
 		</data>
 		<key>Frameworks/FBLPromises.framework/Info.plist</key>
 		<data>
-		vF8V1h9GBZFOoP2Sbwsu1MvOIxg=
+		NjD1cqkVL1ggH/fofFz7Z4BAFdI=
 		</data>
 		<key>Frameworks/FBLPromises.framework/_CodeSignature/CodeResources</key>
 		<data>
-		ez2k/8+veK8sHvhuDlKePYDHItc=
+		me10LCa+eYzAPxMThSG1C98AlNU=
 		</data>
 		<key>Frameworks/GoogleUtilities.framework/GoogleUtilities</key>
 		<data>
-		TesMyCAZuPONVV9q6xifC/hid0E=
+		wMxOch985H+aNa5zhNLp5cP6bpc=
 		</data>
 		<key>Frameworks/GoogleUtilities.framework/Info.plist</key>
 		<data>
-		wszP1R/2ySTS/ftuwbgNM5PXu2o=
+		b4/SVrd5Txikk8aRTPN80L+rvP0=
 		</data>
 		<key>Frameworks/GoogleUtilities.framework/_CodeSignature/CodeResources</key>
 		<data>
-		MbQwRFpejeJY+hzFEG8lgYn8W+s=
+		0t72DD77hqi+vVrCfJSbCirj41Q=
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/Info.plist</key>
 		<data>
-		FOJbtSrlxgCiqKqdX4g3wodo3mc=
+		L3OsWXK6A1PZ43muiHnG8M4dC+g=
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent</key>
 		<data>
-		TQ9iooNlmskxSBFrW/ZjSoT5bQM=
+		lhKEquIBpj88tOjW5gzQNJ0WfX4=
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/Info.plist</key>
 		<data>
-		n2Eqyvq1GsV+zDVyjrsJeRnV59Q=
+		hRZFQRjjxNxgt0/GqaNgvEZyYys=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeDirectory</key>
+		<data>
+		9n2hZpPMjW4FERlsHRU3GFaFUqo=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements</key>
+		<data>
+		i6+BCguX/NDpmTOZyYInSp0YIUY=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements-1</key>
+		<data>
+		+JOvkQc7TDVyxk4LdTis7mC4akY=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeResources</key>
+		<data>
+		oVtgvvjKu57hT6+GNKsvUZIQa/g=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeSignature</key>
+		<data>
+		4kiuAH+ikmTujgnskBbprXOLtQM=
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/consentform.html</key>
 		<data>
@@ -82,71 +102,71 @@
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/_CodeSignature/CodeResources</key>
 		<data>
-		Yc13p7NqDlvhPm81VkHV3xoIOR4=
+		TkLm/TjSnPYo6MkJGIfDrqhze3Y=
 		</data>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		K8FPoxVQnpeY+DAV/IxA15nMq9M=
+		eK211bKgSJE9kCYC+vX40kFOHp8=
 		</data>
 		<key>Frameworks/libswiftCoreFoundation.dylib</key>
 		<data>
-		jJ+YldrzTbkKxih/RU2p2rHFQnw=
+		SyH0waBLQ49esBSgcheSAhReSIM=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		u4NN5yWJbg/Tlb+TSg0lnh5qLmw=
+		k8TxGMS168827/2l8Dp0ziQSaNM=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		Yy9t5LwWujUwW+gjUw+H6ePKMkw=
+		Vd7hktuWzVAtSj3iETBgU/aE7RQ=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		1Yr6JE4Mnc6Mxh9DmMWLoLIPJuA=
+		Fd8Nr922qWdgAdIrkcFvGknPMX0=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		TIs/whNyPeQZa+i0FNHoDR1UnxQ=
+		gyZWfc6c7ExIMeoUO6zOBXGeYlk=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		MtB4Cc5BUdrSzbQTbJ+mxbP92lA=
+		p/0Nvizha28bhRkB/blABVHvrDk=
 		</data>
 		<key>Frameworks/libswiftMetal.dylib</key>
 		<data>
-		xvhi/K+5tx7aMiDxU0G9ILS3+j4=
+		Ip3VwtwitQ0t78/fpmDizsyUz8Q=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		9BCLX+DdE/CJL6+dycbxqbivZWw=
+		I2igIGqbzaq2rduWUlJA16ihv8o=
 		</data>
 		<key>Frameworks/libswiftQuartzCore.dylib</key>
 		<data>
-		rw63ofSImQusDRKX8He95ld68p0=
+		vnuYPEAl1UUa2hhR+dqxwHlzHkE=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		GqJgG1Q86soDvmQexg0q1Nu01ps=
+		EUJgv0PmlWsdgcZeeawVVHrBJwg=
 		</data>
 		<key>Frameworks/libswiftos.dylib</key>
 		<data>
-		P36/QmW7AZoY96SSVZbbxomBFSo=
+		BVdtEFuR6r1XwGxoL4Bj4TmEzV4=
 		</data>
 		<key>Frameworks/nanopb.framework/Info.plist</key>
 		<data>
-		XBF/Z+TDyvBjaCpsjourZjBGAjQ=
+		kF75lnzzloFBn9Hcr1RsDxoSJ7Y=
 		</data>
 		<key>Frameworks/nanopb.framework/_CodeSignature/CodeResources</key>
 		<data>
-		Dmt9gpFzaZZRSVNZAPrvHBVp1dA=
+		VGpg/+JLppIHwMhe8bfu8DCmQH4=
 		</data>
 		<key>Frameworks/nanopb.framework/nanopb</key>
 		<data>
-		IIAS/GVIhhysBw3YBGxGvIvSH90=
+		+qz28+koQHYrWbYomXjuCs7rUiU=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		r47ihqheY6H+smm8Qu3pfcFAyO4=
+		j7xjKE8ugAFyPNqTd1S7Ga0FPSQ=
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
@@ -158,11 +178,11 @@
 		</data>
 		<key>config.xml</key>
 		<data>
-		DjIaO5GR7pn57rKQC/xkqpfFvFU=
+		9n0lrpa4Cc+GSqM9EdxL5jE6HPM=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		QBJiviikV0skhLz6Jec4StgrB80=
+		ZuPxeIE9WQuUkMI9vxaKZjQ+Lp8=
 		</data>
 		<key>www/cordova-js-src/exec.js</key>
 		<data>
@@ -198,7 +218,7 @@
 		</data>
 		<key>www/css/dark.css</key>
 		<data>
-		Jh3X4IS6Of+8iYeS0YdfoRaQa9M=
+		7FB2aTNB9/S0L1hWwIwb9boDJo8=
 		</data>
 		<key>www/css/fonts.css</key>
 		<data>
@@ -206,11 +226,11 @@
 		</data>
 		<key>www/css/light.css</key>
 		<data>
-		A9z3ntRxDrE48QxRZSbFF5Fh6hQ=
+		R/1RIjOW8d8FWQ+pydSw/8l4ZTE=
 		</data>
 		<key>www/css/main.css</key>
 		<data>
-		DlG8oXWFTXTOE+lAf0sDa/zdQDI=
+		a25EskZO3eD4Js4W24brkXasAJk=
 		</data>
 		<key>www/fonts/nunito-v11-latin-200.woff2</key>
 		<data>
@@ -278,11 +298,11 @@
 		</data>
 		<key>www/index.html</key>
 		<data>
-		7DdfRZLRShHIAE3RtmdA/LUY2GI=
+		AwFuqvCg9hDOK03XzaGLUzUhE8U=
 		</data>
 		<key>www/js/ads.js</key>
 		<data>
-		P7KCNv811WhORehTECgJoacJgow=
+		DP5epk4WC5xlPkuCyIhGXcKhuHA=
 		</data>
 		<key>www/js/classes/Class.js</key>
 		<data>
@@ -290,15 +310,19 @@
 		</data>
 		<key>www/js/classes/Course.js</key>
 		<data>
-		z5bnZyTDiGb+V0xPc2q+uYct10Q=
+		zOGr2DmUfkq4ZM9tlOpqcbUWN+o=
 		</data>
 		<key>www/js/classes/Grade.js</key>
 		<data>
-		nu0i4whNuaOaIPlIIg7nGJhtzhc=
+		lrOFDrWEJCf52+d2FJcHDW2y/L0=
 		</data>
 		<key>www/js/classes/GradePeriod.js</key>
 		<data>
 		fIkaHbznedvsroMVOppB6Le0YmA=
+		</data>
+		<key>www/js/classes/GradePeriod2.js</key>
+		<data>
+		EFeOLYJq47O/h4SbrNd7pl46teY=
 		</data>
 		<key>www/js/classes/GradeType.js</key>
 		<data>
@@ -306,11 +330,11 @@
 		</data>
 		<key>www/js/classes/Lesson.js</key>
 		<data>
-		YlQt6hz5CDScX+0mkT9VekE5ZUM=
+		+/OCZu1Qv2WGNWpwyAJCYrHjB1M=
 		</data>
 		<key>www/js/classes/Magister.js</key>
 		<data>
-		PlcvGMyxp1+FmC+V1ZrOFZWcpxo=
+		onona8mkwjFCPLhoTZMepY5FueU=
 		</data>
 		<key>www/js/classes/Person.js</key>
 		<data>
@@ -318,7 +342,7 @@
 		</data>
 		<key>www/js/controllers/CourseController.js</key>
 		<data>
-		w/N86PIpi5jhWvgYeJu/mR6druE=
+		Bue3t3OpC8XQObh37mQN4S43pO4=
 		</data>
 		<key>www/js/controllers/LessonController.js</key>
 		<data>
@@ -326,7 +350,7 @@
 		</data>
 		<key>www/js/controllers/ViewController.js</key>
 		<data>
-		3owo6SgAYNZL0WzGY0VbdH55qHY=
+		BZ+yKultqHRBixWJEC6HW4zf74w=
 		</data>
 		<key>www/js/deps/chartannotation.js</key>
 		<data>
@@ -368,29 +392,33 @@
 		<data>
 		hyTEtu0UpaKibUNDZbHNRELN/gc=
 		</data>
+		<key>www/js/filesystem.js</key>
+		<data>
+		SgsmNkUu+XBi7leEuhgUUbzfUX0=
+		</data>
 		<key>www/js/iap.js</key>
 		<data>
 		7M3segaZo9Eibt9aeFdjaI+EXfI=
 		</data>
 		<key>www/js/login.js</key>
 		<data>
-		rDkXXRX6Wyisov/zgc3BilOY4CE=
+		4N5+3BcU7JDkDRFDvX2AeT9AsE0=
 		</data>
 		<key>www/js/main.js</key>
 		<data>
-		giUwdmisPzBh/OtUqQeZnthBLJ0=
+		1+QAU6hpNWIyeModBmt4yprnAjQ=
 		</data>
 		<key>www/js/refresh.js</key>
 		<data>
-		YrfEMOpI3n7o5h4I1xTYBm/2ogo=
+		Lhrvf7E5YhH6JILKiae5DWdRRvs=
 		</data>
 		<key>www/js/utils.js</key>
 		<data>
-		XDh7vg1F/LOq+m2y1m5KuZJe3Xk=
+		qKM4ht3rH6oDqSxtgUepyptYBbM=
 		</data>
 		<key>www/login.html</key>
 		<data>
-		isEQJex/n5e7WmEJ+9KZxPH07v8=
+		oqZiepJApFVNWhgamJG/i0nYAes=
 		</data>
 		<key>www/login/index.html</key>
 		<data>
@@ -533,7 +561,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MShxa/WJXmfdOw6QM5LR2/G2VVzg5uF63Qd9DtizLws=
+			1QhLabJNrd1ocnFZBJCYDrlthixQr2tIhMoS9kLjozg=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-13.0+.nib</key>
@@ -582,63 +610,98 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1HFud2brr1sq4vW9iPKhL5AGYMfJBmJZdMQQ02/Z6no=
+			XSSMKhsOhdOTxpfXlJIvgzNnncvLjjbkJvNFsAu8T+c=
 			</data>
 		</dict>
 		<key>Frameworks/FBLPromises.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TkQQ42TBqlbONZTTUrXbrQrSfB9P7v4fsBIvyf94vG8=
+			Q+y4CgvDlPD7gyYvJtSXSBNfAEybShUvJl4Fpf2BTkY=
 			</data>
 		</dict>
 		<key>Frameworks/FBLPromises.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ds9qZkyeIPhaEPI4jsjLWkdwUmrz7OybOT5TPRK4pnE=
+			OVKJOTJpVi5h08iOMiv5Wk+rPemkyeZ4TBE/tTXU2P0=
 			</data>
 		</dict>
 		<key>Frameworks/GoogleUtilities.framework/GoogleUtilities</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5zYuye7PTOVg19VfDNpaaEXyvgH6g9wTLRtv+nrFkd0=
+			hnFRaJVRq35/lYKKoDJREvRPRAiaSWTolcZBpF+WAw4=
 			</data>
 		</dict>
 		<key>Frameworks/GoogleUtilities.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SmrvptumjNIwBxCab4ILSzHy5Go8gOtG+Gj/kxo0wvA=
+			6+X/V+7/yggdRUs/YxhYCHfVIiPH0DTcHH4A+mTnWmY=
 			</data>
 		</dict>
 		<key>Frameworks/GoogleUtilities.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			K6qpWdOCBCaLzs9UJHxLtF8VxfcOG7IHbYdNXxNaP2M=
+			eR+CQZ2bonUgUwchc1LcFsIGY9Zd4bVz0oPM1gfQERY=
 			</data>
 		</dict>
 		<key>Frameworks/PersonalizedAdConsent.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sBfHOAiC0k9CcbxTUPqJPPhxpMVxieauDQ6faouWFeY=
+			TJ2z4v4kwZfbwUxvUU0hn90aLFk1vuNz1M6gGbR4geA=
 			</data>
 		</dict>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2UlBnpM0vN8QT7Vz3bmXzR3h9OqFrsHxy9Str+uEbPA=
+			cC14VszCoTiJVk4gwXF812r/WTv7fGH0VZucsC8R3IE=
 			</data>
 		</dict>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PNOxOIy5yVAJP0ehtOmHi6ykDuSN1s6gmbybvQChj1U=
+			39d3E7ZxbOB5RKAqL2y/DS0euYx2JjcYMKtV5tuV77I=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeDirectory</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tZbxFkdDMa1R/Evj9nzrVpuptlMHuzO6L884rJL7NEM=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			k+8eOsN0UwDsxFwQxS5zg53OIDgwV7zwMYsGFTDPe4M=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements-1</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			HWx/mvkjabKmsLHbwsZ6zjjxrZVBL2a7zh4DCFgCajo=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			m4zFRRsK/L33EdcBRo2Ko1gLxyyonk3IycKwxWJKEA4=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeSignature</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GWVWb2AMGRpeuUnnlFRF6FTsh+L7YvEvMgbn6RBKk60=
 			</data>
 		</dict>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/consentform.html</key>
@@ -652,112 +715,112 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0hWXjY7ERl4NX8xaORD98xWszHoJcckIz14x6yWWtdQ=
+			Jm1RcJnkUYUyl1pS9iIxInrmN/GgsqfJcRAbijd9HJU=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pvju9ee3AnYdlA2MWcUpcaSfotMqSkVDv5c097CtK64=
+			SAvzR8ZdI7q5Y531lEXZAN644kY/1PyR+w/lqgxFxh8=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreFoundation.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			du03qOSaVGNpvwmRustVFiUVh1O2k5+KjtJ27UIN5yU=
+			iCPJ/eNJPesJsU+FUMTczbRZWjp6TIUYdIH8blvRFWI=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			v8eia60vTxndDKHlO+ri4VmfhiyeA+/tJGWmxU5kV30=
+			xgkQWNBrGfSaYMxyDrVW90IfuJ2izgBzv46JO9P8sNI=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HJN4uv3rkM2ySV28rIVtnkf3TqXsOtvVBdHC6CfhUTU=
+			g5u2VAxZjdsOFEB1QA0JYfVuZNuNl+n5Zw6oIOJ3RSU=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PI2RDiyYo/BDQK7+Zg4Em4VTNEn4+cxSWHtvgOkvX7Q=
+			xLbJoXDCUl0BoZ8dyATmUd/Bhqc9KwSeIwcLwLd04TY=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VW3nOWMepCZpq4e3r3xgE6yYqWHSUNq2eMONck2xlZU=
+			Y1LxdfmYswEoX2E+IhoOEGmm9V1RiYlM4Lt6LKE2+kY=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ov9HYCzkZwJRyZ936+Lm5ud5OVylFiPzCTsYgIYItNw=
+			9tGcwlCaTvEnLuk67HifAmhdNITl7v7OlAA4BCXWpn8=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftMetal.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1UYokHigINtOh3vX+TJ+BKi1N1FtHtKbDm1JI0BuBpI=
+			OGOXmjlbds1sloCFhkz3e6DXSU1WnujOkZu5kSgMm9k=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mWps5VwIJMiBW4lfF150bj6L1u9J3MuArUyT+PpZDFs=
+			bzKBOQ+qk/MB99a/z9Gn9PBTgUYrAXnxes2eWl97XLM=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftQuartzCore.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ok1VzZgN0u/p51Xl+ZrJwj5vSXRfZylHU+ppVsNF9uU=
+			amAqf1w6h0Tvz0LNZXjniqQNr437ODqUEPFWRfUa4kE=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jp+HhJYd8MfskvHsZQHSLcInGJ9UWXAKuw1VPP7xGUg=
+			cdfzKLZcT518SMFnvUTkpCMM6USwHHQpFe04mmSGtuI=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftos.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			d/MvUMcA16d76tavzPmyV+YW//jo2jKJbSGbwE/MW6Q=
+			0sCne099bOteqW/GW+nldhJg7VweVcgDD612cgvT8lQ=
 			</data>
 		</dict>
 		<key>Frameworks/nanopb.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LlZIyG5q5a4ZtJlwBTEx1I5EYndXfUCCe5BT+O9uL5I=
+			1yLYt8kJU4yTcvnS/dx3EBYJ90PQGJ5MvJQuRt8vCsg=
 			</data>
 		</dict>
 		<key>Frameworks/nanopb.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2n5/n8q+9bnr4BQfyajVWLB3chJqnVVZQHYfKzJ/iiE=
+			xRXBfAyBCTCJNiogLv/NMkuO/Zq5J5iD3qLnXaghmbw=
 			</data>
 		</dict>
 		<key>Frameworks/nanopb.framework/nanopb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qJLBgP0lOeN+Xh+rUqtE5aouujWjbyllYCo86JHr208=
+			5MlIu21ZSdiwR2TiTGFchXaKop4ic3x8kVjdna3D7EE=
 			</data>
 		</dict>
 		<key>MainViewController.nib</key>
@@ -771,14 +834,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7SDQ9IpDv6EgSTNHfxUnorqwHIJwU8sL9OdAu+qTpw8=
+			qqEBK2mdLFixRZ7JiC7uncN63Ul9yBF39qi5bQefwHk=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8fwqLb8ig9LL/2m55LgeEx6nxiT/QnMlQ1Nd/i48uPo=
+			NVUIcRM6ZrDuMNr73HElFD+kmBGzCfQGuIEHJh2FhuU=
 			</data>
 		</dict>
 		<key>www/cordova-js-src/exec.js</key>
@@ -841,7 +904,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			66etmnz351rHJFxDW0hhi8vTChYy323nAJqcQUbNV+4=
+			dB7BrBv5oNR+uQmad+83lot21wWJUrlQ4bZL8e/44bk=
 			</data>
 		</dict>
 		<key>www/css/fonts.css</key>
@@ -855,14 +918,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WkSNVZfqI3DmDj+Zj4dfHFRDs+INmoa+L2gas3bijPs=
+			Kl6XMdcyQrUKEGfnGy1dpmXWvkAs1WE5DWEHsmvJWpc=
 			</data>
 		</dict>
 		<key>www/css/main.css</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1Js0J9M7q6ZOV9mqK4xgRrd4E6Ba7Yy4/AWlZIEelKU=
+			Hw2MA7vad/bSvGw7Pgv4uGhKSZNQ0t2eoPROgZdX+/Y=
 			</data>
 		</dict>
 		<key>www/fonts/nunito-v11-latin-200.woff2</key>
@@ -981,14 +1044,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4M4XI8inTdZLb/cDJUFVVcVEQS4Od/kQHv4zfUlChAE=
+			ELmepUTEAllrWF0K4Sl0BEK2m6Bbu6hMVkPKFFQpRxE=
 			</data>
 		</dict>
 		<key>www/js/ads.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Bxsjfsi02bfe5icApriXkAptDkZZvyaSRIIh0HX9Lfo=
+			v9HReZmhmLy4UAZiubnM5WzT5m80f2cD19SmE3FbRi4=
 			</data>
 		</dict>
 		<key>www/js/classes/Class.js</key>
@@ -1002,14 +1065,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/Dv8CVZCTDDSRCOCr1aLsVfTOnxEjqybOSKWHNvY9tw=
+			9WkcldSCFWw02URGkyZnflRda3a7YiZG12M2lgxmddw=
 			</data>
 		</dict>
 		<key>www/js/classes/Grade.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Nd6xZMTvoPPzWbd8nNNOjL9z3fRu1laxrsbI3Fv6K3U=
+			GB/bgdLl1WiQGuSdayY94uLtmHmOAfzAnwMxdie6+AM=
 			</data>
 		</dict>
 		<key>www/js/classes/GradePeriod.js</key>
@@ -1017,6 +1080,13 @@
 			<key>hash2</key>
 			<data>
 			jdturpbdUd/6aHcgZTfYsvik6H7N1BEtGo2Xgg3kwbg=
+			</data>
+		</dict>
+		<key>www/js/classes/GradePeriod2.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			CpQ41gNACWQSv2VFtNnRgfeIYTvfJpaK2eW5HxXDsa4=
 			</data>
 		</dict>
 		<key>www/js/classes/GradeType.js</key>
@@ -1030,14 +1100,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mnUAtxTf+Esm8mg0sE7I5tlum0/WwdSmAsfJvlJ+7mQ=
+			P+FB3BWgEIpIpVPbe0qT6tUcXP/Iw7b+AgHIzKvapN0=
 			</data>
 		</dict>
 		<key>www/js/classes/Magister.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4kkBOjagdL0u9BCDNttmj+rtMo9H4UP5UZWVRfiApms=
+			KTicAh+vojhW7P7bo2fmIJ4BiY1XWHSZQuN2cik2LAM=
 			</data>
 		</dict>
 		<key>www/js/classes/Person.js</key>
@@ -1051,7 +1121,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Pfj9iQ7B9hft2DlQ4hJ0loC5TeJgsO46vS/WAqso6UE=
+			HT7KBw2FpWb9ThRPeTLSXnPoQbu/VihOsjUIQDqfZW4=
 			</data>
 		</dict>
 		<key>www/js/controllers/LessonController.js</key>
@@ -1065,7 +1135,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jHijM90/8LAhCRNsyyi7PN5KmnOMikgka1i8O1UG7Z0=
+			FygfHUvKfEoQpNG5Plucgg+fMkrWi3vpO3bRZGYGWn8=
 			</data>
 		</dict>
 		<key>www/js/deps/chartannotation.js</key>
@@ -1138,6 +1208,13 @@
 			RqXICY8NZj0/y7jV31FoCow0PCu+LBfmefydRCxG9xk=
 			</data>
 		</dict>
+		<key>www/js/filesystem.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ZTHCOvciLQAOXfJxyVEGFJXGYtHYbFgERR3LMtUcIvQ=
+			</data>
+		</dict>
 		<key>www/js/iap.js</key>
 		<dict>
 			<key>hash2</key>
@@ -1149,35 +1226,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CWxpRxcPGDOezOLxxv4BPIorUO+lAz1Fg55la8WWJS0=
+			3h135Tc8SbB5uTC1l/RCKAN/ZudQqk6VUaYniMY44jI=
 			</data>
 		</dict>
 		<key>www/js/main.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			NxUxzs6n16uTyDnp/9yzzRdqPz4+nhrL5vj43630Oko=
+			sYNiv86S5R49F0x1L4CCTKJcTAbdpFaePZcOCJeHgWY=
 			</data>
 		</dict>
 		<key>www/js/refresh.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JzFiSpWfuqb7mbB6eGd6pMNgKbJCCr7Q9QYUYSorjAU=
+			q7hyXR/l8RQreIK4YUMJI1JdkDRwWO2jv9RiS4/1nWQ=
 			</data>
 		</dict>
 		<key>www/js/utils.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			65Ny05e+U6YkKFmn7Ff4JU9o2/46t17uB1NOGWwVq8k=
+			PNJE6QPsQrdOyHrUD6uDrgUAGrfBOW18kdbfQuDNDaE=
 			</data>
 		</dict>
 		<key>www/login.html</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			w4xDbLRyKjbjcRJNiq0J6zXoJs7271WfOMKVFVak7lA=
+			OX9ju1dXf4E30aPGiBLb/UpWjcDVFnAI6HJ1QhOXT88=
 			</data>
 		</dict>
 		<key>www/login/index.html</key>

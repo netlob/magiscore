@@ -4,7 +4,7 @@ var popup = null;
 
 function refreshToken() {
   return new Promise((resolve, reject) => {
-    var tokens = JSON.parse(localStorage.getItem("tokens"));
+    var tokens = JSON.parse(getObject("tokens", getActiveAccount()));
     var refresh_token = tokens.refresh_token;
 
     var settings = {
@@ -55,7 +55,8 @@ function refreshToken() {
         refresh_token: response.refresh_token,
         id_token: response.id_token
       };
-      localStorage.setItem("tokens", JSON.stringify(tokens));
+      setObject("tokens", JSON.stringify(tokens), getActiveAccount());
+      if (typeof m != 'undefined' && m != null) m.token = tokens.access_token;
       resolve(tokens);
     });
   });
@@ -63,7 +64,7 @@ function refreshToken() {
 
 function openBrowser(b) {
   if (b == 2) {
-    localStorage.clear();
+    clearObject(getActiveAccount());
     window.location = "./login.html";
   }
   // viewController.overlay("show")
@@ -129,15 +130,15 @@ function customScheme(iab) {
       // var poep = window.cordova.InAppBrowser.open(response.access_token, '_system', '');
       var m = new Magister(school, response.access_token);
       m.getInfo().then(async newperson => {
-        person = JSON.parse(localStorage.getItem("person"));
+        person = JSON.parse(getObject("person", getActiveAccount()));
         if (newperson.id == person.id) {
           var tokens = {
             access_token: response.access_token,
             refresh_token: response.refresh_token,
             id_token: response.id_token
           };
-          localStorage.setItem("tokens", JSON.stringify(tokens));
-          // localStorage.setItem("tokens", JSON.stringify(tokens))
+          setObject("tokens", JSON.stringify(tokens), getActiveAccount());
+          // setObject("tokens", JSON.stringify(tokens))
           logConsole(JSON.stringify(tokens));
           viewController.overlay("hide");
           onDeviceReady();

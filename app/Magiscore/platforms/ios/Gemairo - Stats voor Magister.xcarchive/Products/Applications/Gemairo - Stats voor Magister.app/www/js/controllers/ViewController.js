@@ -15,7 +15,7 @@ class ViewController {
 
   render(lesson) {
     if (lesson == "general") {
-      this.renderGeneral();
+      this.renderGeneral(false);
     } else {
       this.renderLesson(lesson);
     }
@@ -24,7 +24,8 @@ class ViewController {
       $(this).removeClass("active");
       if (
         $(this).text().trim() == lesson.trim() ||
-        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld")
+        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld" && !courseController.allGrades.filter((grade) => !grade.type.isPTA).every((grade) => filtereddisabled.includes(grade))) || 
+        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld (PTA)" && courseController.allGrades.filter((grade) => !grade.type.isPTA).every((grade) => filtereddisabled.includes(grade)))
       )
         $(this).addClass("active");
     });
@@ -54,7 +55,7 @@ class ViewController {
     $("#barChart-container").empty().append(`<canvas id="barChart""></canvas>`);
     $("#barChart-container-general")
       .empty()
-      .append(`<canvas id="generalBarChart"></canvas>`);
+      .append(`<canvas style="pointer-events: none;" id="generalBarChart"></canvas>`);
     // $("#general-area-title").text(
     //   `Alle cijfers van ${course.type.description}`
     // );
@@ -134,15 +135,15 @@ class ViewController {
     $("#grade-modal-counts").text(grade.counts ? "Ja" : "Nee");
     $("#grade-modal-ispta").text(grade.type.isPTA ? "Ja" : "Nee");
     $("#grade-modal-teacher").text(grade.teacher.teacherCode);
-    $("#grade-modal-date").text(toShortFormat(grade.dateFilledIn));
-
+    $("#grade-modal-date").text(`${new Date(grade.dateFilledIn).getHours()}:${("0" + new Date(grade.dateFilledIn).getMinutes()).slice(-2)}, ${toShortFormat(grade.dateFilledIn)}`);
+    (Object(grade).hasOwnProperty('CijferPeriode')) ? $("#grade-modal-period").text(grade.CijferPeriode.name).parent().show() : $("#grade-modal-period").parent().hide();
     $("#grade-modal-count").attr(
       "onchange",
       `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${
         grade.id
       }', this)`
     );
-    $("#grade-modal-count").prop("checked", !grade.exclude);
+    $("#grade-modal-count").prop("checked", !grade.exclude || !filtereddisabled.includes(grade));
 
     //                 <td>${grade.teacher.teacherCode}</td>
     //                 <td>${toShortFormat(grade.dateFilledIn)}</td>
@@ -155,10 +156,96 @@ class ViewController {
   }
 
   updateNav() {
+    $("#periodeModalTable").empty();
+    _.sortBy(lessonController.lessons, ["name"]);
+    var gevondenperiodes = Array.from(new Set(courseController.courses[courseController.courses.findIndex((course) => course == viewController.currentCourse)].course.grades
+      .filter((grade) => grade.type._type == 1 && grade.CijferPeriode)
+      .map((grade) => grade.CijferPeriode)
+      .map(({ name }) => name)));
+      gevondenperiodes.forEach(cijferPeriode => {
+      $("#periodeModalTable").append(`
+      <label class="buttoncheckbox btn btn-primary">
+        <input checked id="${cijferPeriode}_SelectP" type="checkbox" autocomplete="off">${cijferPeriode}
+      </label>
+      `)
+    });
+    if (gevondenperiodes.length == 0) {
+      $("#periodeModalTable").append(`<div id="noperiodsfound" class="text-center mt-3 mb-3">Probeer de cijfers te herladen, om periodes te vinden.</div>`)
+    }
+    $("#vakkenModalTable").empty();
+    lessonController.lessons.forEach((lesson) => {
+      //Render table
+      $("#vakkenModalTable").append(`  
+      <label class="buttoncheckbox btn btn-primary">
+        <input checked id="${lesson.name.replaceAll(" ", "")}_SelectP" type="checkbox" autocomplete="off">${lesson.name}
+      </label>
+      `)
+    }
+    );
     updateSidebar();
     this.setCourses();
     // this.setLatestGrades(courseController.latestGrades);
     // logConsole(courseController.allGrades)
+  }
+
+  async switchuser(userkey, childindex = -1) {
+    return new Promise(async (resolve, reject) => {
+    try {
+      var activeaccount = await getActiveAccount();
+      if (activeaccount == userkey && childindex == -1) { return; }
+      viewController.overlay("show");
+      //save smaller version of account
+      var smallaccount = [];
+      for await (key of Object.keys(localStorage)) {
+        var userdata = Object.entries(JSON.parse(localStorage.getItem(key)));
+        if (key != userkey) { smallaccount.push({ [key]: JSON.stringify(Object.fromEntries(userdata.filter((val) => val[0] != 'courses'))) }); }
+      }
+      //Move current active to Filesystem
+      var allfiles = await listFiles();
+      var file = (await allfiles.filter((file) => file.name == `${activeaccount}.json`).length == 0) ? await CreateNewFile(activeaccount) : (await allfiles.filter((file) => file.name == `${activeaccount}.json`))[0];
+      
+      if (JSON.parse(getObject('person', getActiveAccount())).isParent == true) {
+        //Merge lastest child grades into the full array in the filesystem
+        var parsedactivelocalstorage = JSON.parse(localStorage.getItem(activeaccount));
+        var parsedactivestorage = await JSON.parse(await readFile(file));
+        var latestchildcourses = JSON.parse(parsedactivestorage.childcourses);
+        latestchildcourses[parseInt(getActiveChildAccount())].courses = JSON.parse(parsedactivelocalstorage.courses);
+        parsedactivestorage.childcourses = JSON.stringify(latestchildcourses);
+        parsedactivelocalstorage.childcourses = parsedactivestorage.childcourses;
+        await WriteFile(JSON.stringify(parsedactivelocalstorage), file);
+      } else {
+        await WriteFile(localStorage.getItem(activeaccount), file);
+      }
+      //Clear localstorage
+      localStorage.clear();
+      //Copy new active account from filesystem to localstorage
+      var allfiles = await listFiles();
+      var file = (await allfiles.filter((file) => file.name == `${userkey}.json`))[0];
+      //Add smaller version of accounts to localstorage
+      for await (let name of smallaccount) {
+        localStorage.setItem(Object.entries(name)[0][0], Object.entries(name)[0][1]);
+      }
+      if (childindex >= 0) {
+        var active = JSON.parse(await readFile(file));
+        var activechildcourses = JSON.parse(active.childcourses);
+        active.courses = JSON.stringify(activechildcourses[childindex].courses);
+        delete active.childcourses;
+        localStorage.setItem(userkey, JSON.stringify(active));
+        setProfilePic(true, childindex, true)
+      } else {
+        localStorage.setItem(userkey, await readFile(file));
+      }
+      //Refresh
+      changeActiveAccount(userkey, childindex);
+      reloaddata();
+      viewController.overlay("hide");
+      resolve();
+    } catch (e) {
+      //error
+      reject(e)
+      viewController.overlay("hide");
+    }
+  });
   }
 
   downloadGraph() {
@@ -176,28 +263,52 @@ class ViewController {
   }
 
   updateConfig(config, theme) {
-    var base = JSON.parse(localStorage.getItem("config"));
+    var base = JSON.parse(getObject("config", getActiveAccount()));
     for (var key in config) {
       // if (key == 'includeGradesInAverageChart' && base['includeGradesInAverageChart'] == true) config[key] == false
       base[key] = config[key];
     }
     localStorage.removeItem("config");
-    localStorage.setItem("config", JSON.stringify(base));
+    setObject("config", JSON.stringify(base), getActiveAccount());
     this.config = base;
     // if (config['includeGradesInAverageChart']) this.render(this.currentLesson)
     if (config["devMode"] === true) $(".toggle-terminal").show();
     if (config["devMode"] === false) $(".toggle-terminal").hide();
     if ("smiley" in config) {
-      setProfilePic();
+      setProfilePic(false, getActiveChildAccount());
       if (this.config.smiley)
         this.toast("Profielfoto vervangen met een smiley", 2000, false);
       if (!this.config.smiley)
         this.toast("Profielfoto veranderd naar originele foto", 2000, false);
     }
+    $('#useraccountslist').html(``);
+    $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
+    var activeaccount = parseInt(getActiveAccount());
+    for (const key of Object.keys(localStorage)) {
+      var persondata = JSON.parse(getObject("person", key));
+      if (persondata.isParent) {
+        // persondata.children.filter((child) => child.childchildActiveViewed == true)
+        for (const childindex of Object.keys(persondata.children)) {
+          var profilepic = getObject("profilepic", key);
+          var config = JSON.parse(getObject("config", key));
+          $(`<a class="dropdown-item vibrate ${(childindex == getActiveChildAccount()) ? 'disabled' : ''}" onclick="viewController.switchuser(${key}, ${childindex});">
+          <i class="fas fa-child fa-sm fa-fw mr-2 text-gray-400"></i>
+            ${persondata.children[childindex].Roepnaam} ${persondata.children[childindex].Achternaam}
+          </a>`).prependTo("#useraccountslist");
+        }
+      } else {
+        var profilepic = getObject("profilepic", key);
+        var config = JSON.parse(getObject("config", key));
+        $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
+          <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
+          ${(Object(persondata).hasOwnProperty('firstName')) ? persondata.firstName + ' ' : ''}${persondata.lastName}
+        </a>`).prependTo("#useraccountslist");
+      }
+    }
   }
 
   setConfig() {
-    var config = localStorage.getItem("config") || false;
+    var config = getObject("config", getActiveAccount()) || false;
     if (!config) {
       config = {
         isDesktop: false,
@@ -210,7 +321,7 @@ class ViewController {
         devMode: false,
         exclude: [],
       };
-      localStorage.setItem("config", JSON.stringify(config));
+      setObject("config", JSON.stringify(config), getActiveAccount());
       config = JSON.stringify(config);
     }
     config = JSON.parse(config);
@@ -227,7 +338,7 @@ class ViewController {
       : $(".snackbar").length < 1
       ? 30
       : $(".snackbar").length * 65 + 30;
-    $("body").append(
+    $("#snackbarContainer").append(
       `<div id="snackbar-${snackId}" class="snackbar${
         fullWidth ? " w-90" : ""
       }">${msg}</div>`
@@ -247,6 +358,12 @@ class ViewController {
       setTimeout(function () {
         $(".snackbar").each((i, obj) => {
           if ($(obj).attr("id") != $(`#snackbar-${snackId}`).attr("id")) {
+            var snackbar = document.getElementById(`snackbar-${snackId}`)
+            snackbar.classList.add('reverseanimation')
+            snackbar.style.animation = 'none';
+            setTimeout(function() {
+              snackbar.style.animation = '';
+            }, 10);
             $(obj).animate(
               {
                 bottom: "-=" + $(`#snackbar-${snackId}`).height() * 2,
@@ -420,7 +537,7 @@ class ViewController {
         "Als je deze functie aanzet zullen alle wegingen en beschrijvingen van oude cijfers ververst worden. Deze functie staat standaard uit omdat dit bijna nooit meer achteraf veranderd.\nHierdoor wordt de tijd voor een refresh een stuk korter en wordt er minder (mobiele) data verbruikt.\n\nJe kan deze functie tijdelijk aanzetten om alles te updaten nadat een docent een cijfer een andere weging heeft gegeven.\nLet op: de refreshtijd zal aanzienlijk langer worden!",
         confirmRefreshOldGrades,
         "Weet je het zeker?",
-        ["Ja", "Nee"]
+        ["Ja", "Nee", "Eenmalig"]
       );
     } else {
       this.updateConfig({
@@ -497,7 +614,7 @@ class ViewController {
         .substring(2)}`;
       // var sexyDate = course.raw.Start
       $("#years").append(
-        `<a class="pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${
+        `<a class="d-flex justify-content-between align-items-center pt-3 pl-4 pb-3 pr-4 dropdown-item vibrate" onclick="viewController.renderCourse('${
           course.course.id
         }', true, false, false)" id="course-${
           course.course.id
@@ -505,9 +622,10 @@ class ViewController {
           course.course.curricula.length > 0
             ? "(" + course.course.curricula.toString() + ")"
             : ""
-        }</a>`
+        } <span class="badge badge-primary badge-pill">${course.course.grades.filter((grade) => grade.type._type == 1).length}</span></a>`
       );
     });
+    $("#totalgrades").text(courseController.courses.map(course => course.course.grades.filter((grade) => grade.type._type == 1).length).reduce((partialSum, a) => partialSum + a, 0));
     $("#years").children().removeClass("course-selected");
     $(`#course-${this.currentCourse.course.id}`).addClass("course-selected");
     $("#current-course-badge").text(
@@ -559,14 +677,37 @@ class ViewController {
   }
 
   closeSettings() {
+    window.location.hash = '';
     $("#buttonSidenavToggle").show();
     $("#buttonSidenavBack").hide();
     $("#topbar").show();
+    $('#search-wrapper').hide()
     this.render("general");
     this.settingsOpen = false;
     vibrate(15, false);
     clearInterval(this.iddinkInterval);
+    document.getElementById('content').removeAttribute('data-snap-ignore');
     // this.render(this.currentLesson.name)
+  }
+
+  openZoeken() {
+    $("#buttonSidenavToggle").hide();
+    $("#buttonSidenavBack").show();
+    $("#general-wrapper").hide();
+    $("#topbar").hide();
+    $("#lesson-wrapper").hide();
+    $('#search-wrapper').show()
+    $("#currentRender").html(
+      '<span onclick="viewController.closeSettings()">Zoeken</span>'
+    );
+    $("#currentRenderMobile").html(
+      '<span onclick="viewController.closeSettings()">Zoeken</span>'
+    );
+    document.getElementById('content').setAttribute('data-snap-ignore', true);
+  }
+
+  closeZoeken() {
+    this.closeSettings();
   }
 
   currentAllGrades() {
@@ -586,7 +727,7 @@ class ViewController {
   }
 }
 
-function confirmRefreshOldGrades(button) {
+async function confirmRefreshOldGrades(button) {
   if (button == 1) {
     $("#refreshAll-checkbox").prop("checked", true);
     viewController.updateConfig({
@@ -598,13 +739,17 @@ function confirmRefreshOldGrades(button) {
     viewController.updateConfig({
       refreshOldGrades: false,
     });
+  } else if (button == 3) {
+    viewController.closeSettings();
+    viewController.config.refreshOldGrades = true;
+    await syncGrades();
+    viewController.config.refreshOldGrades = false;
   }
 }
 
-function setProfilePic(forceRefresh) {
-  if (!forceRefresh) forceRefresh = false;
+function setProfilePic(forceRefresh = false, childindex, notoast = false) {
   // alert(viewController.config.smiley)
-  var profilepicStorage = localStorage.getItem("profilepic") || false,
+  var profilepicStorage = getObject("profilepic", getActiveAccount()) || false,
     profilepic = document.getElementById("imgelem");
   if (viewController.config.smiley && !forceRefresh) {
     logConsole("[INFO]   Profile picture as smiley");
@@ -629,8 +774,8 @@ function setProfilePic(forceRefresh) {
           profilepic.setAttribute("src", result);
           try {
             logConsole("[INFO]   Storage of image success");
-            localStorage.setItem("profilepic", result);
-            if (forceRefresh)
+            setObject("profilepic", result, getActiveAccount());
+            if (forceRefresh && !notoast)
               viewController.toast("Profielfoto ververst", 2000, false);
           } catch (e) {
             errorConsole("[ERROR] Storage failed: " + e);
@@ -640,7 +785,8 @@ function setProfilePic(forceRefresh) {
         fileReader.readAsDataURL(blob);
       }
     };
-    let url = `https://${school}/api/personen/${person.id}/foto?width=640&height=640&crop=no`;
+    var personid = (childindex >= 0 && person.isParent) ? person.children[childindex].Id : person.id
+    let url = `https://${school}/api/personen/${personid}/foto?width=640&height=640&crop=no`;
     if (window.cordova.platformId === "ios") {
       url = "https://cors.sjoerd.dev/" + url;
     }
@@ -651,20 +797,36 @@ function setProfilePic(forceRefresh) {
 }
 
 function updateSidebar() {
+  $('#ScreensNav').html(`<li class="nav-item active"><a class="nav-link vibrate" onclick="viewController.render('general')"><span>Gemiddeld</span></a></li>`)
   if (lessonController.lessons.length > 0) {
+    if (lessonController.lessons.filter((lessons) => lessons.lesson.grades.filter((grade) => grade.type.isPTA == true).length > 0).length > 0 && lessonController.lessons.filter((lessons) => lessons.lesson.grades.filter((grade) => grade.type.isPTA == false).length > 0).length > 0) {
+      //PTA's mixed with normal grades detected, so this must be a year before the final year.
+      $('#ScreensNav').html(`
+      <li class="nav-item active">
+      <a class="nav-link vibrate" onclick="viewController.render('general')">
+        <span>Gemiddeld</span>
+      </a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link vibrate" onclick="var oldfilter = [];filtereddisabled.forEach((grade) => oldfilter.push(grade));courseController.allGrades.filter((grade) => !grade.type.isPTA).forEach((grade) => filtereddisabled.push(grade));viewController.render('general');filtereddisabled = oldfilter;">
+      <span>Gemiddeld (PTA)</span>
+    </a>
+  </li>
+      `)
+    }
     $("#subjectsNav").empty();
-    _.sortBy(lessonController.lessons, ["name"]);
-    lessonController.lessons.forEach((lesson) =>
+    lessonController.lessons.forEach((lesson) => {
+      var isEnabled = (document.getElementById('vakkenModalTable').children.length == lessonController.lessons.length) ? !lessonController.lessons.filter((lesson) => lesson.lesson.grades.every(r=> filtereddisabled.includes(r))).map((lesson) => lesson.name).includes(lesson.name.capitalize()) : true
       $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
-            <a class="nav-link" onclick="viewController.render('${
+            <a class="nav-link" ${isEnabled ? '' : 'style="display: flex;flex-wrap: nowrap;justify-content: space-between;align-items: center;opacity: .5;pointer-events: none;"'} onclick="viewController.render('${
               lesson.name
             }')">
                 <span>${lesson.name.capitalize()}</span>
+                ${isEnabled ? '' : '<i class="fas fa-filter fa-fw ml-2"></i>'}
             </a>
         </li>
-    `)
-    );
+    `)})
   } else {
     $("#subjectsNav").html(`
       <li class="text-center mt-4">
@@ -678,22 +840,46 @@ function updateSidebar() {
     $(".toggle-terminal").hide();
   }
 
-  setProfilePic();
+  setProfilePic(false, getActiveChildAccount());
 
   $("#userDropdown > span").text(
-    `${person.firstName} ${person.lastName} ${
+    `${(typeof person.firstName != 'undefined') ? person.firstName + ' ' : ''}${person.lastName} ${
       courseController.current().course.group.description
         ? "(" + courseController.current().course.group.description + ")"
         : ""
     }`
   );
   $("#mobilePersonInfo").text(
-    `${person.firstName} ${person.lastName} ${
+    `${(typeof person.firstName != 'undefined') ? person.firstName + ' ' : ''}${person.lastName} ${
       courseController.current().course.group.description
         ? "(" + courseController.current().course.group.description + ")"
         : ""
     }`
   );
+  $('#useraccountslist').html(``);
+  $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
+  var activeaccount = parseInt(getActiveAccount());
+  for (const key of Object.keys(localStorage)) {
+    var persondata = JSON.parse(getObject("person", key));
+    if (persondata.isParent) {
+      // persondata.children.filter((child) => child.activeviewed == true)
+      for (const childindex of Object.keys(persondata.children)) {
+        var profilepic = getObject("profilepic", key);
+        var config = JSON.parse(getObject("config", key));
+        $(`<a class="dropdown-item vibrate ${(childindex == getActiveChildAccount()) ? 'disabled' : ''}" onclick="viewController.switchuser(${key}, ${childindex});">
+          <i class="fas fa-child fa-sm fa-fw mr-2 text-gray-400"></i>
+          ${persondata.children[childindex].Roepnaam} ${persondata.children[childindex].Achternaam}
+        </a>`).prependTo("#useraccountslist");
+      }
+    } else {
+      var profilepic = getObject("profilepic", key);
+      var config = JSON.parse(getObject("config", key));
+      $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
+        <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
+        ${(Object(persondata).hasOwnProperty('firstName')) ? persondata.firstName + ' ' : ''}${persondata.lastName}
+      </a>`).prependTo("#useraccountslist");
+    }
+  }
   // var header = document.getElementById("accordionSidebar");
   // var btns = header.getElementsByClassName("nav-item");
   // for (var i = 0; i < btns.length; i++) {
@@ -729,7 +915,7 @@ function setChartData(config, lesson, everything) {
     lessonController.lessons.forEach((lesson) => {
       if (lesson.lesson.grades.length > 0) {
         lesson.lesson.grades.forEach((grade) => {
-          if (!grade.exclude) {
+          if (!grade.exclude && !filtereddisabled.includes(grade)) {
             var gradegrade = grade.grade.replace(",", ".");
             data.push({
               t: new Date(grade.dateFilledIn),
@@ -749,7 +935,7 @@ function setChartData(config, lesson, everything) {
     });
   } else {
     lessonController.getLesson(lesson).lesson.grades.forEach((grade) => {
-      if (!grade.exclude) {
+      if (!grade.exclude && !filtereddisabled.includes(grade)) {
         var gradegrade = grade.grade.replace(",", ".");
         data.push({
           t: new Date(grade.dateFilledIn),
@@ -1202,12 +1388,12 @@ function setChartData(config, lesson, everything) {
 
     lessonController.lessons.forEach((lesson) => {
       let grademap = lesson.lesson.grades.map((grade) => {
-        if (!grade.exclude) {
+        if (!grade.exclude && !filtereddisabled.includes(grade)) {
           var gradegrade = grade.grade.replace(",", ".");
           gradegrade = parseFloat(gradegrade.replace(",", "."));
           return [isNaN(gradegrade), grade];
         }
-      });
+      }).filter((grade) => typeof grade != 'undefined');
       grademap = grademap.filter((a) => a[0] == false);
       if (lesson.lesson.grades.length > 0 && grademap.length > 0) {
         const abb = grademap[0][1].class.abbreviation;
@@ -1428,10 +1614,7 @@ function toShortFormat(d) {
     "Nov",
     "Dec",
   ];
-  var day = d.getDate();
-  var month_index = d.getMonth();
-  var year = d.getFullYear();
-  return "" + day + " " + month_names[month_index] + " " + year;
+  return `${d.getDate()} ${month_names[d.getMonth()]} ${d.getFullYear()}`; //7:05, 21 Jul 2020'
 }
 
 function setTableData(lesson) {
@@ -1444,7 +1627,7 @@ function setTableData(lesson) {
     table = $("#cijfersTable");
     grades = lesson.grades;
   }
-  _.sortBy(grades, ["dateFilledIn", "description", "weight"]);
+  grades = _.sortBy(grades, ["dateFilledIn", "description", "weight"]);
   table.empty();
   if (grades.length == 0) {
     table
@@ -1462,13 +1645,14 @@ function setTableData(lesson) {
     if (
       grade.type._type == 1 &&
       round(grade.grade) > 0 &&
-      round(grade.grade) < 11
+      round(grade.grade) < 11 && 
+      !filtereddisabled.includes(grade)
     ) {
       var d = new Date(grade.dateFilledIn);
       table.append(`
         <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
           grade.id
-        })" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
+        })" ${(grade.exclude) ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
               <h4 class="text-center mt-2">${
@@ -1514,6 +1698,7 @@ function setAverages() {
   $("#general-progress").empty();
   $("#averagesTable").empty();
   lessonController.lessons.forEach((lesson) => {
+    if (lessonController.lessons.filter((lesson) => lesson.lesson.grades.every(r=> filtereddisabled.includes(r))).map((lesson) => lesson.name).includes(lesson.name.capitalize())) {return;}
     var average = lesson.lesson.getAverage();
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
       $("#averagesTable").append(

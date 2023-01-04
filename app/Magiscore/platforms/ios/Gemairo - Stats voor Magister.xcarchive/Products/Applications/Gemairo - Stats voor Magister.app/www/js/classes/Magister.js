@@ -63,7 +63,7 @@ class Magister {
           reject("no internet");
         },
         timeout: 5000
-      }).done(res => {
+      }).done(async res => {
         this.person.isParent = res.Groep[0].Privileges.some(
           x =>
             x.Naam.toLowerCase() === "kinderen" &&
@@ -74,6 +74,9 @@ class Magister {
         this.person.firstName = res.Roepnaam || res.roepnaam;
         this.person.lastName = res.Achternaam || res.achternaam;
         this.namePrefix = res.Tussenvoegsel || res.tussenvoegsel;
+        if (this.person.isParent) {
+          this.person.children = await this.getChildren()
+        }
         //this.fullName = res.Persoon.Naam || res.persoon.naam
         //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
         //this.group = res.Persoon.Groep || res.persoon.groep)
@@ -81,6 +84,45 @@ class Magister {
       });
     });
   }
+
+  /**
+   * @returns {Promise<Object[]>}
+   */
+   getChildren() {
+    return new Promise((resolve, reject) => {
+      if (this.person.id == undefined) reject("Person.id is undefined!");
+      //logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
+      $.ajax({
+        cache: false,
+        dataType: "json",
+        async: true,
+        crossDomain: true,
+        url: `https://${this.tenant}/api/personen/${
+          this.person.id
+        }/kinderen?openData=%27%27`,
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + this.token,
+          noCache: new Date().getTime()
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          // alert("error: " + XMLHttpRequest.statusText)
+          if (XMLHttpRequest.readyState == 4) {
+            logConsole(`[ERROR] HTTP error (${textStatus})`);
+          } else if (XMLHttpRequest.readyState == 0) {
+            logConsole(`[ERROR] Network error (${textStatus})`);
+          } else {
+            logConsole("[ERROR] something weird is happening");
+          }
+          reject("no internet");
+        },
+        timeout: 5000
+      }).done(res => {
+        var res = res.items || res.Items;
+        resolve(res);
+      });
+    });
+  }  
 
   /**
    * @returns {Promise<Object>}
@@ -154,9 +196,10 @@ class Magister {
   /**
    * @returns {Promise<Course[]>}
    */
-  getCourses() {
+  getCourses(childindex = -1) {
     return new Promise((resolve, reject) => {
       if (this.person.id == undefined) reject("Person.id is undefined!");
+      var personid = (childindex >= 0 && this.person.isParent) ? this.person.children[childindex].Id : this.person.id
       //logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
       $.ajax({
         cache: false,
@@ -164,7 +207,7 @@ class Magister {
         async: true,
         crossDomain: true,
         url: `https://${this.tenant}/api/personen/${
-          this.person.id
+          personid
         }/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(new Date())}`,
         method: "GET",
         headers: {

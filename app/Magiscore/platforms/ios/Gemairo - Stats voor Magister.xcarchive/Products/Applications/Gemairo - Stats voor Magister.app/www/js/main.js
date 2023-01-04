@@ -1,21 +1,25 @@
 // If you want comments. Go fuck yourself
 
+if (localStorage.getItem('courses')) { MoveToNewStorage(); }
+
 var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
 var courseController = new CourseController(viewController);
+var filtereddisabled = [];
+var idletime;
 
 var sorted = {},
-  person = JSON.parse(localStorage.getItem("person")),
-  account = JSON.parse(localStorage.getItem("account")),
-  tokens = JSON.parse(localStorage.getItem("token")),
-  courses = JSON.parse(localStorage.getItem("courses")),
-  latest = JSON.parse(localStorage.getItem("latest")),
-  school = localStorage.getItem("school"),
+  person = JSON.parse(getObject("person", getActiveAccount())),
+  account = JSON.parse(getObject("account", getActiveAccount())),
+  tokens = JSON.parse(getObject("tokens", getActiveAccount())),
+  courses = JSON.parse(getObject("courses", getActiveAccount())),
+  latest = JSON.parse(getObject("latest", getActiveAccount())),
+  school = getObject("school", getActiveAccount()),
   m = null;
 
 courseController.clear();
 // courses = courses.splice(0,5)
-// localStorage.setItem("courses", JSON.stringify(courses));
+// setObject("courses", JSON.stringify(courses));
 courses.forEach((c) => {
   var newCourse = Course.create();
   Object.keys(c).forEach((key) => {
@@ -32,10 +36,33 @@ var snapper;
 //logConsole("Courses" + JSON.stringify(courses))
 // courses[1].grades.splice(0, 100)
 
-// localStorage.setItem("courses", JSON.stringify(courses))
+// setObject("courses", JSON.stringify(courses))
 // logConsole("removed grades")
 
 //courses.splice(courses.indexOf(courseController.current()))
+
+function reloaddata() {
+  sorted = {},
+  person = JSON.parse(getObject("person", getActiveAccount())),
+  account = JSON.parse(getObject("account", getActiveAccount())),
+  tokens = JSON.parse(getObject("tokens", getActiveAccount())),
+  courses = JSON.parse(getObject("courses", getActiveAccount())),
+  latest = JSON.parse(getObject("latest", getActiveAccount())),
+  school = getObject("school", getActiveAccount()),
+  m = null;
+
+courseController.clear();
+courses.forEach((c) => {
+  var newCourse = Course.create();
+  Object.keys(c).forEach((key) => {
+    newCourse[key] = c[key];
+  });
+  c = newCourse;
+  courseController.add(c);
+});
+viewController.currentCourse = courseController.current();
+onDeviceReady();
+}
 
 function main(l) {
   // alert(person.account.name)
@@ -65,6 +92,8 @@ function main(l) {
   lessonController.clear();
   lessonController.allGrades = [];
   lessonController.lessons = [];
+  filtereddisabled = [];
+  document.getElementById('gradefilterbutton').children[0].children[0].classList.remove("activefilter");
   var sorted = viewController.currentCourse.course.sortGrades();
   // viewController.currentCourse.course.grades.forEach(grade => {
   //   var vak = grade.class.description.capitalize()
@@ -119,17 +148,33 @@ function main(l) {
 
 function logOut() {
   navigator.notification.confirm(
-    'Klik op "Uitloggen" als je zeker weet dat je wilt uitloggen. \nPS. er wordt momenteel gewerkt aan support voor meerdere accounts',
+    'Klik op "Uitloggen" als je zeker weet dat je wilt uitloggen.',
     confirmLogout,
     "Weet je het zeker?",
     ["Ja", "Nee"]
   );
 }
 
-function confirmLogout(b) {
+async function confirmLogout(b) {
   if (b == 1) {
-    localStorage.clear();
-    window.location = "./login.html";
+    if (localStorage.length > 1) {
+      var active = getActiveAccount(); 
+      clearObject(active);
+      var allfiles = await listFiles()
+      var file = (await allfiles.filter((file) => file.name == `${active}.json`))[0];
+      var newaccountfile = (await allfiles.filter((file) => file.name == `${Object.keys(localStorage)[0]}.json`))[0];
+      localStorage.setItem(Object.keys(localStorage)[0], await readFile(newaccountfile));
+      changeActiveAccount(Object.keys(localStorage)[0]);
+      reloaddata();
+      courseController.getLatestGrades(false, getActiveChildAccount());
+      viewController.overlay("hide");
+      viewController.closeSettings()
+      await RemoveFile(file);
+      //window.location = "./index.html";
+    } else {
+      clearObject(getActiveAccount());
+      window.location = "./login.html";
+    }
   } else return;
 }
 
@@ -155,18 +200,19 @@ function round(num) {
 
 async function syncGrades() {
   return new Promise(async (resolve, reject) => {
-    $("div:contains('Nieuwe cijfer(s) beschikbaar')").remove();
+    $("div:contains('Nieuwe cijfer(s) beschikbaar'):first-child").remove();
     if (m == null || m == undefined) {
       if (navigator.connection.type !== Connection.NONE) {
         refreshToken()
           .then((refreshTokens) => {
             tokens = refreshTokens;
+            setObject("tokens", JSON.stringify(tokens), getActiveAccount());
             m = new Magister(school, tokens.access_token);
             m.getInfo()
               .then((p) => {
                 person = p;
-                localStorage.setItem("person", JSON.stringify(p));
-                courseController.getLatestGrades();
+                setObject("person", JSON.stringify(p), getActiveAccount());
+                courseController.getLatestGrades(false, getActiveChildAccount());
               })
               .catch((err) => {
                 if (err == "no internet")
@@ -214,7 +260,7 @@ async function syncGrades() {
     //     logConsole("addedCourse")
     //   }
     // })
-    var currentCourse = courseController.current();
+    var currentCourse = viewController.currentCourse;
     var newGrades = [];
     // courses.forEach(currentCourse => {
     var newCourse = Course.create();
@@ -292,7 +338,11 @@ async function syncGrades() {
               var i = _.findIndex(currentCourse.grades, {
                 id: grade.id,
               });
-              currentCourse.grades[i] = grade;
+              if (viewController.config.refreshOldGrades) {
+                viewController.currentCourse.course.grades.push(grade);
+              } else {
+                currentCourse.grades[i] = grade
+              }
               i = _.findIndex(newGrades, {
                 id: grade.id,
               });
@@ -343,7 +393,7 @@ async function syncGrades() {
                 // courseController.remove(currentCourse)
                 // courseController.add(currentCourse)
                 var coursesStorage = JSON.parse(
-                  localStorage.getItem("courses")
+                  getObject("courses", getActiveAccount())
                 );
                 var i = _.findIndex(coursesStorage, {
                   id: currentCourse.id,
@@ -356,8 +406,14 @@ async function syncGrades() {
                   });
                 });
                 _.sortBy(courseController.allGrades, "dateFilledIn");
-                coursesStorage[i] = currentCourse;
-                localStorage.setItem("courses", JSON.stringify(coursesStorage));
+                coursesStorage[i] = viewController.currentCourse.course;
+                coursesStorage.forEach(jaar => jaar.grades.forEach(grade => { 
+                  ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
+                  ['id', 'number'].forEach(rem => delete grade.class[rem]);
+                  ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
+                }))
+                
+                setObject("courses", JSON.stringify(coursesStorage), getActiveAccount());
                 logConsole("[INFO]   Saved new grades in courses");
                 // courseController.save()
                 main(viewController.currentLesson);
@@ -413,10 +469,10 @@ async function checkNewCourses(newGrades) {
   );
   if (courses.length == 1) {
     let course = courses[0];
-    let storageCourses = JSON.parse(localStorage.getItem("courses"));
+    let storageCourses = JSON.parse(getObject("courses", getActiveAccount()));
     course._magister = undefined;
     storageCourses.push(course);
-    localStorage.setItem("courses", JSON.stringify(storageCourses));
+    setObject("courses", JSON.stringify(storageCourses), getActiveAccount());
 
     var newCourse = Course.create();
     Object.keys(course).forEach((key) => {
@@ -510,6 +566,112 @@ function vibrate(time, strong) {
 //   logConsole(poep)
 // }
 
+
+// filtereddisabled = [];
+
+// courseController.allGrades.filter((grade) => !grade.type.isPTA).forEach((grade) => filtereddisabled.push(grade))
+
+
+
+function generateFilter() {
+  filtereddisabled = [];
+
+  courseController.allGrades.filter((grade) => !Array.from(document.getElementById('vakkenModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
+    .filter((ent) => typeof ent != 'undefined')
+    .includes(grade.class.description.capitalize()) && grade.type._type == 1)
+    .forEach((grade) => filtereddisabled.push(grade));
+
+  if (document.getElementById('periodeModalTable').children[0].id != 'noperiodsfound') courseController.allGrades.filter((grade) => ('CijferPeriode' in grade) && !Array.from(document.getElementById('periodeModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
+    .filter((ent) => typeof ent != 'undefined')
+    .includes(grade?.CijferPeriode?.name) && grade.type._type == 1)
+    .forEach((grade) => filtereddisabled.push(grade));
+
+  document.getElementById('gradefilterbutton').children[0].children[0].classList.add("activefilter");
+
+  viewController.render(viewController.currentLesson);
+  updateSidebar();
+}
+
+function generateSearch(Zoekopdracht) {
+  var zoektable = $("#zoekGradesTable")
+  zoektable.empty();
+  var searched = courseController.allGrades.filter((grade) => Object.entries(grade).map((grade) => {if (grade[0].includes('grade') || grade[0].includes('description')) {return grade[1] } else if (grade[0].includes('teacher')) {return grade[1].teacherCode} else if (grade[0].includes('class')) {return grade[1].description}}).filter((grade) => typeof grade != 'undefined').filter((string) => string != null && string.toString().toLowerCase()
+  .includes(Zoekopdracht.toString().toLowerCase())).length > 0);
+  searched.forEach((grade, index) => {
+    if (
+      grade.type._type == 1 &&
+      round(grade.grade) > 0 &&
+      round(grade.grade) < 11 &&
+      !filtereddisabled.includes(grade)
+    ) {
+      var d = new Date(grade.dateFilledIn);
+      zoektable.append(`
+        <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
+          grade.id
+        })" ${(grade.exclude) ? 'style="opacity:0.5 !important;"' : ""}>
+          <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
+            <div class="rounded-circle">
+              <h4 class="text-center mt-2">${
+                grade.grade == "10,0"
+                  ? '<span class="text-success">10</span><span class="invisible">,</span>'
+                  : !grade.passed
+                  ? '<span class="text-danger">' + grade.grade + "</span>"
+                  : grade.grade
+              }<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${
+        grade.weight < 10
+          ? grade.weight + 'x<span class="invisible">0</span>'
+          : grade.weight + "x"
+      }</sup></h4>
+            </div>
+            <!-- <div class="status-indicator bg-success"></div> -->
+          </div>
+          <div class="ml-1" style="padding-top: -6px">
+            <span class="text-truncate font-weight-bold text-gray-800 small grade-small text-capitalize">${(lesson =
+              "general" ? grade.class.description : grade.description)}</span>
+            <span
+              class="grades-table-date small grade-small float-right text-gray-600">${d.getDate()}-${
+        d.getMonth() + 1
+      }-${d.getFullYear()}</span>
+            <div class="small grade-small text-gray-600">${
+              grade.description == ""
+                ? "<i>Geen beschrijving...</i>"
+                : grade.description
+            }</div>
+          </div>
+        </a>
+        ${index != searched.length - 1 ? '<hr class="m-0 p-0">' : ""}
+      `);
+    }
+  })
+  if (searched.filter((grade) => grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11 && !filtereddisabled.includes(grade)).length == 0) {
+    zoektable.append(`<div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>`)
+  }
+}
+
+function MoveToNewStorage() {
+  var newaccountStorage = {};
+  for (key of Object.keys(localStorage)) {
+    if (key == "config") {
+      parseddata = JSON.parse(localStorage[key]);
+      parseddata.currentviewed = true;
+      localStorage[key] = JSON.stringify(parseddata);
+    }
+    if (key == "courses") {
+      courses = JSON.parse(localStorage[key]);
+      courses.forEach(jaar => jaar.grades.forEach(grade => { 
+        ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
+        ['id', 'number'].forEach(rem => delete grade.class[rem]);
+        ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
+      }))
+      localStorage[key] = JSON.stringify(courses);
+    }
+    newaccountStorage[key] = localStorage[key];
+  }
+  localStorage.clear();
+  localStorage.setItem(0, JSON.stringify(newaccountStorage));
+  window.location = './index.html';
+}
+
 function onDeviceReady() {
   $.ajaxSetup({
     cache: false,
@@ -521,7 +683,7 @@ function onDeviceReady() {
       }
     });
   }
-  if (localStorage.getItem("tokens") != null) {
+  if (getObject("tokens", getActiveAccount()) != null) {
     logConsole("[INFO]   Device ready!");
     logConsole("[INFO]   Connection type: " + navigator.connection.type);
     if (navigator.connection.type !== Connection.NONE) {
@@ -530,18 +692,18 @@ function onDeviceReady() {
         .then((refreshTokens) => {
           tokens = refreshTokens;
           m = new Magister(school, tokens.access_token);
-
+          setObject("tokens", JSON.stringify(tokens), getActiveAccount());
           m.getInfo()
             .then((p) => {
-              person = JSON.parse(localStorage.getItem("person"));
-              account = JSON.parse(localStorage.getItem("account"));
+              person = JSON.parse(getObject("person", getActiveAccount()));
+              account = JSON.parse(getObject("account", getActiveAccount()));
               if (p.id == person.id) {
-                localStorage.setItem("person", JSON.stringify(p));
+                setObject("person", JSON.stringify(p), getActiveAccount());
                 main();
-                courseController.getLatestGrades();
+                courseController.getLatestGrades(false, getActiveChildAccount());
                 if (account == null || !"name" in account) {
                   m.getAccountInfo().then((a) => {
-                    localStorage.setItem("account", JSON.stringify(a));
+                    setObject("account", JSON.stringify(a), getActiveAccount());
                     if (a.id != account.id && account != null) {
                       navigator.notification.confirm(
                         "Er is een probleem met het inloggen waardoor je bent uitgelogd. Log opnieuw in.",
@@ -571,7 +733,7 @@ function onDeviceReady() {
               //     logConsole("Latest: " + JSON.stringify(latest))
               //     logConsole("Got latest grades!")
               //     // viewController.toast('Nieuwe cijfers beschikbaar <span class="text-warning float-right ml-3">UPDATE</span>', 3000)
-              //     localStorage.setItem("latest", JSON.stringify(grades))
+              //     setObject("latest", JSON.stringify(grades))
               //     logConsole(JSON.stringify(latest))
               //     for (let grade in grades) {
               //       if (!(latest.some(x => x.kolomId === grade.kolomId && x.omschrijving === grade.omschrijving && x.waarde === grade.waarde && x.ingevoerdOp === grade.ingevoerdOp))) {
@@ -592,7 +754,7 @@ function onDeviceReady() {
               );
               // }
               errorConsole(err);
-              person = JSON.parse(localStorage.getItem("person"));
+              person = JSON.parse(getObject("person", getActiveAccount()));
               main();
             });
         })
@@ -605,7 +767,7 @@ function onDeviceReady() {
           );
           // }
           errorConsole(err);
-          person = JSON.parse(localStorage.getItem("person"));
+          person = JSON.parse(getObject("person", getActiveAccount()));
           main();
         });
       // var BackgroundFetch = window.BackgroundFetch;
@@ -660,7 +822,7 @@ function onDeviceReady() {
         4000,
         true
       );
-      person = JSON.parse(localStorage.getItem("person"));
+      person = JSON.parse(getObject("person", getActiveAccount()));
       main();
     }
   } else {
@@ -673,11 +835,11 @@ async function showMeldingen() {
   const meldingen = await fetch(
     "https://magiscore-android.firebaseio.com/api/announcements.json"
   ).then((res) => res.json());
-  meldingen.forEach((melding) => showMelding(melding));
+  if (meldingen != null) meldingen.forEach((melding) => showMelding(melding));
 }
 
 async function showMelding({ title, body, id }) {
-  if (localStorage.getItem(id) != true && localStorage.getItem(id) != "true") {
+  if (getObject(id, getActiveAccount()) != true && getObject(id, getActiveAccount()) != "true") {
     $("#general-wrapper").prepend(`
     <div class="row" id="${id}">
       <div class="col-xl-3 col-md-6 mb-4">
@@ -703,9 +865,19 @@ async function showMelding({ title, body, id }) {
 }
 
 function sluitMelding(id) {
-  localStorage.setItem(id, true);
+  setObject(id, true, getActiveAccount());
   $(`#${id}`).hide();
 }
+
+$(window).on('hashchange', function() {
+  if (window.location.hash == "#settings") {
+    viewController.openSettings();
+  } else if (window.location.hash == "#search") {
+    viewController.openZoeken()
+  } else {
+    viewController.closeSettings();
+  }
+});
 
 // function onOffline() {
 //   main()
@@ -717,7 +889,22 @@ function sluitMelding(id) {
 //   // viewController.toast("Je bent weer online!", false, false)
 // }
 
+function onResume() {
+  if (idletime != null && Math.abs(new Date() - new Date(idletime)) > (30 * 60000)) {
+    refreshToken().then((refreshTokens) => {
+      tokens = refreshTokens;
+      setObject("tokens", JSON.stringify(tokens), getActiveAccount());})
+  }
+  idletime = null;
+}
+
+function onPause() {
+ idletime = new Date();
+}
+
 document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("pause", onPause, false);
+document.addEventListener("resume", onResume, false);
 // document.addEventListener("offline", onOffline, false);
 // document.addEventListener("online", onDeviceReady, false);
 // document.addEventListener("online", onDeviceReady, false);

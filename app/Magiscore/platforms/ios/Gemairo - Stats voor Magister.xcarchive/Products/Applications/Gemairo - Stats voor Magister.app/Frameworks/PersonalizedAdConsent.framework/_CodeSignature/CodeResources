@@ -6,11 +6,31 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		FOJbtSrlxgCiqKqdX4g3wodo3mc=
+		L3OsWXK6A1PZ43muiHnG8M4dC+g=
 		</data>
 		<key>PersonalizedAdConsent.bundle/Info.plist</key>
 		<data>
-		n2Eqyvq1GsV+zDVyjrsJeRnV59Q=
+		hRZFQRjjxNxgt0/GqaNgvEZyYys=
+		</data>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeDirectory</key>
+		<data>
+		9n2hZpPMjW4FERlsHRU3GFaFUqo=
+		</data>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements</key>
+		<data>
+		i6+BCguX/NDpmTOZyYInSp0YIUY=
+		</data>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements-1</key>
+		<data>
+		+JOvkQc7TDVyxk4LdTis7mC4akY=
+		</data>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeResources</key>
+		<data>
+		oVtgvvjKu57hT6+GNKsvUZIQa/g=
+		</data>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeSignature</key>
+		<data>
+		4kiuAH+ikmTujgnskBbprXOLtQM=
 		</data>
 		<key>PersonalizedAdConsent.bundle/consentform.html</key>
 		<data>
@@ -23,11 +43,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			n2Eqyvq1GsV+zDVyjrsJeRnV59Q=
+			hRZFQRjjxNxgt0/GqaNgvEZyYys=
 			</data>
 			<key>hash2</key>
 			<data>
-			PNOxOIy5yVAJP0ehtOmHi6ykDuSN1s6gmbybvQChj1U=
+			39d3E7ZxbOB5RKAqL2y/DS0euYx2JjcYMKtV5tuV77I=
+			</data>
+		</dict>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeDirectory</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			9n2hZpPMjW4FERlsHRU3GFaFUqo=
+			</data>
+			<key>hash2</key>
+			<data>
+			tZbxFkdDMa1R/Evj9nzrVpuptlMHuzO6L884rJL7NEM=
+			</data>
+		</dict>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			i6+BCguX/NDpmTOZyYInSp0YIUY=
+			</data>
+			<key>hash2</key>
+			<data>
+			k+8eOsN0UwDsxFwQxS5zg53OIDgwV7zwMYsGFTDPe4M=
+			</data>
+		</dict>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements-1</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			+JOvkQc7TDVyxk4LdTis7mC4akY=
+			</data>
+			<key>hash2</key>
+			<data>
+			HWx/mvkjabKmsLHbwsZ6zjjxrZVBL2a7zh4DCFgCajo=
+			</data>
+		</dict>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			oVtgvvjKu57hT6+GNKsvUZIQa/g=
+			</data>
+			<key>hash2</key>
+			<data>
+			m4zFRRsK/L33EdcBRo2Ko1gLxyyonk3IycKwxWJKEA4=
+			</data>
+		</dict>
+		<key>PersonalizedAdConsent.bundle/_CodeSignature/CodeSignature</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			4kiuAH+ikmTujgnskBbprXOLtQM=
+			</data>
+			<key>hash2</key>
+			<data>
+			GWVWb2AMGRpeuUnnlFRF6FTsh+L7YvEvMgbn6RBKk60=
 			</data>
 		</dict>
 		<key>PersonalizedAdConsent.bundle/consentform.html</key>
