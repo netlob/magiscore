@@ -73,6 +73,9 @@
     },
     "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {}

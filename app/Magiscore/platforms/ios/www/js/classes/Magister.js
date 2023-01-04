@@ -43,15 +43,15 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/account?nocache=${Date.parse(
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/account?nocache=${Date.parse(
           new Date()
         )}`,
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.token,
-          noCache: new Date().getTime(),
+          noCache: new Date().getTime()
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
           // alert("error: " + XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
@@ -98,7 +98,7 @@ class Magister {
   /**
    * @returns {Promise<Object[]>}
    */
-  getChildren() {
+   getChildren() {
     return new Promise((resolve, reject) => {
       if (this.person.id == undefined) reject("Person.id is undefined!");
       //logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
@@ -107,13 +107,15 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/personen/${this.person.id}/kinderen?openData=%27%27`,
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/personen/${
+          this.person.id
+        }/kinderen?openData=%27%27`,
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.token,
-          noCache: new Date().getTime(),
+          noCache: new Date().getTime()
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
           // alert("error: " + XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
@@ -124,13 +126,13 @@ class Magister {
           }
           reject("no internet");
         },
-        timeout: 5000,
-      }).done((res) => {
+        timeout: 5000
+      }).done(res => {
         var res = res.items || res.Items;
         resolve(res);
       });
     });
-  }
+  }  
 
   /**
    * @returns {Promise<Object>}
@@ -142,15 +144,15 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/sessions/current?nocache=${Date.parse(
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/sessions/current?nocache=${Date.parse(
           new Date()
         )}`,
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.token,
-          noCache: new Date().getTime(),
+          noCache: new Date().getTime()
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
           } else if (XMLHttpRequest.readyState == 0) {
@@ -160,8 +162,8 @@ class Magister {
           }
           reject("no internet");
         },
-        timeout: 5000,
-      }).done((res) => {
+        timeout: 5000
+      }).done(res => {
         // logConsole(JSON.stringify(res))
         // logConsole(`[INFO]  https://${this.tenant}${res.links.account.href}?noCache=0`)
         $.ajax({
@@ -169,15 +171,15 @@ class Magister {
           dataType: "json",
           async: true,
           crossDomain: true,
-          url: `https://${this.tenant}${
+          url: `https://cors.sjoerd.dev/https://${this.tenant}${
             res.links.account.href
           }?nocache=${Date.parse(new Date())}`,
           method: "GET",
           headers: {
             Authorization: "Bearer " + this.token,
-            noCache: new Date().getTime(),
+            noCache: new Date().getTime()
           },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
             if (XMLHttpRequest.readyState == 4) {
               logConsole(`[ERROR] HTTP error (${textStatus})`);
             } else if (XMLHttpRequest.readyState == 0) {
@@ -187,13 +189,13 @@ class Magister {
             }
             reject("no internet");
           },
-          timeout: 5000,
-        }).done((res2) => {
+          timeout: 5000
+        }).done(res2 => {
           // logConsole(JSON.stringify(res2))
           this.account = {
             id: res2.id,
             name: res2.naam,
-            uuId: res2.uuid,
+            uuId: res2.uuid
           };
           resolve(this.account);
         });
@@ -207,27 +209,22 @@ class Magister {
   getCourses(childindex = -1) {
     return new Promise((resolve, reject) => {
       if (this.person.id == undefined) reject("Person.id is undefined!");
-      var personid =
-        childindex >= 0 && this.person.isParent
-          ? this.person.children[childindex].Id
-          : this.person.id;
+      var personid = (childindex >= 0 && this.person.isParent) ? this.person.children[childindex].Id : this.person.id
       //logConsole(`https://${this.tenant}/api/personen/${this.person.id}`)
       $.ajax({
         cache: false,
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${
-          this.tenant
-        }/api/personen/${personid}/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(
-          new Date()
-        )}`,
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/personen/${
+          personid
+        }/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(new Date())}`,
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.token,
-          noCache: new Date().getTime(),
+          noCache: new Date().getTime()
         },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
           // alert("error: " + XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
@@ -238,12 +235,12 @@ class Magister {
           }
           reject("no internet");
         },
-        timeout: 5000,
-      }).done((res) => {
+        timeout: 5000
+      }).done(res => {
         var res = res.items || res.Items;
         resolve(
           _.sortBy(
-            res.map((c) => new Course(this, c)),
+            res.map(c => new Course(this, c)),
             "start"
           )
         );
@@ -252,7 +249,7 @@ class Magister {
   }
 
   setTimeOut() {
-    setTimeout(function () {
+    setTimeout(function() {
       this.timedOut = false;
       logConsole("[INFO]   Timeout ended");
     }, 31000);

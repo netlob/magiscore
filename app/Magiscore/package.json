@@ -77,7 +77,8 @@
         "CONSENT_SDK_VERSION": "+"
       },
       "cordova-plugin-androidx": {},
-      "cordova-plugin-androidx-adapter": {}
+      "cordova-plugin-androidx-adapter": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "android",

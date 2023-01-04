@@ -49,6 +49,9 @@
 		CE13C68647D94F5989465621 /* CDVWKInAppBrowserUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FA3962741149F489F513A4 /* CDVWKInAppBrowserUIDelegate.m */; };
 		EF56270D823B475595579012 /* AMSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DB9AEED9E4DE1999E420B /* AMSConstants.swift */; };
 		FFE5E19B66F646969261A01F /* AMSAdBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6488F1AEB9496CA1B3E8C0 /* AMSAdBase.swift */; };
+		C9BA502ED1FB4F00A475F6F9 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7EFFA3F749402D8459C75F /* CDVFile.m */; };
+		D23AE8BB2DDF4576A95295B2 /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3061112401A84B4C8D74EC58 /* CDVLocalFilesystem.m */; };
+		3CEB7553902F4E5D9C721025 /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 476C6BD217C44B789651076A /* CDVAssetLibraryFilesystem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +160,12 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Gemairo - Stats voor Magister/config.xml"; sourceTree = "<group>"; };
 		FD61FAEE0E87490E9D544E99 /* CDVInAppBrowserNavigationController.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVInAppBrowserNavigationController.m; path = "cordova-plugin-inappbrowser/CDVInAppBrowserNavigationController.m"; sourceTree = "<group>"; };
 		FFD580C8983F4EFF8D80488D /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "SKProduct+LocalizedPrice.h"; path = "cordova-plugin-purchase/SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
+		6F7EFFA3F749402D8459C75F /* CDVFile.m */ = {isa = PBXFileReference; name = "CDVFile.m"; path = "cordova-plugin-file/CDVFile.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		3061112401A84B4C8D74EC58 /* CDVLocalFilesystem.m */ = {isa = PBXFileReference; name = "CDVLocalFilesystem.m"; path = "cordova-plugin-file/CDVLocalFilesystem.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		476C6BD217C44B789651076A /* CDVAssetLibraryFilesystem.m */ = {isa = PBXFileReference; name = "CDVAssetLibraryFilesystem.m"; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		E7165A20819A4E55A94DAC3A /* CDVFile.h */ = {isa = PBXFileReference; name = "CDVFile.h"; path = "cordova-plugin-file/CDVFile.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		BFAF87AE37EB4A0A9CED9444 /* CDVLocalFilesystem.h */ = {isa = PBXFileReference; name = "CDVLocalFilesystem.h"; path = "cordova-plugin-file/CDVLocalFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		65D53F27BFC14E9F8223C974 /* CDVAssetLibraryFilesystem.h */ = {isa = PBXFileReference; name = "CDVAssetLibraryFilesystem.h"; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +335,12 @@
 				E5B7C521B04D43919DEA328F /* TapticEngine.h */,
 				950B7C5103754AA6BA24EAD1 /* CDVVibration.m */,
 				E0472FD801884D838100448C /* CDVVibration.h */,
+				6F7EFFA3F749402D8459C75F /* CDVFile.m */,
+				3061112401A84B4C8D74EC58 /* CDVLocalFilesystem.m */,
+				476C6BD217C44B789651076A /* CDVAssetLibraryFilesystem.m */,
+				E7165A20819A4E55A94DAC3A /* CDVFile.h */,
+				BFAF87AE37EB4A0A9CED9444 /* CDVLocalFilesystem.h */,
+				65D53F27BFC14E9F8223C974 /* CDVAssetLibraryFilesystem.h */,
 			);
 			name = Plugins;
 			path = "Gemairo - Stats voor Magister/Plugins";
@@ -530,6 +545,9 @@
 				3FBE2D34707344A4A13EFF35 /* CDVStatusBar.m in Sources */,
 				24883E8F76DF4A41B43863DF /* TapticEngine.m in Sources */,
 				29878AC0A440419E8966D3FE /* CDVVibration.m in Sources */,
+				C9BA502ED1FB4F00A475F6F9 /* CDVFile.m in Sources */,
+				D23AE8BB2DDF4576A95295B2 /* CDVLocalFilesystem.m in Sources */,
+				3CEB7553902F4E5D9C721025 /* CDVAssetLibraryFilesystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

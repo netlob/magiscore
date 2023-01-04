@@ -285,14 +285,13 @@ async function validateLogin(code, codeVerifier) {
           " weer",
         false
       );
-      throw errorThrown;
       return;
       // alert(textStatus);
     },
     dataType: "json",
     async: true,
     crossDomain: true,
-    url: "https://accounts.magister.net/connect/token",
+    url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
     method: "POST",
     headers: {
       "X-API-Client-ID": "EF15",
@@ -393,12 +392,10 @@ async function validateLogin(code, codeVerifier) {
         })
         .catch((err) => {
           errorConsole(err);
-          throw err;
         });
     })
     .catch((err) => {
       errorConsole(err);
-      throw err;
     });
   // window.location = '../index.html';
 }
@@ -561,7 +558,7 @@ async function getinformationlogin(m, childindex= -1) {
                       }
                     }
                   })
-                  .catch((err) => {errorConsole(err); throw err;});
+                  .catch((err) => errorConsole(err));
               })
               .catch((err) => {
                 console.log(err)
