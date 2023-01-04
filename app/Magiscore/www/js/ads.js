@@ -17,7 +17,7 @@ let adsConfig = {
   },
 };
 
-let adFree = false;
+
 
 const ads = {
   initialize(hasAdFree) {

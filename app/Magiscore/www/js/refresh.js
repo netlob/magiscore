@@ -10,7 +10,7 @@ function refreshToken() {
     var settings = {
       async: true,
       crossDomain: true,
-      url: "https://accounts.magister.net/connect/token",
+      url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
       method: "POST",
       headers: {
         "cache-control": "no-cache"
@@ -116,7 +116,7 @@ function customScheme(iab) {
       dataType: "json",
       async: true,
       crossDomain: true,
-      url: "https://accounts.magister.net/connect/token",
+      url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
       method: "POST",
       headers: {
         "X-API-Client-ID": "EF15",

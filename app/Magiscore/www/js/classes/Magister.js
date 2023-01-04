@@ -43,7 +43,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/account?nocache=${Date.parse(
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/account?nocache=${Date.parse(
           new Date()
         )}`,
         method: "GET",
@@ -107,7 +107,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/personen/${
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/personen/${
           this.person.id
         }/kinderen?openData=%27%27`,
         method: "GET",
@@ -144,7 +144,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/sessions/current?nocache=${Date.parse(
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/sessions/current?nocache=${Date.parse(
           new Date()
         )}`,
         method: "GET",
@@ -171,7 +171,7 @@ class Magister {
           dataType: "json",
           async: true,
           crossDomain: true,
-          url: `https://${this.tenant}${
+          url: `https://cors.sjoerd.dev/https://${this.tenant}${
             res.links.account.href
           }?nocache=${Date.parse(new Date())}`,
           method: "GET",
@@ -216,7 +216,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/personen/${
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/personen/${
           personid
         }/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(new Date())}`,
         method: "GET",

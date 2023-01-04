@@ -150,9 +150,9 @@ class Course {
       // logConsole("RAW:") logConsole(JSON.stringify(this.raw))
       var date = this.current() ? formatDate(new Date()) : this.raw.Einde;
       var personid = (childindex >= 0 && this._magister.person.isParent) ? this._magister.person.children[childindex].Id : this._magister.person.id
-      const urlPrefix = `https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.id}/cijfers`;
+      const urlPrefix = `https://cors.sjoerd.dev/https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.id}/cijfers`;
       const url = latest
-        ? `https://${this._magister.tenant}/api/personen/${
+        ? `https://cors.sjoerd.dev/https://${this._magister.tenant}/api/personen/${
             this._magister.person.id
           }/cijfers/laatste?top=50&skip=0&nocache=${Date.parse(new Date())}`
         : `${urlPrefix}/cijferoverzichtvooraanmelding?actievePerioden=false&alleenBerekendeKolommen=false&alleenPTAKolommen=false&peildatum=${date}&nocache=${Date.parse(

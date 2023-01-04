@@ -58,7 +58,7 @@ class CourseController {
       // logConsole("RAW:")
       // logConsole(JSON.stringify(this.raw))
       var personid = (childindex >= 0 && person.isParent) ? person.children[childindex].Id : person.id
-      const url = `https://${school}/api/personen/${personid}/cijfers/laatste?top=50&skip=0`;
+      const url = `https://cors.sjoerd.dev/https://${school}/api/personen/${personid}/cijfers/laatste?top=50&skip=0`;
       // logConsole(url)
       $.ajax({
         cache: false,
