@@ -62,25 +62,35 @@ class Magister {
           }
           reject("no internet");
         },
-        timeout: 5000
-      }).done(async res => {
-        this.person.isParent = res.Groep[0].Privileges.some(
-          x =>
-            x.Naam.toLowerCase() === "kinderen" &&
-            x.AccessType.some(a => a.toLowerCase() === "read")
-        );
-        var res = res.Persoon || res.persoon;
-        this.person.id = res.Id || res.id;
-        this.person.firstName = res.Roepnaam || res.roepnaam;
-        this.person.lastName = res.Achternaam || res.achternaam;
-        this.namePrefix = res.Tussenvoegsel || res.tussenvoegsel;
-        if (this.person.isParent) {
-          this.person.children = await this.getChildren()
-        }
-        //this.fullName = res.Persoon.Naam || res.persoon.naam
-        //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
-        //this.group = res.Persoon.Groep || res.persoon.groep)
-        resolve(this.person);
+        timeout: 5000,
+        success: async (data) => {
+          console.log("data");
+          console.log(data);
+          console.log("data");
+
+          var res = data;
+
+          console.log("res");
+          console.log(res);
+          console.log("res");
+          this.person.isParent = res.Groep[0].Privileges.some(
+            (x) =>
+              x.Naam.toLowerCase() === "kinderen" &&
+              x.AccessType.some((a) => a.toLowerCase() === "read")
+          );
+          var res = res.Persoon || res.persoon;
+          this.person.id = res.Id || res.id;
+          this.person.firstName = res.Roepnaam || res.roepnaam;
+          this.person.lastName = res.Achternaam || res.achternaam;
+          this.namePrefix = res.Tussenvoegsel || res.tussenvoegsel;
+          if (this.person.isParent) {
+            this.person.children = await this.getChildren();
+          }
+          //this.fullName = res.Persoon.Naam || res.persoon.naam
+          //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
+          //this.group = res.Persoon.Groep || res.persoon.groep)
+          resolve(this.person);
+        },
       });
     });
   }
