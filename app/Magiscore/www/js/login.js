@@ -296,7 +296,7 @@ async function validateLogin(code, codeVerifier) {
     headers: {
       "X-API-Client-ID": "EF15",
       "Content-Type": "application/x-www-form-urlencoded",
-      Host: "accounts.magister.net",
+      // Host: "accounts.magister.net",
     },
     data: `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${codeVerifier}`,
   };
