@@ -19,7 +19,7 @@
         "parents": {
           "/manifest/application": [
             {
-              "xml": "<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"ca-app-pub-3425399211312777~1930230742\" />",
+              "xml": "<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"ca-app-pub-9170931639371270~4644085927\" />",
               "count": 1
             },
             {
@@ -125,7 +125,7 @@
   },
   "installed_plugins": {
     "cordova-admob-plus": {
-      "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
+      "APP_ID_ANDROID": "ca-app-pub-9170931639371270~4644085927",
       "PLAY_SERVICES_VERSION": "19.0.1",
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
@@ -198,138 +198,103 @@
       "id": "cordova-admob-plus.AdMob",
       "file": "plugins/cordova-admob-plus/www/admob.js",
       "pluginId": "cordova-admob-plus",
-      "clobbers": [
-        "admob"
-      ]
+      "clobbers": ["admob"]
     },
     {
       "id": "cordova-launch-review.LaunchReview",
       "file": "plugins/cordova-launch-review/www/launchreview.js",
       "pluginId": "cordova-launch-review",
-      "clobbers": [
-        "LaunchReview"
-      ]
+      "clobbers": ["LaunchReview"]
     },
     {
       "id": "cordova-open-native-settings.Settings",
       "file": "plugins/cordova-open-native-settings/www/settings.js",
       "pluginId": "cordova-open-native-settings",
-      "clobbers": [
-        "cordova.plugins.settings"
-      ]
+      "clobbers": ["cordova.plugins.settings"]
     },
     {
       "id": "cordova-plugin-app-version.AppVersionPlugin",
       "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
       "pluginId": "cordova-plugin-app-version",
-      "clobbers": [
-        "cordova.getAppVersion"
-      ]
+      "clobbers": ["cordova.getAppVersion"]
     },
     {
       "id": "cordova-plugin-customurlscheme.LaunchMyApp",
       "file": "plugins/cordova-plugin-customurlscheme/www/android/LaunchMyApp.js",
       "pluginId": "cordova-plugin-customurlscheme",
-      "clobbers": [
-        "window.plugins.launchmyapp"
-      ]
+      "clobbers": ["window.plugins.launchmyapp"]
     },
     {
       "id": "cordova-plugin-device.device",
       "file": "plugins/cordova-plugin-device/www/device.js",
       "pluginId": "cordova-plugin-device",
-      "clobbers": [
-        "device"
-      ]
+      "clobbers": ["device"]
     },
     {
       "id": "cordova-plugin-dialogs.notification",
       "file": "plugins/cordova-plugin-dialogs/www/notification.js",
       "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
+      "merges": ["navigator.notification"]
     },
     {
       "id": "cordova-plugin-dialogs.notification_android",
       "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
       "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
+      "merges": ["navigator.notification"]
     },
     {
       "id": "cordova-plugin-insomnia.Insomnia",
       "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
       "pluginId": "cordova-plugin-insomnia",
-      "clobbers": [
-        "window.plugins.insomnia"
-      ]
+      "clobbers": ["window.plugins.insomnia"]
     },
     {
       "id": "cordova-plugin-splashscreen.SplashScreen",
       "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
       "pluginId": "cordova-plugin-splashscreen",
-      "clobbers": [
-        "navigator.splashscreen"
-      ]
+      "clobbers": ["navigator.splashscreen"]
     },
     {
       "id": "cordova-plugin-statusbar.statusbar",
       "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
       "pluginId": "cordova-plugin-statusbar",
-      "clobbers": [
-        "window.StatusBar"
-      ]
+      "clobbers": ["window.StatusBar"]
     },
     {
       "id": "cordova-plugin-taptic-engine.TapticEngine",
       "file": "plugins/cordova-plugin-taptic-engine/www/TapticEngine.js",
       "pluginId": "cordova-plugin-taptic-engine",
-      "clobbers": [
-        "TapticEngine"
-      ]
+      "clobbers": ["TapticEngine"]
     },
     {
       "id": "cordova-plugin-network-information.network",
       "file": "plugins/cordova-plugin-network-information/www/network.js",
       "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "navigator.connection",
-        "navigator.network.connection"
-      ]
+      "clobbers": ["navigator.connection", "navigator.network.connection"]
     },
     {
       "id": "cordova-plugin-network-information.Connection",
       "file": "plugins/cordova-plugin-network-information/www/Connection.js",
       "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "Connection"
-      ]
+      "clobbers": ["Connection"]
     },
     {
       "id": "cordova-plugin-purchase.InAppBillingPlugin",
       "file": "plugins/cordova-plugin-purchase/www/store-android.js",
       "pluginId": "cordova-plugin-purchase",
-      "clobbers": [
-        "store"
-      ]
+      "clobbers": ["store"]
     },
     {
       "id": "cordova-plugin-inappbrowser.inappbrowser",
       "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
       "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open"
-      ]
+      "clobbers": ["cordova.InAppBrowser.open"]
     },
     {
       "id": "cordova-plugin-consent.Consent",
       "file": "plugins/cordova-plugin-consent/www/consent.js",
       "pluginId": "cordova-plugin-consent",
-      "clobbers": [
-        "consent"
-      ]
+      "clobbers": ["consent"]
     }
   ],
   "plugin_metadata": {

@@ -107,8 +107,8 @@
     },
     "is_top_level": true,
     "variables": {
-      "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
-      "APP_ID_IOS": "ca-app-pub-3425399211312777~6114349267"
+      "APP_ID_ANDROID": "ca-app-pub-9170931639371270~4644085927",
+      "APP_ID_IOS": "ca-app-pub-9170931639371270~8990525040"
     }
   },
   "cordova-plugin-network-information": {
