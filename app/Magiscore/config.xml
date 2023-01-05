@@ -19,7 +19,7 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="mailto:*" />
-    <preference name="android-targetSdkVersion" value="30" />
+    <preference name="android-targetSdkVersion" value="31" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <platform name="android">
@@ -27,7 +27,7 @@
         <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
         <preference name="Orientation" value="portrait" />
-        <preference name="android-targetSdkVersion" value="30" />
+        <preference name="android-targetSdkVersion" value="31" />
         <icon background="res/new/res/icon/android/mdpi-back.png" density="mdpi"
             foreground="res/new/res/icon/android/mdpi-front.png"
             src="res/new/res/icon/android/mdpi.png" />

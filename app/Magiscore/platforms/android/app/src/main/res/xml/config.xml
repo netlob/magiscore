@@ -94,5 +94,5 @@
     <preference name="AndroidXEnabled" value="true" />
     <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
     <preference name="Orientation" value="portrait" />
-    <preference name="android-targetSdkVersion" value="30" />
+    <preference name="android-targetSdkVersion" value="31" />
 </widget>
