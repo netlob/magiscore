@@ -44,9 +44,9 @@ function refreshProductUI(product) {
     $("#herstel-aankopen").show();
     $("#verwijder-ads").show();
 
-    ads.initialize(product.owned);
-
     adFree = product.owned;
+    
+    ads.initialize();
 
     if (product.owned) {
         $("#herstel-aankopen").show();

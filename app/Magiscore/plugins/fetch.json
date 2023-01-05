@@ -71,7 +71,7 @@
   "cordova-plugin-statusbar": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-statusbar@^2.4.3"
+      "id": "cordova-plugin-statusbar@2.4.3"
     },
     "is_top_level": true,
     "variables": {}
@@ -99,17 +99,6 @@
     },
     "is_top_level": true,
     "variables": {}
-  },
-  "cordova-admob-plus": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-admob-plus@^0.39.0"
-    },
-    "is_top_level": true,
-    "variables": {
-      "APP_ID_ANDROID": "ca-app-pub-9170931639371270~4644085927",
-      "APP_ID_IOS": "ca-app-pub-9170931639371270~8990525040"
-    }
   },
   "cordova-plugin-network-information": {
     "source": {
@@ -176,5 +165,16 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "admob-plus-cordova": {
+    "source": {
+      "type": "registry",
+      "id": "admob-plus-cordova@1.28.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID_ANDROID": "ca-app-pub-9170931639371270~4644085927",
+      "APP_ID_IOS": "ca-app-pub-9170931639371270~8990525040"
+    }
   }
 }

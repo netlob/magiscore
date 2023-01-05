@@ -1165,6 +1165,7 @@ function getActiveAccount() {
     window.onerror = function (msg, url, lineNo, columnNo, error) {
       $("#overlay").hide()
       logConsole(`[ERROR] ${msg} line: ${lineNo}\n url: ${url}`)
+      console.error(msg, url, lineNo, columnNo, error)
       if ($("#mobilePersonInfo").text() == "Voornaam Achternaam") openBrowser(1)
       return false;
     }

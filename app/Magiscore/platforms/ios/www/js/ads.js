@@ -1,5 +1,4 @@
 let initialized = false;
-let bannerShown = false;
 let adsConfig = {
   banner: {
     chance: 100,
@@ -19,20 +18,41 @@ let adsConfig = {
 
 let showInterNext = false;
 
+let _interstitial;
+let _interstitialLoaded = false;
+let _banner;
+let _npa;
+
+const bannerID = () =>
+  window.cordova.platformId === "ios"
+    ? adsConfig.banner.ids.ios
+    : adsConfig.banner.ids.android;
+const interID = () =>
+  window.cordova.platformId === "ios"
+    ? adsConfig.inter.ids.ios
+    : adsConfig.inter.ids.android;
+
 const ads = {
   async initialize() {
     this.receivedEvent(`Initializing... (${initialized})`);
     if (initialized === true) return;
     initialized = true;
-    this.receivedEvent("deviceready");
 
-    logConsole(`adFree1: ${adFree.toString()}`);
+    this.receivedEvent("starting admob...");
+    await admob.start();
+    this.receivedEvent("admob started!");
+
+    // admob.BannerAd.config({ backgroundColor: "white" });
+    admob.BannerAd.config({ backgroundColor: "black" });
+    admob.configure({
+      testDeviceIds: ["6ea04e8011fad00d37e3a96a44cbc072"],
+    });
 
     const res = await fetch(
       "https://cors.sjoerd.dev/https://sjoerd.dev/html/gemairo/ads.json"
     ).then((res) => res.json());
 
-    this.receivedEvent(JSON.stringify(res));
+    this.receivedEvent("res: " + JSON.stringify(res));
     if ("banner" in res && "inter" in res) {
       adsConfig = res;
     }
@@ -48,82 +68,92 @@ const ads = {
       adsConfig.banner.chance != 0 &&
       adsConfig.banner.chance != false
     ) {
-      this.showBanner();
+      await this.loadBanner().catch((e) => {
+        this.receivedEvent("kak" + e.message);
+        this.receivedEvent("kak" + e);
+      });
+      await this.showBanner().catch((e) => {
+        this.receivedEvent("stront" + e.message);
+        this.receivedEvent("stront" + e);
+      });
     }
     this.receivedEvent("done loading ads");
 
-    this.checkInter();
+    // this.checkInter();
   },
 
-  async checkIsLoaded() {
-    return await admob.interstitial.isLoaded();
-  },
+  // async checkIsLoaded() {
+  //   return await admob.interstitial.isLoaded();
+  // },
 
   receivedEvent(id) {
-    logConsole(`[INFO]   Received Ad Event: ${id}`);
+    logConsole(`[INFO]   Ad: ${id}`);
   },
 
-  showBanner() {
-    // admob.banner.show({
-    //         id: {
-    //             android: "ca-app-pub-3425399211312777/4106282964",
-    //             ios: "ca-app-pub-3425399211312777/4609695903"
-    //         },
-    //         position: "bottom",
-    //     })
-    //     .catch(e => this.receivedEvent(e.toString()));
-    // admob.banner.show({ id: "test" }).catch(receivedEvent).catch(e => this.receivedEvent(e.toString()));
+  async loadBanner() {
+    if (adFree == true) return;
 
-    // const testDeviceId = '942c011c037db3ec6f3ac1b9779be499'
-    console.log("show consent form");
-    this.checkConsent("fd301d987036613914a670327bbf8f86")
-      .then(async (consentStatus) => {
-        console.log("consentStatus", consentStatus);
-        if (consentStatus === "PERSONALIZED" && adFree != true) {
-          admob.banner
-            .show({
-              id: adsConfig.banner.ids,
-              // testDevices: [testDeviceId],
-              position: "bottom",
-            })
-            .catch((e) => this.receivedEvent(e.toString()));
-          bannerShown = true;
-        } else if (adFree != true) {
-          admob.banner
-            .show({
-              id: adsConfig.banner.ids,
-              // testDevices: [testDeviceId],
-              npa: "1",
-              position: "bottom",
-            })
-            .catch((e) => this.receivedEvent(e.toString()));
-        }
+    const lastBannerId = localStorage.getItem("lastBannerId");
 
-        logConsole(`adFree: ${adFree.toString()}`);
+    const consentStatus = await this.checkConsent();
+    _banner = new admob.BannerAd({
+      adUnitId: bannerID(),
+      position: "bottom",
+      npa: consentStatus === "PERSONALIZED" ? "3" : "1",
+      id: lastBannerId ? Number.parseInt(lastBannerId) : null,
+    });
+    this.receivedEvent("banner made " + JSON.stringify(_banner));
+    _banner.on("load", (ex) => {
+      this.receivedEvent(`banner loaded ${JSON.stringify(ex, null, 2)}`);
+      localStorage.setItem("lastBannerId", ex.adId);
+    });
+
+    _banner.on("impression", async (evt) => {
+      this.receivedEvent("banner impression");
+    });
+
+    this.receivedEvent("calling banner load ");
+    await _banner
+      .load()
+      .then((e) => {
+        this.receivedEvent("poep2" + e);
       })
-      .catch((e) => this.receivedEvent(e.toString()));
+      .catch((e) => {
+        this.receivedEvent("poep" + e.message);
+        this.receivedEvent("poep" + e);
+      });
   },
 
-  hideBanner() {
-    const bannerID =
-      window.cordova.platformId === "ios" ? banners.ios : banners.android;
-    admob.banner.hide(bannerID).catch((e) => this.receivedEvent(e.toString()));
+  async showBanner() {
+    if (adFree == true) return;
+
+    if (_banner == undefined) {
+      this.loadBanner();
+    }
+
+    await _banner.show();
+
+    // setInterval(async () => {
+    //   try {
+    //     this.receivedEvent(await this.checkIsLoaded());
+    //   } catch (e) {
+    //     this.receivedEvent(`e: ${e.toString() + e.message}`);
+    //   }
+    // }, 1000);
   },
 
-  async checkConsent(testDeviceId) {
+  async hideBanner() {
+    if (_bannerbanner != undefined) {
+      await _bannerbanner.hide();
+    }
+  },
+
+  async checkConsent() {
     const publisherIds = ["pub-9170931639371270"];
+    await consent.addTestDevice("6ea04e8011fad00d37e3a96a44cbc072");
+    _npa = await consent.checkConsent(publisherIds);
 
-    await consent.addTestDevice(testDeviceId);
-    // await consent.setDebugGeography('NL');
-    const npa = await consent.checkConsent(publisherIds);
-    console.log("consent: ", npa);
-
-    // const ok = await consent.isRequestLocationInEeaOrUnknown()
-    // if (!ok) {
-    //     alert('please update testDeviceId from logcat')
-    // }
-
-    if (npa === "UNKNOWN" && adFree === false) {
+    if (_npa === "UNKNOWN" && adFree != true) {
       const form = new consent.Form({
         privacyUrl: "https://policies.google.com/privacy",
         adFree: true,
@@ -139,7 +169,7 @@ const ads = {
 
       return result.consentStatus;
     } else {
-      return npa;
+      return _npa;
     }
   },
 
@@ -164,30 +194,47 @@ const ads = {
     }
   },
 
-  loadInter() {
-    logConsole(`[INFO]   Received Ad Load Inter`);
-    admob.interstitial
-      .load({
-        id: adsConfig.inter.ids,
-      })
-      // admob.interstitial
-      //     .load({
-      //         id: {
-      //             android: 'test',
-      //             ios: 'test',
-      //         }
+  async loadInter() {
+    this.receivedEvent(`[INFO]   Received Ad Load Inter`);
+    // admob.interstitial
+    //   .load({
+    //     id: adsConfig.inter.ids,
+    //   })
+    //   // admob.interstitial
+    //   //     .load({
+    //   //         id: {
+    //   //             android: 'test',
+    //   //             ios: 'test',
+    //   //         }
 
-      //     })
-      .then(() => {
-        logConsole(`[INFO]   Loaded Ad Inter`);
-      })
-      .catch((e) => this.receivedEvent(e.toString()));
+    //   //     })
+    //   .then(() => {
+    //     this.receivedEvent(`[INFO]   Loaded Ad Inter`);
+    //   })
+    //   .catch((e) => this.receivedEvent(e.toString()));
+
+    _interstitial = new admob.InterstitialAd({
+      adUnitId: interID(),
+      npa: _npa === "PERSONALIZED" ? "3" : "1",
+    });
+
+    _interstitial.on("load", (evt) => {
+      _interstitialLoaded = true;
+      this.receivedEvent(`[INFO]   Loaded Ad Inter`);
+    });
+
+    await _interstitial.load();
   },
 
   async showInter() {
-    logConsole(`[INFO]   Showing Ad Inter`);
-    if (!(await this.checkIsLoaded())) await this.loadInter();
-    await admob.interstitial.show();
+    this.receivedEvent(`[INFO]   Showing Ad Inter`);
+    // if (!(await this.checkIsLoaded())) await this.loadInter();
+    // await admob.interstitial.show();
+    if (!_interstitialLoaded) {
+      await this.loadInter();
+    }
+    await _interstitial.show();
+    _interstitialLoaded = false;
     // this.loadInter();
   },
 };

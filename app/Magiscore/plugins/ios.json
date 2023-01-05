@@ -7,8 +7,10 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-admob-plus": {
+    "admob-plus-cordova": {
       "APP_ID_IOS": "ca-app-pub-9170931639371270~8990525040",
+      "USAGE": "This identifier will be used to deliver personalized ads to you.",
+      "DISABLESDKCRASHREPORTING": "false",
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-launch-review": {
@@ -42,6 +44,9 @@
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
@@ -67,9 +72,6 @@
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-file": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },

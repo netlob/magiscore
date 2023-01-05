@@ -23,6 +23,7 @@
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <platform name="android">
+        <preference name="AndroidXEnabled" value="true" />
         <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
         <preference name="Orientation" value="portrait" />
@@ -51,7 +52,9 @@
         <splash src="res/new/res/screen/android/splash-port-xxxhdpi.png" density="port-xxxhdpi" />
     </platform>
     <platform name="ios">
-        <preference name="UseSwiftLanguageVersion" value="4.2" />
+        <resource-file src="GoogleService-Info.plist" />
+        <preference name="deployment-target" value="12.0" />
+        <preference name="SwiftVersion" value="5.3" />
         <preference name="Orientation" value="portrait" />
         <preference name="DisallowOverscroll" value="true" />
         <allow-intent href="m6loapp://oauth2redirect/*" />

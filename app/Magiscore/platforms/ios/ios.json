@@ -21,6 +21,30 @@
               "count": 1
             }
           ],
+          "GADDelayAppMeasurementInit": [
+            {
+              "xml": "<true />",
+              "count": 1
+            }
+          ],
+          "NSAppTransportSecurity": [
+            {
+              "xml": "<dict><key>NSAllowsArbitraryLoads</key><true /><key>NSAllowsArbitraryLoadsForMedia</key><true /><key>NSAllowsArbitraryLoadsInWebContent</key><true /></dict>",
+              "count": 1
+            }
+          ],
+          "NSUserTrackingUsageDescription": [
+            {
+              "xml": "<string>This identifier will be used to deliver personalized ads to you.</string>",
+              "count": 1
+            }
+          ],
+          "SKAdNetworkItems": [
+            {
+              "xml": "<array><dict><key>SKAdNetworkIdentifier</key><string>cstr6suwn9.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4fzdc2evr5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>2fnua5tdw4.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>ydx93a7ass.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>5a6flpkh64.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>p78axxw29g.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>v72qych5uu.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>c6k4g5qg8m.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>s39g8k73mm.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3qy4746246.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3sh42y64q3.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>f38h382jlk.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>hs6bdukanm.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>prcb7njmu6.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>v4nxqhlyqp.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>wzmmz9fp6w.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>yclnxrl5pm.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>t38b2kh725.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>7ug5zh24hu.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>9rd848q2bz.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>n6fk4nfna4.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>kbd757ywx3.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>9t245vhmpl.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4468km3ulz.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>2u9pt9hc89.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>8s468mfl3y.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>av6w8kgt66.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>klf5c3l5u5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>ppxm28t8ap.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>424m5254lk.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>uw77j35x4d.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>578prtvx9j.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>4dzt52r2t5.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>e5fvkxwrpn.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>8c4e2ghe7u.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>zq492l623r.skadnetwork</string></dict><dict><key>SKAdNetworkIdentifier</key><string>3qcr597p9d.skadnetwork</string></dict></array>",
+              "count": 1
+            }
+          ],
           "CFBundleURLTypes": [
             {
               "xml": "<array><dict><key>CFBundleURLSchemes</key><array><string>m6loapp</string></array></dict></array>",
@@ -33,7 +57,7 @@
         "parents": {
           "/*": [
             {
-              "xml": "<feature name=\"AdMob\"><param name=\"ios-package\" value=\"AMSPlugin\" /></feature>",
+              "xml": "<feature name=\"AdMob\"><param name=\"ios-package\" value=\"AMBPlugin\" /></feature>",
               "count": 1
             },
             {
@@ -58,6 +82,10 @@
             },
             {
               "xml": "<feature name=\"Notification\"><param name=\"ios-package\" value=\"CDVNotification\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"File\"><param name=\"ios-package\" value=\"CDVFile\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
             {
@@ -99,10 +127,6 @@
             {
               "xml": "<feature name=\"Vibration\"><param name=\"ios-package\" value=\"CDVVibration\" /></feature>",
               "count": 1
-            },
-            {
-              "xml": "<feature name=\"File\"><param name=\"ios-package\" value=\"CDVFile\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
             }
           ]
         }
@@ -110,8 +134,10 @@
     }
   },
   "installed_plugins": {
-    "cordova-admob-plus": {
+    "admob-plus-cordova": {
       "APP_ID_IOS": "ca-app-pub-9170931639371270~8990525040",
+      "USAGE": "This identifier will be used to deliver personalized ads to you.",
+      "DISABLESDKCRASHREPORTING": "false",
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-launch-review": {
@@ -145,6 +171,9 @@
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
@@ -171,17 +200,14 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-file": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {},
   "modules": [
     {
-      "id": "cordova-admob-plus.AdMob",
-      "file": "plugins/cordova-admob-plus/www/admob.js",
-      "pluginId": "cordova-admob-plus",
+      "id": "admob-plus-cordova.AdMob",
+      "file": "plugins/admob-plus-cordova/www/admob.js",
+      "pluginId": "admob-plus-cordova",
       "clobbers": [
         "admob"
       ]
@@ -240,79 +266,6 @@
       "pluginId": "cordova-plugin-dialogs",
       "merges": [
         "navigator.notification"
-      ]
-    },
-    {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open"
-      ]
-    },
-    {
-      "id": "cordova-plugin-insomnia.Insomnia",
-      "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
-      "pluginId": "cordova-plugin-insomnia",
-      "clobbers": [
-        "window.plugins.insomnia"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.network",
-      "file": "plugins/cordova-plugin-network-information/www/network.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "navigator.connection",
-        "navigator.network.connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.Connection",
-      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "Connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-purchase.InAppPurchase",
-      "file": "plugins/cordova-plugin-purchase/www/store-ios.js",
-      "pluginId": "cordova-plugin-purchase",
-      "clobbers": [
-        "store"
-      ]
-    },
-    {
-      "id": "cordova-plugin-splashscreen.SplashScreen",
-      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-      "pluginId": "cordova-plugin-splashscreen",
-      "clobbers": [
-        "navigator.splashscreen"
-      ]
-    },
-    {
-      "id": "cordova-plugin-statusbar.statusbar",
-      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-      "pluginId": "cordova-plugin-statusbar",
-      "clobbers": [
-        "window.StatusBar"
-      ]
-    },
-    {
-      "id": "cordova-plugin-taptic-engine.TapticEngine",
-      "file": "plugins/cordova-plugin-taptic-engine/www/TapticEngine.js",
-      "pluginId": "cordova-plugin-taptic-engine",
-      "clobbers": [
-        "TapticEngine"
-      ]
-    },
-    {
-      "id": "cordova-plugin-vibration.notification",
-      "file": "plugins/cordova-plugin-vibration/www/vibration.js",
-      "pluginId": "cordova-plugin-vibration",
-      "merges": [
-        "navigator"
       ]
     },
     {
@@ -487,10 +440,83 @@
         "cordova"
       ],
       "runs": true
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open"
+      ]
+    },
+    {
+      "id": "cordova-plugin-insomnia.Insomnia",
+      "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
+      "pluginId": "cordova-plugin-insomnia",
+      "clobbers": [
+        "window.plugins.insomnia"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.network",
+      "file": "plugins/cordova-plugin-network-information/www/network.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "navigator.connection",
+        "navigator.network.connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.Connection",
+      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "Connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-purchase.InAppPurchase",
+      "file": "plugins/cordova-plugin-purchase/www/store-ios.js",
+      "pluginId": "cordova-plugin-purchase",
+      "clobbers": [
+        "store"
+      ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
+    },
+    {
+      "id": "cordova-plugin-statusbar.statusbar",
+      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+      "pluginId": "cordova-plugin-statusbar",
+      "clobbers": [
+        "window.StatusBar"
+      ]
+    },
+    {
+      "id": "cordova-plugin-taptic-engine.TapticEngine",
+      "file": "plugins/cordova-plugin-taptic-engine/www/TapticEngine.js",
+      "pluginId": "cordova-plugin-taptic-engine",
+      "clobbers": [
+        "TapticEngine"
+      ]
+    },
+    {
+      "id": "cordova-plugin-vibration.notification",
+      "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+      "pluginId": "cordova-plugin-vibration",
+      "merges": [
+        "navigator"
+      ]
     }
   ],
   "plugin_metadata": {
-    "cordova-admob-plus": "0.0.0",
+    "admob-plus-cordova": "1.28.0",
     "cordova-launch-review": "3.1.1",
     "cordova-open-native-settings": "1.5.2",
     "cordova-plugin-add-swift-support": "2.0.2",
@@ -501,6 +527,7 @@
     "cordova-plugin-customurlscheme": "4.4.0",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-dialogs": "2.0.2",
+    "cordova-plugin-file": "6.0.2",
     "cordova-plugin-inappbrowser": "4.0.1-dev",
     "cordova-plugin-insomnia": "4.3.0",
     "cordova-plugin-network-information": "2.0.2",
@@ -509,7 +536,6 @@
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-taptic-engine": "2.1.0",
     "cordova-plugin-vibration": "3.1.1",
-    "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-file": "6.0.2"
+    "cordova-plugin-whitelist": "1.3.4"
   }
 }

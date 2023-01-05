@@ -14,10 +14,10 @@ class ViewController {
   }
 
   render(lesson) {
-    ads.checkInter();
     if (lesson == "general") {
       this.renderGeneral(false);
     } else {
+      ads.checkInter();
       this.renderLesson(lesson);
     }
     if (snapper.state().state == "left") snapper.close();
@@ -287,6 +287,7 @@ class ViewController {
     var activeaccount = parseInt(getActiveAccount());
     for (const key of Object.keys(localStorage)) {
       var persondata = JSON.parse(getObject("person", key));
+      if(persondata == null) continue;
       if (persondata.isParent) {
         // persondata.children.filter((child) => child.childchildActiveViewed == true)
         for (const childindex of Object.keys(persondata.children)) {
@@ -862,6 +863,7 @@ function updateSidebar() {
   var activeaccount = parseInt(getActiveAccount());
   for (const key of Object.keys(localStorage)) {
     var persondata = JSON.parse(getObject("person", key));
+    if(persondata == null) continue;
     if (persondata.isParent) {
       // persondata.children.filter((child) => child.activeviewed == true)
       for (const childindex of Object.keys(persondata.children)) {

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="app.netlob.magiscore" version="1.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="AdMob">
-        <param name="android-package" value="admob.plugin.AdMob" />
+        <param name="android-package" value="admob.plus.cordova.AdMob" />
     </feature>
     <feature name="LaunchReview">
         <param name="android-package" value="uk.co.workingedge.phonegap.plugin.LaunchReview" />
@@ -12,6 +12,9 @@
     <feature name="AppVersion">
         <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion" />
     </feature>
+    <feature name="Consent">
+        <param name="android-package" value="cordova.plugin.consent.Consent" />
+    </feature>
     <feature name="LaunchMyApp">
         <param name="android-package" value="nl.xservices.plugins.LaunchMyApp" />
     </feature>
@@ -21,8 +24,22 @@
     <feature name="Notification">
         <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
     <feature name="Insomnia">
         <param name="android-package" value="nl.xservices.plugins.Insomnia" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="InAppBillingPlugin">
+        <param name="android-package" value="cc.fovea.PurchasePlugin" />
     </feature>
     <feature name="SplashScreen">
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
@@ -36,23 +53,6 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="NetworkStatus">
-        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
-    </feature>
-    <feature name="InAppBillingPlugin">
-        <param name="android-package" value="cc.fovea.PurchasePlugin" />
-    </feature>
-    <feature name="InAppBrowser">
-        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
-    </feature>
-    <feature name="Consent">
-        <param name="android-package" value="cordova.plugin.consent.Consent" />
-    </feature>
-    <feature name="File">
-        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
-        <param name="onload" value="true" />
-    </feature>
-    <allow-navigation href="cdvfile:*" />
     <name short="Gemairo">Gemairo - Stats voor Magister</name>
     <description>
         Shi daggoetje geswiped
@@ -91,6 +91,7 @@
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <preference name="AllowBackForwardNavigationGestures" value="false" />
     <preference name="Allow3DTouchLinkPreview" value="false" />
+    <preference name="AndroidXEnabled" value="true" />
     <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
     <preference name="Orientation" value="portrait" />
     <preference name="android-targetSdkVersion" value="30" />

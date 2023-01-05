@@ -6,15 +6,15 @@
         }
     },
     "sources": {
-        "https://github.com/CocoaPods/Specs.git": {
-            "source": "https://github.com/CocoaPods/Specs.git",
+        "https://cdn.cocoapods.org/": {
+            "source": "https://cdn.cocoapods.org/",
             "count": 1
         }
     },
     "libraries": {
         "Google-Mobile-Ads-SDK": {
             "name": "Google-Mobile-Ads-SDK",
-            "spec": "~> 7.66",
+            "spec": "~> 8.13.0",
             "count": 1
         },
         "PersonalizedAdConsent": {
