@@ -14,6 +14,7 @@ class ViewController {
   }
 
   render(lesson) {
+    ads.checkInter();
     if (lesson == "general") {
       this.renderGeneral(false);
     } else {

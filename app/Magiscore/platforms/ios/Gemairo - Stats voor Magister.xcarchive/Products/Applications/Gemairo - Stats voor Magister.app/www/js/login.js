@@ -291,12 +291,12 @@ async function validateLogin(code, codeVerifier) {
     dataType: "json",
     async: true,
     crossDomain: true,
-    url: "https://accounts.magister.net/connect/token",
+    url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
     method: "POST",
     headers: {
       "X-API-Client-ID": "EF15",
       "Content-Type": "application/x-www-form-urlencoded",
-      Host: "accounts.magister.net",
+      // Host: "accounts.magister.net",
     },
     data: `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${codeVerifier}`,
   };
@@ -352,7 +352,8 @@ async function validateLogin(code, codeVerifier) {
           for (key of Object.keys(localStorage)) {
             if (key == newaccountindex) {continue;}
             var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({}))
-            if (JSON.parse(account['person']).id == m.person.id && account['school'] == tenant) {
+            if ('person' in account && JSON.parse(account['person']).id == m.person.id && account['school'] == tenant) {
+              console.log('Account bestaat al!')
               toast("Account bestaat al!", 2000, true);
               retryLogin()
               return;

@@ -86,6 +86,7 @@ function main(l) {
     // effect: 'pull'
   });
   // }
+  ads.initialize();
   viewController.setConfig();
   viewController.initTheme();
   //sorted = {}

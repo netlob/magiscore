@@ -1,6 +1,6 @@
 let initialized = false;
 let bannerShown = false;
-let config = {
+let adsConfig = {
   banner: {
     chance: 100,
     ids: {
@@ -17,47 +17,42 @@ let config = {
   },
 };
 
+let showInterNext = false;
+
 const ads = {
-  initialize(hasAdFree) {
+  async initialize() {
+    this.receivedEvent(`Initializing... (${initialized})`);
     if (initialized === true) return;
     initialized = true;
     this.receivedEvent("deviceready");
 
-    if (hasAdFree) return;
+    logConsole(`adFree1: ${adFree.toString()}`);
 
-    fetch("https://sjoerd.dev/html/gemairo/ads.json")
-      .then((res) => res.json())
-      .then((res) => {
-        this.receivedEvent(JSON.stringify(res));
-        if ("banner" in res && "inter" in res) {
-          config = res;
-        }
-      })
-      .finally((e) => {
-        const showBanner =
-          config.banner.chance == 100
-            ? true
-            : Math.random() * 100 > 100 - config.banner.chance;
-        if (
-          showBanner &&
-          config.banner.chance != 0 &&
-          config.banner.chance != false
-        ) {
-          this.showBanner();
-        }
-        const showInter =
-          config.inter.chance == 100
-            ? true
-            : Math.random() * 100 > 100 - config.inter.chance;
-        if (
-          showInter &&
-          config.inter.chance != 0 &&
-          config.inter.chance != false
-        ) {
-          this.loadInter();
-        }
-        this.receivedEvent("done loading ads");
-      });
+    const res = await fetch(
+      "https://cors.sjoerd.dev/https://sjoerd.dev/html/gemairo/ads.json"
+    ).then((res) => res.json());
+
+    this.receivedEvent(JSON.stringify(res));
+    if ("banner" in res && "inter" in res) {
+      adsConfig = res;
+    }
+    this.receivedEvent("config set");
+
+    const showBanner =
+      adsConfig.banner.chance == 100
+        ? true
+        : Math.random() * 100 > 100 - adsConfig.banner.chance;
+    this.receivedEvent(`showbanner: ${showBanner.toString()}`);
+    if (
+      showBanner &&
+      adsConfig.banner.chance != 0 &&
+      adsConfig.banner.chance != false
+    ) {
+      this.showBanner();
+    }
+    this.receivedEvent("done loading ads");
+
+    this.checkInter();
   },
 
   async checkIsLoaded() {
@@ -81,13 +76,13 @@ const ads = {
 
     // const testDeviceId = '942c011c037db3ec6f3ac1b9779be499'
     console.log("show consent form");
-    this.checkConsent()
+    this.checkConsent("fd301d987036613914a670327bbf8f86")
       .then(async (consentStatus) => {
         console.log("consentStatus", consentStatus);
         if (consentStatus === "PERSONALIZED" && adFree != true) {
           admob.banner
             .show({
-              id: config.banner.ids,
+              id: adsConfig.banner.ids,
               // testDevices: [testDeviceId],
               position: "bottom",
             })
@@ -96,15 +91,17 @@ const ads = {
         } else if (adFree != true) {
           admob.banner
             .show({
-              id: config.banner.ids,
+              id: adsConfig.banner.ids,
               // testDevices: [testDeviceId],
               npa: "1",
               position: "bottom",
             })
             .catch((e) => this.receivedEvent(e.toString()));
         }
+
+        logConsole(`adFree: ${adFree.toString()}`);
       })
-      .catch(console.error);
+      .catch((e) => this.receivedEvent(e.toString()));
   },
 
   hideBanner() {
@@ -116,7 +113,7 @@ const ads = {
   async checkConsent(testDeviceId) {
     const publisherIds = ["pub-9170931639371270"];
 
-    // await consent.addTestDevice(testDeviceId)
+    await consent.addTestDevice(testDeviceId);
     // await consent.setDebugGeography('NL');
     const npa = await consent.checkConsent(publisherIds);
     console.log("consent: ", npa);
@@ -146,11 +143,32 @@ const ads = {
     }
   },
 
+  checkInter() {
+    this.receivedEvent(`showInterNext: ${showInterNext.toString()}`);
+    if (showInterNext) {
+      showInterNext = false;
+      return this.showInter();
+    }
+
+    showInterNext =
+      adsConfig.inter.chance == 100
+        ? true
+        : Math.random() * 100 > 100 - adsConfig.inter.chance;
+    this.receivedEvent(`showInterNext2: ${showInterNext.toString()}`);
+    if (
+      showInterNext &&
+      adsConfig.inter.chance != 0 &&
+      adsConfig.inter.chance != false
+    ) {
+      this.loadInter();
+    }
+  },
+
   loadInter() {
     logConsole(`[INFO]   Received Ad Load Inter`);
     admob.interstitial
       .load({
-        id: config.inter.ids,
+        id: adsConfig.inter.ids,
       })
       // admob.interstitial
       //     .load({
@@ -163,13 +181,13 @@ const ads = {
       .then(() => {
         logConsole(`[INFO]   Loaded Ad Inter`);
       })
-      .catch(receivedEvent);
+      .catch((e) => this.receivedEvent(e.toString()));
   },
 
   async showInter() {
     logConsole(`[INFO]   Showing Ad Inter`);
     if (!(await this.checkIsLoaded())) await this.loadInter();
     await admob.interstitial.show();
-    this.loadInter();
+    // this.loadInter();
   },
 };

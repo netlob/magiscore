@@ -401,7 +401,7 @@
 
         <div class="container-fluid" id="settings-wrapper" style="display: none;" data-snap-ignore="true">
           <div id="nonconsumable1-purchase"></div>
-          <h3 class="ml-1 pl-3 font-weight-bold text-primary">Download Stats.fm</h3>
+          <!-- <h3 class="ml-1 pl-3 font-weight-bold text-primary">Download Stats.fm</h3>
           <p class="ml-1 pl-3 text-primary">Wil jij elk moment van het jaar weten welke artiesten en liedjes je het
             meeste luisterd, zien hoeveel uur Spotify je luisterd, op welke tijdstippen je luisterd en nog veel meer
             uitgebreide info? Download dan nu Stats.fm voor iOS en Android! (sorry voor de ad maar doe ff downloaden enz)</p>
@@ -413,7 +413,7 @@
             <a class="appStoreLink"
               href="https://apps.apple.com/app/apple-store/id1526912392?pt=121772327&ct=magiscore&mt=8"><img
                 class="appStore" src="https://spotistats.app/assets/appstore.png" height="40" alt="App Store"></a>
-          </div>
+          </div> -->
 
           <h6 class="ml-1 pl-3 font-weight-bold text-primary">Gemairo</h6>
           <ul class="list-group list-group-flush">
@@ -1165,6 +1165,7 @@ function getActiveAccount() {
     window.onerror = function (msg, url, lineNo, columnNo, error) {
       $("#overlay").hide()
       logConsole(`[ERROR] ${msg} line: ${lineNo}\n url: ${url}`)
+      console.error(msg, url, lineNo, columnNo, error)
       if ($("#mobilePersonInfo").text() == "Voornaam Achternaam") openBrowser(1)
       return false;
     }
@@ -1204,11 +1205,11 @@ function getActiveAccount() {
   <script src="js/controllers/ViewController.js"></script>
   <script src="js/controllers/CourseController.js"></script>
   <script src="js/controllers/LessonController.js"></script>
-  <script src="js/refresh.js"></script>
   <script src="js/ads.js"></script>
   <script src="js/iap.js"></script>
   <!-- <script src="js/tour.js"></script> -->
   <script src="js/main.js"></script>
+  <script src="js/refresh.js"></script>
 </body>
 
 </html>

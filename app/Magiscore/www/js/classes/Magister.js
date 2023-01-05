@@ -64,15 +64,7 @@ class Magister {
         },
         timeout: 5000,
         success: async (data) => {
-          console.log("data");
-          console.log(data);
-          console.log("data");
-
           var res = data;
-
-          console.log("res");
-          console.log(res);
-          console.log("res");
           this.person.isParent = res.Groep[0].Privileges.some(
             (x) =>
               x.Naam.toLowerCase() === "kinderen" &&

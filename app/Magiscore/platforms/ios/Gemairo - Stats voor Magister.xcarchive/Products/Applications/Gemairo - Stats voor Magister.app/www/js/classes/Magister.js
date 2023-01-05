@@ -43,7 +43,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/account?nocache=${Date.parse(
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/account?nocache=${Date.parse(
           new Date()
         )}`,
         method: "GET",
@@ -62,25 +62,27 @@ class Magister {
           }
           reject("no internet");
         },
-        timeout: 5000
-      }).done(async res => {
-        this.person.isParent = res.Groep[0].Privileges.some(
-          x =>
-            x.Naam.toLowerCase() === "kinderen" &&
-            x.AccessType.some(a => a.toLowerCase() === "read")
-        );
-        var res = res.Persoon || res.persoon;
-        this.person.id = res.Id || res.id;
-        this.person.firstName = res.Roepnaam || res.roepnaam;
-        this.person.lastName = res.Achternaam || res.achternaam;
-        this.namePrefix = res.Tussenvoegsel || res.tussenvoegsel;
-        if (this.person.isParent) {
-          this.person.children = await this.getChildren()
-        }
-        //this.fullName = res.Persoon.Naam || res.persoon.naam
-        //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
-        //this.group = res.Persoon.Groep || res.persoon.groep)
-        resolve(this.person);
+        timeout: 5000,
+        success: async (data) => {
+          var res = data;
+          this.person.isParent = res.Groep[0].Privileges.some(
+            (x) =>
+              x.Naam.toLowerCase() === "kinderen" &&
+              x.AccessType.some((a) => a.toLowerCase() === "read")
+          );
+          var res = res.Persoon || res.persoon;
+          this.person.id = res.Id || res.id;
+          this.person.firstName = res.Roepnaam || res.roepnaam;
+          this.person.lastName = res.Achternaam || res.achternaam;
+          this.namePrefix = res.Tussenvoegsel || res.tussenvoegsel;
+          if (this.person.isParent) {
+            this.person.children = await this.getChildren();
+          }
+          //this.fullName = res.Persoon.Naam || res.persoon.naam
+          //this.description = res.Persoon.Omschrijving || res.Persoon.Naam || res.Persoon.naam
+          //this.group = res.Persoon.Groep || res.persoon.groep)
+          resolve(this.person);
+        },
       });
     });
   }
@@ -97,7 +99,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/personen/${
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/personen/${
           this.person.id
         }/kinderen?openData=%27%27`,
         method: "GET",
@@ -134,7 +136,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/sessions/current?nocache=${Date.parse(
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/sessions/current?nocache=${Date.parse(
           new Date()
         )}`,
         method: "GET",
@@ -161,7 +163,7 @@ class Magister {
           dataType: "json",
           async: true,
           crossDomain: true,
-          url: `https://${this.tenant}${
+          url: `https://cors.sjoerd.dev/https://${this.tenant}${
             res.links.account.href
           }?nocache=${Date.parse(new Date())}`,
           method: "GET",
@@ -206,7 +208,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this.tenant}/api/personen/${
+        url: `https://cors.sjoerd.dev/https://${this.tenant}/api/personen/${
           personid
         }/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(new Date())}`,
         method: "GET",

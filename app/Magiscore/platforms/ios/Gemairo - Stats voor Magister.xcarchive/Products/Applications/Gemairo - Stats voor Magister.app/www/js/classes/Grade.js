@@ -151,7 +151,7 @@ class Grade {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.courseId}/cijfers/extracijferkolominfo/${this.type.id}`,
+        url: `https://cors.sjoerd.dev/https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.courseId}/cijfers/extracijferkolominfo/${this.type.id}`,
         method: "GET",
         headers: {
           Authorization: "Bearer " + tokens.access_token,

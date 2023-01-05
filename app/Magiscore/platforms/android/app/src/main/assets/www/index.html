@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
-  <title>Magiscore</title>
+  <title>Gemairo</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="css/fonts.css" rel="stylesheet">
   <link
@@ -33,7 +33,7 @@
   <meta name="theme-color" content="var(--primary)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Magiscore">
+  <meta name="apple-mobile-web-app-title" content="Gemairo">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="Description" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
   <meta name="Tags" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
@@ -52,19 +52,22 @@
         <div class="sidebar-brand-icon rotate-n-0">
           <i class="fas fa-chart-line"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Magiscore<sup></sup></div>
+        <div class="sidebar-brand-text mx-3">Gemairo<sup></sup></div>
       </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link vibrate" onclick="viewController.render('general')">
-          <!-- <i class="fas fa-fw fa-graduation-cap"></i> -->
-          <span>Gemiddeld</span></a>
-      </li>
-
+      <div id="ScreensNav">
+        <li class="nav-item active">
+          <a class="nav-link vibrate" onclick="viewController.render('general')">
+            <!-- <i class="fas fa-fw fa-graduation-cap"></i> -->
+            <span>Gemiddeld</span>
+          </a>
+        </li>
+      </div>
+      
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -287,13 +290,19 @@
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in shadow"
                 aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header background-primary">
-                  Kies een schooljaar
+                <h6 class="dropdown-header background-primary d-flex justify-content-between align-items-center ">
+                  Kies een schooljaar <span id="totalgrades" style="font-size: 100%;color: #3a3b45;background-color: #f8f9fc;" class="badge badge-pill">?</span>
                 </h6>
                 <div id="years">
                   <div class="text-center mt-3 mb-3">Geen schooljaren beschikbaar...</div>
                 </div>
               </div>
+            </li>
+
+            <li id="gradefilterbutton" class="nav-item dropdown no-arrow no-primary-hover show">
+              <a data-toggle="modal" data-target="#vakkenModal" class="nav-link background-primary vibrate ">
+                <i class="fas fa-filter fa-fw d-block mobile-clock"></i>
+              </a>
             </li>
 
             <li class="nav-item dropdown no-arrow no-primary-hover grades-dropdown" id="messagesDrop">
@@ -310,7 +319,7 @@
                 <h6 class="dropdown-header background-primary">
                   Laatste cijfers <a class="float-right"><span class="text-white"
                       style="font-size: 9px !important; font-weight: light !important;"
-                      onclick="courseController.getLatestGrades(true)">Refresh</span><i
+                      onclick="courseController.getLatestGrades(true, getActiveChildAccount())">Refresh</span><i
                       class="ml-2 fa fa-sync-alt text-white"></i></a>
                 </h6>
                 <div id="latest-grades">
@@ -346,6 +355,9 @@
                     Settings
                   </a> -->
                 <div class="dropdown-divider"></div>
+                <div class="list-group list-group-flus" id="useraccountslist">
+                </div>
+                <div class="dropdown-divider"></div>
                 <!-- <a class="dropdown-item vibrate" data-toggle="theme" onclick="viewController.toggleTheme()">
                   <i class="fas fa-eye fa-sm fa-fw mr-2 text-gray-400"></i>
                   Wissel thema
@@ -364,7 +376,11 @@
                   <i class="fas fa-download fa-sm fa-fw mr-2 text-gray-400"></i>
                   Herstel aankopen
                 </a>
-                <a class="dropdown-item vibrate" onclick="viewController.openSettings()">
+                <a class="dropdown-item vibrate" href="#search">
+                  <i class="fas fa-search fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Zoek cijfers
+                </a>
+                <a class="dropdown-item vibrate" href="#settings">
                   <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                   Instellingen
                 </a>
@@ -385,10 +401,10 @@
 
         <div class="container-fluid" id="settings-wrapper" style="display: none;" data-snap-ignore="true">
           <div id="nonconsumable1-purchase"></div>
-          <h3 class="ml-1 pl-3 font-weight-bold text-primary">Download Spotistats</h3>
+          <!-- <h3 class="ml-1 pl-3 font-weight-bold text-primary">Download Stats.fm</h3>
           <p class="ml-1 pl-3 text-primary">Wil jij elk moment van het jaar weten welke artiesten en liedjes je het
             meeste luisterd, zien hoeveel uur Spotify je luisterd, op welke tijdstippen je luisterd en nog veel meer
-            uitgebreide info? Download dan nu Spotistats voor iOS en Android! (sorry voor de ad maar doe ff downloaden enz)</p>
+            uitgebreide info? Download dan nu Stats.fm voor iOS en Android! (sorry voor de ad maar doe ff downloaden enz)</p>
           <div class="ml-1 pl-3 mb-4" style="margin-bottom: -20px;">
             <a class="playStoreLink"
               href="https://play.google.com/store/apps/details?id=dev.netlob.spotistats&referrer=utm_source%3Dmagiscore"><img
@@ -397,9 +413,9 @@
             <a class="appStoreLink"
               href="https://apps.apple.com/app/apple-store/id1526912392?pt=121772327&ct=magiscore&mt=8"><img
                 class="appStore" src="https://spotistats.app/assets/appstore.png" height="40" alt="App Store"></a>
-          </div>
+          </div> -->
 
-          <h6 class="ml-1 pl-3 font-weight-bold text-primary">Magiscore</h6>
+          <h6 class="ml-1 pl-3 font-weight-bold text-primary">Gemairo</h6>
           <ul class="list-group list-group-flush">
             <li class="list-group-item shadow mb-2">Thema <a class="float-right menu-a ml-2 vibrate"
                 onclick="viewController.darkTheme()">DONKER</a><a class="float-right menu-a vibrate"
@@ -458,7 +474,7 @@
                 onclick="viewController.giveFeedback()">REVIEW</a>
             </li>
             <li class="list-group-item shadow mb-2">E-Mail<a class="float-right menu-a vibrate"
-                href="mailto:info@magiscore.nl?subject=Feedback Magiscore" target="_system">E-MAIL</a>
+                href="mailto:info@gemairo.nl?subject=Feedback Gemairo" target="_system">E-MAIL</a>
             </li>
             <li class="list-group-item shadow mb-2">Discord<a class="float-right menu-a vibrate"
                 onclick="cordova.InAppBrowser.open('https://discord.gg/uZ7whYj', '_system');">DISCORD</a>
@@ -470,22 +486,22 @@
           <br>
           <h6 class="ml-3 pl-1 font-weight-bold text-primary">Account</h6>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Uitloggen<a class="float-right menu-a vibrate"
+            <li class="list-group-item shadow mb-2">Log het geopende account uit<a class="float-right menu-a vibrate"
                 onclick="logOut()">UITLOGGEN</a>
             </li>
           </ul>
           <br>
-          <div class="grade-small ml-3 pl-1 mr-3 pr-1">Magiscore is een privé-iniatief en maakt geen deel uit van
+          <div class="grade-small ml-3 pl-1 mr-3 pr-1">Gemairo is een privé-iniatief en maakt geen deel uit van
             Schoolmaster
             BV.<br>Alle
-            gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.<br>Doordat Magiscore niet gelinkt
+            gegevens worden alleen lokaal opgeslagen en zullen nooit gedeeld worden.<br>Doordat Gemairo niet gelinkt
             is
             aan Schoolmaster BV kans het soms zijn dat de app niet goed werkt. In dat geval kan je voor support een mail
-            sturen naar info@magiscore.nl. Ga voor de gehele privacyverklaring naar <a class="menu-a vibrate"
-              onclick="cordova.InAppBrowser.open('https://magiscore.nl/privacy', '_system');">https://magiscore.nl/privacy</a>,
+            sturen naar info@gemairo.nl. Ga voor de gehele privacyverklaring naar <a class="menu-a vibrate"
+              onclick="cordova.InAppBrowser.open('https://gemairo.nl/privacy', '_system');">https://gemairo.nl/privacy</a>,
             en
             voor de gebruiksvoorwaarden (EULA) naar <a class="menu-a vibrate"
-              onclick="cordova.InAppBrowser.open('https://magiscore.nl/terms', '_system');">https://magiscore.nl/terms</a>.
+              onclick="cordova.InAppBrowser.open('https://gemairo.nl/terms', '_system');">https://gemairo.nl/terms</a>.
            <hr>
             <p class="mt-2 toggle-terminal">
               Deze app zou al <span id="kutiddink"></span> offline moeten zijn omdat Magister zulke apps niet toelaat. Maar fuck hun en hun kut app wij strijden door. Harald als je dit leest doe nou niet zo vervelend xxx sjoerd
@@ -497,6 +513,34 @@
 
         </div>
 
+
+        <div class="container-fluid" style="display: none;" id="search-wrapper" data-snap-ignore="true">
+
+          <div class="row">
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary" id="general-area-title">Zoeken</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="input-group mb-3" style="flex-wrap: nowrap;">
+                    <input style="width: 100%;" type="text" class="form-control" placeholder="Zoek voor getallen, namen en omschrijvingen" id="zoekBalk" aria-label="Zoeken" aria-describedby="ZoekBalk">
+                    <button onClick="generateSearch(document.getElementById('zoekBalk').value)" class="btn" style="color: black!important;">
+                      <i data-toggle="modal" data-target="#zoekModal" class="fas fa-search fa-sm fa-fw text-gray-400"></i>
+                    </button>
+                  </div>
+                  <hr class="m-0 p-0">
+                  <div class="p-0" id="zoekGradesTable">
+                    <div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        </div>
 
         <!-- Begin Page Content -->
         <div class="container-fluid" id="general-wrapper">
@@ -723,7 +767,7 @@
                 </div>
                 <div class="card-body pt-0" id="general-averages">
                   <div class="chart-bar chart-container barChart-container-general">
-                    <canvas id="generalBarChart"></canvas>
+                    <canvas style="pointer-events: none;" id="generalBarChart"></canvas>
                   </div>
                   <div class="table-responsive">
                     <table class="table" width="100%" cellspacing="0">
@@ -919,6 +963,8 @@
           </li>
           <li class="small list-group-item"><b>Is PTA</b><span class="ml-1 float-right" id="grade-modal-ispta"></span>
           </li>
+          <li class="small list-group-item"><b>Periode</b><span class="ml-1 float-right"
+            id="grade-modal-period"></span></li>
           <li class="small list-group-item"><b>Ingevuld door</b><span class="ml-1 float-right"
               id="grade-modal-teacher"></span></li>
           <li class="small list-group-item"><b>Ingevuld op</b><span class="ml-1 float-right"
@@ -932,8 +978,65 @@
       </div>
     </div>
   </div>
+  
+  <div class="modal fade" id="vakkenModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="/*max-height: calc(100vh - 20px);*/">
+        <div class="modal-header">
+          <h5 class="modal-title">Filter cijfers</h5>
+          <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding: 0rem 1rem;overflow: auto;">
+          <div class="table-responsive">
+            <div class="table-responsive">
+              <table class="table" width="100%" cellspacing="0">
+                <!--data-snap-ignore="true"-->
+                <thead class="text-primary">
+                  <tr>
+                    <th style="display: block;">Periodes</th>
+                  </tr>
+                </thead>
+                <tbody id="periodeModalTable">
 
-  <!-- <div id="settings-wrapper">
+                  </tbody>
+              </table>
+              </div>
+            <table class="table" width="100%" cellspacing="0">
+              <!--data-snap-ignore="true"-->
+              <thead class="text-primary">
+                <tr>
+                  <th style="display: block;display: flex;justify-content: space-between;align-items: baseline;">Vakken
+                    <button onClick="Array.from(document.getElementById('vakkenModalTable').children).forEach((ch) => { ch.children[0].checked = !ch.children[0].checked })" class="btn btn-secondary">
+                      <i class="fas fa-random"></i>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="vakkenModalTable" style="display: flex;flex-wrap: wrap;flex-direction: column;margin: 5px;">
+                <tr>
+                  <td>
+                    <div class="md-checkbox vibrate m-1" style="font-size:1rem">
+                      <input id="grade-modal-count" type="checkbox">
+                      <label for="grade-modal-count">VakNaam</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" onClick="filtereddisabled = [];document.getElementById('gradefilterbutton').children[0].children[0].classList.remove('activefilter');viewController.render(viewController.currentLesson);viewController.updateNav();" class="btn btn-secondary vibrate" data-dismiss="modal">Reset</button>
+              <button type="button" class="btn btn-secondary vibrate" data-dismiss="modal">Sluiten</button>
+              <button type="button" onClick="generateFilter();" data-dismiss="modal" class="btn btn-primary vibrate">Bereken</button>
+            </div>
+            </div>
+            </div>
+            </div>
+
+            <!-- <div id="settings-wrapper">
     <div class="settings-close bg-white vibrate" onclick="viewController.closeSettings()">
       <i class="fa fa-times"></i>
     </div>
@@ -1001,18 +1104,50 @@
     </div>
   </div> -->
 
+  <div id="snackbarContainer" class="snackbarContainer">
+
+  </div>
+
   <script defer>
-    if (localStorage.getItem("loginSuccess") != "true") {
-      // alert("loginSuccess = " + localStorage.getItem("loginSucess"))
-      localStorage.clear()
+    if (getObject("loginSuccess", getActiveAccount()) != "true") {
+      // alert("loginSuccess = " + getObject("loginSucess"))
+      clearObject(getActiveAccount())
       window.location = './login.html#failedlogin'
     }
 
-    if (localStorage.getItem("tokens") === null && localStorage.getItem("school") === null && localStorage.getItem(
-      "courses") === null) {
-      localStorage.clear()
+    if (getObject("tokens", getActiveAccount()) === null && getObject("school", getActiveAccount()) === null && getObject(
+      "courses", getActiveAccount()) === null) {
+      clearObject(getActiveAccount())
       window.location = './login.html#notokens'
     }
+
+    function setObject(key,value,index) {
+    var json = JSON.parse(localStorage.getItem(index) ?? JSON.stringify({}))
+    json[key] = value;
+    localStorage.setItem(index, JSON.stringify(json));
+    }
+
+function getObject(key,index) {
+    try {
+        if (!JSON.parse(localStorage.getItem(index)).hasOwnProperty(key)) { return null }
+        return (JSON.parse(localStorage.getItem(index)))[key] 
+    } catch (e) {
+        return null;
+    }
+}
+
+function clearObject(index) {
+    localStorage.removeItem(index);
+}
+
+function getActiveAccount() {
+    for (key of Object.keys(localStorage)) {
+        var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({"config": "{\"currentviewed\": \"false\"}"}))
+        if (JSON.parse(account['config']).currentviewed == true) {
+            return key
+        }
+    }
+}
 
     function logConsole(msg) {
       if (typeof msg != "string") return
@@ -1056,22 +1191,24 @@
 
   <!-- Page scripts and classes -->
   <script src="js/utils.js"></script>
+  <script src="js/filesystem.js"></script>
   <script src="js/classes/Class.js"></script>
   <script src="js/classes/GradeType.js"></script>
   <script src="js/classes/Person.js"></script>
   <script src="js/classes/Course.js"></script>
   <script src="js/classes/GradePeriod.js"></script>
+  <script src="js/classes/GradePeriod2.js"></script>
   <script src="js/classes/Grade.js"></script>
   <script src="js/classes/Magister.js"></script>
   <script src="js/classes/Lesson.js"></script>
   <script src="js/controllers/ViewController.js"></script>
   <script src="js/controllers/CourseController.js"></script>
   <script src="js/controllers/LessonController.js"></script>
-  <script src="js/refresh.js"></script>
   <script src="js/ads.js"></script>
   <script src="js/iap.js"></script>
   <!-- <script src="js/tour.js"></script> -->
   <script src="js/main.js"></script>
+  <script src="js/refresh.js"></script>
 </body>
 
 </html>

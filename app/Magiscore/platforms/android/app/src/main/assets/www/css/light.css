@@ -7572,6 +7572,11 @@ button.bg-primary:focus {
   background-color: var(--primary) !important;
 }
 
+/* Om te voorkomen dat het een zinloos rondje wordt  */
+#buttonSidenavToggle {
+  background-color: transparent !important;
+}
+
 .bg-secondary {
   background-color: #858796 !important;
 }
