@@ -5,13 +5,17 @@ let adsConfig = {
     ids: {
       android: "ca-app-pub-9170931639371270/4381583231",
       ios: "ca-app-pub-9170931639371270/1821786931",
+      // android: "ca-app-pub-3940256099942544/6300978111",
+      // ios: "ca-app-pub-3940256099942544/2934735716",
     },
   },
   inter: {
-    chance: 0,
+    chance: 100,
     ids: {
       android: "ca-app-pub-9170931639371270/9003354522",
       ios: "ca-app-pub-9170931639371270/5064109515",
+      // android: "ca-app-pub-3940256099942544/1033173712",
+      // ios: "ca-app-pub-3940256099942544/4411468910",
     },
   },
 };
@@ -93,7 +97,10 @@ const ads = {
   async loadBanner() {
     if (adFree == true) return;
 
-    const lastBannerId = localStorage.getItem("lastBannerId");
+    const lastBannerId =
+      _banner != undefined && typeof _banner.id == "number"
+        ? _banner.id
+        : localStorage.getItem("lastBannerId");
 
     const consentStatus = await this.checkConsent();
     _banner = new admob.BannerAd({
@@ -128,10 +135,20 @@ const ads = {
     if (adFree == true) return;
 
     if (_banner == undefined) {
+      this.receivedEvent("calling banner load before show");
       this.loadBanner();
     }
 
-    await _banner.show();
+    this.receivedEvent("calling banner load before show");
+    await _banner
+      .show()
+      .then((e) => {
+        this.receivedEvent("poep3: " + e);
+      })
+      .catch((e) => {
+        this.receivedEvent("poep4: " + e.message);
+        this.receivedEvent("poep4: " + e);
+      });
 
     // setInterval(async () => {
     //   try {
@@ -176,8 +193,8 @@ const ads = {
   checkInter() {
     this.receivedEvent(`showInterNext: ${showInterNext.toString()}`);
     if (showInterNext) {
-      showInterNext = false;
-      return this.showInter();
+      // showInterNext = false;
+      this.showInter();
     }
 
     showInterNext =
