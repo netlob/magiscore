@@ -1,6 +1,6 @@
 {
     "AppTrackingTransparency.framework": 1,
-    "StoreKit.framework": 2,
+    "StoreKit.framework": 1,
     "AudioToolbox.framework": 3,
     "SystemConfiguration.framework": 1,
     "CoreTelephony.framework": 1

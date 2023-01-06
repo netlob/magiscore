@@ -125,7 +125,13 @@ class ViewController {
 
   renderGrade(gradeid) {
     var grade = courseController.allGrades.find((x) => x.id == gradeid);
-    $("#grade-modal-grade").text(grade.grade);
+    $("#grade-modal-grade").text(`${
+      grade.grade.toString().startsWith('10')
+        ? '<span class="text-success">10</span><span class="invisible">,</span>'
+        : !grade.passed
+        ? '<span class="text-danger">' + grade.grade + "</span>"
+        : grade.grade
+    }`);
     $("#grade-modal-weight").text(grade.weight);
     $("#grade-modal-weight2").text(grade.weight);
     $("#grade-modal-description").text(

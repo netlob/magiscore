@@ -10,7 +10,7 @@
           "UIUserInterfaceStyle": [
             {
               "xml": "<string>Light</string>",
-              "count": 34
+              "count": 43
             }
           ]
         }
@@ -48,10 +48,6 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"com.android.vending.BILLING\" />",
               "count": 1
             }
           ],
@@ -119,10 +115,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"InAppBillingPlugin\"><param name=\"android-package\" value=\"cc.fovea.PurchasePlugin\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
@@ -187,9 +179,6 @@
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-purchase": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-splashscreen": {
@@ -489,14 +478,6 @@
       ]
     },
     {
-      "id": "cordova-plugin-purchase.InAppBillingPlugin",
-      "file": "plugins/cordova-plugin-purchase/www/store-android.js",
-      "pluginId": "cordova-plugin-purchase",
-      "clobbers": [
-        "store"
-      ]
-    },
-    {
       "id": "cordova-plugin-splashscreen.SplashScreen",
       "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
       "pluginId": "cordova-plugin-splashscreen",
@@ -536,7 +517,6 @@
     "cordova-plugin-inappbrowser": "4.0.1-dev",
     "cordova-plugin-insomnia": "4.3.0",
     "cordova-plugin-network-information": "2.0.2",
-    "cordova-plugin-purchase": "10.3.0",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-taptic-engine": "2.1.0",

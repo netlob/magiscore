@@ -46,8 +46,13 @@ const ads = {
     await admob.start();
     this.receivedEvent("admob started!");
 
-    // admob.BannerAd.config({ backgroundColor: "white" });
-    admob.BannerAd.config({ backgroundColor: "black" });
+    let theme = "white";
+    try {
+      theme = viewController.config.theme == "dark" ? "black" : "white";
+    } catch (e) {
+      theme = "white";
+    }
+    admob.BannerAd.config({ backgroundColor: theme });
     admob.configure({
       testDeviceIds: ["6ea04e8011fad00d37e3a96a44cbc072"],
     });
@@ -173,16 +178,17 @@ const ads = {
     if (_npa === "UNKNOWN" && adFree != true) {
       const form = new consent.Form({
         privacyUrl: "https://policies.google.com/privacy",
-        adFree: true,
+        // adFree: true,
+        adFree: false,
         nonPersonalizedAds: true,
         personalizedAds: true,
       });
       await form.load();
       const result = await form.show();
 
-      if (result.userPrefersAdFree) {
-        purchaseNonConsumable1();
-      }
+      // if (result.userPrefersAdFree) {
+      //   purchaseNonConsumable1();
+      // }
 
       return result.consentStatus;
     } else {

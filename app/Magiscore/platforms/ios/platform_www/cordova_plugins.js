@@ -271,14 +271,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-purchase.InAppPurchase",
-      "file": "plugins/cordova-plugin-purchase/www/store-ios.js",
-      "pluginId": "cordova-plugin-purchase",
-      "clobbers": [
-        "store"
-      ]
-    },
-    {
       "id": "cordova-plugin-splashscreen.SplashScreen",
       "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
       "pluginId": "cordova-plugin-splashscreen",
@@ -327,7 +319,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-inappbrowser": "4.0.1-dev",
     "cordova-plugin-insomnia": "4.3.0",
     "cordova-plugin-network-information": "2.0.2",
-    "cordova-plugin-purchase": "10.3.0",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-taptic-engine": "2.1.0",

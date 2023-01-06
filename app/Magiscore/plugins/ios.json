@@ -56,9 +56,6 @@
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
-    "cordova-plugin-purchase": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },

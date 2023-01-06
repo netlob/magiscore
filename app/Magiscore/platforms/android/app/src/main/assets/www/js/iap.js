@@ -1,80 +1,80 @@
-document.addEventListener('deviceready', initStore);
-document.addEventListener('deviceready', refreshLockedUI);
+// document.addEventListener('deviceready', initStore);
+// document.addEventListener('deviceready', refreshLockedUI);
 
-let purchasing = false;
-let adFree = undefined;
+// let purchasing = false;
+let adFree = false;
 
-function initStore() {
+// function initStore() {
 
-    if (!window.store) {
-        console.log('Store not available');
-        return;
-    }
+//     if (!window.store) {
+//         console.log('Store not available');
+//         return;
+//     }
 
-    store.verbosity = store.INFO;
-    store.register({
-        id: '1',
-        type: store.NON_CONSUMABLE
-    });
+//     store.verbosity = store.INFO;
+//     store.register({
+//         id: '1',
+//         type: store.NON_CONSUMABLE
+//     });
 
-    store.error(function (error) {
-        console.log('ERROR ' + error.code + ': ' + error.message);
-        purchasing = false;
-        viewController.overlay("hide");
-    });
+//     store.error(function (error) {
+//         console.log('ERROR ' + error.code + ': ' + error.message);
+//         purchasing = false;
+//         viewController.overlay("hide");
+//     });
 
-    store.when('1').updated(refreshProductUI);
-    store.when('1').approved(function (p) {
-        purchasing = false;
-        viewController.overlay("hide");
-        p.verify();
-    });
-    store.when('1').verified(finishPurchase);
+//     store.when('1').updated(refreshProductUI);
+//     store.when('1').approved(function (p) {
+//         purchasing = false;
+//         viewController.overlay("hide");
+//         p.verify();
+//     });
+//     store.when('1').verified(finishPurchase);
 
-    store.refresh();
-}
+//     store.refresh();
+// }
 
-function refreshLockedUI() {
-    console.log("refreshLockedUI")
-}
+// function refreshLockedUI() {
+//     console.log("refreshLockedUI")
+// }
 
-function refreshProductUI(product) {
-    console.log("refreshProductUI", product)
+// function refreshProductUI(product) {
+//     console.log("refreshProductUI", product)
 
-    $("#herstel-aankopen").show();
-    $("#verwijder-ads").show();
+//     $("#herstel-aankopen").show();
+//     $("#verwijder-ads").show();
 
-    adFree = product.owned;
-    
-    ads.initialize();
+//     adFree = product.owned;
 
-    if (product.owned) {
-        $("#herstel-aankopen").show();
-        $("#verwijder-ads").hide();
+//     ads.initialize();
 
-        // if (bannerShown) {
-        ads.hideBanner();
-        // }
-    }
+//     if (product.owned) {
+//         $("#herstel-aankopen").show();
+//         $("#verwijder-ads").hide();
 
-    logConsole(JSON.stringify(product))
-}
+//         // if (bannerShown) {
+//         ads.hideBanner();
+//         // }
+//     }
 
-function purchaseNonConsumable1() {
-    if (purchasing) return;
-    purchasing = true;
-    viewController.overlay("show");
-    store.order('1');
-}
+//     logConsole(JSON.stringify(product))
+// }
 
-function restorePurchases1() {
-    viewController.overlay("show");
-    store.refresh();
-    viewController.overlay("hide");
-}
+// function purchaseNonConsumable1() {
+//     if (purchasing) return;
+//     purchasing = true;
+//     viewController.overlay("show");
+//     store.order('1');
+// }
 
-function finishPurchase(p) {
-    console.log("finishPurchase", p)
-    p.finish();
-    refreshLockedUI();
-}
+// function restorePurchases1() {
+//     viewController.overlay("show");
+//     store.refresh();
+//     viewController.overlay("hide");
+// }
+
+// function finishPurchase(p) {
+//     console.log("finishPurchase", p)
+//     p.finish();
+//     refreshLockedUI();
+// }

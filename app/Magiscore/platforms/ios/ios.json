@@ -101,10 +101,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"InAppPurchase\"><param name=\"ios-package\" value=\"InAppPurchase\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
@@ -181,9 +177,6 @@
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-purchase": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-splashscreen": {
@@ -475,14 +468,6 @@
       ]
     },
     {
-      "id": "cordova-plugin-purchase.InAppPurchase",
-      "file": "plugins/cordova-plugin-purchase/www/store-ios.js",
-      "pluginId": "cordova-plugin-purchase",
-      "clobbers": [
-        "store"
-      ]
-    },
-    {
       "id": "cordova-plugin-splashscreen.SplashScreen",
       "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
       "pluginId": "cordova-plugin-splashscreen",
@@ -531,7 +516,6 @@
     "cordova-plugin-inappbrowser": "4.0.1-dev",
     "cordova-plugin-insomnia": "4.3.0",
     "cordova-plugin-network-information": "2.0.2",
-    "cordova-plugin-purchase": "10.3.0",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-taptic-engine": "2.1.0",
