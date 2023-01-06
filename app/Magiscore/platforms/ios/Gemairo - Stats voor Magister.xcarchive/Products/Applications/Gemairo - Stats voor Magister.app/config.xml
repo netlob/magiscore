@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.netlob.magiscore" version="1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="app.netlob.magiscore" version="1.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="CDVWebViewEngine">
         <param name="ios-package" value="CDVWebViewEngine" />
     </feature>
@@ -26,7 +26,7 @@
         <param name="onload" value="true" />
     </feature>
     <feature name="AdMob">
-        <param name="ios-package" value="AMSPlugin" />
+        <param name="ios-package" value="AMBPlugin" />
     </feature>
     <feature name="LaunchReview">
         <param name="ios-package" value="LaunchReview" />
@@ -45,6 +45,10 @@
     </feature>
     <feature name="Notification">
         <param name="ios-package" value="CDVNotification" />
+    </feature>
+    <feature name="File">
+        <param name="ios-package" value="CDVFile" />
+        <param name="onload" value="true" />
     </feature>
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVWKInAppBrowser" />
@@ -89,6 +93,7 @@
     <config-file parent="UIUserInterfaceStyle" platform="ios" target="*-Info.plist">
         <string>Light</string>
     </config-file>
+    <resource-file src="GoogleService-Info.plist" />
     <allow-intent href="m6loapp://oauth2redirect/*" />
     <edit-config file="*-Info.plist" mode="merge" target="UIUserInterfaceStyle">
         <string>Light</string>
@@ -130,7 +135,10 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="android-targetSdkVersion" value="30" />
-    <preference name="UseSwiftLanguageVersion" value="4.2" />
+    <preference name="AndroidPersistentFileLocation" value="Internal" />
+    <preference name="iosPersistentFileLocation" value="Library" />
+    <preference name="deployment-target" value="12.0" />
+    <preference name="SwiftVersion" value="5.3" />
     <preference name="Orientation" value="portrait" />
     <preference name="WKWebViewOnly" value="true" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />

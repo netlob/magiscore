@@ -30,6 +30,51 @@
             {
               "client_id": "216773507184-o2v61pbcbs3qti3b7o4aak7qg7amd0b6.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "216773507184-9lcppl3hbmgua65vvppuigp8n3kc4sp2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.netlob.magiscore",
+                "app_store_id": "1529746917"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216773507184:android:1407207794254a37515cb5",
+        "android_client_info": {
+          "package_name": "dev.netlob.magiscore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216773507184-o2v61pbcbs3qti3b7o4aak7qg7amd0b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc__BBAwDvFAvfDr6WVV66qci1lzDU8tI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216773507184-o2v61pbcbs3qti3b7o4aak7qg7amd0b6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "216773507184-9lcppl3hbmgua65vvppuigp8n3kc4sp2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.netlob.magiscore",
+                "app_store_id": "1529746917"
+              }
             }
           ]
         }

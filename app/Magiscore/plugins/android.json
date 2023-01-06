@@ -7,9 +7,9 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-admob-plus": {
-      "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
-      "PLAY_SERVICES_VERSION": "19.0.1",
+    "admob-plus-cordova": {
+      "APP_ID_ANDROID": "ca-app-pub-9170931639371270~4644085927",
+      "PLAY_SERVICES_VERSION": "20.6.0",
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-launch-review": {
@@ -18,7 +18,17 @@
     "cordova-open-native-settings": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
     "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-consent": {
+      "CONSENT_SDK_VERSION": "+",
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-customurlscheme": {
@@ -34,7 +44,16 @@
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
     "cordova-plugin-insomnia": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-network-information": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-splashscreen": {
@@ -50,28 +69,6 @@
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-add-swift-support": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-purchase": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-consent": {
-      "CONSENT_SDK_VERSION": "+",
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-androidx": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },

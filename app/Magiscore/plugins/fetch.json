@@ -71,7 +71,7 @@
   "cordova-plugin-statusbar": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-statusbar@^2.4.3"
+      "id": "cordova-plugin-statusbar@2.4.3"
     },
     "is_top_level": true,
     "variables": {}
@@ -100,17 +100,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-admob-plus": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-admob-plus@^0.39.0"
-    },
-    "is_top_level": true,
-    "variables": {
-      "APP_ID_ANDROID": "ca-app-pub-3425399211312777~1930230742",
-      "APP_ID_IOS": "ca-app-pub-3425399211312777~6114349267"
-    }
-  },
   "cordova-plugin-network-information": {
     "source": {
       "type": "registry",
@@ -126,16 +115,6 @@
     },
     "is_top_level": true,
     "variables": {}
-  },
-  "cordova-plugin-purchase": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-purchase@^10.3.0"
-    },
-    "is_top_level": true,
-    "variables": {
-      "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoK0WRS/g8oCrohtd0tumI1kWmlJGK7dqBZnc4dkxJeT8N+r/osxFIKFSQQwi4bNCxCVT0aeAY30KoWAazMoShJ3xgdwbkQLp5IF30ge0ljJIRycomh8IIlWFyJ/axZOJBn84tScK4Dvb6dXCecrQWbfRVFhtOmTWdgHhIhrLTa655JwWgd6eijMIWgGrY3EiCHmUXPWWALm+dK71DJmDfV90DdOUHO8vt713QbvitmrBim2dMVELVtxwLc+DP9ASog73KKqlM04o0j2TCE9vVyT3P87IJFBvwZQHY1We6FcVSuNVxtT/KAtNPbAFKR7M1ExPV4jCmZlTGq5NJAtQEQIDAQAB"
-    }
   },
   "cordova-plugin-inappbrowser": {
     "source": {
@@ -168,5 +147,24 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-file": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-file@^6.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "admob-plus-cordova": {
+    "source": {
+      "type": "registry",
+      "id": "admob-plus-cordova@1.28.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID_ANDROID": "ca-app-pub-9170931639371270~4644085927",
+      "APP_ID_IOS": "ca-app-pub-9170931639371270~8990525040"
+    }
   }
 }

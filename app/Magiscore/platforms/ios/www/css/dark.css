@@ -264,6 +264,21 @@ body[theme="dark"] .shadow-l-white {
   -webkit-box-shadow: -1rem 0 1rem #2c2d30 !important;
 }
 
+body[theme="dark"] .buttoncheckbox:has(>input:not(:checked)) {
+  background-color: transparent!important;
+  outline: var(--primary) 5px solid!important;
+  color: white!important;
+}
+
+body[theme="dark"] .snackbarContainer > .snackbar { 
+  background-color: #333;
+  color: white;
+}
+
+body[theme="dark"] .snackbarContainer > .snackbar > .text-warning {
+  color: var(--primary)!important;
+}
+
 /* body[theme="dark"] #currentRenderMobile {
   -moz-box-shadow: inset 0 -10px 13px -10px #2c2d30;
   -webkit-box-shadow: inset 0 -10px 13px -10px #2c2d30;

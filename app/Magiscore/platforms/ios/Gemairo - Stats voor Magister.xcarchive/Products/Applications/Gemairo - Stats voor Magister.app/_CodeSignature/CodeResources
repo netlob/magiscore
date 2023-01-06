@@ -14,7 +14,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		MPpoiiWUp87x4cR6NWAI0XlTsDg=
+		PPaDLadWZxwJ0mtM5wa+wmqtpxY=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-13.0+.nib</key>
 		<data>
@@ -42,39 +42,59 @@
 		</data>
 		<key>Frameworks/FBLPromises.framework/FBLPromises</key>
 		<data>
-		2MGvYmWd4WxwrH+HlSHV09Kvqz0=
+		ykH+Aw5NaJoqszAY+ZlgTMDWys0=
 		</data>
 		<key>Frameworks/FBLPromises.framework/Info.plist</key>
 		<data>
-		vF8V1h9GBZFOoP2Sbwsu1MvOIxg=
+		ElBsm1U+xR5kDnjlnkiftvELNsg=
 		</data>
 		<key>Frameworks/FBLPromises.framework/_CodeSignature/CodeResources</key>
 		<data>
-		ez2k/8+veK8sHvhuDlKePYDHItc=
+		Foyy8W1rLWPraqGbxtl3PPp/qCQ=
 		</data>
 		<key>Frameworks/GoogleUtilities.framework/GoogleUtilities</key>
 		<data>
-		TesMyCAZuPONVV9q6xifC/hid0E=
+		+bWTWBHWI2p004ocm0Z4FvuGy6g=
 		</data>
 		<key>Frameworks/GoogleUtilities.framework/Info.plist</key>
 		<data>
-		wszP1R/2ySTS/ftuwbgNM5PXu2o=
+		xfgEcKZatEaJUWOYtWw6An/OYgc=
 		</data>
 		<key>Frameworks/GoogleUtilities.framework/_CodeSignature/CodeResources</key>
 		<data>
-		MbQwRFpejeJY+hzFEG8lgYn8W+s=
+		77r5dEc/uEJrb5s0GCuoIBFQbNM=
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/Info.plist</key>
 		<data>
-		FOJbtSrlxgCiqKqdX4g3wodo3mc=
+		kUFsH1cHIim8wZ+fLvyoA6IMHkA=
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent</key>
 		<data>
-		TQ9iooNlmskxSBFrW/ZjSoT5bQM=
+		cVsK/awoYn1aaPLThSaOYovNVvo=
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/Info.plist</key>
 		<data>
-		n2Eqyvq1GsV+zDVyjrsJeRnV59Q=
+		aVvfDFVxm+MuFln25VGBSo/H3Lc=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeDirectory</key>
+		<data>
+		SibIqF8Gko4ZvG+Mn9p8rPld3ns=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements</key>
+		<data>
+		i6+BCguX/NDpmTOZyYInSp0YIUY=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements-1</key>
+		<data>
+		k974qdRfCIEnJMIOSd7gx3CVh6A=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeResources</key>
+		<data>
+		oVtgvvjKu57hT6+GNKsvUZIQa/g=
+		</data>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeSignature</key>
+		<data>
+		UJh7jy2LFf3lSkmNW4oYdhtdXaE=
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/consentform.html</key>
 		<data>
@@ -82,71 +102,71 @@
 		</data>
 		<key>Frameworks/PersonalizedAdConsent.framework/_CodeSignature/CodeResources</key>
 		<data>
-		Yc13p7NqDlvhPm81VkHV3xoIOR4=
+		AowbNsznidlLgITRTWYLlCsRpso=
 		</data>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		K8FPoxVQnpeY+DAV/IxA15nMq9M=
+		npVZU5AigU+aw7tQR7knRJu9c3M=
 		</data>
 		<key>Frameworks/libswiftCoreFoundation.dylib</key>
 		<data>
-		jJ+YldrzTbkKxih/RU2p2rHFQnw=
+		x72vjOEgnL6/O2vezsxZdq6C/E8=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		u4NN5yWJbg/Tlb+TSg0lnh5qLmw=
+		ZRMX51Eaeq/qiey/eWsFSp0Sxmo=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		Yy9t5LwWujUwW+gjUw+H6ePKMkw=
+		+xsxrjLz7UQC98f6GEdWHxSs6RY=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		1Yr6JE4Mnc6Mxh9DmMWLoLIPJuA=
+		y+eAh3N9g2vKVLsY1vJ18oIbSLY=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		TIs/whNyPeQZa+i0FNHoDR1UnxQ=
+		FhUbA99NC9fiea7xuAe5rEYoZtE=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		MtB4Cc5BUdrSzbQTbJ+mxbP92lA=
+		/WV3wlIQC0GlKsbg4TI/xKLPdkY=
 		</data>
 		<key>Frameworks/libswiftMetal.dylib</key>
 		<data>
-		xvhi/K+5tx7aMiDxU0G9ILS3+j4=
+		ctsYsP26m5T/I0LeaIMAz7wng80=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		9BCLX+DdE/CJL6+dycbxqbivZWw=
+		z8MdVJJORkRhyuYp7pnJy+HgqUw=
 		</data>
 		<key>Frameworks/libswiftQuartzCore.dylib</key>
 		<data>
-		rw63ofSImQusDRKX8He95ld68p0=
+		RO8dIBrGpFyCewlCHAN8zH7qy+g=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		GqJgG1Q86soDvmQexg0q1Nu01ps=
+		pO56fbFbXEJJg0UYVXmJepH1fdI=
 		</data>
 		<key>Frameworks/libswiftos.dylib</key>
 		<data>
-		P36/QmW7AZoY96SSVZbbxomBFSo=
+		9Zzo7+skItZh5P/oGpLlMxdRawc=
 		</data>
 		<key>Frameworks/nanopb.framework/Info.plist</key>
 		<data>
-		XBF/Z+TDyvBjaCpsjourZjBGAjQ=
+		S+pYvHY1lBoq0umkWrPpKTpFRDA=
 		</data>
 		<key>Frameworks/nanopb.framework/_CodeSignature/CodeResources</key>
 		<data>
-		Dmt9gpFzaZZRSVNZAPrvHBVp1dA=
+		EpCASA9/Whonz6QybE0mrsZAtw4=
 		</data>
 		<key>Frameworks/nanopb.framework/nanopb</key>
 		<data>
-		IIAS/GVIhhysBw3YBGxGvIvSH90=
+		ulOPiZZsogibN2LcbrpHKRwcInI=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		r47ihqheY6H+smm8Qu3pfcFAyO4=
+		E+czPMwDxQL6SQ+mSV82NjAkWig=
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
@@ -158,11 +178,11 @@
 		</data>
 		<key>config.xml</key>
 		<data>
-		DjIaO5GR7pn57rKQC/xkqpfFvFU=
+		7j0NEpcyx1yF4XhQXKV4LVjulvQ=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		QBJiviikV0skhLz6Jec4StgrB80=
+		ZuPxeIE9WQuUkMI9vxaKZjQ+Lp8=
 		</data>
 		<key>www/cordova-js-src/exec.js</key>
 		<data>
@@ -194,11 +214,11 @@
 		</data>
 		<key>www/cordova_plugins.js</key>
 		<data>
-		+pY15XExR43MP3vqG9B35iu2Y5U=
+		iSYPyK4McbisDgbEdSA2c5cSWIA=
 		</data>
 		<key>www/css/dark.css</key>
 		<data>
-		Jh3X4IS6Of+8iYeS0YdfoRaQa9M=
+		7FB2aTNB9/S0L1hWwIwb9boDJo8=
 		</data>
 		<key>www/css/fonts.css</key>
 		<data>
@@ -206,11 +226,11 @@
 		</data>
 		<key>www/css/light.css</key>
 		<data>
-		A9z3ntRxDrE48QxRZSbFF5Fh6hQ=
+		R/1RIjOW8d8FWQ+pydSw/8l4ZTE=
 		</data>
 		<key>www/css/main.css</key>
 		<data>
-		DlG8oXWFTXTOE+lAf0sDa/zdQDI=
+		a25EskZO3eD4Js4W24brkXasAJk=
 		</data>
 		<key>www/fonts/nunito-v11-latin-200.woff2</key>
 		<data>
@@ -278,11 +298,11 @@
 		</data>
 		<key>www/index.html</key>
 		<data>
-		7DdfRZLRShHIAE3RtmdA/LUY2GI=
+		ZlHV3iYJn8dUpk+fkxLtViLz1kc=
 		</data>
 		<key>www/js/ads.js</key>
 		<data>
-		P7KCNv811WhORehTECgJoacJgow=
+		B1fy8x88D3mMSjjNzOVLE+RIXAQ=
 		</data>
 		<key>www/js/classes/Class.js</key>
 		<data>
@@ -290,15 +310,19 @@
 		</data>
 		<key>www/js/classes/Course.js</key>
 		<data>
-		z5bnZyTDiGb+V0xPc2q+uYct10Q=
+		gmuWFVJvJFl/rZzLuqeBSUUGUCU=
 		</data>
 		<key>www/js/classes/Grade.js</key>
 		<data>
-		nu0i4whNuaOaIPlIIg7nGJhtzhc=
+		GAhRNQfBgf1tvw6odFdKKHXMUi4=
 		</data>
 		<key>www/js/classes/GradePeriod.js</key>
 		<data>
 		fIkaHbznedvsroMVOppB6Le0YmA=
+		</data>
+		<key>www/js/classes/GradePeriod2.js</key>
+		<data>
+		EFeOLYJq47O/h4SbrNd7pl46teY=
 		</data>
 		<key>www/js/classes/GradeType.js</key>
 		<data>
@@ -306,11 +330,11 @@
 		</data>
 		<key>www/js/classes/Lesson.js</key>
 		<data>
-		YlQt6hz5CDScX+0mkT9VekE5ZUM=
+		+/OCZu1Qv2WGNWpwyAJCYrHjB1M=
 		</data>
 		<key>www/js/classes/Magister.js</key>
 		<data>
-		PlcvGMyxp1+FmC+V1ZrOFZWcpxo=
+		fq6wEqSNsGTC3jNCbvbpg0Gcv70=
 		</data>
 		<key>www/js/classes/Person.js</key>
 		<data>
@@ -318,7 +342,7 @@
 		</data>
 		<key>www/js/controllers/CourseController.js</key>
 		<data>
-		w/N86PIpi5jhWvgYeJu/mR6druE=
+		Rx0/CSXJbYCb4K5zgUCkZB5txrM=
 		</data>
 		<key>www/js/controllers/LessonController.js</key>
 		<data>
@@ -326,7 +350,7 @@
 		</data>
 		<key>www/js/controllers/ViewController.js</key>
 		<data>
-		3owo6SgAYNZL0WzGY0VbdH55qHY=
+		rHRTpw4dCcQN5EY1g9IvL4h/T1E=
 		</data>
 		<key>www/js/deps/chartannotation.js</key>
 		<data>
@@ -368,37 +392,41 @@
 		<data>
 		hyTEtu0UpaKibUNDZbHNRELN/gc=
 		</data>
+		<key>www/js/filesystem.js</key>
+		<data>
+		SgsmNkUu+XBi7leEuhgUUbzfUX0=
+		</data>
 		<key>www/js/iap.js</key>
 		<data>
-		7M3segaZo9Eibt9aeFdjaI+EXfI=
+		iELOKGlvECEsI+X+lRVMoWfvKpo=
 		</data>
 		<key>www/js/login.js</key>
 		<data>
-		rDkXXRX6Wyisov/zgc3BilOY4CE=
+		28IAVp0ba7VFz65PEhYBqwzeFO4=
 		</data>
 		<key>www/js/main.js</key>
 		<data>
-		giUwdmisPzBh/OtUqQeZnthBLJ0=
+		cGPEGnibP8ev6nHakj6DZQozjs8=
 		</data>
 		<key>www/js/refresh.js</key>
 		<data>
-		YrfEMOpI3n7o5h4I1xTYBm/2ogo=
+		0PnNNtjh3MSpoI3K7HQ/m8bs8ag=
 		</data>
 		<key>www/js/utils.js</key>
 		<data>
-		XDh7vg1F/LOq+m2y1m5KuZJe3Xk=
+		qKM4ht3rH6oDqSxtgUepyptYBbM=
 		</data>
 		<key>www/login.html</key>
 		<data>
-		isEQJex/n5e7WmEJ+9KZxPH07v8=
+		OhICVg4Ch9Fk43QCcplZ4GYn7uw=
 		</data>
 		<key>www/login/index.html</key>
 		<data>
 		g1vs7T1dwX0nes+m6V9pu42JeB8=
 		</data>
-		<key>www/plugins/cordova-admob-plus/www/admob.js</key>
+		<key>www/plugins/admob-plus-cordova/www/admob.js</key>
 		<data>
-		obsXtyycRIFf3IZIwMAK9jsx1f4=
+		I1c3713ZZg18Yz7EdgPh2oFmhv8=
 		</data>
 		<key>www/plugins/cordova-launch-review/www/launchreview.js</key>
 		<data>
@@ -427,6 +455,94 @@
 		<key>www/plugins/cordova-plugin-dialogs/www/notification.js</key>
 		<data>
 		7V/xaRgAhGL52hL5xmBfyAq3OwQ=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/DirectoryEntry.js</key>
+		<data>
+		9BG1PRAVfskBKfTqRqUcFP0XF9c=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/DirectoryReader.js</key>
+		<data>
+		55JSYGGn83vzv0lzH64YGshyORE=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/Entry.js</key>
+		<data>
+		ApUt9yA8EFcC9lNWD2XthcwuD90=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/File.js</key>
+		<data>
+		0LUBfKUsBSQvmUgurtpKYgJ9hTc=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/FileEntry.js</key>
+		<data>
+		ihG+3x+RWP1Qk72v0C0MZRzRpBM=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/FileError.js</key>
+		<data>
+		ybFlxPqO/jPqMsmoDwkc2rpE4pk=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/FileReader.js</key>
+		<data>
+		L5sKPsNlBpVIEJtZOnDhtA1g05M=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/FileSystem.js</key>
+		<data>
+		DmfGhjz4PYPDj99FWJ3nDLQzZFU=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/FileUploadOptions.js</key>
+		<data>
+		4mPbde3/XqIbBp41y0kN00aYZl4=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/FileUploadResult.js</key>
+		<data>
+		4CNnib6yO4/uwX7VyIeJgpFLHFU=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/FileWriter.js</key>
+		<data>
+		XZ1qSV9Fc75z3HHWO97PtjpliEI=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/Flags.js</key>
+		<data>
+		Ysk6KgwRoqjZINAl/q0VjlC2vmA=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/LocalFileSystem.js</key>
+		<data>
+		kJtPgG7aLCq5neelEB+/sObHR1w=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/Metadata.js</key>
+		<data>
+		sNBGG0nAD0xDLoOYeaiDlfLVBBM=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/ProgressEvent.js</key>
+		<data>
+		blyr1jNE9lOGJJOyQkWfS+CB+7o=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/browser/isChrome.js</key>
+		<data>
+		kJss0svUOyBP7TX8Sax3xSJdLz0=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/fileSystemPaths.js</key>
+		<data>
+		RhbxeeiCkMHVAnWLOaEFTyx3fVk=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/fileSystems-roots.js</key>
+		<data>
+		GmVyseYxcYNp/n9ZHjmy97oioXw=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/fileSystems.js</key>
+		<data>
+		GjxvyRube37zK13yXu3TWWdWPpQ=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/ios/FileSystem.js</key>
+		<data>
+		3ueSGiRIUcEFNSxl7V3z1JdmqWA=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/requestFileSystem.js</key>
+		<data>
+		ZVeb2nnbn/aetQV5ipRWH7M+Q9c=
+		</data>
+		<key>www/plugins/cordova-plugin-file/www/resolveLocalFileSystemURI.js</key>
+		<data>
+		p7A9a+/7es1E4aKJPkx0j6eQwuw=
 		</data>
 		<key>www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js</key>
 		<data>
@@ -533,7 +649,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MShxa/WJXmfdOw6QM5LR2/G2VVzg5uF63Qd9DtizLws=
+			pmHhWPgBq1D0MbwyQHPQFGw59Ii72Qwq4lGm0upTdDg=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib/objects-13.0+.nib</key>
@@ -582,63 +698,98 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1HFud2brr1sq4vW9iPKhL5AGYMfJBmJZdMQQ02/Z6no=
+			YtaBYhKw5+g1fQXgyvK0MZBOi93e9z6Yln2ArG5+L4w=
 			</data>
 		</dict>
 		<key>Frameworks/FBLPromises.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TkQQ42TBqlbONZTTUrXbrQrSfB9P7v4fsBIvyf94vG8=
+			cK+VYIe73N/JVel3IguB93C/o9NadgoBXG/9da/4b64=
 			</data>
 		</dict>
 		<key>Frameworks/FBLPromises.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ds9qZkyeIPhaEPI4jsjLWkdwUmrz7OybOT5TPRK4pnE=
+			177gtAFS/AKD5iXAb+bxhe+eQZ2XHw2Af1g1nYtbcxA=
 			</data>
 		</dict>
 		<key>Frameworks/GoogleUtilities.framework/GoogleUtilities</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5zYuye7PTOVg19VfDNpaaEXyvgH6g9wTLRtv+nrFkd0=
+			q2a520GpKIxF7njUnezxt9bFFKpmYmxYczEx5W6Kwrg=
 			</data>
 		</dict>
 		<key>Frameworks/GoogleUtilities.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SmrvptumjNIwBxCab4ILSzHy5Go8gOtG+Gj/kxo0wvA=
+			e5TNGtVp4Uqot1Rr1ac5ovNCJy+oLNgVqBL5tzKKMoQ=
 			</data>
 		</dict>
 		<key>Frameworks/GoogleUtilities.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			K6qpWdOCBCaLzs9UJHxLtF8VxfcOG7IHbYdNXxNaP2M=
+			QLHBaVY//YuA9rrvVer2ckaB0yg4Vah4U5TGCx0PriY=
 			</data>
 		</dict>
 		<key>Frameworks/PersonalizedAdConsent.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sBfHOAiC0k9CcbxTUPqJPPhxpMVxieauDQ6faouWFeY=
+			QnlCEeR+4z+ocmIrEsW+EvJRcIAFvB3CCh0WVIAFLVQ=
 			</data>
 		</dict>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2UlBnpM0vN8QT7Vz3bmXzR3h9OqFrsHxy9Str+uEbPA=
+			bp25WLopVArzQoSU2Ss86MZ5pa+Q4vpJa3DuJop7HSk=
 			</data>
 		</dict>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PNOxOIy5yVAJP0ehtOmHi6ykDuSN1s6gmbybvQChj1U=
+			8NCTy4guDhuLS2Tl+u96WsI4O/5tU7hmrtJMh0R9Dmw=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeDirectory</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gUkOGBUulXtTjo7y83UPnlYwww8S6lgdFt3btRO0VRM=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			k+8eOsN0UwDsxFwQxS5zg53OIDgwV7zwMYsGFTDPe4M=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeRequirements-1</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			UaMxYz12IkmwIF56Xitsshz27HtTZrUALyz9Cyn9lpA=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			m4zFRRsK/L33EdcBRo2Ko1gLxyyonk3IycKwxWJKEA4=
+			</data>
+		</dict>
+		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/_CodeSignature/CodeSignature</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mJxQFFSRtG4laurPlyLiNgRbaauevKCHwsYG5UPkqHU=
 			</data>
 		</dict>
 		<key>Frameworks/PersonalizedAdConsent.framework/PersonalizedAdConsent.bundle/consentform.html</key>
@@ -652,112 +803,112 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0hWXjY7ERl4NX8xaORD98xWszHoJcckIz14x6yWWtdQ=
+			L32pRQik5oGN1ERM9HSIQ6tABNKIWB2EhQ5+/IM/N7w=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pvju9ee3AnYdlA2MWcUpcaSfotMqSkVDv5c097CtK64=
+			7nlsX7xB53HqquNrNEb/zPO4RYIqcq/42SCMQVW/J5I=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreFoundation.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			du03qOSaVGNpvwmRustVFiUVh1O2k5+KjtJ27UIN5yU=
+			WbbcTPblqgvP5CVLh3uZd+9PNGoEWAvj8lti0NHHzUw=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			v8eia60vTxndDKHlO+ri4VmfhiyeA+/tJGWmxU5kV30=
+			XWHIO+Y6BQYAZhx8dEwZG9MfdMSUi2vZeZrGIwplhuo=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HJN4uv3rkM2ySV28rIVtnkf3TqXsOtvVBdHC6CfhUTU=
+			f1aJQ1w7pbZxu3D8YcgMl9AmfI7wITJzCJMAIV/6uqU=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PI2RDiyYo/BDQK7+Zg4Em4VTNEn4+cxSWHtvgOkvX7Q=
+			QPv1iLvBDMEjBbLyNIWUwJoioLxO86OtquRPn6FtiLk=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VW3nOWMepCZpq4e3r3xgE6yYqWHSUNq2eMONck2xlZU=
+			DXrHyl3ILP+nVbYroMeMY5e99un5H2p1j/IstIbXpS0=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ov9HYCzkZwJRyZ936+Lm5ud5OVylFiPzCTsYgIYItNw=
+			64Orohh2uPMM7v/lXIKzEfXm72gUxe2nQP/rCBKPH2U=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftMetal.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1UYokHigINtOh3vX+TJ+BKi1N1FtHtKbDm1JI0BuBpI=
+			kljIwUfDK+bgBFmsN/BkREcRhFnAkriMbNAuqq9nWgg=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mWps5VwIJMiBW4lfF150bj6L1u9J3MuArUyT+PpZDFs=
+			ciRnYOTyckaVLQkBBti2QAw7mp5uwgQuRXLr23301Ro=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftQuartzCore.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ok1VzZgN0u/p51Xl+ZrJwj5vSXRfZylHU+ppVsNF9uU=
+			Nn/VMKG6x2JF5N+ZWufdvc31WRfk23yPk9iufBgLwo4=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jp+HhJYd8MfskvHsZQHSLcInGJ9UWXAKuw1VPP7xGUg=
+			ZpzwFzbtfyZP2CczdqfI74e2O5L6quNS6WSs8g5BhYk=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftos.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			d/MvUMcA16d76tavzPmyV+YW//jo2jKJbSGbwE/MW6Q=
+			Y0MzacQc7Lj0tCcwaVdJ/YTTPYM8XhRJZPEA5WXM9eA=
 			</data>
 		</dict>
 		<key>Frameworks/nanopb.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LlZIyG5q5a4ZtJlwBTEx1I5EYndXfUCCe5BT+O9uL5I=
+			9iTzzd2UJ/0rgpdju9cya6E+6FSuSRfM4771h+XClL4=
 			</data>
 		</dict>
 		<key>Frameworks/nanopb.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2n5/n8q+9bnr4BQfyajVWLB3chJqnVVZQHYfKzJ/iiE=
+			93fehqjDksz6guCjK/SKb6NOvukNdMWK0P1QYTtvA5o=
 			</data>
 		</dict>
 		<key>Frameworks/nanopb.framework/nanopb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qJLBgP0lOeN+Xh+rUqtE5aouujWjbyllYCo86JHr208=
+			/NUYZZ5YS5Fm/uupTaBtqRFllUyCdFZ+jrk7sF14n8M=
 			</data>
 		</dict>
 		<key>MainViewController.nib</key>
@@ -771,14 +922,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7SDQ9IpDv6EgSTNHfxUnorqwHIJwU8sL9OdAu+qTpw8=
+			1lmAj/3JkFiq5m0C2G7KPY489Zltg/d8n0JLeYePaic=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8fwqLb8ig9LL/2m55LgeEx6nxiT/QnMlQ1Nd/i48uPo=
+			NVUIcRM6ZrDuMNr73HElFD+kmBGzCfQGuIEHJh2FhuU=
 			</data>
 		</dict>
 		<key>www/cordova-js-src/exec.js</key>
@@ -834,14 +985,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IydxXdWszroT8RQTA/OyzGSoPEz4zxvpHRzU0nnd44I=
+			RlNNqN/DT/rcohv4mTph1FWS2EGWuThBKHwiOa37xeM=
 			</data>
 		</dict>
 		<key>www/css/dark.css</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			66etmnz351rHJFxDW0hhi8vTChYy323nAJqcQUbNV+4=
+			dB7BrBv5oNR+uQmad+83lot21wWJUrlQ4bZL8e/44bk=
 			</data>
 		</dict>
 		<key>www/css/fonts.css</key>
@@ -855,14 +1006,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WkSNVZfqI3DmDj+Zj4dfHFRDs+INmoa+L2gas3bijPs=
+			Kl6XMdcyQrUKEGfnGy1dpmXWvkAs1WE5DWEHsmvJWpc=
 			</data>
 		</dict>
 		<key>www/css/main.css</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1Js0J9M7q6ZOV9mqK4xgRrd4E6Ba7Yy4/AWlZIEelKU=
+			Hw2MA7vad/bSvGw7Pgv4uGhKSZNQ0t2eoPROgZdX+/Y=
 			</data>
 		</dict>
 		<key>www/fonts/nunito-v11-latin-200.woff2</key>
@@ -981,14 +1132,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4M4XI8inTdZLb/cDJUFVVcVEQS4Od/kQHv4zfUlChAE=
+			EUbB2DHXyo7d/PofP2Z69loZ1096EIFqJG64Sm9LVLk=
 			</data>
 		</dict>
 		<key>www/js/ads.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Bxsjfsi02bfe5icApriXkAptDkZZvyaSRIIh0HX9Lfo=
+			E5H5+7dzdwzC3tTQtxIar/6CijpXn3bc4k8phRBntaA=
 			</data>
 		</dict>
 		<key>www/js/classes/Class.js</key>
@@ -1002,14 +1153,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/Dv8CVZCTDDSRCOCr1aLsVfTOnxEjqybOSKWHNvY9tw=
+			IHAW5gYgAuluOMnzxuEhy8ir+u9y0GzKbAEgQz5eaUM=
 			</data>
 		</dict>
 		<key>www/js/classes/Grade.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Nd6xZMTvoPPzWbd8nNNOjL9z3fRu1laxrsbI3Fv6K3U=
+			+HzklirJO0tP+IG3xogKw5h4yD1UCnab22Z1ZrsTKoA=
 			</data>
 		</dict>
 		<key>www/js/classes/GradePeriod.js</key>
@@ -1017,6 +1168,13 @@
 			<key>hash2</key>
 			<data>
 			jdturpbdUd/6aHcgZTfYsvik6H7N1BEtGo2Xgg3kwbg=
+			</data>
+		</dict>
+		<key>www/js/classes/GradePeriod2.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			CpQ41gNACWQSv2VFtNnRgfeIYTvfJpaK2eW5HxXDsa4=
 			</data>
 		</dict>
 		<key>www/js/classes/GradeType.js</key>
@@ -1030,14 +1188,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mnUAtxTf+Esm8mg0sE7I5tlum0/WwdSmAsfJvlJ+7mQ=
+			P+FB3BWgEIpIpVPbe0qT6tUcXP/Iw7b+AgHIzKvapN0=
 			</data>
 		</dict>
 		<key>www/js/classes/Magister.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4kkBOjagdL0u9BCDNttmj+rtMo9H4UP5UZWVRfiApms=
+			g7AVUR8Ah6wV6p/Q6ooaUhYoneE3pbAnBQlK+blfAyg=
 			</data>
 		</dict>
 		<key>www/js/classes/Person.js</key>
@@ -1051,7 +1209,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Pfj9iQ7B9hft2DlQ4hJ0loC5TeJgsO46vS/WAqso6UE=
+			6g5iY7Bp7AkbmvR62VCH58cm4onLm3+qzUnogNe+RIg=
 			</data>
 		</dict>
 		<key>www/js/controllers/LessonController.js</key>
@@ -1065,7 +1223,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jHijM90/8LAhCRNsyyi7PN5KmnOMikgka1i8O1UG7Z0=
+			1BeK++or3EW5bUs+x0e03DjkCCRor8VeW9CwGxxQFFE=
 			</data>
 		</dict>
 		<key>www/js/deps/chartannotation.js</key>
@@ -1138,46 +1296,53 @@
 			RqXICY8NZj0/y7jV31FoCow0PCu+LBfmefydRCxG9xk=
 			</data>
 		</dict>
+		<key>www/js/filesystem.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ZTHCOvciLQAOXfJxyVEGFJXGYtHYbFgERR3LMtUcIvQ=
+			</data>
+		</dict>
 		<key>www/js/iap.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0ZFoqnpbE3SisW2dpgRkvA4Syqq/KTVItqjJbEGT5Yg=
+			06Ad1+YnTfVxoanjNBYuC5t/+mn6cJbev+OoG1GGvDA=
 			</data>
 		</dict>
 		<key>www/js/login.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CWxpRxcPGDOezOLxxv4BPIorUO+lAz1Fg55la8WWJS0=
+			vblRHrDaLIZcO1Mh0dvSzsXP7H4ITjuHPeUCgySZ8TE=
 			</data>
 		</dict>
 		<key>www/js/main.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			NxUxzs6n16uTyDnp/9yzzRdqPz4+nhrL5vj43630Oko=
+			Kmcgweh/nnCeJ6dpzryvDisecOmiLIuLcZJwndEdAWQ=
 			</data>
 		</dict>
 		<key>www/js/refresh.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JzFiSpWfuqb7mbB6eGd6pMNgKbJCCr7Q9QYUYSorjAU=
+			/UVoKDgoS3dukJg2B8/dQld7KfPfE1WFZFbkzxK41j8=
 			</data>
 		</dict>
 		<key>www/js/utils.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			65Ny05e+U6YkKFmn7Ff4JU9o2/46t17uB1NOGWwVq8k=
+			PNJE6QPsQrdOyHrUD6uDrgUAGrfBOW18kdbfQuDNDaE=
 			</data>
 		</dict>
 		<key>www/login.html</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			w4xDbLRyKjbjcRJNiq0J6zXoJs7271WfOMKVFVak7lA=
+			MqGQHYfEi5NqoVVf4wjsF5SxrdWD1ENJ5jGqqAlOuOw=
 			</data>
 		</dict>
 		<key>www/login/index.html</key>
@@ -1187,11 +1352,11 @@
 			X4VT8UI8gunJKtR8CGSaLda+wPYzDWNWNyiaSKCXEZ0=
 			</data>
 		</dict>
-		<key>www/plugins/cordova-admob-plus/www/admob.js</key>
+		<key>www/plugins/admob-plus-cordova/www/admob.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fcjI72y9RBOTFUm0gAnKicQiO/5/SaSEjV7tPWcSa5M=
+			Ol8RWTKZisPvfs9jC+LYL9XZ4/K3Qck3S/MRbzuOqYI=
 			</data>
 		</dict>
 		<key>www/plugins/cordova-launch-review/www/launchreview.js</key>
@@ -1241,6 +1406,160 @@
 			<key>hash2</key>
 			<data>
 			ynwLIwQ6aHh9kgdzGY+d1f1tHFZMZseKf+UsSRC5nTo=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/DirectoryEntry.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QAqnXaChiHj3l+lUTDs6saHB8D7J1uDV1Ny8JVnxrjE=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/DirectoryReader.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			sCKl8gNHsNgxPznBN92CVBEB2gJwM1HSbOtj97arSCU=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/Entry.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			HTqrVkuqo4OmD+ZeuYUV5f25oaXnFnkCMMUt2QeSYiM=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/File.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vbuk8pkY+FlA2QWlncUHsMK6SlX3wWdFBxaRXw99cu8=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/FileEntry.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			aGB7ZIxrb5JelbnW/PXW9xWLEKwva3obGaIKSJvPW4M=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/FileError.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			S7iNf0zl91/UZNbxz8xXINq6StEX+BQBy4/Xhx2Oa2g=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/FileReader.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			UpQvww+xh9Gyk8c6o79tBlYZEVaJb8YwQwfHXFkn1Sk=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/FileSystem.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			UD5gbb5uPbU7U8ZvxIMWzywAiI09zcMVRv67ASVnlUs=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/FileUploadOptions.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			dBe0OI3UlfQusNagAlOcaimQEvK7mUEgtQlqQPKlRHU=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/FileUploadResult.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2GdXwcKcLcDGjnYW4nzK9ydUvbdwAaXsPzhNMA37bsQ=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/FileWriter.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2IvIqYvHv5HQiRa5rhpkHQ9E77jBg0ZIUA2Wu+6/qLk=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/Flags.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NQZ/QSIoIrIJpIx3ZGfpWieK1Ihy2ELrkZUPLTJ6tog=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/LocalFileSystem.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			6Myhmkm3/vfKwbMIdFsp/4x/ZbLoYv9Fv1240nW/jr0=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/Metadata.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			LGUbchqLzHcCMK5eiEnZ2iID+NqMJvBkB1MY8fzbqR8=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/ProgressEvent.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vfs5XhNMkJT6m9AIsuXhDH4zqZhld2d5oGRATraBDJI=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/browser/isChrome.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			JX+kksyo2lBMo/8FImj4jweuqWeFteq40JI2sWlePQE=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/fileSystemPaths.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			6h/jjda1DuJmHTptgf/l0gFRI2zELCT4Tq/31J8+orI=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/fileSystems-roots.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			b0AuhSLU9xiYa0wPy43NM9OZmEXYWgjzSYIMirqTfY8=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/fileSystems.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			frl3z+W6IW37ZtDP5/vp63ZqUnXqDwRXaOUo8EDiHgU=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/ios/FileSystem.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			M/9OOdeH99vASy+n1QceXphEDEltxCdCRshnX0wRIOk=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/requestFileSystem.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			urkokGlRGZ9dCt1soyOx46MJ2iaKCTHz7c9QUlPxbU4=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file/www/resolveLocalFileSystemURI.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2r19nzz0vvRYaDlexf+ZC0go3w4I74oCafncQ2Noe3U=
 			</data>
 		</dict>
 		<key>www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js</key>

@@ -35,7 +35,7 @@ class CourseController {
   }
 
   save() {
-    localStorage.setItem("courses", JSON.stringify(this.courses));
+    setObject("courses", JSON.stringify(this.courses), getActiveAccount());
   }
 
   current() {
@@ -52,13 +52,13 @@ class CourseController {
     return this.courses.find(x => x.id === id);
   }
 
-  getLatestGrades(open) {
-    if (!open) open = false;
-    else if (open) viewController.overlay("show");
+  getLatestGrades(open = false, childindex = -1) {
+    if (open) viewController.overlay("show");
     return new Promise((resolve, reject) => {
       // logConsole("RAW:")
       // logConsole(JSON.stringify(this.raw))
-      const url = `https://${school}/api/personen/${person.id}/cijfers/laatste?top=50&skip=0`;
+      var personid = (childindex >= 0 && person.isParent) ? person.children[childindex].Id : person.id
+      const url = `https://cors.sjoerd.dev/https://${school}/api/personen/${personid}/cijfers/laatste?top=50&skip=0`;
       // logConsole(url)
       $.ajax({
         cache: false,
@@ -91,7 +91,7 @@ class CourseController {
         var popup = false;
         this.latestGrades.forEach(grade => {
           if (
-            JSON.stringify(this.allGrades).indexOf(grade.kolomId) < 0 &&
+            (this.allGrades.filter((foundgrade) => foundgrade.type.id == grade.kolomId).length == 0) &&
             popup == false
           ) {
             popup = true;

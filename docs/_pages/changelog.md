@@ -8,6 +8,21 @@ include_in_header: true
 <br>
 
 ### `Laatste versie`
+# **Versie 1.7.5**
+#### Wat is er nieuw
+so naar "HarryDeKat" voor deze alles in deze update
+
+- Losse "PTA" pagina toegevoegd
+- Ouders kunnen nu ook Gemairo gebruiken
+- Je kunt nu inloggen met meerdere accounts (check de cijfers vrienden)
+- Je kunt nu filteren op bepaalde cijfers
+- Je kunt nu zoeken naar cijfers
+- Shi daggoe geswiped
+- Weergave voor tijd toegevoegd bij cijfers details
+- Refresh oude cijfers kan nu ook eenmalig
+- Voor Android gebruikers werkt de terug knop bij het verlaten van de instellingen
+En een hoop bugs gefixt :)
+
 # **Versie 1.1.4.2.0**
 #### Wat is er nieuw
 - Crash gefixt zodra je via Magister alle apps had uitgelogd

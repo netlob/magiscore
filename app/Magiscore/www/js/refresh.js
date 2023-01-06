@@ -4,13 +4,13 @@ var popup = null;
 
 function refreshToken() {
   return new Promise((resolve, reject) => {
-    var tokens = JSON.parse(localStorage.getItem("tokens"));
+    var tokens = JSON.parse(getObject("tokens", getActiveAccount()));
     var refresh_token = tokens.refresh_token;
 
     var settings = {
       async: true,
       crossDomain: true,
-      url: "https://accounts.magister.net/connect/token",
+      url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
       method: "POST",
       headers: {
         "cache-control": "no-cache"
@@ -55,7 +55,8 @@ function refreshToken() {
         refresh_token: response.refresh_token,
         id_token: response.id_token
       };
-      localStorage.setItem("tokens", JSON.stringify(tokens));
+      setObject("tokens", JSON.stringify(tokens), getActiveAccount());
+      if (typeof m != 'undefined' && m != null) m.token = tokens.access_token;
       resolve(tokens);
     });
   });
@@ -63,7 +64,7 @@ function refreshToken() {
 
 function openBrowser(b) {
   if (b == 2) {
-    localStorage.clear();
+    clearObject(getActiveAccount());
     window.location = "./login.html";
   }
   // viewController.overlay("show")
@@ -115,12 +116,12 @@ function customScheme(iab) {
       dataType: "json",
       async: true,
       crossDomain: true,
-      url: "https://accounts.magister.net/connect/token",
+      url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
       method: "POST",
       headers: {
         "X-API-Client-ID": "EF15",
         "Content-Type": "application/x-www-form-urlencoded",
-        Host: "accounts.magister.net"
+        // Host: "accounts.magister.net"
       },
       data: `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${verifier}`
     };
@@ -129,15 +130,15 @@ function customScheme(iab) {
       // var poep = window.cordova.InAppBrowser.open(response.access_token, '_system', '');
       var m = new Magister(school, response.access_token);
       m.getInfo().then(async newperson => {
-        person = JSON.parse(localStorage.getItem("person"));
+        person = JSON.parse(getObject("person", getActiveAccount()));
         if (newperson.id == person.id) {
           var tokens = {
             access_token: response.access_token,
             refresh_token: response.refresh_token,
             id_token: response.id_token
           };
-          localStorage.setItem("tokens", JSON.stringify(tokens));
-          // localStorage.setItem("tokens", JSON.stringify(tokens))
+          setObject("tokens", JSON.stringify(tokens), getActiveAccount());
+          // setObject("tokens", JSON.stringify(tokens))
           logConsole(JSON.stringify(tokens));
           viewController.overlay("hide");
           onDeviceReady();
