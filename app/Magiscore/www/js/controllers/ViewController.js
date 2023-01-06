@@ -238,7 +238,7 @@ class ViewController {
         var activechildcourses = JSON.parse(active.childcourses);
         active.courses = JSON.stringify(activechildcourses[childindex].courses);
         delete active.childcourses;
-        active.profilepic = (Object.hasOwn(active, "childpictures")) ? JSON.parse(active.childpictures)[childindex] : './img/smiley.png';
+        active.profilepic = (active.hasOwnProperty("childpictures")) ? JSON.parse(active.childpictures)[childindex] : './img/smiley.png';
         localStorage.setItem(userkey, JSON.stringify(active));
       } else {
         localStorage.setItem(userkey, await readFile(file));

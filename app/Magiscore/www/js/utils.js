@@ -36,7 +36,7 @@ function clearObject(index) {
 function getActiveAccount() {
     for (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
         var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({}))
-        if (Object.hasOwn(account, 'config') && JSON.parse(account['config']).currentviewed == true) {
+        if (account.hasOwnProperty('config') && JSON.parse(account['config']).currentviewed == true) {
             return key
         }
     }

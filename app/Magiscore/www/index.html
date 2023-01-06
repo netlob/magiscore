@@ -1109,14 +1109,14 @@
   </div>
 
   <script defer>
-    if (getObject("loginSuccess", getActiveAccount()) != "true") {
+    if (getObject("loginSuccess", getActiveAccount()) != "true" && localStorage.getItem("courses") === null) {
       // alert("loginSuccess = " + getObject("loginSucess"))
       clearObject(getActiveAccount())
       window.location = './login.html#failedlogin'
     }
 
     if (getObject("tokens", getActiveAccount()) === null && getObject("school", getActiveAccount()) === null && getObject(
-      "courses", getActiveAccount()) === null) {
+      "courses", getActiveAccount()) === null && localStorage.getItem("courses") === null) {
       clearObject(getActiveAccount())
       window.location = './login.html#notokens'
     }

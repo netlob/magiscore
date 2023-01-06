@@ -1,6 +1,6 @@
 // If you want comments. Go fuck yourself
 
-if (localStorage.getItem('courses')) { MoveToNewStorage(); }
+if (localStorage.getItem('courses') != null) { MoveToNewStorage(); }
 
 var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
