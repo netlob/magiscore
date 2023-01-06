@@ -54,6 +54,7 @@
 		F1B592F7D5B34F428BC017A1 /* CDVWKInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9086B2C455D842AEBBC0F807 /* CDVWKInAppBrowser.m */; };
 		F3EFF7DE94CB4464BA6A0DEA /* LaunchReview.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49E1285AFE4C849F30EC34 /* LaunchReview.m */; };
 		FCB5A1346A6A47A68EC4991F /* NativeSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 27152642C2BA4E849ADDCD2E /* NativeSettings.m */; };
+		C94A688E89E44E7DAE19DF81 /* UniversalAnalyticsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 830F536D987B482CA6E195F8 /* UniversalAnalyticsPlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,8 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Gemairo - Stats voor Magister/config.xml"; sourceTree = "<group>"; };
 		FA410581CD3E434888117009 /* AMBRewarded.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = AMBRewarded.swift; path = "admob-plus-cordova/AMBRewarded.swift"; sourceTree = "<group>"; };
 		FF6CACEBC7F6435FAF8E600F /* CDVReachability.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVReachability.h; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; };
+		830F536D987B482CA6E195F8 /* UniversalAnalyticsPlugin.m */ = {isa = PBXFileReference; name = "UniversalAnalyticsPlugin.m"; path = "cordova-plugin-google-analytics/UniversalAnalyticsPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		63A0935C5BF541A48B0FCCF8 /* UniversalAnalyticsPlugin.h */ = {isa = PBXFileReference; name = "UniversalAnalyticsPlugin.h"; path = "cordova-plugin-google-analytics/UniversalAnalyticsPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +350,8 @@
 				5F1E3C1DEB164CFA84FAC03A /* TapticEngine.h */,
 				C4715022DB374DD6B3910DDC /* CDVVibration.m */,
 				DBD5922C28A745069B26FD1E /* CDVVibration.h */,
+				830F536D987B482CA6E195F8 /* UniversalAnalyticsPlugin.m */,
+				63A0935C5BF541A48B0FCCF8 /* UniversalAnalyticsPlugin.h */,
 			);
 			name = Plugins;
 			path = "Gemairo - Stats voor Magister/Plugins";
@@ -547,6 +552,7 @@
 				99B14F2A395244A181DC3441 /* CDVStatusBar.m in Sources */,
 				7148AC13CE0845D7B3AC63BA /* TapticEngine.m in Sources */,
 				D6537921B1814430946EA89B /* CDVVibration.m in Sources */,
+				C94A688E89E44E7DAE19DF81 /* UniversalAnalyticsPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

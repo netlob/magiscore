@@ -1,0 +1,32 @@
+{
+  "name": "cordova-plugin-google-analytics",
+  "version": "1.9.2",
+  "description": "Google Universal Analytics Plugin",
+  "cordova": {
+    "id": "cordova-plugin-google-analytics",
+    "platforms": [
+      "android",
+      "ios",
+      "windows",
+      "browser"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danwilson/google-analytics-plugin.git"
+  },
+  "keywords": [
+    "cordova",
+    "googleanalytics",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "analytics",
+    "google",
+    "universal",
+    "universalanalytics"
+  ],
+  "author": "Dan Wilson",
+  "license": "MIT",
+  "types": "./typescript/analytics.d.ts"
+}

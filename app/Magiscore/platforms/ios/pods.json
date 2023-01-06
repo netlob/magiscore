@@ -2,13 +2,13 @@
     "declarations": {
         "use_frameworks!": {
             "declaration": "use_frameworks!",
-            "count": 1
+            "count": 2
         }
     },
     "sources": {
         "https://cdn.cocoapods.org/": {
             "source": "https://cdn.cocoapods.org/",
-            "count": 1
+            "count": 2
         }
     },
     "libraries": {
@@ -21,6 +21,11 @@
             "name": "PersonalizedAdConsent",
             "type": "podspec",
             "spec": "~> 1.0.5",
+            "count": 1
+        },
+        "GoogleAnalytics": {
+            "name": "GoogleAnalytics",
+            "spec": "3.20.0",
             "count": 1
         }
     }

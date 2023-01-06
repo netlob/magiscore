@@ -123,6 +123,10 @@
             {
               "xml": "<feature name=\"Vibration\"><param name=\"ios-package\" value=\"CDVVibration\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"UniversalAnalytics\"><param name=\"ios-package\" value=\"UniversalAnalyticsPlugin\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -192,6 +196,9 @@
       "PACKAGE_NAME": "app.netlob.magiscore"
     },
     "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-google-analytics": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
@@ -498,6 +505,15 @@
       "merges": [
         "navigator"
       ]
+    },
+    {
+      "id": "cordova-plugin-google-analytics.UniversalAnalytics",
+      "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
+      "pluginId": "cordova-plugin-google-analytics",
+      "clobbers": [
+        "analytics",
+        "ga"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -520,6 +536,7 @@
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-taptic-engine": "2.1.0",
     "cordova-plugin-vibration": "3.1.1",
-    "cordova-plugin-whitelist": "1.3.4"
+    "cordova-plugin-whitelist": "1.3.4",
+    "cordova-plugin-google-analytics": "1.9.2"
   }
 }

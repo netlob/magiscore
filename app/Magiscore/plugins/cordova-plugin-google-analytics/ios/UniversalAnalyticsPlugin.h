@@ -1,0 +1,36 @@
+//UniversalAnalyticsPlugin.h
+//Created by Daniel Wilson 2013-09-19
+
+#import <Foundation/Foundation.h>
+#import <Cordova/CDV.h>
+#import <GoogleAnalytics/GAI.h>
+#import <GoogleAnalytics/GAIFields.h>
+#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+
+@interface UniversalAnalyticsPlugin : CDVPlugin {
+    bool _trackerStarted;
+    bool _debugMode;
+	NSMutableDictionary *_customDimensions;
+}
+
+- (void) startTrackerWithId: (CDVInvokedUrlCommand*)command;
+- (void) setAllowIDFACollection: (CDVInvokedUrlCommand*) command;
+- (void) setUserId: (CDVInvokedUrlCommand*)command;
+- (void) setAppVersion: (CDVInvokedUrlCommand*)command;
+- (void) getVar: (CDVInvokedUrlCommand*)command;
+- (void) setVar: (CDVInvokedUrlCommand*)command;
+- (void) dispatch: (CDVInvokedUrlCommand*)command;
+- (void) debugMode: (CDVInvokedUrlCommand*)command;
+- (void) setOptOut: (CDVInvokedUrlCommand*)command;
+- (void) enableUncaughtExceptionReporting: (CDVInvokedUrlCommand*)command;
+- (void) addCustomDimension: (CDVInvokedUrlCommand*)command;
+- (void) trackEvent: (CDVInvokedUrlCommand*)command;
+- (void) trackMetric: (CDVInvokedUrlCommand*)command;
+- (void) trackTiming: (CDVInvokedUrlCommand*)command;
+- (void) trackView: (CDVInvokedUrlCommand*)command;
+- (void) trackException: (CDVInvokedUrlCommand*)command;
+- (void) addTransaction: (CDVInvokedUrlCommand*)command;
+- (void) addTransactionItem: (CDVInvokedUrlCommand*)command;
+
+@end
+

@@ -486,7 +486,7 @@
           <br>
           <h6 class="ml-3 pl-1 font-weight-bold text-primary">Account</h6>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Log het geopende account uit<a class="float-right menu-a vibrate"
+            <li class="list-group-item shadow mb-2">Log het huidige account uit<a class="float-right menu-a vibrate"
                 onclick="logOut()">UITLOGGEN</a>
             </li>
           </ul>
@@ -1141,7 +1141,7 @@ function clearObject(index) {
 }
 
 function getActiveAccount() {
-    for (key of Object.keys(localStorage)) {
+    for (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
         var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({"config": "{\"currentviewed\": \"false\"}"}))
         if (JSON.parse(account['config']).currentviewed == true) {
             return key

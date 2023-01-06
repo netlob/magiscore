@@ -640,7 +640,7 @@ a.magister-login:before {
   background-color: #eaecf4 !important;
 }
 
-.buttoncheckbox > input{
+.buttoncheckbox:has(>input) > input{
 display: none;
 }
 
@@ -649,6 +649,7 @@ display: none;
   padding: 5px;
 }
 
+/* https://caniuse.com/css-has */
 .buttoncheckbox:has(>input:not(:checked)) {
   background-color: var(--white)!important;
   outline: var(--primary) 2px solid!important;

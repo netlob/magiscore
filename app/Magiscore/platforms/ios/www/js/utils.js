@@ -34,9 +34,9 @@ function clearObject(index) {
 }
 
 function getActiveAccount() {
-    for (key of Object.keys(localStorage)) {
+    for (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
         var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({}))
-        if (JSON.parse(account['config']).currentviewed == true) {
+        if (Object.hasOwn(account, 'config') && JSON.parse(account['config']).currentviewed == true) {
             return key
         }
     }
@@ -47,7 +47,7 @@ function getActiveChildAccount() {
 }
 
 function changeActiveAccount(to, childindex = -1) {
-    for (key of Object.keys(localStorage)) {
+    for (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
         var obj = JSON.parse(getObject("config", key));
         if (key == to) {
           obj.currentviewed = true;
@@ -57,7 +57,7 @@ function changeActiveAccount(to, childindex = -1) {
           setObject("config",JSON.stringify(obj),key);
         }
         if (childindex >= 0) {
-            var activeaccountindex = Object.entries(localStorage).filter((account) => JSON.parse(JSON.parse(account[1]).config).currentviewed == true)[0][0];
+            var activeaccountindex = Object.entries(localStorage).filter((key) => !isNaN(key[0])).filter((account) => JSON.parse(JSON.parse(account[1]).config).currentviewed == true)[0][0];
             var obj = JSON.parse(getObject("config", activeaccountindex));
             if (key == to) {
               obj.childActiveViewed = childindex;

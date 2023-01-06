@@ -16,6 +16,7 @@ class ViewController {
   render(lesson) {
     if (lesson == "general") {
       this.renderGeneral(false);
+      if (courseController.allGrades.filter((grade) => !grade.type.isPTA).every((grade) => filtereddisabled.includes(grade))) $("#currentRenderMobile").html(`Gemiddeld (PTA)`);
     } else {
       ads.checkInter();
       this.renderLesson(lesson);
@@ -125,7 +126,7 @@ class ViewController {
 
   renderGrade(gradeid) {
     var grade = courseController.allGrades.find((x) => x.id == gradeid);
-    $("#grade-modal-grade").text(`${
+    $("#grade-modal-grade").html(`${
       grade.grade.toString().startsWith('10')
         ? '<span class="text-success">10</span><span class="invisible">,</span>'
         : !grade.passed
@@ -203,7 +204,7 @@ class ViewController {
       viewController.overlay("show");
       //save smaller version of account
       var smallaccount = [];
-      for await (key of Object.keys(localStorage)) {
+      for await (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
         var userdata = Object.entries(JSON.parse(localStorage.getItem(key)));
         if (key != userkey) { smallaccount.push({ [key]: JSON.stringify(Object.fromEntries(userdata.filter((val) => val[0] != 'courses'))) }); }
       }
@@ -237,13 +238,16 @@ class ViewController {
         var activechildcourses = JSON.parse(active.childcourses);
         active.courses = JSON.stringify(activechildcourses[childindex].courses);
         delete active.childcourses;
+        active.profilepic = (Object.hasOwn(active, "childpictures")) ? JSON.parse(active.childpictures)[childindex] : './img/smiley.png';
         localStorage.setItem(userkey, JSON.stringify(active));
-        setProfilePic(true, childindex, true)
       } else {
         localStorage.setItem(userkey, await readFile(file));
       }
       //Refresh
       changeActiveAccount(userkey, childindex);
+      if (JSON.parse(getObject("childpictures", getActiveAccount())) == null || JSON.parse(getObject("childpictures", getActiveAccount()))[childindex] == null) {
+        setProfilePic(true, childindex, true)
+      }
       reloaddata();
       viewController.overlay("hide");
       resolve();
@@ -291,16 +295,16 @@ class ViewController {
     $('#useraccountslist').html(``);
     $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
     var activeaccount = parseInt(getActiveAccount());
-    for (const key of Object.keys(localStorage)) {
+    for (const key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
       var persondata = JSON.parse(getObject("person", key));
       if(persondata == null) continue;
       if (persondata.isParent) {
         // persondata.children.filter((child) => child.childchildActiveViewed == true)
         for (const childindex of Object.keys(persondata.children)) {
-          var profilepic = getObject("profilepic", key);
+          var profilepic = JSON.parse(getObject("childpictures", key)) != null ? JSON.parse(getObject("childpictures", key))[childindex] : null
           var config = JSON.parse(getObject("config", key));
           $(`<a class="dropdown-item vibrate ${(childindex == getActiveChildAccount()) ? 'disabled' : ''}" onclick="viewController.switchuser(${key}, ${childindex});">
-          <i class="fas fa-child fa-sm fa-fw mr-2 text-gray-400"></i>
+          <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
             ${persondata.children[childindex].Roepnaam} ${persondata.children[childindex].Achternaam}
           </a>`).prependTo("#useraccountslist");
         }
@@ -755,7 +759,7 @@ async function confirmRefreshOldGrades(button) {
   }
 }
 
-function setProfilePic(forceRefresh = false, childindex, notoast = false) {
+function setProfilePic(forceRefresh = false, childindex = -1, notoast = false) {
   // alert(viewController.config.smiley)
   var profilepicStorage = getObject("profilepic", getActiveAccount()) || false,
     profilepic = document.getElementById("imgelem");
@@ -783,6 +787,11 @@ function setProfilePic(forceRefresh = false, childindex, notoast = false) {
           try {
             logConsole("[INFO]   Storage of image success");
             setObject("profilepic", result, getActiveAccount());
+            if (childindex >= 0) {
+              var childpictures = (JSON.parse(getObject("childpictures", getActiveAccount())) != null) ? JSON.parse(getObject("childpictures", getActiveAccount())) : childpictures = [];
+              childpictures[childindex] = result
+              setObject("childpictures", JSON.stringify(childpictures), getActiveAccount());
+            }
             if (forceRefresh && !notoast)
               viewController.toast("Profielfoto ververst", 2000, false);
           } catch (e) {
@@ -867,16 +876,16 @@ function updateSidebar() {
   $('#useraccountslist').html(``);
   $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
   var activeaccount = parseInt(getActiveAccount());
-  for (const key of Object.keys(localStorage)) {
+  for (const key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
     var persondata = JSON.parse(getObject("person", key));
     if(persondata == null) continue;
     if (persondata.isParent) {
       // persondata.children.filter((child) => child.activeviewed == true)
       for (const childindex of Object.keys(persondata.children)) {
-        var profilepic = getObject("profilepic", key);
+        var profilepic = JSON.parse(getObject("childpictures", key)) != null ? JSON.parse(getObject("childpictures", key))[childindex] : null
         var config = JSON.parse(getObject("config", key));
         $(`<a class="dropdown-item vibrate ${(childindex == getActiveChildAccount()) ? 'disabled' : ''}" onclick="viewController.switchuser(${key}, ${childindex});">
-          <i class="fas fa-child fa-sm fa-fw mr-2 text-gray-400"></i>
+        <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
           ${persondata.children[childindex].Roepnaam} ${persondata.children[childindex].Achternaam}
         </a>`).prependTo("#useraccountslist");
       }

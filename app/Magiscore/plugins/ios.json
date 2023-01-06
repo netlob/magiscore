@@ -70,6 +70,9 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-google-analytics": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {}

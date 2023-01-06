@@ -5,6 +5,10 @@ This application makes use of the following third party libraries:
 
 Copyright 2021 Google
 
+## GoogleAnalytics
+
+Copyright 2021 Google
+
 ## GoogleAppMeasurement
 
 Copyright 2021 Google

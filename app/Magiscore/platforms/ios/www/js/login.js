@@ -5,7 +5,7 @@ var tokens;
 // let lastSchools = [];
 let version;
 // let schools = [];
-const newaccountindex = Object.keys(localStorage).length >= 1 ? Math.max(...Object.keys(localStorage).map(function (x) { return parseInt(x, 10); })) + 1 : 0;
+const newaccountindex = Object.keys(localStorage).filter((key) => !isNaN(key)).length >= 1 ? Math.max(...Object.keys(localStorage).filter((key) => !isNaN(key)).map(function (x) { return parseInt(x, 10); })) + 1 : 0;
 let currentGradeIndex = 0;
 let totalGrades = 0;
 let all_courses = [];
@@ -45,7 +45,7 @@ function onDeviceReady() {
   window.StatusBar.styleLightContent();
   if (
     window.location.hash == "#notokens" &&
-    Object.entries(localStorage).length > 0
+    Object.entries(localStorage).filter((key) => !isNaN(key[0])).length > 0
   ) {
     navigator.notification.alert(
       "Het lijkt erop dat je (per ongeluk) bent uitgelogd. Dit kan bijvoorbeeld gebeure" +
@@ -339,7 +339,7 @@ async function validateLogin(code, codeVerifier) {
         includeGradesInAverageChart: false,
         devMode: false,
         exclude: [],
-        currentviewed: true
+        currentviewed: isNaN(getActiveAccount())
       };
       setObject("config", JSON.stringify(config), newaccountindex);
       logConsole("Succesvol config bestanden opgeslagen!");
@@ -349,7 +349,7 @@ async function validateLogin(code, codeVerifier) {
       // logConsole(JSON.stringify(m))
       m.getInfo()
         .then(async () => {
-          for (key of Object.keys(localStorage)) {
+          for (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
             if (key == newaccountindex) {continue;}
             var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({}))
             if ('person' in account && JSON.parse(account['person']).id == m.person.id && account['school'] == tenant) {
@@ -580,7 +580,7 @@ async function verderGaanLogin(childindex = -1, last = false, m) {
   }))
   
   setObject("loginSuccess", "true", newaccountindex);
-  if (localStorage.length == 1) {
+  if (Object.keys(localStorage).filter((key) => !isNaN(key)).length == 1 || JSON.parse(getObject("config", getActiveAccount())).currentviewed) {
     setObject("courses", JSON.stringify(all_courses), newaccountindex);
   }
   
@@ -611,7 +611,7 @@ async function verderGaanLogin(childindex = -1, last = false, m) {
   };
 }
 
-if (history.length != 0 && localStorage.length != 0) {
+if (history.length != 0 && Object.keys(localStorage).filter((key) => !isNaN(key)).length != 0) {
   $('#terugknop').show();
 }
 

@@ -70,6 +70,10 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-google-analytics": {
+      "GMS_VERSION": "18.0.2",
+      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
   "dependent_plugins": {}

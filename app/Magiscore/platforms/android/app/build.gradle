@@ -348,6 +348,7 @@ dependencies {
     implementation(project(path: ":CordovaLib"))
     implementation "com.google.android.gms:play-services-ads:20.6.0"
     implementation "com.google.android.ads.consent:consent-library:+"
+    implementation "com.google.android.gms:play-services-analytics:18.0.2"
     // SUB-PROJECT DEPENDENCIES END
 }
 

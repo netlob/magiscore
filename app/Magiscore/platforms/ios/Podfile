@@ -6,4 +6,5 @@ target 'Gemairo - Stats voor Magister' do
 	project 'Gemairo - Stats voor Magister.xcodeproj'
 	pod 'Google-Mobile-Ads-SDK', '~> 8.13.0'
 	pod 'PersonalizedAdConsent', '~> 1.0.5'
+	pod 'GoogleAnalytics', '3.20.0'
 end

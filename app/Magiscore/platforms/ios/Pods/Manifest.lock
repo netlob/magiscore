@@ -2,6 +2,7 @@ PODS:
   - Google-Mobile-Ads-SDK (8.13.0):
     - GoogleAppMeasurement (< 9.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
+  - GoogleAnalytics (3.20.0)
   - GoogleAppMeasurement (8.15.0):
     - GoogleAppMeasurement/AdIdSupport (= 8.15.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
@@ -50,11 +51,13 @@ PODS:
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 8.13.0)
+  - GoogleAnalytics (= 3.20.0)
   - PersonalizedAdConsent (~> 1.0.5)
 
 SPEC REPOS:
   trunk:
     - Google-Mobile-Ads-SDK
+    - GoogleAnalytics
     - GoogleAppMeasurement
     - GoogleUserMessagingPlatform
     - GoogleUtilities
@@ -64,6 +67,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 05e5d68bb42a61b2e5bef336a52789785605aa22
+  GoogleAnalytics: 01e4c5a04544a3608f93e970ce0817836897c5a5
   GoogleAppMeasurement: 4c19f031220c72464d460c9daa1fb5d1acce958e
   GoogleUserMessagingPlatform: 5f8b30daf181805317b6b985bb51c1ff3beca054
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
@@ -71,6 +75,6 @@ SPEC CHECKSUMS:
   PersonalizedAdConsent: dbecabb3467df967c16d9cebc2ef4a8890e4bbd8
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
-PODFILE CHECKSUM: 99c4f13deed04f4b75a24d5aed646a6fe95df293
+PODFILE CHECKSUM: 0f7f21feed080498a1593092be56136ae41c1f22
 
 COCOAPODS: 1.11.3

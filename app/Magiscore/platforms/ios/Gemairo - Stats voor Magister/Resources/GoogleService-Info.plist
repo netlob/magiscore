@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>216773507184-9lcppl3hbmgua65vvppuigp8n3kc4sp2.apps.googleusercontent.com</string>
+	<string>978543096660-1rg9mgl5nqa6fkn91c6cfg3a7808rqvj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.216773507184-9lcppl3hbmgua65vvppuigp8n3kc4sp2</string>
+	<string>com.googleusercontent.apps.978543096660-1rg9mgl5nqa6fkn91c6cfg3a7808rqvj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA7eoxFBUJj0NpXzBVOb6RjqcMfBWcfhMQ</string>
+	<string>AIzaSyDcG2eDIzbFUVk67U3hZ8uWcbr9Pr7ZI1s</string>
 	<key>GCM_SENDER_ID</key>
-	<string>216773507184</string>
+	<string>978543096660</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>dev.netlob.magiscore</string>
+	<string>app.netlob.magiscore</string>
 	<key>PROJECT_ID</key>
-	<string>magiscore-android</string>
+	<string>gemairo-6c835</string>
 	<key>STORAGE_BUCKET</key>
-	<string>magiscore-android.appspot.com</string>
+	<string>gemairo-6c835.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:216773507184:ios:70b2b4a826830cdf515cb5</string>
-	<key>DATABASE_URL</key>
-	<string>https://magiscore-android.firebaseio.com</string>
+	<string>1:978543096660:ios:52724800456f3c21940ec1</string>
 </dict>
-</plist>
+</plist>s

@@ -166,5 +166,13 @@
       "APP_ID_ANDROID": "ca-app-pub-9170931639371270~4644085927",
       "APP_ID_IOS": "ca-app-pub-9170931639371270~8990525040"
     }
+  },
+  "cordova-plugin-google-analytics": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-google-analytics@^1.9.2"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

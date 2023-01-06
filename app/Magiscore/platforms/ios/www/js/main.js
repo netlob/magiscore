@@ -158,14 +158,14 @@ function logOut() {
 
 async function confirmLogout(b) {
   if (b == 1) {
-    if (localStorage.length > 1) {
+    if (Object.keys(localStorage).filter((key) => !isNaN(key)).length > 1) {
       var active = getActiveAccount(); 
       clearObject(active);
       var allfiles = await listFiles()
       var file = (await allfiles.filter((file) => file.name == `${active}.json`))[0];
-      var newaccountfile = (await allfiles.filter((file) => file.name == `${Object.keys(localStorage)[0]}.json`))[0];
-      localStorage.setItem(Object.keys(localStorage)[0], await readFile(newaccountfile));
-      changeActiveAccount(Object.keys(localStorage)[0]);
+      var newaccountfile = (await allfiles.filter((file) => file.name == `${Object.keys(localStorage).filter((key) => !isNaN(key))[0]}.json`))[0];
+      localStorage.setItem(Object.keys(localStorage).filter((key) => !isNaN(key))[0], await readFile(newaccountfile));
+      changeActiveAccount(Object.keys(localStorage).filter((key) => !isNaN(key))[0]);
       reloaddata();
       courseController.getLatestGrades(false, getActiveChildAccount());
       viewController.overlay("hide");
