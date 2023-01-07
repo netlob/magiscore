@@ -204,7 +204,7 @@ class ViewController {
       viewController.overlay("show");
       //save smaller version of account
       var smallaccount = [];
-      for await (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
+      for await (let key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
         var userdata = Object.entries(JSON.parse(localStorage.getItem(key)));
         if (key != userkey) { smallaccount.push({ [key]: JSON.stringify(Object.fromEntries(userdata.filter((val) => val[0] != 'courses'))) }); }
       }
@@ -245,7 +245,7 @@ class ViewController {
       }
       //Refresh
       changeActiveAccount(userkey, childindex);
-      if (JSON.parse(getObject("childpictures", getActiveAccount())) == null || JSON.parse(getObject("childpictures", getActiveAccount()))[childindex] == null) {
+      if (childindex >= 0 && (JSON.parse(getObject("childpictures", getActiveAccount())) == null || JSON.parse(getObject("childpictures", getActiveAccount()))[childindex] == null)) {
         setProfilePic(true, childindex, true)
       }
       reloaddata();

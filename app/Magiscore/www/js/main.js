@@ -86,9 +86,9 @@ function main(l) {
     // effect: 'pull'
   });
   // }
-  ads.initialize();
   viewController.setConfig();
   viewController.initTheme();
+  ads.initialize();
   //sorted = {}
   lessonController.clear();
   lessonController.allGrades = [];
@@ -684,6 +684,37 @@ function onDeviceReady() {
       }
     });
   }
+  cordova.plugins.notification.local.hasPermission(function (granted) { 
+    if (!granted) {
+      cordova.plugins.notification.local.requestPermission(function (granted) {
+        console.log(granted)
+      });
+      cordova.plugins.notification.local.setDummyNotifications();
+  }});
+
+  (async () => {
+    var BackgroundFetch = window.BackgroundFetch;
+  
+    var onEvent = async function(taskId) {
+        console.log('[BackgroundFetch] event received: ', taskId);
+        var latestgrades = await courseController.getLatestGrades();
+        console.log(latestgrades[1] ? 'New grades found' : "No new grades found")
+        if (latestgrades[1]) sendNotification();
+        BackgroundFetch.finish(taskId);
+    };
+
+    var onTimeout = async function(taskId) {
+        console.log('[BackgroundFetch] TIMEOUT: ', taskId);
+        BackgroundFetch.finish(taskId);
+    };
+  
+    var status = await BackgroundFetch.configure({
+      minimumFetchInterval: 15,
+      stopOnTerminate: false
+    }, onEvent, onTimeout);
+    console.log('[BackgroundFetch] configure status: ', status);
+  })();
+
   if (getObject("tokens", getActiveAccount()) != null) {
     logConsole("[INFO]   Device ready!");
     logConsole("[INFO]   Connection type: " + navigator.connection.type);
@@ -868,6 +899,19 @@ async function showMelding({ title, body, id }) {
 function sluitMelding(id) {
   setObject(id, true, getActiveAccount());
   $(`#${id}`).hide();
+}
+
+function sendNotification(title = "Nieuwe cijfers in Gemairo", text = "Gemairo heeft nieuwe cijfers gevonden!") {
+  cordova.plugins.notification.local.hasPermission(function (granted) { 
+    if (granted) {
+      cordova.plugins.notification.local.schedule({
+        title: title,
+        text: text,
+        foreground: true,
+        smallIcon: "res://notification"
+    });
+    }
+  });
 }
 
 $(window).on('hashchange', function() {
