@@ -50,6 +50,11 @@
         <splash src="res/new/res/screen/android/splash-port-xhdpi.png" density="port-xhdpi" />
         <splash src="res/new/res/screen/android/splash-port-xxhdpi.png" density="port-xxhdpi" />
         <splash src="res/new/res/screen/android/splash-port-xxxhdpi.png" density="port-xxxhdpi" />
+        <resource-file src="res/new/res/notification/drawable-mdpi/notification.png" target="app/src/main/res/drawable-mdpi/notification.png" />
+        <resource-file src="res/new/res/notification/drawable-hdpi/notification.png" target="app/src/main/res/drawable-hdpi/notification.png" />
+        <resource-file src="res/new/res/notification/drawable-xhdpi/notification.png" target="app/src/main/res/drawable-xhdpi/notification.png" />
+        <resource-file src="res/new/res/notification/drawable-xxhdpi/notification.png" target="app/src/main/res/drawable-xxhdpi/notification.png" />
+        <resource-file src="res/new/res/notification/drawable-xxxhdpi/notification.png" target="app/src/main/res/drawable-xxxhdpi/notification.png" />
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
