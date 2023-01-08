@@ -1,0 +1,92 @@
+var plugin = function () {
+    return window.BackgroundFetch;
+};
+var BackgroundFetch = /** @class */ (function () {
+    function BackgroundFetch() {
+    }
+    Object.defineProperty(BackgroundFetch, "STATUS_RESTRICTED", {
+        get: function () { return plugin().STATUS_RESTRICTED; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "STATUS_DENIED", {
+        get: function () { return plugin().STATUS_DENIED; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "STATUS_AVAILABLE", {
+        get: function () { return plugin().STATUS_AVAILABLE; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "FETCH_RESULT_NEW_DATA", {
+        get: function () { return plugin().FETCH_RESULT_NEW_DATA; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "FETCH_RESULT_NO_DATA", {
+        get: function () { return plugin().FETCH_RESULT_NO_DATA; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "FETCH_RESULT_FAILED", {
+        get: function () { return plugin().FETCH_RESULT_FAILED; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "NETWORK_TYPE_NONE", {
+        get: function () { return plugin().NETWORK_TYPE_NONE; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "NETWORK_TYPE_ANY", {
+        get: function () { return plugin().NETWORK_TYPE_ANY; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "NETWORK_TYPE_UNMETERED", {
+        get: function () { return plugin().NETWORK_TYPE_UNMETERED; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "NETWORK_TYPE_NOT_ROAMING", {
+        get: function () { return plugin().NETWORK_TYPE_NOT_ROAMING; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BackgroundFetch, "NETWORK_TYPE_CELLULAR", {
+        get: function () { return plugin().NETWORK_TYPE_CELLULAR; },
+        enumerable: false,
+        configurable: true
+    });
+    BackgroundFetch.configure = function () {
+        var fetch = plugin();
+        return fetch.configure.apply(fetch, arguments);
+    };
+    BackgroundFetch.finish = function (taskId) {
+        var fetch = plugin();
+        return fetch.finish.apply(fetch, arguments);
+    };
+    BackgroundFetch.start = function () {
+        var fetch = plugin();
+        return fetch.start.apply(fetch, arguments);
+    };
+    BackgroundFetch.scheduleTask = function (config, success, failure) {
+        var fetch = plugin();
+        return fetch.scheduleTask.apply(fetch, arguments);
+    };
+    BackgroundFetch.stopTask = function (taskId, success, failure) {
+        var fetch = plugin();
+        return fetch.stopTask.apply(fetch, arguments);
+    };
+    BackgroundFetch.stop = function () {
+        var fetch = plugin();
+        return fetch.stop.apply(fetch, arguments);
+    };
+    BackgroundFetch.status = function () {
+        var fetch = plugin();
+        return fetch.status.apply(fetch, arguments);
+    };
+    return BackgroundFetch;
+}());
+export default BackgroundFetch;

@@ -1,4 +1,4 @@
-let initialized = false;
+let adsInitialized = false;
 let adsConfig = {
   banner: {
     chance: 100,
@@ -26,6 +26,7 @@ let _interstitial;
 let _interstitialLoaded = false;
 let _banner;
 let _npa;
+const adFree = false;
 
 const bannerID = () =>
   window.cordova.platformId === "ios"
@@ -38,9 +39,9 @@ const interID = () =>
 
 const ads = {
   async initialize() {
-    this.receivedEvent(`Initializing... (${initialized})`);
-    if (initialized === true) return;
-    initialized = true;
+    this.receivedEvent(`Initializing... (${adsInitialized})`);
+    if (adsInitialized === true) return;
+    adsInitialized = true;
 
     this.receivedEvent("starting admob...");
     await admob.start();
@@ -48,7 +49,7 @@ const ads = {
 
     let theme = "white";
     try {
-      theme = viewController.config.theme == "dark" ? "black" : "white";
+      theme = viewController.config.darkTheme ? "black" : "white";
     } catch (e) {
       theme = "white";
     }
@@ -100,6 +101,11 @@ const ads = {
   },
 
   async loadBanner() {
+    if ((_banner != _banner) != undefined) {
+      // banner already loaded
+      return;
+    }
+
     if (adFree == true) return;
 
     const lastBannerId =
@@ -165,8 +171,8 @@ const ads = {
   },
 
   async hideBanner() {
-    if (_bannerbanner != undefined) {
-      await _bannerbanner.hide();
+    if (_banner != undefined) {
+      await _banner.hide();
     }
   },
 

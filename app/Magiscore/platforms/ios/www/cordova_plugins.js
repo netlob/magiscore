@@ -310,6 +310,30 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "analytics",
         "ga"
       ]
+    },
+    {
+      "id": "cordova-plugin-badge-fix.Badge",
+      "file": "plugins/cordova-plugin-badge-fix/www/badge.js",
+      "pluginId": "cordova-plugin-badge-fix",
+      "clobbers": [
+        "cordova.plugins.notification.badge"
+      ]
+    },
+    {
+      "id": "cordova-plugin-local-notification-12.LocalNotification",
+      "file": "plugins/cordova-plugin-local-notification-12/www/local-notification.js",
+      "pluginId": "cordova-plugin-local-notification-12",
+      "clobbers": [
+        "cordova.plugins.notification.local"
+      ]
+    },
+    {
+      "id": "cordova-plugin-background-fetch.BackgroundFetch",
+      "file": "plugins/cordova-plugin-background-fetch/www/BackgroundFetch.js",
+      "pluginId": "cordova-plugin-background-fetch",
+      "clobbers": [
+        "window.BackgroundFetch"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -333,6 +357,9 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-taptic-engine": "2.1.0",
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-google-analytics": "1.9.2"
+    "cordova-plugin-google-analytics": "1.9.2",
+    "cordova-plugin-badge-fix": "0.8.10",
+    "cordova-plugin-local-notification-12": "0.1.4",
+    "cordova-plugin-background-fetch": "7.1.2"
   };
 });

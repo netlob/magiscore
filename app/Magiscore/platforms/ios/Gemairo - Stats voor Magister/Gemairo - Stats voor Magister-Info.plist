@@ -273,6 +273,17 @@
         </array>
       </dict>
     </array>
+    <key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array>
+      <string>com.transistorsoft.fetch</string>
+    </array>
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>fetch</string>
+      <string>processing</string>
+    </array>
+    <key>NSUserNotificationsUsageDescription</key>
+    <string>Geef toegang voor notificaties en weet als eerste wanneer er een nieuw cijfer op Magister staat</string>
     <key>UIUserInterfaceStyle</key>
     <string>Light</string>
   </dict>

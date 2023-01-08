@@ -2,7 +2,6 @@
 // document.addEventListener('deviceready', refreshLockedUI);
 
 // let purchasing = false;
-let adFree = false;
 
 // function initStore() {
 
