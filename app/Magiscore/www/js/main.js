@@ -697,7 +697,7 @@ function onDeviceReady() {
   
     var onEvent = async function(taskId) {
         console.log('[BackgroundFetch] event received: ', taskId);
-        var latestgrades = await courseController.getLatestGrades();
+        var latestgrades = await courseController.getLatestGrades(false, getActiveChildAccount(), true);
         console.log(latestgrades[1] ? 'New grades found' : "No new grades found")
         if (latestgrades[1]) sendNotification();
         BackgroundFetch.finish(taskId);
@@ -710,6 +710,7 @@ function onDeviceReady() {
   
     var status = await BackgroundFetch.configure({
       minimumFetchInterval: 15,
+      requiredNetworkType: 1,
       stopOnTerminate: false
     }, onEvent, onTimeout);
     console.log('[BackgroundFetch] configure status: ', status);
