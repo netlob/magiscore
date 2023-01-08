@@ -10,7 +10,7 @@
           "UIUserInterfaceStyle": [
             {
               "xml": "<string>Light</string>",
-              "count": 44
+              "count": 45
             }
           ]
         }
@@ -61,11 +61,53 @@
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
               "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NOTIFICATION_POLICY\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.POST_NOTIFICATIONS\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.SCHEDULE_EXACT_ALARM\" />",
+              "count": 1
             }
           ],
           "/manifest": [
             {
               "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
+              "count": 1
+            }
+          ],
+          "application": [
+            {
+              "xml": "<provider android:authorities=\"${applicationId}.localnotifications.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.appplant.cordova.plugin.notification.util.AssetProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/localnotification_provider_paths\" /></provider>",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.TriggerReceiver\" />",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.ClearReceiver\" />",
+              "count": 1
+            },
+            {
+              "xml": "<activity android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.ClickReceiver\" android:theme=\"@style/Theme.AppCompat.NoActionBar\" />",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:directBootAware=\"true\" android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.RestoreReceiver\"><intent-filter><action android:name=\"android.intent.action.LOCKED_BOOT_COMPLETED\" /><action android:name=\"android.intent.action.BOOT_COMPLETED\" /></intent-filter></receiver>",
               "count": 1
             }
           ]
@@ -141,6 +183,24 @@
             {
               "xml": "<feature name=\"UniversalAnalytics\"><param name=\"android-package\" value=\"com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"BackgroundFetch\"><param name=\"android-package\" value=\"com.transistorsoft.cordova.backgroundfetch.CDVBackgroundFetch\" /></feature>",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"Badge\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.badge.Badge\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -214,6 +274,18 @@
     },
     "cordova-plugin-google-analytics": {
       "GMS_VERSION": "18.0.2",
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-badge-fix": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-local-notification-12": {
+      "ANDROID_SUPPORT_V4_VERSION": "26.+",
+      "ANDROIDX_VERSION": "1.2.0",
+      "ANDROIDX_APPCOMPAT_VERSION": "1.3.1",
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-background-fetch": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
@@ -529,6 +601,30 @@
         "analytics",
         "ga"
       ]
+    },
+    {
+      "id": "cordova-plugin-badge-fix.Badge",
+      "file": "plugins/cordova-plugin-badge-fix/www/badge.js",
+      "pluginId": "cordova-plugin-badge-fix",
+      "clobbers": [
+        "cordova.plugins.notification.badge"
+      ]
+    },
+    {
+      "id": "cordova-plugin-local-notification-12.LocalNotification",
+      "file": "plugins/cordova-plugin-local-notification-12/www/local-notification.js",
+      "pluginId": "cordova-plugin-local-notification-12",
+      "clobbers": [
+        "cordova.plugins.notification.local"
+      ]
+    },
+    {
+      "id": "cordova-plugin-background-fetch.BackgroundFetch",
+      "file": "plugins/cordova-plugin-background-fetch/www/BackgroundFetch.js",
+      "pluginId": "cordova-plugin-background-fetch",
+      "clobbers": [
+        "window.BackgroundFetch"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -551,6 +647,9 @@
     "cordova-plugin-taptic-engine": "2.1.0",
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-google-analytics": "1.9.2"
+    "cordova-plugin-google-analytics": "1.9.2",
+    "cordova-plugin-badge-fix": "0.8.10",
+    "cordova-plugin-local-notification-12": "0.1.4",
+    "cordova-plugin-background-fetch": "7.1.2"
   }
 }

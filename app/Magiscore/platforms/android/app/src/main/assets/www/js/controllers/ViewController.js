@@ -204,7 +204,7 @@ class ViewController {
       viewController.overlay("show");
       //save smaller version of account
       var smallaccount = [];
-      for await (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
+      for await (let key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
         var userdata = Object.entries(JSON.parse(localStorage.getItem(key)));
         if (key != userkey) { smallaccount.push({ [key]: JSON.stringify(Object.fromEntries(userdata.filter((val) => val[0] != 'courses'))) }); }
       }
@@ -238,14 +238,14 @@ class ViewController {
         var activechildcourses = JSON.parse(active.childcourses);
         active.courses = JSON.stringify(activechildcourses[childindex].courses);
         delete active.childcourses;
-        active.profilepic = (Object.hasOwn(active, "childpictures")) ? JSON.parse(active.childpictures)[childindex] : './img/smiley.png';
+        active.profilepic = (active.hasOwnProperty("childpictures")) ? JSON.parse(active.childpictures)[childindex] : './img/smiley.png';
         localStorage.setItem(userkey, JSON.stringify(active));
       } else {
         localStorage.setItem(userkey, await readFile(file));
       }
       //Refresh
       changeActiveAccount(userkey, childindex);
-      if (JSON.parse(getObject("childpictures", getActiveAccount())) == null || JSON.parse(getObject("childpictures", getActiveAccount()))[childindex] == null) {
+      if (childindex >= 0 && (JSON.parse(getObject("childpictures", getActiveAccount())) == null || JSON.parse(getObject("childpictures", getActiveAccount()))[childindex] == null)) {
         setProfilePic(true, childindex, true)
       }
       reloaddata();

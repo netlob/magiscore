@@ -48,7 +48,7 @@ const ads = {
 
     let theme = "white";
     try {
-      theme = viewController.config.theme == "dark" ? "black" : "white";
+      theme = viewController.config.darkTheme ? "black" : "white";
     } catch (e) {
       theme = "white";
     }
@@ -165,8 +165,8 @@ const ads = {
   },
 
   async hideBanner() {
-    if (_bannerbanner != undefined) {
-      await _bannerbanner.hide();
+    if (_banner != undefined) {
+      await _banner.hide();
     }
   },
 

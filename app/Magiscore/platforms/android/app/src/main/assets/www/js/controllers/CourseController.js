@@ -89,12 +89,17 @@ class CourseController {
         // grades = _.reject(grades, raw => raw.CijferId === 0)
         this.latestGrades = grades;
         var popup = false;
+        var foundnew = false
+        //Voor een of andere reden is het kolomId van sommige cijfers anders wanneer het bij de laatste cijfers opgehaald wordt,
+        //dus controleren we op nieuwe cijfers door middel van verschillende aspecten van het cijfer.
         this.latestGrades.forEach(grade => {
           if (
-            (this.allGrades.filter((foundgrade) => foundgrade.type.id == grade.kolomId).length == 0) &&
+            (this.allGrades.map((grade) => `${new Date(grade.dateFilledIn).toISOString()};${grade.grade};${grade.weight};${grade.description}`)
+            .filter((foundgrade) => foundgrade == `${new Date(grade.ingevoerdOp).toISOString()};${grade.waarde};${grade.weegfactor};${grade.omschrijving}`).length == 0) &&
             popup == false
           ) {
             popup = true;
+            foundnew = true;
             viewController.toast(
               '<span class="float-left">Nieuwe cijfer(s) beschikbaar </span><a class="float-right vibrate text-warning" onclick="syncGrades()">UPDATE</a>',
               false,
@@ -104,7 +109,7 @@ class CourseController {
         });
         viewController.setLatestGrades(this.latestGrades, open);
         viewController.overlay("hide");
-        resolve(this.latestGrades);
+        resolve([this.latestGrades, foundnew]);
       });
     });
   }
