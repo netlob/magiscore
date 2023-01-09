@@ -39,7 +39,7 @@
   <meta name="Tags" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
 </head>
 
-<body id="page-top" onunload="ads.hideBanner()">
+<body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -1108,6 +1108,69 @@
 
   </div>
 
+  <script defer>
+    if (getObject("loginSuccess", getActiveAccount()) != "true") {
+      // alert("loginSuccess = " + getObject("loginSucess"))
+      clearObject(getActiveAccount())
+      window.location = './login.html#failedlogin'
+    }
+
+    if (getObject("tokens", getActiveAccount()) === null && getObject("school", getActiveAccount()) === null && getObject(
+      "courses", getActiveAccount()) === null) {
+      clearObject(getActiveAccount())
+      window.location = './login.html#notokens'
+    }
+
+    function setObject(key,value,index) {
+    var json = JSON.parse(localStorage.getItem(index) ?? JSON.stringify({}))
+    json[key] = value;
+    localStorage.setItem(index, JSON.stringify(json));
+    }
+
+function getObject(key,index) {
+    try {
+        if (!JSON.parse(localStorage.getItem(index)).hasOwnProperty(key)) { return null }
+        return (JSON.parse(localStorage.getItem(index)))[key] 
+    } catch (e) {
+        return null;
+    }
+}
+
+function clearObject(index) {
+    localStorage.removeItem(index);
+}
+
+function getActiveAccount() {
+    for (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
+        var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({"config": "{\"currentviewed\": \"false\"}"}))
+        if (JSON.parse(account['config']).currentviewed == true) {
+            return key
+        }
+    }
+}
+
+    function logConsole(msg) {
+      if (typeof msg != "string") return
+      if (msg.substring(0, 7) == "[ERROR]") $("#terminal").prepend(`<small class="text-danger">${msg}</small>\n`)
+      else if (msg.substring(0, 7) == "[DEBUG]") $("#terminal").prepend(`<small class="text-warning">${msg}</small>\n`)
+      else if (msg.substring(0, 6) == "[INFO]") $("#terminal").prepend(`<small class="text-info">${msg}</small>\n`)
+      else $("#terminal").prepend(`<small>${msg}</small>\n`)
+    }
+
+    function errorConsole(err) {
+      $("#overlay").hide()
+      $("#terminal").prepend(`<small class="text-danger">${err}</small>\n`)
+    }
+
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+      $("#overlay").hide()
+      logConsole(`[ERROR] ${msg} line: ${lineNo}\n url: ${url}`)
+      console.error(msg, url, lineNo, columnNo, error)
+      if ($("#mobilePersonInfo").text() == "Voornaam Achternaam") openBrowser(1)
+      return false;
+    }
+  </script>
+
   <!-- Cordova core -->
   <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
@@ -1147,51 +1210,6 @@
   <!-- <script src="js/tour.js"></script> -->
   <script src="js/main.js"></script>
   <script src="js/refresh.js"></script>
-  <script defer>
-    (async () => {
-      if (Object.entries(localStorage).filter((key) => !isNaN(key[0])).filter((account) => JSON.parse(account[1]).hasOwnProperty('courses')).length == 0 && localStorage.length != 0) {
-      ForceSetFromStorage();
-    }
-    
-    if (getObject("tokens", getActiveAccount()) === null && getObject("school", getActiveAccount()) === null && getObject(
-        "courses", getActiveAccount()) === null && localStorage.getItem("courses") === null) {
-        clearObject(getActiveAccount())
-        try {
-          if (Object.entries(localStorage).filter((key) => !isNaN(key[0])).filter((account) => JSON.parse(account[1]).hasOwnProperty('courses')).length == 0 && localStorage.length != 0) {await ForceSetFromStorage();} else {window.location = './login.html#notokens'}
-        } catch (error) {
-          window.location = './login.html#notokens'
-        }
-      }
-      
-      if (getObject("loginSuccess", getActiveAccount()) != "true" && localStorage.getItem("courses") === null && localStorage.length != 0) {
-      // alert("loginSuccess = " + getObject("loginSucess"))
-      clearObject(getActiveAccount())
-      window.location = './login.html#failedlogin'
-    }
-
-    })();
-
-    function logConsole(msg) {
-      if (typeof msg != "string") return
-      if (msg.substring(0, 7) == "[ERROR]") $("#terminal").prepend(`<small class="text-danger">${msg}</small>\n`)
-      else if (msg.substring(0, 7) == "[DEBUG]") $("#terminal").prepend(`<small class="text-warning">${msg}</small>\n`)
-      else if (msg.substring(0, 6) == "[INFO]") $("#terminal").prepend(`<small class="text-info">${msg}</small>\n`)
-      else $("#terminal").prepend(`<small>${msg}</small>\n`)
-    }
-
-    function errorConsole(err) {
-      $("#overlay").hide()
-      $("#terminal").prepend(`<small class="text-danger">${err}</small>\n`)
-    }
-
-    window.onerror = function (msg, url, lineNo, columnNo, error) {
-      $("#overlay").hide()
-      logConsole(`[ERROR] ${msg} line: ${lineNo}\n url: ${url}`)
-      console.error(msg, url, lineNo, columnNo, error)
-      if ($("#mobilePersonInfo").text() == "Voornaam Achternaam") openBrowser(1)
-      return false;
-    }
-  </script>
 </body>
 
 </html>

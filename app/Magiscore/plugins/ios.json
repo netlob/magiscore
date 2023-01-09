@@ -73,17 +73,7 @@
     },
     "cordova-plugin-google-analytics": {
       "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-local-notification-12": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    },
-    "cordova-plugin-background-fetch": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
-  "dependent_plugins": {
-    "cordova-plugin-badge-fix": {
-      "PACKAGE_NAME": "app.netlob.magiscore"
-    }
-  }
+  "dependent_plugins": {}
 }
