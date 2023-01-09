@@ -38,7 +38,6 @@ Array.prototype.chunk = function (chunkSize) {
 // }
 
 function onDeviceReady() {
-  ads.initialize();
   $.ajaxSetup({ cache: false });
   window.StatusBar.overlaysWebView(false);
   window.StatusBar.backgroundColorByHexString("var(--primary)");
@@ -184,6 +183,11 @@ function base64URL(string) {
     .replace(/=/g, "")
     .replace(/\+/g, "-")
     .replace(/\//g, "_");
+}
+
+function startLogin() {
+  ads.initialize();
+  openLoginWindow();
 }
 
 function openLoginWindow() {

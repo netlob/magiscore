@@ -204,7 +204,7 @@ class ViewController {
       viewController.overlay("show");
       //save smaller version of account
       var smallaccount = [];
-      for await (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
+      for await (let key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
         var userdata = Object.entries(JSON.parse(localStorage.getItem(key)));
         if (key != userkey) { smallaccount.push({ [key]: JSON.stringify(Object.fromEntries(userdata.filter((val) => val[0] != 'courses'))) }); }
       }
@@ -238,14 +238,14 @@ class ViewController {
         var activechildcourses = JSON.parse(active.childcourses);
         active.courses = JSON.stringify(activechildcourses[childindex].courses);
         delete active.childcourses;
-        active.profilepic = (Object.hasOwn(active, "childpictures")) ? JSON.parse(active.childpictures)[childindex] : './img/smiley.png';
+        active.profilepic = (active.hasOwnProperty("childpictures")) ? JSON.parse(active.childpictures)[childindex] : './img/smiley.png';
         localStorage.setItem(userkey, JSON.stringify(active));
       } else {
         localStorage.setItem(userkey, await readFile(file));
       }
       //Refresh
       changeActiveAccount(userkey, childindex);
-      if (JSON.parse(getObject("childpictures", getActiveAccount())) == null || JSON.parse(getObject("childpictures", getActiveAccount()))[childindex] == null) {
+      if (childindex >= 0 && (JSON.parse(getObject("childpictures", getActiveAccount())) == null || JSON.parse(getObject("childpictures", getActiveAccount()))[childindex] == null)) {
         setProfilePic(true, childindex, true)
       }
       reloaddata();
@@ -1150,6 +1150,11 @@ function setChartData(config, lesson, everything) {
         intersect: true,
         mode: "index",
         caretPadding: 4,
+        callbacks: {
+          label: function(tooltipItem, data) {
+              return `${data.datasets[tooltipItem.datasetIndex].label}: ${tooltipItem.yLabel.toLocaleString()}`;
+          }
+        }
       },
       annotation: {
         annotations: [
@@ -1219,8 +1224,8 @@ function setChartData(config, lesson, everything) {
 
   if (vol + onvol > 0) {
     var tot = vol + onvol;
-    vol = round((vol / tot) * 100);
-    onvol = round((onvol / tot) * 100);
+    vol = parseFloat(round((vol / tot) * 100)).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2});
+    onvol = parseFloat(round((onvol / tot) * 100)).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2});
     $("#percentageGrades").text(`${vol}% voldoende - ${onvol}% onvoldoende`);
   } else {
     $("#percentageGrades").text(`Geen cijfers voor dit vak...`);
@@ -1379,6 +1384,11 @@ function setChartData(config, lesson, everything) {
           intersect: true,
           mode: "index",
           caretPadding: 4,
+          callbacks: {
+            label: function(tooltipItem, data) {
+                return `${data.datasets[tooltipItem.datasetIndex].label}: ${tooltipItem.yLabel.toLocaleString()}`;
+            }
+          }
         },
         annotation: {
           annotations: [
@@ -1511,7 +1521,7 @@ function setChartData(config, lesson, everything) {
                 var meta = chartInstance.controller.getDatasetMeta(i);
                 meta.data.forEach(function (bar, index) {
                   var data =
-                    Math.round(parseFloat(dataset.data[index]) * 10) / 10;
+                    (Math.round(parseFloat(dataset.data[index]) * 10) / 10).toLocaleString();
                   ctx.fillStyle = "#6e707e";
                   ctx.fillText(data, bar._model.x, bar._model.y + 15);
                 });
@@ -1573,6 +1583,7 @@ function setChartData(config, lesson, everything) {
               maxTicksLimit: 10,
               beginAtZero: true,
               steps: 1,
+              precision: 0
             },
           },
         ],
@@ -1722,7 +1733,7 @@ function setAverages() {
       $("#averagesTable").append(
         `<tr onclick="viewController.render('${lesson.name}')">
           <td>${lesson.name}</td>
-          <td>${Math.round(average * 100) / 100}</td>
+          <td>${(Math.round(average * 100) / 100).toLocaleString()}</td>
          </tr>`
       );
       totgem = totgem + parseFloat(average);
@@ -1731,7 +1742,7 @@ function setAverages() {
   });
   var totgem = totgem / totgemclass;
   $("#general-average").text(
-    `${round(totgem) == "NaN" ? "Geen cijfers..." : round(totgem)}`
+    `${round(totgem) == "NaN" ? "Geen cijfers..." : parseFloat(round(totgem)).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}`
   );
 }
 
@@ -1766,7 +1777,7 @@ function generateHTML(lesson) {
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary-blue text-uppercase mb-1">Gemiddeld cijfer</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">${average}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">${parseFloat(average).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>

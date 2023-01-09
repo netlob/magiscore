@@ -1,4 +1,4 @@
-let initialized = false;
+let adsInitialized = false;
 let adsConfig = {
   banner: {
     chance: 100,
@@ -26,6 +26,7 @@ let _interstitial;
 let _interstitialLoaded = false;
 let _banner;
 let _npa;
+const adFree = false;
 
 const bannerID = () =>
   window.cordova.platformId === "ios"
@@ -38,9 +39,9 @@ const interID = () =>
 
 const ads = {
   async initialize() {
-    this.receivedEvent(`Initializing... (${initialized})`);
-    if (initialized === true) return;
-    initialized = true;
+    this.receivedEvent(`Initializing... (${adsInitialized})`);
+    if (adsInitialized === true) return;
+    adsInitialized = true;
 
     this.receivedEvent("starting admob...");
     await admob.start();
@@ -100,6 +101,11 @@ const ads = {
   },
 
   async loadBanner() {
+    if (_banner != undefined) {
+      // banner already loaded
+      return;
+    }
+
     if (adFree == true) return;
 
     const lastBannerId =

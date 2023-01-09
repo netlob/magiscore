@@ -55,7 +55,7 @@ async function ForceSetFromStorage() {
 }
 
 function getActiveChildAccount() {
-    return JSON.parse(getObject('config', parseInt(getActiveAccount()))).childActiveViewed
+    try{ return JSON.parse(getObject('config', parseInt(getActiveAccount()))).childActiveViewed } catch(e) {return -1}
 }
 
 function changeActiveAccount(to, childindex = -1) {
