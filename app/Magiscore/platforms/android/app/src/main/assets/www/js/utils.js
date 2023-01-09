@@ -34,16 +34,28 @@ function clearObject(index) {
 }
 
 function getActiveAccount() {
-    for (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
-        var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({}))
-        if (Object.hasOwn(account, 'config') && JSON.parse(account['config']).currentviewed == true) {
-            return key
-        }
-    }
+    try {
+    var storage = Object.entries(localStorage).filter((key) => !isNaN(key[0])).filter((account) => JSON.parse(JSON.parse(account[1]).config).currentviewed == true)
+    if (storage.length > 0) {
+        return storage[0][0]
+    } else if (localStorage.length != 0 && Object.entries(localStorage).filter((key) => !isNaN(key[0])).length > 0) {
+        //Er is iets helemaal mis en geen enkel account is actief.
+        var accountWithCourses = Object.entries(localStorage).filter((key) => !isNaN(key[0])).filter((account) => JSON.parse(account[1]).hasOwnProperty('courses'))
+        if (accountWithCourses.length > 0) {changeActiveAccount(accountWithCourses[0][0]); return accountWithCourses[0][0]} else {ForceSetFromStorage()}
+    }} catch(e) {}
+}
+
+async function ForceSetFromStorage() {
+    //Er is geen elke account dat nog cijfers heeft, dus wordt er een poging gedaan om de cijfers uit de opslag van de telefoon te halen.
+    var userkey = Object.entries(localStorage).filter((key) => !isNaN(key[0]))[0][0];
+    var allfiles = await listFiles();
+    var file = (await allfiles.filter((file) => file.name == `${userkey}.json`))[0];
+    localStorage.setItem(userkey, await readFile(file));
+    window.location = './index.html';
 }
 
 function getActiveChildAccount() {
-    return JSON.parse(getObject('config', parseInt(getActiveAccount()))).childActiveViewed
+    try{ return JSON.parse(getObject('config', parseInt(getActiveAccount()))).childActiveViewed } catch(e) {return -1}
 }
 
 function changeActiveAccount(to, childindex = -1) {

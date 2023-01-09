@@ -52,60 +52,54 @@ class CourseController {
     return this.courses.find(x => x.id === id);
   }
 
-  getLatestGrades(open = false, childindex = -1) {
+  getLatestGrades(open = false, childindex = -1, skipSnackbar = false) {
     if (open) viewController.overlay("show");
     return new Promise((resolve, reject) => {
       // logConsole("RAW:")
       // logConsole(JSON.stringify(this.raw))
       var personid = (childindex >= 0 && person.isParent) ? person.children[childindex].Id : person.id
       const url = `https://cors.sjoerd.dev/https://${school}/api/personen/${personid}/cijfers/laatste?top=50&skip=0`;
-      // logConsole(url)
-      $.ajax({
-        cache: false,
-        dataType: "json",
-        async: true,
-        crossDomain: true,
-        url: url,
-        method: "GET",
+      //Er wordt hier een plugin gebruikt, omdat die in Chrome niet worden gethrottled wanneer de applicatie zich in de achtergrond bevindt.
+      cordova.plugin.http.sendRequest(url, {
         headers: {
-          Authorization: "Bearer " + tokens.access_token,
-          noCache: new Date().getTime()
+          accept: "application/json, text/plain, */*",
+          authorization: "Bearer " + tokens.access_token,
+          noCache: new Date().getTime().toString(),
+          "x-requested-with": "app.netlob.magiscore"
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          // alert(XMLHttpRequest.statusText)
-          if (XMLHttpRequest.readyState == 4) {
-            logConsole(`[ERROR] HTTP error (${textStatus})`);
-          } else if (XMLHttpRequest.readyState == 0) {
-            logConsole(`[ERROR] Network error (${textStatus})`);
-          } else {
-            logConsole("[ERROR] something weird is happening");
-          }
-          reject("no internet");
-        },
-        timeout: 5000
-      }).done(res => {
+        method: "GET",
+      }, function(response) {
+        try {
+        var res = JSON.parse(response.data);
         var grades = res.Items || res.items;
-        // alert(JSON.stringify(grades))
-        // grades = _.reject(grades, raw => raw.CijferId === 0)
-        this.latestGrades = grades;
+        courseController.latestGrades = grades;
         var popup = false;
-        this.latestGrades.forEach(grade => {
+        var foundnew = false
+        //Voor een of andere reden is het kolomId van sommige cijfers anders wanneer het bij de laatste cijfers opgehaald wordt,
+        //dus controleren we op nieuwe cijfers door middel van verschillende aspecten van het cijfer.
+        courseController.latestGrades.forEach(grade => {
           if (
-            (this.allGrades.filter((foundgrade) => foundgrade.type.id == grade.kolomId).length == 0) &&
+            (courseController.allGrades.map((grade) => `${new Date(grade.dateFilledIn).toISOString()};${grade.grade};${grade.weight};${grade.description}`)
+            .filter((foundgrade) => foundgrade == `${new Date(grade.ingevoerdOp).toISOString()};${grade.waarde};${grade.weegfactor};${grade.omschrijving}`).length == 0) &&
             popup == false
           ) {
             popup = true;
-            viewController.toast(
+            foundnew = true;
+            if (!skipSnackbar) viewController.toast(
               '<span class="float-left">Nieuwe cijfer(s) beschikbaar </span><a class="float-right vibrate text-warning" onclick="syncGrades()">UPDATE</a>',
               false,
               true
             );
           }
         });
-        viewController.setLatestGrades(this.latestGrades, open);
+      } catch(e) {console.log(e)}
+        viewController.setLatestGrades(courseController.latestGrades, open);
         viewController.overlay("hide");
-        resolve(this.latestGrades);
-      });
+        resolve([courseController.latestGrades, foundnew]);
+      }, function(response) {
+        console.log(response.data)
+        reject(response.error);
+      })
     });
   }
 }

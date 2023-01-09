@@ -101,7 +101,7 @@ const ads = {
   },
 
   async loadBanner() {
-    if ((_banner != _banner) != undefined) {
+    if (_banner != undefined) {
       // banner already loaded
       return;
     }
