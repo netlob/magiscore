@@ -1630,18 +1630,18 @@ function setAllGrades() {}
 function toShortFormat(d) {
   d = new Date(d);
   var month_names = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "Mei",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Okt",
-    "Nov",
-    "Dec",
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "mei",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "okt",
+    "nov",
+    "dec",
   ];
   return `${d.getDate()} ${month_names[d.getMonth()]} ${d.getFullYear()}`; //7:05, 21 Jul 2020'
 }
