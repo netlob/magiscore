@@ -307,7 +307,7 @@ class Lesson {
         }
       }
     });
-    $("#newGrade-newGrade").text(parseFloat(round(newGrade)).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}));
+    $("#newGrade-newGrade").text(parseFloat(round(newGrade)).toLocaleString(viewController.config.separator, {minimumFractionDigits: 2,maximumFractionDigits: 2}));
     return round(newGrade);
   }
 

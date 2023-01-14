@@ -73,6 +73,7 @@ class CourseController {
         var res = JSON.parse(response.data);
         var grades = res.Items || res.items;
         courseController.latestGrades = grades;
+        window.dispatchEvent( new Event('storage') );
         var popup = false;
         var foundnew = false
         //Voor een of andere reden is het kolomId van sommige cijfers anders wanneer het bij de laatste cijfers opgehaald wordt,

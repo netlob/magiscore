@@ -611,7 +611,8 @@ async function verderGaanLogin(childindex = -1, last = false, m) {
     activelocalstorage = JSON.parse(localStorage.getItem(newaccountindex));
     delete activelocalstorage.childcourses;
     localStorage.setItem(newaccountindex, JSON.stringify(activelocalstorage));
-    window.location.replace("./index.html");
+    window.dispatchEvent( new Event('storage') )
+    window.location.replace((history.length != 0 && Object.keys(localStorage).filter((key) => !isNaN(key)).length != 0) ? "./index.html#noNewAds" : "./index.html");
   };
 }
 

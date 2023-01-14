@@ -418,12 +418,16 @@
 
           <h6 class="ml-1 pl-3 font-weight-bold text-primary">Gemairo</h6>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item shadow mb-2">Thema <a class="float-right menu-a ml-2 vibrate"
-                onclick="viewController.darkTheme()">DONKER</a><a class="float-right menu-a vibrate"
-                onclick="viewController.lightTheme()">LICHT</a>
+
+            <li class="list-group-item shadow mb-2 radio-options">Thema
+              <div style="position: absolute;display: inline-block;right: 20px;background: inherit;">
+                <input id="Themad" style="display: none;" type="radio" name="themerad"><label onclick="viewController.updateConfig({autoTheme: false});viewController.darkTheme()" for="Themad" class="float-right menu-a ml-2 vibrate mb-0">DONKER</label>
+                <input id="Themal" style="display: none;" type="radio" name="themerad"><label onclick="viewController.updateConfig({autoTheme: false});viewController.lightTheme()" for="Themal" class="float-right menu-a ml-2 vibrate mb-0">LICHT</label>
+                <input id="Themaa" style="display: none;" type="radio" name="themerad"><label onclick="viewController.updateConfig({autoTheme: true}); viewController.initTheme();" for="Themaa" class="float-right menu-a ml-2 vibrate mb-0">AUTO</label>   
+              </div>
             </li>
             <li class="list-group-item shadow mb-2">Profielfoto
-              <a class="float-right menu-a ml-2 vibrate" onclick="setProfilePic(true)">
+              <a class="float-right menu-a ml-2 vibrate" onclick="setProfilePic(true, getActiveChildAccount())">
                 <i class="far fa-sync-alt fa-sm"></i>
               </a>
               <a class="float-right menu-a ml-2 vibrate"
@@ -434,6 +438,13 @@
                 Is je schoolfoto niet zo goed gelukt? Dan kun je een coole smiley als profielfoto gebruiken! Druk op <i
                   class="far fa-sync-alt fa-s"></i> om je schoolfoto te refreshen
               </span>
+            </li>
+            <li class="list-group-item shadow mb-2 radio-options">Decimaal scheidingsteken
+              <div style="position: absolute;display: inline-block;right: 20px;background: inherit;">
+                <input id="rad1" style="display: none;" type="radio" name="separatorrad"><label onclick="viewController.updateConfig({separator: 'nl-nl'});" for="rad1" class="float-right menu-a ml-2 vibrate mb-0">KOMMA</label>
+                <input id="rad2" style="display: none;" type="radio" name="separatorrad"><label onclick="viewController.updateConfig({separator: 'en-us'});" for="rad2" class="float-right menu-a ml-2 vibrate mb-0">PUNT</label>
+                <input id="rad3" style="display: none;" type="radio" name="separatorrad"><label onclick="viewController.updateConfig({separator: undefined});" for="rad3" class="float-right menu-a ml-2 vibrate mb-0">AUTO</label>   
+              </div>
             </li>
             <li class="list-group-item shadow mb-2 d-inline-block">Developer
               mode</i>
@@ -1029,7 +1040,7 @@
             </div>
             </div>
             <div class="modal-footer">
-              <button type="button" onClick="filtereddisabled = [];document.getElementById('gradefilterbutton').children[0].children[0].classList.remove('activefilter');viewController.render(viewController.currentLesson);viewController.updateNav();" class="btn btn-secondary vibrate" data-dismiss="modal">Reset</button>
+              <button type="button" onClick="filtereddisabled = [];document.getElementById('gradefilterbutton').children[0].children[0].classList.remove('activefilter');if (!(document.getElementById('search-wrapper').style.display != 'none')){viewController.render(viewController.currentLesson); }viewController.updateNav();" class="btn btn-secondary vibrate" data-dismiss="modal">Reset</button>
               <button type="button" class="btn btn-secondary vibrate" data-dismiss="modal">Sluiten</button>
               <button type="button" onClick="generateFilter();" data-dismiss="modal" class="btn btn-primary vibrate">Bereken</button>
             </div>
