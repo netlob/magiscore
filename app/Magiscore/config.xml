@@ -60,6 +60,7 @@
             target="app/src/main/res/drawable-xxhdpi/notification.png" />
         <resource-file src="res/new/res/notification/drawable-xxxhdpi/notification.png"
             target="app/src/main/res/drawable-xxxhdpi/notification.png" />
+        <resource-file src="BackgroundFetchHeadlessTask.java" target="app/src/main/java/com/transistorsoft/cordova/backgroundfetch/BackgroundFetchHeadlessTask.java" />
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
