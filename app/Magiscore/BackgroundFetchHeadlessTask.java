@@ -56,6 +56,43 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
           String CompleteURL = "https://" + SchoolURL.replaceAll("\"", "") + "/api/personen/" + PersonID
               + "/cijfers/laatste?top=50&skip=0";
           try {
+            // Refresh token
+            URL tokenurl = new URL("https://accounts.magister.net/connect/token");
+            StringBuffer tokencontent = new StringBuffer();
+            HttpURLConnection tokencon = (HttpURLConnection) tokenurl.openConnection();
+            tokencon.setRequestMethod("POST");
+            tokencon.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            // tokencon.setRequestProperty("Authorization", "Bearer " +
+            // Tokens.getString("access_token"));
+            tokencon.setRequestProperty("cache-control", "no-cache");
+            tokencon.setRequestProperty("x-requested-with", "app.netlob.magiscore");
+            tokencon.setDoOutput(true);
+
+            String body = "refresh_token="+Tokens.getString("refresh_token")+"&client_id=M6LOAPP&grant_type=refresh_token";
+            byte[] outputInBytes = body.getBytes("UTF-8");
+            OutputStream os = tokencon.getOutputStream();
+            os.write(outputInBytes);
+            os.close();
+
+            try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(tokencon.getInputStream()))) {
+              for (String line; (line = reader.readLine()) != null;) {
+                tokencontent.append(line);
+              }
+            }
+            String tokenresult = tokencontent.toString();
+            final JSONObject tokenjsonresult = new JSONObject(tokenresult);
+            //Oplaan van de laatste tokens
+
+            SharedPreferences.Editor editor = SharedPrefs.edit();
+            final JSONObject gemairotokens = new JSONObject();
+            gemairotokens.put("access_token", tokenjsonresult.getString("access_token"));
+            gemairotokens.put("id_token", tokenjsonresult.getString("id_token"));
+            gemairotokens.put("refresh_token", tokenjsonresult.getString("refresh_token"));
+            editor.putString("Tokens", gemairotokens.toString());
+            editor.apply();
+
+            // Ophalen van de cijfers
             URL url = new URL(CompleteURL);
             StringBuffer content = new StringBuffer();
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -75,6 +112,7 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
             Log.d(BackgroundFetch.TAG, "Are latestgrade object's the same? "
                 + jsonresult.getString("items").equals(latestGrades.getString("items")));
             if (!jsonresult.getString("items").equals(latestGrades.getString("items"))) {
+              // Als de twee objecten niet hetzelfde zijn stuurt hij een notificatie.
               NotificationManager mNotificationManager;
 
               NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context.getApplicationContext(),

@@ -682,9 +682,16 @@ function MoveToNewStorage() {
   window.location = './index.html';
 }
 
-function onDeviceReady() {
+function beforeDeviceReady() {
   var sharedPreferences = window.plugins.SharedPreferences.getInstance("Gemairo");
-  sharedPreferences.get("tokens", [], function (data) {setObject("tokens", JSON.stringify(data), getActiveAccount())})
+  sharedPreferences.get("Tokens", [], function (data) {
+    if (data != '' && Object.entries(data).length > 0 && tokens != data)
+      setObject("tokens", JSON.stringify(data), getActiveAccount());
+    onDeviceReady();
+    }, onDeviceReady)
+}
+
+function onDeviceReady() {
   $.ajaxSetup({
     cache: false,
   });
@@ -954,7 +961,7 @@ window.addEventListener("storage", function () {
   //Dit is zodat het java gedeelte altijd de juiste informatie heeft, om op de achtergrond zonder de app open te hebben de laatste cijfers kan controleren.
   var sharedPreferences = window.plugins.SharedPreferences.getInstance("Gemairo")
   if (courseController.latestGrades.length > 0) sharedPreferences.put("latestGrades", JSON.parse(`{"items": ${JSON.stringify(courseController.latestGrades)}}`));
-  sharedPreferences.put("Tokens", JSON.parse(getObject("tokens", getActiveAccount())));
+  if (Object.entries(JSON.parse(getObject("tokens", getActiveAccount()))).length > 0) sharedPreferences.put("Tokens", JSON.parse(getObject("tokens", getActiveAccount())));
   sharedPreferences.put("PersonID", (getActiveChildAccount() >= 0 && person.isParent) ? person.children[getActiveChildAccount()].Id : person.id);
   sharedPreferences.put("SchoolURL", getObject("school", getActiveAccount()));
 }, false);
@@ -972,7 +979,7 @@ function onPause() {
  idletime = new Date();
 }
 
-document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("deviceready", beforeDeviceReady, false);
 document.addEventListener("pause", onPause, false);
 document.addEventListener("resume", onResume, false);
 // document.addEventListener("offline", onOffline, false);
