@@ -14,9 +14,9 @@ class ViewController {
   }
 
   render(lesson) {
-    if (lesson == "general") {
-      this.renderGeneral(false);
-      if (courseController.allGrades.filter((grade) => !grade.type.isPTA).every((grade) => filtereddisabled.includes(grade))) $("#currentRenderMobile").html(`Gemiddeld (PTA)`);
+    if (lesson == "general" || lesson == "generalAll") {
+      this.renderGeneral(lesson == "generalAll");
+      if (courseController.allGrades.filter((grade) => !grade.type.isPTA).every((grade) => filtereddisabled.includes(grade)) && lesson != "generalAll") {$("#currentRenderMobile").html(`Gemiddeld (PTA)`);$("#currentRender").html(`Gemiddeld (PTA)`)}
     } else {
       ads.checkInter();
       this.renderLesson(lesson);
@@ -33,16 +33,16 @@ class ViewController {
     });
   }
 
-  renderGeneral() {
+  renderGeneral(includeAllGrades = false) {
     $("#lesson-wrapper").empty();
     $("#settings-wrapper").hide();
-    $("#currentRender").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
-    $("#currentRenderMobile").html(`Gemiddeld`); // (${this.currentCourse.course.group.description})`);
+    $("#currentRender").html(includeAllGrades ? "Zoeken" : "Gemiddeld"); // (${this.currentCourse.course.group.description})`);
+    $("#currentRenderMobile").html(includeAllGrades ? "Zoeken" : "Gemiddeld"); // (${this.currentCourse.course.group.description})`);
     $("#currentRender").html(
-      `<span onclick="snapper.toggle('left')">Gemiddeld</span>`
+      `<span onclick="snapper.toggle('left')">${includeAllGrades ? "Zoeken" : "Gemiddeld"}</span>`
     );
     $("#currentRenderMobile").html(
-      `<span onclick="snapper.toggle('left')">Gemiddeld</span>`
+      `<span onclick="snapper.toggle('left')">${includeAllGrades ? "Zoeken" : "Gemiddeld"}</span>`
     );
     if (!this.config.isDesktop) {
       $("#sidebarToggleTop").click();
@@ -61,10 +61,17 @@ class ViewController {
     // $("#general-area-title").text(
     //   `Alle cijfers van ${course.type.description}`
     // );
-    setChartData(this.config, "general", true);
-    setTableData("general");
-    setAverages();
-    this.currentLesson = "general";
+    setChartData(this.config, includeAllGrades ? "generalAll" : "general", true);
+    if (includeAllGrades) {
+      $("#general-averages").parent().parent().hide();
+      document.getElementById('calculateFilter').setAttribute("onClick", "generateFilter(true)")
+    } else {
+      $("#general-averages").parent().parent().show();
+      document.getElementById('calculateFilter').setAttribute("onClick", "generateFilter()")
+    }
+    setTableData(includeAllGrades ? "generalAll" : "general");
+    setAverages(includeAllGrades);
+    this.currentLesson = includeAllGrades ? "generalAll" : "general";
     this.initTheme();
     $('*[data-toggle="tooltip"]').tooltip();
     $("#general-wrapper").show();
@@ -164,6 +171,8 @@ class ViewController {
   }
 
   updateNav() {
+    filtereddisabled = [];
+    document.getElementById('gradefilterbutton').children[0].children[0].classList.remove('activefilter'); 
     $("#periodeModalTable").empty();
     _.sortBy(lessonController.lessons, ["name"]);
     var gevondenperiodes = Array.from(new Set(courseController.courses[courseController.courses.findIndex((course) => course == viewController.currentCourse)].course.grades
@@ -704,11 +713,13 @@ class ViewController {
     this.settingsOpen = false;
     vibrate(15, false);
     clearInterval(this.iddinkInterval);
+    this.updateNav();
     document.getElementById('content').removeAttribute('data-snap-ignore');
     // this.render(this.currentLesson.name)
   }
 
   openZoeken() {
+    viewController.settingsOpen = true;
     $("#buttonSidenavToggle").hide();
     $("#buttonSidenavBack").show();
     $("#general-wrapper").hide();
@@ -957,6 +968,32 @@ function setChartData(config, lesson, everything) {
         });
       }
     });
+  } else if (lesson == "generalAll") {
+    courseController.courses.forEach((course) => {
+      var sorted = course.course.sortGrades();
+      Object.values(sorted).forEach((sorted) => {
+        var lesson = sorted["Lesson"];
+          if (lesson.grades.length > 0) {
+            lesson.grades.forEach((grade) => {
+              if (!grade.exclude && !filtereddisabled.includes(grade)) {
+                var gradegrade = grade.grade.replace(",", ".");
+                data.push({
+                  t: new Date(grade.dateFilledIn),
+                  y: gradegrade,
+                  a: grade.average,
+                  w: grade.weight,
+                });
+                gradegrade = parseFloat(gradegrade.replace(",", "."));
+                if (grade.passed) {
+                  vol++;
+                } else {
+                  onvol++;
+                }
+              }
+            });
+          }
+        });
+    })
   } else {
     lessonController.getLesson(lesson).lesson.grades.forEach((grade) => {
       if (!grade.exclude && !filtereddisabled.includes(grade)) {
@@ -1238,7 +1275,7 @@ function setChartData(config, lesson, everything) {
   }
 
   // if (viewController.lineChart2 != false) viewController.lineChart2.update();
-  if (lesson != "general") {
+  if (lesson != "general" && lesson != "generalAll") {
     var ctx = document.getElementById("lineChart2").getContext("2d");
     var data = [
       {
@@ -1649,13 +1686,16 @@ function toShortFormat(d) {
     "nov",
     "dec",
   ];
-  return `${d.getDate()} ${month_names[d.getMonth()]} ${d.getFullYear()}`; //7:05, 21 Jul 2020'
+  return `${d.getDate()} ${month_names[d.getMonth()]} ${d.getFullYear()}`; //7:05, 21 jul 2020'
 }
 
 function setTableData(lesson) {
   var lesson, table, grades;
   if (lesson == "general") {
     grades = viewController.currentCourse.course.grades;
+    table = $("#generalGradesTable");
+  } else if (lesson == "generalAll") {
+    grades = courseController.allGrades;
     table = $("#generalGradesTable");
   } else {
     lesson = lessonController.getLesson(lesson).lesson;
@@ -1725,14 +1765,29 @@ function setTableData(lesson) {
   // $('#dataTable').DataTable();
 }
 
-function setAverages() {
+function setAverages(includeAllGrades = false) {
   var totcompleted = 0,
     totcomclass = 0,
     totgem = 0,
     totgemclass = 0;
   $("#general-progress").empty();
   $("#averagesTable").empty();
-  lessonController.lessons.forEach((lesson) => {
+  if (includeAllGrades) {
+    courseController.courses.forEach((course) => {
+      var sorted = course.course.sortGrades();
+      Object.values(sorted).forEach((sorted) => {
+        var lesson = sorted["Lesson"];
+          if (lesson.grades.filter((grade) => !filtereddisabled.includes(grade)).length > 0) {
+            var average = lesson.getAverage();
+            if (parseFloat(average) > -1 && parseFloat(average) < 11) {
+              totgem = totgem + parseFloat(average);
+              totgemclass++;
+            }
+          }
+        });
+    })
+  } else {
+    lessonController.lessons.forEach((lesson) => {
     if (lessonController.lessons.filter((lesson) => lesson.lesson.grades.every(r=> filtereddisabled.includes(r))).map((lesson) => lesson.name).includes(lesson.name.capitalize())) {return;}
     var average = lesson.lesson.getAverage();
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
@@ -1746,6 +1801,7 @@ function setAverages() {
       totgemclass++;
     }
   });
+}
   var totgem = totgem / totgemclass;
   $("#general-average").text(
     `${round(totgem) == "NaN" ? "Geen cijfers..." : parseFloat(round(totgem)).toLocaleString(viewController.config.separator, {minimumFractionDigits: 2,maximumFractionDigits: 2})}`

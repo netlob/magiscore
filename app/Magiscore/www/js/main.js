@@ -6,6 +6,7 @@ var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
 var courseController = new CourseController(viewController);
 var filtereddisabled = [];
+var filteredsearched = []
 var idletime;
 
 var sorted = {},
@@ -574,38 +575,36 @@ function vibrate(time, strong) {
 
 
 
-function generateFilter() {
+function generateFilter(noreset = false) {
   filtereddisabled = [];
 
   courseController.allGrades.filter((grade) => !Array.from(document.getElementById('vakkenModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
     .filter((ent) => typeof ent != 'undefined')
     .includes(grade.class.description.capitalize()) && grade.type._type == 1)
-    .forEach((grade) => filtereddisabled.push(grade));
+    .forEach((grade) => filtereddisabled.indexOf(grade) === -1 ? filtereddisabled.push(grade) : "");
 
-  if (document.getElementById('periodeModalTable').children[0].id != 'noperiodsfound') courseController.allGrades.filter((grade) => ('CijferPeriode' in grade) && !Array.from(document.getElementById('periodeModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
+  if (document.getElementById('periodeModalTable').children[0].id != 'noperiodsfound') courseController.allGrades.filter((grade) => ('CijferPeriode' in grade) && ![...document.getElementById('periodeModalTable').children].map((ch) => { if (ch.tagName = 'LABEL' && ch.children[0].checked) return ch.innerText })
     .filter((ent) => typeof ent != 'undefined')
     .includes(grade?.CijferPeriode?.name) && grade.type._type == 1)
-    .forEach((grade) => filtereddisabled.push(grade));
+    .forEach((grade) => filtereddisabled.indexOf(grade) === -1 ? filtereddisabled.push(grade) : "");
 
   document.getElementById('gradefilterbutton').children[0].children[0].classList.add("activefilter");
 
-  if (!(document.getElementById('search-wrapper').style.display != 'none')) viewController.render(viewController.currentLesson);
+  if (noreset) { filtereddisabled = _.union(filteredsearched, filtereddisabled); }
+
+  if (!(document.getElementById('search-wrapper').style.display != 'none') || noreset) viewController.render(viewController.currentLesson);
   updateSidebar();
+  filtereddisabled = [];
 }
 
-function generateSearch(Zoekopdracht) {
+function generateSearch(Zoekopdracht, rendergeneral = false) {
   var zoektable = $("#zoekGradesTable")
   zoektable.empty();
   var searched = _.sortBy(courseController.allGrades.filter((grade) => Object.entries(grade).map((grade) => {if (grade[0].includes('grade') || grade[0].includes('description')) {return grade[1] } else if (grade[0].includes('teacher')) {return grade[1].teacherCode} else if (grade[0].includes('class')) {return grade[1].description}}).filter((grade) => typeof grade != 'undefined').filter((string) => string != null && string.toString().toLowerCase()
   .includes(Zoekopdracht.toString().toLowerCase())).length > 0), "dateFilledIn");
-  if ([...document.getElementById('gradefilterbutton').children[0].children[0].classList].includes('activefilter')) 
-  zoektable.append(
-    `<a class="d-flex align-items-center border-bottom vibrate grade-card mt-2 mb-2" style="justify-content: space-between; font-weight: bold;">
-    <span class="float-left" style="color: var(--secondary);">
-      <i class="fas fa-exclamation-triangle mr-1"></i> 
-        Filter was actief!
-    </span><span class="float-right vibrate" data-toggle="modal" data-target="#vakkenModal" style="color: var(--primary);">AANPASSEN</span>
-    </a><hr class="m-0 p-0">`);
+  if (!rendergeneral) {
+    $('#searchfilterbutton').hide();
+    $("#general-wrapper").hide();
   searched.forEach((grade, index) => {
     if (
       grade.type._type == 1 &&
@@ -654,7 +653,38 @@ function generateSearch(Zoekopdracht) {
   })
   if (searched.filter((grade) => grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11 && !filtereddisabled.includes(grade)).length == 0) {
     zoektable.append(`<div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>`)
-  }
+  }}
+  if (rendergeneral) {
+    filteredsearched = courseController.allGrades.filter((grade) => !searched.filter((grade) => grade.type._type == 1).includes(grade));
+    filtereddisabled = filteredsearched
+    viewController.renderGeneral(true)
+    $("#vakkenModalTable").empty();
+    $("#periodeModalTable").empty();
+    $('#searchfilterbutton').show();
+
+    Array.from(new Set(courseController.allGrades.filter((grade) => !filtereddisabled.includes(grade))
+      .map((grade) => grade.class)
+      .map(({ description }) => description.capitalize()))).forEach((name) => {
+        var lesson = sorted["Lesson"];
+        $("#vakkenModalTable").append(`  
+        <label class="buttoncheckbox btn btn-primary">
+          <input checked id="${name.replaceAll(" ", "")}_SelectP" type="checkbox" autocomplete="off">${name}
+        </label>
+        `)
+        });
+    
+        Array.from(new Set(courseController.allGrades
+          .filter((grade) => grade.type._type == 1 && grade.CijferPeriode && !filtereddisabled.includes(grade))
+          .map((grade) => grade.CijferPeriode)
+          .map(({ name }) => name)))
+      .forEach(cijferPeriode => {
+        $('#periodeModalTable').append(`
+        <label class="buttoncheckbox btn btn-primary">
+          <input checked id="${cijferPeriode}_SelectP" type="checkbox" autocomplete="off">${cijferPeriode}
+        </label>
+        `)})
+}
+filtereddisabled = [];
 }
 
 function MoveToNewStorage() {
@@ -715,6 +745,7 @@ function onDeviceReady() {
   
     var onEvent = async function(taskId) {
         console.log('[BackgroundFetch] event received: ', taskId);
+        await refreshToken();
         var latestgrades = await courseController.getLatestGrades(false, getActiveChildAccount(), true);
         console.log(latestgrades[1] ? 'New grades found' : "No new grades found")
         if (latestgrades[1]) sendNotification();

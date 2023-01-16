@@ -542,6 +542,12 @@
                     <button onClick="generateSearch(document.getElementById('zoekBalk').value)" class="btn" style="color: black!important;">
                       <i data-toggle="modal" data-target="#zoekModal" class="fas fa-search fa-sm fa-fw text-gray-400"></i>
                     </button>
+                    <button id="SearchToGeneral" onClick="generateSearch(document.getElementById('zoekBalk').value, true)" class="btn" style="color: black!important;">
+                      <i class="fas fa-chart-bar fa-sm fa-fw text-gray-400"></i>
+                    </button>
+                    <button id="searchfilterbutton" data-toggle="modal" data-target="#vakkenModal" class="btn" style="display: none; color: black!important;">
+                      <i class="fas fa-filter fa-sm fa-fw text-gray-400"></i>
+                    </button>
                   </div>
                   <hr class="m-0 p-0">
                   <div class="p-0" id="zoekGradesTable">
@@ -1040,9 +1046,19 @@
             </div>
             </div>
             <div class="modal-footer">
-              <button type="button" onClick="filtereddisabled = [];document.getElementById('gradefilterbutton').children[0].children[0].classList.remove('activefilter');if (!(document.getElementById('search-wrapper').style.display != 'none')){viewController.render(viewController.currentLesson); }viewController.updateNav();" class="btn btn-secondary vibrate" data-dismiss="modal">Reset</button>
+              <button type="button" onClick="filtereddisabled = []; 
+              document.getElementById('gradefilterbutton').children[0].children[0].classList.remove('activefilter'); 
+              if (!(document.getElementById('search-wrapper').style.display != 'none')) {
+                 viewController.render(viewController.currentLesson); 
+                 viewController.updateNav();
+                } else if (viewController.currentLesson == 'generalAll') {
+                  filtereddisabled = filteredsearched;
+                  viewController.render(viewController.currentLesson); 
+                  [...document.getElementById('periodeModalTable').children].forEach((ch) => { if (ch.tagName = 'LABEL') ch.children[0].checked = true; });
+                  [...document.getElementById('vakkenModalTable').children].forEach((ch) => { if (ch.tagName = 'LABEL') ch.children[0].checked = true; });
+                }" class="btn btn-secondary vibrate" data-dismiss="modal">Reset</button>
               <button type="button" class="btn btn-secondary vibrate" data-dismiss="modal">Sluiten</button>
-              <button type="button" onClick="generateFilter();" data-dismiss="modal" class="btn btn-primary vibrate">Bereken</button>
+              <button type="button" onClick="generateFilter();" data-dismiss="modal" id="calculateFilter" class="btn btn-primary vibrate">Bereken</button>
             </div>
             </div>
             </div>
