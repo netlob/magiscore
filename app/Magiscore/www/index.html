@@ -1216,7 +1216,12 @@
       $("#overlay").hide()
       logConsole(`[ERROR] ${msg} line: ${lineNo}\n url: ${url}`)
       console.error(msg, url, lineNo, columnNo, error)
-      if ($("#mobilePersonInfo").text() == "Voornaam Achternaam") openBrowser(1)
+      if ($("#mobilePersonInfo").text() == "Voornaam Achternaam") navigator.notification.confirm(
+          'Er is iets fout gegaan waardoor je geen toegang hebt tot dit account. Probeer opnieuw aan te melden door op de knop ‘Aanmelden’ te klikken of log uit door op de knop ‘Uitloggen’ te klikken.',
+          openBrowser,
+          "Probleem bij het inloggen",
+          ["Aanmelden", "Uitloggen"]
+        );
       return false;
     }
   </script>

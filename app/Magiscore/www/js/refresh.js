@@ -25,7 +25,12 @@ function refreshToken() {
           try {
             // var response = JSON.parse(XMLHttpRequest.responseText);
             // if (response.error == "invalid_grant") {
-            openBrowser(1);
+              navigator.notification.confirm(
+                'Er is iets fout gegaan waardoor je geen toegang hebt tot dit account. Probeer opnieuw aan te melden door op de knop ‘Aanmelden’ te klikken of log uit door op de knop ‘Uitloggen’ te klikken.',
+                openBrowser,
+                "Probleem bij het inloggen",
+                ["Aanmelden", "Uitloggen"]
+              );
             // }
           } catch (err) {
             logConsole("[ERROR] " + err);
@@ -64,8 +69,7 @@ function refreshToken() {
 
 function openBrowser(b) {
   if (b == 2) {
-    clearObject(getActiveAccount());
-    window.location = "./login.html";
+    confirmLogout(1)
   }
   // viewController.overlay("show")
   school = /(.+:\/\/)?([^\/]+)(\/.*)*/i.exec(school)[2];

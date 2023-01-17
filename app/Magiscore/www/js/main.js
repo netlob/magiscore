@@ -175,6 +175,11 @@ async function confirmLogout(b) {
       //window.location = "./index.html";
     } else {
       clearObject(getActiveAccount());
+      var sharedPreferences = window.plugins.SharedPreferences.getInstance("Gemairo")
+      sharedPreferences.del("latestGrades");
+      sharedPreferences.del("Tokens");
+      sharedPreferences.del("PersonID");
+      sharedPreferences.del("SchoolURL");
       window.location = "./login.html";
     }
   } else return;
