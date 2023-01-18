@@ -2,7 +2,7 @@ var verifier = "";
 var tenant = "";
 var popup = null;
 
-function refreshToken() {
+function refreshToken(background = false) {
   return new Promise((resolve, reject) => {
     var tokens = JSON.parse(getObject("tokens", getActiveAccount()));
     var refresh_token = tokens.refresh_token;
@@ -21,7 +21,7 @@ function refreshToken() {
         grant_type: "refresh_token"
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
-        if (XMLHttpRequest.status == 400 || XMLHttpRequest.status == "400") {
+        if (XMLHttpRequest.status == 400 || XMLHttpRequest.status == "400" && !background) {
           try {
             // var response = JSON.parse(XMLHttpRequest.responseText);
             // if (response.error == "invalid_grant") {
