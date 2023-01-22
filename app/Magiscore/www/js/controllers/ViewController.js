@@ -719,6 +719,7 @@ class ViewController {
   }
 
   openZoeken() {
+    filtereddisabled = [];
     viewController.settingsOpen = true;
     $("#buttonSidenavToggle").hide();
     $("#buttonSidenavBack").show();

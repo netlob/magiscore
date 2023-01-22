@@ -599,7 +599,6 @@ function generateFilter(noreset = false) {
 
   if (!(document.getElementById('search-wrapper').style.display != 'none') || noreset) viewController.render(viewController.currentLesson);
   updateSidebar();
-  filtereddisabled = [];
 }
 
 function generateSearch(Zoekopdracht, rendergeneral = false) {
