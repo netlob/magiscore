@@ -7,49 +7,18 @@ function refreshToken(background = false) {
     var tokens = JSON.parse(getObject("tokens", getActiveAccount()));
     var refresh_token = tokens.refresh_token;
 
-    var settings = {
-      async: true,
-      crossDomain: true,
-      url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
-      method: "POST",
-      headers: {
-        "cache-control": "no-cache"
-      },
-      data: {
-        refresh_token: refresh_token,
-        client_id: "M6LOAPP",
-        grant_type: "refresh_token"
-      },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        if (XMLHttpRequest.status == 400 || XMLHttpRequest.status == "400" && !background) {
-          try {
-            // var response = JSON.parse(XMLHttpRequest.responseText);
-            // if (response.error == "invalid_grant") {
-              navigator.notification.confirm(
-                'Er is iets fout gegaan waardoor je geen toegang hebt tot dit account. Probeer opnieuw aan te melden door op de knop ‘Aanmelden’ te klikken of log uit door op de knop ‘Uitloggen’ te klikken.',
-                openBrowser,
-                "Probleem bij het inloggen",
-                ["Aanmelden", "Uitloggen"]
-              );
-            // }
-          } catch (err) {
-            logConsole("[ERROR] " + err);
-          }
-        } else if (XMLHttpRequest.readyState == 4) {
-          logConsole(`[ERROR] HTTP error (${textStatus})`);
-          reject("no internet");
-        } else if (XMLHttpRequest.readyState == 0) {
-          logConsole(`[ERROR] Network error (${textStatus})`);
-          reject("no internet");
-        } else {
-          logConsole("[ERROR] something weird is happening");
-          reject("no internet");
-        }
-      },
-      timeout: 5000
-    };
-
-    $.ajax(settings).done(function (response) {
+    cordova.plugin.http.setRequestTimeout(5.0);
+    cordova.plugin.http.post("https://accounts.magister.net/connect/token", {
+      "refresh_token": refresh_token,
+      "client_id": "M6LOAPP",
+      "grant_type": "refresh_token"
+    }, { "cache-control": "no-cache" }, function(res) {
+      //success
+      try {
+        response = JSON.parse(res.data);
+      } catch(e) {
+        console.error('JSON parsing error');
+      }
       logConsole(
         "[DEBUG] " + typeof response == "object"
           ? JSON.stringify(response)
@@ -63,6 +32,25 @@ function refreshToken(background = false) {
       setObject("tokens", JSON.stringify(tokens), getActiveAccount());
       if (typeof m != 'undefined' && m != null) m.token = tokens.access_token;
       resolve(tokens);
+    }, function(response) {
+      //Error
+      console.log(response)
+      if (response.status == 400 || response.status == "400" && !background) {
+        try {
+            navigator.notification.confirm(
+              'Er is iets fout gegaan waardoor je geen toegang hebt tot dit account. Probeer opnieuw aan te melden door op de knop ‘Aanmelden’ te klikken of log uit door op de knop ‘Uitloggen’ te klikken.',
+              openBrowser,
+              "Probleem bij het inloggen",
+              ["Aanmelden", "Uitloggen"]
+            );
+          // }
+        } catch (err) {
+          logConsole("[ERROR] " + err);
+        }
+      } else {
+        logConsole(`[ERROR] ${response.status}: ${response.error}`);
+        reject("no internet");
+      }
     });
   });
 }
