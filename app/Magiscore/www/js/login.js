@@ -324,14 +324,15 @@ async function validateLogin(code, codeVerifier) {
       setObject("tokens", JSON.stringify(tokens), newaccountindex);
 
       const res = await fetch(
-        "https://cors.sjoerd.dev/https://magister.net/.well-known/host-meta.json",
+        "https://cors.sjoerd.dev/https://magister.net/.well-known/host-meta.json?rel=magister-api",
         {
           headers: new Headers({
             Authorization: `Bearer ${tokens.access_token}`,
           }),
         }
       ).then((res) => res.json());
-      tenant = JSON.stringify(res).match(/(?!(w+)\.)\w*(?:\w+\.)+\w+/)[0];
+      tenant = JSON.stringify(res).match(/(?!(w+)\.)[a-zA-Z0-9_\-]*(?:\w+\.)+\w+/)[0];
+      logConsole(`${tenant} gevonden.`);
       setObject("school", tenant, newaccountindex);
       var config = {
         isDesktop: false,

@@ -1222,6 +1222,14 @@
           "Probleem bij het inloggen",
           ["Aanmelden", "Uitloggen"]
         );
+        if (viewController.config.devMode) {
+    (async () => { var appVersion = await cordova.getAppVersion.getVersionNumber();
+    viewController.toast(
+    '<span class="float-left">Er is iets fout gegaan! </span><a class="float-right vibrate text-warning" href="https://github.com/netlob/magiscore/issues/new?body=' + encodeURIComponent(
+    `#### Wat ging er fout?\n\n#### Automatisch gevonden informatie:\nUseragent: ${navigator.userAgent}\nVersie: ${appVersion}\n\n#### Gevonden error:\n\`\`\`\n${error}\n\`\`\``) +'">RAPPORTEER</a>',
+    10000,
+    true
+  );})();}
       return false;
     }
   </script>

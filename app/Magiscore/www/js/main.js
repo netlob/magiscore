@@ -749,7 +749,7 @@ function onDeviceReady() {
   
     var onEvent = async function(taskId) {
         console.log('[BackgroundFetch] event received: ', taskId);
-        await refreshToken(true);
+        tokens = await refreshToken(true);
         var latestgrades = await courseController.getLatestGrades(false, getActiveChildAccount(), true);
         console.log(latestgrades[1] ? 'New grades found' : "No new grades found")
         if (latestgrades[1]) sendNotification();
