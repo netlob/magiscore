@@ -245,7 +245,7 @@ class Lesson {
     var alles = 0;
     var totaalweging = 0;
     for (var i = 0; i < grades.length; i++) {
-      if (!grades[i].exclude) {
+      if (!grades[i].exclude && !filtereddisabled.includes(grades[i])) {
         var cijfer = grades[i].grade.replace(",", ".");
         cijfer = Number(cijfer);
         alles += cijfer * grades[i].weight;
