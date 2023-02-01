@@ -1,0 +1,113 @@
+# Shared preferences for Cordova
+
+[![Build Status](https://travis-ci.org/adriano-di-giovanni/cordova-plugin-shared-preferences.svg?branch=master)](https://travis-ci.org/adriano-di-giovanni/cordova-plugin-shared-preferences)
+
+This plugin provides the ability to save and retrieve persistent key-value pairs of any Javascript data type. You can use this plugin to save any data: arrays, booleans, numbers, strings and objects. This data will persist across user sessions.
+
+This plugin uses [SharedPreferences](https://developer.android.com/reference/android/content/SharedPreferences.html) on Android and [NSUserDefaults](https://developer.apple.com/documentation/foundation/nsuserdefaults?language=objc) on iOS.
+
+### Highlights
+
+* save and retrieve key-value pairs of any Javascript data type using JSON serialization and parsing with `.put()` and `.get()`;
+* also save and retrieve key-value pairs of booleans, numbers and strings mapping to native data types with `.putBoolean()`, `.getBoolean()`, `.putNumber()`, `.getNumber()`, `.putString()`, `.getString()`;
+* fallback to user-defined default value if the key doesn't exist;
+* manage multiple sets of preferences;
+* well-tested cross-browser implementation.
+
+Please, refer to [Installation](#installation), [Usage](#usage) and [API reference](#api_reference) sections for more information.
+
+## Supported platforms
+
+* Android
+* iOS
+
+## Installation <a name="installation"></a>
+
+```bash
+npm install cordova-plugin-awesome-shared-preferences
+```
+
+## Usage <a name="usage"></a>
+
+Invoke `SharedPreferences.getInstance()` to retrieve the instance for the default set of preferences:
+
+```javascript
+var sharedPreferences = window.plugins.SharedPreferences.getInstance()
+```
+
+You can manage than one set of preferences. Invoke `SharePreferences.getInstance(name)` to retrieve an instance for a specific set:
+
+```javascripts
+var sharedPreferences = window.plugins.SharedPreferences.getInstance('settings')
+```
+
+Set a new preference using `.put()`:
+
+```javascript
+var key = 'fruits'
+var value = ['Apple', 'Banana']
+var successCallback = function() {
+    console.log('OK')
+}
+var errorCallback = function(err) {
+    console.error(err)
+}
+
+sharedPreferences.put(key, value, successCallback, errorCallback)
+```
+
+Retrieve a value from the preferences using `.get()`:
+
+```javascript
+var key = 'fruits'
+var successCallback = function(value) {
+    console.log(value)
+}
+var errorCallback = function(err) {
+    console.log(err)
+}
+
+sharedPreferences.get(key, successCallback, errorCallback)
+```
+
+If the key doesn't exist, the `errorCallback` will be invoked. You can override this behavior providing a default value:
+
+```javascript
+var key = 'animals' // the key doesn't exist
+var defaultValue = 'Dog'
+var successCallback = function(value) {
+    console.log(value) // Dog
+}
+var errorCallback = function(err) {
+    console.error(err)
+}
+
+sharedPreferences.get(key, defaultValue, successCallback, errorCallback)
+```
+
+Delete a key-value pair from the preferences using `.del()`:
+
+```javascript
+var key = 'fruits'
+var successCallback = function() {
+    console.log('OK')
+}
+var errorCallback = function(err) {
+    console.error(err)
+}
+
+sharedPreferences.del(key, successCallback, errorCallback)
+```
+
+## API reference <a name="api_reference"></a>
+
+{{#module name="SharedPreferences"}}
+{{>body~}}
+{{>member-index~}}
+{{>separator~}}
+{{>members~}}
+{{/module}}
+
+## License
+
+This project is licensed under the MIT license.

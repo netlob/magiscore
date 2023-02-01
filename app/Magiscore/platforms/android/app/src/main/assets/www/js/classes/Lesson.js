@@ -245,7 +245,7 @@ class Lesson {
     var alles = 0;
     var totaalweging = 0;
     for (var i = 0; i < grades.length; i++) {
-      if (!grades[i].exclude) {
+      if (!grades[i].exclude && !filtereddisabled.includes(grades[i])) {
         var cijfer = grades[i].grade.replace(",", ".");
         cijfer = Number(cijfer);
         alles += cijfer * grades[i].weight;
@@ -307,7 +307,7 @@ class Lesson {
         }
       }
     });
-    $("#newGrade-newGrade").text(parseFloat(round(newGrade)).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}));
+    $("#newGrade-newGrade").text(parseFloat(round(newGrade)).toLocaleString(viewController.config.separator, {minimumFractionDigits: 2,maximumFractionDigits: 2}));
     return round(newGrade);
   }
 

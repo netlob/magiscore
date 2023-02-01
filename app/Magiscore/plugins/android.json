@@ -83,11 +83,20 @@
     },
     "cordova-plugin-background-fetch": {
       "PACKAGE_NAME": "app.netlob.magiscore"
-    }
-  },
-  "dependent_plugins": {
+    },
+    "cordova-plugin-theme-detection": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-awesome-shared-preferences": {
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-advanced-http": {
+      "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1",
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
     "cordova-plugin-badge-fix": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
-  }
+  },
+  "dependent_plugins": {}
 }

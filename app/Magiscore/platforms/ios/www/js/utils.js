@@ -18,6 +18,7 @@ function setObject(key,value,index) {
     var json = JSON.parse(localStorage.getItem(index) ?? JSON.stringify({}))
     json[key] = value;
     localStorage.setItem(index, JSON.stringify(json));
+    window.dispatchEvent( new Event('storage') );
 }
 
 function getObject(key,index) {
@@ -51,6 +52,7 @@ async function ForceSetFromStorage() {
     var allfiles = await listFiles();
     var file = (await allfiles.filter((file) => file.name == `${userkey}.json`))[0];
     localStorage.setItem(userkey, await readFile(file));
+    window.dispatchEvent( new Event('storage') );
     window.location = './index.html';
 }
 

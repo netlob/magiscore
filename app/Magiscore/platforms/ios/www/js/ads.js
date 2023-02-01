@@ -101,7 +101,7 @@ const ads = {
   },
 
   async loadBanner() {
-    if (_banner != undefined) {
+    if (_banner != undefined || window.location.hash == "#noNewAds" || document.hidden) {
       // banner already loaded
       return;
     }

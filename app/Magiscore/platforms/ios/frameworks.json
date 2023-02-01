@@ -2,8 +2,9 @@
     "AppTrackingTransparency.framework": 1,
     "StoreKit.framework": 1,
     "AudioToolbox.framework": 3,
-    "SystemConfiguration.framework": 1,
+    "SystemConfiguration.framework": 2,
     "CoreTelephony.framework": 1,
     "UserNotifications.framework": 1,
-    "CoreLocation.framework": 1
+    "CoreLocation.framework": 1,
+    "Security.framework": 1
 }

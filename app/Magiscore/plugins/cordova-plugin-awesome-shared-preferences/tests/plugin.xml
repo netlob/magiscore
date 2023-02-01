@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-shared-preferences-tests"
+    version="0.1.0">
+
+    <name>Shared preferences tests</name>
+
+    <js-module src="index.js" name="tests" />
+
+    <dependency id="cordova-plugin-device" />
+</plugin>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.netlob.magiscore" version="1.8.2" xmlns="http://www.w3.org/ns/widgets"
+<widget id="app.netlob.magiscore" version="1.8.3" xmlns="http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name short="Gemairo">Gemairo - Stats voor Magister</name>
     <description>
@@ -60,7 +60,8 @@
             target="app/src/main/res/drawable-xxhdpi/notification.png" />
         <resource-file src="res/new/res/notification/drawable-xxxhdpi/notification.png"
             target="app/src/main/res/drawable-xxxhdpi/notification.png" />
-        <resource-file src="BackgroundFetchHeadlessTask.java" target="app/src/main/java/com/transistorsoft/cordova/backgroundfetch/BackgroundFetchHeadlessTask.java" />
+        <resource-file src="BackgroundFetchHeadlessTask.java"
+            target="app/src/main/java/com/transistorsoft/cordova/backgroundfetch/BackgroundFetchHeadlessTask.java" />
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />

@@ -58,8 +58,9 @@ class CourseController {
       // logConsole("RAW:")
       // logConsole(JSON.stringify(this.raw))
       var personid = (childindex >= 0 && person.isParent) ? person.children[childindex].Id : person.id
-      const url = `https://cors.sjoerd.dev/https://${school}/api/personen/${personid}/cijfers/laatste?top=50&skip=0`;
+      const url = `https://${school}/api/personen/${personid}/cijfers/laatste?top=50&skip=0`;
       //Er wordt hier een plugin gebruikt, omdat die in Chrome niet worden gethrottled wanneer de applicatie zich in de achtergrond bevindt.
+      //Ook heeft de plugin geen CORS beperkingen.
       cordova.plugin.http.sendRequest(url, {
         headers: {
           accept: "application/json, text/plain, */*",
@@ -73,6 +74,7 @@ class CourseController {
         var res = JSON.parse(response.data);
         var grades = res.Items || res.items;
         courseController.latestGrades = grades;
+        window.dispatchEvent( new Event('storage') );
         var popup = false;
         var foundnew = false
         //Voor een of andere reden is het kolomId van sommige cijfers anders wanneer het bij de laatste cijfers opgehaald wordt,

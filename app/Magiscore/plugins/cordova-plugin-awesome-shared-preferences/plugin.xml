@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-awesome-shared-preferences"
+    version="0.1.0">
+
+    <name>Shared preferences</name>
+    <description>Save and retrieve persistent key-value pairs of any Javascript data type</description>
+    <author>Adriano Di Giovanni</author>
+    <keywords>shared,preferences</keywords>
+    <license>MIT</license>
+    <repo>https://github.com/adriano-di-giovanni/cordova-plugin-shared-preferences.git</repo>
+    <issue>https://github.com/adriano-di-giovanni/cordova-plugin-shared-preferences/issues</issue>
+
+    <js-module src="www/index.js" name="SharedPreferences">
+  		<clobbers target="window.plugins.SharedPreferences" />
+  	</js-module>
+
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+          <feature name="SharedPreferences">
+            <param name="android-package"
+                  value="com.adrianodigiovanni.sharedpreferences.CDVSharedPreferences"/>
+          </feature>
+        </config-file>
+
+        <source-file src="src/android/CDVSharedPreferences.java"
+            target-dir="src/com/adrianodigiovanni/sharedpreferences" />
+    </platform>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+          <feature name="SharedPreferences">
+            <param name="ios-package" value="CDVSharedPreferences" />
+          </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVSharedPreferences.h" />
+        <source-file src="src/ios/CDVSharedPreferences.m" />
+        <header-file src="src/ios/NSUserDefaults+CDVSharedPreferences.h" />
+        <source-file src="src/ios/NSUserDefaults+CDVSharedPreferences.m" />
+    </platform>
+</plugin>

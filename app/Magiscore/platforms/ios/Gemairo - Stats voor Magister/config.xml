@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.netlob.magiscore" version="1.8.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="app.netlob.magiscore" version="1.8.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="CDVWebViewEngine">
         <param name="ios-package" value="CDVWebViewEngine" />
     </feature>
@@ -87,6 +87,15 @@
     <feature name="BackgroundFetch">
         <param name="ios-package" value="CDVBackgroundFetch" />
         <param name="onload" value="true" />
+    </feature>
+    <feature name="ThemeDetection">
+        <param name="ios-package" value="ThemeDetection" />
+    </feature>
+    <feature name="SharedPreferences">
+        <param name="ios-package" value="CDVSharedPreferences" />
+    </feature>
+    <feature name="CordovaHttpPlugin">
+        <param name="ios-package" value="CordovaHttpPlugin" />
     </feature>
     <name short="Gemairo">Gemairo - Stats voor Magister</name>
     <description>

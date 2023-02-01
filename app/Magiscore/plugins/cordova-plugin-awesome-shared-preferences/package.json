@@ -1,0 +1,48 @@
+{
+    "name": "cordova-plugin-awesome-shared-preferences",
+    "version": "0.1.0",
+    "description":
+        "Shared preferences for Cordova. Save and retrieve persistent key-value pairs of any Javascript data type.",
+    "cordova": {
+        "id": "cordova-plugin-shared-preferences",
+        "platforms": ["android", "ios"]
+    },
+    "scripts": {
+        "docs": "jsdoc2md --template README.hbs www/index.js > README.md",
+        "precommit": "lint-staged && npm run docs && git add README.md"
+    },
+    "keywords": ["ecosystem:cordova", "cordova-android", "cordova-ios", "shared", "preferences"],
+    "author": "Adriano Di Giovanni <me@adrianodigiovanni.com> (http://adrianodigiovanni.com/)",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "^4.15.0",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-config-standard": "^11.0.0-beta.0",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-prettier": "^2.5.0",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "husky": "^0.14.3",
+        "jsdoc-to-markdown": "^4.0.1",
+        "lint-staged": "^6.1.0",
+        "prettier": "^1.10.2"
+    },
+    "lint-staged": {
+        "*.js": ["eslint --fix", "git add"],
+        "*.json": ["prettier --write", "git add"]
+    },
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/adriano-di-giovanni/cordova-plugin-shared-preferences.git"
+    },
+    "bugs": {
+        "url": "https://github.com/adriano-di-giovanni/cordova-plugin-shared-preferences/issues"
+    },
+    "homepage": "https://github.com/adriano-di-giovanni/cordova-plugin-shared-preferences#readme"
+}

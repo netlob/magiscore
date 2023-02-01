@@ -644,6 +644,13 @@ a.magister-login:before {
 display: none;
 }
 
+.buttoncheckbox > input {
+  float: left;
+  accent-color: var(--primary);
+  margin-right: 5px;
+}
+
+
 .buttoncheckbox {
   border: var(--primary) 2px solid;
   padding: 5px;
@@ -687,7 +694,7 @@ display: none;
     align-items: center;
 }
 
-.snackbarContainer > .snackbar {
+/* .snackbarContainer > .snackbar {
     min-width: 250px;
     margin-left: unset!important;
     background-color: white;
@@ -718,6 +725,38 @@ display: none;
 
 .snackbarContainer > .snackbar > .text-warning:hover {
   color: var(--indigo)!important;
+} */
+
+.snackbarContainer > .snackbar {
+  min-width: 250px;
+  text-align: center;
+  margin-left: unset!important;
+  position: relative!important;
+  left: unset!important;
+  bottom: unset!important;
+  animation-name: slidein;
+  animation-duration: 500ms;
+  -webkit-box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
+  box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
+  backdrop-filter: blur(10px);
+  background-clip: padding-box;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.snackbarContainer > .snackbar > .text-warning {
+  color: var(--primary)!important;
+}
+
+.radio-options input[type="radio"]:checked+label {
+  text-decoration: underline;
+  text-underline-position: under;
+  text-decoration-thickness: 2px;
 }
 
 .reverseanimation {

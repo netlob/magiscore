@@ -6,6 +6,7 @@ var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
 var courseController = new CourseController(viewController);
 var filtereddisabled = [];
+var filteredsearched = []
 var idletime;
 
 var sorted = {},
@@ -174,6 +175,11 @@ async function confirmLogout(b) {
       //window.location = "./index.html";
     } else {
       clearObject(getActiveAccount());
+      var sharedPreferences = window.plugins.SharedPreferences.getInstance("Gemairo")
+      sharedPreferences.del("latestGrades");
+      sharedPreferences.del("Tokens");
+      sharedPreferences.del("PersonID");
+      sharedPreferences.del("SchoolURL");
       window.location = "./login.html";
     }
   } else return;
@@ -326,7 +332,7 @@ async function syncGrades() {
           newGrades.length
         }</span> van je ${
               viewController.config.refreshOldGrades ? "" : " nieuwe"
-            } cijfers gesynced<br><!-- <i
+            } cijfers gesynchroniseerd<br><!-- <i
         class="far fa-info-circle fa-s display-inline-block mr-3 ml-2 mb-2 mt-3"> Refresh oude cijfers is ingeschakeld, alle cijfers worden gerefreshed --></span>`,
             false,
             true
@@ -384,7 +390,7 @@ async function syncGrades() {
                 });
                 viewController.toast(
                   `
-                <b class="mb-0">${newGrades.length} nieuwe cijfers gesycned!</b>
+                <b class="mb-0">${newGrades.length} nieuwe cijfers gesynchroniseerd!</b>
                 ${extra}
               `,
                   7000,
@@ -574,30 +580,35 @@ function vibrate(time, strong) {
 
 
 
-function generateFilter() {
+function generateFilter(noreset = false) {
   filtereddisabled = [];
 
   courseController.allGrades.filter((grade) => !Array.from(document.getElementById('vakkenModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
     .filter((ent) => typeof ent != 'undefined')
     .includes(grade.class.description.capitalize()) && grade.type._type == 1)
-    .forEach((grade) => filtereddisabled.push(grade));
+    .forEach((grade) => filtereddisabled.indexOf(grade) === -1 ? filtereddisabled.push(grade) : "");
 
-  if (document.getElementById('periodeModalTable').children[0].id != 'noperiodsfound') courseController.allGrades.filter((grade) => ('CijferPeriode' in grade) && !Array.from(document.getElementById('periodeModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
+  if (document.getElementById('periodeModalTable').children[0].id != 'noperiodsfound') courseController.allGrades.filter((grade) => ('CijferPeriode' in grade) && ![...document.getElementById('periodeModalTable').children].map((ch) => { if (ch.tagName = 'LABEL' && ch.children[0].checked) return ch.innerText })
     .filter((ent) => typeof ent != 'undefined')
     .includes(grade?.CijferPeriode?.name) && grade.type._type == 1)
-    .forEach((grade) => filtereddisabled.push(grade));
+    .forEach((grade) => filtereddisabled.indexOf(grade) === -1 ? filtereddisabled.push(grade) : "");
 
   document.getElementById('gradefilterbutton').children[0].children[0].classList.add("activefilter");
 
-  viewController.render(viewController.currentLesson);
+  if (noreset) { filtereddisabled = _.union(filteredsearched, filtereddisabled); }
+
+  if (!(document.getElementById('search-wrapper').style.display != 'none') || noreset) viewController.render(viewController.currentLesson);
   updateSidebar();
 }
 
-function generateSearch(Zoekopdracht) {
+function generateSearch(Zoekopdracht, rendergeneral = false) {
   var zoektable = $("#zoekGradesTable")
   zoektable.empty();
-  var searched = courseController.allGrades.filter((grade) => Object.entries(grade).map((grade) => {if (grade[0].includes('grade') || grade[0].includes('description')) {return grade[1] } else if (grade[0].includes('teacher')) {return grade[1].teacherCode} else if (grade[0].includes('class')) {return grade[1].description}}).filter((grade) => typeof grade != 'undefined').filter((string) => string != null && string.toString().toLowerCase()
-  .includes(Zoekopdracht.toString().toLowerCase())).length > 0);
+  var searched = _.sortBy(courseController.allGrades.filter((grade) => Object.entries(grade).map((grade) => {if (grade[0].includes('grade') || grade[0].includes('description')) {return grade[1] } else if (grade[0].includes('teacher')) {return grade[1].teacherCode} else if (grade[0].includes('class')) {return grade[1].description}}).filter((grade) => typeof grade != 'undefined').filter((string) => string != null && string.toString().toLowerCase()
+  .includes(Zoekopdracht.toString().toLowerCase())).length > 0), "dateFilledIn");
+  if (!rendergeneral) {
+    $('#searchfilterbutton').hide();
+    $("#general-wrapper").hide();
   searched.forEach((grade, index) => {
     if (
       grade.type._type == 1 &&
@@ -612,16 +623,16 @@ function generateSearch(Zoekopdracht) {
         })" ${(grade.exclude) ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
-              <h4 class="text-center mt-2">${
+              <h4 class="text-center mt-2 mr-3" style="position: relative;">${
                 grade.grade == "10,0"
                   ? '<span class="text-success">10</span><span class="invisible">,</span>'
                   : !grade.passed
                   ? '<span class="text-danger">' + grade.grade + "</span>"
                   : grade.grade
-              }<sup class="text-gray-800" style="font-size: 10px !important; top: -2em !important; font-variant-numeric: tabular-nums !important;">${
+              }<sup class="text-gray-800" style="font-size: 10px !important;position: absolute;margin-top: 5px;right: -1rem;display: inline-block;font-variant-numeric: tabular-nums !important;">${
         grade.weight < 10
-          ? grade.weight + 'x<span class="invisible">0</span>'
-          : grade.weight + "x"
+          ? grade.weight.toLocaleString(viewController.config.separator) + 'x<span class="invisible">0</span>'
+          : grade.weight.toLocaleString(viewController.config.separator)+ "x"
       }</sup></h4>
             </div>
             <!-- <div class="status-indicator bg-success"></div> -->
@@ -646,7 +657,38 @@ function generateSearch(Zoekopdracht) {
   })
   if (searched.filter((grade) => grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11 && !filtereddisabled.includes(grade)).length == 0) {
     zoektable.append(`<div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>`)
-  }
+  }}
+  if (rendergeneral) {
+    filteredsearched = courseController.allGrades.filter((grade) => !searched.filter((grade) => grade.type._type == 1).includes(grade));
+    filtereddisabled = filteredsearched
+    viewController.renderGeneral(true)
+    $("#vakkenModalTable").empty();
+    $("#periodeModalTable").empty();
+    $('#searchfilterbutton').show();
+
+    Array.from(new Set(courseController.allGrades.filter((grade) => !filtereddisabled.includes(grade))
+      .map((grade) => grade.class)
+      .map(({ description }) => description.capitalize()))).forEach((name) => {
+        var lesson = sorted["Lesson"];
+        $("#vakkenModalTable").append(`  
+        <label class="buttoncheckbox btn btn-primary">
+          <input checked id="${name.replaceAll(" ", "")}_SelectP" type="checkbox" autocomplete="off">${name}
+        </label>
+        `)
+        });
+    
+        Array.from(new Set(courseController.allGrades
+          .filter((grade) => grade.type._type == 1 && grade.CijferPeriode && !filtereddisabled.includes(grade))
+          .map((grade) => grade.CijferPeriode)
+          .map(({ name }) => name)))
+      .forEach(cijferPeriode => {
+        $('#periodeModalTable').append(`
+        <label class="buttoncheckbox btn btn-primary">
+          <input checked id="${cijferPeriode}_SelectP" type="checkbox" autocomplete="off">${cijferPeriode}
+        </label>
+        `)})
+}
+filtereddisabled = [];
 }
 
 function MoveToNewStorage() {
@@ -670,7 +712,17 @@ function MoveToNewStorage() {
   }
   localStorage.clear();
   localStorage.setItem(0, JSON.stringify(newaccountStorage));
+  window.dispatchEvent( new Event('storage') )
   window.location = './index.html';
+}
+
+function beforeDeviceReady() {
+  var sharedPreferences = window.plugins.SharedPreferences.getInstance("Gemairo");
+  sharedPreferences.get("Tokens", [], function (data) {
+    if (data != '' && Object.entries(data).length > 0 && tokens != data)
+      setObject("tokens", JSON.stringify(data), getActiveAccount());
+    onDeviceReady();
+    }, onDeviceReady)
 }
 
 function onDeviceReady() {
@@ -697,6 +749,7 @@ function onDeviceReady() {
   
     var onEvent = async function(taskId) {
         console.log('[BackgroundFetch] event received: ', taskId);
+        tokens = await refreshToken(true);
         var latestgrades = await courseController.getLatestGrades(false, getActiveChildAccount(), true);
         console.log(latestgrades[1] ? 'New grades found' : "No new grades found")
         if (latestgrades[1]) sendNotification();
@@ -710,8 +763,9 @@ function onDeviceReady() {
   
     var status = await BackgroundFetch.configure({
       minimumFetchInterval: 15,
-      requiredNetworkType: 1,
-      stopOnTerminate: false
+      requiredNetworkType: BackgroundFetch.NETWORK_TYPE_ANY,
+      stopOnTerminate: false,
+      enableHeadless: true
     }, onEvent, onTimeout);
     console.log('[BackgroundFetch] configure status: ', status);
   })();
@@ -902,14 +956,16 @@ function sluitMelding(id) {
   $(`#${id}`).hide();
 }
 
-function sendNotification(title = "Nieuwe cijfers in Gemairo", text = "Gemairo heeft nieuwe cijfers gevonden!") {
+function sendNotification(title = "Nieuwe cijfers in Gemairo", text = "Nieuwe cijfer(s) beschikbaar") {
   cordova.plugins.notification.local.hasPermission(function (granted) { 
     if (granted) {
       cordova.plugins.notification.local.schedule({
         title: title,
         text: text,
         foreground: true,
-        smallIcon: "res://notification"
+        smallIcon: "res://notification",
+        channelId: "Gemairo-Cijfers",
+        channelName: "Cijfers"
     });
     }
   });
@@ -935,6 +991,16 @@ $(window).on('hashchange', function() {
 //   // viewController.toast("Je bent weer online!", false, false)
 // }
 
+window.addEventListener("storage", function () {
+  //Waarom is dit hier?
+  //Dit is zodat het java gedeelte altijd de juiste informatie heeft, om op de achtergrond zonder de app open te hebben de laatste cijfers kan controleren.
+  var sharedPreferences = window.plugins.SharedPreferences.getInstance("Gemairo")
+  if (courseController.latestGrades.length > 0) sharedPreferences.put("latestGrades", JSON.parse(`{"items": ${JSON.stringify(courseController.latestGrades)}}`));
+  if (Object.entries(JSON.parse(getObject("tokens", getActiveAccount()))).length > 0) sharedPreferences.put("Tokens", JSON.parse(getObject("tokens", getActiveAccount())));
+  sharedPreferences.put("PersonID", (getActiveChildAccount() >= 0 && person.isParent) ? person.children[getActiveChildAccount()].Id : person.id);
+  sharedPreferences.put("SchoolURL", getObject("school", getActiveAccount()));
+}, false);
+
 function onResume() {
   if (idletime != null && Math.abs(new Date() - new Date(idletime)) > (30 * 60000)) {
     refreshToken().then((refreshTokens) => {
@@ -948,7 +1014,7 @@ function onPause() {
  idletime = new Date();
 }
 
-document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("deviceready", beforeDeviceReady, false);
 document.addEventListener("pause", onPause, false);
 document.addEventListener("resume", onResume, false);
 // document.addEventListener("offline", onOffline, false);
