@@ -996,7 +996,7 @@ function setChartData(config, lesson, everything) {
         });
     })
   } else {
-    lessonController.getLesson(lesson).lesson.grades.forEach((grade) => {
+    lessonController.getLesson(lesson).lesson.fillGradeAverages().forEach((grade) => {
       if (!grade.exclude && !filtereddisabled.includes(grade)) {
         var gradegrade = grade.grade.replace(",", ".");
         data.push({

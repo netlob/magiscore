@@ -50,6 +50,7 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
         String PersonID = SharedPrefs.getString("PersonID", "");
         String latestgrades = SharedPrefs.getString("latestGrades", "");
         try {
+          if (latestgrades == "" || PersonID == "" || SchoolURL == "" || Bearer =="") return;
           JSONObject Tokens = new JSONObject(Bearer);
           final JSONObject latestGrades = new JSONObject(latestgrades);
 
@@ -98,7 +99,7 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("Authorization", "Bearer " + Tokens.getString("access_token"));
+            con.setRequestProperty("Authorization", "Bearer " + tokenjsonresult.getString("access_token"));
             con.setRequestProperty("noCache", java.time.Clock.systemUTC().instant().toString());
             con.setRequestProperty("x-requested-with", "app.netlob.magiscore");
             try (BufferedReader reader = new BufferedReader(
@@ -111,7 +112,12 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
             final JSONObject jsonresult = new JSONObject(result);
             Log.d(BackgroundFetch.TAG, "Are latestgrade object's the same? "
                 + jsonresult.getString("items").equals(latestGrades.getString("items")));
-            if (!jsonresult.getString("items").equals(latestGrades.getString("items"))) {
+            if (!(jsonresult.getString("items").length() == 0) && !jsonresult.getString("items").equals(latestGrades.getString("items"))) {
+              //Opslaan nieuwe cijfers
+              final JSONObject newlatestgrades = new JSONObject();
+              newlatestgrades.put("items", jsonresult.getString("items"));
+              editor.putString("latestGrades", newlatestgrades.toString());
+              editor.apply();
               // Als de twee objecten niet hetzelfde zijn stuurt hij een notificatie.
               NotificationManager mNotificationManager;
 
