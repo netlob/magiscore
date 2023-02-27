@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.Socket;
 import org.json.*;
 import org.json.JSONObject;
+import org.json.JSONArray;
 import java.lang.Object;
 import android.content.SharedPreferences;
 import com.transistorsoft.tsbackgroundfetch.BackgroundFetch;
@@ -110,9 +111,10 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
             }
             String result = content.toString();
             final JSONObject jsonresult = new JSONObject(result);
-            Log.d(BackgroundFetch.TAG, "Are latestgrade object's the same? "
+            JSONArray latestGradesItems = (JSONArray) latestGrades.get("items");
+            Log.d(BackgroundFetch.TAG, latestGradesItems.length() + " - Are latestgrade object's the same? "
                 + jsonresult.getString("items").equals(latestGrades.getString("items")));
-            if (!(jsonresult.getString("items").length() == 0) && !jsonresult.getString("items").equals(latestGrades.getString("items"))) {
+            if (!(latestGradesItems.length() == 0) && !jsonresult.getString("items").equals(latestGrades.getString("items"))) {
               //Opslaan nieuwe cijfers
               final JSONObject newlatestgrades = new JSONObject();
               newlatestgrades.put("items", jsonresult.getString("items"));
