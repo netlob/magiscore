@@ -114,10 +114,10 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
             JSONArray latestGradesItems = (JSONArray) latestGrades.get("items");
             Log.d(BackgroundFetch.TAG, latestGradesItems.length() + " - Are latestgrade object's the same? "
                 + jsonresult.getString("items").equals(latestGrades.getString("items")));
-            if (!(latestGradesItems.length() == 0) && !jsonresult.getString("items").equals(latestGrades.getString("items"))) {
+            if (latestGradesItems.length() != 0 && !jsonresult.getString("items").equals(latestGrades.getString("items"))) {
               //Opslaan nieuwe cijfers
               final JSONObject newlatestgrades = new JSONObject();
-              newlatestgrades.put("items", jsonresult.getString("items"));
+              newlatestgrades.put("items", jsonresult.get("items"));
               editor.putString("latestGrades", newlatestgrades.toString());
               editor.apply();
               // Als de twee objecten niet hetzelfde zijn stuurt hij een notificatie.
@@ -155,6 +155,12 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
               }
 
               mNotificationManager.notify(0, mBuilder.build());
+            } else if (latestGradesItems.length() == 0) {
+              //Opslaan nieuwe cijfers
+              final JSONObject newlatestgrades = new JSONObject();
+              newlatestgrades.put("items", jsonresult.get("items"));
+              editor.putString("latestGrades", newlatestgrades.toString());
+              editor.apply();
             }
             BackgroundFetch.getInstance(context).finish(taskId);
           } catch (Exception ex) {
