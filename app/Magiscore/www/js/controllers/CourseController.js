@@ -83,7 +83,7 @@ class CourseController {
           if (
             (courseController.allGrades.map((grade) => `${new Date(grade.dateFilledIn).toISOString()};${grade.grade};${grade.weight};${grade.description}`)
             .filter((foundgrade) => foundgrade == `${new Date(grade.ingevoerdOp).toISOString()};${grade.waarde};${grade.weegfactor};${grade.omschrijving}`).length == 0) &&
-            popup == false
+            JSON.stringify(courseController.allGrades).indexOf(grade.kolomId) < 0 && popup == false
           ) {
             popup = true;
             foundnew = true;
@@ -94,12 +94,15 @@ class CourseController {
             );
           }
         });
-      } catch(e) {console.log(e)}
+      } catch(e) {
+        console.log(e)
+        reject()
+      }
         viewController.setLatestGrades(courseController.latestGrades, open);
         viewController.overlay("hide");
         resolve([courseController.latestGrades, foundnew]);
       }, function(response) {
-        console.log(response.data)
+        console.log(response.status, response.data)
         reject(response.error);
       })
     });
