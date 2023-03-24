@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.netlob.magiscore" version="1.8.3" xmlns="http://www.w3.org/ns/widgets"
+<widget id="app.netlob.magiscore" version="1.8.4" xmlns="http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name short="Gemairo">Gemairo - Stats voor Magister</name>
     <description>
@@ -23,6 +23,16 @@
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <platform name="android">
+        <framework src="com.unity3d.ads:unity-ads:4.2.1" custom="true" type="gradleReference" />
+        <framework src="com.google.ads.mediation:unity:4.2.1.0" custom="true" type="gradleReference" />
+        <!-- 
+            implementation 'com.google.ads.mediation:tapjoy:12.10.0.0'
+            implementation 'com.google.ads.mediation:facebook:6.11.0.0'
+            implementation 'com.google.ads.mediation:ironsource:7.2.7.0'
+            implementation 'com.google.ads.mediation:applovin:11.4.0.0'
+            implementation 'com.unity3d.ads:unity-ads:4.2.1'
+            implementation 'com.google.ads.mediation:unity:4.2.1.0'
+         -->
         <preference name="AndroidXEnabled" value="true" />
         <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />

@@ -1,32 +1,57 @@
 {
-    "declarations": {
-        "use_frameworks!": {
-            "declaration": "use_frameworks!",
-            "count": 2
-        }
-    },
-    "sources": {
-        "https://cdn.cocoapods.org/": {
-            "source": "https://cdn.cocoapods.org/",
-            "count": 2
-        }
-    },
-    "libraries": {
-        "Google-Mobile-Ads-SDK": {
-            "name": "Google-Mobile-Ads-SDK",
-            "spec": "~> 8.13.0",
-            "count": 1
-        },
-        "PersonalizedAdConsent": {
-            "name": "PersonalizedAdConsent",
-            "type": "podspec",
-            "spec": "~> 1.0.5",
-            "count": 1
-        },
-        "GoogleAnalytics": {
-            "name": "GoogleAnalytics",
-            "spec": "3.20.0",
-            "count": 1
-        }
+  "declarations": {
+    "use_frameworks!": {
+      "declaration": "use_frameworks!",
+      "count": 2
     }
+  },
+  "sources": {
+    "https://cdn.cocoapods.org/": {
+      "source": "https://cdn.cocoapods.org/",
+      "count": 2
+    }
+  },
+  "libraries": {
+    "Google-Mobile-Ads-SDK": {
+      "name": "Google-Mobile-Ads-SDK",
+      "spec": "~> 8.13.0",
+      "count": 1
+    },
+    "GoogleMobileAdsMediationUnity": {
+      "name": "GoogleMobileAdsMediationUnity",
+      "spec": "4.0.0.0",
+      "count": 1
+    },
+    "GoogleMobileAdsMediationIronSource": {
+      "name": "GoogleMobileAdsMediationIronSource",
+      "spec": "7.1.14.0",
+      "count": 1
+    },
+    "GoogleMobileAdsMediationFacebook": {
+      "name": "GoogleMobileAdsMediationFacebook",
+      "spec": "6.9.0.0",
+      "count": 1
+    },
+    "GoogleMobileAdsMediationTapjoy": {
+      "name": "GoogleMobileAdsMediationTapjoy",
+      "spec": "12.9.0.0",
+      "count": 1
+    },
+    "GoogleMobileAdsMediationVungle": {
+      "name": "GoogleMobileAdsMediationVungle",
+      "spec": "6.10.5.1",
+      "count": 1
+    },
+    "PersonalizedAdConsent": {
+      "name": "PersonalizedAdConsent",
+      "type": "podspec",
+      "spec": "~> 1.0.5",
+      "count": 1
+    },
+    "GoogleAnalytics": {
+      "name": "GoogleAnalytics",
+      "spec": "3.20.0",
+      "count": 1
+    }
+  }
 }

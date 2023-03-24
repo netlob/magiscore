@@ -26,7 +26,7 @@ let _interstitial;
 let _interstitialLoaded = false;
 let _banner;
 let _npa;
-const adFree = false;
+const adFree = true;
 
 const bannerID = () =>
   window.cordova.platformId === "ios"
@@ -101,7 +101,11 @@ const ads = {
   },
 
   async loadBanner() {
-    if (_banner != undefined || window.location.hash == "#noNewAds" || document.hidden) {
+    if (
+      _banner != undefined ||
+      window.location.hash == "#noNewAds" ||
+      document.hidden
+    ) {
       // banner already loaded
       return;
     }
