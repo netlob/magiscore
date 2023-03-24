@@ -303,15 +303,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-google-analytics.UniversalAnalytics",
-      "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
-      "pluginId": "cordova-plugin-google-analytics",
-      "clobbers": [
-        "analytics",
-        "ga"
-      ]
-    },
-    {
       "id": "cordova-plugin-badge-fix.Badge",
       "file": "plugins/cordova-plugin-badge-fix/www/badge.js",
       "pluginId": "cordova-plugin-badge-fix",
@@ -423,6 +414,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "cordova.plugin.http"
       ]
+    },
+    {
+      "id": "cordova-plugin-firebase-analytics.FirebaseAnalytics",
+      "file": "plugins/cordova-plugin-firebase-analytics/www/FirebaseAnalytics.js",
+      "pluginId": "cordova-plugin-firebase-analytics",
+      "merges": [
+        "cordova.plugins.firebase.analytics"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -446,12 +445,12 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-taptic-engine": "2.1.0",
     "cordova-plugin-vibration": "3.1.1",
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-google-analytics": "1.9.2",
     "cordova-plugin-badge-fix": "0.8.10",
     "cordova-plugin-local-notification-12": "0.1.4",
     "cordova-plugin-background-fetch": "7.1.2",
     "cordova-plugin-theme-detection": "1.3.0",
     "cordova-plugin-awesome-shared-preferences": "0.1.0",
-    "cordova-plugin-advanced-http": "3.3.1"
+    "cordova-plugin-advanced-http": "3.3.1",
+    "cordova-plugin-firebase-analytics": "7.0.5"
   };
 });

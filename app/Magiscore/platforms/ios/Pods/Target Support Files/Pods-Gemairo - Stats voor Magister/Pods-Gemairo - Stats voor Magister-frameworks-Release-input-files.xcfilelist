@@ -1,4 +1,8 @@
 ${PODS_ROOT}/Target Support Files/Pods-Gemairo - Stats voor Magister/Pods-Gemairo - Stats voor Magister-frameworks.sh
+${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework
+${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework
+${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework
+${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework
 ${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework
 ${BUILT_PRODUCTS_DIR}/PersonalizedAdConsent/PersonalizedAdConsent.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework

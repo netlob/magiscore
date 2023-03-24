@@ -90,7 +90,7 @@ function onDeviceReady() {
     $("#android-text").show();
   }
 
-  // fetch('https://magiscore-android.firebaseio.com/api/schools.json').then(res => res.json()).then(data => schools = data)
+  logFirebaseScreen('login');
 }
 
 function emptyFuntion() {}
@@ -191,6 +191,7 @@ function startLogin() {
 }
 
 function openLoginWindow() {
+  logFirebaseEvent('openLoginWindow');
   // school = /(.+:\/\/)?([^\/]+)(\/.*)*/i.exec(school)[2];
   // tenant = school;
   if (cordova === undefined) return;
@@ -333,6 +334,7 @@ async function validateLogin(code, codeVerifier) {
       ).then((res) => res.json());
       tenant = JSON.stringify(res).match(/(?!(w+)\.)[a-zA-Z0-9_\-]*(?:\w+\.)+\w+/)[0];
       logConsole(`${tenant} gevonden.`);
+      logFirebaseEvent('loginSuccess', {school: tenant});
       setObject("school", tenant, newaccountindex);
       var config = {
         isDesktop: false,
@@ -430,18 +432,6 @@ async function getinformationlogin(m, childindex= -1) {
                   .then(async (values) => {
                     var uid = tenant.split(".")[0] + m.person.id;
                     logConsole("Cijfers en vakken opgehaald!");
-                    try {
-                      $.ajax({
-                        url: `https://magiscore-android.firebaseio.com/logs/${uid}/signup.json`,
-                        method: "POST",
-                        data: JSON.stringify({
-                          Adate: new Date().toISOString(),
-                          AV: version,
-                          person: m.person,
-                          // "courses": courses
-                        }),
-                      }).done(() => {});
-                    } catch (e) {}
                     addLoader(8); // 12% total, 88% remaining
                     var years = values.length;
                     all = [];
@@ -469,18 +459,6 @@ async function getinformationlogin(m, childindex= -1) {
                         try {
                           all_grades[index] = await grade.fill();
                         } catch (error) {
-                          try {
-                            $.ajax({
-                              url: `https://magiscore-android.firebaseio.com/logs/${uid}/gradecatch.json`,
-                              method: "POST",
-                              data: JSON.stringify({
-                                Adate: new Date().toISOString(),
-                                AV: version,
-                                terminal: $("#loader pre").text(),
-                                error: error.toString(),
-                              }),
-                            }).done(() => {});
-                          } catch (e) {}
                           errorConsole(
                             `[ERROR] !skipping grade (${
                               grade.id
@@ -523,36 +501,9 @@ async function getinformationlogin(m, childindex= -1) {
   
                         // if (i == (Number(all_grades.length) - 1)) {
                         if (all_grades.every((g) => g._filled == true)) {
-                          try {
-                            $.ajax({
-                              url: `https://magiscore-android.firebaseio.com/logs/${uid}/valid.json`,
-                              method: "POST",
-                              data: JSON.stringify({
-                                Adate: new Date().toISOString(),
-                                AV: version,
-                                terminal: $("#loader pre").text(),
-                              }),
-                              success: () => {
-                                resolve();
-                              },
-                            })
-                          } catch (e) {
-                            resolve();
-                          }
+                          resolve();
                         }
                       } catch (err) {
-                        try {
-                          $.ajax({
-                            url: `https://magiscore-android.firebaseio.com/logs/${uid}/loopcatch.json`,
-                            method: "POST",
-                            data: JSON.stringify({
-                              Adate: new Date().toISOString(),
-                              AV: version,
-                              terminal: $("#loader pre").text(),
-                              error: err.toString(),
-                            }),
-                          }).done(() => {});
-                        } catch (e) {}
                         errorConsole(
                           `[ERROR] skipping grade (${grade.id}) ${err.toString()}`
                         );

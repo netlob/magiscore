@@ -3,6 +3,7 @@ var tenant = "";
 var popup = null;
 
 function refreshToken(background = false) {
+  logFirebaseEvent('refeshTokens');
   return new Promise((resolve, reject) => {
     var tokens = JSON.parse(getObject("tokens", getActiveAccount()));
     var refresh_token = tokens.refresh_token;
@@ -59,6 +60,7 @@ function openBrowser(b) {
   if (b == 2) {
     confirmLogout(1)
   }
+  logFirebaseEvent('refeshTokensOpenBrowser');
   // viewController.overlay("show")
   school = /(.+:\/\/)?([^\/]+)(\/.*)*/i.exec(school)[2];
   // tenant = school

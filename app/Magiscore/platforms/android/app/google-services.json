@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "978543096660",
+    "project_id": "gemairo-6c835",
+    "storage_bucket": "gemairo-6c835.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978543096660:android:2c5453859e4f9f31940ec1",
+        "android_client_info": {
+          "package_name": "app.netlob.magiscore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978543096660-1b7drodio3mma413rikba22oifa3t09a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-D4yWJYnLhI5idhJz2whEkKekI6STXqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978543096660-1b7drodio3mma413rikba22oifa3t09a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "978543096660-1rg9mgl5nqa6fkn91c6cfg3a7808rqvj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.netlob.magiscore"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9170931639371270~4644085927"
+    }
+  ],
+  "configuration_version": "1"
+}

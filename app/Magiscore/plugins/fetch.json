@@ -170,7 +170,7 @@
   "cordova-plugin-google-analytics": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-google-analytics@^1.9.2"
+      "id": "cordova-plugin-google-analytics"
     },
     "is_top_level": true,
     "variables": {}
@@ -219,6 +219,14 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-advanced-http@^3.3.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-firebase-analytics": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-firebase-analytics"
     },
     "is_top_level": true,
     "variables": {}

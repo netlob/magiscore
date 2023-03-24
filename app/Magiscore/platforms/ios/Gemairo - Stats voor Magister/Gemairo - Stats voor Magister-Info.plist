@@ -17,11 +17,11 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.8.3</string>
+    <string>1.8.6</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>1.8.3</string>
+    <string>1.8.6</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSMainNibFile</key>
@@ -284,6 +284,10 @@
     </array>
     <key>NSUserNotificationsUsageDescription</key>
     <string>Geef toegang voor notificaties en weet als eerste wanneer er een nieuw cijfer op Magister staat</string>
+    <key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+    <string>true</string>
+    <key>FirebaseAutomaticScreenReportingEnabled</key>
+    <string>true</string>
     <key>UIUserInterfaceStyle</key>
     <string>Light</string>
   </dict>

@@ -31,6 +31,7 @@ class ViewController {
       )
         $(this).addClass("active");
     });
+    logFirebaseScreen(lesson);
   }
 
   renderGeneral(includeAllGrades = false) {
@@ -168,6 +169,7 @@ class ViewController {
     // <li><b>Is PTA</b><br><span id="grade-modal-ispta"></span></li>
     // <li><b>Ingevuld door</b><br><span id="grade-modal-teacher"></span></li>
     // <li><b>Ingevuld op</b><br><span id="grade-modal-date"></span></li>
+    logFirebaseScreen("grade");
   }
 
   updateNav() {
@@ -207,6 +209,7 @@ class ViewController {
 
   async switchuser(userkey, childindex = -1) {
     return new Promise(async (resolve, reject) => {
+      logFirebaseEvent('switchUser');
     try {
       var activeaccount = await getActiveAccount();
       if (activeaccount == userkey && childindex == -1) { return; }
@@ -326,6 +329,8 @@ class ViewController {
         </a>`).prependTo("#useraccountslist");
       }
     }
+    logFirebaseEvent('updateConfig');
+    setFirebaseUser();
   }
 
   setConfig() {
@@ -572,6 +577,7 @@ class ViewController {
       });
       this.toast("Refresh oude cijfers uitgezet", 2000, false);
     }
+    logFirebaseEvent('refreshOldGrades');
   }
 
   setLatestGrades(grades, open) {
@@ -698,9 +704,10 @@ class ViewController {
       $("#kutiddink").text(
         `${Math.abs(
           days
-        )} dagen, ${hours} uren, ${minutes} en ${seconds} seconden`
+        )} dagen, ${hours} uren, ${minutes} minuten en ${seconds} seconden`
       );
     }, 1000);
+    logFirebaseScreen('settings');
   }
 
   closeSettings() {
@@ -734,6 +741,7 @@ class ViewController {
       '<span onclick="viewController.closeSettings()">Zoeken</span>'
     );
     document.getElementById('content').setAttribute('data-snap-ignore', true);
+    logFirebaseEvent('searchGrade');
   }
 
   closeZoeken() {
@@ -788,6 +796,7 @@ function setProfilePic(forceRefresh = false, childindex = -1, notoast = false) {
     logConsole("[INFO]   Profile picture from localstorage");
     profilepic.setAttribute("src", profilepicStorage);
   } else {
+    logFirebaseEvent('updateProfilePic');
     logConsole("[INFO]   Profile picture from request");
     var xhr = new XMLHttpRequest(),
       blob,

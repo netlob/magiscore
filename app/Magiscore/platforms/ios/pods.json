@@ -23,9 +23,9 @@
             "spec": "~> 1.0.5",
             "count": 1
         },
-        "GoogleAnalytics": {
-            "name": "GoogleAnalytics",
-            "spec": "3.20.0",
+        "FirebaseAnalytics": {
+            "name": "FirebaseAnalytics",
+            "spec": "8.8.0s",
             "count": 1
         }
     }

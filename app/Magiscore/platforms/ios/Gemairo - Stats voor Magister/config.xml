@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.netlob.magiscore" version="1.8.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="app.netlob.magiscore" version="1.8.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="CDVWebViewEngine">
         <param name="ios-package" value="CDVWebViewEngine" />
     </feature>
@@ -74,9 +74,6 @@
     <feature name="Vibration">
         <param name="ios-package" value="CDVVibration" />
     </feature>
-    <feature name="UniversalAnalytics">
-        <param name="ios-package" value="UniversalAnalyticsPlugin" />
-    </feature>
     <feature name="Badge">
         <param name="ios-package" value="APPBadge" />
     </feature>
@@ -97,6 +94,10 @@
     <feature name="CordovaHttpPlugin">
         <param name="ios-package" value="CordovaHttpPlugin" />
     </feature>
+    <feature name="FirebaseAnalytics">
+        <param name="ios-package" value="FirebaseAnalyticsPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <name short="Gemairo">Gemairo - Stats voor Magister</name>
     <description>
         Shi daggoetje geswiped
@@ -112,7 +113,6 @@
     <config-file parent="UIUserInterfaceStyle" platform="ios" target="*-Info.plist">
         <string>Light</string>
     </config-file>
-    <resource-file src="GoogleService-Info.plist" />
     <allow-intent href="m6loapp://oauth2redirect/*" />
     <edit-config file="*-Info.plist" mode="merge" target="UIUserInterfaceStyle">
         <string>Light</string>
@@ -135,6 +135,7 @@
     <icon height="50" src="res/new/res/icon/ios/icon-50.png" width="50" />
     <icon height="100" src="res/new/res/icon/ios/icon-50@2x.png" width="100" />
     <icon height="1024" src="res/new/res/icon/ios/icon-1024.png" width="1024" />
+    <resource-file src="GoogleService-Info.plist" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="DisallowOverscroll" value="true" />

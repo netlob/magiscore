@@ -101,7 +101,11 @@ const ads = {
   },
 
   async loadBanner() {
-    if (_banner != undefined || window.location.hash == "#noNewAds" || document.hidden) {
+    if (
+      _banner != undefined ||
+      window.location.hash == "#noNewAds" ||
+      document.hidden
+    ) {
       // banner already loaded
       return;
     }
@@ -252,7 +256,9 @@ const ads = {
       this.receivedEvent(`[INFO]   Loaded Ad Inter`);
     });
 
-    await _interstitial.load();
+    if (!_interstitialLoaded) {
+      await _interstitial.load();
+    }
   },
 
   async showInter() {

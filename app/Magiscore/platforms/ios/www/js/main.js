@@ -158,6 +158,7 @@ function logOut() {
 }
 
 async function confirmLogout(b) {
+  logFirebaseEvent('logout');
   if (b == 1) {
     if (Object.keys(localStorage).filter((key) => !isNaN(key)).length > 1) {
       var active = getActiveAccount(); 
@@ -206,6 +207,7 @@ function round(num) {
 }
 
 async function syncGrades() {
+  logFirebaseEvent('syncGrades');
   return new Promise(async (resolve, reject) => {
     $("div:contains('Nieuwe cijfer(s) beschikbaar'):first-child").remove();
     if (m == null || m == undefined) {
@@ -470,6 +472,7 @@ async function syncGrades() {
 }
 
 async function checkNewCourses(newGrades) {
+  logFirebaseEvent('checkNewCourses');
   let courses = await m.getCourses();
   courses = courses.filter(
     (course) => !courseController.courseIds.includes(course.id)
@@ -512,6 +515,7 @@ const ptr = PullToRefresh.init({
     );
   },
   onRefresh: function (done) {
+    logFirebaseEvent('pullToRefresh');
     vibrate(15, true);
     syncGrades()
       .then((d) => done())
@@ -753,6 +757,7 @@ function onDeviceReady() {
         var latestgrades = await courseController.getLatestGrades(false, getActiveChildAccount(), true);
         console.log(latestgrades[1] ? 'New grades found' : "No new grades found")
         if (latestgrades[1]) sendNotification();
+        logFirebaseEvent('syncGradesBackground');
         BackgroundFetch.finish(taskId);
     };
 
@@ -916,11 +921,12 @@ function onDeviceReady() {
     window.location = "./login.html";
   }
   showMeldingen();
+  setFirebaseUser();
 }
 
 async function showMeldingen() {
   const meldingen = await fetch(
-    "https://magiscore-android.firebaseio.com/api/announcements.json"
+    "https://cors.sjoerd.dev/https://sjoerd.dev/html/gemairo/announcements.json"
   ).then((res) => res.json());
   if (meldingen != null) meldingen.forEach((melding) => showMelding(melding));
 }
@@ -957,6 +963,7 @@ function sluitMelding(id) {
 }
 
 function sendNotification(title = "Nieuwe cijfers in Gemairo", text = "Nieuwe cijfer(s) beschikbaar") {
+  logFirebaseEvent('newGradesNotification');
   cordova.plugins.notification.local.hasPermission(function (granted) { 
     if (granted) {
       cordova.plugins.notification.local.schedule({

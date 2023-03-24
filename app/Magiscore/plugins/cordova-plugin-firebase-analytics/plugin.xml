@@ -1,0 +1,94 @@
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+xmlns:android="http://schemas.android.com/apk/res/android"
+           id="cordova-plugin-firebase-analytics"
+      version="7.0.5">
+
+    <name>FirebaseAnalyticsPlugin</name>
+    <description>Cordova plugin for Firebase Analytics</description>
+    <license>MIT</license>
+    <keywords>cordova</keywords>
+    <repo>https://github.com/chemerisuk/cordova-plugin-firebase-analytics</repo>
+    <issue>https://github.com/chemerisuk/cordova-plugin-firebase-analytics/issues</issue>
+
+    <js-module src="www/FirebaseAnalytics.js" name="FirebaseAnalytics">
+        <merges target="cordova.plugins.firebase.analytics" />
+    </js-module>
+
+    <engines>
+        <engine name="cordova" version=">=10.0.0"/>
+        <engine name="cordova-android" version=">=11.0.0"/>
+        <engine name="cordova-ios" version=">=6.0.0"/>
+    </engines>
+
+    <preference name="ANALYTICS_COLLECTION_ENABLED" default="true" />
+    <preference name="AUTOMATIC_SCREEN_REPORTING_ENABLED" default="true" />
+
+    <platform name="ios">
+        <preference name="IOS_FIREBASE_POD_VERSION" default="9.3.0" />
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="FirebaseAnalytics">
+                <param name="ios-package" value="FirebaseAnalyticsPlugin" />
+                <param name="onload" value="$ANALYTICS_COLLECTION_ENABLED" />
+            </feature>
+        </config-file>
+
+        <!--
+            use a bit hacky method to set boolean value as a string:
+            https://developer.apple.com/documentation/foundation/nsstring/1409420-boolvalue?preferredLanguage=occ
+        -->
+        <config-file target="*-Info.plist" parent="FIREBASE_ANALYTICS_COLLECTION_ENABLED">
+            <string>$ANALYTICS_COLLECTION_ENABLED</string>
+        </config-file>
+        <config-file target="*-Info.plist" parent="FirebaseAutomaticScreenReportingEnabled">
+            <string>$AUTOMATIC_SCREEN_REPORTING_ENABLED</string>
+        </config-file>
+
+        <header-file src="src/ios/FirebaseAnalyticsPlugin.h" />
+        <source-file src="src/ios/FirebaseAnalyticsPlugin.m" />
+
+        <podspec>
+            <config>
+                <source url="https://cdn.cocoapods.org/"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="Firebase/Analytics" spec="$IOS_FIREBASE_POD_VERSION" />
+            </pods>
+        </podspec>
+    </platform>
+
+    <platform name="android">
+        <preference name="ANDROID_FIREBASE_BOM_VERSION" default="30.3.1" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="FirebaseAnalytics">
+                <param name="android-package" value="by.chemerisuk.cordova.firebase.FirebaseAnalyticsPlugin" />
+                <param name="onload" value="$ANALYTICS_COLLECTION_ENABLED" />
+            </feature>
+        </config-file>
+
+        <config-file target="config.xml" parent="/*">
+            <preference name="AndroidXEnabled" value="true" />
+            <preference name="GradlePluginGoogleServicesEnabled" value="true" />
+            <preference name="GradlePluginGoogleServicesVersion" value="4.3.13" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data android:name="firebase_analytics_collection_enabled" android:value="$ANALYTICS_COLLECTION_ENABLED" />
+            <meta-data android:name="google_analytics_automatic_screen_reporting_enabled" android:value="$AUTOMATIC_SCREEN_REPORTING_ENABLED" />
+        </config-file>
+
+        <dependency id="cordova-support-android-plugin" version="~2.0.4" />
+
+        <framework src="platform('com.google.firebase:firebase-bom:$ANDROID_FIREBASE_BOM_VERSION')" />
+        <framework src="com.google.firebase:firebase-analytics" />
+
+        <source-file src="src/android/FirebaseAnalyticsPlugin.java"
+            target-dir="src/by/chemerisuk/cordova/firebase/" />
+    </platform>
+
+</plugin>
