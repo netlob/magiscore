@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.Socket;
 import org.json.*;
 import org.json.JSONObject;
+import org.json.JSONArray;
 import java.lang.Object;
 import android.content.SharedPreferences;
 import com.transistorsoft.tsbackgroundfetch.BackgroundFetch;
@@ -50,6 +51,7 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
         String PersonID = SharedPrefs.getString("PersonID", "");
         String latestgrades = SharedPrefs.getString("latestGrades", "");
         try {
+          if (latestgrades == "" || PersonID == "" || SchoolURL == "" || Bearer =="") return;
           JSONObject Tokens = new JSONObject(Bearer);
           final JSONObject latestGrades = new JSONObject(latestgrades);
 
@@ -98,7 +100,7 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("Authorization", "Bearer " + Tokens.getString("access_token"));
+            con.setRequestProperty("Authorization", "Bearer " + tokenjsonresult.getString("access_token"));
             con.setRequestProperty("noCache", java.time.Clock.systemUTC().instant().toString());
             con.setRequestProperty("x-requested-with", "app.netlob.magiscore");
             try (BufferedReader reader = new BufferedReader(
@@ -109,9 +111,15 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
             }
             String result = content.toString();
             final JSONObject jsonresult = new JSONObject(result);
-            Log.d(BackgroundFetch.TAG, "Are latestgrade object's the same? "
+            JSONArray latestGradesItems = (JSONArray) latestGrades.get("items");
+            Log.d(BackgroundFetch.TAG, latestGradesItems.length() + " - Are latestgrade object's the same? "
                 + jsonresult.getString("items").equals(latestGrades.getString("items")));
-            if (!jsonresult.getString("items").equals(latestGrades.getString("items"))) {
+            if (latestGradesItems.length() != 0 && !jsonresult.getString("items").equals(latestGrades.getString("items"))) {
+              //Opslaan nieuwe cijfers
+              final JSONObject newlatestgrades = new JSONObject();
+              newlatestgrades.put("items", jsonresult.get("items"));
+              editor.putString("latestGrades", newlatestgrades.toString());
+              editor.apply();
               // Als de twee objecten niet hetzelfde zijn stuurt hij een notificatie.
               NotificationManager mNotificationManager;
 
@@ -147,6 +155,12 @@ public class BackgroundFetchHeadlessTask implements HeadlessTask {
               }
 
               mNotificationManager.notify(0, mBuilder.build());
+            } else if (latestGradesItems.length() == 0) {
+              //Opslaan nieuwe cijfers
+              final JSONObject newlatestgrades = new JSONObject();
+              newlatestgrades.put("items", jsonresult.get("items"));
+              editor.putString("latestGrades", newlatestgrades.toString());
+              editor.apply();
             }
             BackgroundFetch.getInstance(context).finish(taskId);
           } catch (Exception ex) {

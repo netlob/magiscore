@@ -121,7 +121,7 @@ const ads = {
     _banner = new admob.BannerAd({
       adUnitId: bannerID(),
       position: "bottom",
-      npa: consentStatus === "PERSONALIZED" ? "3" : "1",
+      npa: consentStatus === "PERSONALIZED" ? "3" : "0",
       id: lastBannerId ? Number.parseInt(lastBannerId) : null,
     });
     this.receivedEvent("banner made " + JSON.stringify(_banner));
@@ -275,7 +275,7 @@ const ads = {
 
     _interstitial = new admob.InterstitialAd({
       adUnitId: interID(),
-      npa: _npa === "PERSONALIZED" ? "3" : "1",
+      npa: _npa === "PERSONALIZED" ? "3" : "0",
     });
 
     _interstitial.on("load", (evt) => {
