@@ -51,6 +51,7 @@
     "cordova-plugin-google-analytics": "^1.9.2",
     "cordova-plugin-inappbrowser": "git+https://github.com/Netlob/cordova-plugin-inappbrowser.git",
     "cordova-plugin-insomnia": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
+    "cordova-plugin-tracking-transparency": "^1.0.4",
     "cordova-plugin-whitelist": "^1.3.4"
   },
   "cordova": {
@@ -72,9 +73,7 @@
       "cordova-plugin-network-information": {},
       "cordova-plugin-add-swift-support": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-consent": {
-        "CONSENT_SDK_VERSION": "+"
-      },
+      "cordova-plugin-consent": {},
       "cordova-plugin-androidx": {},
       "cordova-plugin-androidx-adapter": {},
       "cordova-plugin-file": {},
@@ -91,7 +90,8 @@
       "cordova-plugin-firebase-analytics": {
         "AUTOMATIC_SCREEN_REPORTING_ENABLED": false
       },
-      "cordova-plugin-google-analytics": {}
+      "cordova-plugin-google-analytics": {},
+      "cordova-plugin-tracking-transparency": {}
     },
     "platforms": [
       "android",

@@ -181,29 +181,56 @@ const ads = {
   },
 
   async checkConsent() {
-    const publisherIds = ["pub-9170931639371270"];
-    await consent.addTestDevice("6ea04e8011fad00d37e3a96a44cbc072");
-    _npa = await consent.checkConsent(publisherIds);
+    try {
+      await consent.addTestDevice("6ea04e8011fad00d37e3a96a44cbc072");
+      await consent.addTestDevice("311D123F-F79E-426B-87FC-D691AE1AE1F6");
+      await consent.addTestDevice("D6394BAE-355C-498A-B88E-731D2D81FFAE");
+    } catch (e) {}
+    _npa = await consent.checkConsent(["pub-9170931639371270"]);
+    return new Promise(async (resolve, reject) => {
+      if (_npa === "UNKNOWN" && adFree != true) {
+        const form = new consent.Form({
+          privacyUrl: "https://policies.google.com/privacy",
+          // adFree: true,
+          adFree: false,
+          nonPersonalizedAds: true,
+          personalizedAds: true,
+        });
+        await form.load();
+        const result = await form.show();
 
-    if (_npa === "UNKNOWN" && adFree != true) {
-      const form = new consent.Form({
-        privacyUrl: "https://policies.google.com/privacy",
-        // adFree: true,
-        adFree: false,
-        nonPersonalizedAds: true,
-        personalizedAds: true,
-      });
-      await form.load();
-      const result = await form.show();
+        // if (result.userPrefersAdFree) {
+        //   purchaseNonConsumable1();
+        // }
 
-      // if (result.userPrefersAdFree) {
-      //   purchaseNonConsumable1();
-      // }
+        _npa = result.consentStatus;
+      }
 
-      return result.consentStatus;
-    } else {
-      return _npa;
-    }
+      try {
+        if (_npa != "UNKNOWN") {
+          window.plugins.impacTracking.trackingAvailable((available) => {
+            console.log("Tracvking avaialable: ", available);
+            window.plugins.impacTracking.canRequestTracking((canRequest) => {
+              if (!canRequest) {
+                console.log("Cannot request tracking");
+                resolve(_npa);
+                return;
+              }
+
+              console.log("Request tracking");
+              window.plugins.impacTracking.requestTracking(
+                undefined,
+                () => resolve(_npa),
+                () => resolve(_npa)
+              );
+            });
+          });
+        }
+      } catch (e) {
+        resolve(_npa);
+        console.error(e);
+      }
+    });
   },
 
   checkInter() {

@@ -59,8 +59,6 @@
     <string>ca-app-pub-9170931639371270~8990525040</string>
     <key>GADDelayAppMeasurementInit</key>
     <true/>
-    <key>NSUserTrackingUsageDescription</key>
-    <string>This identifier will be used to deliver personalized ads to you.</string>
     <key>SKAdNetworkItems</key>
     <array>
       <dict>
@@ -283,12 +281,16 @@
       <string>processing</string>
     </array>
     <key>NSUserNotificationsUsageDescription</key>
-    <string>Geef toegang voor notificaties en weet als eerste wanneer er een nieuw cijfer op Magister staat</string>
+    <string>Geef toegang voor notificaties en weet als eerste wanneer er een nieuw cijfer op
+      Magister staat</string>
     <key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
     <string>true</string>
     <key>FirebaseAutomaticScreenReportingEnabled</key>
     <string>true</string>
     <key>UIUserInterfaceStyle</key>
     <string>Light</string>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>Dit gebruikt Gemairo om jouw app ervaring te verbeteren en relevante
+                advertenties te vinden.</string>
   </dict>
 </plist>

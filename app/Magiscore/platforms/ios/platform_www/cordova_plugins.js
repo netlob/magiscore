@@ -422,6 +422,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "merges": [
         "cordova.plugins.firebase.analytics"
       ]
+    },
+    {
+      "id": "cordova-plugin-tracking-transparency.impacTracking",
+      "file": "plugins/cordova-plugin-tracking-transparency/www/tracking.js",
+      "pluginId": "cordova-plugin-tracking-transparency",
+      "clobbers": [
+        "window.plugins.impacTracking"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -451,6 +459,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-theme-detection": "1.3.0",
     "cordova-plugin-awesome-shared-preferences": "0.1.0",
     "cordova-plugin-advanced-http": "3.3.1",
-    "cordova-plugin-firebase-analytics": "7.0.5"
+    "cordova-plugin-firebase-analytics": "7.0.5",
+    "cordova-plugin-tracking-transparency": "1.0.4"
   };
 });

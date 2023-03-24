@@ -1,0 +1,33 @@
+
+{
+    "title": "Allow tracking on the next screen for:",
+    "text": "We need tracking for our service",
+    "subText": "You can change this option later in the Settings app.",
+    "buttonTitle": "Next",
+    "primaryColor": "#344955",
+    "secondaryColor": "#F9AA33",
+    "onPrimaryColor": "#FFFFFF",
+    "onSecondaryColor": "#000000",
+    "reasons": [
+        {
+            "text": "Special offers and promotions just for you",
+            "image": "heart.circle",
+            "tintImage": true
+        },
+        {
+            "text": "Special offers and promotions just for you",
+            "image": "heart.circle",
+            "tintImage": true
+        },
+        {
+            "text": "Special offers and promotions just for you",
+            "image": "heart.circle",
+            "tintImage": true
+        },
+        {
+            "text": "Advertisements that match your interests",
+            "tintImage": true,
+            "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEsmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgZXhpZjpQaXhlbFhEaW1lbnNpb249IjI0IgogICBleGlmOlBpeGVsWURpbWVuc2lvbj0iMjQiCiAgIGV4aWY6Q29sb3JTcGFjZT0iMSIKICAgdGlmZjpJbWFnZVdpZHRoPSIyNCIKICAgdGlmZjpJbWFnZUxlbmd0aD0iMjQiCiAgIHRpZmY6UmVzb2x1dGlvblVuaXQ9IjIiCiAgIHRpZmY6WFJlc29sdXRpb249IjcyLjAiCiAgIHRpZmY6WVJlc29sdXRpb249IjcyLjAiCiAgIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiCiAgIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIKICAgeG1wOk1vZGlmeURhdGU9IjIwMjEtMDUtMTFUMTM6MzU6MzUrMDI6MDAiCiAgIHhtcDpNZXRhZGF0YURhdGU9IjIwMjEtMDUtMTFUMTM6MzU6MzUrMDI6MDAiPgogICA8eG1wTU06SGlzdG9yeT4KICAgIDxyZGY6U2VxPgogICAgIDxyZGY6bGkKICAgICAgc3RFdnQ6YWN0aW9uPSJwcm9kdWNlZCIKICAgICAgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWZmaW5pdHkgRGVzaWduZXIgMS45LjMiCiAgICAgIHN0RXZ0OndoZW49IjIwMjEtMDUtMTFUMTM6MzU6MzUrMDI6MDAiLz4KICAgIDwvcmRmOlNlcT4KICAgPC94bXBNTTpIaXN0b3J5PgogIDwvcmRmOkRlc2NyaXB0aW9uPgogPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KPD94cGFja2V0IGVuZD0iciI/PlFR1hQAAAGBaUNDUHNSR0IgSUVDNjE5NjYtMi4xAAAokXWRz0tCQRDHP2lSZGFQhw4dRKqThhlIXYKUqEAizCCriz5/BWqP94yQrkHXoCDq0q9D/QV1DToHQVEE0S3oXNSl5DVPBSVyl9357HdnhtlZsESySk5v9kIuX9DCkwHnQnTR2fKKDbtMF56Yoqvjs7MhGo6vB5pMe+cxczX2+3fYE0ldgaZW4TFF1QrCU8Kh9YJq8q5wt5KJJYTPhd2aFCh8b+rxCr+ZnK7wj8laJBwES6ewM13H8TpWMlpOWF5OXy67plTrMV/SnszPz4l1yepFJ8wkAZxMM0EQP0OMyu7Hg49BOdEg3luOn2FVYhXZVYporJAmQwG3qGuSPSk2JXpSZpai2f+/fdVTw75K9vYA2F4M46MfWnagtG0Y38eGUToB6zNc5Wvxq0cw8in6dk3rOwTHJlxc17T4HlxuQc+TGtNiZckqy5JKwfsZdESh6xbalio9q95z+giRDfmqG9g/gAHxdyz/Al6PZ+Ielu7DAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAq0lEQVRIie3TUQpBURDG8R9FebYUnqzAKuSWPXhVFmMnUliKUhbAy7jq0D33ihT+NZ3OfOebqZkOf36WDgpsI4rI1dWzFDgnMWmgZ9k+KLBpoJe0m3R9JW8fUQdTtyVO3S+5Sv8iWsm9jxEGGMYJe+ziXOMQ+SVmFXpJF3Oc3C8vjVO87YZ3ldHBokbhNBbhHWd0cHyiwTG8vSr9uoNzOrOa5Pytj/3kP1/EBRShagANt4fpAAAAAElFTkSuQmCC"
+        }
+    ]
+}

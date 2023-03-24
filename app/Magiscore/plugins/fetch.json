@@ -127,7 +127,7 @@
   "cordova-plugin-consent": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-consent"
+      "id": "cordova-plugin-consent@^0.17.5"
     },
     "is_top_level": true,
     "variables": {}
@@ -227,6 +227,14 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-firebase-analytics"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-tracking-transparency": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-tracking-transparency@1.0.4"
     },
     "is_top_level": true,
     "variables": {}

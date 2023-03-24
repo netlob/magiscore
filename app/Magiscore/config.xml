@@ -77,6 +77,10 @@
         <edit-config file="*-Info.plist" mode="merge" target="UIUserInterfaceStyle">
             <string>Light</string>
         </edit-config>
+        <edit-config file="*-Info.plist" mode="merge" target="NSUserTrackingUsageDescription">
+            <string>Dit gebruikt Gemairo om jouw app ervaring te verbeteren en relevante
+                advertenties te vinden.</string>
+        </edit-config>
         <feature name="CDVWKWebViewEngine">
             <param name="ios-package" value="CDVWKWebViewEngine" />
         </feature>

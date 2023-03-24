@@ -1,0 +1,37 @@
+{
+    "name": "cordova-plugin-tracking-transparency",
+    "version": "1.0.4",
+    "description": "Cordova plugin to use the App Tracking Transparency framework for iOS 14.5 and above.",
+    "cordova": {
+      "id": "cordova-plugin-tracking-transparency",
+      "platforms": [
+        "ios"
+      ]
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ImpacGroup/Cordova-Plugin-Tracking-Transparency.git"
+    },
+    "keywords": [
+      "ATT",
+      "App Tracking Transperency",
+      "Tracking",
+      "Apple",
+      "iOS",
+      "ecosystem:cordova",
+      "cordova-ios"
+    ],
+    "engines": {
+      "cordovaDependencies": {
+        "0.1.0": {
+          "cordova-ios": ">5.1.0"
+        }
+      }
+    },
+    "author": "Felix Nievelstein <fn@impacgroup.de>",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/ImpacGroup/Cordova-Plugin-Tracking-Transparency/issues"
+    },
+    "homepage": "https://github.com/ImpacGroup/Cordova-Plugin-Tracking-Transparency"
+  }

@@ -98,6 +98,9 @@
         <param name="ios-package" value="FirebaseAnalyticsPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="ImpacTracking">
+        <param name="ios-package" value="ImpacTracking" />
+    </feature>
     <name short="Gemairo">Gemairo - Stats voor Magister</name>
     <description>
         Shi daggoetje geswiped
@@ -116,6 +119,10 @@
     <allow-intent href="m6loapp://oauth2redirect/*" />
     <edit-config file="*-Info.plist" mode="merge" target="UIUserInterfaceStyle">
         <string>Light</string>
+    </edit-config>
+    <edit-config file="*-Info.plist" mode="merge" target="NSUserTrackingUsageDescription">
+        <string>Dit gebruikt Gemairo om jouw app ervaring te verbeteren en relevante
+                advertenties te vinden.</string>
     </edit-config>
     <icon height="180" src="res/new/res/icon/ios/icon-60@3x.png" width="180" />
     <icon height="60" src="res/new/res/icon/ios/icon-60.png" width="60" />

@@ -1,0 +1,16 @@
+PODS:
+  - Cordova (5.1.1)
+
+DEPENDENCIES:
+  - Cordova (~> 5.0)
+
+SPEC REPOS:
+  trunk:
+    - Cordova
+
+SPEC CHECKSUMS:
+  Cordova: 5490a208d8396a5cdbbba24732cb2f8779123f8e
+
+PODFILE CHECKSUM: 904baeb630aa5a1f5e04e2cf2fd09bbe9390e65d
+
+COCOAPODS: 1.10.0

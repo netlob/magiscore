@@ -85,6 +85,14 @@
 		F888688171624DD9AF313679 /* UNUserNotificationCenter+APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB9A0D9620242CAB2BFCA13 /* UNUserNotificationCenter+APPLocalNotification.m */; };
 		FCB2A7F665C04870BA552550 /* ThemeDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF386EAD0934DFF87B2EC22 /* ThemeDetection.swift */; };
 		FCB5A1346A6A47A68EC4991F /* NativeSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 27152642C2BA4E849ADDCD2E /* NativeSettings.m */; };
+		3493DB0482A240979A571F06 /* IMPTrackingFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C5407A89546E5AB118715 /* IMPTrackingFacade.swift */; };
+		5C7D571ED0DB494EB5EF4086 /* IMPTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B0D78976DC4D7DA0995C83 /* IMPTrackingManager.swift */; };
+		5F6EE78C2E8445B987F5E47A /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EAD492778E4AD796CE6013 /* InfoTableViewCell.swift */; };
+		97891DACA6444308B1556453 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC5102C0DE4A23A7958693 /* InfoViewController.swift */; };
+		FAA079BAAFF14BCEA144029A /* TrackingRequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA1182E97B4BC7961FA9B3 /* TrackingRequestInfo.swift */; };
+		C068C423CD86462DACA38E96 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C5E7FC964348A99E66567A /* UIColor-Extension.swift */; };
+		53A4BC9380924448810F3F87 /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF7A90248504AF292A72AC8 /* InfoTableViewCell.xib */; };
+		A47CBF1BA98F42368333C3BC /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B661E0D250CD4E20A50A8319 /* InfoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +259,14 @@
 		FDF386EAD0934DFF87B2EC22 /* ThemeDetection.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = ThemeDetection.swift; path = "cordova-plugin-theme-detection/ThemeDetection.swift"; sourceTree = "<group>"; };
 		FF6CACEBC7F6435FAF8E600F /* CDVReachability.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVReachability.h; path = "cordova-plugin-network-information/CDVReachability.h"; sourceTree = "<group>"; };
 		FF896610DB374A3EB83146F7 /* SM_AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = SM_AFNetworkReachabilityManager.m; path = "cordova-plugin-advanced-http/SM_AFNetworkReachabilityManager.m"; sourceTree = "<group>"; };
+		060C5407A89546E5AB118715 /* IMPTrackingFacade.swift */ = {isa = PBXFileReference; name = "IMPTrackingFacade.swift"; path = "cordova-plugin-tracking-transparency/IMPTrackingFacade.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		68B0D78976DC4D7DA0995C83 /* IMPTrackingManager.swift */ = {isa = PBXFileReference; name = "IMPTrackingManager.swift"; path = "cordova-plugin-tracking-transparency/IMPTrackingManager.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		D7EAD492778E4AD796CE6013 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; name = "InfoTableViewCell.swift"; path = "cordova-plugin-tracking-transparency/InfoTableViewCell.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		41DC5102C0DE4A23A7958693 /* InfoViewController.swift */ = {isa = PBXFileReference; name = "InfoViewController.swift"; path = "cordova-plugin-tracking-transparency/InfoViewController.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		62BA1182E97B4BC7961FA9B3 /* TrackingRequestInfo.swift */ = {isa = PBXFileReference; name = "TrackingRequestInfo.swift"; path = "cordova-plugin-tracking-transparency/TrackingRequestInfo.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		69C5E7FC964348A99E66567A /* UIColor-Extension.swift */ = {isa = PBXFileReference; name = "UIColor-Extension.swift"; path = "cordova-plugin-tracking-transparency/UIColor-Extension.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		5DF7A90248504AF292A72AC8 /* InfoTableViewCell.xib */ = {isa = PBXFileReference; name = "InfoTableViewCell.xib"; path = "cordova-plugin-tracking-transparency/InfoTableViewCell.xib"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = file.xib; explicitFileType = undefined; includeInIndex = 0; };
+		B661E0D250CD4E20A50A8319 /* InfoViewController.xib */ = {isa = PBXFileReference; name = "InfoViewController.xib"; path = "cordova-plugin-tracking-transparency/InfoViewController.xib"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = file.xib; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -493,6 +509,14 @@
 				CFCF3737F7954C0DAB4C15DC /* SDNetworkActivityIndicator.h */,
 				60FBED80A05F447E96CEBB5A /* FirebaseAnalyticsPlugin.m */,
 				DF3259470FB748EDBEBF59E5 /* FirebaseAnalyticsPlugin.h */,
+				060C5407A89546E5AB118715 /* IMPTrackingFacade.swift */,
+				68B0D78976DC4D7DA0995C83 /* IMPTrackingManager.swift */,
+				D7EAD492778E4AD796CE6013 /* InfoTableViewCell.swift */,
+				41DC5102C0DE4A23A7958693 /* InfoViewController.swift */,
+				62BA1182E97B4BC7961FA9B3 /* TrackingRequestInfo.swift */,
+				69C5E7FC964348A99E66567A /* UIColor-Extension.swift */,
+				5DF7A90248504AF292A72AC8 /* InfoTableViewCell.xib */,
+				B661E0D250CD4E20A50A8319 /* InfoViewController.xib */,
 			);
 			name = Plugins;
 			path = "Gemairo - Stats voor Magister/Plugins";
@@ -719,6 +743,14 @@
 				3603977371944E7AB5FFF56F /* SM_AFURLSessionManager.m in Sources */,
 				6A9C2A2502F2434E975FDE81 /* SDNetworkActivityIndicator.m in Sources */,
 				D37FD618E1544FCE9DC8DB48 /* FirebaseAnalyticsPlugin.m in Sources */,
+				3493DB0482A240979A571F06 /* IMPTrackingFacade.swift in Sources */,
+				5C7D571ED0DB494EB5EF4086 /* IMPTrackingManager.swift in Sources */,
+				5F6EE78C2E8445B987F5E47A /* InfoTableViewCell.swift in Sources */,
+				97891DACA6444308B1556453 /* InfoViewController.swift in Sources */,
+				FAA079BAAFF14BCEA144029A /* TrackingRequestInfo.swift in Sources */,
+				C068C423CD86462DACA38E96 /* UIColor-Extension.swift in Sources */,
+				53A4BC9380924448810F3F87 /* InfoTableViewCell.xib in Resources */,
+				A47CBF1BA98F42368333C3BC /* InfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,8 +35,10 @@
           ],
           "NSUserTrackingUsageDescription": [
             {
-              "xml": "<string>This identifier will be used to deliver personalized ads to you.</string>",
-              "count": 1
+              "xml": "<string>Dit gebruikt Gemairo om jouw app ervaring te verbeteren en relevante\n                advertenties te vinden.</string>",
+              "count": 1,
+              "mode": "merge",
+              "id": "config.xml"
             }
           ],
           "SKAdNetworkItems": [
@@ -175,6 +177,10 @@
             {
               "xml": "<feature name=\"FirebaseAnalytics\"><param name=\"ios-package\" value=\"FirebaseAnalyticsPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"ImpacTracking\"><param name=\"ios-package\" value=\"ImpacTracking\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -269,6 +275,9 @@
       "ANALYTICS_COLLECTION_ENABLED": "true",
       "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
       "IOS_FIREBASE_POD_VERSION": "9.3.0",
+      "PACKAGE_NAME": "app.netlob.magiscore"
+    },
+    "cordova-plugin-tracking-transparency": {
       "PACKAGE_NAME": "app.netlob.magiscore"
     }
   },
@@ -696,6 +705,14 @@
       "merges": [
         "cordova.plugins.firebase.analytics"
       ]
+    },
+    {
+      "id": "cordova-plugin-tracking-transparency.impacTracking",
+      "file": "plugins/cordova-plugin-tracking-transparency/www/tracking.js",
+      "pluginId": "cordova-plugin-tracking-transparency",
+      "clobbers": [
+        "window.plugins.impacTracking"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -725,6 +742,7 @@
     "cordova-plugin-theme-detection": "1.3.0",
     "cordova-plugin-awesome-shared-preferences": "0.1.0",
     "cordova-plugin-advanced-http": "3.3.1",
-    "cordova-plugin-firebase-analytics": "7.0.5"
+    "cordova-plugin-firebase-analytics": "7.0.5",
+    "cordova-plugin-tracking-transparency": "1.0.4"
   }
 }

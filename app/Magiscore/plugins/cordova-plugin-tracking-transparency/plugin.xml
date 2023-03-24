@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-tracking-transparency" version="1.0.4">
+    <name>Impac Tracking Transperency</name>
+
+    <description>Cordova plugin to use the App Tracking Transparency framework for iOS 14.5 and above.</description>
+    <license>MIT</license>
+
+    <keywords>cordova,ios,ATT,App Tracking Transparency,Tracking,Apple,iOS</keywords>
+    <repo>https://github.com/ImpacGroup/Cordova-Plugin-Tracking-Transparency.git</repo>
+    <issue>https://github.com/ImpacGroup/Cordova-Plugin-Tracking-Transparency/issues</issue>
+  
+    <engines>
+        <engine name="cordova" version=">=4.0.2"/>
+    </engines>
+  
+    <js-module src="www/tracking.js" name="impacTracking">
+        <clobbers target="window.plugins.impacTracking" />
+    </js-module>
+
+    <platform name="ios">   
+        <config-file target="config.xml" parent="/*">
+            <feature name="ImpacTracking">
+                <param name="ios-package" value="ImpacTracking"/>
+            </feature>
+        </config-file>
+        <source-file src="src/IMPTrackingFacade.swift"/>
+        <source-file src="src/IMPTrackingManager.swift"/>
+        <source-file src="src/InfoTableViewCell.swift"/>
+        <source-file src="src/InfoViewController.swift"/>
+        <source-file src="src/TrackingRequestInfo.swift"/>
+        <source-file src="src/UIColor-Extension.swift"/>        
+        <source-file src="src/InfoTableViewCell.xib"/>
+        <source-file src="src/InfoViewController.xib"/>
+    </platform>
+
+</plugin>

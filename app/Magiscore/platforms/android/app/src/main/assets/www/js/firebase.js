@@ -47,7 +47,7 @@ function logFirebaseEvent(eventName, params) {
   }
 }
 
-function setFirebaseUser() {
+async function setFirebaseUser() {
   try {
     const userId = `${school.replace(".magister.net", "")}:${person.id}`;
     cordova.plugins.firebase.analytics.setUserId(userId);
@@ -84,6 +84,11 @@ function setFirebaseUser() {
     )[0].group.description;
   } catch (e) {}
 
+  let adsConsent = "unknown";
+  try {
+    adsConsent = await ads.checkConsent();
+  } catch (e) {}
+
   const config = JSON.parse(getObject("config", getActiveAccount()));
   const userProperties = {
     isParent: person.isParent ?? false,
@@ -95,6 +100,7 @@ function setFirebaseUser() {
     gradeCount: gradeCount,
     courseCount: courseCount,
     classCount: classCount,
+    adsConsent: adsConsent,
     group: group,
   };
   logConsole(JSON.stringify(userProperties, null, 2));

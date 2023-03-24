@@ -1,0 +1,6 @@
+framework module Pods_Cordova_Tracking_Transparency_Cordova_Tracking_TransparencyUITests {
+  umbrella header "Pods-Cordova Tracking Transparency-Cordova Tracking TransparencyUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
