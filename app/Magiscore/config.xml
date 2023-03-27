@@ -23,6 +23,7 @@
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <platform name="android">
+        <preference name="GradlePluginGoogleServicesEnabled" value="true" />
         <preference name="AndroidXEnabled" value="true" />
         <allow-intent href="m6loapp://oauth2redirect/*" />
         <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />

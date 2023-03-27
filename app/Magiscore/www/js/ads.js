@@ -55,7 +55,10 @@ const ads = {
     }
     admob.BannerAd.config({ backgroundColor: theme });
     admob.configure({
-      testDeviceIds: ["6ea04e8011fad00d37e3a96a44cbc072"],
+      testDeviceIds: [
+        "6ea04e8011fad00d37e3a96a44cbc072",
+        "95019d54-3088-42c4-b6ca-c914f732074e",
+      ],
     });
 
     const res = await fetch(
@@ -185,6 +188,7 @@ const ads = {
       await consent.addTestDevice("6ea04e8011fad00d37e3a96a44cbc072");
       await consent.addTestDevice("311D123F-F79E-426B-87FC-D691AE1AE1F6");
       await consent.addTestDevice("D6394BAE-355C-498A-B88E-731D2D81FFAE");
+      await consent.addTestDevice("95019d54-3088-42c4-b6ca-c914f732074e");
     } catch (e) {}
     _npa = await consent.checkConsent(["pub-9170931639371270"]);
     return new Promise(async (resolve, reject) => {

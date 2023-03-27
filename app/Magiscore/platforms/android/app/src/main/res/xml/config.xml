@@ -113,6 +113,7 @@
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <preference name="AllowBackForwardNavigationGestures" value="false" />
     <preference name="Allow3DTouchLinkPreview" value="false" />
+    <preference name="GradlePluginGoogleServicesEnabled" value="true" />
     <preference name="AndroidXEnabled" value="true" />
     <preference name="LoadingDialog" value="Oeps,Er ging iets fout..." />
     <preference name="Orientation" value="portrait" />
