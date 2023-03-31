@@ -5,7 +5,16 @@ var tokens;
 // let lastSchools = [];
 let version;
 // let schools = [];
-const newaccountindex = Object.keys(localStorage).filter((key) => !isNaN(key)).length >= 1 ? Math.max(...Object.keys(localStorage).filter((key) => !isNaN(key)).map(function (x) { return parseInt(x, 10); })) + 1 : 0;
+const newaccountindex =
+  Object.keys(localStorage).filter((key) => !isNaN(key)).length >= 1
+    ? Math.max(
+        ...Object.keys(localStorage)
+          .filter((key) => !isNaN(key))
+          .map(function (x) {
+            return parseInt(x, 10);
+          })
+      ) + 1
+    : 0;
 let currentGradeIndex = 0;
 let totalGrades = 0;
 let all_courses = [];
@@ -90,7 +99,7 @@ function onDeviceReady() {
     $("#android-text").show();
   }
 
-  logFirebaseScreen('login');
+  logFirebaseScreen("login");
 }
 
 function emptyFuntion() {}
@@ -191,7 +200,7 @@ function startLogin() {
 }
 
 function openLoginWindow() {
-  logFirebaseEvent('openLoginWindow');
+  logFirebaseEvent("openLoginWindow");
   // school = /(.+:\/\/)?([^\/]+)(\/.*)*/i.exec(school)[2];
   // tenant = school;
   if (cordova === undefined) return;
@@ -296,7 +305,7 @@ async function validateLogin(code, codeVerifier) {
     dataType: "json",
     async: true,
     crossDomain: true,
-    url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
+    url: "https://cors.gemairo.app/https://accounts.magister.net/connect/token",
     method: "POST",
     headers: {
       "X-API-Client-ID": "EF15",
@@ -313,7 +322,7 @@ async function validateLogin(code, codeVerifier) {
       }
       window.plugins.insomnia.keepAwake();
       $("#login").hide();
-      $('#terugknop').hide();
+      $("#terugknop").hide();
       $("#loader").show();
       logConsole(`Succesvol oauth tokens binnengehaald!`);
       addLoader(3);
@@ -325,16 +334,18 @@ async function validateLogin(code, codeVerifier) {
       setObject("tokens", JSON.stringify(tokens), newaccountindex);
 
       const res = await fetch(
-        "https://cors.sjoerd.dev/https://magister.net/.well-known/host-meta.json?rel=magister-api",
+        "https://cors.gemairo.app/https://magister.net/.well-known/host-meta.json?rel=magister-api",
         {
           headers: new Headers({
             Authorization: `Bearer ${tokens.access_token}`,
           }),
         }
       ).then((res) => res.json());
-      tenant = JSON.stringify(res).match(/(?!(w+)\.)[a-zA-Z0-9_\-]*(?:\w+\.)+\w+/)[0];
+      tenant = JSON.stringify(res).match(
+        /(?!(w+)\.)[a-zA-Z0-9_\-]*(?:\w+\.)+\w+/
+      )[0];
       logConsole(`${tenant} gevonden.`);
-      logFirebaseEvent('loginSuccess', {school: tenant});
+      logFirebaseEvent("loginSuccess", { school: tenant });
       setObject("school", tenant, newaccountindex);
       var config = {
         isDesktop: false,
@@ -346,7 +357,7 @@ async function validateLogin(code, codeVerifier) {
         includeGradesInAverageChart: false,
         devMode: false,
         exclude: [],
-        currentviewed: isNaN(getActiveAccount())
+        currentviewed: isNaN(getActiveAccount()),
       };
       setObject("config", JSON.stringify(config), newaccountindex);
       logConsole("Succesvol config bestanden opgeslagen!");
@@ -357,12 +368,20 @@ async function validateLogin(code, codeVerifier) {
       m.getInfo()
         .then(async () => {
           for (key of Object.keys(localStorage).filter((key) => !isNaN(key))) {
-            if (key == newaccountindex) {continue;}
-            var account = JSON.parse(localStorage.getItem(key) ?? JSON.stringify({}))
-            if ('person' in account && JSON.parse(account['person']).id == m.person.id && account['school'] == tenant) {
-              console.log('Account bestaat al!')
+            if (key == newaccountindex) {
+              continue;
+            }
+            var account = JSON.parse(
+              localStorage.getItem(key) ?? JSON.stringify({})
+            );
+            if (
+              "person" in account &&
+              JSON.parse(account["person"]).id == m.person.id &&
+              account["school"] == tenant
+            ) {
+              console.log("Account bestaat al!");
               toast("Account bestaat al!", 2000, true);
-              retryLogin()
+              retryLogin();
               return;
             }
           }
@@ -378,14 +397,24 @@ async function validateLogin(code, codeVerifier) {
             // );
             logConsole(`Succesvol ouderid (${m.person.id}) opgehaald!`);
             for await (const childindex of Object.keys(m.person.children)) {
-              logConsole(`Bezig ophalen cijfers kind ${parseInt(childindex)+1}/${m.person.children.length}`);
+              logConsole(
+                `Bezig ophalen cijfers kind ${parseInt(childindex) + 1}/${
+                  m.person.children.length
+                }`
+              );
               try {
-                $("#children-wrapper").show()
-                $("#children-remaining").text(`${m.person.children.length - parseInt(childindex)}`);
+                $("#children-wrapper").show();
+                $("#children-remaining").text(
+                  `${m.person.children.length - parseInt(childindex)}`
+                );
                 await getinformationlogin(m, childindex);
-                verderGaanLogin(childindex, (parseInt(childindex)+1 == m.person.children.length), m)
+                verderGaanLogin(
+                  childindex,
+                  parseInt(childindex) + 1 == m.person.children.length,
+                  m
+                );
               } catch (error) {
-                console.log(error)
+                console.log(error);
               }
             }
           } else {
@@ -395,7 +424,6 @@ async function validateLogin(code, codeVerifier) {
           }
           // m.getAccountInfo().then(() => logConsole(`Succesvol accountinfo
           // (${m.account.id}) opgehaald!`), setObject("account",
-
         })
         .catch((err) => {
           errorConsole(err);
@@ -407,169 +435,191 @@ async function validateLogin(code, codeVerifier) {
   // window.location = '../index.html';
 }
 
-async function getinformationlogin(m, childindex= -1) {
+async function getinformationlogin(m, childindex = -1) {
   return new Promise((resolve, reject) => {
-            // JSON.stringify(m.account)))
-            addLoader(3);
-            m.getCourses(childindex)
-              .then(async (courses) => {
-                setObject("person", JSON.stringify(m.person), newaccountindex);
-                all_courses = courses;
-                logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`);
-                addLoader(7);
-                const requests = await courses.map(async (course) => {
-                  const [grades, classes] = await Promise.all([
-                    course.getGrades({ fillGrades: false, latest: false }, childindex),
-                    course.getClasses(childindex),
-                  ]);
-                  course.grades = grades;
-                  course.classes = classes;
-                  // if (course.id == "31089" || course.id == 31089) course.grades = []
-                  return course;
-                });
-  
-                Promise.all(requests)
-                  .then(async (values) => {
-                    var uid = tenant.split(".")[0] + m.person.id;
-                    logConsole("Cijfers en vakken opgehaald!");
-                    addLoader(8); // 12% total, 88% remaining
-                    var years = values.length;
-                    all = [];
-                    values.forEach((value) => {
-                      value.grades.forEach((grade) => {
-                        all.push(grade);
-                      });
-                    });
-                    _.remove(all, function (grade) {
-                      return grade.id < 1;
-                    });
-                    all_grades = [...all]; //[...all, ...all]
-                    logConsole(`Totaal ${all_grades.length} cijfers!`);
-                    var remaining = Math.round((years + 1) * 0.5 * 10) / 10;
-                    $("#time-remaining").text(
-                      `${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`
-                    );
-                    $("#grades-remaining").text(all_grades.length);
-                    // var filled = 0;
-                    for (let grade of all_grades) {
-                      try {
-                        let index = _.findIndex(all_grades, {
-                          id: grade.id,
-                        });
-                        try {
-                          all_grades[index] = await grade.fill();
-                        } catch (error) {
-                          errorConsole(
-                            `[ERROR] !skipping grade (${
-                              grade.id
-                            }) ${error.toString()}`
-                          );
-                          _.remove(all_grades, (g) => {
-                            g.id == grade.id;
-                          });
-                          continue;
-                        }
-                        if (!grade._filled)
-                          logConsole(
-                            "[INFO]  (" + grade.id + ") " + grade._filled
-                          );
-                        // filled++;
-                        // var i = _.findIndex(all_grades, {     id: grade.id })
-                        var i = Number(all_grades.length) - 1 - index;
-                        all_grades[index]._filled = true;
-                        // logConsole(i + ' ' + (Number(all_grades.length) - 1))
-                        // $("#grades-remaining").text(filled)
-                        $("#grades-remaining").text(i);
-                        // var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
-                        var time = i * 0.14;
-                        var minutes = Math.floor(time / 60);
-                        var seconds = time - minutes * 60;
-                        $("#time-remaining").text(
-                          `${Math.round(minutes)}min ${Math.round(seconds)}sec`
-                        );
-                        addLoader(100 - (i / all_grades.length) * 100, true);
-  
-                        // if (_.findIndex(all_grades, {
-                        //   id: grade.id
-                        // }) == Math.round((all_grades.length / 3) * 2)) {
-                        //   toast(
-                        //     `Loopt het vast? <a onclick="verderGaanLogin()">Druk dan hier</a>. Alleen klikken als hij echt is vastgelopen!`,
-                        //     false,
-                        //     true
-                        //   );
-                        // }
-  
-                        // if (i == (Number(all_grades.length) - 1)) {
-                        if (all_grades.every((g) => g._filled == true)) {
-                          resolve();
-                        }
-                      } catch (err) {
-                        errorConsole(
-                          `[ERROR] skipping grade (${grade.id}) ${err.toString()}`
-                        );
-                        _.remove(all_grades, (g) => {
-                          g.id == grade.id;
-                        });
-                        continue;
-                      }
-                    }
-                  })
-                  .catch((err) => errorConsole(err));
-              })
-              .catch((err) => {
-                console.log(err)
-                errorConsole(err + " 420");
-                reject(err)
+    // JSON.stringify(m.account)))
+    addLoader(3);
+    m.getCourses(childindex)
+      .then(async (courses) => {
+        setObject("person", JSON.stringify(m.person), newaccountindex);
+        all_courses = courses;
+        logConsole(`Succesvol ${courses.length} leerjaren opgehaald!`);
+        addLoader(7);
+        const requests = await courses.map(async (course) => {
+          const [grades, classes] = await Promise.all([
+            course.getGrades({ fillGrades: false, latest: false }, childindex),
+            course.getClasses(childindex),
+          ]);
+          course.grades = grades;
+          course.classes = classes;
+          // if (course.id == "31089" || course.id == 31089) course.grades = []
+          return course;
+        });
+
+        Promise.all(requests)
+          .then(async (values) => {
+            var uid = tenant.split(".")[0] + m.person.id;
+            logConsole("Cijfers en vakken opgehaald!");
+            addLoader(8); // 12% total, 88% remaining
+            var years = values.length;
+            all = [];
+            values.forEach((value) => {
+              value.grades.forEach((grade) => {
+                all.push(grade);
               });
-})}
+            });
+            _.remove(all, function (grade) {
+              return grade.id < 1;
+            });
+            all_grades = [...all]; //[...all, ...all]
+            logConsole(`Totaal ${all_grades.length} cijfers!`);
+            var remaining = Math.round((years + 1) * 0.5 * 10) / 10;
+            $("#time-remaining").text(
+              `${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`
+            );
+            $("#grades-remaining").text(all_grades.length);
+            // var filled = 0;
+            for (let grade of all_grades) {
+              try {
+                let index = _.findIndex(all_grades, {
+                  id: grade.id,
+                });
+                try {
+                  all_grades[index] = await grade.fill();
+                } catch (error) {
+                  errorConsole(
+                    `[ERROR] !skipping grade (${grade.id}) ${error.toString()}`
+                  );
+                  _.remove(all_grades, (g) => {
+                    g.id == grade.id;
+                  });
+                  continue;
+                }
+                if (!grade._filled)
+                  logConsole("[INFO]  (" + grade.id + ") " + grade._filled);
+                // filled++;
+                // var i = _.findIndex(all_grades, {     id: grade.id })
+                var i = Number(all_grades.length) - 1 - index;
+                all_grades[index]._filled = true;
+                // logConsole(i + ' ' + (Number(all_grades.length) - 1))
+                // $("#grades-remaining").text(filled)
+                $("#grades-remaining").text(i);
+                // var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
+                var time = i * 0.14;
+                var minutes = Math.floor(time / 60);
+                var seconds = time - minutes * 60;
+                $("#time-remaining").text(
+                  `${Math.round(minutes)}min ${Math.round(seconds)}sec`
+                );
+                addLoader(100 - (i / all_grades.length) * 100, true);
+
+                // if (_.findIndex(all_grades, {
+                //   id: grade.id
+                // }) == Math.round((all_grades.length / 3) * 2)) {
+                //   toast(
+                //     `Loopt het vast? <a onclick="verderGaanLogin()">Druk dan hier</a>. Alleen klikken als hij echt is vastgelopen!`,
+                //     false,
+                //     true
+                //   );
+                // }
+
+                // if (i == (Number(all_grades.length) - 1)) {
+                if (all_grades.every((g) => g._filled == true)) {
+                  resolve();
+                }
+              } catch (err) {
+                errorConsole(
+                  `[ERROR] skipping grade (${grade.id}) ${err.toString()}`
+                );
+                _.remove(all_grades, (g) => {
+                  g.id == grade.id;
+                });
+                continue;
+              }
+            }
+          })
+          .catch((err) => errorConsole(err));
+      })
+      .catch((err) => {
+        console.log(err);
+        errorConsole(err + " 420");
+        reject(err);
+      });
+  });
+}
 
 async function verderGaanLogin(childindex = -1, last = false, m) {
   // alert("Done :)")
   window.plugins.insomnia.allowSleepAgain();
   // all_courses[4].grades = []
-  
+
   //filter courses for unused big stuff
-  all_courses.forEach(jaar => jaar.grades.forEach(grade => { 
-    ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
-    ['id', 'number'].forEach(rem => delete grade.class[rem]);
-    ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
-  }))
-  
+  all_courses.forEach((jaar) =>
+    jaar.grades.forEach((grade) => {
+      ["_fillUrl", "_magister"].forEach((rem) => delete grade[rem]);
+      ["id", "number"].forEach((rem) => delete grade.class[rem]);
+      ["name", "number", "isAtLaterDate", "isTeacher", "level"].forEach(
+        (rem) => delete grade.type[rem]
+      );
+    })
+  );
+
   setObject("loginSuccess", "true", newaccountindex);
-  if (Object.keys(localStorage).filter((key) => !isNaN(key)).length == 1 || JSON.parse(getObject("config", getActiveAccount())).currentviewed) {
+  if (
+    Object.keys(localStorage).filter((key) => !isNaN(key)).length == 1 ||
+    JSON.parse(getObject("config", getActiveAccount())).currentviewed
+  ) {
     setObject("courses", JSON.stringify(all_courses), newaccountindex);
   }
-  
+
   if (childindex >= 0) {
     childcourses.push({
       id: m.person.children[childindex].Id,
-      courses: all_courses
+      courses: all_courses,
     });
     var newaccount = JSON.parse(localStorage.getItem(newaccountindex));
-    var config = JSON.parse(newaccount.config)
+    var config = JSON.parse(newaccount.config);
     config.childActiveViewed = childindex;
     setObject("config", JSON.stringify(config), newaccountindex);
-    if (last) setObject("childcourses", JSON.stringify(childcourses), newaccountindex);
+    if (last)
+      setObject("childcourses", JSON.stringify(childcourses), newaccountindex);
   }
 
   var allfiles = await listFiles();
-  var file = (await allfiles.filter((file) => file.name == `${newaccountindex}.json`).length == 0) ? await CreateNewFile(newaccountindex) : (await allfiles.filter((file) => file.name == `${newaccountindex}.json`))[0];
+  var file =
+    (await allfiles.filter((file) => file.name == `${newaccountindex}.json`)
+      .length) == 0
+      ? await CreateNewFile(newaccountindex)
+      : (
+          await allfiles.filter(
+            (file) => file.name == `${newaccountindex}.json`
+          )
+        )[0];
   var newaccount = JSON.parse(localStorage.getItem(newaccountindex));
   newaccount.courses = JSON.stringify(all_courses);
-  if (childcourses.length > 0) newaccount.childcourses = JSON.stringify(childcourses);
+  if (childcourses.length > 0)
+    newaccount.childcourses = JSON.stringify(childcourses);
   await WriteFile(JSON.stringify(newaccount), file);
 
   if (last) {
     activelocalstorage = JSON.parse(localStorage.getItem(newaccountindex));
     delete activelocalstorage.childcourses;
     localStorage.setItem(newaccountindex, JSON.stringify(activelocalstorage));
-    window.dispatchEvent( new Event('storage') )
-    window.location.replace((history.length != 0 && Object.keys(localStorage).filter((key) => !isNaN(key)).length != 0) ? "./index.html#noNewAds" : "./index.html");
-  };
+    window.dispatchEvent(new Event("storage"));
+    window.location.replace(
+      history.length != 0 &&
+        Object.keys(localStorage).filter((key) => !isNaN(key)).length != 0
+        ? "./index.html#noNewAds"
+        : "./index.html"
+    );
+  }
 }
 
-if (history.length != 0 && Object.keys(localStorage).filter((key) => !isNaN(key)).length != 0) {
-  $('#terugknop').show();
+if (
+  history.length != 0 &&
+  Object.keys(localStorage).filter((key) => !isNaN(key)).length != 0
+) {
+  $("#terugknop").show();
 }
 
 function handleOpenURL(url) {
@@ -591,8 +641,8 @@ $(document).ready(function () {
   $(function () {
     if (window.cordova.platformId === "ios") {
       jQuery.ajaxPrefilter(function (options) {
-        if (options.url.substr(0, 24) !== "https://cors.sjoerd.dev/") {
-          options.url = "https://cors.sjoerd.dev/" + options.url;
+        if (options.url.substr(0, 24) !== "https://cors.gemairo.app/") {
+          options.url = "https://cors.gemairo.app/" + options.url;
         }
       });
     }

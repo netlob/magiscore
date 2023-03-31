@@ -62,7 +62,7 @@ const ads = {
     });
 
     const res = await fetch(
-      "https://cors.sjoerd.dev/https://sjoerd.dev/html/gemairo/ads.json"
+      "https://cors.gemairo.app/https://sjoerd.dev/html/gemairo/ads.json"
     ).then((res) => res.json());
 
     this.receivedEvent("res: " + JSON.stringify(res));
@@ -124,7 +124,7 @@ const ads = {
     _banner = new admob.BannerAd({
       adUnitId: bannerID(),
       position: "bottom",
-      npa: consentStatus === "PERSONALIZED" ? "3" : "0",
+      npa: consentStatus == "PERSONALIZED" ? "3" : "0",
       id: lastBannerId ? Number.parseInt(lastBannerId) : null,
     });
     this.receivedEvent("banner made " + JSON.stringify(_banner));
@@ -154,10 +154,9 @@ const ads = {
 
     if (_banner == undefined) {
       this.receivedEvent("calling banner load before show");
-      this.loadBanner();
+      await this.loadBanner();
     }
 
-    this.receivedEvent("calling banner load before show");
     await _banner
       .show()
       .then((e) => {
@@ -184,6 +183,7 @@ const ads = {
   },
 
   async checkConsent() {
+    if (cordova.platformId == "android") return "PERSONALIZED";
     try {
       await consent.addTestDevice("6ea04e8011fad00d37e3a96a44cbc072");
       await consent.addTestDevice("311D123F-F79E-426B-87FC-D691AE1AE1F6");
@@ -191,7 +191,7 @@ const ads = {
       await consent.addTestDevice("95019d54-3088-42c4-b6ca-c914f732074e");
     } catch (e) {}
     _npa = await consent.checkConsent(["pub-9170931639371270"]);
-    return new Promise(async (resolve, reject) => {
+    return await new Promise(async (resolve, reject) => {
       if (_npa === "UNKNOWN" && adFree != true) {
         const form = new consent.Form({
           privacyUrl: "https://policies.google.com/privacy",
@@ -214,6 +214,9 @@ const ads = {
         if (_npa != "UNKNOWN") {
           window.plugins.impacTracking.trackingAvailable((available) => {
             console.log("Tracvking avaialable: ", available);
+            if (available) {
+              return resolve("PERSONALIZED");
+            }
             window.plugins.impacTracking.canRequestTracking((canRequest) => {
               if (!canRequest) {
                 console.log("Cannot request tracking");
@@ -229,6 +232,8 @@ const ads = {
               );
             });
           });
+        } else {
+          resolve(_npa);
         }
       } catch (e) {
         resolve(_npa);
@@ -277,9 +282,10 @@ const ads = {
     //   })
     //   .catch((e) => this.receivedEvent(e.toString()));
 
+    const consentStatus = await this.checkConsent();
     _interstitial = new admob.InterstitialAd({
       adUnitId: interID(),
-      npa: _npa === "PERSONALIZED" ? "3" : "0",
+      npa: consentStatus == "PERSONALIZED" ? "3" : "0",
     });
 
     _interstitial.on("load", (evt) => {

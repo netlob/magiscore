@@ -39,7 +39,7 @@ class Course {
      */
     this.type = {
       id: raw.Studie.Id || raw.type.id,
-      description: raw.Studie.Omschrijving || raw.type.description
+      description: raw.Studie.Omschrijving || raw.type.description,
     };
 
     var group = raw.Groep ? raw.Groep.Omschrijving : raw.group.description;
@@ -57,8 +57,8 @@ class Course {
       description:
         group == undefined
           ? undefined
-          : group.split(" ").find(w => /\d/.test(w)) || group,
-      locationId: raw.Groep ? raw.Groep.LocatieId : raw.group.locationId
+          : group.split(" ").find((w) => /\d/.test(w)) || group,
+      locationId: raw.Groep ? raw.Groep.LocatieId : raw.group.locationId,
     };
     // logConsole(JSON.stringify(this.group))
 
@@ -107,10 +107,15 @@ class Course {
   getClasses(childindex = -1) {
     return new Promise((resolve, reject) => {
       // logConsole("person id " + this._magister.person.id)
-      var personid = (childindex >= 0 && this._magister.person.isParent) ? this._magister.person.children[childindex].Id : this._magister.person.id
-      const url = `https://${this._magister.tenant}/api/personen/${
-        personid
-      }/aanmeldingen/${this.id}/vakken?nocache=${Date.parse(new Date())}`;
+      var personid =
+        childindex >= 0 && this._magister.person.isParent
+          ? this._magister.person.children[childindex].Id
+          : this._magister.person.id;
+      const url = `https://${
+        this._magister.tenant
+      }/api/personen/${personid}/aanmeldingen/${
+        this.id
+      }/vakken?nocache=${Date.parse(new Date())}`;
       $.ajax({
         cache: false,
         dataType: "json",
@@ -120,9 +125,9 @@ class Course {
         method: "GET",
         headers: {
           Authorization: "Bearer " + tokens.access_token,
-          noCache: new Date().getTime()
+          noCache: new Date().getTime(),
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
           } else if (XMLHttpRequest.readyState == 0) {
@@ -132,9 +137,9 @@ class Course {
           }
           reject("no internet");
         },
-        timeout: 5000
-      }).done(res => {
-        resolve(res.map(c => new Class(this._magister, c)));
+        timeout: 5000,
+      }).done((res) => {
+        resolve(res.map((c) => new Class(this._magister, c)));
       });
     });
   }
@@ -149,10 +154,15 @@ class Course {
     return new Promise((resolve, reject) => {
       // logConsole("RAW:") logConsole(JSON.stringify(this.raw))
       var date = this.current() ? formatDate(new Date()) : this.raw.Einde;
-      var personid = (childindex >= 0 && this._magister.person.isParent) ? this._magister.person.children[childindex].Id : this._magister.person.id
-      const urlPrefix = `https://cors.sjoerd.dev/https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.id}/cijfers`;
+      var personid =
+        childindex >= 0 && this._magister.person.isParent
+          ? this._magister.person.children[childindex].Id
+          : this._magister.person.id;
+      const urlPrefix = `https://cors.gemairo.app/https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.id}/cijfers`;
       const url = latest
-        ? `https://cors.sjoerd.dev/https://${this._magister.tenant}/api/personen/${
+        ? `https://cors.gemairo.app/https://${
+            this._magister.tenant
+          }/api/personen/${
             this._magister.person.id
           }/cijfers/laatste?top=50&skip=0&nocache=${Date.parse(new Date())}`
         : `${urlPrefix}/cijferoverzichtvooraanmelding?actievePerioden=false&alleenBerekendeKolommen=false&alleenPTAKolommen=false&peildatum=${date}&nocache=${Date.parse(
@@ -169,9 +179,9 @@ class Course {
         method: "GET",
         headers: {
           Authorization: "Bearer " + tokens.access_token,
-          noCache: new Date().getTime()
+          noCache: new Date().getTime(),
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
           // alert("error: " + XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
@@ -182,12 +192,12 @@ class Course {
           }
           reject("no internet");
         },
-        timeout: 5000
-      }).done(res => {
+        timeout: 5000,
+      }).done((res) => {
         var grades = res.Items || res.items;
-        grades = _.reject(grades, raw => raw.CijferId === 0);
+        grades = _.reject(grades, (raw) => raw.CijferId === 0);
         grades = grades
-          .filter(raw => {
+          .filter((raw) => {
             if (
               raw.CijferKolom &&
               raw.CijferKolom.Id > 0 &&
@@ -197,7 +207,7 @@ class Course {
               return true;
             else return false;
           })
-          .map(raw => {
+          .map((raw) => {
             const grade = new Grade(this._magister, raw, this.id);
             grade._fillUrl = `${urlPrefix}/extracijferkolominfo/${_.get(
               raw,
@@ -222,7 +232,7 @@ class Course {
 
   sortGrades() {
     var sorted = {};
-    this.grades.forEach(grade => {
+    this.grades.forEach((grade) => {
       if (grade != undefined && grade != null) {
         //logConsole(grade)
         var vak = grade.class.description.capitalize();

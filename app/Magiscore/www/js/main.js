@@ -1,12 +1,14 @@
 // If you want comments. Go fuck yourself
 
-if (localStorage.getItem('courses') != null) { MoveToNewStorage(); }
+if (localStorage.getItem("courses") != null) {
+  MoveToNewStorage();
+}
 
 var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
 var courseController = new CourseController(viewController);
 var filtereddisabled = [];
-var filteredsearched = []
+var filteredsearched = [];
 var idletime;
 
 var sorted = {},
@@ -43,26 +45,26 @@ var snapper;
 //courses.splice(courses.indexOf(courseController.current()))
 
 function reloaddata() {
-  sorted = {},
-  person = JSON.parse(getObject("person", getActiveAccount())),
-  account = JSON.parse(getObject("account", getActiveAccount())),
-  tokens = JSON.parse(getObject("tokens", getActiveAccount())),
-  courses = JSON.parse(getObject("courses", getActiveAccount())),
-  latest = JSON.parse(getObject("latest", getActiveAccount())),
-  school = getObject("school", getActiveAccount()),
-  m = null;
+  (sorted = {}),
+    (person = JSON.parse(getObject("person", getActiveAccount()))),
+    (account = JSON.parse(getObject("account", getActiveAccount()))),
+    (tokens = JSON.parse(getObject("tokens", getActiveAccount()))),
+    (courses = JSON.parse(getObject("courses", getActiveAccount()))),
+    (latest = JSON.parse(getObject("latest", getActiveAccount()))),
+    (school = getObject("school", getActiveAccount())),
+    (m = null);
 
-courseController.clear();
-courses.forEach((c) => {
-  var newCourse = Course.create();
-  Object.keys(c).forEach((key) => {
-    newCourse[key] = c[key];
+  courseController.clear();
+  courses.forEach((c) => {
+    var newCourse = Course.create();
+    Object.keys(c).forEach((key) => {
+      newCourse[key] = c[key];
+    });
+    c = newCourse;
+    courseController.add(c);
   });
-  c = newCourse;
-  courseController.add(c);
-});
-viewController.currentCourse = courseController.current();
-onDeviceReady();
+  viewController.currentCourse = courseController.current();
+  onDeviceReady();
 }
 
 function main(l) {
@@ -95,7 +97,9 @@ function main(l) {
   lessonController.allGrades = [];
   lessonController.lessons = [];
   filtereddisabled = [];
-  document.getElementById('gradefilterbutton').children[0].children[0].classList.remove("activefilter");
+  document
+    .getElementById("gradefilterbutton")
+    .children[0].children[0].classList.remove("activefilter");
   var sorted = viewController.currentCourse.course.sortGrades();
   // viewController.currentCourse.course.grades.forEach(grade => {
   //   var vak = grade.class.description.capitalize()
@@ -158,25 +162,39 @@ function logOut() {
 }
 
 async function confirmLogout(b) {
-  logFirebaseEvent('logout');
+  logFirebaseEvent("logout");
   if (b == 1) {
     if (Object.keys(localStorage).filter((key) => !isNaN(key)).length > 1) {
-      var active = getActiveAccount(); 
+      var active = getActiveAccount();
       clearObject(active);
-      var allfiles = await listFiles()
-      var file = (await allfiles.filter((file) => file.name == `${active}.json`))[0];
-      var newaccountfile = (await allfiles.filter((file) => file.name == `${Object.keys(localStorage).filter((key) => !isNaN(key))[0]}.json`))[0];
-      localStorage.setItem(Object.keys(localStorage).filter((key) => !isNaN(key))[0], await readFile(newaccountfile));
-      changeActiveAccount(Object.keys(localStorage).filter((key) => !isNaN(key))[0]);
+      var allfiles = await listFiles();
+      var file = (
+        await allfiles.filter((file) => file.name == `${active}.json`)
+      )[0];
+      var newaccountfile = (
+        await allfiles.filter(
+          (file) =>
+            file.name ==
+            `${Object.keys(localStorage).filter((key) => !isNaN(key))[0]}.json`
+        )
+      )[0];
+      localStorage.setItem(
+        Object.keys(localStorage).filter((key) => !isNaN(key))[0],
+        await readFile(newaccountfile)
+      );
+      changeActiveAccount(
+        Object.keys(localStorage).filter((key) => !isNaN(key))[0]
+      );
       reloaddata();
       courseController.getLatestGrades(false, getActiveChildAccount());
       viewController.overlay("hide");
-      viewController.closeSettings()
+      viewController.closeSettings();
       await RemoveFile(file);
       //window.location = "./index.html";
     } else {
       clearObject(getActiveAccount());
-      var sharedPreferences = window.plugins.SharedPreferences.getInstance("Gemairo")
+      var sharedPreferences =
+        window.plugins.SharedPreferences.getInstance("Gemairo");
       sharedPreferences.del("latestGrades");
       sharedPreferences.del("Tokens");
       sharedPreferences.del("PersonID");
@@ -207,7 +225,7 @@ function round(num) {
 }
 
 async function syncGrades() {
-  logFirebaseEvent('syncGrades');
+  logFirebaseEvent("syncGrades");
   return new Promise(async (resolve, reject) => {
     $("div:contains('Nieuwe cijfer(s) beschikbaar'):first-child").remove();
     if (m == null || m == undefined) {
@@ -221,7 +239,10 @@ async function syncGrades() {
               .then((p) => {
                 person = p;
                 setObject("person", JSON.stringify(p), getActiveAccount());
-                courseController.getLatestGrades(false, getActiveChildAccount());
+                courseController.getLatestGrades(
+                  false,
+                  getActiveChildAccount()
+                );
               })
               .catch((err) => {
                 if (err == "no internet")
@@ -350,7 +371,7 @@ async function syncGrades() {
               if (viewController.config.refreshOldGrades) {
                 viewController.currentCourse.course.grades.push(grade);
               } else {
-                currentCourse.grades[i] = grade
+                currentCourse.grades[i] = grade;
               }
               i = _.findIndex(newGrades, {
                 id: grade.id,
@@ -416,13 +437,27 @@ async function syncGrades() {
                 });
                 _.sortBy(courseController.allGrades, "dateFilledIn");
                 coursesStorage[i] = viewController.currentCourse.course;
-                coursesStorage.forEach(jaar => jaar.grades.forEach(grade => { 
-                  ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
-                  ['id', 'number'].forEach(rem => delete grade.class[rem]);
-                  ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
-                }))
-                
-                setObject("courses", JSON.stringify(coursesStorage), getActiveAccount());
+                coursesStorage.forEach((jaar) =>
+                  jaar.grades.forEach((grade) => {
+                    ["_fillUrl", "_magister"].forEach(
+                      (rem) => delete grade[rem]
+                    );
+                    ["id", "number"].forEach((rem) => delete grade.class[rem]);
+                    [
+                      "name",
+                      "number",
+                      "isAtLaterDate",
+                      "isTeacher",
+                      "level",
+                    ].forEach((rem) => delete grade.type[rem]);
+                  })
+                );
+
+                setObject(
+                  "courses",
+                  JSON.stringify(coursesStorage),
+                  getActiveAccount()
+                );
                 logConsole("[INFO]   Saved new grades in courses");
                 // courseController.save()
                 main(viewController.currentLesson);
@@ -472,7 +507,7 @@ async function syncGrades() {
 }
 
 async function checkNewCourses(newGrades) {
-  logFirebaseEvent('checkNewCourses');
+  logFirebaseEvent("checkNewCourses");
   let courses = await m.getCourses();
   courses = courses.filter(
     (course) => !courseController.courseIds.includes(course.id)
@@ -515,7 +550,7 @@ const ptr = PullToRefresh.init({
     );
   },
   onRefresh: function (done) {
-    logFirebaseEvent('pullToRefresh');
+    logFirebaseEvent("pullToRefresh");
     vibrate(15, true);
     syncGrades()
       .then((d) => done())
@@ -577,54 +612,113 @@ function vibrate(time, strong) {
 //   logConsole(poep)
 // }
 
-
 // filtereddisabled = [];
 
 // courseController.allGrades.filter((grade) => !grade.type.isPTA).forEach((grade) => filtereddisabled.push(grade))
 
-
-
 function generateFilter(noreset = false) {
   filtereddisabled = [];
 
-  courseController.allGrades.filter((grade) => !Array.from(document.getElementById('vakkenModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
-    .filter((ent) => typeof ent != 'undefined')
-    .includes(grade.class.description.capitalize()) && grade.type._type == 1)
-    .forEach((grade) => filtereddisabled.indexOf(grade) === -1 ? filtereddisabled.push(grade) : "");
+  courseController.allGrades
+    .filter(
+      (grade) =>
+        !Array.from(document.getElementById("vakkenModalTable").children)
+          .map((ch) => {
+            if (ch.children[0].checked) return ch.innerText;
+          })
+          .filter((ent) => typeof ent != "undefined")
+          .includes(grade.class.description.capitalize()) &&
+        grade.type._type == 1
+    )
+    .forEach((grade) =>
+      filtereddisabled.indexOf(grade) === -1 ? filtereddisabled.push(grade) : ""
+    );
 
-  if (document.getElementById('periodeModalTable').children[0].id != 'noperiodsfound') courseController.allGrades.filter((grade) => ('CijferPeriode' in grade) && ![...document.getElementById('periodeModalTable').children].map((ch) => { if (ch.tagName = 'LABEL' && ch.children[0].checked) return ch.innerText })
-    .filter((ent) => typeof ent != 'undefined')
-    .includes(grade?.CijferPeriode?.name) && grade.type._type == 1)
-    .forEach((grade) => filtereddisabled.indexOf(grade) === -1 ? filtereddisabled.push(grade) : "");
+  if (
+    document.getElementById("periodeModalTable").children[0].id !=
+    "noperiodsfound"
+  )
+    courseController.allGrades
+      .filter(
+        (grade) =>
+          "CijferPeriode" in grade &&
+          ![...document.getElementById("periodeModalTable").children]
+            .map((ch) => {
+              if ((ch.tagName = "LABEL" && ch.children[0].checked))
+                return ch.innerText;
+            })
+            .filter((ent) => typeof ent != "undefined")
+            .includes(grade?.CijferPeriode?.name) &&
+          grade.type._type == 1
+      )
+      .forEach((grade) =>
+        filtereddisabled.indexOf(grade) === -1
+          ? filtereddisabled.push(grade)
+          : ""
+      );
 
-  document.getElementById('gradefilterbutton').children[0].children[0].classList.add("activefilter");
+  document
+    .getElementById("gradefilterbutton")
+    .children[0].children[0].classList.add("activefilter");
 
-  if (noreset) { filtereddisabled = _.union(filteredsearched, filtereddisabled); }
+  if (noreset) {
+    filtereddisabled = _.union(filteredsearched, filtereddisabled);
+  }
 
-  if (!(document.getElementById('search-wrapper').style.display != 'none') || noreset) viewController.render(viewController.currentLesson);
+  if (
+    !(document.getElementById("search-wrapper").style.display != "none") ||
+    noreset
+  )
+    viewController.render(viewController.currentLesson);
   updateSidebar();
 }
 
 function generateSearch(Zoekopdracht, rendergeneral = false) {
-  var zoektable = $("#zoekGradesTable")
+  var zoektable = $("#zoekGradesTable");
   zoektable.empty();
-  var searched = _.sortBy(courseController.allGrades.filter((grade) => Object.entries(grade).map((grade) => {if (grade[0].includes('grade') || grade[0].includes('description')) {return grade[1] } else if (grade[0].includes('teacher')) {return grade[1].teacherCode} else if (grade[0].includes('class')) {return grade[1].description}}).filter((grade) => typeof grade != 'undefined').filter((string) => string != null && string.toString().toLowerCase()
-  .includes(Zoekopdracht.toString().toLowerCase())).length > 0), "dateFilledIn");
+  var searched = _.sortBy(
+    courseController.allGrades.filter(
+      (grade) =>
+        Object.entries(grade)
+          .map((grade) => {
+            if (
+              grade[0].includes("grade") ||
+              grade[0].includes("description")
+            ) {
+              return grade[1];
+            } else if (grade[0].includes("teacher")) {
+              return grade[1].teacherCode;
+            } else if (grade[0].includes("class")) {
+              return grade[1].description;
+            }
+          })
+          .filter((grade) => typeof grade != "undefined")
+          .filter(
+            (string) =>
+              string != null &&
+              string
+                .toString()
+                .toLowerCase()
+                .includes(Zoekopdracht.toString().toLowerCase())
+          ).length > 0
+    ),
+    "dateFilledIn"
+  );
   if (!rendergeneral) {
-    $('#searchfilterbutton').hide();
+    $("#searchfilterbutton").hide();
     $("#general-wrapper").hide();
-  searched.forEach((grade, index) => {
-    if (
-      grade.type._type == 1 &&
-      round(grade.grade) > 0 &&
-      round(grade.grade) < 11 &&
-      !filtereddisabled.includes(grade)
-    ) {
-      var d = new Date(grade.dateFilledIn);
-      zoektable.append(`
+    searched.forEach((grade, index) => {
+      if (
+        grade.type._type == 1 &&
+        round(grade.grade) > 0 &&
+        round(grade.grade) < 11 &&
+        !filtereddisabled.includes(grade)
+      ) {
+        var d = new Date(grade.dateFilledIn);
+        zoektable.append(`
         <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
           grade.id
-        })" ${(grade.exclude) ? 'style="opacity:0.5 !important;"' : ""}>
+        })" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
               <h4 class="text-center mt-2 mr-3" style="position: relative;">${
@@ -634,10 +728,11 @@ function generateSearch(Zoekopdracht, rendergeneral = false) {
                   ? '<span class="text-danger">' + grade.grade + "</span>"
                   : grade.grade
               }<sup class="text-gray-800" style="font-size: 10px !important;position: absolute;margin-top: 5px;right: -1rem;display: inline-block;font-variant-numeric: tabular-nums !important;">${
-        grade.weight < 10
-          ? grade.weight.toLocaleString(viewController.config.separator) + 'x<span class="invisible">0</span>'
-          : grade.weight.toLocaleString(viewController.config.separator)+ "x"
-      }</sup></h4>
+          grade.weight < 10
+            ? grade.weight.toLocaleString(viewController.config.separator) +
+              'x<span class="invisible">0</span>'
+            : grade.weight.toLocaleString(viewController.config.separator) + "x"
+        }</sup></h4>
             </div>
             <!-- <div class="status-indicator bg-success"></div> -->
           </div>
@@ -646,8 +741,8 @@ function generateSearch(Zoekopdracht, rendergeneral = false) {
               "general" ? grade.class.description : grade.description)}</span>
             <span
               class="grades-table-date small grade-small float-right text-gray-600">${d.getDate()}-${
-        d.getMonth() + 1
-      }-${d.getFullYear()}</span>
+          d.getMonth() + 1
+        }-${d.getFullYear()}</span>
             <div class="small grade-small text-gray-600">${
               grade.description == ""
                 ? "<i>Geen beschrijving...</i>"
@@ -657,42 +752,73 @@ function generateSearch(Zoekopdracht, rendergeneral = false) {
         </a>
         ${index != searched.length - 1 ? '<hr class="m-0 p-0">' : ""}
       `);
+      }
+    });
+    if (
+      searched.filter(
+        (grade) =>
+          grade.type._type == 1 &&
+          round(grade.grade) > 0 &&
+          round(grade.grade) < 11 &&
+          !filtereddisabled.includes(grade)
+      ).length == 0
+    ) {
+      zoektable.append(
+        `<div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>`
+      );
     }
-  })
-  if (searched.filter((grade) => grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11 && !filtereddisabled.includes(grade)).length == 0) {
-    zoektable.append(`<div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>`)
-  }}
+  }
   if (rendergeneral) {
-    filteredsearched = courseController.allGrades.filter((grade) => !searched.filter((grade) => grade.type._type == 1).includes(grade));
-    filtereddisabled = filteredsearched
-    viewController.renderGeneral(true)
+    filteredsearched = courseController.allGrades.filter(
+      (grade) =>
+        !searched.filter((grade) => grade.type._type == 1).includes(grade)
+    );
+    filtereddisabled = filteredsearched;
+    viewController.renderGeneral(true);
     $("#vakkenModalTable").empty();
     $("#periodeModalTable").empty();
-    $('#searchfilterbutton').show();
+    $("#searchfilterbutton").show();
 
-    Array.from(new Set(courseController.allGrades.filter((grade) => !filtereddisabled.includes(grade))
-      .map((grade) => grade.class)
-      .map(({ description }) => description.capitalize()))).forEach((name) => {
-        var lesson = sorted["Lesson"];
-        $("#vakkenModalTable").append(`  
+    Array.from(
+      new Set(
+        courseController.allGrades
+          .filter((grade) => !filtereddisabled.includes(grade))
+          .map((grade) => grade.class)
+          .map(({ description }) => description.capitalize())
+      )
+    ).forEach((name) => {
+      var lesson = sorted["Lesson"];
+      $("#vakkenModalTable").append(`  
         <label class="buttoncheckbox btn btn-primary">
-          <input checked id="${name.replaceAll(" ", "")}_SelectP" type="checkbox" autocomplete="off">${name}
+          <input checked id="${name.replaceAll(
+            " ",
+            ""
+          )}_SelectP" type="checkbox" autocomplete="off">${name}
         </label>
-        `)
-        });
-    
-        Array.from(new Set(courseController.allGrades
-          .filter((grade) => grade.type._type == 1 && grade.CijferPeriode && !filtereddisabled.includes(grade))
+        `);
+    });
+
+    Array.from(
+      new Set(
+        courseController.allGrades
+          .filter(
+            (grade) =>
+              grade.type._type == 1 &&
+              grade.CijferPeriode &&
+              !filtereddisabled.includes(grade)
+          )
           .map((grade) => grade.CijferPeriode)
-          .map(({ name }) => name)))
-      .forEach(cijferPeriode => {
-        $('#periodeModalTable').append(`
+          .map(({ name }) => name)
+      )
+    ).forEach((cijferPeriode) => {
+      $("#periodeModalTable").append(`
         <label class="buttoncheckbox btn btn-primary">
           <input checked id="${cijferPeriode}_SelectP" type="checkbox" autocomplete="off">${cijferPeriode}
         </label>
-        `)})
-}
-filtereddisabled = [];
+        `);
+    });
+  }
+  filtereddisabled = [];
 }
 
 function MoveToNewStorage() {
@@ -705,28 +831,38 @@ function MoveToNewStorage() {
     }
     if (key == "courses") {
       courses = JSON.parse(localStorage[key]);
-      courses.forEach(jaar => jaar.grades.forEach(grade => { 
-        ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
-        ['id', 'number'].forEach(rem => delete grade.class[rem]);
-        ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
-      }))
+      courses.forEach((jaar) =>
+        jaar.grades.forEach((grade) => {
+          ["_fillUrl", "_magister"].forEach((rem) => delete grade[rem]);
+          ["id", "number"].forEach((rem) => delete grade.class[rem]);
+          ["name", "number", "isAtLaterDate", "isTeacher", "level"].forEach(
+            (rem) => delete grade.type[rem]
+          );
+        })
+      );
       localStorage[key] = JSON.stringify(courses);
     }
     newaccountStorage[key] = localStorage[key];
   }
   localStorage.clear();
   localStorage.setItem(0, JSON.stringify(newaccountStorage));
-  window.dispatchEvent( new Event('storage') )
-  window.location = './index.html';
+  window.dispatchEvent(new Event("storage"));
+  window.location = "./index.html";
 }
 
 function beforeDeviceReady() {
-  var sharedPreferences = window.plugins.SharedPreferences.getInstance("Gemairo");
-  sharedPreferences.get("Tokens", [], function (data) {
-    if (data != '' && Object.entries(data).length > 0 && tokens != data)
-      setObject("tokens", JSON.stringify(data), getActiveAccount());
-    onDeviceReady();
-    }, onDeviceReady)
+  var sharedPreferences =
+    window.plugins.SharedPreferences.getInstance("Gemairo");
+  sharedPreferences.get(
+    "Tokens",
+    [],
+    function (data) {
+      if (data != "" && Object.entries(data).length > 0 && tokens != data)
+        setObject("tokens", JSON.stringify(data), getActiveAccount());
+      onDeviceReady();
+    },
+    onDeviceReady
+  );
 }
 
 function onDeviceReady() {
@@ -735,44 +871,53 @@ function onDeviceReady() {
   });
   if (window.cordova.platformId === "ios") {
     jQuery.ajaxPrefilter(function (options) {
-      if (options.url.substr(0, 24) !== "https://cors.sjoerd.dev/") {
-        options.url = "https://cors.sjoerd.dev/" + options.url;
+      if (options.url.substr(0, 24) !== "https://cors.gemairo.app/") {
+        options.url = "https://cors.gemairo.app/" + options.url;
       }
     });
   }
-  cordova.plugins.notification.local.hasPermission(function (granted) { 
+  cordova.plugins.notification.local.hasPermission(function (granted) {
     if (!granted) {
       cordova.plugins.notification.local.requestPermission(function (granted) {
-        console.log(granted)
+        console.log(granted);
       });
       cordova.plugins.notification.local.setDummyNotifications();
-  }});
+    }
+  });
 
   (async () => {
     var BackgroundFetch = window.BackgroundFetch;
-  
-    var onEvent = async function(taskId) {
-        console.log('[BackgroundFetch] event received: ', taskId);
-        tokens = await refreshToken(true);
-        var latestgrades = await courseController.getLatestGrades(false, getActiveChildAccount(), true);
-        console.log(latestgrades[1] ? 'New grades found' : "No new grades found")
-        if (latestgrades[1]) sendNotification();
-        logFirebaseEvent('syncGradesBackground');
-        BackgroundFetch.finish(taskId);
+
+    var onEvent = async function (taskId) {
+      console.log("[BackgroundFetch] event received: ", taskId);
+      tokens = await refreshToken(true);
+      var latestgrades = await courseController.getLatestGrades(
+        false,
+        getActiveChildAccount(),
+        true
+      );
+      console.log(latestgrades[1] ? "New grades found" : "No new grades found");
+      if (latestgrades[1]) sendNotification();
+      logFirebaseEvent("syncGradesBackground");
+      BackgroundFetch.finish(taskId);
     };
 
-    var onTimeout = async function(taskId) {
-        console.log('[BackgroundFetch] TIMEOUT: ', taskId);
-        BackgroundFetch.finish(taskId);
+    var onTimeout = async function (taskId) {
+      console.log("[BackgroundFetch] TIMEOUT: ", taskId);
+      BackgroundFetch.finish(taskId);
     };
-  
-    var status = await BackgroundFetch.configure({
-      minimumFetchInterval: 15,
-      requiredNetworkType: BackgroundFetch.NETWORK_TYPE_ANY,
-      stopOnTerminate: false,
-      enableHeadless: true
-    }, onEvent, onTimeout);
-    console.log('[BackgroundFetch] configure status: ', status);
+
+    var status = await BackgroundFetch.configure(
+      {
+        minimumFetchInterval: 15,
+        requiredNetworkType: BackgroundFetch.NETWORK_TYPE_ANY,
+        stopOnTerminate: false,
+        enableHeadless: true,
+      },
+      onEvent,
+      onTimeout
+    );
+    console.log("[BackgroundFetch] configure status: ", status);
   })();
 
   if (getObject("tokens", getActiveAccount()) != null) {
@@ -792,7 +937,10 @@ function onDeviceReady() {
               if (p.id == person.id) {
                 setObject("person", JSON.stringify(p), getActiveAccount());
                 main();
-                courseController.getLatestGrades(false, getActiveChildAccount());
+                courseController.getLatestGrades(
+                  false,
+                  getActiveChildAccount()
+                );
                 if (account == null || !"name" in account) {
                   m.getAccountInfo().then((a) => {
                     setObject("account", JSON.stringify(a), getActiveAccount());
@@ -926,13 +1074,16 @@ function onDeviceReady() {
 
 async function showMeldingen() {
   const meldingen = await fetch(
-    "https://cors.sjoerd.dev/https://sjoerd.dev/html/gemairo/announcements.json"
+    "https://cors.gemairo.app/https://sjoerd.dev/html/gemairo/announcements.json"
   ).then((res) => res.json());
   if (meldingen != null) meldingen.forEach((melding) => showMelding(melding));
 }
 
 async function showMelding({ title, body, id }) {
-  if (getObject(id, getActiveAccount()) != true && getObject(id, getActiveAccount()) != "true") {
+  if (
+    getObject(id, getActiveAccount()) != true &&
+    getObject(id, getActiveAccount()) != "true"
+  ) {
     $("#general-wrapper").prepend(`
     <div class="row" id="${id}">
       <div class="col-xl-3 col-md-6 mb-4">
@@ -962,9 +1113,12 @@ function sluitMelding(id) {
   $(`#${id}`).hide();
 }
 
-function sendNotification(title = "Nieuwe cijfers in Gemairo", text = "Nieuwe cijfer(s) beschikbaar") {
-  logFirebaseEvent('newGradesNotification');
-  cordova.plugins.notification.local.hasPermission(function (granted) { 
+function sendNotification(
+  title = "Nieuwe cijfers in Gemairo",
+  text = "Nieuwe cijfer(s) beschikbaar"
+) {
+  logFirebaseEvent("newGradesNotification");
+  cordova.plugins.notification.local.hasPermission(function (granted) {
     if (granted) {
       cordova.plugins.notification.local.schedule({
         title: title,
@@ -972,17 +1126,17 @@ function sendNotification(title = "Nieuwe cijfers in Gemairo", text = "Nieuwe ci
         foreground: true,
         smallIcon: "res://notification",
         channelId: "Gemairo-Cijfers",
-        channelName: "Cijfers"
-    });
+        channelName: "Cijfers",
+      });
     }
   });
 }
 
-$(window).on('hashchange', function() {
+$(window).on("hashchange", function () {
   if (window.location.hash == "#settings") {
     viewController.openSettings();
   } else if (window.location.hash == "#search") {
-    viewController.openZoeken()
+    viewController.openZoeken();
   } else {
     viewController.closeSettings();
   }
@@ -998,27 +1152,54 @@ $(window).on('hashchange', function() {
 //   // viewController.toast("Je bent weer online!", false, false)
 // }
 
-window.addEventListener("storage", function () {
-  //Waarom is dit hier?
-  //Dit is zodat het java gedeelte altijd de juiste informatie heeft, om op de achtergrond zonder de app open te hebben de laatste cijfers kan controleren.
-  var sharedPreferences = window.plugins.SharedPreferences.getInstance("Gemairo")
-  if (courseController.latestGrades.length > 0) sharedPreferences.put("latestGrades", JSON.parse(`{"items": ${JSON.stringify(courseController.latestGrades)}}`));
-  if (Object.entries(JSON.parse(getObject("tokens", getActiveAccount()))).length > 0) sharedPreferences.put("Tokens", JSON.parse(getObject("tokens", getActiveAccount())));
-  sharedPreferences.put("PersonID", (getActiveChildAccount() >= 0 && person.isParent) ? person.children[getActiveChildAccount()].Id : person.id);
-  sharedPreferences.put("SchoolURL", getObject("school", getActiveAccount()));
-}, false);
+window.addEventListener(
+  "storage",
+  function () {
+    //Waarom is dit hier?
+    //Dit is zodat het java gedeelte altijd de juiste informatie heeft, om op de achtergrond zonder de app open te hebben de laatste cijfers kan controleren.
+    var sharedPreferences =
+      window.plugins.SharedPreferences.getInstance("Gemairo");
+    if (courseController.latestGrades.length > 0)
+      sharedPreferences.put(
+        "latestGrades",
+        JSON.parse(
+          `{"items": ${JSON.stringify(courseController.latestGrades)}}`
+        )
+      );
+    if (
+      Object.entries(JSON.parse(getObject("tokens", getActiveAccount())))
+        .length > 0
+    )
+      sharedPreferences.put(
+        "Tokens",
+        JSON.parse(getObject("tokens", getActiveAccount()))
+      );
+    sharedPreferences.put(
+      "PersonID",
+      getActiveChildAccount() >= 0 && person.isParent
+        ? person.children[getActiveChildAccount()].Id
+        : person.id
+    );
+    sharedPreferences.put("SchoolURL", getObject("school", getActiveAccount()));
+  },
+  false
+);
 
 function onResume() {
-  if (idletime != null && Math.abs(new Date() - new Date(idletime)) > (30 * 60000)) {
+  if (
+    idletime != null &&
+    Math.abs(new Date() - new Date(idletime)) > 30 * 60000
+  ) {
     refreshToken().then((refreshTokens) => {
       tokens = refreshTokens;
-      setObject("tokens", JSON.stringify(tokens), getActiveAccount());})
+      setObject("tokens", JSON.stringify(tokens), getActiveAccount());
+    });
   }
   idletime = null;
 }
 
 function onPause() {
- idletime = new Date();
+  idletime = new Date();
 }
 
 document.addEventListener("deviceready", beforeDeviceReady, false);

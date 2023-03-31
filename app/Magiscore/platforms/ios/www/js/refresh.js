@@ -3,64 +3,73 @@ var tenant = "";
 var popup = null;
 
 function refreshToken(background = false) {
-  logFirebaseEvent('refeshTokens');
+  logFirebaseEvent("refeshTokens");
   return new Promise((resolve, reject) => {
     var tokens = JSON.parse(getObject("tokens", getActiveAccount()));
     var refresh_token = tokens.refresh_token;
 
     cordova.plugin.http.setRequestTimeout(5.0);
-    cordova.plugin.http.post("https://accounts.magister.net/connect/token", {
-      "refresh_token": refresh_token,
-      "client_id": "M6LOAPP",
-      "grant_type": "refresh_token"
-    }, { "cache-control": "no-cache" }, function(res) {
-      //success
-      try {
-        response = JSON.parse(res.data);
-      } catch(e) {
-        console.error('JSON parsing error');
-      }
-      logConsole(
-        "[DEBUG] " + typeof response == "object"
-          ? JSON.stringify(response)
-          : response
-      );
-      var tokens = {
-        access_token: response.access_token,
-        refresh_token: response.refresh_token,
-        id_token: response.id_token
-      };
-      setObject("tokens", JSON.stringify(tokens), getActiveAccount());
-      if (typeof m != 'undefined' && m != null) m.token = tokens.access_token;
-      resolve(tokens);
-    }, function(response) {
-      //Error
-      console.log(response)
-      if (response.status == 400 || response.status == "400" && !background) {
+    cordova.plugin.http.post(
+      "https://accounts.magister.net/connect/token",
+      {
+        refresh_token: refresh_token,
+        client_id: "M6LOAPP",
+        grant_type: "refresh_token",
+      },
+      { "cache-control": "no-cache" },
+      function (res) {
+        //success
         try {
+          response = JSON.parse(res.data);
+        } catch (e) {
+          console.error("JSON parsing error");
+        }
+        logConsole(
+          "[DEBUG] " + typeof response == "object"
+            ? JSON.stringify(response)
+            : response
+        );
+        var tokens = {
+          access_token: response.access_token,
+          refresh_token: response.refresh_token,
+          id_token: response.id_token,
+        };
+        setObject("tokens", JSON.stringify(tokens), getActiveAccount());
+        if (typeof m != "undefined" && m != null) m.token = tokens.access_token;
+        resolve(tokens);
+      },
+      function (response) {
+        //Error
+        console.log(response);
+        if (
+          response.status == 400 ||
+          (response.status == "400" && !background)
+        ) {
+          try {
             navigator.notification.confirm(
-              'Er is iets fout gegaan waardoor je geen toegang hebt tot dit account. Probeer opnieuw aan te melden door op de knop ‘Aanmelden’ te klikken of log uit door op de knop ‘Uitloggen’ te klikken.',
+              "Er is iets fout gegaan waardoor je geen toegang hebt tot dit account. Probeer opnieuw aan te melden door op de knop ‘Aanmelden’ te klikken of log uit door op de knop ‘Uitloggen’ te klikken.",
               openBrowser,
               "Probleem bij het inloggen",
               ["Aanmelden", "Uitloggen"]
             );
-          // }
-        } catch (err) {
-          logConsole("[ERROR] " + err);
+            // }
+          } catch (err) {
+            logConsole("[ERROR] " + err);
+          }
+        } else {
+          logConsole(`[ERROR] ${response.status}: ${response.error}`);
+          reject("no internet");
         }
-      } else {
-        logConsole(`[ERROR] ${response.status}: ${response.error}`);
-        reject("no internet");
       }
-    });
+    );
   });
 }
 
 function openBrowser(b) {
   if (b == 2) {
-    confirmLogout(1)
+    confirmLogout(1);
   }
-  logFirebaseEvent('refeshTokensOpenBrowser');
+  logFirebaseEvent("refeshTokensOpenBrowser");
   // viewController.overlay("show")
   school = /(.+:\/\/)?([^\/]+)(\/.*)*/i.exec(school)[2];
   // tenant = school
@@ -81,7 +90,7 @@ function openBrowser(b) {
     "location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,closebuttoncolor=#eeeeee,zoom=no"
   );
   popup.insertCSS({
-    code: "#username_options > a { display: none !important }"
+    code: "#username_options > a { display: none !important }",
   });
   // popup.addEventListener("loaderror", customScheme);
   popup.addEventListener("loadstart", customScheme);
@@ -94,7 +103,11 @@ function exitPopup(iab) {
 }
 
 function customScheme(iab) {
-  if (iab.url.startsWith("m6loapp://oauth2redirect/") || iab.url.startsWith("http://m6loapp://oauth2redirect/") || iab.url.startsWith("https://m6loapp://oauth2redirect/")) {
+  if (
+    iab.url.startsWith("m6loapp://oauth2redirect/") ||
+    iab.url.startsWith("http://m6loapp://oauth2redirect/") ||
+    iab.url.startsWith("https://m6loapp://oauth2redirect/")
+  ) {
     var code = iab.url.split("code=")[1].split("&")[0];
     popup.hide();
     var settings = {
@@ -110,26 +123,26 @@ function customScheme(iab) {
       dataType: "json",
       async: true,
       crossDomain: true,
-      url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
+      url: "https://cors.gemairo.app/https://accounts.magister.net/connect/token",
       method: "POST",
       headers: {
         "X-API-Client-ID": "EF15",
         "Content-Type": "application/x-www-form-urlencoded",
         // Host: "accounts.magister.net"
       },
-      data: `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${verifier}`
+      data: `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${verifier}`,
     };
 
-    $.ajax(settings).done(async response => {
+    $.ajax(settings).done(async (response) => {
       // var poep = window.cordova.InAppBrowser.open(response.access_token, '_system', '');
       var m = new Magister(school, response.access_token);
-      m.getInfo().then(async newperson => {
+      m.getInfo().then(async (newperson) => {
         person = JSON.parse(getObject("person", getActiveAccount()));
         if (newperson.id == person.id) {
           var tokens = {
             access_token: response.access_token,
             refresh_token: response.refresh_token,
-            id_token: response.id_token
+            id_token: response.id_token,
           };
           setObject("tokens", JSON.stringify(tokens), getActiveAccount());
           // setObject("tokens", JSON.stringify(tokens))

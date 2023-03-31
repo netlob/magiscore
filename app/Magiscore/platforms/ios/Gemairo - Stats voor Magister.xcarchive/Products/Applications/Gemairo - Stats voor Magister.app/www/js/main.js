@@ -1,6 +1,8 @@
 // If you want comments. Go fuck yourself
 
-if (localStorage.getItem('courses')) { MoveToNewStorage(); }
+if (localStorage.getItem("courses")) {
+  MoveToNewStorage();
+}
 
 var viewController = new ViewController($("#content-wrapper"));
 var lessonController = new LessonController(viewController);
@@ -42,26 +44,26 @@ var snapper;
 //courses.splice(courses.indexOf(courseController.current()))
 
 function reloaddata() {
-  sorted = {},
-  person = JSON.parse(getObject("person", getActiveAccount())),
-  account = JSON.parse(getObject("account", getActiveAccount())),
-  tokens = JSON.parse(getObject("tokens", getActiveAccount())),
-  courses = JSON.parse(getObject("courses", getActiveAccount())),
-  latest = JSON.parse(getObject("latest", getActiveAccount())),
-  school = getObject("school", getActiveAccount()),
-  m = null;
+  (sorted = {}),
+    (person = JSON.parse(getObject("person", getActiveAccount()))),
+    (account = JSON.parse(getObject("account", getActiveAccount()))),
+    (tokens = JSON.parse(getObject("tokens", getActiveAccount()))),
+    (courses = JSON.parse(getObject("courses", getActiveAccount()))),
+    (latest = JSON.parse(getObject("latest", getActiveAccount()))),
+    (school = getObject("school", getActiveAccount())),
+    (m = null);
 
-courseController.clear();
-courses.forEach((c) => {
-  var newCourse = Course.create();
-  Object.keys(c).forEach((key) => {
-    newCourse[key] = c[key];
+  courseController.clear();
+  courses.forEach((c) => {
+    var newCourse = Course.create();
+    Object.keys(c).forEach((key) => {
+      newCourse[key] = c[key];
+    });
+    c = newCourse;
+    courseController.add(c);
   });
-  c = newCourse;
-  courseController.add(c);
-});
-viewController.currentCourse = courseController.current();
-onDeviceReady();
+  viewController.currentCourse = courseController.current();
+  onDeviceReady();
 }
 
 function main(l) {
@@ -94,7 +96,9 @@ function main(l) {
   lessonController.allGrades = [];
   lessonController.lessons = [];
   filtereddisabled = [];
-  document.getElementById('gradefilterbutton').children[0].children[0].classList.remove("activefilter");
+  document
+    .getElementById("gradefilterbutton")
+    .children[0].children[0].classList.remove("activefilter");
   var sorted = viewController.currentCourse.course.sortGrades();
   // viewController.currentCourse.course.grades.forEach(grade => {
   //   var vak = grade.class.description.capitalize()
@@ -159,17 +163,26 @@ function logOut() {
 async function confirmLogout(b) {
   if (b == 1) {
     if (localStorage.length > 1) {
-      var active = getActiveAccount(); 
+      var active = getActiveAccount();
       clearObject(active);
-      var allfiles = await listFiles()
-      var file = (await allfiles.filter((file) => file.name == `${active}.json`))[0];
-      var newaccountfile = (await allfiles.filter((file) => file.name == `${Object.keys(localStorage)[0]}.json`))[0];
-      localStorage.setItem(Object.keys(localStorage)[0], await readFile(newaccountfile));
+      var allfiles = await listFiles();
+      var file = (
+        await allfiles.filter((file) => file.name == `${active}.json`)
+      )[0];
+      var newaccountfile = (
+        await allfiles.filter(
+          (file) => file.name == `${Object.keys(localStorage)[0]}.json`
+        )
+      )[0];
+      localStorage.setItem(
+        Object.keys(localStorage)[0],
+        await readFile(newaccountfile)
+      );
       changeActiveAccount(Object.keys(localStorage)[0]);
       reloaddata();
       courseController.getLatestGrades(false, getActiveChildAccount());
       viewController.overlay("hide");
-      viewController.closeSettings()
+      viewController.closeSettings();
       await RemoveFile(file);
       //window.location = "./index.html";
     } else {
@@ -213,7 +226,10 @@ async function syncGrades() {
               .then((p) => {
                 person = p;
                 setObject("person", JSON.stringify(p), getActiveAccount());
-                courseController.getLatestGrades(false, getActiveChildAccount());
+                courseController.getLatestGrades(
+                  false,
+                  getActiveChildAccount()
+                );
               })
               .catch((err) => {
                 if (err == "no internet")
@@ -342,7 +358,7 @@ async function syncGrades() {
               if (viewController.config.refreshOldGrades) {
                 viewController.currentCourse.course.grades.push(grade);
               } else {
-                currentCourse.grades[i] = grade
+                currentCourse.grades[i] = grade;
               }
               i = _.findIndex(newGrades, {
                 id: grade.id,
@@ -408,13 +424,27 @@ async function syncGrades() {
                 });
                 _.sortBy(courseController.allGrades, "dateFilledIn");
                 coursesStorage[i] = viewController.currentCourse.course;
-                coursesStorage.forEach(jaar => jaar.grades.forEach(grade => { 
-                  ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
-                  ['id', 'number'].forEach(rem => delete grade.class[rem]);
-                  ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
-                }))
-                
-                setObject("courses", JSON.stringify(coursesStorage), getActiveAccount());
+                coursesStorage.forEach((jaar) =>
+                  jaar.grades.forEach((grade) => {
+                    ["_fillUrl", "_magister"].forEach(
+                      (rem) => delete grade[rem]
+                    );
+                    ["id", "number"].forEach((rem) => delete grade.class[rem]);
+                    [
+                      "name",
+                      "number",
+                      "isAtLaterDate",
+                      "isTeacher",
+                      "level",
+                    ].forEach((rem) => delete grade.type[rem]);
+                  })
+                );
+
+                setObject(
+                  "courses",
+                  JSON.stringify(coursesStorage),
+                  getActiveAccount()
+                );
                 logConsole("[INFO]   Saved new grades in courses");
                 // courseController.save()
                 main(viewController.currentLesson);
@@ -567,37 +597,77 @@ function vibrate(time, strong) {
 //   logConsole(poep)
 // }
 
-
 // filtereddisabled = [];
 
 // courseController.allGrades.filter((grade) => !grade.type.isPTA).forEach((grade) => filtereddisabled.push(grade))
 
-
-
 function generateFilter() {
   filtereddisabled = [];
 
-  courseController.allGrades.filter((grade) => !Array.from(document.getElementById('vakkenModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
-    .filter((ent) => typeof ent != 'undefined')
-    .includes(grade.class.description.capitalize()) && grade.type._type == 1)
+  courseController.allGrades
+    .filter(
+      (grade) =>
+        !Array.from(document.getElementById("vakkenModalTable").children)
+          .map((ch) => {
+            if (ch.children[0].checked) return ch.innerText;
+          })
+          .filter((ent) => typeof ent != "undefined")
+          .includes(grade.class.description.capitalize()) &&
+        grade.type._type == 1
+    )
     .forEach((grade) => filtereddisabled.push(grade));
 
-  if (document.getElementById('periodeModalTable').children[0].id != 'noperiodsfound') courseController.allGrades.filter((grade) => ('CijferPeriode' in grade) && !Array.from(document.getElementById('periodeModalTable').children).map((ch) => { if (ch.children[0].checked) return ch.innerText })
-    .filter((ent) => typeof ent != 'undefined')
-    .includes(grade?.CijferPeriode?.name) && grade.type._type == 1)
-    .forEach((grade) => filtereddisabled.push(grade));
+  if (
+    document.getElementById("periodeModalTable").children[0].id !=
+    "noperiodsfound"
+  )
+    courseController.allGrades
+      .filter(
+        (grade) =>
+          "CijferPeriode" in grade &&
+          !Array.from(document.getElementById("periodeModalTable").children)
+            .map((ch) => {
+              if (ch.children[0].checked) return ch.innerText;
+            })
+            .filter((ent) => typeof ent != "undefined")
+            .includes(grade?.CijferPeriode?.name) &&
+          grade.type._type == 1
+      )
+      .forEach((grade) => filtereddisabled.push(grade));
 
-  document.getElementById('gradefilterbutton').children[0].children[0].classList.add("activefilter");
+  document
+    .getElementById("gradefilterbutton")
+    .children[0].children[0].classList.add("activefilter");
 
   viewController.render(viewController.currentLesson);
   updateSidebar();
 }
 
 function generateSearch(Zoekopdracht) {
-  var zoektable = $("#zoekGradesTable")
+  var zoektable = $("#zoekGradesTable");
   zoektable.empty();
-  var searched = courseController.allGrades.filter((grade) => Object.entries(grade).map((grade) => {if (grade[0].includes('grade') || grade[0].includes('description')) {return grade[1] } else if (grade[0].includes('teacher')) {return grade[1].teacherCode} else if (grade[0].includes('class')) {return grade[1].description}}).filter((grade) => typeof grade != 'undefined').filter((string) => string != null && string.toString().toLowerCase()
-  .includes(Zoekopdracht.toString().toLowerCase())).length > 0);
+  var searched = courseController.allGrades.filter(
+    (grade) =>
+      Object.entries(grade)
+        .map((grade) => {
+          if (grade[0].includes("grade") || grade[0].includes("description")) {
+            return grade[1];
+          } else if (grade[0].includes("teacher")) {
+            return grade[1].teacherCode;
+          } else if (grade[0].includes("class")) {
+            return grade[1].description;
+          }
+        })
+        .filter((grade) => typeof grade != "undefined")
+        .filter(
+          (string) =>
+            string != null &&
+            string
+              .toString()
+              .toLowerCase()
+              .includes(Zoekopdracht.toString().toLowerCase())
+        ).length > 0
+  );
   searched.forEach((grade, index) => {
     if (
       grade.type._type == 1 &&
@@ -609,7 +679,7 @@ function generateSearch(Zoekopdracht) {
       zoektable.append(`
         <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
           grade.id
-        })" ${(grade.exclude) ? 'style="opacity:0.5 !important;"' : ""}>
+        })" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
               <h4 class="text-center mt-2">${
@@ -643,9 +713,19 @@ function generateSearch(Zoekopdracht) {
         ${index != searched.length - 1 ? '<hr class="m-0 p-0">' : ""}
       `);
     }
-  })
-  if (searched.filter((grade) => grade.type._type == 1 && round(grade.grade) > 0 && round(grade.grade) < 11 && !filtereddisabled.includes(grade)).length == 0) {
-    zoektable.append(`<div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>`)
+  });
+  if (
+    searched.filter(
+      (grade) =>
+        grade.type._type == 1 &&
+        round(grade.grade) > 0 &&
+        round(grade.grade) < 11 &&
+        !filtereddisabled.includes(grade)
+    ).length == 0
+  ) {
+    zoektable.append(
+      `<div class="text-center mt-3 mb-3">Geen cijfers gevonden voor uw zoekopdracht...</div>`
+    );
   }
 }
 
@@ -659,18 +739,22 @@ function MoveToNewStorage() {
     }
     if (key == "courses") {
       courses = JSON.parse(localStorage[key]);
-      courses.forEach(jaar => jaar.grades.forEach(grade => { 
-        ['_fillUrl', '_magister'].forEach(rem => delete grade[rem]);
-        ['id', 'number'].forEach(rem => delete grade.class[rem]);
-        ['name', 'number', 'isAtLaterDate', 'isTeacher', 'level'].forEach(rem => delete grade.type[rem]);
-      }))
+      courses.forEach((jaar) =>
+        jaar.grades.forEach((grade) => {
+          ["_fillUrl", "_magister"].forEach((rem) => delete grade[rem]);
+          ["id", "number"].forEach((rem) => delete grade.class[rem]);
+          ["name", "number", "isAtLaterDate", "isTeacher", "level"].forEach(
+            (rem) => delete grade.type[rem]
+          );
+        })
+      );
       localStorage[key] = JSON.stringify(courses);
     }
     newaccountStorage[key] = localStorage[key];
   }
   localStorage.clear();
   localStorage.setItem(0, JSON.stringify(newaccountStorage));
-  window.location = './index.html';
+  window.location = "./index.html";
 }
 
 function onDeviceReady() {
@@ -679,8 +763,8 @@ function onDeviceReady() {
   });
   if (window.cordova.platformId === "ios") {
     jQuery.ajaxPrefilter(function (options) {
-      if (options.url.substr(0, 24) !== "https://cors.sjoerd.dev/") {
-        options.url = "https://cors.sjoerd.dev/" + options.url;
+      if (options.url.substr(0, 24) !== "https://cors.gemairo.app/") {
+        options.url = "https://cors.gemairo.app/" + options.url;
       }
     });
   }
@@ -701,7 +785,10 @@ function onDeviceReady() {
               if (p.id == person.id) {
                 setObject("person", JSON.stringify(p), getActiveAccount());
                 main();
-                courseController.getLatestGrades(false, getActiveChildAccount());
+                courseController.getLatestGrades(
+                  false,
+                  getActiveChildAccount()
+                );
                 if (account == null || !"name" in account) {
                   m.getAccountInfo().then((a) => {
                     setObject("account", JSON.stringify(a), getActiveAccount());
@@ -840,7 +927,10 @@ async function showMeldingen() {
 }
 
 async function showMelding({ title, body, id }) {
-  if (getObject(id, getActiveAccount()) != true && getObject(id, getActiveAccount()) != "true") {
+  if (
+    getObject(id, getActiveAccount()) != true &&
+    getObject(id, getActiveAccount()) != "true"
+  ) {
     $("#general-wrapper").prepend(`
     <div class="row" id="${id}">
       <div class="col-xl-3 col-md-6 mb-4">
@@ -870,11 +960,11 @@ function sluitMelding(id) {
   $(`#${id}`).hide();
 }
 
-$(window).on('hashchange', function() {
+$(window).on("hashchange", function () {
   if (window.location.hash == "#settings") {
     viewController.openSettings();
   } else if (window.location.hash == "#search") {
-    viewController.openZoeken()
+    viewController.openZoeken();
   } else {
     viewController.closeSettings();
   }
@@ -891,16 +981,20 @@ $(window).on('hashchange', function() {
 // }
 
 function onResume() {
-  if (idletime != null && Math.abs(new Date() - new Date(idletime)) > (30 * 60000)) {
+  if (
+    idletime != null &&
+    Math.abs(new Date() - new Date(idletime)) > 30 * 60000
+  ) {
     refreshToken().then((refreshTokens) => {
       tokens = refreshTokens;
-      setObject("tokens", JSON.stringify(tokens), getActiveAccount());})
+      setObject("tokens", JSON.stringify(tokens), getActiveAccount());
+    });
   }
   idletime = null;
 }
 
 function onPause() {
- idletime = new Date();
+  idletime = new Date();
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);

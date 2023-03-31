@@ -92,7 +92,7 @@ class Grade {
      * @type {GradePeriod2}
      * @readonly
      */
-     this.CijferPeriode = new GradePeriod2(magister, raw.CijferPeriode);
+    this.CijferPeriode = new GradePeriod2(magister, raw.CijferPeriode);
 
     /**
      * @type {Person}
@@ -101,7 +101,7 @@ class Grade {
     this.teacher = new Person(
       magister,
       {
-        Docentcode: raw.Docent
+        Docentcode: raw.Docent,
       },
       3
     );
@@ -142,7 +142,10 @@ class Grade {
     if (logId) logConsole(`[INFO]  Resuming grade            (${this.id})`);
     this._filling = true;
     return new Promise((resolve, reject) => {
-      var personid = (childindex >= 0 && this._magister.person.isParent) ? this._magister.person.children[childindex].Id : this._magister.person.id
+      var personid =
+        childindex >= 0 && this._magister.person.isParent
+          ? this._magister.person.children[childindex].Id
+          : this._magister.person.id;
       if (this._filled) {
         resolve(this);
       }
@@ -151,13 +154,13 @@ class Grade {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://cors.sjoerd.dev/https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.courseId}/cijfers/extracijferkolominfo/${this.type.id}`,
+        url: `https://cors.gemairo.app/https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.courseId}/cijfers/extracijferkolominfo/${this.type.id}`,
         method: "GET",
         headers: {
           Authorization: "Bearer " + tokens.access_token,
-          noCache: new Date().getTime()
+          noCache: new Date().getTime(),
         },
-        error: jqXHR => {
+        error: (jqXHR) => {
           this._filling = false;
           if (jqXHR.status == 429) {
             var secs =
@@ -171,7 +174,7 @@ class Grade {
               `[ERROR] Grade fill timeout (${this.id}) (${jqXHR.responseText})`
             );
             setTimeout(() => {
-              this.fill(true).then(grade => {
+              this.fill(true).then((grade) => {
                 hideTimeout();
                 resolve(grade);
               });
@@ -179,14 +182,15 @@ class Grade {
           } else {
             reject(jqXHR.status);
           }
-        }
-      }).done(res => {
+        },
+      }).done((res) => {
         try {
           this.testDate = parseDate(res.WerkinformatieDatumIngevoerd);
           this.description = _.trim(
             res.WerkInformatieOmschrijving || res.KolomOmschrijving
           );
-          this.weight = (Math.round(Number.parseFloat(res.Weging, 10) * 100) / 100) || 0; // 0.50 --> 0.5 + 1.477 --> 1.48
+          this.weight =
+            Math.round(Number.parseFloat(res.Weging, 10) * 100) / 100 || 0; // 0.50 --> 0.5 + 1.477 --> 1.48
 
           this.type["level"] = res.KolomNiveau;
           this.type["description"] = _.trim(res.KolomOmschrijving);
@@ -206,7 +210,7 @@ class Grade {
 /**
  * @private
  */
-String.prototype.isJSON = function(str) {
+String.prototype.isJSON = function (str) {
   try {
     JSON.parse(this);
   } catch (e) {

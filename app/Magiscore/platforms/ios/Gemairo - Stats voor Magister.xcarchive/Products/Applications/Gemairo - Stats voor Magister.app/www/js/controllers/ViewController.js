@@ -25,8 +25,16 @@ class ViewController {
       $(this).removeClass("active");
       if (
         $(this).text().trim() == lesson.trim() ||
-        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld" && !courseController.allGrades.filter((grade) => !grade.type.isPTA).every((grade) => filtereddisabled.includes(grade))) || 
-        (lesson.trim() == "general" && $(this).text().trim() == "Gemiddeld (PTA)" && courseController.allGrades.filter((grade) => !grade.type.isPTA).every((grade) => filtereddisabled.includes(grade)))
+        (lesson.trim() == "general" &&
+          $(this).text().trim() == "Gemiddeld" &&
+          !courseController.allGrades
+            .filter((grade) => !grade.type.isPTA)
+            .every((grade) => filtereddisabled.includes(grade))) ||
+        (lesson.trim() == "general" &&
+          $(this).text().trim() == "Gemiddeld (PTA)" &&
+          courseController.allGrades
+            .filter((grade) => !grade.type.isPTA)
+            .every((grade) => filtereddisabled.includes(grade)))
       )
         $(this).addClass("active");
     });
@@ -56,7 +64,9 @@ class ViewController {
     $("#barChart-container").empty().append(`<canvas id="barChart""></canvas>`);
     $("#barChart-container-general")
       .empty()
-      .append(`<canvas style="pointer-events: none;" id="generalBarChart"></canvas>`);
+      .append(
+        `<canvas style="pointer-events: none;" id="generalBarChart"></canvas>`
+      );
     // $("#general-area-title").text(
     //   `Alle cijfers van ${course.type.description}`
     // );
@@ -136,15 +146,24 @@ class ViewController {
     $("#grade-modal-counts").text(grade.counts ? "Ja" : "Nee");
     $("#grade-modal-ispta").text(grade.type.isPTA ? "Ja" : "Nee");
     $("#grade-modal-teacher").text(grade.teacher.teacherCode);
-    $("#grade-modal-date").text(`${new Date(grade.dateFilledIn).getHours()}:${("0" + new Date(grade.dateFilledIn).getMinutes()).slice(-2)}, ${toShortFormat(grade.dateFilledIn)}`);
-    (Object(grade).hasOwnProperty('CijferPeriode')) ? $("#grade-modal-period").text(grade.CijferPeriode.name).parent().show() : $("#grade-modal-period").parent().hide();
+    $("#grade-modal-date").text(
+      `${new Date(grade.dateFilledIn).getHours()}:${(
+        "0" + new Date(grade.dateFilledIn).getMinutes()
+      ).slice(-2)}, ${toShortFormat(grade.dateFilledIn)}`
+    );
+    Object(grade).hasOwnProperty("CijferPeriode")
+      ? $("#grade-modal-period").text(grade.CijferPeriode.name).parent().show()
+      : $("#grade-modal-period").parent().hide();
     $("#grade-modal-count").attr(
       "onchange",
       `lessonController.getLesson('${grade.class.description.capitalize()}').lesson.exclude('${
         grade.id
       }', this)`
     );
-    $("#grade-modal-count").prop("checked", !grade.exclude || !filtereddisabled.includes(grade));
+    $("#grade-modal-count").prop(
+      "checked",
+      !grade.exclude || !filtereddisabled.includes(grade)
+    );
 
     //                 <td>${grade.teacher.teacherCode}</td>
     //                 <td>${toShortFormat(grade.dateFilledIn)}</td>
@@ -159,30 +178,42 @@ class ViewController {
   updateNav() {
     $("#periodeModalTable").empty();
     _.sortBy(lessonController.lessons, ["name"]);
-    var gevondenperiodes = Array.from(new Set(courseController.courses[courseController.courses.findIndex((course) => course == viewController.currentCourse)].course.grades
-      .filter((grade) => grade.type._type == 1 && grade.CijferPeriode)
-      .map((grade) => grade.CijferPeriode)
-      .map(({ name }) => name)));
-      gevondenperiodes.forEach(cijferPeriode => {
+    var gevondenperiodes = Array.from(
+      new Set(
+        courseController.courses[
+          courseController.courses.findIndex(
+            (course) => course == viewController.currentCourse
+          )
+        ].course.grades
+          .filter((grade) => grade.type._type == 1 && grade.CijferPeriode)
+          .map((grade) => grade.CijferPeriode)
+          .map(({ name }) => name)
+      )
+    );
+    gevondenperiodes.forEach((cijferPeriode) => {
       $("#periodeModalTable").append(`
       <label class="buttoncheckbox btn btn-primary">
         <input checked id="${cijferPeriode}_SelectP" type="checkbox" autocomplete="off">${cijferPeriode}
       </label>
-      `)
+      `);
     });
     if (gevondenperiodes.length == 0) {
-      $("#periodeModalTable").append(`<div id="noperiodsfound" class="text-center mt-3 mb-3">Probeer de cijfers te herladen, om periodes te vinden.</div>`)
+      $("#periodeModalTable").append(
+        `<div id="noperiodsfound" class="text-center mt-3 mb-3">Probeer de cijfers te herladen, om periodes te vinden.</div>`
+      );
     }
     $("#vakkenModalTable").empty();
     lessonController.lessons.forEach((lesson) => {
       //Render table
       $("#vakkenModalTable").append(`  
       <label class="buttoncheckbox btn btn-primary">
-        <input checked id="${lesson.name.replaceAll(" ", "")}_SelectP" type="checkbox" autocomplete="off">${lesson.name}
+        <input checked id="${lesson.name.replaceAll(
+          " ",
+          ""
+        )}_SelectP" type="checkbox" autocomplete="off">${lesson.name}
       </label>
-      `)
-    }
-    );
+      `);
+    });
     updateSidebar();
     this.setCourses();
     // this.setLatestGrades(courseController.latestGrades);
@@ -191,62 +222,93 @@ class ViewController {
 
   async switchuser(userkey, childindex = -1) {
     return new Promise(async (resolve, reject) => {
-    try {
-      var activeaccount = await getActiveAccount();
-      if (activeaccount == userkey && childindex == -1) { return; }
-      viewController.overlay("show");
-      //save smaller version of account
-      var smallaccount = [];
-      for await (key of Object.keys(localStorage)) {
-        var userdata = Object.entries(JSON.parse(localStorage.getItem(key)));
-        if (key != userkey) { smallaccount.push({ [key]: JSON.stringify(Object.fromEntries(userdata.filter((val) => val[0] != 'courses'))) }); }
+      try {
+        var activeaccount = await getActiveAccount();
+        if (activeaccount == userkey && childindex == -1) {
+          return;
+        }
+        viewController.overlay("show");
+        //save smaller version of account
+        var smallaccount = [];
+        for await (key of Object.keys(localStorage)) {
+          var userdata = Object.entries(JSON.parse(localStorage.getItem(key)));
+          if (key != userkey) {
+            smallaccount.push({
+              [key]: JSON.stringify(
+                Object.fromEntries(
+                  userdata.filter((val) => val[0] != "courses")
+                )
+              ),
+            });
+          }
+        }
+        //Move current active to Filesystem
+        var allfiles = await listFiles();
+        var file =
+          (await allfiles.filter((file) => file.name == `${activeaccount}.json`)
+            .length) == 0
+            ? await CreateNewFile(activeaccount)
+            : (
+                await allfiles.filter(
+                  (file) => file.name == `${activeaccount}.json`
+                )
+              )[0];
+
+        if (
+          JSON.parse(getObject("person", getActiveAccount())).isParent == true
+        ) {
+          //Merge lastest child grades into the full array in the filesystem
+          var parsedactivelocalstorage = JSON.parse(
+            localStorage.getItem(activeaccount)
+          );
+          var parsedactivestorage = await JSON.parse(await readFile(file));
+          var latestchildcourses = JSON.parse(parsedactivestorage.childcourses);
+          latestchildcourses[parseInt(getActiveChildAccount())].courses =
+            JSON.parse(parsedactivelocalstorage.courses);
+          parsedactivestorage.childcourses = JSON.stringify(latestchildcourses);
+          parsedactivelocalstorage.childcourses =
+            parsedactivestorage.childcourses;
+          await WriteFile(JSON.stringify(parsedactivelocalstorage), file);
+        } else {
+          await WriteFile(localStorage.getItem(activeaccount), file);
+        }
+        //Clear localstorage
+        localStorage.clear();
+        //Copy new active account from filesystem to localstorage
+        var allfiles = await listFiles();
+        var file = (
+          await allfiles.filter((file) => file.name == `${userkey}.json`)
+        )[0];
+        //Add smaller version of accounts to localstorage
+        for await (let name of smallaccount) {
+          localStorage.setItem(
+            Object.entries(name)[0][0],
+            Object.entries(name)[0][1]
+          );
+        }
+        if (childindex >= 0) {
+          var active = JSON.parse(await readFile(file));
+          var activechildcourses = JSON.parse(active.childcourses);
+          active.courses = JSON.stringify(
+            activechildcourses[childindex].courses
+          );
+          delete active.childcourses;
+          localStorage.setItem(userkey, JSON.stringify(active));
+          setProfilePic(true, childindex, true);
+        } else {
+          localStorage.setItem(userkey, await readFile(file));
+        }
+        //Refresh
+        changeActiveAccount(userkey, childindex);
+        reloaddata();
+        viewController.overlay("hide");
+        resolve();
+      } catch (e) {
+        //error
+        reject(e);
+        viewController.overlay("hide");
       }
-      //Move current active to Filesystem
-      var allfiles = await listFiles();
-      var file = (await allfiles.filter((file) => file.name == `${activeaccount}.json`).length == 0) ? await CreateNewFile(activeaccount) : (await allfiles.filter((file) => file.name == `${activeaccount}.json`))[0];
-      
-      if (JSON.parse(getObject('person', getActiveAccount())).isParent == true) {
-        //Merge lastest child grades into the full array in the filesystem
-        var parsedactivelocalstorage = JSON.parse(localStorage.getItem(activeaccount));
-        var parsedactivestorage = await JSON.parse(await readFile(file));
-        var latestchildcourses = JSON.parse(parsedactivestorage.childcourses);
-        latestchildcourses[parseInt(getActiveChildAccount())].courses = JSON.parse(parsedactivelocalstorage.courses);
-        parsedactivestorage.childcourses = JSON.stringify(latestchildcourses);
-        parsedactivelocalstorage.childcourses = parsedactivestorage.childcourses;
-        await WriteFile(JSON.stringify(parsedactivelocalstorage), file);
-      } else {
-        await WriteFile(localStorage.getItem(activeaccount), file);
-      }
-      //Clear localstorage
-      localStorage.clear();
-      //Copy new active account from filesystem to localstorage
-      var allfiles = await listFiles();
-      var file = (await allfiles.filter((file) => file.name == `${userkey}.json`))[0];
-      //Add smaller version of accounts to localstorage
-      for await (let name of smallaccount) {
-        localStorage.setItem(Object.entries(name)[0][0], Object.entries(name)[0][1]);
-      }
-      if (childindex >= 0) {
-        var active = JSON.parse(await readFile(file));
-        var activechildcourses = JSON.parse(active.childcourses);
-        active.courses = JSON.stringify(activechildcourses[childindex].courses);
-        delete active.childcourses;
-        localStorage.setItem(userkey, JSON.stringify(active));
-        setProfilePic(true, childindex, true)
-      } else {
-        localStorage.setItem(userkey, await readFile(file));
-      }
-      //Refresh
-      changeActiveAccount(userkey, childindex);
-      reloaddata();
-      viewController.overlay("hide");
-      resolve();
-    } catch (e) {
-      //error
-      reject(e)
-      viewController.overlay("hide");
-    }
-  });
+    });
   }
 
   downloadGraph() {
@@ -282,28 +344,44 @@ class ViewController {
       if (!this.config.smiley)
         this.toast("Profielfoto veranderd naar originele foto", 2000, false);
     }
-    $('#useraccountslist').html(``);
-    $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
+    $("#useraccountslist").html(``);
+    $("#useraccountslist").append(
+      `<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`
+    );
     var activeaccount = parseInt(getActiveAccount());
     for (const key of Object.keys(localStorage)) {
       var persondata = JSON.parse(getObject("person", key));
-      if(persondata == null) continue;
+      if (persondata == null) continue;
       if (persondata.isParent) {
         // persondata.children.filter((child) => child.childchildActiveViewed == true)
         for (const childindex of Object.keys(persondata.children)) {
           var profilepic = getObject("profilepic", key);
           var config = JSON.parse(getObject("config", key));
-          $(`<a class="dropdown-item vibrate ${(childindex == getActiveChildAccount()) ? 'disabled' : ''}" onclick="viewController.switchuser(${key}, ${childindex});">
+          $(`<a class="dropdown-item vibrate ${
+            childindex == getActiveChildAccount() ? "disabled" : ""
+          }" onclick="viewController.switchuser(${key}, ${childindex});">
           <i class="fas fa-child fa-sm fa-fw mr-2 text-gray-400"></i>
-            ${persondata.children[childindex].Roepnaam} ${persondata.children[childindex].Achternaam}
+            ${persondata.children[childindex].Roepnaam} ${
+            persondata.children[childindex].Achternaam
+          }
           </a>`).prependTo("#useraccountslist");
         }
       } else {
         var profilepic = getObject("profilepic", key);
         var config = JSON.parse(getObject("config", key));
-        $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
-          <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
-          ${(Object(persondata).hasOwnProperty('firstName')) ? persondata.firstName + ' ' : ''}${persondata.lastName}
+        $(`<a class="dropdown-item vibrate ${
+          key == activeaccount ? "disabled" : ""
+        }" onclick="viewController.switchuser(${key});">
+          <img class="fa-fw mr-2 rounded-circle" src="${
+            config.smiley == true
+              ? "./img/smiley.png"
+              : profilepic || "./img/smiley.png"
+          }"></img>
+          ${
+            Object(persondata).hasOwnProperty("firstName")
+              ? persondata.firstName + " "
+              : ""
+          }${persondata.lastName}
         </a>`).prependTo("#useraccountslist");
       }
     }
@@ -360,11 +438,11 @@ class ViewController {
       setTimeout(function () {
         $(".snackbar").each((i, obj) => {
           if ($(obj).attr("id") != $(`#snackbar-${snackId}`).attr("id")) {
-            var snackbar = document.getElementById(`snackbar-${snackId}`)
-            snackbar.classList.add('reverseanimation')
-            snackbar.style.animation = 'none';
-            setTimeout(function() {
-              snackbar.style.animation = '';
+            var snackbar = document.getElementById(`snackbar-${snackId}`);
+            snackbar.classList.add("reverseanimation");
+            snackbar.style.animation = "none";
+            setTimeout(function () {
+              snackbar.style.animation = "";
             }, 10);
             $(obj).animate(
               {
@@ -624,10 +702,19 @@ class ViewController {
           course.course.curricula.length > 0
             ? "(" + course.course.curricula.toString() + ")"
             : ""
-        } <span class="badge badge-primary badge-pill">${course.course.grades.filter((grade) => grade.type._type == 1).length}</span></a>`
+        } <span class="badge badge-primary badge-pill">${
+          course.course.grades.filter((grade) => grade.type._type == 1).length
+        }</span></a>`
       );
     });
-    $("#totalgrades").text(courseController.courses.map(course => course.course.grades.filter((grade) => grade.type._type == 1).length).reduce((partialSum, a) => partialSum + a, 0));
+    $("#totalgrades").text(
+      courseController.courses
+        .map(
+          (course) =>
+            course.course.grades.filter((grade) => grade.type._type == 1).length
+        )
+        .reduce((partialSum, a) => partialSum + a, 0)
+    );
     $("#years").children().removeClass("course-selected");
     $(`#course-${this.currentCourse.course.id}`).addClass("course-selected");
     $("#current-course-badge").text(
@@ -679,16 +766,16 @@ class ViewController {
   }
 
   closeSettings() {
-    window.location.hash = '';
+    window.location.hash = "";
     $("#buttonSidenavToggle").show();
     $("#buttonSidenavBack").hide();
     $("#topbar").show();
-    $('#search-wrapper').hide()
+    $("#search-wrapper").hide();
     this.render("general");
     this.settingsOpen = false;
     vibrate(15, false);
     clearInterval(this.iddinkInterval);
-    document.getElementById('content').removeAttribute('data-snap-ignore');
+    document.getElementById("content").removeAttribute("data-snap-ignore");
     // this.render(this.currentLesson.name)
   }
 
@@ -698,14 +785,14 @@ class ViewController {
     $("#general-wrapper").hide();
     $("#topbar").hide();
     $("#lesson-wrapper").hide();
-    $('#search-wrapper').show()
+    $("#search-wrapper").show();
     $("#currentRender").html(
       '<span onclick="viewController.closeSettings()">Zoeken</span>'
     );
     $("#currentRenderMobile").html(
       '<span onclick="viewController.closeSettings()">Zoeken</span>'
     );
-    document.getElementById('content').setAttribute('data-snap-ignore', true);
+    document.getElementById("content").setAttribute("data-snap-ignore", true);
   }
 
   closeZoeken() {
@@ -787,10 +874,13 @@ function setProfilePic(forceRefresh = false, childindex, notoast = false) {
         fileReader.readAsDataURL(blob);
       }
     };
-    var personid = (childindex >= 0 && person.isParent) ? person.children[childindex].Id : person.id
+    var personid =
+      childindex >= 0 && person.isParent
+        ? person.children[childindex].Id
+        : person.id;
     let url = `https://${school}/api/personen/${personid}/foto?width=640&height=640&crop=no`;
     if (window.cordova.platformId === "ios") {
-      url = "https://cors.sjoerd.dev/" + url;
+      url = "https://cors.gemairo.app/" + url;
     }
     xhr.open("GET", url, true);
     xhr.setRequestHeader("Authorization", `Bearer ${tokens.access_token}`);
@@ -799,11 +889,24 @@ function setProfilePic(forceRefresh = false, childindex, notoast = false) {
 }
 
 function updateSidebar() {
-  $('#ScreensNav').html(`<li class="nav-item active"><a class="nav-link vibrate" onclick="viewController.render('general')"><span>Gemiddeld</span></a></li>`)
+  $("#ScreensNav").html(
+    `<li class="nav-item active"><a class="nav-link vibrate" onclick="viewController.render('general')"><span>Gemiddeld</span></a></li>`
+  );
   if (lessonController.lessons.length > 0) {
-    if (lessonController.lessons.filter((lessons) => lessons.lesson.grades.filter((grade) => grade.type.isPTA == true).length > 0).length > 0 && lessonController.lessons.filter((lessons) => lessons.lesson.grades.filter((grade) => grade.type.isPTA == false).length > 0).length > 0) {
+    if (
+      lessonController.lessons.filter(
+        (lessons) =>
+          lessons.lesson.grades.filter((grade) => grade.type.isPTA == true)
+            .length > 0
+      ).length > 0 &&
+      lessonController.lessons.filter(
+        (lessons) =>
+          lessons.lesson.grades.filter((grade) => grade.type.isPTA == false)
+            .length > 0
+      ).length > 0
+    ) {
       //PTA's mixed with normal grades detected, so this must be a year before the final year.
-      $('#ScreensNav').html(`
+      $("#ScreensNav").html(`
       <li class="nav-item active">
       <a class="nav-link vibrate" onclick="viewController.render('general')">
         <span>Gemiddeld</span>
@@ -814,21 +917,33 @@ function updateSidebar() {
       <span>Gemiddeld (PTA)</span>
     </a>
   </li>
-      `)
+      `);
     }
     $("#subjectsNav").empty();
     lessonController.lessons.forEach((lesson) => {
-      var isEnabled = (document.getElementById('vakkenModalTable').children.length == lessonController.lessons.length) ? !lessonController.lessons.filter((lesson) => lesson.lesson.grades.every(r=> filtereddisabled.includes(r))).map((lesson) => lesson.name).includes(lesson.name.capitalize()) : true
+      var isEnabled =
+        document.getElementById("vakkenModalTable").children.length ==
+        lessonController.lessons.length
+          ? !lessonController.lessons
+              .filter((lesson) =>
+                lesson.lesson.grades.every((r) => filtereddisabled.includes(r))
+              )
+              .map((lesson) => lesson.name)
+              .includes(lesson.name.capitalize())
+          : true;
       $("#subjectsNav").append(`
         <li class="nav-item vibrate" id="${lesson.name}">
-            <a class="nav-link" ${isEnabled ? '' : 'style="display: flex;flex-wrap: nowrap;justify-content: space-between;align-items: center;opacity: .5;pointer-events: none;"'} onclick="viewController.render('${
-              lesson.name
-            }')">
+            <a class="nav-link" ${
+              isEnabled
+                ? ""
+                : 'style="display: flex;flex-wrap: nowrap;justify-content: space-between;align-items: center;opacity: .5;pointer-events: none;"'
+            } onclick="viewController.render('${lesson.name}')">
                 <span>${lesson.name.capitalize()}</span>
-                ${isEnabled ? '' : '<i class="fas fa-filter fa-fw ml-2"></i>'}
+                ${isEnabled ? "" : '<i class="fas fa-filter fa-fw ml-2"></i>'}
             </a>
         </li>
-    `)})
+    `);
+    });
   } else {
     $("#subjectsNav").html(`
       <li class="text-center mt-4">
@@ -845,41 +960,61 @@ function updateSidebar() {
   setProfilePic(false, getActiveChildAccount());
 
   $("#userDropdown > span").text(
-    `${(typeof person.firstName != 'undefined') ? person.firstName + ' ' : ''}${person.lastName} ${
+    `${typeof person.firstName != "undefined" ? person.firstName + " " : ""}${
+      person.lastName
+    } ${
       courseController.current().course.group.description
         ? "(" + courseController.current().course.group.description + ")"
         : ""
     }`
   );
   $("#mobilePersonInfo").text(
-    `${(typeof person.firstName != 'undefined') ? person.firstName + ' ' : ''}${person.lastName} ${
+    `${typeof person.firstName != "undefined" ? person.firstName + " " : ""}${
+      person.lastName
+    } ${
       courseController.current().course.group.description
         ? "(" + courseController.current().course.group.description + ")"
         : ""
     }`
   );
-  $('#useraccountslist').html(``);
-  $('#useraccountslist').append(`<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`)
+  $("#useraccountslist").html(``);
+  $("#useraccountslist").append(
+    `<a class="dropdown-item vibrate" onclick="window.location = './login.html'"><i class="fas fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>Voeg nog een account toe</a>`
+  );
   var activeaccount = parseInt(getActiveAccount());
   for (const key of Object.keys(localStorage)) {
     var persondata = JSON.parse(getObject("person", key));
-    if(persondata == null) continue;
+    if (persondata == null) continue;
     if (persondata.isParent) {
       // persondata.children.filter((child) => child.activeviewed == true)
       for (const childindex of Object.keys(persondata.children)) {
         var profilepic = getObject("profilepic", key);
         var config = JSON.parse(getObject("config", key));
-        $(`<a class="dropdown-item vibrate ${(childindex == getActiveChildAccount()) ? 'disabled' : ''}" onclick="viewController.switchuser(${key}, ${childindex});">
+        $(`<a class="dropdown-item vibrate ${
+          childindex == getActiveChildAccount() ? "disabled" : ""
+        }" onclick="viewController.switchuser(${key}, ${childindex});">
           <i class="fas fa-child fa-sm fa-fw mr-2 text-gray-400"></i>
-          ${persondata.children[childindex].Roepnaam} ${persondata.children[childindex].Achternaam}
+          ${persondata.children[childindex].Roepnaam} ${
+          persondata.children[childindex].Achternaam
+        }
         </a>`).prependTo("#useraccountslist");
       }
     } else {
       var profilepic = getObject("profilepic", key);
       var config = JSON.parse(getObject("config", key));
-      $(`<a class="dropdown-item vibrate ${(key == activeaccount) ? 'disabled' : ''}" onclick="viewController.switchuser(${key});">
-        <img class="fa-fw mr-2 rounded-circle" src="${(config.smiley == true) ? './img/smiley.png' : (profilepic || './img/smiley.png')}"></img>
-        ${(Object(persondata).hasOwnProperty('firstName')) ? persondata.firstName + ' ' : ''}${persondata.lastName}
+      $(`<a class="dropdown-item vibrate ${
+        key == activeaccount ? "disabled" : ""
+      }" onclick="viewController.switchuser(${key});">
+        <img class="fa-fw mr-2 rounded-circle" src="${
+          config.smiley == true
+            ? "./img/smiley.png"
+            : profilepic || "./img/smiley.png"
+        }"></img>
+        ${
+          Object(persondata).hasOwnProperty("firstName")
+            ? persondata.firstName + " "
+            : ""
+        }${persondata.lastName}
       </a>`).prependTo("#useraccountslist");
     }
   }
@@ -1390,13 +1525,15 @@ function setChartData(config, lesson, everything) {
     let bcolors = [];
 
     lessonController.lessons.forEach((lesson) => {
-      let grademap = lesson.lesson.grades.map((grade) => {
-        if (!grade.exclude && !filtereddisabled.includes(grade)) {
-          var gradegrade = grade.grade.replace(",", ".");
-          gradegrade = parseFloat(gradegrade.replace(",", "."));
-          return [isNaN(gradegrade), grade];
-        }
-      }).filter((grade) => typeof grade != 'undefined');
+      let grademap = lesson.lesson.grades
+        .map((grade) => {
+          if (!grade.exclude && !filtereddisabled.includes(grade)) {
+            var gradegrade = grade.grade.replace(",", ".");
+            gradegrade = parseFloat(gradegrade.replace(",", "."));
+            return [isNaN(gradegrade), grade];
+          }
+        })
+        .filter((grade) => typeof grade != "undefined");
       grademap = grademap.filter((a) => a[0] == false);
       if (lesson.lesson.grades.length > 0 && grademap.length > 0) {
         const abb = grademap[0][1].class.abbreviation;
@@ -1648,14 +1785,14 @@ function setTableData(lesson) {
     if (
       grade.type._type == 1 &&
       round(grade.grade) > 0 &&
-      round(grade.grade) < 11 && 
+      round(grade.grade) < 11 &&
       !filtereddisabled.includes(grade)
     ) {
       var d = new Date(grade.dateFilledIn);
       table.append(`
         <a class="d-flex align-items-center border-bottom vibrate grade-card" href="#" data-toggle="modal" data-target="#gradeModal" onclick="viewController.renderGrade(${
           grade.id
-        })" ${(grade.exclude) ? 'style="opacity:0.5 !important;"' : ""}>
+        })" ${grade.exclude ? 'style="opacity:0.5 !important;"' : ""}>
           <div class="dropdown-list-image mr-1" style="margin-bottom: -9px">
             <div class="rounded-circle">
               <h4 class="text-center mt-2">${
@@ -1701,7 +1838,16 @@ function setAverages() {
   $("#general-progress").empty();
   $("#averagesTable").empty();
   lessonController.lessons.forEach((lesson) => {
-    if (lessonController.lessons.filter((lesson) => lesson.lesson.grades.every(r=> filtereddisabled.includes(r))).map((lesson) => lesson.name).includes(lesson.name.capitalize())) {return;}
+    if (
+      lessonController.lessons
+        .filter((lesson) =>
+          lesson.lesson.grades.every((r) => filtereddisabled.includes(r))
+        )
+        .map((lesson) => lesson.name)
+        .includes(lesson.name.capitalize())
+    ) {
+      return;
+    }
     var average = lesson.lesson.getAverage();
     if (parseFloat(average) > -1 && parseFloat(average) < 11) {
       $("#averagesTable").append(

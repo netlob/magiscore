@@ -3,7 +3,7 @@ let classMappings = null;
 async function loadMappings() {
   try {
     const data = await fetch(
-      "https://cors.sjoerd.dev/https://sjoerd.dev/html/gemairo/class-mappings.json"
+      "https://cors.gemairo.app/https://sjoerd.dev/html/gemairo/class-mappings.json"
     ).then((res) => res.json());
 
     if (typeof data == "object" && "mappings" in data) {

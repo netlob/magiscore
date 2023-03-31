@@ -10,17 +10,17 @@ class CourseController {
   add(course) {
     this.courses.push({
       id: course.id,
-      course: course
+      course: course,
     });
     this.courseIds.push(course.id);
-    course.grades.forEach(grade => {
+    course.grades.forEach((grade) => {
       this.allGrades.push(grade);
     });
     _.sortBy(this.allGrades, "dateFilledIn");
   }
 
   remove(course) {
-    this.courses = _.remove(this.courses, function(c) {
+    this.courses = _.remove(this.courses, function (c) {
       return c.id == course.id;
     });
     // this.courses.remove({
@@ -49,7 +49,7 @@ class CourseController {
   }
 
   getCourse(id) {
-    return this.courses.find(x => x.id === id);
+    return this.courses.find((x) => x.id === id);
   }
 
   getLatestGrades(open = false, childindex = -1) {
@@ -57,8 +57,11 @@ class CourseController {
     return new Promise((resolve, reject) => {
       // logConsole("RAW:")
       // logConsole(JSON.stringify(this.raw))
-      var personid = (childindex >= 0 && person.isParent) ? person.children[childindex].Id : person.id
-      const url = `https://cors.sjoerd.dev/https://${school}/api/personen/${personid}/cijfers/laatste?top=50&skip=0`;
+      var personid =
+        childindex >= 0 && person.isParent
+          ? person.children[childindex].Id
+          : person.id;
+      const url = `https://cors.gemairo.app/https://${school}/api/personen/${personid}/cijfers/laatste?top=50&skip=0`;
       // logConsole(url)
       $.ajax({
         cache: false,
@@ -69,9 +72,9 @@ class CourseController {
         method: "GET",
         headers: {
           Authorization: "Bearer " + tokens.access_token,
-          noCache: new Date().getTime()
+          noCache: new Date().getTime(),
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
           // alert(XMLHttpRequest.statusText)
           if (XMLHttpRequest.readyState == 4) {
             logConsole(`[ERROR] HTTP error (${textStatus})`);
@@ -82,16 +85,18 @@ class CourseController {
           }
           reject("no internet");
         },
-        timeout: 5000
-      }).done(res => {
+        timeout: 5000,
+      }).done((res) => {
         var grades = res.Items || res.items;
         // alert(JSON.stringify(grades))
         // grades = _.reject(grades, raw => raw.CijferId === 0)
         this.latestGrades = grades;
         var popup = false;
-        this.latestGrades.forEach(grade => {
+        this.latestGrades.forEach((grade) => {
           if (
-            (this.allGrades.filter((foundgrade) => foundgrade.type.id == grade.kolomId).length == 0) &&
+            this.allGrades.filter(
+              (foundgrade) => foundgrade.type.id == grade.kolomId
+            ).length == 0 &&
             popup == false
           ) {
             popup = true;

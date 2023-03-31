@@ -1201,6 +1201,7 @@
     })();
 
     function logConsole(msg) {
+      console.log(msg);
       if (typeof msg != "string") return
       if (msg.substring(0, 7) == "[ERROR]") $("#terminal").prepend(`<small class="text-danger">${msg}</small>\n`)
       else if (msg.substring(0, 7) == "[DEBUG]") $("#terminal").prepend(`<small class="text-warning">${msg}</small>\n`)

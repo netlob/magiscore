@@ -10,15 +10,15 @@ function refreshToken() {
     var settings = {
       async: true,
       crossDomain: true,
-      url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
+      url: "https://cors.gemairo.app/https://accounts.magister.net/connect/token",
       method: "POST",
       headers: {
-        "cache-control": "no-cache"
+        "cache-control": "no-cache",
       },
       data: {
         refresh_token: refresh_token,
         client_id: "M6LOAPP",
-        grant_type: "refresh_token"
+        grant_type: "refresh_token",
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
         if (XMLHttpRequest.status == 400 || XMLHttpRequest.status == "400") {
@@ -41,7 +41,7 @@ function refreshToken() {
           reject("no internet");
         }
       },
-      timeout: 5000
+      timeout: 5000,
     };
 
     $.ajax(settings).done(function (response) {
@@ -53,10 +53,10 @@ function refreshToken() {
       var tokens = {
         access_token: response.access_token,
         refresh_token: response.refresh_token,
-        id_token: response.id_token
+        id_token: response.id_token,
       };
       setObject("tokens", JSON.stringify(tokens), getActiveAccount());
-      if (typeof m != 'undefined' && m != null) m.token = tokens.access_token;
+      if (typeof m != "undefined" && m != null) m.token = tokens.access_token;
       resolve(tokens);
     });
   });
@@ -87,7 +87,7 @@ function openBrowser(b) {
     "location=yes,hideurlbar=yes,hidenavigationbuttons=yes,toolbarcolor=#202124,closebuttoncolor=#eeeeee,zoom=no"
   );
   popup.insertCSS({
-    code: "#username_options > a { display: none !important }"
+    code: "#username_options > a { display: none !important }",
   });
   // popup.addEventListener("loaderror", customScheme);
   popup.addEventListener("loadstart", customScheme);
@@ -100,7 +100,11 @@ function exitPopup(iab) {
 }
 
 function customScheme(iab) {
-  if (iab.url.startsWith("m6loapp://oauth2redirect/") || iab.url.startsWith("http://m6loapp://oauth2redirect/") || iab.url.startsWith("https://m6loapp://oauth2redirect/")) {
+  if (
+    iab.url.startsWith("m6loapp://oauth2redirect/") ||
+    iab.url.startsWith("http://m6loapp://oauth2redirect/") ||
+    iab.url.startsWith("https://m6loapp://oauth2redirect/")
+  ) {
     var code = iab.url.split("code=")[1].split("&")[0];
     popup.hide();
     var settings = {
@@ -116,26 +120,26 @@ function customScheme(iab) {
       dataType: "json",
       async: true,
       crossDomain: true,
-      url: "https://cors.sjoerd.dev/https://accounts.magister.net/connect/token",
+      url: "https://cors.gemairo.app/https://accounts.magister.net/connect/token",
       method: "POST",
       headers: {
         "X-API-Client-ID": "EF15",
         "Content-Type": "application/x-www-form-urlencoded",
         // Host: "accounts.magister.net"
       },
-      data: `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${verifier}`
+      data: `code=${code}&redirect_uri=m6loapp%3A%2F%2Foauth2redirect%2F&client_id=M6LOAPP&grant_type=authorization_code&code_verifier=${verifier}`,
     };
 
-    $.ajax(settings).done(async response => {
+    $.ajax(settings).done(async (response) => {
       // var poep = window.cordova.InAppBrowser.open(response.access_token, '_system', '');
       var m = new Magister(school, response.access_token);
-      m.getInfo().then(async newperson => {
+      m.getInfo().then(async (newperson) => {
         person = JSON.parse(getObject("person", getActiveAccount()));
         if (newperson.id == person.id) {
           var tokens = {
             access_token: response.access_token,
             refresh_token: response.refresh_token,
-            id_token: response.id_token
+            id_token: response.id_token,
           };
           setObject("tokens", JSON.stringify(tokens), getActiveAccount());
           // setObject("tokens", JSON.stringify(tokens))

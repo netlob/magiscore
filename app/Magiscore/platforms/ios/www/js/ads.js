@@ -59,7 +59,7 @@ const ads = {
     });
 
     const res = await fetch(
-      "https://cors.sjoerd.dev/https://sjoerd.dev/html/gemairo/ads.json"
+      "https://cors.gemairo.app/https://sjoerd.dev/html/gemairo/ads.json"
     ).then((res) => res.json());
 
     this.receivedEvent("res: " + JSON.stringify(res));
