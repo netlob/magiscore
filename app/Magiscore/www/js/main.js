@@ -871,8 +871,8 @@ function onDeviceReady() {
   });
   if (window.cordova.platformId === "ios") {
     jQuery.ajaxPrefilter(function (options) {
-      if (options.url.substr(0, 24) !== "https://cors.gemairo.app/") {
-        options.url = "https://cors.gemairo.app/" + options.url;
+      if (!options.url.startsWith("https://cors-gemairo.sjoerd.dev/")) {
+        options.url = "https://cors-gemairo.sjoerd.dev/" + options.url;
       }
     });
   }
@@ -1074,7 +1074,7 @@ function onDeviceReady() {
 
 async function showMeldingen() {
   const meldingen = await fetch(
-    "https://cors.gemairo.app/https://sjoerd.dev/html/gemairo/announcements.json"
+    "https://cors-gemairo.sjoerd.dev/https://sjoerd.dev/html/gemairo/announcements.json"
   ).then((res) => res.json());
   if (meldingen != null) meldingen.forEach((melding) => showMelding(melding));
 }

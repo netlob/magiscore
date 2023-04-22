@@ -305,7 +305,7 @@ async function validateLogin(code, codeVerifier) {
     dataType: "json",
     async: true,
     crossDomain: true,
-    url: "https://cors.gemairo.app/https://accounts.magister.net/connect/token",
+    url: "https://cors-gemairo.sjoerd.dev/https://accounts.magister.net/connect/token",
     method: "POST",
     headers: {
       "X-API-Client-ID": "EF15",
@@ -334,7 +334,7 @@ async function validateLogin(code, codeVerifier) {
       setObject("tokens", JSON.stringify(tokens), newaccountindex);
 
       const res = await fetch(
-        "https://cors.gemairo.app/https://magister.net/.well-known/host-meta.json?rel=magister-api",
+        "https://cors-gemairo.sjoerd.dev/https://magister.net/.well-known/host-meta.json?rel=magister-api",
         {
           headers: new Headers({
             Authorization: `Bearer ${tokens.access_token}`,
@@ -478,65 +478,75 @@ async function getinformationlogin(m, childindex = -1) {
               `${remaining} ${remaining >= 2 ? "minuten" : "minuut"}`
             );
             $("#grades-remaining").text(all_grades.length);
-            // var filled = 0;
-            for (let grade of all_grades) {
+
+            const failedGrades = [];
+            const filledGrades = [];
+            const fillGrade = async (grade) => {
               try {
-                let index = _.findIndex(all_grades, {
-                  id: grade.id,
-                });
-                try {
-                  all_grades[index] = await grade.fill();
-                } catch (error) {
-                  errorConsole(
-                    `[ERROR] !skipping grade (${grade.id}) ${error.toString()}`
-                  );
-                  _.remove(all_grades, (g) => {
-                    g.id == grade.id;
-                  });
-                  continue;
+                grade = await grade.fill();
+              } catch (e) {
+                logConsole(
+                  "[INFO]  Filling grade failed, trying again in een momentje (" +
+                    grade.id +
+                    ") "
+                );
+                if (failedGrades.find((g) => g.id == grade.id) == undefined) {
+                  failedGrades.push(grade);
                 }
-                if (!grade._filled)
-                  logConsole("[INFO]  (" + grade.id + ") " + grade._filled);
-                // filled++;
-                // var i = _.findIndex(all_grades, {     id: grade.id })
-                var i = Number(all_grades.length) - 1 - index;
-                all_grades[index]._filled = true;
-                // logConsole(i + ' ' + (Number(all_grades.length) - 1))
-                // $("#grades-remaining").text(filled)
-                $("#grades-remaining").text(i);
-                // var remaining = Math.round((((totalGrades / 150) * 20) * 10) / 60) / 10 + 1
-                var time = i * 0.14;
-                var minutes = Math.floor(time / 60);
-                var seconds = time - minutes * 60;
+                return grade;
+              }
+
+              if (grade._filled) {
+                filledGrades.push(grade);
+              } else {
+                failedGrades.push(grade);
+              }
+
+              return grade;
+            };
+
+            const batchSize = 1;
+            for (let i = 0; i < all_grades.length; i += batchSize) {
+              const batch = all_grades.slice(i, i + batchSize);
+              try {
+                await Promise.all(batch.map(fillGrade));
+
+                var gradesToGo = all_grades.length - 1 - i;
+                $("#grades-remaining").text(gradesToGo);
+                const time = gradesToGo * 0.12;
+                const minutes = Math.floor(time / 60);
+                const seconds = time - minutes * 60;
                 $("#time-remaining").text(
                   `${Math.round(minutes)}min ${Math.round(seconds)}sec`
                 );
-                addLoader(100 - (i / all_grades.length) * 100, true);
-
-                // if (_.findIndex(all_grades, {
-                //   id: grade.id
-                // }) == Math.round((all_grades.length / 3) * 2)) {
-                //   toast(
-                //     `Loopt het vast? <a onclick="verderGaanLogin()">Druk dan hier</a>. Alleen klikken als hij echt is vastgelopen!`,
-                //     false,
-                //     true
-                //   );
-                // }
-
-                // if (i == (Number(all_grades.length) - 1)) {
-                if (all_grades.every((g) => g._filled == true)) {
-                  resolve();
-                }
+                addLoader(100 - (gradesToGo / all_grades.length) * 100, true);
               } catch (err) {
-                errorConsole(
-                  `[ERROR] skipping grade (${grade.id}) ${err.toString()}`
-                );
-                _.remove(all_grades, (g) => {
-                  g.id == grade.id;
-                });
                 continue;
               }
             }
+
+            for (let i = 0; i < failedGrades.length; i++) {
+              $("#grades-remaining").text(
+                `${failedGrades.length - i}/${
+                  failedGrades.length
+                } gefaalde cijfers opnieuw proberen`
+              );
+              $("#time-remaining").text(`bijna klaar...`);
+
+              const grade = failedGrades[i];
+              for (let j = 0; j < 5; j++) {
+                if (j > 0) {
+                  await new Promise((r) => setTimeout(r, 100));
+                }
+                const _grade = await fillGrade(grade);
+                if (_grade._filled) {
+                  break;
+                }
+              }
+            }
+
+            all_grades = filledGrades;
+            resolve();
           })
           .catch((err) => errorConsole(err));
       })
@@ -641,8 +651,8 @@ $(document).ready(function () {
   $(function () {
     if (window.cordova.platformId === "ios") {
       jQuery.ajaxPrefilter(function (options) {
-        if (options.url.substr(0, 24) !== "https://cors.gemairo.app/") {
-          options.url = "https://cors.gemairo.app/" + options.url;
+        if (!options.url.startsWith("https://cors-gemairo.sjoerd.dev")) {
+          options.url = "https://cors-gemairo.sjoerd.dev/" + options.url;
         }
       });
     }

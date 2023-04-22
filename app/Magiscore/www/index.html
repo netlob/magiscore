@@ -37,6 +37,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="Description" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
   <meta name="Tags" content="Magister Statistieken Magistat Cijfers Grafiek Berekenen Uitrekenen">
+  <style>
+    #takeoverAd {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000000;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, .65);
+      overflow: hidden;
+    }
+  </style>
 </head>
 
 <!--  onunload="ads.hideBanner()" -->
@@ -936,6 +950,19 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+
+  <div id="takeoverAd" style="display: none;">
+    <div class="mx-4" style="margin-top: 10vh;">
+      <img style="width: 100%; border-radius: 10px 10px 0px 0px;" src="" id="takeoverAd-image">
+      <div class="px-3 py-3 bg-white" style="border-radius: 0px 0px 10px 10px;">
+        <h3 class="text-gray-900 font-weight-bold" id="takeoverAd-title"></h1>
+          <p id="takeoverAd-subtitle" class="text-gray-700"></p>
+          <button class="btn btn-primary w-100 vibrate" id="takeoverAd-cta"></button>
+        </div>
+      </dir>
+    </div>
+  </div>
+      
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -956,12 +983,13 @@
       </div>
     </div>
   </div>
+  
 
-  <div class="modal fade" id="gradeModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade" id="takeoverModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Cijfer</h5>
+          <h5 class="modal-title">Take over</h5>
           <button class="close vibrate" type="button" data-dismiss="modal" aria-label="Sluit">
             <span aria-hidden="true">×</span>
           </button>
@@ -1171,6 +1199,7 @@
   <script src="js/controllers/ViewController.js"></script>
   <script src="js/controllers/CourseController.js"></script>
   <script src="js/controllers/LessonController.js"></script>
+  <script src="js/saaf.js"></script>
   <script src="js/ads.js"></script>
   <script src="js/iap.js"></script>
   <!-- <script src="js/tour.js"></script> -->
