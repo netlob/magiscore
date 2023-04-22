@@ -991,7 +991,7 @@ function setProfilePic(forceRefresh = false, childindex = -1, notoast = false) {
         : person.id;
     let url = `https://${school}/api/personen/${personid}/foto?width=640&height=640&crop=no`;
     if (window.cordova.platformId === "ios") {
-      url = "https://cors.gemairo.app/" + url;
+      url = "https://cors-gemairo.sjoerd.dev/" + url;
     }
     xhr.open("GET", url, true);
     xhr.setRequestHeader("Authorization", `Bearer ${tokens.access_token}`);
@@ -2176,7 +2176,7 @@ function generateHTML(lesson) {
 
             <div class="row">
               <div class="col-xl-8 col-lg-7">
-                  <div class="card shadow mb-4">
+                  <div class="card shadow mb-3">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                       <h6 class="m-0 font-weight-bold text-primary">Gemiddelde van ${
@@ -2200,6 +2200,11 @@ function generateHTML(lesson) {
                   </div>
                   </div>
               </div>
+
+              <!-- SAAF <div style="width: 100vw; padding-left: 12.5px; padding-right: 2.5px; padding-bottom: 17.5px; padding-top: 2.5px;">
+                <img src="https://media.discordapp.net/attachments/1095659555196768337/1095665887719211069/image.png" style="border-radius: 7px; width: 100%; height: auto; display: none;">
+                <img src="https://media.discordapp.net/attachments/1095659555196768337/1095669449329213550/dsaadsasdas_waifu2x_art_scale.webp" style="border-radius: 7px; width: 100%; height: auto; display: block;">
+              </div> SAAF -->
 
                 <div class="col-lg-6 mb-4">
                     <div class="card text-gray-800 shadow">

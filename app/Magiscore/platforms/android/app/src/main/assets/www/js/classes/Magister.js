@@ -43,7 +43,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://cors.gemairo.app/https://${
+        url: `https://cors-gemairo.sjoerd.dev/https://${
           this.tenant
         }/api/account?nocache=${Date.parse(new Date())}`,
         method: "GET",
@@ -99,7 +99,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://cors.gemairo.app/https://${this.tenant}/api/personen/${this.person.id}/kinderen?openData=%27%27`,
+        url: `https://cors-gemairo.sjoerd.dev/https://${this.tenant}/api/personen/${this.person.id}/kinderen?openData=%27%27`,
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.token,
@@ -134,7 +134,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://cors.gemairo.app/https://${
+        url: `https://cors-gemairo.sjoerd.dev/https://${
           this.tenant
         }/api/sessions/current?nocache=${Date.parse(new Date())}`,
         method: "GET",
@@ -161,7 +161,7 @@ class Magister {
           dataType: "json",
           async: true,
           crossDomain: true,
-          url: `https://cors.gemairo.app/https://${this.tenant}${
+          url: `https://cors-gemairo.sjoerd.dev/https://${this.tenant}${
             res.links.account.href
           }?nocache=${Date.parse(new Date())}`,
           method: "GET",
@@ -209,7 +209,7 @@ class Magister {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: `https://cors.gemairo.app/https://${
+        url: `https://cors-gemairo.sjoerd.dev/https://${
           this.tenant
         }/api/personen/${personid}/aanmeldingen?geenToekomstige=false&nocache=${Date.parse(
           new Date()

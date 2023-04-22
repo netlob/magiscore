@@ -6206,6 +6206,7 @@ a.badge-dark.focus {
   background-color: var(--primary);
   -webkit-transition: width 0.6s ease;
   transition: width 0.6s ease;
+  border-radius: 5px;
 }
 
 @media (prefers-reduced-motion: reduce) {

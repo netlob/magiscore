@@ -123,7 +123,7 @@ function customScheme(iab) {
       dataType: "json",
       async: true,
       crossDomain: true,
-      url: "https://cors.gemairo.app/https://accounts.magister.net/connect/token",
+      url: "https://cors-gemairo.sjoerd.dev/https://accounts.magister.net/connect/token",
       method: "POST",
       headers: {
         "X-API-Client-ID": "EF15",

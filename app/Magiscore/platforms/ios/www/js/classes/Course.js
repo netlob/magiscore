@@ -158,9 +158,9 @@ class Course {
         childindex >= 0 && this._magister.person.isParent
           ? this._magister.person.children[childindex].Id
           : this._magister.person.id;
-      const urlPrefix = `https://cors.gemairo.app/https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.id}/cijfers`;
+      const urlPrefix = `https://cors-gemairo.sjoerd.dev/https://${this._magister.tenant}/api/personen/${personid}/aanmeldingen/${this.id}/cijfers`;
       const url = latest
-        ? `https://cors.gemairo.app/https://${
+        ? `https://cors-gemairo.sjoerd.dev/https://${
             this._magister.tenant
           }/api/personen/${
             this._magister.person.id
