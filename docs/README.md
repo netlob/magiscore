@@ -1,3 +1,9 @@
+# Gemairo 2.0: Flutter rewrite
+Na lange tijd gekloot te hebben met cordova wat nooit meewerkte is Gemairo nu helemaal herschreven in Flutter door @harrydekat in een nieuwe repo -> https://github.com/gemairo/app
+
+Deze repo is archived ❤️
+---
+
 # Magiscore
 Magiscore is an all new way to view your grades. With useful tools like graphs and automatic calculations, you get insides to your grades like never before. 
 Available in the App Store and Play Store.
